@@ -1,0 +1,8 @@
+* Ship further go board themes (two should be enough to show)
+
+* Add move controls to toolbar instead of Undo/Redo:
+  First Move | Previous Move | Next Move | Last Move
+
+* Add multiplayer support via GGZ and traditional Go servers
+
+* Implement the Demo mode
