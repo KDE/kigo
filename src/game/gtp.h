@@ -34,6 +34,7 @@
 
 #include <QProcess>
 #include <QList>
+#include <QPair>
 #include <QString>
 #include <QObject>
 
@@ -49,8 +50,8 @@ namespace KGo {
  * @code
  * Gtp *gtp = new Gtp;
  *
- * // Open a session with a Go engine in GTP mode
- * gtp->openSession("gnugo --mode gtp");
+ * // Run a session with a Go engine in GTP mode
+ * gtp->run("gnugo --mode gtp");
  *
  * // Get some informations about the Go engine
  * gtp->name();
@@ -72,42 +73,42 @@ public:
      * Enumeration of available player colors.
      */
     enum PlayerColor {
-        PlayerWhite = 1,    ///< The white player
-        PlayerBlack         ///< The black player
+        WhitePlayer = 1,        ///< The white player
+        BlackPlayer,            ///< The black player
+        InvalidPlayer
     };
 
     /**
      * Enumeration of what color the stone has on a certain board field.
      */
     enum FieldStatus {
-        FieldEmpty = 1,     ///< The field is empty
-        FieldWhite,         ///< The field has a white stone on it
-        FieldBlack,         ///< The field has a black stone on it
-        FieldInvalid        ///< An invalid field was queried, shows error
+        EmptyField = 1,         ///< The field is empty
+        WhiteField,             ///< The field has a white stone on it
+        BlackField,             ///< The field has a black stone on it
+        InvalidField            ///< An invalid field was queried, shows error
     };
 
     /**
      * Enumeration of all possible states of a dragon
      */
     enum DragonStatus {
-        DragonAlive = 1,    ///< The dragon lives
-        DragonCritical,     ///< The dragon is critical
-        DragonDead,         ///< The dragon is dead
-        DragonUnknown,      ///< The state of the dragon is unknown
-        DragonInvalid       ///< An invalid field was querid, shows error
+        AliveDragon = 1,        ///< The dragon lives
+        CriticalDragon,         ///< The dragon is critical
+        DeadDragon,             ///< The dragon is dead
+        UnknownDragon,          ///< The state of the dragon is unknown
     };
 
     /**
      * Enumeration of all possible final states of a field when a game is over
      */
     enum FinalState {
-        Alive = 1,          ///< The stone on the field is alive
-        Dead,               ///< The stone on the field is dead
-        Seki,               ///<
-        WhiteTerritory,     ///< The field belongs to the white player
-        BlackTerritory,     ///< The field belongs to the black player
-        Dame,               ///< The field belongs to no player
-        StateInvalid        ///< The state is invalid, shows error
+        FinalAlive = 1,         ///< The stone on the field is alive
+        FinalDead,              ///< The stone on the field is dead
+        FinalSeki,              ///<
+        FinalWhiteTerritory,    ///< The field belongs to the white player
+        FinalBlackTerritory,    ///< The field belongs to the black player
+        FinalDame,              ///< The field belongs to no player
+        FinalStateInvalid       ///< The state is invalid, shows error
     };
 
     /**
@@ -230,7 +231,7 @@ public:
      *
      * @param command The executable command to start in GTP mode.
      */
-    bool openSession(const QString &command = "gnugo --mode gtp");
+    bool run(const QString &command = "gnugo --mode gtp");
 
     /**
      * Check wether the Gtp object is connected to a Go engine, running
@@ -385,12 +386,27 @@ public:
     ////////////////////////////////////////////////////////////////////
 
     /**
+     * Returns a pair of the last move and the player's color who made it.
+     *
+     * @return A Pair with the player color and the last move.
+     */
+     QPair<PlayerColor, Stone> lastMove();
+
+    /**
      * Return the color (state) of a specific board field.
      *
      * @param field The field to report the state
      * @see FieldStatus
      */
     FieldStatus whatColor(const Stone &field);
+
+    /**
+     * Returns a list of all stones of 'color' on the board.
+     *
+     * @param color The player color list the stones for
+     * @return
+     */
+    QList<Stone> listStones(PlayerColor color);
 
     /**
      * Count the number of liberties for the stone at 'field'.
@@ -700,6 +716,12 @@ signals:
      * and the Go engine is ready to receive the next command.
      */
     void ready();
+
+    /**
+     * This signal is emitted when the board situation changed and
+     * can be used to trigger an update to a visual representation.
+     */
+    void boardChanged();
 
 private slots:
     /**

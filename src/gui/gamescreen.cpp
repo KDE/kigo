@@ -36,23 +36,21 @@
 
 namespace KGo {
 
-GameScreen::GameScreen(Gtp *gtp, QWidget *parent)
+GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
-    , m_gtp(gtp)
-    , m_gameScene(new GameScene(gtp))
-    , m_gameView(new GameView(m_gameScene, this))
+    , m_gameScene(scene)
+    , m_gameSceneGtp(scene->gtp())
 {
-    Q_ASSERT(gtp);
-
     setupUi(this);
-    m_gameView->setInteractive(true);
+
+    GameView *gameView = new GameView(m_gameScene, this);
+    gameView->setInteractive(true);
     gameFrame->setLayout(new QHBoxLayout());
-    gameFrame->layout()->addWidget(m_gameView);
+    gameFrame->layout()->addWidget(gameView);
 }
 
 GameScreen::~GameScreen()
 {
-    m_gtp->quit();
 }
 
 } // End of namespace KGo

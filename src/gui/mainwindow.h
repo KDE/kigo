@@ -39,7 +39,7 @@ class KToggleAction;
 
 namespace KGo {
 
-class Gtp;
+class GameScene;
 class SetupScreen;
 class GameScreen;
 
@@ -55,43 +55,33 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    /**
-     * Standard Constructor
-     *
-     * @param parent The parent widget
-     * @param startDemo Start in demo mode?
-     */
-    MainWindow(QWidget *parent = 0, bool startDemo = false);
-
-    /**
-     *
-     */
+    explicit MainWindow(QWidget *parent = 0, bool startDemo = false);
     ~MainWindow();
 
 private slots:
-    void newGame();                     ///< Configure new game with setupscreen
-    void loadGame();                    ///< Configure loaded game with ~
-    void saveGame();                    ///< Save the current game state
-    void startGame();                   ///< React on setupscreen start button
-    void undo();                        ///<
-    void redo();                        ///<
-    void toggleDemoMode();              ///<
-    void showPreferences();             ///< Show settings dialog
+    void newGame();                         ///< Configure new game with setupscreen
+    void loadGame();                        ///< Configure loaded game with ~
+    void saveGame();                        ///< Save the current game state
+    void startGame();                       ///< React on setupscreen start button
+    void undo();                            ///<
+    void redo();                            ///<
+    void toggleDemoMode();                  ///<
+    void showPreferences();                 ///< Show settings dialog
 
 private:
     void setupActions();
 
-    Gtp* m_gtp;                         ///<
-    SetupScreen *m_setupScreen;         ///< Pointer to the game setup screen
-    GameScreen *m_gameScreen;           ///< Pointer to the game playing screen
-    bool m_startInDemoMode;             ///< Start application in demo mode
+    GameScene * const m_gameScene;
+    SetupScreen * const m_setupScreen;      ///< Pointer to the game setup screen
+    GameScreen * const m_gameScreen;        ///< Pointer to the game playing screen
+    bool m_startInDemoMode;                 ///< Start application in demo mode
 
-    QAction *m_saveAsAction;            ///< Action to save the current game
-    QAction *m_firstMoveAction;         ///< Action to jump to the first move
-    QAction *m_previousMoveAction;      ///< Action to jump to the previous move
-    QAction *m_nextMoveAction;          ///< Action to jump to the next move
-    QAction *m_lastMoveAction;          ///< Action to jump to the last move
-    KToggleAction *m_demoAction;        ///< Action to change to demo mode
+    QAction *m_saveAsAction;                ///< Action to save the current game
+    QAction *m_firstMoveAction;             ///< Action to jump to the first move
+    QAction *m_previousMoveAction;          ///< Action to jump to the previous move
+    QAction *m_nextMoveAction;              ///< Action to jump to the next move
+    QAction *m_lastMoveAction;              ///< Action to jump to the last move
+    KToggleAction *m_demoAction;            ///< Action to change to demo mode
 };
 
 } // End of namespace KGo

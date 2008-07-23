@@ -57,36 +57,15 @@ class GameScene : public QGraphicsScene
     Q_OBJECT
 
 public:
-    /**
-     * Constructs a new game scene object from a correctly configured Gtp
-     * object.
-     *
-     * @param gtp A configured, "ready to start gaming with" Gtp object
-     */
-    explicit GameScene(Gtp *gtp);
+    GameScene();
 
-    /**
-     *
-     * @param width
-     * @param height
-     */
     void resizeScene(int width, int height);
 
+    Gtp * const gtp() const;
+
 public slots:
-    /**
-     *
-     */
-    void update();
-
-    /**
-     *
-     * @param show Wether to show the move history or not
-     */
+    void updateBoard();
     void showMoveHistory(bool show);
-
-    /**
-     *
-     */
     void hint();
 
 private:
@@ -99,7 +78,7 @@ private:
      */
     void drawBackground(QPainter *painter, const QRectF &);
 
-    Gtp *m_gtp;                                     ///< To interface with the go engine
+    Gtp * const m_gtp;                              ///< To interface with the go engine
     bool m_showLabels;                              ///< Show board labels or not
     qreal m_currentCellSize;                        ///<
     QRectF m_boardRect;                             ///< Position of board in the scene

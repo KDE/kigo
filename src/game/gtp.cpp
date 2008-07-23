@@ -68,9 +68,9 @@ QString Gtp::Stone::toString() const
 Gtp::Score::Score(const QString &scoreString)
 {
     if (scoreString[0] == 'W')
-        m_player = PlayerWhite;
+        m_player = WhitePlayer;
     else
-        m_player = PlayerBlack;
+        m_player = BlackPlayer;
     int i = scoreString.indexOf(' ');
     m_score = scoreString.mid(2, i - 1).toInt();
     //m_upperBound = scoreString.mid(
@@ -85,7 +85,7 @@ bool Gtp::Score::isValid() const
 
 QString Gtp::Score::toString() const
 {
-    return QString("%1+%2 (upper bound: %3, lower: %4").arg(m_player == PlayerWhite ? "W" : "B").arg(m_score).arg(m_upperBound).arg(m_lowerBound);
+    return QString("%1+%2 (upper bound: %3, lower: %4").arg(m_player == WhitePlayer ? "W" : "B").arg(m_score).arg(m_upperBound).arg(m_lowerBound);
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ Gtp::~Gtp()
     quit();
 }
 
-bool Gtp::openSession(const QString &command)
+bool Gtp::run(const QString &command)
 {
     quit();                                         // Close old session if there's one
     m_process.start(command.toLatin1());            // Start new process with provided command
@@ -110,7 +110,9 @@ bool Gtp::openSession(const QString &command)
     if (!m_process.waitForStarted())                // NOTE: Blocking wait for process start
         return false;
 
-    if (protocolVersion()) {
+    kDebug() << "Run new GTP engine session";
+
+    if (protocolVersion() > 0) {
         clearBoard();                               // Start with blank board
     } else {
         quit();
@@ -123,6 +125,7 @@ bool Gtp::openSession(const QString &command)
 void Gtp::quit()
 {
     if (m_process.isOpen()) {
+        kDebug() << "Quit GTP engine session";
         m_process.write("quit\n");
         m_process.close();
     }
@@ -134,6 +137,8 @@ bool Gtp::loadSgf(const QString &fileName, int moveNumber)
     if (fileName.isEmpty() || !QFile::exists(fileName))
         return false;
 
+    kDebug() << "Attempting to load" << moveNumber << "from" << fileName;
+
     QByteArray msg;
     msg.append("loadsgf ");
     msg.append(fileName.toLatin1());
@@ -141,13 +146,19 @@ bool Gtp::loadSgf(const QString &fileName, int moveNumber)
     msg.append(moveNumber);
     msg.append("\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::saveSgf(const QString &fileName)
 {
     if (fileName.isEmpty())
         return false;
+
+    kDebug() << "Attempting to save to" << fileName;
 
     QByteArray msg;
     msg.append("printsgf ");
@@ -199,7 +210,11 @@ bool Gtp::setBoardSize(int size)
     msg.append(size);
     msg.append("\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 int Gtp::boardSize()
@@ -218,7 +233,11 @@ bool Gtp::clearBoard()
     QByteArray msg;
     msg.append("clear_board\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::setKomi(float komi)
@@ -254,49 +273,71 @@ bool Gtp::setFixedHandicap(int handicap)
     msg.append(handicap);
     msg.append("\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::playMove(PlayerColor color, const Stone &field)
 {
-    if (!field.isValid())
+    if (!field.isValid() || !color == WhitePlayer || color == BlackPlayer)
         return false;
 
     QByteArray msg;
     msg.append("play ");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white ");
     else
         msg.append("black ");
     msg.append(field.toLatin1());
     msg.append("\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::passMove(PlayerColor color)
 {
+    if (!color == WhitePlayer || color == BlackPlayer)
+        return false;
+
     QByteArray msg;
     msg.append("play ");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white ");
     else
         msg.append("black ");
     msg.append("pass\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::generateMove(PlayerColor color)
 {
+    if (!color == WhitePlayer || color == BlackPlayer)
+        return false;
+
     QByteArray msg;
     msg.append("genmove ");
-    if(color == PlayerWhite)
+    if(color == WhitePlayer)
         msg.append("white\n");
     else
         msg.append("black\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::undoMove(int i)
@@ -307,24 +348,32 @@ bool Gtp::undoMove(int i)
     msg.append(i);
     msg.append("\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::tryMove(PlayerColor color, const Stone &field)
 {
-    if (!field.isValid())
+    if (!field.isValid() || !color == WhitePlayer || color == BlackPlayer)
         return false;
 
     QByteArray msg;
     msg.append("trymove ");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white ");
     else
         msg.append("black ");
     msg.append(field.toLatin1());
     msg.append("\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
 }
 
 bool Gtp::popGo()
@@ -332,13 +381,35 @@ bool Gtp::popGo()
     QByteArray msg;
     msg.append("popgo\n");
     m_process.write(msg);
-    return waitResponse();
+    if (waitResponse()) {
+        emit boardChanged();
+        return true;
+    } else
+        return false;
+}
+
+QPair<Gtp::PlayerColor, Gtp::Stone> Gtp::lastMove()
+{
+    QByteArray msg;
+    msg.append("last_move\n");
+    m_process.write(msg);
+    QPair<PlayerColor, Stone> pair(InvalidPlayer, Stone());
+    if (waitResponse()) {
+        if (m_response.startsWith("white")) {
+            pair.first = WhitePlayer;
+            pair.second = Stone(m_response.split(" ")[1]);
+        } else if (m_response.startsWith("black")) {
+            pair.first = BlackPlayer;
+            pair.second = Stone(m_response.split(" ")[1]);
+        }
+    }
+    return pair;
 }
 
 Gtp::FieldStatus Gtp::whatColor(const Stone &field)
 {
     if (!field.isValid())
-        return FieldInvalid;
+        return InvalidField;
 
     QByteArray msg;
     msg.append("color ");
@@ -346,12 +417,33 @@ Gtp::FieldStatus Gtp::whatColor(const Stone &field)
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
-        if (m_response == "white")            return FieldWhite;
-        else if (m_response == "black")        return FieldBlack;
-        else if (m_response == "empty")        return FieldEmpty;
-        else return FieldInvalid;
+        if (m_response == "white") return WhiteField;
+        else if (m_response == "black") return BlackField;
+        else if (m_response == "empty") return EmptyField;
+        else return InvalidField;
     } else
-        return FieldInvalid;
+        return InvalidField;
+}
+
+QList<Gtp::Stone> Gtp::listStones(PlayerColor color)
+{
+    QList<Gtp::Stone> list;
+    if (!color == WhitePlayer || color == BlackPlayer)
+        return list;
+
+    QByteArray msg;
+    msg.append("list_stones ");
+    if (color == WhitePlayer)
+        msg.append("white");
+    else
+        msg.append("black");
+    msg.append("\n");
+    m_process.write(msg);
+    if (waitResponse()) {
+        foreach (QString pos, m_response.split(" "))
+            list.append(Stone(pos));
+    }
+    return list;
 }
 
 int Gtp::countLiberties(const Stone &field)
@@ -390,12 +482,12 @@ QList<Gtp::Stone> Gtp::findLiberties(const Stone &field)
 
 bool Gtp::isLegal(PlayerColor color, const Stone &field)
 {
-    if (!field.isValid())
+    if (!field.isValid() || !color == WhitePlayer || color == BlackPlayer)
         return false;
 
     QByteArray msg;
     msg.append("is_legal ");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white ");
     else
         msg.append("black ");
@@ -411,9 +503,12 @@ bool Gtp::isLegal(PlayerColor color, const Stone &field)
 
 QString Gtp::topMoves(PlayerColor color)
 {
+    if (!color == WhitePlayer || color == BlackPlayer)
+        return QString();
+
     QByteArray msg;
     msg.append("top_moves_");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white\n");
     else
         msg.append("black\n");
@@ -426,26 +521,32 @@ QString Gtp::topMoves(PlayerColor color)
 
 QList<Gtp::Stone> Gtp::legalMoves(PlayerColor color)
 {
+    QList<Gtp::Stone> list;
+    if (!color == WhitePlayer || color == BlackPlayer)
+        return list;
+
     QByteArray msg;
     msg.append("all_legal ");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white\n");
     else
         msg.append("black\n");
     m_process.write(msg);
-    waitResponse();
-
-    QList<Gtp::Stone> list;
-    foreach (QString entry, m_response.split(' '))
-        list.append(Gtp::Stone(entry));
+    if (waitResponse()) {
+        foreach (QString entry, m_response.split(' '))
+            list.append(Gtp::Stone(entry));
+    }
     return list;
 }
 
 int Gtp::captures(PlayerColor color)
 {
+    if (!color == WhitePlayer || color == BlackPlayer)
+        return 0;
+
     QByteArray msg;
     msg.append("captures ");
-    if (color == PlayerWhite)
+    if (color == WhitePlayer)
         msg.append("white\n");
     else
         msg.append("black\n");
@@ -555,7 +656,7 @@ QString Gtp::evalEye(const Stone &field)
 Gtp::DragonStatus Gtp::dragonStatus(const Stone &field)
 {
     if (!field.isValid())
-        return DragonInvalid;
+        return UnknownDragon;
 
     QByteArray msg;
     msg.append("dragon_status ");
@@ -563,13 +664,13 @@ Gtp::DragonStatus Gtp::dragonStatus(const Stone &field)
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
-        if (m_response == "alive")             return DragonAlive;
-        else if (m_response == "critical")    return DragonCritical;
-        else if (m_response == "dead")        return DragonDead;
-        else if (m_response == "unknown")    return DragonUnknown;
-        else return DragonInvalid;    /* should never happen */
+        if (m_response == "alive") return AliveDragon;
+        else if (m_response == "critical") return CriticalDragon;
+        else if (m_response == "dead") return DeadDragon;
+        else if (m_response == "unknown") return UnknownDragon;
+        else return UnknownDragon;    /* should never happen */
     } else
-        return DragonInvalid;
+        return UnknownDragon;
 }
 
 bool Gtp::sameDragon(const Stone &field1, const Stone &field2)
@@ -604,7 +705,7 @@ QString Gtp::dragonData(const Stone &field)
 Gtp::FinalState Gtp::finalStatus(const Stone &field)
 {
     if (!field.isValid())
-        return StateInvalid;
+        return FinalStateInvalid;
 
     QByteArray msg;
     msg.append("final_status ");
@@ -612,33 +713,33 @@ Gtp::FinalState Gtp::finalStatus(const Stone &field)
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
-        if (m_response == "alive")                    return Alive;
-        else if (m_response == "dead")                return Dead;
-        else if (m_response == "seki")                return Seki;
-        else if (m_response == "white_territory")    return WhiteTerritory;
-        else if (m_response == "blacK_territory")    return BlackTerritory;
-        else if (m_response == "dame")                return Dame;
-        else return StateInvalid;
+        if (m_response == "alive") return FinalAlive;
+        else if (m_response == "dead") return FinalDead;
+        else if (m_response == "seki") return FinalSeki;
+        else if (m_response == "white_territory") return FinalWhiteTerritory;
+        else if (m_response == "blacK_territory") return FinalBlackTerritory;
+        else if (m_response == "dame") return FinalDame;
+        else return FinalStateInvalid;
     } else
-        return StateInvalid;
+        return FinalStateInvalid;
 }
 
 QList<Gtp::Stone> Gtp::finalStatusList(FinalState state)
 {
     QList<Stone> list;
-    if (state == StateInvalid)
+    if (state == FinalStateInvalid)
         return list;
 
     QByteArray msg;
     msg.append("final_status_list ");
     switch (state) {
-        case Alive: msg.append("alive"); break;
-        case Dead: msg.append("dead"); break;
-        case Seki: msg.append("seki"); break;
-        case WhiteTerritory: msg.append("white_territory"); break;
-        case BlackTerritory: msg.append("black_territory"); break;
-        case Dame: msg.append("dame"); break;
-        case StateInvalid: /* Will never happen */ break;
+        case FinalAlive: msg.append("alive"); break;
+        case FinalDead: msg.append("dead"); break;
+        case FinalSeki: msg.append("seki"); break;
+        case FinalWhiteTerritory: msg.append("white_territory"); break;
+        case FinalBlackTerritory: msg.append("black_territory"); break;
+        case FinalDame: msg.append("dame"); break;
+        case FinalStateInvalid: /* Will never happen */ break;
     }
     msg.append("\n");
     m_process.write(msg);
@@ -895,11 +996,16 @@ void Gtp::readStandardOutput()
 
 void Gtp::readStandardError()
 {
-    kDebug() << "Error occured:" << m_process.readAllStandardError();
+    kWarning() << "Go engine I/O error occured:\n" << m_process.readAllStandardError();
 }
 
 bool Gtp::waitResponse()
 {
+    if (!m_process.isOpen()) {
+        kWarning() << "Go engine command failed because no GTP session is running!";
+        return false;
+    }
+
     QString tmp = m_response;
     do {                                            // Process some events till our response arrives
         qApp->processEvents();                      // to not slow down this thread too much
@@ -908,6 +1014,8 @@ bool Gtp::waitResponse()
     tmp = m_response[0];
     m_response.remove(0, 2);                        // Remove the first two chars (e.g. "? " or "= "
     m_response.remove(m_response.size() - 2, 2);    // Remove the two trailing newlines
+
+    kDebug() << "Response" << m_response;
 
     emit ready();
     if (tmp == "?")                                 // '?' Means the engine didn't understand the query

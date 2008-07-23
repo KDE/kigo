@@ -32,13 +32,13 @@
 #define KGO_GAMESCREEN_H
 
 #include "ui_gamescreen.h"
+
 #include <QWidget>
 
 namespace KGo {
 
 class Gtp;
 class GameScene;
-class GameView;
 
 /**
  * The game screen acts as a compound widget for the game view and
@@ -59,14 +59,10 @@ public:
      * some informational panels as well as the main Go game board
      * view.
      *
-     * @param gtp A configured, ready to start gaming with Gtp object
+     * @param scene A configured, ready to start game scene
      * @param parent The parent widget or none
      */
-    explicit GameScreen(Gtp *gtp, QWidget *parent = 0);
-
-    /**
-     * Standard destructor.
-     */
+    explicit GameScreen(GameScene *scene, QWidget *parent = 0);
     ~GameScreen();
 
 signals:
@@ -76,9 +72,8 @@ public slots:
     //void setGameStatisticsVisible(bool visible);
 
 private:
-    Gtp *m_gtp;                 ///<
-    GameScene *m_gameScene;     ///<
-    GameView *m_gameView;       ///<
+    GameScene * const m_gameScene;  ///<
+    Gtp * const m_gameSceneGtp;     ///<
 };
 
 } // End of namespace KGo

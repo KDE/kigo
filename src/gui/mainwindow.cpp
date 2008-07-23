@@ -31,10 +31,11 @@
 
 #include "mainwindow.h"
 #include "preferences.h"
+#include "game/gtp.h"
+#include "gui/gamescene.h"
 #include "gui/setupscreen.h"
 #include "gui/gamescreen.h"
 #include "gui/config.h"
-#include "game/gtp.h"
 
 #include <QDir>
 #include <QStackedWidget>
@@ -53,9 +54,9 @@ namespace KGo {
 
 MainWindow::MainWindow(QWidget *parent, bool startDemo)
     : KXmlGuiWindow(parent)
-    , m_gtp(new Gtp())
-    , m_setupScreen(new SetupScreen(m_gtp, this))
-    , m_gameScreen(new GameScreen(m_gtp, this))
+    , m_gameScene(new GameScene)
+    , m_setupScreen(new SetupScreen(m_gameScene, this))
+    , m_gameScreen(new GameScreen(m_gameScene, this))
     , m_startInDemoMode(startDemo)
 {
     // Handle the start game whish the user entered in the setup screen
@@ -73,7 +74,6 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
 
 MainWindow::~MainWindow()
 {
-    m_gtp->quit();                        // Gently disconnect the Go engine
 }
 
 void MainWindow::setupActions()
@@ -119,7 +119,7 @@ void MainWindow::saveGame()
 {
     QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty())
-        m_gtp->saveSgf(fileName);
+        m_gameScene->gtp()->saveSgf(fileName);
 }
 
 void MainWindow::startGame()

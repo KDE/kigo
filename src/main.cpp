@@ -28,20 +28,18 @@
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
+#include "gui/mainwindow.h"
+
 #include <KAboutData>
 #include <KCmdLineArgs>
 #include <KApplication>
 #include <KLocale>
-
-#include "gui/mainwindow.h"
+#include <KDebug>
 
 /**
  * This namespace collects all classes related to KGo, the Go board game.
  */
-namespace KGo
-{
-    /* This is only a Doxygen stub */
-}
+namespace KGo { /* This is only a Doxygen stub */ }
 
 /**
  * The standard C/C++ program entry point. Application 'about' data
@@ -55,7 +53,7 @@ int main(int argc, char *argv[])
             ki18n("KDE Go Board Game"),    KAboutData::License_GPL_V3,
             ki18n("Copyright (c) 2008 Sascha Peilicke"));
     aboutData.addAuthor(ki18n("Sascha Peilicke"), ki18n("Original author"), "sasch.pe@gmx.de");
-    aboutData.setHomepage("http://games.kde.org/kgo");
+    //aboutData.setHomepage("http://games.kde.org/kgo");
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
@@ -66,8 +64,10 @@ int main(int argc, char *argv[])
     KGlobal::locale()->insertCatalog("libkdegames");
 
     if (app.isSessionRestored()) {
+		kDebug() << "Restore last session";
         RESTORE(KGo::MainWindow)
     } else {
+		kDebug() << "Start new session";
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         KGo::MainWindow *mainWin = new KGo::MainWindow(0, args->isSet("demo"));
         mainWin->show();

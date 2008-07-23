@@ -38,12 +38,14 @@
 
 namespace KGo {
 
-GameScene::GameScene(Gtp *gtp)
-    : m_gtp(gtp)
+GameScene::GameScene()
+    : m_gtp(new Gtp())
     , m_showLabels(false)
     , m_cursorItem(0)
 {
-    Q_ASSERT(gtp);
+    Q_ASSERT(m_gtp);
+
+    connect(m_gtp, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -63,9 +65,16 @@ void GameScene::resizeScene(int width, int height)
     m_currentCellSize = defWidth * scale / (m_gtp->boardSize() + 3);
 }
 
-void GameScene::update()
+Gtp * const GameScene::gtp() const
 {
-    //TODO: Resize, set komi, board size ...
+    return m_gtp;
+}
+
+void GameScene::updateBoard()
+{
+    //TODO: set komi, board size ...
+
+    update();
 }
 
 void GameScene::showMoveHistory(bool show)
@@ -85,8 +94,8 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
     if (m_showLabels)
         ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardLabels, painter, m_boardRect);
 
-    /*// Draw the board cells
-    QPointF upLeftPoint(m_boardRect.x() + m_currentCellSize * 1.5,
+    // Draw the board cells
+    /*QPointF upLeftPoint(m_boardRect.x() + m_currentCellSize * 1.5,
                         m_boardRect.y() + m_currentCellSize * 1.5);
     QPointF upRightPoint(m_boardRect.x() + m_boardRect.width() - m_currentCellSize * 1.5,
                         m_boardRect.y() + m_currentCellSize * 1.5);
@@ -95,7 +104,7 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
 
     for (int i = 0; i < m_gtp->boardSize() - 1; i++) {
         // Draw horizontal line
-        panter->drawLine(QPointF(upLeftPoint.x(), upLeftPoint.y() + i * m_currentCellSize),
+        painter->drawLine(QPointF(upLeftPoint.x(), upLeftPoint.y() + i * m_currentCellSize),
                         QPointF(upRightPoint.x(), upRightPoint.y() + i * m_currentCellSize));
 
         // Draw vertical line

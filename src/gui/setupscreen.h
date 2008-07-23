@@ -37,7 +37,6 @@ namespace KGo {
 
 class Gtp;
 class GameScene;
-class GameView;
 
 /**
  * The game setup screen lets the user choose a variety of game
@@ -61,14 +60,10 @@ public:
     /**
      * Standard constructor. Sets up the loaded user interface and initial state.
      *
-     * @param gtp A valid Gtp object
+     * @param scene A valid game scene
      * @param parent The parent widget or none
      */
-    explicit SetupScreen(Gtp *gtp, QWidget *parent = 0);
-
-    /**
-     * Standard destructor.
-     */
+    explicit SetupScreen(GameScene *scene, QWidget *parent = 0);
     ~SetupScreen();
 
     /**
@@ -79,7 +74,7 @@ public:
 
     /**
      * Use the setup screen to configure a loaded game. This sets the right widgets
-     * bases on the paramters.
+     * based on the parameters.
      *
      * @param fileName The SGF file to load the game from
      * @param showInfo Wether to show some info found in the SGF or not
@@ -99,13 +94,12 @@ private slots:
     void on_sizeGroupBox_changed(int);
     void on_startButton_clicked();
 
-    void loadSettings();        ///< Load KConfigXT application settings
-    void saveSettings();        ///< Store KConfigXT application settings
+    void loadSettings();            ///< Load KConfigXT application settings
+    void saveSettings();            ///< Store KConfigXT application settings
 
 private:
-    Gtp *m_gtp;                 ///<
-    GameScene *m_gameScene;     ///<
-    GameView *m_gameView;       ///<
+    GameScene * const m_gameScene;  ///<
+    Gtp * const m_gameSceneGtp;     ///<
 };
 
 } // End of namespace KGo

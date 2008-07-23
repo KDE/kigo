@@ -36,19 +36,18 @@
 
 namespace KGo {
 
-SetupScreen::SetupScreen(Gtp *gtp, QWidget *parent)
+SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
-    , m_gtp(gtp)
-    , m_gameScene(new GameScene(m_gtp))
-    , m_gameView(new GameView(m_gameScene, this))
+    , m_gameScene(scene)
+    , m_gameSceneGtp(scene->gtp())
 {
-    Q_ASSERT(gtp);
-
     setupUi(this);
-    m_gameView->setInteractive(false);                    // This is just a preview, not a real game
+
+    GameView *gameView = new GameView(m_gameScene, this);
+    gameView->setInteractive(false);                    // This is just a preview, not a real game
     previewFrame->setLayout(new QHBoxLayout());
-    previewFrame->layout()->addWidget(m_gameView);
-    setupNewGame();                                        // Configure new game per default
+    previewFrame->layout()->addWidget(gameView);
+    setupNewGame();                                     // Configure new game per default
 }
 
 SetupScreen::~SetupScreen()
@@ -58,24 +57,26 @@ SetupScreen::~SetupScreen()
 
 void SetupScreen::setupNewGame()
 {
+    kDebug() << "Setup new game, (re)connect to Go engine, (re)load settings";
     newGameBox->show();
     loadedGameBox->hide();
     infoBox->hide();
     loadSettings();
-    m_gtp->openSession(Preferences::engineCommand());    // (Re)Connect to the configured go engine
-    m_gtp->clearBoard();
+    m_gameSceneGtp->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
+    m_gameSceneGtp->clearBoard();
 }
 
 void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
 {
     Q_ASSERT(!fileName.isEmpty());
+    kDebug() << "Setup loaded game, (re)connect to Go engine, (re)load settings";
 
     newGameBox->hide();
     loadedGameBox->show();
     infoBox->setVisible(showInfo);
     loadSettings();
-    m_gtp->openSession(Preferences::engineCommand());    // (Re)Connect to the configured go engine
-    m_gtp->loadSgf(fileName);
+    m_gameSceneGtp->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
+    m_gameSceneGtp->loadSgf(fileName);
     //TODO: Set max value of startMoveSpinBox
     if (showInfo) {
         //TODO: Display all related game information in the info box
@@ -144,12 +145,12 @@ void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
 void SetupScreen::on_startButton_clicked()
 {
     saveSettings();
-    if (newGameBox->isVisible()) {                        // Means we configured a new game
-        m_gtp->setBoardSize(Preferences::boardSize());
-        m_gtp->setLevel(Preferences::difficulty());
-        m_gtp->setKomi(Preferences::komi());
-        m_gtp->setFixedHandicap(Preferences::fixedHandicap());
-    } else {                                            // Means we configured a loaded game
+    if (newGameBox->isVisible()) {                  // Means we configured a new game
+        m_gameSceneGtp->setBoardSize(Preferences::boardSize());
+        m_gameSceneGtp->setLevel(Preferences::difficulty());
+        m_gameSceneGtp->setKomi(Preferences::komi());
+        m_gameSceneGtp->setFixedHandicap(Preferences::fixedHandicap());
+    } else {                                        // Means we configured a loaded game
         //NOTE: Nothing to do here, all settings where already loaded from the SGF file.
     }
     emit startClicked();
@@ -176,7 +177,8 @@ void SetupScreen::loadSettings()
     }
     blackPlayerName->setText(Preferences::blackPlayerName());
 
-    if ((Preferences::blackPlayerHuman() && !Preferences::whitePlayerHuman()) || (!Preferences::blackPlayerHuman() && Preferences::whitePlayerHuman())) {
+    if ((Preferences::blackPlayerHuman() && !Preferences::whitePlayerHuman())
+        || (!Preferences::blackPlayerHuman() && Preferences::whitePlayerHuman())) {
         difficultyBox->setEnabled(true);
         difficultySlider->setEnabled(true);
     }
