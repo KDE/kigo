@@ -112,7 +112,7 @@ bool GoEngine::run(const QString &command)
 
     kDebug() << "Run new GTP engine session";
 
-    if (protocolVersion() > 0) {
+    if (protocolVersion() == 2) {                   // We support only GTP version 2 for now
         clearBoard();                               // Start with blank board
     } else {
         quit();
@@ -996,7 +996,7 @@ QString GoEngine::echo(const QString &command)
 
 void GoEngine::readStandardOutput()
 {
-    m_response = m_process.readAllStandardOutput();
+    m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
 }
 
 void GoEngine::readStandardError()
@@ -1006,7 +1006,7 @@ void GoEngine::readStandardError()
 
 bool GoEngine::waitResponse()
 {
-    if (!m_process.isOpen()) {
+    if (!m_process.isOpen()) {                      // No GTP connection means no computing fun!
         kWarning() << "Go engine command failed because no GTP session is running!";
         return false;
     }

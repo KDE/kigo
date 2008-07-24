@@ -75,7 +75,7 @@ public:
     enum PlayerColor {
         WhitePlayer = 1,        ///< The white player
         BlackPlayer,            ///< The black player
-        InvalidPlayer			///< Is only used as return value
+        InvalidPlayer           ///< Is only used as return value
     };
 
     /**
