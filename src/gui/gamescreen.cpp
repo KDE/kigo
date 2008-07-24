@@ -38,12 +38,11 @@ namespace KGo {
 
 GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
-    , m_gameScene(scene)
     , m_gameEngine(scene->engine())
 {
     setupUi(this);
 
-    GameView *gameView = new GameView(m_gameScene, this);
+    GameView *gameView = new GameView(scene, this);
     gameView->setInteractive(true);
     gameFrame->setLayout(new QHBoxLayout());
     gameFrame->layout()->addWidget(gameView);

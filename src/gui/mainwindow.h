@@ -67,7 +67,7 @@ private slots:
     void redo();                            ///<
     void toggleDemoMode();                  ///<
     void showPreferences();                 ///< Show settings dialog
-	void updatePreferences();
+    void updatePreferences();
 
 private:
     void setupActions();

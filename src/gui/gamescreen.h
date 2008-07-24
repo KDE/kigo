@@ -72,7 +72,6 @@ public slots:
     //void setGameStatisticsVisible(bool visible);
 
 private:
-    GameScene * const m_gameScene;  ///<
     GoEngine * const m_gameEngine;  ///<
 };
 

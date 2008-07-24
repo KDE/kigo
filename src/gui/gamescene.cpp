@@ -52,9 +52,9 @@ void GameScene::resizeScene(int width, int height)
     int size = qMin(width, height);
     m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
 
-	size = static_cast<int>(size * 0.9);
-	m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-	m_boardGridSize = m_boardGridRect.width() / m_engine->boardSize();
+    size = static_cast<int>(size * 0.9);
+    m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
+    m_boardGridSize = m_boardGridRect.width() / m_engine->boardSize();
 }
 
 GoEngine * const GameScene::engine() const
@@ -71,19 +71,19 @@ void GameScene::updateBoard()
 
 void GameScene::showMoveHistory(bool show)
 {
-	update();
+    update();
 }
 
 void GameScene::showLabels(bool show)
 {
-	kDebug() << "Show:" << show;
-	m_showLabels = show;
-	update();
+    kDebug() << "Show:" << show;
+    m_showLabels = show;
+    update();
 }
 
 void GameScene::hint()
 {
-	update();
+    update();
 }
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
@@ -91,27 +91,27 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
     ThemeRenderer::instance()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
     ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
 
-	//FIXME: Rentrancy problem with m_engine->waitProcess, use this for now:
+    //FIXME: Rentrancy problem with m_engine->waitProcess, use this for now:
     for (int i = 0; i < 19/*m_engine->boardSize()*/; i++) {
-		painter->save();
+        painter->save();
 
-		QPen linePen(painter->pen());
-		linePen.setWidth(static_cast<int>(m_boardGridSize / 10));
-		linePen.setColor(QColor(60, 70, 60, 200));
+        QPen linePen(painter->pen());
+        linePen.setWidth(static_cast<int>(m_boardGridSize / 10));
+        linePen.setColor(QColor(60, 70, 60, 200));
 
-		painter->setPen(linePen);
+        painter->setPen(linePen);
         painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + i * m_boardGridSize),
                           QPointF(m_boardGridRect.right(), m_boardGridRect.top() + i * m_boardGridSize));
         painter->drawLine(QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.top()),
                           QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.bottom()));
 
-		painter->restore();
+        painter->restore();
 
-		if (m_showLabels) {
-			//
-			//TODO: Render board label
-			painter->drawText(50, 50, "Showing labels");
-		}
+        if (m_showLabels) {
+            //
+            //TODO: Render board label
+            painter->drawText(50, 50, "Showing labels");
+        }
     }
 }
 

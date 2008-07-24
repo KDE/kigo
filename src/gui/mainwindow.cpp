@@ -149,14 +149,14 @@ void MainWindow::showPreferences()
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"), "games-config-theme");
     dialog->setHelp(QString(),"KGo");
-	connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(updatePreferences()));
+    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(updatePreferences()));
     dialog->show();
 }
 
 void MainWindow::updatePreferences()
 {
-	kDebug() <<"Update settings based on changed configuration";
-	m_gameScene->showLabels(Preferences::showBoardLabels());
+    kDebug() <<"Update settings based on changed configuration";
+    m_gameScene->showLabels(Preferences::showBoardLabels());
 }
 
 } // End of namespace KGo

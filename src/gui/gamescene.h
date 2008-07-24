@@ -66,7 +66,7 @@ public:
 public slots:
     void updateBoard();
     void showMoveHistory(bool show);
-	void showLabels(bool show);
+    void showLabels(bool show);
     void hint();
 
 private:
@@ -82,7 +82,7 @@ private:
     GoEngine * const m_engine;                      ///< To interface with the go engine
     bool m_showLabels;                              ///< Show board labels or not
     QRectF m_boardRect;                             ///< Position of board in the scene
-    QRectF m_boardGridRect;                         ///< 
+    QRectF m_boardGridRect;                         ///<
     qreal m_boardGridSize;                          ///<
     QList<QGraphicsPixmapItem *> m_stoneItemList;   ///<
 };

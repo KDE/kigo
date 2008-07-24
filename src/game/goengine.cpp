@@ -143,7 +143,7 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
     msg.append("loadsgf ");
     msg.append(fileName.toLatin1());
     msg.append(" ");
-    msg.append(moveNumber);
+    msg.append(QString::number(moveNumber));
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
@@ -207,7 +207,7 @@ bool GoEngine::setBoardSize(int size)
 
     QByteArray msg;
     msg.append("boardsize ");
-    msg.append(size);
+    msg.append(QString::number(size));
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
@@ -230,6 +230,8 @@ int GoEngine::boardSize()
 
 bool GoEngine::clearBoard()
 {
+    kDebug() << "Clear board";
+
     QByteArray msg;
     msg.append("clear_board\n");
     m_process.write(msg);
@@ -243,10 +245,11 @@ bool GoEngine::clearBoard()
 bool GoEngine::setKomi(float komi)
 {
     Q_ASSERT(komi >= 0);
+    kDebug() << "Set komi:" << komi;
 
     QByteArray msg;
     msg.append("komi ");
-    msg.append(komi);
+    msg.append(QString::number(komi));
     msg.append("\n");
     m_process.write(msg);
     return waitResponse();
@@ -255,10 +258,11 @@ bool GoEngine::setKomi(float komi)
 bool GoEngine::setLevel(int level)
 {
     Q_ASSERT(level >= 1 && level <= 10);
+    kDebug() << "Set level:" << level;
 
     QByteArray msg;
     msg.append("level ");
-    msg.append(level);
+    msg.append(QString::number(level));
     msg.append("\n");
     m_process.write(msg);
     return waitResponse();
@@ -267,10 +271,11 @@ bool GoEngine::setLevel(int level)
 bool GoEngine::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 0 && handicap <= 9);
+    kDebug() << "Set handicap:" << handicap;
 
     QByteArray msg;
     msg.append("fixed_handicap ");
-    msg.append(handicap);
+    msg.append(QString::number(handicap));
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
@@ -345,7 +350,7 @@ bool GoEngine::undoMove(int i)
     Q_ASSERT(i >= 0);
     QByteArray msg;
     msg.append("undo ");
-    msg.append(i);
+    msg.append(QString::number(i));
     msg.append("\n");
     m_process.write(msg);
     if (waitResponse()) {
@@ -916,7 +921,7 @@ bool GoEngine::tuneMoveOrdering(int parameters)
 {
     QByteArray msg;
     msg.append("tune_move_ordering ");
-    msg.append(parameters);
+    msg.append(QString::number(parameters));
     msg.append("\n");
     m_process.write(msg);
     return waitResponse();

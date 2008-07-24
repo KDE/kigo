@@ -38,12 +38,11 @@ namespace KGo {
 
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
-    , m_gameScene(scene)
     , m_gameEngine(scene->engine())
 {
     setupUi(this);
 
-    GameView *gameView = new GameView(m_gameScene, this);
+    GameView *gameView = new GameView(scene, this);
     gameView->setInteractive(false);                    // This is just a preview, not a real game
     previewFrame->setLayout(new QHBoxLayout());
     previewFrame->layout()->addWidget(gameView);
@@ -142,9 +141,16 @@ void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
         sizeOtherSpinBox->setEnabled(false);
 }
 
+void SetupScreen::on_handicapSpinBox_valueChanged(int value)
+{
+    kDebug() << "Set to value:" << value;
+    m_gameEngine->clearBoard();
+    m_gameEngine->setFixedHandicap(value);
+}
+
 void SetupScreen::on_startButton_clicked()
 {
-    saveSettings();
+    saveSettings();                                 // Save current game configuration
     if (newGameBox->isVisible()) {                  // Means we configured a new game
         m_gameEngine->setBoardSize(Preferences::boardSize());
         m_gameEngine->setLevel(Preferences::difficulty());
