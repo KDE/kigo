@@ -10,5 +10,7 @@ DocPath=kgo/index.html
 #X-DBUS-StartupType=Multi
 
 Name=KGo
+Name[sv]=Kgo
 
 GenericName=Go Board Game
+GenericName[sv]=Brädspelet Go
