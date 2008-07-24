@@ -16,6 +16,10 @@
 			<label>The graphical theme to be used</label>
 			<default>default</default>
 		</entry>
+		<entry name="ShowBoardLabels" type="Bool">
+			<label>Determines wether board labels are shown</label>
+			<default>true</default>
+		</entry>
 	</group>
 	<group name="Game">
 		<entry name="BlackPlayerHuman" type="Bool">

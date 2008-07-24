@@ -28,7 +28,7 @@
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
 #include "gamescene.h"
-#include "game/gtp.h"
+#include "game/goengine.h"
 #include "themerenderer.h"
 
 #include <QGraphicsPixmapItem>
@@ -39,13 +39,10 @@
 namespace KGo {
 
 GameScene::GameScene()
-    : m_gtp(new Gtp())
+    : m_engine(new GoEngine())
     , m_showLabels(false)
-    , m_cursorItem(0)
 {
-    Q_ASSERT(m_gtp);
-
-    connect(m_gtp, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
+    connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -55,19 +52,14 @@ void GameScene::resizeScene(int width, int height)
     int size = qMin(width, height);
     m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
 
-    // Determine size of board cell element based on width (same as height, board is a quad)
-    int defWidth = ThemeRenderer::instance()->elementSize(ThemeRenderer::BoardBackground).width();
-    qreal scale = (qreal)size / defWidth;
-    if (scale <= 0)
-        return;
-
-    // Make sure the cell element has the correct size (correspoding to current board size)
-    m_currentCellSize = defWidth * scale / (m_gtp->boardSize() + 3);
+	size = static_cast<int>(size * 0.9);
+	m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
+	m_boardGridSize = m_boardGridRect.width() / m_engine->boardSize();
 }
 
-Gtp * const GameScene::gtp() const
+GoEngine * const GameScene::engine() const
 {
-    return m_gtp;
+    return m_engine;
 }
 
 void GameScene::updateBoard()
@@ -79,38 +71,48 @@ void GameScene::updateBoard()
 
 void GameScene::showMoveHistory(bool show)
 {
+	update();
+}
 
+void GameScene::showLabels(bool show)
+{
+	kDebug() << "Show:" << show;
+	m_showLabels = show;
+	update();
 }
 
 void GameScene::hint()
 {
-
+	update();
 }
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
 {
     ThemeRenderer::instance()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
     ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
-    if (m_showLabels)
-        ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardLabels, painter, m_boardRect);
 
-    // Draw the board cells
-    /*QPointF upLeftPoint(m_boardRect.x() + m_currentCellSize * 1.5,
-                        m_boardRect.y() + m_currentCellSize * 1.5);
-    QPointF upRightPoint(m_boardRect.x() + m_boardRect.width() - m_currentCellSize * 1.5,
-                        m_boardRect.y() + m_currentCellSize * 1.5);
-    QPointF downLeftPoint(upLeftPoint.x(),
-                        upLeftPoint.y() + m_boardRect.height() - m_currentCellSize * 3);
+	//FIXME: Rentrancy problem with m_engine->waitProcess, use this for now:
+    for (int i = 0; i < 19/*m_engine->boardSize()*/; i++) {
+		painter->save();
 
-    for (int i = 0; i < m_gtp->boardSize() - 1; i++) {
-        // Draw horizontal line
-        painter->drawLine(QPointF(upLeftPoint.x(), upLeftPoint.y() + i * m_currentCellSize),
-                        QPointF(upRightPoint.x(), upRightPoint.y() + i * m_currentCellSize));
+		QPen linePen(painter->pen());
+		linePen.setWidth(static_cast<int>(m_boardGridSize / 10));
+		linePen.setColor(QColor(60, 70, 60, 200));
 
-        // Draw vertical line
-        painter->drawLine(QPointF(upLeftPoint.x() + i * m_currentCellSize, upLeftPoint.y()),
-                        QPointF(downLeftPoint.x() + i * m_currentCellSize, downLeftPoint.y()));
-    }*/
+		painter->setPen(linePen);
+        painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + i * m_boardGridSize),
+                          QPointF(m_boardGridRect.right(), m_boardGridRect.top() + i * m_boardGridSize));
+        painter->drawLine(QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.top()),
+                          QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.bottom()));
+
+		painter->restore();
+
+		if (m_showLabels) {
+			//
+			//TODO: Render board label
+			painter->drawText(50, 50, "Showing labels");
+		}
+    }
 }
 
 } // End of namespace KGo

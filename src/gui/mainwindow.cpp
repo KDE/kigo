@@ -31,7 +31,7 @@
 
 #include "mainwindow.h"
 #include "preferences.h"
-#include "game/gtp.h"
+#include "game/goengine.h"
 #include "gui/gamescene.h"
 #include "gui/setupscreen.h"
 #include "gui/gamescreen.h"
@@ -119,14 +119,13 @@ void MainWindow::saveGame()
 {
     QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty())
-        m_gameScene->gtp()->saveSgf(fileName);
+        m_gameScene->engine()->saveSgf(fileName);
 }
 
 void MainWindow::startGame()
 {
     m_saveAsAction->setEnabled(true);
     qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_gameScreen);
-    //TODO: gameScreen should be notified somehow to start the game
 }
 
 void MainWindow::undo()
@@ -145,11 +144,19 @@ void MainWindow::showPreferences()
 {
     if (KConfigDialog::showDialog("settings"))
         return;
+
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"), "games-config-theme");
     dialog->setHelp(QString(),"KGo");
+	connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(updatePreferences()));
     dialog->show();
+}
+
+void MainWindow::updatePreferences()
+{
+	kDebug() <<"Update settings based on changed configuration";
+	m_gameScene->showLabels(Preferences::showBoardLabels());
 }
 
 } // End of namespace KGo

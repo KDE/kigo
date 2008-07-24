@@ -1,5 +1,5 @@
 set(kgo_SRCS
-    game/gtp.cpp
+    game/goengine.cpp
     gui/config.cpp
     gui/themerenderer.cpp
     gui/gamescene.cpp

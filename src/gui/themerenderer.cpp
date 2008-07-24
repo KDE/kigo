@@ -114,14 +114,8 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
         case BoardBackground:
             cacheName = QString("board_background_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case BoardCell:
-            cacheName = QString("board_cell_%1x%2").arg(size.width()).arg(size.height());
-            break;
         case BoardHandicapMark:
             cacheName = QString("board_handicap_mark_%1x%2").arg(size.width()).arg(size.height());
-            break;
-        case BoardLabels:
-            cacheName = QString("board_labels_%1x%2").arg(size.width()).arg(size.height());
             break;
         case WhiteStone:
             cacheName = QString("board_stone_white_%1x%2").arg(size.width()).arg(size.height());
@@ -150,14 +144,8 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
             case BoardBackground:
                 m_renderer->render(&p, "board_background");
                 break;
-            case BoardCell:
-                m_renderer->render(&p, "board_cell");
-                break;
             case BoardHandicapMark:
                 m_renderer->render(&p, "board_handicap_mark");
-                break;
-            case BoardLabels:
-                m_renderer->render(&p, "board_labels");
                 break;
             case WhiteStone:
                 m_renderer->render(&p, "board_stone_white");
@@ -174,7 +162,6 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
                 m_renderer->render(&p, "board_stone_black");
                 break;
         }
-        p.end();
         m_cache->insert(cacheName, pixmap);
     }
     return pixmap;
@@ -190,14 +177,8 @@ QSize ThemeRenderer::elementSize(Element element) const
         case BoardBackground:
             sizeRect = m_renderer->boundsOnElement("board_background");
             break;
-        case BoardCell:
-            sizeRect = m_renderer->boundsOnElement("board_cell");
-            break;
         case BoardHandicapMark:
             sizeRect = m_renderer->boundsOnElement("board_handicap_mark");
-            break;
-        case BoardLabels:
-            sizeRect = m_renderer->boundsOnElement("board_labels");
             break;
         case WhiteStone:
             sizeRect = m_renderer->boundsOnElement("board_stone_white");

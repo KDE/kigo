@@ -35,8 +35,8 @@
 
 namespace KGo {
 
-class Gtp;
 class GameScene;
+class GoEngine;
 
 /**
  * The game setup screen lets the user choose a variety of game
@@ -99,7 +99,7 @@ private slots:
 
 private:
     GameScene * const m_gameScene;  ///<
-    Gtp * const m_gameSceneGtp;     ///<
+    GoEngine * const m_gameEngine;  ///<
 };
 
 } // End of namespace KGo

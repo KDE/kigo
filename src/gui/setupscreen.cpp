@@ -28,7 +28,7 @@
  */
 #include "setupscreen.h"
 #include "preferences.h"
-#include "game/gtp.h"
+#include "game/goengine.h"
 #include "gamescene.h"
 #include "gameview.h"
 
@@ -39,7 +39,7 @@ namespace KGo {
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameScene(scene)
-    , m_gameSceneGtp(scene->gtp())
+    , m_gameEngine(scene->engine())
 {
     setupUi(this);
 
@@ -62,8 +62,8 @@ void SetupScreen::setupNewGame()
     loadedGameBox->hide();
     infoBox->hide();
     loadSettings();
-    m_gameSceneGtp->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
-    m_gameSceneGtp->clearBoard();
+    m_gameEngine->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
+    m_gameEngine->clearBoard();
 }
 
 void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
@@ -75,8 +75,8 @@ void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
     loadedGameBox->show();
     infoBox->setVisible(showInfo);
     loadSettings();
-    m_gameSceneGtp->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
-    m_gameSceneGtp->loadSgf(fileName);
+    m_gameEngine->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
+    m_gameEngine->loadSgf(fileName);
     //TODO: Set max value of startMoveSpinBox
     if (showInfo) {
         //TODO: Display all related game information in the info box
@@ -146,10 +146,10 @@ void SetupScreen::on_startButton_clicked()
 {
     saveSettings();
     if (newGameBox->isVisible()) {                  // Means we configured a new game
-        m_gameSceneGtp->setBoardSize(Preferences::boardSize());
-        m_gameSceneGtp->setLevel(Preferences::difficulty());
-        m_gameSceneGtp->setKomi(Preferences::komi());
-        m_gameSceneGtp->setFixedHandicap(Preferences::fixedHandicap());
+        m_gameEngine->setBoardSize(Preferences::boardSize());
+        m_gameEngine->setLevel(Preferences::difficulty());
+        m_gameEngine->setKomi(Preferences::komi());
+        m_gameEngine->setFixedHandicap(Preferences::fixedHandicap());
     } else {                                        // Means we configured a loaded game
         //NOTE: Nothing to do here, all settings where already loaded from the SGF file.
     }

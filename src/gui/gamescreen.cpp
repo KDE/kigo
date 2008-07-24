@@ -30,7 +30,7 @@
  */
 #include "gamescreen.h"
 #include "preferences.h"
-#include "game/gtp.h"
+#include "game/goengine.h"
 #include "gamescene.h"
 #include "gameview.h"
 
@@ -39,7 +39,7 @@ namespace KGo {
 GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameScene(scene)
-    , m_gameSceneGtp(scene->gtp())
+    , m_gameEngine(scene->engine())
 {
     setupUi(this);
 

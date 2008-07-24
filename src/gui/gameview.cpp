@@ -32,6 +32,8 @@
 
 #include <QResizeEvent>
 
+#include <KDebug>
+
 namespace KGo {
 
 GameView::GameView(GameScene *scene, QWidget *parent)
@@ -50,6 +52,16 @@ GameView::GameView(GameScene *scene, QWidget *parent)
 void GameView::resizeEvent(QResizeEvent *event)
 {
     m_scene->resizeScene(event->size().width(), event->size().height());
+}
+
+void GameView::drawForeground(QPainter *painter, const QRectF &rect)
+{
+	if (!isInteractive()) {
+		painter->save();
+		painter->setBrush(QBrush(QColor(60,60,60,100), Qt::Dense4Pattern));
+		painter->drawRect(rect);
+		painter->restore();
+	}
 }
 
 } // End of namespace KGo

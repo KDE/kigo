@@ -22,15 +22,15 @@
  *******************************************************************/
 
 /**
- * @file This file is part of KGO and defines the classes Gtp, Gtp::Stone
- *       and Gtp::Score, which together implement a Go Text Protocol (GTP)
+ * @file This file is part of KGO and defines the classes GoEngine, GoEngine::Stone
+ *       and GoEngine::Score, which together implement a Go Text Protocol (GTP)
  *       interface to communicate with Go engines supporting GTP protocol
  *       version 2.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
-#ifndef KGO_GTP_H
-#define KGO_GTP_H
+#ifndef KGO_GOENGINE_H
+#define KGO_GOENGINE_H
 
 #include <QProcess>
 #include <QList>
@@ -41,30 +41,30 @@
 namespace KGo {
 
 /**
- * The Gtp class implements the Go game and acts as a wrapper around a
+ * The GoEngine class implements the Go game and acts as a wrapper around a
  * remote Go Game engine implementing the Go Text Protocol (GTP). It uses
  * GTP protocol version 2 and interfaces the engine executable in an
  * asynchronous manor. The best supported engine should (naturally)
  * be GnuGo.
  *
  * @code
- * Gtp *gtp = new Gtp;
+ * GoEngine *engine = new GoEngine;
  *
  * // Run a session with a Go engine in GTP mode
- * gtp->run("gnugo --mode gtp");
+ * engine->run("gnugo --mode gtp");
  *
  * // Get some informations about the Go engine
- * gtp->name();
- * gtp->version();
- * gtp->help();
+ * engine->name();
+ * engine->version();
+ * engine->help();
  *
- * gtp->quit();
+ * engine->quit();
  * @endcode
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
  */
-class Gtp : public QObject
+class GoEngine : public QObject
 {
     Q_OBJECT
 
@@ -75,7 +75,7 @@ public:
     enum PlayerColor {
         WhitePlayer = 1,        ///< The white player
         BlackPlayer,            ///< The black player
-        InvalidPlayer
+        InvalidPlayer			///< Is only used as return value
     };
 
     /**
@@ -164,7 +164,7 @@ public:
 
     /**
      * This class is used as return value by the 'newScore', 'estimateScore'
-     * and 'finalScore' Gtp methods.
+     * and 'finalScore' GoEngine methods.
      */
     class Score
     {
@@ -217,8 +217,8 @@ public:
 
     ////////////////////////////////////////////////////////////////////
 
-    Gtp();
-    ~Gtp();
+    GoEngine();
+    ~GoEngine();
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Administrative commands
@@ -234,7 +234,7 @@ public:
     bool run(const QString &command = "gnugo --mode gtp");
 
     /**
-     * Check wether the Gtp object is connected to a Go engine, running
+     * Check wether the GoEngine object is connected to a Go engine, running
      * and waiting for commands to be fed with.
      */
     bool isRunning() const { return m_process.state() == QProcess::Running; }

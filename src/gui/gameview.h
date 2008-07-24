@@ -65,6 +65,8 @@ private:
      */
     virtual void resizeEvent(QResizeEvent *event);
 
+    void drawForeground(QPainter *painter, const QRectF &rect);
+
     GameScene *m_scene;     ///< Pointer to the game scene
 };
 

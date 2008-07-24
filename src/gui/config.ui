@@ -12,7 +12,7 @@
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="sizePolicy" >
@@ -40,6 +40,25 @@
       </item>
       <item>
        <widget class="KLineEdit" name="kcfg_EngineCommand" />
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>View Settings</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <item>
+       <widget class="QCheckBox" name="kcfg_ShowBoardLabels" >
+        <property name="text" >
+         <string>Show Board Labels</string>
+        </property>
+        <property name="checked" >
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

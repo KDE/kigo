@@ -37,8 +37,8 @@
 
 namespace KGo {
 
-class Gtp;
 class GameScene;
+class GoEngine;
 
 /**
  * The game screen acts as a compound widget for the game view and
@@ -73,7 +73,7 @@ public slots:
 
 private:
     GameScene * const m_gameScene;  ///<
-    Gtp * const m_gameSceneGtp;     ///<
+    GoEngine * const m_gameEngine;  ///<
 };
 
 } // End of namespace KGo

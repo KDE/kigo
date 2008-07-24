@@ -36,7 +36,7 @@ class QGraphicsPixmapItem;
 
 namespace KGo {
 
-class Gtp;
+class GoEngine;
 
 /**
  * This class provides a graphical representation of the go game using
@@ -61,11 +61,12 @@ public:
 
     void resizeScene(int width, int height);
 
-    Gtp * const gtp() const;
+    GoEngine * const engine() const;
 
 public slots:
     void updateBoard();
     void showMoveHistory(bool show);
+	void showLabels(bool show);
     void hint();
 
 private:
@@ -78,12 +79,12 @@ private:
      */
     void drawBackground(QPainter *painter, const QRectF &);
 
-    Gtp * const m_gtp;                              ///< To interface with the go engine
+    GoEngine * const m_engine;                      ///< To interface with the go engine
     bool m_showLabels;                              ///< Show board labels or not
-    qreal m_currentCellSize;                        ///<
     QRectF m_boardRect;                             ///< Position of board in the scene
+    QRectF m_boardGridRect;                         ///< 
+    qreal m_boardGridSize;                          ///<
     QList<QGraphicsPixmapItem *> m_stoneItemList;   ///<
-    QGraphicsPixmapItem *m_cursorItem;              ///<
 };
 
 } // End of namespace KGo

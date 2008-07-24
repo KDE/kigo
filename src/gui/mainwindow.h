@@ -33,8 +33,8 @@
 
 #include <KXmlGuiWindow>
 
-class QAction;
 class QStackedWidget;
+class KAction;
 class KToggleAction;
 
 namespace KGo {
@@ -67,6 +67,7 @@ private slots:
     void redo();                            ///<
     void toggleDemoMode();                  ///<
     void showPreferences();                 ///< Show settings dialog
+	void updatePreferences();
 
 private:
     void setupActions();
@@ -76,11 +77,11 @@ private:
     GameScreen * const m_gameScreen;        ///< Pointer to the game playing screen
     bool m_startInDemoMode;                 ///< Start application in demo mode
 
-    QAction *m_saveAsAction;                ///< Action to save the current game
-    QAction *m_firstMoveAction;             ///< Action to jump to the first move
-    QAction *m_previousMoveAction;          ///< Action to jump to the previous move
-    QAction *m_nextMoveAction;              ///< Action to jump to the next move
-    QAction *m_lastMoveAction;              ///< Action to jump to the last move
+    KAction *m_saveAsAction;                ///< Action to save the current game
+    KAction *m_firstMoveAction;             ///< Action to jump to the first move
+    KAction *m_previousMoveAction;          ///< Action to jump to the previous move
+    KAction *m_nextMoveAction;              ///< Action to jump to the next move
+    KAction *m_lastMoveAction;              ///< Action to jump to the last move
     KToggleAction *m_demoAction;            ///< Action to change to demo mode
 };
 
