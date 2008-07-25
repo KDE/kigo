@@ -1,11 +1,13 @@
-/** @mainpage KGo API Reference
+/** 
+@mainpage KGo API Reference
 
-KGo is an open-source implementation of the popular Go game written specifically for KDE.
+KGo is an open-source implementation of the Go game for KDE. It uses the
+popular GnuGo engine (or compatible) as backend via the GTP protocol.
 
 @authors
 Sascha Peilicke <sasch.pe@gmx.de>
 
-Released under the terms of the GNU General Public license version 3
+Released under the terms of the GNU General Public license version 3.
 */
 
 // DOXYGEN_NAME=kgo

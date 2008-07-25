@@ -91,14 +91,16 @@ private slots:
     void on_whitePlayerCombo_currentIndexChanged(const QString &);
     void on_blackPlayerCombo_currentIndexChanged(const QString &);
     void on_startMoveSpinBox_valueChanged(int);
+    void on_difficultySlider_valueChanged(int);
     void on_sizeGroupBox_changed(int);
+    void on_sizeOtherSpinBox_valueChanged(int);
     void on_handicapSpinBox_valueChanged(int);
     void on_startButton_clicked();
 
+private:
     void loadSettings();            ///< Load KConfigXT application settings
     void saveSettings();            ///< Store KConfigXT application settings
 
-private:
     GoEngine * const m_gameEngine;  ///<
 };
 

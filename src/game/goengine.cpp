@@ -137,7 +137,7 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
     if (fileName.isEmpty() || !QFile::exists(fileName))
         return false;
 
-    kDebug() << "Attempting to load" << moveNumber << "from" << fileName;
+    kDebug() << "Attempting to load move" << moveNumber << "from" << fileName;
 
     QByteArray msg;
     msg.append("loadsgf ");
@@ -158,7 +158,7 @@ bool GoEngine::saveSgf(const QString &fileName)
     if (fileName.isEmpty())
         return false;
 
-    kDebug() << "Attempting to save to" << fileName;
+    kDebug() << "Attempting to save game to" << fileName;
 
     QByteArray msg;
     msg.append("printsgf ");
@@ -204,6 +204,7 @@ QString GoEngine::version()
 bool GoEngine::setBoardSize(int size)
 {
     Q_ASSERT(size >= 1 && size <= 19);
+    kDebug() << "Set board size to"  << size;
 
     QByteArray msg;
     msg.append("boardsize ");
@@ -245,7 +246,7 @@ bool GoEngine::clearBoard()
 bool GoEngine::setKomi(float komi)
 {
     Q_ASSERT(komi >= 0);
-    kDebug() << "Set komi:" << komi;
+    kDebug() << "Set komi to" << komi;
 
     QByteArray msg;
     msg.append("komi ");
@@ -258,7 +259,7 @@ bool GoEngine::setKomi(float komi)
 bool GoEngine::setLevel(int level)
 {
     Q_ASSERT(level >= 1 && level <= 10);
-    kDebug() << "Set level:" << level;
+    kDebug() << "Set difficulty level to" << level;
 
     QByteArray msg;
     msg.append("level ");
@@ -271,7 +272,7 @@ bool GoEngine::setLevel(int level)
 bool GoEngine::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 0 && handicap <= 9);
-    kDebug() << "Set handicap:" << handicap;
+    kDebug() << "Set fixed handicap to" << handicap;
 
     QByteArray msg;
     msg.append("fixed_handicap ");

@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
-		http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
-	<kcfgfile name="kgo" />
-	<group name="Backend">
-		<entry name="EngineCommand" type="String">
-			<label>Path to the Go game engine</label>
-			<tooltip>Enter here a valid path to your favorite Go game engine executable</tooltip>
-			<default>gnugo --mode gtp</default>
-		</entry>
-	</group>
-	<group name="UserInterface">
-		<entry name="Theme" type="String">
-			<label>The graphical theme to be used</label>
-			<default>default</default>
-		</entry>
-		<entry name="ShowBoardLabels" type="Bool">
-			<label>Determines wether board labels are shown</label>
-			<default>true</default>
-		</entry>
-	</group>
-	<group name="Game">
-		<entry name="BlackPlayerHuman" type="Bool">
-			<label>Is black a human player?</label>
-			<default>true</default>
-		</entry>
-		<entry name="BlackPlayerName" type="String">
-			<label>The name of the black player</label>
-			<default>Black Player</default>
-		</entry>
-		<entry name="WhitePlayerHuman" type="Bool">
-			<label>Is white a human player?</label>
-			<default>false</default>
-		</entry>
-		<entry name="WhitePlayerName" type="String">
-			<label>The name of the white player</label>
-			<default>White Player</default>
-		</entry>
-		<entry name="Difficulty" type="Int">
-			<label>Difficulty level</label>
-			<tooltip>The difficulty level controls the computer player's strength</tooltip>
-			<default>10</default>
-			<min>1</min>
-			<max>10</max>
-		</entry> 
-		<entry name="BoardSize" type="Int">
-			<label>Go board size</label>
-			<tooltip></tooltip>
-			<default>19</default>
-			<min>5</min>
-			<max>19</max>
-		</entry>
-		<entry name="Komi" type="Double">
-			<label>Komi</label>
-			<tooltip>With komi you can give the black player some extra points</tooltip>
-			<default>4.5</default>
-			<min>0</min>
-			<max>50</max>
-		</entry>
-		<entry name="FixedHandicap" type="Int">
-			<label>Extra stones for white</label>
-			<tooltip>To make life easier for the white player, you can him extra stones to start with</tooltip>
-			<default>0</default>
-			<min>0</min>
-			<max>9</max>
-		</entry>
-	</group>
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+                          http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name="kgo" />
+    <group name="Backend">
+        <entry name="EngineCommand" type="String">
+            <label>Path to the Go game engine</label>
+            <tooltip>Enter here a valid path to your favorite Go game engine executable</tooltip>
+            <default>gnugo --mode gtp</default>
+        </entry>
+    </group>
+    <group name="UserInterface">
+        <entry name="Theme" type="String">
+            <label>The graphical theme to be used</label>
+            <default>default</default>
+        </entry>
+        <entry name="ShowBoardLabels" type="Bool">
+            <label>Determines wether board labels are shown</label>
+            <default>true</default>
+        </entry>
+    </group>
+    <group name="Game">
+        <entry name="BlackPlayerHuman" type="Bool">
+            <label>Is black a human player?</label>
+            <default>true</default>
+        </entry>
+        <entry name="BlackPlayerName" type="String">
+            <label>The name of the black player</label>
+            <default>Black Player</default>
+        </entry>
+        <entry name="WhitePlayerHuman" type="Bool">
+            <label>Is white a human player?</label>
+            <default>false</default>
+        </entry>
+        <entry name="WhitePlayerName" type="String">
+            <label>The name of the white player</label>
+            <default>White Player</default>
+        </entry>
+        <entry name="Difficulty" type="Int">
+            <label>Difficulty level</label>
+            <tooltip>The difficulty level controls the computer player's strength</tooltip>
+            <default>10</default>
+            <min>1</min>
+            <max>10</max>
+        </entry> 
+        <entry name="BoardSize" type="Int">
+            <label>Go board size</label>
+            <tooltip></tooltip>
+            <default>19</default>
+            <min>5</min>
+            <max>19</max>
+        </entry>
+        <entry name="Komi" type="Double">
+            <label>Komi</label>
+            <tooltip>With komi you can give the black player some extra points</tooltip>
+            <default>4.5</default>
+            <min>0</min>
+            <max>50</max>
+        </entry>
+        <entry name="FixedHandicap" type="Int">
+            <label>Extra stones for white</label>
+            <tooltip>To make life easier for the white player, you can him extra stones to start with</tooltip>
+            <default>0</default>
+            <min>0</min>
+            <max>9</max>
+        </entry>
+    </group>
 </kcfg>

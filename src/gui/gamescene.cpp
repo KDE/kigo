@@ -71,12 +71,13 @@ void GameScene::updateBoard()
 
 void GameScene::showMoveHistory(bool show)
 {
+    kDebug() << "Show move history:" << show;
     update();
 }
 
 void GameScene::showLabels(bool show)
 {
-    kDebug() << "Show:" << show;
+    kDebug() << "Show labels:" << show;
     m_showLabels = show;
     update();
 }
@@ -92,26 +93,32 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
     ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
 
     //FIXME: Rentrancy problem with m_engine->waitProcess, use this for now:
-    for (int i = 0; i < 19/*m_engine->boardSize()*/; i++) {
+    for (int i = 0; i < 20/*m_engine->boardSize()*/; i++) {
         painter->save();
-
-        QPen linePen(painter->pen());
-        linePen.setWidth(static_cast<int>(m_boardGridSize / 10));
-        linePen.setColor(QColor(60, 70, 60, 200));
-
-        painter->setPen(linePen);
+        painter->setPen(QPen(QColor(20, 30, 20, 200), static_cast<int>(m_boardGridSize / 10)));
         painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + i * m_boardGridSize),
                           QPointF(m_boardGridRect.right(), m_boardGridRect.top() + i * m_boardGridSize));
         painter->drawLine(QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.top()),
                           QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.bottom()));
 
-        painter->restore();
-
         if (m_showLabels) {
-            //
-            //TODO: Render board label
-            painter->drawText(50, 50, "Showing labels");
+            QChar character('A' + i);
+            QString number = QString::number(19 - i);
+            QFontMetrics fm = painter->fontMetrics();
+
+            // Draw vertical numbers for board coordinates
+            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridSize,
+                                      m_boardGridRect.top() + i * m_boardGridSize + fm.descent()), number);
+            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridSize - fm.width(number),
+                                      m_boardGridRect.top() + i * m_boardGridSize + fm.descent()), number);
+
+            // Draw horizontal characters for board coordinates
+            painter->drawText(QPointF(m_boardGridRect.left() + i * m_boardGridSize - fm.width(character) / 2,
+                                      m_boardGridRect.top() - m_boardGridSize + fm.ascent()), QString(character));
+            painter->drawText(QPointF(m_boardGridRect.left() + i * m_boardGridSize - fm.width(character) / 2,
+                                      m_boardGridRect.bottom() + m_boardGridSize), QString(character));
         }
+        painter->restore();
     }
 }
 

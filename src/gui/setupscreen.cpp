@@ -42,6 +42,7 @@ SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
 {
     setupUi(this);
 
+    scene->showLabels(Preferences::showBoardLabels());  // Check if scene shall show labels
     GameView *gameView = new GameView(scene, this);
     gameView->setInteractive(false);                    // This is just a preview, not a real game
     previewFrame->setLayout(new QHBoxLayout());
@@ -133,19 +134,36 @@ void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
     //TODO: Show the corresponding board
 }
 
+void SetupScreen::on_difficultySlider_valueChanged(int value)
+{
+    m_gameEngine->setLevel(value);                  // Go engine difficulty level
+}
+
 void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
 {
-    if (sizeOther->isChecked())
+    if (sizeOther->isChecked()) {
         sizeOtherSpinBox->setEnabled(true);
-    else
+        m_gameEngine->setBoardSize(sizeOtherSpinBox->value());
+    } else {
         sizeOtherSpinBox->setEnabled(false);
+        if (sizeSmall->isChecked())
+            m_gameEngine->setBoardSize(9);
+        else if (sizeMedium->isChecked())
+            m_gameEngine->setBoardSize(13);
+        else if (sizeBig->isChecked())
+            m_gameEngine->setBoardSize(19);
+    }
+}
+
+void SetupScreen::on_sizeOtherSpinBox_valueChanged(int value)
+{
+    m_gameEngine->setBoardSize(value);              // Set free board size
 }
 
 void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 {
-    kDebug() << "Set to value:" << value;
-    m_gameEngine->clearBoard();
-    m_gameEngine->setFixedHandicap(value);
+    m_gameEngine->clearBoard();                     // Setting fixed handicap works only
+    m_gameEngine->setFixedHandicap(value);          // on a new/clear game board
 }
 
 void SetupScreen::on_startButton_clicked()

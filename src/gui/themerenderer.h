@@ -64,10 +64,10 @@ public:
      */
     enum Element {
         SceneBackground = 1,        ///<
-        BoardBackground,          	///<
-        BoardHandicapMark,        	///<
-        WhiteStone,               	///<
-        WhiteStoneTransparent,		///<
+        BoardBackground,            ///<
+        BoardHandicapMark,          ///<
+        WhiteStone,                 ///<
+        WhiteStoneTransparent,      ///<
         BlackStone,                 ///<
         BlackStoneTransparent       //<<
     };

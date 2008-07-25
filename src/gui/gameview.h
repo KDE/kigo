@@ -61,13 +61,15 @@ private:
     /**
      * The resize event happens when the user changes the window size.
      *
-     * @param event    The resize event
+     * @param event The resize event
      */
     virtual void resizeEvent(QResizeEvent *event);
 
     void drawForeground(QPainter *painter, const QRectF &rect);
 
-    GameScene *m_scene;     ///< Pointer to the game scene
+    GameScene *m_scene;             ///< Pointer to the game scene
+    QCursor m_whiteStoneCursor;     ///< Cursor to place white stones when game scene is active
+    QCursor m_blackStoneCursor;     ///< Cursor to place black stones when game scene is active
 };
 
 } // End of namespace KGo
