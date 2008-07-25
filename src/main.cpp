@@ -32,9 +32,9 @@
 
 #include <KAboutData>
 #include <KCmdLineArgs>
-#include <KApplication>
 #include <KLocale>
 #include <KDebug>
+#include <KApplication>
 
 /**
  * This namespace collects all classes related to KGo, the Go board game.

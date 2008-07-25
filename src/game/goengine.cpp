@@ -31,10 +31,10 @@
  */
 #include "goengine.h"
 
+#include <KDebug>
+
 #include <QFile>
 #include <QApplication>
-
-#include <KDebug>
 
 namespace KGo {
 
@@ -302,6 +302,10 @@ bool GoEngine::playMove(PlayerColor color, const Stone &field)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
+        if (color == WhitePlayer)
+            emit nextTurn(BlackPlayer);
+        else
+            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;
@@ -322,6 +326,10 @@ bool GoEngine::passMove(PlayerColor color)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
+        if (color == WhitePlayer)
+            emit nextTurn(BlackPlayer);
+        else
+            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;
@@ -341,6 +349,10 @@ bool GoEngine::generateMove(PlayerColor color)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
+        if (color == WhitePlayer)
+            emit nextTurn(BlackPlayer);
+        else
+            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;
@@ -356,6 +368,11 @@ bool GoEngine::undoMove(int i)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
+        //TODO: Test which player is next after _i_ undo-steps
+        /*if (color == WhitePlayer)
+            emit nextTurn(BlackPlayer)
+        else
+            emit nextTurn(WhitePlayer)*/
         return true;
     } else
         return false;
@@ -377,6 +394,10 @@ bool GoEngine::tryMove(PlayerColor color, const Stone &field)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
+        if (color == WhitePlayer)
+            emit nextTurn(BlackPlayer);
+        else
+            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;

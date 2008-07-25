@@ -37,18 +37,18 @@
 #include "gui/gamescreen.h"
 #include "gui/config.h"
 
-#include <QDir>
-#include <QStackedWidget>
-
-#include <KStatusBar>
-#include <KAction>
-#include <KToggleAction>
-#include <KStandardAction>
+#include <KGameThemeSelector>
 #include <KStandardGameAction>
+#include <KStandardAction>
+#include <KToggleAction>
+#include <KAction>
 #include <KActionCollection>
 #include <KConfigDialog>
+#include <KStatusBar>
 #include <KFileDialog>
-#include <KGameThemeSelector>
+
+#include <QStackedWidget>
+#include <QDir>
 
 namespace KGo {
 
@@ -86,11 +86,13 @@ void MainWindow::setupActions()
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
     // Move menu
-    //TODO FIXME: Integrate move forward/backward stuff
+    //TODO: Integrate move forward/backward stuff
     m_previousMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
     m_previousMoveAction->setEnabled(false);
     m_nextMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
     m_nextMoveAction->setEnabled(false);
+    m_endTurnAction = KStandardGameAction::endTurn(this, SLOT(endTurn()), actionCollection());
+    m_endTurnAction->setEnabled(false);
     m_demoAction = KStandardGameAction::demo(this, SLOT(toggleDemoMode()), actionCollection());
     m_demoAction->setEnabled(false);
 
@@ -101,6 +103,7 @@ void MainWindow::setupActions()
 void MainWindow::newGame()
 {
     m_saveAsAction->setEnabled(false);
+    m_endTurnAction->setEnabled(false);
     m_setupScreen->setupNewGame();
     qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_setupScreen);
 }
@@ -108,6 +111,7 @@ void MainWindow::newGame()
 void MainWindow::loadGame()
 {
     m_saveAsAction->setEnabled(false);
+    m_endTurnAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
         m_setupScreen->setupLoadedGame(fileName, true);
@@ -125,15 +129,25 @@ void MainWindow::saveGame()
 void MainWindow::startGame()
 {
     m_saveAsAction->setEnabled(true);
+    m_endTurnAction->setEnabled(true);
+    //NOTE: The GameScene should be configured and just be waiting for further input
+    //      so we only need to show the GameScreen and allow direct user-interaction
     qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_gameScreen);
 }
 
 void MainWindow::undo()
 {
+    kDebug() << "Redo";
 }
 
 void MainWindow::redo()
 {
+    kDebug() << "Undo";
+}
+
+void MainWindow::endTurn()
+{
+    kDebug() << "End turn";
 }
 
 void MainWindow::toggleDemoMode()

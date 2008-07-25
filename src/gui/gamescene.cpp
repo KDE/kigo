@@ -30,17 +30,19 @@
 #include "gamescene.h"
 #include "game/goengine.h"
 #include "themerenderer.h"
-
-#include <QGraphicsPixmapItem>
-#include <QPainter>
+#include "preferences.h"
 
 #include <KDebug>
+
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsPixmapItem>
+#include <QPainter>
 
 namespace KGo {
 
 GameScene::GameScene()
     : m_engine(new GoEngine())
-    , m_showLabels(false)
+    , m_showLabels(Preferences::showBoardLabels())
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
 }
@@ -72,6 +74,7 @@ void GameScene::updateBoard()
 void GameScene::showMoveHistory(bool show)
 {
     kDebug() << "Show move history:" << show;
+    //TODO: Get move history from engine and display them with half-transparent go stone pixmaps
     update();
 }
 
@@ -87,11 +90,31 @@ void GameScene::hint()
     update();
 }
 
+void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (m_boardRect.contains(event->scenePos())) {
+        QSize size(static_cast<int>(m_boardGridSize), static_cast<int>(m_boardGridSize));
+        //TODO: Get correct pixmap based on current active player
+        QPixmap map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
+        emit changeCursor(map);
+    } else
+        emit changeCursor(QPixmap());
+}
+
+void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (m_boardRect.contains(event->scenePos())) {
+        kDebug() << "Game board received mouse press event at" << event->scenePos();
+    }
+}
+
 void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
 {
     ThemeRenderer::instance()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
     ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
 
+    //TODO: Cache all that into pixmap to speed up rendering, maybe move to ThemeRenderer but this
+    //      would add unnecessary GoEngine dependency on ThemeRenderer.
     //FIXME: Rentrancy problem with m_engine->waitProcess, use this for now:
     for (int i = 0; i < 20/*m_engine->boardSize()*/; i++) {
         painter->save();

@@ -32,12 +32,12 @@
 
 #include <QString>
 
-class QPixmap;
-class QRectF;
-class QSize;
-class QPainter;
-class KSvgRenderer;
 class KPixmapCache;
+class KSvgRenderer;
+class QPixmap;
+class QPainter;
+class QSize;
+class QRectF;
 
 namespace KGo {
 

@@ -35,8 +35,8 @@
 
 namespace KGo {
 
-class GameScene;
 class GoEngine;
+class GameScene;
 
 /**
  * The game setup screen lets the user choose a variety of game
@@ -102,6 +102,7 @@ private:
     void saveSettings();            ///< Store KConfigXT application settings
 
     GoEngine * const m_gameEngine;  ///<
+    int m_lastFixedHandicapValue;   ///< Used for internal house-keeping (to avoid invalid handicap '1')
 };
 
 } // End of namespace KGo

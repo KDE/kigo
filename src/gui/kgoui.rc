@@ -23,6 +23,9 @@
         <Separator />
         <Action name="move_undo" />
         <Action name="move_redo" />
+        <Separator />
+        <Action name="move_end_turn" />
+        <Separator />
         <Action name="move_demo" />
     </ToolBar>
 </gui>

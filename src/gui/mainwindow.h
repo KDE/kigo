@@ -33,15 +33,15 @@
 
 #include <KXmlGuiWindow>
 
-class QStackedWidget;
-class KAction;
 class KToggleAction;
+class KAction;
+class QStackedWidget;
 
 namespace KGo {
 
-class GameScene;
 class SetupScreen;
 class GameScreen;
+class GameScene;
 
 /**
  * The MainWindow class acts as the main window of the KGo graphical
@@ -63,11 +63,12 @@ private slots:
     void loadGame();                        ///< Configure loaded game with ~
     void saveGame();                        ///< Save the current game state
     void startGame();                       ///< React on setupscreen start button
-    void undo();                            ///<
-    void redo();                            ///<
+    void undo();                            ///< Undo last move
+    void redo();                            ///< Redo last move
+    void endTurn();                         ///< Pass current move
     void toggleDemoMode();                  ///<
     void showPreferences();                 ///< Show settings dialog
-    void updatePreferences();
+    void updatePreferences();               ///< Called when the user changed preferences
 
 private:
     void setupActions();
@@ -75,6 +76,7 @@ private:
     GameScene * const m_gameScene;
     SetupScreen * const m_setupScreen;      ///< Pointer to the game setup screen
     GameScreen * const m_gameScreen;        ///< Pointer to the game playing screen
+
     bool m_startInDemoMode;                 ///< Start application in demo mode
 
     KAction *m_saveAsAction;                ///< Action to save the current game
@@ -82,6 +84,7 @@ private:
     KAction *m_previousMoveAction;          ///< Action to jump to the previous move
     KAction *m_nextMoveAction;              ///< Action to jump to the next move
     KAction *m_lastMoveAction;              ///< Action to jump to the last move
+    KAction *m_endTurnAction;               ///< Action to pass current move
     KToggleAction *m_demoAction;            ///< Action to change to demo mode
 };
 

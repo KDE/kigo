@@ -30,14 +30,14 @@
 #include "themerenderer.h"
 #include "preferences.h"
 
+#include <KGameTheme>
+#include <KSvgRenderer>
+#include <KPixmapCache>
+#include <KStandardDirs>
+#include <KDebug>
+
 #include <QPixmap>
 #include <QPainter>
-
-#include <KSvgRenderer>
-#include <KStandardDirs>
-#include <KPixmapCache>
-#include <KGameTheme>
-#include <KDebug>
 
 namespace KGo {
 

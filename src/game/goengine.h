@@ -36,7 +36,6 @@
 #include <QList>
 #include <QPair>
 #include <QString>
-#include <QObject>
 
 namespace KGo {
 
@@ -722,6 +721,8 @@ signals:
      * can be used to trigger an update to a visual representation.
      */
     void boardChanged();
+
+    void nextTurn(PlayerColor);
 
 private slots:
     /**

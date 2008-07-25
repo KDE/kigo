@@ -29,19 +29,16 @@
  */
 #include "gameview.h"
 #include "gamescene.h"
-#include "themerenderer.h"
-
-#include <QResizeEvent>
 
 #include <KDebug>
+
+#include <QResizeEvent>
 
 namespace KGo {
 
 GameView::GameView(GameScene *scene, QWidget *parent)
     : QGraphicsView(scene, parent)
-    , m_scene(scene)
-    , m_whiteStoneCursor(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, QSize(32, 32)))
-    , m_blackStoneCursor(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, QSize(32, 32)))
+    , m_gameScene(scene)
 {
     setCacheMode(QGraphicsView::CacheBackground);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -50,11 +47,13 @@ GameView::GameView(GameScene *scene, QWidget *parent)
     setOptimizationFlags(QGraphicsView::DontClipPainter |
                          QGraphicsView::DontSavePainterState |
                          QGraphicsView::DontAdjustForAntialiasing);
+
+    connect(m_gameScene, SIGNAL(changeCursor(QPixmap)), this, SLOT(changeCursor(QPixmap)));
 }
 
 void GameView::resizeEvent(QResizeEvent *event)
 {
-    m_scene->resizeScene(event->size().width(), event->size().height());
+    m_gameScene->resizeScene(event->size().width(), event->size().height());
 }
 
 void GameView::drawForeground(QPainter *painter, const QRectF &rect)
@@ -65,6 +64,14 @@ void GameView::drawForeground(QPainter *painter, const QRectF &rect)
         painter->drawRect(rect);
         painter->restore();
     }
+}
+
+void GameView::changeCursor(QPixmap cursorPixmap)
+{
+    if (cursorPixmap.isNull())
+        unsetCursor();
+    else
+        setCursor(QCursor(cursorPixmap));
 }
 
 } // End of namespace KGo

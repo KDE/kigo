@@ -39,10 +39,10 @@ namespace KGo {
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameEngine(scene->engine())
+    , m_lastFixedHandicapValue(Preferences::fixedHandicap())
 {
     setupUi(this);
 
-    scene->showLabels(Preferences::showBoardLabels());  // Check if scene shall show labels
     GameView *gameView = new GameView(scene, this);
     gameView->setInteractive(false);                    // This is just a preview, not a real game
     previewFrame->setLayout(new QHBoxLayout());
