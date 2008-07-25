@@ -23,7 +23,11 @@
 
 /**
  * @file This file is part of KGO and defines the class GameView,
- *       which implements the view for a go game scene.
+ *       which implements the view for a go game scene. It is
+ *       responsible for propagating resize events to the game scene,
+ *       to draw a half-transparent darkened foreground to indicate
+ *       that the scene does not react on user input. It also draws
+ *       a custom cursor based on game scene recommendations.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */

@@ -43,11 +43,8 @@ class GoEngine;
  * QGraphicsScene.
  *
  * It displays the go board in its current state, receives mouse events,
- * translates them so that KGo::Gtp can understand, send them to it,
- * receives board-changed notificationi and nicely animates them.
- *
- * It also drives the game flow, i.e. tells game when to make the
- * next move.
+ * translates them and interacts with the GoEngine. It also drives the game
+ * flow, i.e. tells game when to make the next move.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1

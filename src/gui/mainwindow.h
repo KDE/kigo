@@ -35,7 +35,6 @@
 
 class KToggleAction;
 class KAction;
-class QStackedWidget;
 
 namespace KGo {
 
@@ -45,7 +44,9 @@ class GameScene;
 
 /**
  * The MainWindow class acts as the main window of the KGo graphical
- * user interface.
+ * user interface. Holds the different screens for setup and gameplay,
+ * displays configuration dialog(s) and the GameScene object (which is
+ * modified and passed around the differend sub-screens).
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
