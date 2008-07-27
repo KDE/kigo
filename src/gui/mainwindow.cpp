@@ -65,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
     QStackedWidget *mainWidget = new QStackedWidget;
     mainWidget->addWidget(m_setupScreen);
     mainWidget->addWidget(m_gameScreen);
+
+    //TODO: Check if configured Go engine responds, otherwise show condig dialog
+
     mainWidget->setCurrentWidget(m_setupScreen);
     setCentralWidget(mainWidget);
 

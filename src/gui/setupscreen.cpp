@@ -61,9 +61,12 @@ void SetupScreen::setupNewGame()
     newGameBox->show();
     loadedGameBox->hide();
     infoBox->hide();
-    loadSettings();
     m_gameEngine->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
-    m_gameEngine->clearBoard();
+    m_gameEngine->setBoardSize(Preferences::boardSize());
+    m_gameEngine->setLevel(Preferences::difficulty());
+    m_gameEngine->setKomi(Preferences::komi());
+    m_gameEngine->setFixedHandicap(Preferences::fixedHandicap());
+    loadSettings();
 }
 
 void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
@@ -74,9 +77,9 @@ void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
     newGameBox->hide();
     loadedGameBox->show();
     infoBox->setVisible(showInfo);
-    loadSettings();
     m_gameEngine->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
     m_gameEngine->loadSgf(fileName);
+    loadSettings();
     //TODO: Set max value of startMoveSpinBox
     if (showInfo) {
         //TODO: Display all related game information in the info box
@@ -169,14 +172,6 @@ void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 void SetupScreen::on_startButton_clicked()
 {
     saveSettings();                                 // Save current game configuration
-    if (newGameBox->isVisible()) {                  // Means we configured a new game
-        m_gameEngine->setBoardSize(Preferences::boardSize());
-        m_gameEngine->setLevel(Preferences::difficulty());
-        m_gameEngine->setKomi(Preferences::komi());
-        m_gameEngine->setFixedHandicap(Preferences::fixedHandicap());
-    } else {                                        // Means we configured a loaded game
-        //NOTE: Nothing to do here, all settings where already loaded from the SGF file.
-    }
     emit startClicked();
 }
 

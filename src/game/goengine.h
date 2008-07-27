@@ -408,6 +408,21 @@ public:
     QList<Stone> listStones(PlayerColor color);
 
     /**
+     * Returns a list of all moves by either color sorted historically.
+     *
+     * @return
+     */
+    QList<QPair<PlayerColor, Stone> > moveHistory();
+
+    /**
+     * Returns a list of all moves by 'color' sorted historically.
+     *
+     * @param color The player color to list moves for.
+     * @return
+     */
+    QList<Stone> moveHistory(PlayerColor color);
+
+    /**
      * Count the number of liberties for the stone at 'field'.
      *
      * @param field The field to count liberties for
