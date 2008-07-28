@@ -44,10 +44,10 @@ SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     setupUi(this);
 
     GameView *gameView = new GameView(scene, this);
-    gameView->setInteractive(false);                    // This is just a preview, not a real game
+    gameView->setInteractive(false);                        // This is just a preview, not a real game
     previewFrame->setLayout(new QHBoxLayout());
     previewFrame->layout()->addWidget(gameView);
-    setupNewGame();                                     // Configure new game per default
+    setupNewGame();                                         // Configure new game per default
 }
 
 SetupScreen::~SetupScreen()
@@ -58,15 +58,21 @@ SetupScreen::~SetupScreen()
 void SetupScreen::setupNewGame()
 {
     kDebug() << "Setup new game, (re)connect to Go engine, (re)load settings";
+
     newGameBox->show();
     loadedGameBox->hide();
     infoBox->hide();
-    m_gameEngine->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
-    m_gameEngine->setBoardSize(Preferences::boardSize());
-    m_gameEngine->setLevel(Preferences::difficulty());
-    m_gameEngine->setKomi(Preferences::komi());
-    m_gameEngine->setFixedHandicap(Preferences::fixedHandicap());
-    loadSettings();
+
+    if (m_gameEngine->run(Preferences::engineCommand())) {  // (Re)Connect to the configured go engine
+        m_gameEngine->setBoardSize(Preferences::boardSize());
+        m_gameEngine->setLevel(Preferences::difficulty());
+        m_gameEngine->setKomi(Preferences::komi());
+        m_gameEngine->setFixedHandicap(Preferences::fixedHandicap());
+        loadSettings();
+    } else {
+        kDebug() << "Connection failed!";
+        //TODO: Handle go engine connection error!
+    }
 }
 
 void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
@@ -77,12 +83,17 @@ void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
     newGameBox->hide();
     loadedGameBox->show();
     infoBox->setVisible(showInfo);
-    m_gameEngine->run(Preferences::engineCommand());  // (Re)Connect to the configured go engine
-    m_gameEngine->loadSgf(fileName);
-    loadSettings();
-    //TODO: Set max value of startMoveSpinBox
-    if (showInfo) {
-        //TODO: Display all related game information in the info box
+
+    if (m_gameEngine->run(Preferences::engineCommand())) {  // (Re)Connect to the configured go engine
+        m_gameEngine->loadSgf(fileName);
+        loadSettings();
+        //TODO: Set max value of startMoveSpinBox
+        if (showInfo) {
+            //TODO: Display all related game information in the info box
+        }
+    } else {
+        kDebug() << "Connection failed!";
+        //TODO: Handle go engine connection error!
     }
 }
 

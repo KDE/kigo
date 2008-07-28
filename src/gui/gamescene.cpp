@@ -51,11 +51,13 @@ void GameScene::resizeScene(int width, int height)
 {
     setSceneRect(0, 0, width, height);
 
-    int size = qMin(width, height);
-    m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-    m_boardGridSize = m_boardRect.width() / (m_engine->boardSize() + 1);
+    int size = qMin(width, height) - 10; // Add 10 pixel margin around the board
+    const int engineBoardSize = m_engine->boardSize();
 
-    size = static_cast<int>(m_boardGridSize * (m_engine->boardSize() - 1));
+    m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
+    m_boardGridSize = m_boardRect.width() / (engineBoardSize + 1);
+
+    size = static_cast<int>(m_boardGridSize * (engineBoardSize - 1));
     m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
 
     update();
@@ -118,30 +120,33 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
 
     //TODO: Cache all that into pixmap to speed up rendering, maybe move to ThemeRenderer but this
     //      would add unnecessary GoEngine dependency on ThemeRenderer.
-    for (int i = 0; i < m_engine->boardSize(); i++) {
+    const int engineBoardSize = m_engine->boardSize();
+    for (int i = 0; i < engineBoardSize; i++) {
+        qreal offset = i * m_boardGridSize;
         painter->save();
-        painter->setPen(QPen(QColor(20, 30, 20), static_cast<int>(m_boardGridSize / 15)));
-        painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + i * m_boardGridSize),
-                          QPointF(m_boardGridRect.right(), m_boardGridRect.top() + i * m_boardGridSize));
-        painter->drawLine(QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.top()),
-                          QPointF(m_boardGridRect.left() + i * m_boardGridSize, m_boardGridRect.bottom()));
+        painter->setPen(QPen(QColor(20, 30, 20), m_boardGridSize / 15));
+        painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + offset),
+                          QPointF(m_boardGridRect.right(), m_boardGridRect.top() + offset));
+        painter->drawLine(QPointF(m_boardGridRect.left() + offset, m_boardGridRect.top()),
+                          QPointF(m_boardGridRect.left() + offset, m_boardGridRect.bottom()));
 
         if (m_showLabels) {
             QChar character('A' + i);
-            QString number = QString::number(m_engine->boardSize() - i);
+            QString number = QString::number(engineBoardSize - i);
+            QFont f = painter->font();
+            f.setPointSizeF(m_boardGridSize / 4);
+            painter->setFont(f);
             QFontMetrics fm = painter->fontMetrics();
 
             // Draw vertical numbers for board coordinates
-            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridSize + 2,
-                                      m_boardGridRect.top() + i * m_boardGridSize + fm.descent()), number);
-            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridSize - fm.width(number) - 3,
-                                      m_boardGridRect.top() + i * m_boardGridSize + fm.descent()), number);
+            qreal yVert = m_boardGridRect.top() + offset + fm.descent();
+            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridSize + 2, yVert), number);
+            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridSize - fm.width(number) - 3, yVert), number);
 
             // Draw horizontal characters for board coordinates
-            painter->drawText(QPointF(m_boardGridRect.left() + i * m_boardGridSize - fm.width(character) / 2,
-                                      m_boardGridRect.top() - m_boardGridSize + fm.ascent() + 2), QString(character));
-            painter->drawText(QPointF(m_boardGridRect.left() + i * m_boardGridSize - fm.width(character) / 2,
-                                      m_boardGridRect.bottom() + m_boardGridSize - 3), QString(character));
+            qreal xHor = m_boardGridRect.left() + offset - fm.width(character) / 2;
+            painter->drawText(QPointF(xHor, m_boardGridRect.top() - m_boardGridSize + fm.ascent() + 2), QString(character));
+            painter->drawText(QPointF(xHor, m_boardGridRect.bottom() + m_boardGridSize - 3), QString(character));
         }
         painter->restore();
     }
