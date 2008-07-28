@@ -62,8 +62,9 @@ public:
     explicit GameView(GameScene *scene, QWidget *parent = 0);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
     void drawForeground(QPainter *painter, const QRectF &rect);
+    void resizeEvent(QResizeEvent *event);
+    void showEvent(QShowEvent *event);
 
 private slots:
     void changeCursor(QPixmap cursorPixmap);

@@ -51,19 +51,29 @@ GameView::GameView(GameScene *scene, QWidget *parent)
     connect(m_gameScene, SIGNAL(changeCursor(QPixmap)), this, SLOT(changeCursor(QPixmap)));
 }
 
-void GameView::resizeEvent(QResizeEvent *event)
-{
-    m_gameScene->resizeScene(event->size().width(), event->size().height());
-}
-
 void GameView::drawForeground(QPainter *painter, const QRectF &rect)
 {
+    // Visually show the user that the current view is inactive by rendering
+    // a semi-transparent grey rectangle on top of the game scene.
     if (!isInteractive()) {
         painter->save();
         painter->setBrush(QBrush(QColor(70, 70, 70, 100), Qt::Dense4Pattern));
         painter->drawRect(rect);
         painter->restore();
     }
+}
+
+void GameView::resizeEvent(QResizeEvent *event)
+{
+    m_gameScene->resizeScene(event->size().width(), event->size().height());
+}
+
+void GameView::showEvent(QShowEvent *event)
+{
+    // Make sure that the game scene has the correct size according to the current view
+    // This is necessary because one scene is shared by multiple views but changing them
+    // creates no resizeEvent, so resize when another view is shown.
+    m_gameScene->resizeScene(width(), height());
 }
 
 void GameView::changeCursor(QPixmap cursorPixmap)
