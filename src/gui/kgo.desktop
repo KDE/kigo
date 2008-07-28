@@ -1,13 +1,9 @@
 [Desktop Entry]
 Type=Application
 Icon=kgo
-Encoding=UTF-8
 Exec=kgo %i -caption "%c"
 Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
-DocPath=kgo/index.html
-#X-KDE-StartupNotify=true
-#X-DBUS-StartupType=Multi
 
 Name=KGo
 Name[sv]=Kgo

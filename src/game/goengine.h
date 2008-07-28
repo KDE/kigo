@@ -52,7 +52,7 @@ namespace KGo {
  * // Run a session with a Go engine in GTP mode
  * engine->run("gnugo --mode gtp");
  *
- * // Get some informations about the Go engine
+ * // Get some information about the Go engine
  * engine->name();
  * engine->version();
  * engine->help();
@@ -122,7 +122,7 @@ public:
          * @param x The x coordinate of the stone
          * @param y The y coordinate of the stone
          */
-        Stone(char x = -1, int y = -1) : m_x(x), m_y(y) {}
+        explicit Stone(char x = -1, int y = -1) : m_x(x), m_y(y) {}
 
         /**
          * Constructor to set from a stone given as a string.
@@ -132,7 +132,7 @@ public:
         Stone(const QString &stone);
 
         /**
-         * Checks wether the stone is valid or not
+         * Checks whether the stone is valid or not
          */
         bool isValid() const;
 
@@ -177,7 +177,7 @@ public:
         Score(const QString &scoreString = QString());
 
         /**
-         * Checks wether the score is valid or not.
+         * Checks whether the score is valid or not.
          */
         bool isValid() const;
 
@@ -233,7 +233,7 @@ public:
     bool run(const QString &command = "gnugo --mode gtp");
 
     /**
-     * Check wether the GoEngine object is connected to a Go engine, running
+     * Check whether the GoEngine object is connected to a Go engine, running
      * and waiting for commands to be fed with.
      */
     bool isRunning() const { return m_process.state() == QProcess::Running; }
@@ -251,7 +251,7 @@ public:
 
     /**
      * Load a SGF file, possibly up to a move number or the first
-     * occurence of a move.
+     * occurrence of a move.
      *
      * @param fileName The SGF file name
      * @param moveNumber The move number
@@ -437,7 +437,7 @@ public:
     QList<Stone> findLiberties(const Stone &field);
 
     /**
-     * Tell wether a move at 'field' for player 'color' is legal.
+     * Tell whether a move at 'field' for player 'color' is legal.
      *
      * @param color The player to test the move for
      * @param field The field to test the move for
@@ -511,7 +511,7 @@ public:
     QString owlDefense(const Stone &field);
 
     /**
-     * Evaluate an eye space and returns a minumum and maximum number of
+     * Evaluate an eye space and returns a minimum and maximum number of
      * eyes. If these differ an attack and a defense point are additionally
      * returned. If the field is not an eye space or not of unique color,
      * a single -1 is returned.
@@ -537,7 +537,7 @@ public:
     DragonStatus dragonStatus(const Stone &field);
 
     /**
-     * Determine wether two stones belong to the same dragon.
+     * Determine whether two stones belong to the same dragon.
      *
      * @param field1 The first stone
      * @param field2 The second stone
@@ -705,7 +705,7 @@ public:
     QString shell(const QString &command);
 
     /**
-     * Evaluate wether a command is known.
+     * Evaluate whether a command is known.
      *
      * @param command The command to evaluate
      */
@@ -748,7 +748,7 @@ private slots:
     /**
      * This slot reads everything from the process's stderr. This is
      * mainly for debugging purposes, because this should only happen
-     * if a bug occured.
+     * if a bug occurred.
      */
     void readStandardError();
 

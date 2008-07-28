@@ -77,7 +77,7 @@ public:
      * based on the parameters.
      *
      * @param fileName The SGF file to load the game from
-     * @param showInfo Wether to show some info found in the SGF or not
+     * @param showInfo Whether to show some info found in the SGF or not
      */
     void setupLoadedGame(const QString &fileName, bool showInfo = false);
 

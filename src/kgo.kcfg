@@ -17,7 +17,7 @@
             <default>default</default>
         </entry>
         <entry name="ShowBoardLabels" type="Bool">
-            <label>Determines wether board labels are shown</label>
+            <label>Determines whether board labels are shown</label>
             <default>true</default>
         </entry>
     </group>
