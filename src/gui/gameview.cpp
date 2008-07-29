@@ -68,7 +68,7 @@ void GameView::resizeEvent(QResizeEvent *event)
     m_gameScene->resizeScene(event->size().width(), event->size().height());
 }
 
-void GameView::showEvent(QShowEvent *event)
+void GameView::showEvent(QShowEvent *)
 {
     // Make sure that the game scene has the correct size according to the current view
     // This is necessary because one scene is shared by multiple views but changing them

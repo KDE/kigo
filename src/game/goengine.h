@@ -737,6 +737,11 @@ signals:
      */
     void boardChanged();
 
+    /**
+     * This signal is emitted when the board size was changed.
+     */
+    void boardSizeChanged(int);
+
     void nextTurn(PlayerColor);
 
 private slots:

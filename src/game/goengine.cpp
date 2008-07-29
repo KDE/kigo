@@ -199,6 +199,7 @@ bool GoEngine::setBoardSize(int size)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
+        emit boardSizeChanged(size);
         return true;
     } else
         return false;

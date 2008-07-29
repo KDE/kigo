@@ -145,6 +145,7 @@ void SetupScreen::on_blackPlayerCombo_currentIndexChanged(const QString &text)
 
 void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
 {
+    Q_UNUSED(value);
     //TODO: Show the corresponding board
 }
 

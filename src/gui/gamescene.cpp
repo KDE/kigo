@@ -43,8 +43,10 @@ namespace KGo {
 GameScene::GameScene()
     : m_engine(new GoEngine())
     , m_showLabels(Preferences::showBoardLabels())
+    , m_boardSize(0)
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
+    connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(boardSizeChanged(int)));
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -52,12 +54,11 @@ void GameScene::resizeScene(int width, int height)
     setSceneRect(0, 0, width, height);
 
     int size = qMin(width, height) - 10; // Add 10 pixel margin around the board
-    const int engineBoardSize = m_engine->boardSize();
 
     m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-    m_boardGridSize = m_boardRect.width() / (engineBoardSize + 1);
+    m_boardGridSize = m_boardRect.width() / (m_boardSize + 1);
 
-    size = static_cast<int>(m_boardGridSize * (engineBoardSize - 1));
+    size = static_cast<int>(m_boardGridSize * (m_boardSize - 1));
     m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
 
     update();
@@ -74,6 +75,11 @@ void GameScene::updateBoard()
     kDebug() << "Update board";
 
     update();
+}
+
+void GameScene::boardSizeChanged(int size)
+{
+    m_boardSize = size;
 }
 
 void GameScene::showMoveHistory(bool show)
@@ -109,19 +115,33 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if (m_boardRect.contains(event->scenePos())) {
-        kDebug() << "Game board received mouse press event at" << event->scenePos();
+
+        int row = static_cast<int>((event->scenePos().x() - m_boardGridRect.x() + m_boardGridSize / 2) / m_boardGridSize);
+        int col = static_cast<int>((event->scenePos().y() - m_boardGridRect.y() + m_boardGridSize / 2) / m_boardGridSize);
+
+        kDebug() << "Row" << row << "col" << col;
+        if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
+            return;
+
+        // Convert to Go board coordinates
+        GoEngine::Stone move('A' + row, m_boardSize - col);
+
+        //TODO: Check if field is occupied, otherwise make move
+        //if (m_engine->isLegal(GoEngine::WhitePlayer, move)) {
+
+            kDebug() << "Make move at " << move.toString();
+        //}
     }
 }
 
-void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
+void GameScene::drawBackground(QPainter *painter, const QRectF &)
 {
     ThemeRenderer::instance()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
     ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
 
     //TODO: Cache all that into pixmap to speed up rendering, maybe move to ThemeRenderer but this
     //      would add unnecessary GoEngine dependency on ThemeRenderer.
-    const int engineBoardSize = m_engine->boardSize();
-    for (int i = 0; i < engineBoardSize; i++) {
+    for (int i = 0; i < m_boardSize; i++) {
         qreal offset = i * m_boardGridSize;
         painter->save();
         painter->setPen(QPen(QColor(20, 30, 20), m_boardGridSize / 15));
@@ -132,7 +152,7 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &rect)
 
         if (m_showLabels) {
             QChar character('A' + i);
-            QString number = QString::number(engineBoardSize - i);
+            QString number = QString::number(m_boardSize - i);
             QFont f = painter->font();
             f.setPointSizeF(m_boardGridSize / 4);
             painter->setFont(f);

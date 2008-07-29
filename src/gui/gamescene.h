@@ -65,6 +65,7 @@ signals:
 
 public slots:
     void updateBoard();
+    void boardSizeChanged(int size);
     void showMoveHistory(bool show);
     void showLabels(bool show);
     void hint();
@@ -88,6 +89,7 @@ private:
     QRectF m_boardRect;                             ///< Position of board in the scene
     QRectF m_boardGridRect;                         ///<
     qreal m_boardGridSize;                          ///<
+    int m_boardSize;                                ///< Go board size (9, 13, 19, ..)
     QList<QGraphicsPixmapItem *> m_stoneItemList;   ///<
 };
 
