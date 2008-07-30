@@ -61,14 +61,14 @@ public:
     GoEngine * const engine() const;
 
 signals:
-    void changeCursor(QPixmap);
+    void cursorChanged(QPixmap);
 
 public slots:
     void updateBoard();
     void boardSizeChanged(int size);
     void showMoveHistory(bool show);
     void showLabels(bool show);
-    void hint();
+    void showHint();
 
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

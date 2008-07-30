@@ -542,7 +542,7 @@ public:
      * @param field1 The first stone
      * @param field2 The second stone
      */
-    bool sameDragon(const Stone &field1, const Stone &field2);
+    bool isSameDragon(const Stone &field1, const Stone &field2);
 
     /**
      * Returns the information in the dragon data structure. The data

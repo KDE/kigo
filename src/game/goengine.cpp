@@ -46,10 +46,7 @@ GoEngine::Stone::Stone(const QString &stone)
 
 bool GoEngine::Stone::isValid() const
 {
-    if (m_y >= 1 && m_y <= 19 && ((m_x >= 'a' && m_x < 't') || (m_x >= 'A' && m_x <= 'T')))
-        return true;
-    else
-        return false;
+    return (m_y >= 1 && m_y <= 19 && ((m_x >= 'a' && m_x < 't') || (m_x >= 'A' && m_x <= 'T')));
 }
 
 QByteArray GoEngine::Stone::toLatin1() const
@@ -80,12 +77,12 @@ GoEngine::Score::Score(const QString &scoreString)
 
 bool GoEngine::Score::isValid() const
 {
-    return m_score >= 0 ? true : false;
+    return m_score >= 0;
 }
 
 QString GoEngine::Score::toString() const
 {
-    return QString("%1+%2 (upper bound: %3, lower: %4").arg(m_player == WhitePlayer ? "W" : "B").arg(m_score).arg(m_upperBound).arg(m_lowerBound);
+    return QString("%1+%2 (upper bound: %3, lower: %4").arg(m_player == WhitePlayer ? 'W' : 'B').arg(m_score).arg(m_upperBound).arg(m_lowerBound);
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -141,7 +138,7 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
 
     QByteArray msg("loadsgf " + fileName.toLatin1() + ' ');
     msg.append(QString::number(moveNumber));
-    msg.append("\n");
+    msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
@@ -164,28 +161,19 @@ bool GoEngine::saveSgf(const QString &fileName)
 QString GoEngine::name()
 {
     m_process.write("name\n");
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 int GoEngine::protocolVersion()
 {
     m_process.write("protocol_version\n");
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 QString GoEngine::version()
 {
     m_process.write("version\n");
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 bool GoEngine::setBoardSize(int size)
@@ -195,7 +183,7 @@ bool GoEngine::setBoardSize(int size)
 
     QByteArray msg("boardsize ");
     msg.append(QString::number(size));
-    msg.append("\n");
+    msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
@@ -208,10 +196,7 @@ bool GoEngine::setBoardSize(int size)
 int GoEngine::boardSize()
 {
     m_process.write("query_boardsize\n");
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 bool GoEngine::clearBoard()
@@ -233,7 +218,7 @@ bool GoEngine::setKomi(float komi)
 
     QByteArray msg("komi ");
     msg.append(QString::number(komi));
-    msg.append("\n");
+    msg.append('\n');
     m_process.write(msg);
     return waitResponse();
 }
@@ -245,7 +230,7 @@ bool GoEngine::setLevel(int level)
 
     QByteArray msg("level ");
     msg.append(QString::number(level));
-    msg.append("\n");
+    msg.append('\n');
     m_process.write(msg);
     return waitResponse();
 }
@@ -257,7 +242,7 @@ bool GoEngine::setFixedHandicap(int handicap)
 
     QByteArray msg("fixed_handicap ");
     msg.append(QString::number(handicap));
-    msg.append("\n");
+    msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
@@ -276,8 +261,7 @@ bool GoEngine::playMove(PlayerColor color, const Stone &field)
         msg.append("white ");
     else
         msg.append("black ");
-    msg.append(field.toLatin1());
-    msg.append("\n");
+    msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
@@ -340,7 +324,7 @@ bool GoEngine::undoMove(int i)
     Q_ASSERT(i >= 0);
     QByteArray msg("undo ");
     msg.append(QString::number(i));
-    msg.append("\n");
+    msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
@@ -369,8 +353,7 @@ bool GoEngine::tryMove(PlayerColor color, const Stone &field)
         msg.append("white ");
     else
         msg.append("black ");
-    msg.append(field.toLatin1());
-    msg.append("\n");
+    msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
@@ -432,10 +415,9 @@ QList<GoEngine::Stone> GoEngine::listStones(PlayerColor color)
 
     QByteArray msg("list_stones ");
     if (color == WhitePlayer)
-        msg.append("white");
+        msg.append("white\n");
     else
-        msg.append("black");
-    msg.append("\n");
+        msg.append("black\n");
     m_process.write(msg);
     if (waitResponse()) {
         foreach (const QString &pos, m_response.split(' '))
@@ -483,10 +465,7 @@ int GoEngine::countLiberties(const Stone &field)
         return -1;
 
     m_process.write("countlib " + field.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 QList<GoEngine::Stone> GoEngine::findLiberties(const Stone &field)
@@ -496,10 +475,10 @@ QList<GoEngine::Stone> GoEngine::findLiberties(const Stone &field)
         return list;
 
     m_process.write("findlib " + field.toLatin1() + '\n');
-    waitResponse();
-
-    foreach (const QString &entry, m_response.split(' '))
-        list.append(GoEngine::Stone(entry));
+    if (waitResponse()) {
+        foreach (const QString &entry, m_response.split(' '))
+            list.append(GoEngine::Stone(entry));
+    }
     return list;
 }
 
@@ -513,14 +492,9 @@ bool GoEngine::isLegal(PlayerColor color, const Stone &field)
         msg.append("white ");
     else
         msg.append("black ");
-    msg.append(field.toLatin1());
-    msg.append("\n");
+    msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
-    waitResponse();
-    if (m_response == "1")
-        return true;
-    else
-        return false;
+    return waitResponse() && m_response == "1";
 }
 
 QString GoEngine::topMoves(PlayerColor color)
@@ -534,10 +508,7 @@ QString GoEngine::topMoves(PlayerColor color)
     else
         msg.append("black\n");
     m_process.write(msg);
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 QList<GoEngine::Stone> GoEngine::legalMoves(PlayerColor color)
@@ -570,10 +541,7 @@ int GoEngine::captures(PlayerColor color)
     else
         msg.append("black\n");
     m_process.write(msg);
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return 0;
+    return waitResponse() ? m_response.toInt() : 0;
 }
 
 QString GoEngine::attack(const Stone &field)
@@ -582,10 +550,7 @@ QString GoEngine::attack(const Stone &field)
         return QString();
 
     m_process.write("attack " + field.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 QString GoEngine::defend(const Stone &field)
@@ -594,10 +559,7 @@ QString GoEngine::defend(const Stone &field)
         return QString();
 
     m_process.write("defend " + field.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 bool GoEngine::increaseDepths()
@@ -618,10 +580,7 @@ QString GoEngine::owlAttack(const Stone &field)
         return QString();
 
     m_process.write("owl_attack " + field.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 QString GoEngine::owlDefense(const Stone &field)
@@ -630,10 +589,7 @@ QString GoEngine::owlDefense(const Stone &field)
         return QString();
 
     m_process.write("owl_defend " + field.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 QString GoEngine::evalEye(const Stone &field)
@@ -642,10 +598,7 @@ QString GoEngine::evalEye(const Stone &field)
         return QString();
 
     m_process.write("eval_eye " + field.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 GoEngine::DragonStatus GoEngine::dragonStatus(const Stone &field)
@@ -659,18 +612,15 @@ GoEngine::DragonStatus GoEngine::dragonStatus(const Stone &field)
         else if (m_response == "critical") return CriticalDragon;
         else if (m_response == "dead") return DeadDragon;
         else if (m_response == "unknown") return UnknownDragon;
-        else return UnknownDragon;    /* should never happen */
+        else return UnknownDragon;  // Should never happen
     } else
         return UnknownDragon;
 }
 
-bool GoEngine::sameDragon(const Stone &field1, const Stone &field2)
+bool GoEngine::isSameDragon(const Stone &field1, const Stone &field2)
 {
     m_process.write("same_dragon " + field1.toLatin1() + ' ' + field2.toLatin1() + '\n');
-    if (waitResponse() && m_response == "1")
-        return true;
-    else
-        return false;
+    return waitResponse() && m_response == "1";
 }
 
 QString GoEngine::dragonData(const Stone &field)
@@ -680,10 +630,7 @@ QString GoEngine::dragonData(const Stone &field)
         msg.append(field.toLatin1());
     msg.append('\n');
     m_process.write(msg);
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 GoEngine::FinalState GoEngine::finalStatus(const Stone &field)
@@ -732,28 +679,19 @@ QList<GoEngine::Stone> GoEngine::finalStatusList(FinalState state)
 GoEngine::Score GoEngine::finalScore()
 {
     m_process.write("final_score\n");
-    if (waitResponse())
-        return Score(m_response);
-    else
-        return Score();
+    return waitResponse() ? Score(m_response) : Score();
 }
 
 GoEngine::Score GoEngine::estimateScore()
 {
     m_process.write("estimate_score\n");
-    if (waitResponse())
-        return Score(m_response);
-    else
-        return Score();
+    return waitResponse() ? Score(m_response) : Score();
 }
 
 int GoEngine::getLifeNodeCounter()
 {
     m_process.write("get_life_node_counter\n");
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 bool GoEngine::resetLifeNodeCounter()
@@ -765,10 +703,7 @@ bool GoEngine::resetLifeNodeCounter()
 int GoEngine::getOwlNodeCounter()
 {
     m_process.write("get_owl_node_counter\n");
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 bool GoEngine::resetOwlNodeCounter()
@@ -780,10 +715,7 @@ bool GoEngine::resetOwlNodeCounter()
 int GoEngine::getReadingNodeCounter()
 {
     m_process.write("get_reading_node_counter\n");
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 bool GoEngine::resetReadingNodeCounter()
@@ -795,10 +727,7 @@ bool GoEngine::resetReadingNodeCounter()
 int GoEngine::getTryMoveCounter()
 {
     m_process.write("get_trymove_counter\n");
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 bool GoEngine::resetTryMoveCounter()
@@ -828,10 +757,7 @@ int GoEngine::wormCutStone(const Stone &field)
     msg.append(field.toLatin1());
     msg.append("\n");
     m_process.write(msg);
-    if (waitResponse())
-        return m_response.toInt();
-    else
-        return -1;
+    return waitResponse() ? m_response.toInt() : -1;
 }
 
 QString GoEngine::wormData(const Stone &field)
@@ -841,10 +767,7 @@ QString GoEngine::wormData(const Stone &field)
         msg.append(field.toLatin1());
     msg.append('\n');
     m_process.write(msg);
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 QList<GoEngine::Stone> GoEngine::wormStones(const Stone &field)
@@ -896,10 +819,7 @@ QString GoEngine::shell(const QString &command)
         return QString();
 
     m_process.write(command.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 bool GoEngine::knownCommand(const QString &command)
@@ -917,10 +837,7 @@ QString GoEngine::echo(const QString &command)
         return QString();
 
     m_process.write("echo " + command.toLatin1() + '\n');
-    if (waitResponse())
-        return m_response;
-    else
-        return QString();
+    return waitResponse() ? m_response : QString();
 }
 
 void GoEngine::readStandardError()
@@ -946,10 +863,7 @@ bool GoEngine::waitResponse()
     m_response.remove(m_response.size() - 2, 2);    // Remove the two trailing newlines
 
     emit ready();                                   // Signal that we're done and able to receive next command
-    if (tmp == '?')                                 // '?' Means the engine didn't understand the query
-        return false;
-    else
-        return true;
+    return tmp != '?';                              // '?' Means the engine didn't understand the query
 }
 
 } // End of namespace KGo

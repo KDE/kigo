@@ -43,7 +43,7 @@ namespace KGo {
 GameScene::GameScene()
     : m_engine(new GoEngine())
     , m_showLabels(Preferences::showBoardLabels())
-    , m_boardSize(0)
+    , m_boardSize(19)
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(boardSizeChanged(int)));
@@ -69,15 +69,17 @@ GoEngine * const GameScene::engine() const
 
 void GameScene::updateBoard()
 {
-    //TODO: set komi, board size ...
     kDebug() << "Update board";
+    //TODO: Show stones at positions
+
+    //QList<GoEngine::Stone> whiteStones = m_engine->listStones(GoEngine::WhitePlayer);
+    //QList<GoEngine::Stone> blackStones = m_engine->listStones(GoEngine::BlackPlayer);
 
     invalidate(m_boardRect, QGraphicsScene::ItemLayer);
 }
 
 void GameScene::boardSizeChanged(int size)
 {
-    kDebug() << "Board size changed";
     m_boardSize = size;
     resizeScene(width(), height());
     invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
@@ -92,13 +94,13 @@ void GameScene::showMoveHistory(bool show)
 
 void GameScene::showLabels(bool show)
 {
-    kDebug() << "Show labels:" << show;
     m_showLabels = show;
     invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
 }
 
-void GameScene::hint()
+void GameScene::showHint()
 {
+    //TODO: Get hint from Engine and display it
     update();
 }
 
@@ -108,9 +110,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         QSize size(static_cast<int>(m_boardGridCellSize), static_cast<int>(m_boardGridCellSize));
         //TODO: Get correct pixmap based on current active player
         QPixmap map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
-        emit changeCursor(map);
+        emit cursorChanged(map);
     } else
-        emit changeCursor(QPixmap());
+        emit cursorChanged(QPixmap());
 }
 
 void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -139,7 +141,6 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 
     for (int i = 0; i < m_boardSize; i++) {
         qreal offset = i * m_boardGridCellSize;
-        painter->save();
         painter->setPen(QPen(QColor(20, 30, 20), m_boardGridCellSize / 15));
         painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + offset),
                           QPointF(m_boardGridRect.right(), m_boardGridRect.top() + offset));
@@ -147,8 +148,8 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
                           QPointF(m_boardGridRect.left() + offset, m_boardGridRect.bottom()));
 
         if (m_showLabels) {
-            QChar character('A' + i);
-            QString number = QString::number(m_boardSize - i);
+            QChar c('A' + i);
+            QString n = QString::number(m_boardSize - i);
             QFont f = painter->font();
             f.setPointSizeF(m_boardGridCellSize / 4);
             painter->setFont(f);
@@ -156,15 +157,14 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 
             // Draw vertical numbers for board coordinates
             qreal yVert = m_boardGridRect.top() + offset + fm.descent();
-            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridCellSize + 2, yVert), number);
-            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridCellSize - fm.width(number) - 3, yVert), number);
+            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridCellSize + 2, yVert), n);
+            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridCellSize - fm.width(n) - 3, yVert), n);
 
             // Draw horizontal characters for board coordinates
-            qreal xHor = m_boardGridRect.left() + offset - fm.width(character) / 2;
-            painter->drawText(QPointF(xHor, m_boardGridRect.top() - m_boardGridCellSize + fm.ascent() + 2), QString(character));
-            painter->drawText(QPointF(xHor, m_boardGridRect.bottom() + m_boardGridCellSize - 3), QString(character));
+            qreal xHor = m_boardGridRect.left() + offset - fm.width(c) / 2;
+            painter->drawText(QPointF(xHor, m_boardGridRect.top() - m_boardGridCellSize + fm.ascent() + 2), QString(c));
+            painter->drawText(QPointF(xHor, m_boardGridRect.bottom() + m_boardGridCellSize - 3), QString(c));
         }
-        painter->restore();
     }
 }
 

@@ -48,7 +48,7 @@ GameView::GameView(GameScene *scene, QWidget *parent)
                          QGraphicsView::DontSavePainterState |
                          QGraphicsView::DontAdjustForAntialiasing);
 
-    connect(m_gameScene, SIGNAL(changeCursor(QPixmap)), this, SLOT(changeCursor(QPixmap)));
+    connect(m_gameScene, SIGNAL(cursorChanged(QPixmap)), this, SLOT(changeCursor(QPixmap)));
 }
 
 void GameView::drawForeground(QPainter *painter, const QRectF &rect)
