@@ -54,14 +54,12 @@ void GameScene::resizeScene(int width, int height)
     setSceneRect(0, 0, width, height);
 
     int size = qMin(width, height) - 10; // Add 10 pixel margin around the board
-
     m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-    m_boardGridSize = m_boardRect.width() / (m_boardSize + 1);
+    m_boardGridCellSize = m_boardRect.width() / (m_boardSize + 1);
 
-    size = static_cast<int>(m_boardGridSize * (m_boardSize - 1));
+    size = static_cast<int>(m_boardGridCellSize * (m_boardSize - 1));
     m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-
-    update();
+    m_boardMouseRect = m_boardGridRect.adjusted(-m_boardGridCellSize / 8, - m_boardGridCellSize / 8, m_boardGridCellSize / 8, m_boardGridCellSize / 8);
 }
 
 GoEngine * const GameScene::engine() const
@@ -74,26 +72,29 @@ void GameScene::updateBoard()
     //TODO: set komi, board size ...
     kDebug() << "Update board";
 
-    update();
+    invalidate(m_boardRect, QGraphicsScene::ItemLayer);
 }
 
 void GameScene::boardSizeChanged(int size)
 {
+    kDebug() << "Board size changed";
     m_boardSize = size;
+    resizeScene(width(), height());
+    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
 }
 
 void GameScene::showMoveHistory(bool show)
 {
     kDebug() << "Show move history:" << show;
     //TODO: Get move history from engine and display them with half-transparent go stone pixmaps
-    update();
+    invalidate(m_boardRect, QGraphicsScene::ItemLayer);
 }
 
 void GameScene::showLabels(bool show)
 {
     kDebug() << "Show labels:" << show;
     m_showLabels = show;
-    update();
+    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
 }
 
 void GameScene::hint()
@@ -103,8 +104,8 @@ void GameScene::hint()
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (m_boardRect.contains(event->scenePos())) {
-        QSize size(static_cast<int>(m_boardGridSize), static_cast<int>(m_boardGridSize));
+    if (m_boardMouseRect.contains(event->scenePos())) {
+        QSize size(static_cast<int>(m_boardGridCellSize), static_cast<int>(m_boardGridCellSize));
         //TODO: Get correct pixmap based on current active player
         QPixmap map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
         emit changeCursor(map);
@@ -114,12 +115,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-    if (m_boardRect.contains(event->scenePos())) {
-
-        int row = static_cast<int>((event->scenePos().x() - m_boardGridRect.x() + m_boardGridSize / 2) / m_boardGridSize);
-        int col = static_cast<int>((event->scenePos().y() - m_boardGridRect.y() + m_boardGridSize / 2) / m_boardGridSize);
-
-        kDebug() << "Row" << row << "col" << col;
+    if (m_boardMouseRect.contains(event->scenePos())) {
+        int row = static_cast<int>((event->scenePos().x() - m_boardMouseRect.x()) / m_boardGridCellSize);
+        int col = static_cast<int>((event->scenePos().y() - m_boardMouseRect.y()) / m_boardGridCellSize);
         if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
             return;
 
@@ -139,12 +137,10 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
     ThemeRenderer::instance()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
     ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
 
-    //TODO: Cache all that into pixmap to speed up rendering, maybe move to ThemeRenderer but this
-    //      would add unnecessary GoEngine dependency on ThemeRenderer.
     for (int i = 0; i < m_boardSize; i++) {
-        qreal offset = i * m_boardGridSize;
+        qreal offset = i * m_boardGridCellSize;
         painter->save();
-        painter->setPen(QPen(QColor(20, 30, 20), m_boardGridSize / 15));
+        painter->setPen(QPen(QColor(20, 30, 20), m_boardGridCellSize / 15));
         painter->drawLine(QPointF(m_boardGridRect.left(),  m_boardGridRect.top() + offset),
                           QPointF(m_boardGridRect.right(), m_boardGridRect.top() + offset));
         painter->drawLine(QPointF(m_boardGridRect.left() + offset, m_boardGridRect.top()),
@@ -154,19 +150,19 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
             QChar character('A' + i);
             QString number = QString::number(m_boardSize - i);
             QFont f = painter->font();
-            f.setPointSizeF(m_boardGridSize / 4);
+            f.setPointSizeF(m_boardGridCellSize / 4);
             painter->setFont(f);
             QFontMetrics fm = painter->fontMetrics();
 
             // Draw vertical numbers for board coordinates
             qreal yVert = m_boardGridRect.top() + offset + fm.descent();
-            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridSize + 2, yVert), number);
-            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridSize - fm.width(number) - 3, yVert), number);
+            painter->drawText(QPointF(m_boardGridRect.left() - m_boardGridCellSize + 2, yVert), number);
+            painter->drawText(QPointF(m_boardGridRect.right() + m_boardGridCellSize - fm.width(number) - 3, yVert), number);
 
             // Draw horizontal characters for board coordinates
             qreal xHor = m_boardGridRect.left() + offset - fm.width(character) / 2;
-            painter->drawText(QPointF(xHor, m_boardGridRect.top() - m_boardGridSize + fm.ascent() + 2), QString(character));
-            painter->drawText(QPointF(xHor, m_boardGridRect.bottom() + m_boardGridSize - 3), QString(character));
+            painter->drawText(QPointF(xHor, m_boardGridRect.top() - m_boardGridCellSize + fm.ascent() + 2), QString(character));
+            painter->drawText(QPointF(xHor, m_boardGridRect.bottom() + m_boardGridCellSize - 3), QString(character));
         }
         painter->restore();
     }

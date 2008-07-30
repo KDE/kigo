@@ -92,7 +92,6 @@ QString GoEngine::Score::toString() const
 
 GoEngine::GoEngine()
 {
-    connect(&m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(readStandardOutput()));
     connect(&m_process, SIGNAL(readyReadStandardError()), this, SLOT(readStandardError()));
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
@@ -112,9 +111,10 @@ bool GoEngine::run(const QString &command)
 
     kDebug() << "Run new GTP engine session";
 
-    if (protocolVersion() == 2) {                   // We support only GTP version 2 for now
+    if (protocolVersion() == 2) {                    // We support only GTP version 2 for now
         clearBoard();                               // Start with blank board
     } else {
+        kDebug() << "Protocol version error:" << protocolVersion();
         quit();
         m_response = "Protocol version error";
         return false;
@@ -923,11 +923,6 @@ QString GoEngine::echo(const QString &command)
         return QString();
 }
 
-void GoEngine::readStandardOutput()
-{
-    m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
-}
-
 void GoEngine::readStandardError()
 {
     kWarning() << "Go engine I/O error occurred:\n" << m_process.readAllStandardError();
@@ -935,7 +930,7 @@ void GoEngine::readStandardError()
 
 bool GoEngine::waitResponse()
 {
-    if (!m_process.isOpen()) {                      // No GTP connection means no computing fun!
+    if (m_process.state() != QProcess::Running) {   // No GTP connection means no computing fun!
         kWarning() << "Go engine command failed because no GTP session is running!";
         return false;
     }
@@ -943,12 +938,12 @@ bool GoEngine::waitResponse()
     // Block and wait till command execution finished. The slot GoEngine::readStandardOutput()
     // is invoked when this happens and we continue after the next line.
     m_process.waitForReadyRead();
+    m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
+    //kDebug() << "Returned raw response:" << m_response;
 
     QChar tmp = m_response[0];                      // First message character indicates success or error
     m_response.remove(0, 2);                        // Remove the first two chars (e.g. "? " or "= ")
     m_response.remove(m_response.size() - 2, 2);    // Remove the two trailing newlines
-
-    kDebug() << "Received response is" << m_response;
 
     emit ready();                                   // Signal that we're done and able to receive next command
     if (tmp == '?')                                 // '?' Means the engine didn't understand the query

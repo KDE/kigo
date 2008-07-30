@@ -64,10 +64,10 @@ int main(int argc, char *argv[])
     KGlobal::locale()->insertCatalog("libkdegames");
 
     if (app.isSessionRestored()) {
-		kDebug() << "Restore last session";
+        kDebug() << "Restore last session";
         RESTORE(KGo::MainWindow)
     } else {
-		kDebug() << "Start new session";
+        kDebug() << "Start new session";
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
         KGo::MainWindow *mainWin = new KGo::MainWindow(0, args->isSet("demo"));
         mainWin->show();
