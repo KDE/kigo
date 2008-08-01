@@ -53,7 +53,7 @@ QByteArray GoEngine::Stone::toLatin1() const
 {
     QByteArray msg;
     msg.append(m_x);
-    msg.append(m_y);
+    msg.append(QByteArray::number(m_y));
     return msg;
 }
 
@@ -420,8 +420,9 @@ QList<GoEngine::Stone> GoEngine::listStones(PlayerColor color)
         msg.append("black\n");
     m_process.write(msg);
     if (waitResponse()) {
-        foreach (const QString &pos, m_response.split(' '))
-            list.append(Stone(pos));
+        if (!m_response.isEmpty())
+            foreach (const QString &pos, m_response.split(' '))
+                list.append(Stone(pos));
     }
     return list;
 }
@@ -476,8 +477,9 @@ QList<GoEngine::Stone> GoEngine::findLiberties(const Stone &field)
 
     m_process.write("findlib " + field.toLatin1() + '\n');
     if (waitResponse()) {
-        foreach (const QString &entry, m_response.split(' '))
-            list.append(GoEngine::Stone(entry));
+        if (!m_response.isEmpty())
+            foreach (const QString &entry, m_response.split(' '))
+                list.append(GoEngine::Stone(entry));
     }
     return list;
 }
@@ -524,8 +526,9 @@ QList<GoEngine::Stone> GoEngine::legalMoves(PlayerColor color)
         msg.append("black\n");
     m_process.write(msg);
     if (waitResponse()) {
-        foreach (const QString &entry, m_response.split(' '))
-            list.append(GoEngine::Stone(entry));
+        if (!m_response.isEmpty())
+            foreach (const QString &entry, m_response.split(' '))
+                list.append(Stone(entry));
     }
     return list;
 }
@@ -670,8 +673,9 @@ QList<GoEngine::Stone> GoEngine::finalStatusList(FinalState state)
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
-        foreach (const QString &entry, m_response.split(' '))
-            list.append(Stone(entry));
+        if (!m_response.isEmpty())
+            foreach (const QString &entry, m_response.split(' '))
+                list.append(Stone(entry));
     }
     return list;
 }
@@ -778,8 +782,9 @@ QList<GoEngine::Stone> GoEngine::wormStones(const Stone &field)
 
     m_process.write("worm_stones " + field.toLatin1() + '\n');
     if (waitResponse()) {
-        foreach (const QString &entry, m_response.split(' '))
-            list.append(Stone(entry));
+        if (!m_response.isEmpty())
+            foreach (const QString &entry, m_response.split(' '))
+                list.append(Stone(entry));
     }
     return list;
 }

@@ -53,13 +53,14 @@ void GameScene::resizeScene(int width, int height)
 {
     setSceneRect(0, 0, width, height);
 
-    int size = qMin(width, height) - 10; // Add 10 pixel margin around the board
+    int size = qMin(width, height) - 10; // Add 10 pixel padding around the board
     m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
     m_boardGridCellSize = m_boardRect.width() / (m_boardSize + 1);
 
     size = static_cast<int>(m_boardGridCellSize * (m_boardSize - 1));
     m_boardGridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-    m_boardMouseRect = m_boardGridRect.adjusted(-m_boardGridCellSize / 8, - m_boardGridCellSize / 8, m_boardGridCellSize / 8, m_boardGridCellSize / 8);
+    m_boardMouseRect = m_boardGridRect.adjusted(-m_boardGridCellSize / 8, - m_boardGridCellSize / 8,
+                                                 m_boardGridCellSize / 8,   m_boardGridCellSize / 8);
 }
 
 GoEngine * const GameScene::engine() const
@@ -72,8 +73,13 @@ void GameScene::updateBoard()
     kDebug() << "Update board";
     //TODO: Show stones at positions
 
-    //QList<GoEngine::Stone> whiteStones = m_engine->listStones(GoEngine::WhitePlayer);
-    //QList<GoEngine::Stone> blackStones = m_engine->listStones(GoEngine::BlackPlayer);
+    QList<GoEngine::Stone> whiteStones = m_engine->listStones(GoEngine::WhitePlayer);
+    QList<GoEngine::Stone> blackStones = m_engine->listStones(GoEngine::BlackPlayer);
+
+    foreach (const GoEngine::Stone &stone, whiteStones)
+        qDebug() << stone.toString();
+    foreach (const GoEngine::Stone &stone, blackStones)
+        qDebug() << stone.toString();
 
     invalidate(m_boardRect, QGraphicsScene::ItemLayer);
 }
@@ -126,11 +132,13 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         // Convert to Go board coordinates
         GoEngine::Stone move('A' + row, m_boardSize - col);
 
-        //TODO: Check if field is occupied, otherwise make move
-        //if (m_engine->isLegal(GoEngine::WhitePlayer, move)) {
+        //TODO: Make move for correct player!
+        if (m_engine->isLegal(GoEngine::WhitePlayer, move)) {
 
             kDebug() << "Make move at " << move.toString();
-        //}
+            m_engine->playMove(GoEngine::WhitePlayer, move);
+        } else
+            kDebug() << "Move " << move.toString() << " is illegal";
     }
 }
 
