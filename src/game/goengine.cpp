@@ -137,7 +137,7 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
     kDebug() << "Attempting to load move" << moveNumber << "from" << fileName;
 
     QByteArray msg("loadsgf " + fileName.toLatin1() + ' ');
-    msg.append(QString::number(moveNumber).toLatin1());
+    msg.append(QByteArray::number(moveNumber));
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
@@ -182,7 +182,7 @@ bool GoEngine::setBoardSize(int size)
     kDebug() << "Set board size to"  << size;
 
     QByteArray msg("boardsize ");
-    msg.append(QString::number(size).toLatin1());
+    msg.append(QByteArray::number(size));
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
@@ -217,7 +217,7 @@ bool GoEngine::setKomi(float komi)
     kDebug() << "Set komi to" << komi;
 
     QByteArray msg("komi ");
-    msg.append(QString::number(komi).toLatin1());
+    msg.append(QByteArray::number(komi));
     msg.append('\n');
     m_process.write(msg);
     return waitResponse();
@@ -229,7 +229,7 @@ bool GoEngine::setLevel(int level)
     kDebug() << "Set difficulty level to" << level;
 
     QByteArray msg("level ");
-    msg.append(QString::number(level).toLatin1());
+    msg.append(QByteArray::number(level));
     msg.append('\n');
     m_process.write(msg);
     return waitResponse();
@@ -241,7 +241,7 @@ bool GoEngine::setFixedHandicap(int handicap)
     kDebug() << "Set fixed handicap to" << handicap;
 
     QByteArray msg("fixed_handicap ");
-    msg.append(QString::number(handicap).toLatin1());
+    msg.append(QByteArray::number(handicap));
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
@@ -323,7 +323,7 @@ bool GoEngine::undoMove(int i)
 {
     Q_ASSERT(i >= 0);
     QByteArray msg("undo ");
-    msg.append(QString::number(i).toLatin1());
+    msg.append(QByteArray::number(i));
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse()) {
@@ -787,7 +787,7 @@ QList<GoEngine::Stone> GoEngine::wormStones(const Stone &field)
 bool GoEngine::tuneMoveOrdering(int parameters)
 {
     QByteArray msg("tune_move_ordering ");
-    msg.append(QString::number(parameters).toLatin1());
+    msg.append(QByteArray::number(parameters));
     msg.append('\n');
     m_process.write(msg);
     return waitResponse();
