@@ -110,9 +110,11 @@ bool GoEngine::run(const QString &command)
     if (!m_process.waitForStarted())                // NOTE: Blocking wait for process start
         return false;
 
+    m_engineCommand = command;                      // Save for retrieval
+
     kDebug() << "Run new GTP engine session";
 
-    if (protocolVersion() == 2) {                    // We support only GTP version 2 for now
+    if (protocolVersion() == 2) {                   // We support only GTP version 2 for now
         clearBoard();                               // Start with blank board
     } else {
         kDebug() << "Protocol version error:" << protocolVersion();
@@ -163,7 +165,7 @@ bool GoEngine::saveSgf(const QString &fileName)
     return waitResponse();
 }
 
-QString GoEngine::name()
+QString GoEngine::engineName()
 {
     m_process.write("name\n");
     return waitResponse() ? m_response : QString();
@@ -175,7 +177,7 @@ int GoEngine::protocolVersion()
     return waitResponse() ? m_response.toInt() : -1;
 }
 
-QString GoEngine::version()
+QString GoEngine::engineVersion()
 {
     m_process.write("version\n");
     return waitResponse() ? m_response : QString();
@@ -189,8 +191,7 @@ bool GoEngine::setBoardSize(int size)
 
     m_process.write("boardsize " + QByteArray::number(size) + '\n');
     if (waitResponse()) {
-        //NOTE: Changing board size also resets the board which means we
-        //      start again with the black player.
+        //NOTE: Changing size wipes the board, start again with black player.
         changeCurrentPlayer(BlackPlayer);
         m_fixedHandicapPlaced = false;
         emit boardSizeChanged(size);
@@ -212,7 +213,7 @@ bool GoEngine::clearBoard()
 
     m_process.write("clear_board\n");
     if (waitResponse()) {
-        //NOTE: The board is whiped empty, start again with black player
+        //NOTE: The board is wiped empty, start again with black player
         changeCurrentPlayer(BlackPlayer);
         m_fixedHandicapPlaced = false;
         emit boardChanged();
@@ -870,7 +871,6 @@ bool GoEngine::waitResponse()
     m_response.remove(0, 2);                        // Remove the first two chars (e.g. "? " or "= ")
     m_response.remove(m_response.size() - 2, 2);    // Remove the two trailing newlines
 
-    emit ready();                                   // Signal that we're done and able to receive next command
     return tmp != '?';                              // '?' Means the engine didn't understand the query
 }
 
@@ -879,12 +879,6 @@ void GoEngine::changeCurrentPlayer(PlayerColor color)
     m_currentPlayer = color;
     if (m_currentPlayer == InvalidPlayer)
         kWarning() << "Current player is invalid!";
-
-    switch (m_currentPlayer) {
-        case WhitePlayer: kDebug() << "Current player is white"; break;
-        case BlackPlayer: kDebug() << "Current player is black"; break;
-        default: break;
-    }
     emit currentPlayerChanged(m_currentPlayer);
 }
 

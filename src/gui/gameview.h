@@ -67,7 +67,7 @@ protected:
     void showEvent(QShowEvent *event);
 
 private slots:
-    void changeCursor(QPixmap cursorPixmap);
+    void changeCursor(const QPixmap &cursorPixmap);
 
 private:
     GameScene * const m_gameScene;  ///< Pointer to the game scene

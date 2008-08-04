@@ -122,7 +122,7 @@ public:
          * @param x The x coordinate of the stone
          * @param y The y coordinate of the stone
          */
-        explicit Stone(char x = -1, int y = -1) : m_x(x), m_y(y) {}
+        Stone(char x = -1, int y = -1) : m_x(x), m_y(y) {}
 
         /**
          * Constructor to set from a stone given as a string.
@@ -272,7 +272,12 @@ public:
     /**
      * Retrieves the name of the Go game engine application.
      */
-    QString name();
+    QString engineName();
+
+    /**
+     *
+     */
+    QString engineCommand() const { return m_engineCommand; }
 
     /**
      * Retrieves the GTP protocol version implemented by the Go game engine.
@@ -282,7 +287,7 @@ public:
     /**
      * Retrieves the version of the Go game engine application.
      */
-    QString version();
+    QString engineVersion();
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Setting the board size, clearing
@@ -735,12 +740,6 @@ signals:
     void error(QProcess::ProcessError);
 
     /**
-     * This signal is emitted when all heavy computation is over
-     * and the Go engine is ready to receive the next command.
-     */
-    void ready();
-
-    /**
      * This signal is emitted when the board situation changed and
      * can be used to trigger an update to a visual representation.
      */
@@ -773,10 +772,11 @@ private slots:
 private:
     void changeCurrentPlayer(PlayerColor color);
 
+    QString m_engineCommand;
     QString m_response;             ///< Stores the last answer from the engine
     QProcess m_process;             ///< To interact with the engine executable
     PlayerColor m_currentPlayer;    ///< Internal storage of current player
-    bool m_fixedHandicapPlaced;     ///< Internal flag for undo/currentPlayer
+    bool m_fixedHandicapPlaced;     ///< Internal flag for undo / current player
 };
 
 } // End of namespace KGo

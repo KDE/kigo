@@ -40,8 +40,10 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameEngine(scene->engine())
 {
-    setupUi(this);
+    if (!m_gameEngine->isRunning())
+        kFatal() << "No Go engine is running!";             // Engine should really be running here!
 
+    setupUi(this);
     GameView *gameView = new GameView(scene, this);
     gameView->setInteractive(true);
     gameFrame->setLayout(new QHBoxLayout());

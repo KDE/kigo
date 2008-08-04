@@ -59,21 +59,22 @@ public:
     GoEngine * const engine() const;
 
 signals:
-    void cursorPixmapChanged(QPixmap);
+    void cursorPixmapChanged(const QPixmap &);
+    void statusMessage(const QString &);
 
 public slots:
-    void resizeScene(int width, int height);
     void showMoveHistory(bool show);
     void showLabels(bool show);
     void showHint();
+    void resizeScene(int width, int height);
 
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 private slots:
-    void changeBoardSize(int size);
     void updateBoard();
+    void changeBoardSize(int size);
 
 private:
     /**

@@ -54,29 +54,63 @@ namespace KGo {
 
 MainWindow::MainWindow(QWidget *parent, bool startDemo)
     : KXmlGuiWindow(parent)
+    , m_mainWidget(new QStackedWidget(this))
     , m_gameScene(new GameScene)
-    , m_setupScreen(new SetupScreen(m_gameScene, this))
-    , m_gameScreen(new GameScreen(m_gameScene, this))
+    , m_errorScreen(0)
+    , m_setupScreen(0)
+    , m_gameScreen(0)
     , m_startInDemoMode(startDemo)
 {
-    // Handle the start game whish the user entered in the setup screen
-    connect(m_setupScreen, SIGNAL(startClicked()), this, SLOT(startGame()));
+    connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
 
-    QStackedWidget *mainWidget = new QStackedWidget;
-    mainWidget->addWidget(m_setupScreen);
-    mainWidget->addWidget(m_gameScreen);
+    if (!m_gameScene->engine()->run(Preferences::engineCommand()))
+        m_mainWidget->setCurrentWidget(errorScreen());
+    else
+        m_mainWidget->setCurrentWidget(setupScreen());
 
-    //TODO: Check if configured Go engine responds, otherwise show condig dialog
-
-    mainWidget->setCurrentWidget(m_setupScreen);
-    setCentralWidget(mainWidget);
-
+    setCentralWidget(m_mainWidget);
     setupActions();
     setupGUI();
 }
 
-MainWindow::~MainWindow()
+QWidget *MainWindow::errorScreen()
 {
+    if (!m_errorScreen) {
+        m_errorScreen = new QWidget;
+        //TODO: Create a nicer error screen, allow more direct user input
+
+        KPushButton *prefsButton = new KPushButton(i18n("Show preferences"));
+        connect(prefsButton, SIGNAL(clicked()), this, SLOT(showPreferences()));
+
+        //TODO: Add simple 'retry' button
+
+        QHBoxLayout *layout = new QHBoxLayout;
+        layout->addWidget(new QLabel(i18n("Go engine error, please correct it:")));
+        layout->addWidget(prefsButton);
+        m_errorScreen->setLayout(layout);
+
+        m_mainWidget->addWidget(m_errorScreen);
+    }
+    return m_errorScreen;
+}
+
+SetupScreen *MainWindow::setupScreen()
+{
+    if (!m_setupScreen) {
+        m_setupScreen = new SetupScreen(m_gameScene);
+        connect(m_setupScreen, SIGNAL(startClicked()), this, SLOT(startGame()));
+        m_mainWidget->addWidget(m_setupScreen);
+    }
+    return m_setupScreen;
+}
+
+GameScreen *MainWindow::gameScreen()
+{
+    if (!m_gameScreen) {
+        m_gameScreen = new GameScreen(m_gameScene);
+        m_mainWidget->addWidget(m_gameScreen);
+    }
+    return m_gameScreen;
 }
 
 void MainWindow::setupActions()
@@ -108,7 +142,8 @@ void MainWindow::newGame()
     m_saveAsAction->setEnabled(false);
     m_endTurnAction->setEnabled(false);
     m_setupScreen->setupNewGame();
-    qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_setupScreen);
+    m_mainWidget->setCurrentWidget(setupScreen());
+    statusBar()->showMessage(i18n("Play a new game..."), 3000);
 }
 
 void MainWindow::loadGame()
@@ -117,16 +152,21 @@ void MainWindow::loadGame()
     m_endTurnAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
-        m_setupScreen->setupLoadedGame(fileName);
-        qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_setupScreen);
+        setupScreen()->setupLoadedGame(fileName);
+        m_mainWidget->setCurrentWidget(setupScreen());
+        statusBar()->showMessage(i18n("Play a loaded game..."), 3000);
     }
 }
 
 void MainWindow::saveGame()
 {
     QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
-    if (!fileName.isEmpty())
-        m_gameScene->engine()->saveSgf(fileName);
+    if (!fileName.isEmpty()) {
+        if (m_gameScene->engine()->saveSgf(fileName))
+            statusBar()->showMessage(i18n("Game saved to %1", fileName), 3000);
+        else
+            statusBar()->showMessage(i18n("Unable to save game to %1!", fileName), 3000);
+    }
 }
 
 void MainWindow::startGame()
@@ -135,7 +175,8 @@ void MainWindow::startGame()
     m_endTurnAction->setEnabled(true);
     //NOTE: The GameScene should be configured and just be waiting for further input
     //      so we only need to show the GameScreen and allow direct user-interaction
-    qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_gameScreen);
+    m_mainWidget->setCurrentWidget(gameScreen());
+    statusBar()->showMessage(i18n("Game started..."), 3000);
 }
 
 void MainWindow::undo()
@@ -172,8 +213,19 @@ void MainWindow::showPreferences()
 
 void MainWindow::updatePreferences()
 {
-    kDebug() <<"Update settings based on changed configuration";
+    kDebug() << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
+
+    // Restart the Go engine if the engine command was changed by the user.
+    GoEngine *engine = m_gameScene->engine();
+    //FIXME: There seems to be an issue with not-updated preferences here
+    if (engine->engineCommand() != Preferences::engineCommand()) {
+        kDebug() << "Engine command changed or engine not running, (re)start engine...";
+        if (!engine->run(Preferences::engineCommand()))
+            m_mainWidget->setCurrentWidget(errorScreen());
+        else
+            m_mainWidget->setCurrentWidget(setupScreen());
+    }
 }
 
 } // End of namespace KGo

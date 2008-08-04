@@ -40,19 +40,15 @@ SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameEngine(scene->engine())
 {
-    setupUi(this);
+    if (!m_gameEngine->isRunning())
+        kFatal() << "No Go engine is running!";             // Engine should really be running here!
 
-    if (m_gameEngine->run(Preferences::engineCommand())) {
-        kDebug() << "Engine name is" << m_gameEngine->name();
-        GameView *gameView = new GameView(scene, this);
-        gameView->setInteractive(false);                        // This is just a preview, not a real game
-        previewFrame->setLayout(new QHBoxLayout());
-        previewFrame->layout()->addWidget(gameView);
-        setupNewGame();                                         // Configure new game per default
-    } else {
-        kDebug() << "Failed to start Go engine";
-        //TODO: Handle this accordingly, show user hint
-    }
+    setupUi(this);
+    GameView *gameView = new GameView(scene, this);
+    gameView->setInteractive(false);                        // This is just a preview scene
+    previewFrame->setLayout(new QHBoxLayout());
+    previewFrame->layout()->addWidget(gameView);
+    setupNewGame();                                         // Configure new game per default
 }
 
 SetupScreen::~SetupScreen()
@@ -62,8 +58,6 @@ SetupScreen::~SetupScreen()
 
 void SetupScreen::setupNewGame()
 {
-    kDebug() << "Setup new game and load settings";
-
     gameSetupStack->setCurrentIndex(0);
     loadSettings();
 
@@ -77,7 +71,6 @@ void SetupScreen::setupNewGame()
 void SetupScreen::setupLoadedGame(const QString &fileName)
 {
     Q_ASSERT(!fileName.isEmpty());
-    kDebug() << "Setup loaded game and load settings";
 
     gameSetupStack->setCurrentIndex(1);
     loadSettings();
@@ -146,7 +139,6 @@ void SetupScreen::on_difficultySlider_valueChanged(int value)
 
 void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
 {
-    kDebug() << "Size group changed";
     if (sizeOther->isChecked()) {
         sizeOtherSpinBox->setEnabled(true);
         m_gameEngine->setBoardSize(sizeOtherSpinBox->value());

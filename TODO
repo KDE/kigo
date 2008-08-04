@@ -1,3 +1,5 @@
+* Replace some kWarnings and kDebugs with reasonable status-bar messages
+
 * Ship further go board themes (two should be enough to show)
 
 * Add move controls to toolbar instead of Undo/Redo:

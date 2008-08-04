@@ -76,7 +76,7 @@ void GameView::showEvent(QShowEvent *)
     m_gameScene->resizeScene(width(), height());
 }
 
-void GameView::changeCursor(QPixmap cursorPixmap)
+void GameView::changeCursor(const QPixmap &cursorPixmap)
 {
     if (cursorPixmap.isNull())
         unsetCursor();

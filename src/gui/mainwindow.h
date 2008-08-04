@@ -35,6 +35,7 @@
 
 class KToggleAction;
 class KAction;
+class QStackedWidget;
 
 namespace KGo {
 
@@ -57,7 +58,6 @@ class MainWindow : public KXmlGuiWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0, bool startDemo = false);
-    ~MainWindow();
 
 private slots:
     void newGame();                         ///< Configure new game with setupscreen
@@ -72,11 +72,18 @@ private slots:
     void updatePreferences();               ///< Called when the user changed preferences
 
 private:
+    QWidget *errorScreen();                 ///< Lazy instantiation for faster startup
+    SetupScreen *setupScreen();             ///< Lazy instantiation for faster startup
+    GameScreen *gameScreen();               ///< Lazy instantiation for faster startup
+
     void setupActions();
 
+    QStackedWidget * const m_mainWidget;
     GameScene * const m_gameScene;
-    SetupScreen * const m_setupScreen;      ///< Pointer to the game setup screen
-    GameScreen * const m_gameScreen;        ///< Pointer to the game playing screen
+
+    QWidget *m_errorScreen;                 ///< Pointer to the engine error screen
+    SetupScreen *m_setupScreen;             ///< Pointer to the game setup screen
+    GameScreen *m_gameScreen;               ///< Pointer to the game playing screen
 
     bool m_startInDemoMode;                 ///< Start application in demo mode
 

@@ -32,6 +32,7 @@
 #include "themerenderer.h"
 #include "preferences.h"
 
+#include <KLocalizedString>
 #include <KDebug>
 
 #include <QGraphicsSceneMouseEvent>
@@ -43,10 +44,35 @@ namespace KGo {
 GameScene::GameScene()
     : m_engine(new GoEngine())
     , m_showLabels(Preferences::showBoardLabels())
-    , m_boardSize(19)
+    , m_boardSize(Preferences::boardSize())
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
+}
+
+GoEngine * const GameScene::engine() const
+{
+    return m_engine;
+}
+
+void GameScene::showMoveHistory(bool show)
+{
+    kDebug() << "Show move history:" << show;
+    //TODO: Get move history from engine and display them with half-transparent go stone pixmaps
+    invalidate(m_boardRect, QGraphicsScene::ItemLayer);
+}
+
+void GameScene::showLabels(bool show)
+{
+    m_showLabels = show;
+    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
+}
+
+void GameScene::showHint()
+{
+    //TODO: Get hint from Engine and display it for some seconds
+    emit statusMessage(i18n("The computer assumes this is the best move..."));
+    update();
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -63,9 +89,48 @@ void GameScene::resizeScene(int width, int height)
                                                  m_boardGridCellSize / 8,   m_boardGridCellSize / 8);
 }
 
-GoEngine * const GameScene::engine() const
+void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    return m_engine;
+    QPixmap map;
+    if (m_boardMouseRect.contains(event->scenePos())) {
+        QSize size(static_cast<int>(m_boardGridCellSize), static_cast<int>(m_boardGridCellSize));
+        if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
+            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
+        else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
+            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, size);
+    }
+    emit cursorPixmapChanged(map);
+}
+
+void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    if (m_boardMouseRect.contains(event->scenePos())) {
+        int row = static_cast<int>((event->scenePos().x() - m_boardMouseRect.x()) / m_boardGridCellSize);
+        int col = static_cast<int>((event->scenePos().y() - m_boardMouseRect.y()) / m_boardGridCellSize);
+        if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
+            return;
+
+        // Convert to Go board coordinates
+        GoEngine::Stone move('A' + row, m_boardSize - col);
+
+        if (m_engine->isLegal(move)) {
+            emit statusMessage(i18n("Make move at %1", move.toString()));
+            if (m_engine->playMove(move)) {
+                updateBoard();
+
+                // Note: Change cursor pixmap just in case the user does not move the mouse cursor.
+                QPixmap map;
+                QSize size(static_cast<int>(m_boardGridCellSize), static_cast<int>(m_boardGridCellSize));
+                if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
+                    map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
+                else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
+                    map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, size);
+                emit cursorPixmapChanged(map);
+            }
+        } else {
+            emit statusMessage(i18n("Making a move at %1 is not allowed!", move.toString()));
+        }
+    }
 }
 
 void GameScene::updateBoard()
@@ -89,59 +154,6 @@ void GameScene::changeBoardSize(int size)
     m_boardSize = size;
     resizeScene(width(), height());
     invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
-}
-
-void GameScene::showMoveHistory(bool show)
-{
-    kDebug() << "Show move history:" << show;
-    //TODO: Get move history from engine and display them with half-transparent go stone pixmaps
-    invalidate(m_boardRect, QGraphicsScene::ItemLayer);
-}
-
-void GameScene::showLabels(bool show)
-{
-    m_showLabels = show;
-    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
-}
-
-void GameScene::showHint()
-{
-    //TODO: Get hint from Engine and display it
-    update();
-}
-
-void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    QPixmap map;
-    if (m_boardMouseRect.contains(event->scenePos())) {
-        QSize size(static_cast<int>(m_boardGridCellSize), static_cast<int>(m_boardGridCellSize));
-
-        if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
-            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
-        else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
-            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, size);
-    }
-    emit cursorPixmapChanged(map);
-}
-
-void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    if (m_boardMouseRect.contains(event->scenePos())) {
-        int row = static_cast<int>((event->scenePos().x() - m_boardMouseRect.x()) / m_boardGridCellSize);
-        int col = static_cast<int>((event->scenePos().y() - m_boardMouseRect.y()) / m_boardGridCellSize);
-        if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
-            return;
-
-        // Convert to Go board coordinates
-        GoEngine::Stone move('A' + row, m_boardSize - col);
-
-        if (m_engine->isLegal(move)) {
-            kDebug() << "Make move at " << move.toString();
-            if (m_engine->playMove(move))
-                updateBoard();
-        } else
-            kWarning() << "Move " << move.toString() << " is illegal";
-    }
 }
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &)
