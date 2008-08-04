@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>359</width>
+    <width>432</width>
     <height>347</height>
    </rect>
   </property>
@@ -22,24 +22,31 @@
       </sizepolicy>
      </property>
      <property name="title" >
-      <string>Go Engine Settings</string>
+      <string>Go Settings</string>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" >
-      <item>
+     <layout class="QGridLayout" name="gridLayout" >
+      <item row="0" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Executable command:</string>
+         <string>Engine command:</string>
         </property>
         <property name="alignment" >
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>kcfg_EngineCommand</cstring>
         </property>
        </widget>
       </item>
-      <item>
+      <item row="0" column="1" >
        <widget class="KLineEdit" name="kcfg_EngineCommand" />
+      </item>
+      <item row="1" column="0" colspan="2" >
+       <widget class="QCheckBox" name="kcfg_AdvancedConfiguration" >
+        <property name="text" >
+         <string>Enable advanced configuration</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

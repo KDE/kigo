@@ -77,9 +77,8 @@ public:
      * based on the parameters.
      *
      * @param fileName The SGF file to load the game from
-     * @param showInfo Whether to show some info found in the SGF or not
      */
-    void setupLoadedGame(const QString &fileName, bool showInfo = false);
+    void setupLoadedGame(const QString &fileName);
 
 signals:
     /**
@@ -94,6 +93,7 @@ private slots:
     void on_difficultySlider_valueChanged(int);
     void on_sizeGroupBox_changed(int);
     void on_sizeOtherSpinBox_valueChanged(int);
+    void on_handicapGroupBox_toggled(bool);
     void on_handicapSpinBox_valueChanged(int);
     void on_startButton_clicked();
 
@@ -102,7 +102,6 @@ private:
     void saveSettings();            ///< Store KConfigXT application settings
 
     GoEngine * const m_gameEngine;  ///<
-    int m_lastFixedHandicapValue;   ///< Used for internal house-keeping (to avoid invalid handicap '1')
 };
 
 } // End of namespace KGo

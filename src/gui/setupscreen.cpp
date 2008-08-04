@@ -39,7 +39,6 @@ namespace KGo {
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameEngine(scene->engine())
-    , m_lastFixedHandicapValue(Preferences::fixedHandicap())
 {
     setupUi(this);
 
@@ -65,32 +64,27 @@ void SetupScreen::setupNewGame()
 {
     kDebug() << "Setup new game and load settings";
 
-    newGameBox->show();
-    loadedGameBox->hide();
-    infoBox->hide();
+    gameSetupStack->setCurrentIndex(0);
     loadSettings();
 
-    m_gameEngine->setBoardSize(Preferences::boardSize());
     m_gameEngine->setLevel(Preferences::difficulty());
     m_gameEngine->setKomi(Preferences::komi());
-    m_gameEngine->setFixedHandicap(Preferences::fixedHandicap());
+    m_gameEngine->setBoardSize(Preferences::boardSize());
+    if (Preferences::fixedHandicapEnabled())
+        m_gameEngine->setFixedHandicap(Preferences::fixedHandicapValue());
 }
 
-void SetupScreen::setupLoadedGame(const QString &fileName, bool showInfo)
+void SetupScreen::setupLoadedGame(const QString &fileName)
 {
     Q_ASSERT(!fileName.isEmpty());
     kDebug() << "Setup loaded game and load settings";
 
-    newGameBox->hide();
-    loadedGameBox->show();
-    infoBox->setVisible(showInfo);
+    gameSetupStack->setCurrentIndex(1);
     loadSettings();
 
     m_gameEngine->loadSgf(fileName);
     //TODO: Set max value of startMoveSpinBox
-    if (showInfo) {
-        //TODO: Display all related game information in the info box
-    }
+    //TODO: Display all related game information in the info box
 }
 
 void SetupScreen::on_whitePlayerCombo_currentIndexChanged(const QString &text)
@@ -152,7 +146,7 @@ void SetupScreen::on_difficultySlider_valueChanged(int value)
 
 void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
 {
-    kDebug() << "size group changed";
+    kDebug() << "Size group changed";
     if (sizeOther->isChecked()) {
         sizeOtherSpinBox->setEnabled(true);
         m_gameEngine->setBoardSize(sizeOtherSpinBox->value());
@@ -172,10 +166,17 @@ void SetupScreen::on_sizeOtherSpinBox_valueChanged(int value)
     m_gameEngine->setBoardSize(value);              // Set free board size
 }
 
+void SetupScreen::on_handicapGroupBox_toggled(bool isOn)
+{
+    m_gameEngine->clearBoard();
+    if (isOn)
+        m_gameEngine->setFixedHandicap(handicapSpinBox->value());
+}
+
 void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 {
     m_gameEngine->clearBoard();                     // Setting fixed handicap works only
-    m_gameEngine->setFixedHandicap(value);          // on a new/clear game board
+    m_gameEngine->setFixedHandicap(value);          // on a blank game board
 }
 
 void SetupScreen::on_startButton_clicked()
@@ -213,7 +214,8 @@ void SetupScreen::loadSettings()
 
     difficultySlider->setValue(Preferences::difficulty());
     komiSpinBox->setValue(Preferences::komi());
-    handicapSpinBox->setValue(Preferences::fixedHandicap());
+    handicapGroupBox->setChecked(Preferences::fixedHandicapEnabled());
+    handicapSpinBox->setValue(Preferences::fixedHandicapValue());
 
     switch (Preferences::boardSize()) {
         case 9:
@@ -243,7 +245,8 @@ void SetupScreen::saveSettings()
 
     Preferences::setDifficulty(difficultySlider->value());
     Preferences::setKomi(komiSpinBox->value());
-    Preferences::setFixedHandicap(handicapSpinBox->value());
+    Preferences::setFixedHandicapEnabled(handicapGroupBox->isChecked());
+    Preferences::setFixedHandicapValue(handicapSpinBox->value());
 
     if (sizeSmall->isChecked())
         Preferences::setBoardSize(9);

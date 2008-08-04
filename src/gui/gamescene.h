@@ -56,16 +56,13 @@ class GameScene : public QGraphicsScene
 public:
     GameScene();
 
-    void resizeScene(int width, int height);
-
     GoEngine * const engine() const;
 
 signals:
-    void cursorChanged(QPixmap);
+    void cursorPixmapChanged(QPixmap);
 
 public slots:
-    void updateBoard();
-    void boardSizeChanged(int size);
+    void resizeScene(int width, int height);
     void showMoveHistory(bool show);
     void showLabels(bool show);
     void showHint();
@@ -73,6 +70,10 @@ public slots:
 protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
+private slots:
+    void changeBoardSize(int size);
+    void updateBoard();
 
 private:
     /**

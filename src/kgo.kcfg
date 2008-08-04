@@ -10,6 +10,10 @@
             <tooltip>Enter here a valid path to your favorite Go game engine executable</tooltip>
             <default>gnugo --mode gtp</default>
         </entry>
+        <entry name="AdvancedConfiguration" type="Bool">
+            <label>Advanced (new) game configuration settings</label>
+            <default>false</default>
+        </entry>
     </group>
     <group name="UserInterface">
         <entry name="Theme" type="String">
@@ -49,7 +53,7 @@
             <label>Go board size</label>
             <tooltip></tooltip>
             <default>19</default>
-            <min>5</min>
+            <min>3</min>
             <max>19</max>
         </entry>
         <entry name="Komi" type="Double">
@@ -59,11 +63,14 @@
             <min>0</min>
             <max>50</max>
         </entry>
-        <entry name="FixedHandicap" type="Int">
-            <label>Extra stones for white</label>
-            <tooltip>To make life easier for the white player, you can him extra stones to start with</tooltip>
-            <default>0</default>
-            <min>0</min>
+        <entry name="FixedHandicapEnabled" type="Bool">
+            <label></label>
+            <default>true</default>
+        </entry>
+        <entry name="FixedHandicapValue" type="Int">
+            <label>Extra stones for the black player</label>
+            <default>2</default>
+            <min>2</min>
             <max>9</max>
         </entry>
     </group>

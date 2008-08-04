@@ -46,7 +46,7 @@ GameScene::GameScene()
     , m_boardSize(19)
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
-    connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(boardSizeChanged(int)));
+    connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -84,7 +84,7 @@ void GameScene::updateBoard()
     invalidate(m_boardRect, QGraphicsScene::ItemLayer);
 }
 
-void GameScene::boardSizeChanged(int size)
+void GameScene::changeBoardSize(int size)
 {
     m_boardSize = size;
     resizeScene(width(), height());
@@ -112,13 +112,16 @@ void GameScene::showHint()
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+    QPixmap map;
     if (m_boardMouseRect.contains(event->scenePos())) {
         QSize size(static_cast<int>(m_boardGridCellSize), static_cast<int>(m_boardGridCellSize));
-        //TODO: Get correct pixmap based on current active player
-        QPixmap map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
-        emit cursorChanged(map);
-    } else
-        emit cursorChanged(QPixmap());
+
+        if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
+            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, size);
+        else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
+            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, size);
+    }
+    emit cursorPixmapChanged(map);
 }
 
 void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -132,13 +135,12 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         // Convert to Go board coordinates
         GoEngine::Stone move('A' + row, m_boardSize - col);
 
-        //TODO: Make move for correct player!
-        if (m_engine->isLegal(GoEngine::WhitePlayer, move)) {
-
+        if (m_engine->isLegal(move)) {
             kDebug() << "Make move at " << move.toString();
-            m_engine->playMove(GoEngine::WhitePlayer, move);
+            if (m_engine->playMove(move))
+                updateBoard();
         } else
-            kDebug() << "Move " << move.toString() << " is illegal";
+            kWarning() << "Move " << move.toString() << " is illegal";
     }
 }
 

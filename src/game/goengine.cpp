@@ -62,6 +62,8 @@ QString GoEngine::Stone::toString() const
     return QString("%1%2").arg(m_x).arg(m_y);
 }
 
+////////////////////////////////////////////////////////////////////
+
 GoEngine::Score::Score(const QString &scoreString)
 {
     if (scoreString[0] == 'W')
@@ -88,6 +90,8 @@ QString GoEngine::Score::toString() const
 ////////////////////////////////////////////////////////////////////
 
 GoEngine::GoEngine()
+    : m_currentPlayer(BlackPlayer)
+    , m_fixedHandicapPlaced(false)
 {
     connect(&m_process, SIGNAL(readyReadStandardError()), this, SLOT(readStandardError()));
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
@@ -131,16 +135,17 @@ void GoEngine::quit()
 bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
 {
     Q_ASSERT(moveNumber >= 0);
+
     if (fileName.isEmpty() || !QFile::exists(fileName))
         return false;
 
     kDebug() << "Attempting to load move" << moveNumber << "from" << fileName;
 
-    QByteArray msg("loadsgf " + fileName.toLatin1() + ' ');
-    msg.append(QByteArray::number(moveNumber));
-    msg.append('\n');
-    m_process.write(msg);
+    m_process.write("loadsgf " + fileName.toLatin1() + ' ' + QByteArray::number(moveNumber) + '\n');
     if (waitResponse()) {
+        //TODO: Set current player based on last turn in sgf file
+        //TODO: Check wether handicap was placed
+        changeCurrentPlayer(InvalidPlayer);
         emit boardChanged();
         return true;
     } else
@@ -179,15 +184,17 @@ QString GoEngine::version()
 bool GoEngine::setBoardSize(int size)
 {
     Q_ASSERT(size >= 1 && size <= 19);
+
     kDebug() << "Set board size to"  << size;
 
-    QByteArray msg("boardsize ");
-    msg.append(QByteArray::number(size));
-    msg.append('\n');
-    m_process.write(msg);
+    m_process.write("boardsize " + QByteArray::number(size) + '\n');
     if (waitResponse()) {
-        emit boardChanged();
+        //NOTE: Changing board size also resets the board which means we
+        //      start again with the black player.
+        changeCurrentPlayer(BlackPlayer);
+        m_fixedHandicapPlaced = false;
         emit boardSizeChanged(size);
+        emit boardChanged();
         return true;
     } else
         return false;
@@ -205,6 +212,9 @@ bool GoEngine::clearBoard()
 
     m_process.write("clear_board\n");
     if (waitResponse()) {
+        //NOTE: The board is whiped empty, start again with black player
+        changeCurrentPlayer(BlackPlayer);
+        m_fixedHandicapPlaced = false;
         emit boardChanged();
         return true;
     } else
@@ -214,47 +224,47 @@ bool GoEngine::clearBoard()
 bool GoEngine::setKomi(float komi)
 {
     Q_ASSERT(komi >= 0);
+
     kDebug() << "Set komi to" << komi;
 
-    QByteArray msg("komi ");
-    msg.append(QByteArray::number(komi));
-    msg.append('\n');
-    m_process.write(msg);
+    m_process.write("komi " + QByteArray::number(komi) + '\n');
     return waitResponse();
 }
 
 bool GoEngine::setLevel(int level)
 {
     Q_ASSERT(level >= 1 && level <= 10);
+
     kDebug() << "Set difficulty level to" << level;
 
-    QByteArray msg("level ");
-    msg.append(QByteArray::number(level));
-    msg.append('\n');
-    m_process.write(msg);
+    m_process.write("level " + QByteArray::number(level) + '\n');
     return waitResponse();
 }
 
 bool GoEngine::setFixedHandicap(int handicap)
 {
-    Q_ASSERT(handicap >= 0 && handicap <= 9);
+    Q_ASSERT(handicap >= 2 && handicap <= 9);
+
     kDebug() << "Set fixed handicap to" << handicap;
 
-    QByteArray msg("fixed_handicap ");
-    msg.append(QByteArray::number(handicap));
-    msg.append('\n');
-    m_process.write(msg);
+    m_process.write("fixed_handicap " + QByteArray::number(handicap) + '\n');
     if (waitResponse()) {
+        //NOTE: Black starts with setting his (fixed) handicap as it's first turn
+        //      which means, white is next.
+        changeCurrentPlayer(WhitePlayer);
+        m_fixedHandicapPlaced = true;
         emit boardChanged();
         return true;
     } else
         return false;
 }
 
-bool GoEngine::playMove(PlayerColor color, const Stone &field)
+bool GoEngine::playMove(const Stone &field, PlayerColor color)
 {
-    if (!field.isValid() || color == InvalidPlayer)
+    if (!field.isValid())
         return false;
+    if (color == InvalidPlayer)
+        color = m_currentPlayer;
 
     QByteArray msg("play ");
     if (color == WhitePlayer)
@@ -264,11 +274,8 @@ bool GoEngine::playMove(PlayerColor color, const Stone &field)
     msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
     if (waitResponse()) {
+        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
         emit boardChanged();
-        if (color == WhitePlayer)
-            emit nextTurn(BlackPlayer);
-        else
-            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;
@@ -276,8 +283,8 @@ bool GoEngine::playMove(PlayerColor color, const Stone &field)
 
 bool GoEngine::passMove(PlayerColor color)
 {
-    if (!color == WhitePlayer || color == BlackPlayer)
-        return false;
+    if (color == InvalidPlayer)
+        color = m_currentPlayer;
 
     QByteArray msg("play ");
     if (color == WhitePlayer)
@@ -287,11 +294,8 @@ bool GoEngine::passMove(PlayerColor color)
     msg.append("pass\n");
     m_process.write(msg);
     if (waitResponse()) {
+        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
         emit boardChanged();
-        if (color == WhitePlayer)
-            emit nextTurn(BlackPlayer);
-        else
-            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;
@@ -299,8 +303,8 @@ bool GoEngine::passMove(PlayerColor color)
 
 bool GoEngine::generateMove(PlayerColor color)
 {
-    if (!color == WhitePlayer || color == BlackPlayer)
-        return false;
+    if (color == InvalidPlayer)
+        color = m_currentPlayer;
 
     QByteArray msg("genmove ");
     if(color == WhitePlayer)
@@ -309,11 +313,8 @@ bool GoEngine::generateMove(PlayerColor color)
         msg.append("black\n");
     m_process.write(msg);
     if (waitResponse()) {
+        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
         emit boardChanged();
-        if (color == WhitePlayer)
-            emit nextTurn(BlackPlayer);
-        else
-            emit nextTurn(WhitePlayer);
         return true;
     } else
         return false;
@@ -322,31 +323,36 @@ bool GoEngine::generateMove(PlayerColor color)
 bool GoEngine::undoMove(int i)
 {
     Q_ASSERT(i >= 0);
-    QByteArray msg("undo ");
-    msg.append(QByteArray::number(i));
-    msg.append('\n');
-    m_process.write(msg);
+
+    m_process.write("undo " + QByteArray::number(i) + '\n');
     if (waitResponse()) {
-        emit boardChanged();
         m_process.write("last_move\n");
         if (waitResponse()) {
-            if (m_response.startsWith("white"))
-                emit nextTurn(WhitePlayer);
-            else if (m_response.startsWith("black"))
-                emit nextTurn(BlackPlayer);
-            else
-                return false;
-        } else
-            return false;
+            if (m_response.startsWith("white")) {
+                changeCurrentPlayer(WhitePlayer);
+            } else if (m_response.startsWith("black")) {
+                changeCurrentPlayer(BlackPlayer);
+            } else {
+                // NOTE: No last move means we're at the beginning of the game. The current player
+                //       depends on whether there black set a fixed handicap (white next) or not.
+                if (m_fixedHandicapPlaced)
+                    changeCurrentPlayer(WhitePlayer);
+                else
+                    changeCurrentPlayer(BlackPlayer);
+            }
+        }
+        emit boardChanged();
         return true;
     } else
         return false;
 }
 
-bool GoEngine::tryMove(PlayerColor color, const Stone &field)
+bool GoEngine::tryMove(const Stone &field, PlayerColor color)
 {
-    if (!field.isValid() || color == InvalidPlayer)
+    if (!field.isValid())
         return false;
+    if (color == InvalidPlayer)
+        color = m_currentPlayer;
 
     QByteArray msg("trymove ");
     if (color == WhitePlayer)
@@ -357,10 +363,7 @@ bool GoEngine::tryMove(PlayerColor color, const Stone &field)
     m_process.write(msg);
     if (waitResponse()) {
         emit boardChanged();
-        if (color == WhitePlayer)
-            emit nextTurn(BlackPlayer);
-        else
-            emit nextTurn(WhitePlayer);
+        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
         return true;
     } else
         return false;
@@ -374,6 +377,11 @@ bool GoEngine::popGo()
         return true;
     } else
         return false;
+}
+
+GoEngine::PlayerColor GoEngine::currentPlayer() const
+{
+    return m_currentPlayer;
 }
 
 QPair<GoEngine::PlayerColor, GoEngine::Stone> GoEngine::lastMove()
@@ -484,10 +492,12 @@ QList<GoEngine::Stone> GoEngine::findLiberties(const Stone &field)
     return list;
 }
 
-bool GoEngine::isLegal(PlayerColor color, const Stone &field)
+bool GoEngine::isLegal(const Stone &field, PlayerColor color)
 {
-    if (!field.isValid() || color == InvalidPlayer)
+    if (!field.isValid())
         return false;
+    if (color == InvalidPlayer)
+        color = m_currentPlayer;
 
     QByteArray msg("is_legal ");
     if (color == WhitePlayer)
@@ -757,10 +767,7 @@ int GoEngine::wormCutStone(const Stone &field)
     if (!field.isValid())
         return -1;
 
-    QByteArray msg("worm_cutstone ");
-    msg.append(field.toLatin1());
-    msg.append("\n");
-    m_process.write(msg);
+    m_process.write("worm_cutstone " + field.toLatin1() + '\n');
     return waitResponse() ? m_response.toInt() : -1;
 }
 
@@ -791,10 +798,7 @@ QList<GoEngine::Stone> GoEngine::wormStones(const Stone &field)
 
 bool GoEngine::tuneMoveOrdering(int parameters)
 {
-    QByteArray msg("tune_move_ordering ");
-    msg.append(QByteArray::number(parameters));
-    msg.append('\n');
-    m_process.write(msg);
+    m_process.write("tune_move_ordering " + QByteArray::number(parameters) + '\n');
     return waitResponse();
 }
 
@@ -861,7 +865,6 @@ bool GoEngine::waitResponse()
     // is invoked when this happens and we continue after the next line.
     m_process.waitForReadyRead();
     m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
-    //kDebug() << "Returned raw response:" << m_response;
 
     QChar tmp = m_response[0];                      // First message character indicates success or error
     m_response.remove(0, 2);                        // Remove the first two chars (e.g. "? " or "= ")
@@ -869,6 +872,20 @@ bool GoEngine::waitResponse()
 
     emit ready();                                   // Signal that we're done and able to receive next command
     return tmp != '?';                              // '?' Means the engine didn't understand the query
+}
+
+void GoEngine::changeCurrentPlayer(PlayerColor color)
+{
+    m_currentPlayer = color;
+    if (m_currentPlayer == InvalidPlayer)
+        kWarning() << "Current player is invalid!";
+
+    switch (m_currentPlayer) {
+        case WhitePlayer: kDebug() << "Current player is white"; break;
+        case BlackPlayer: kDebug() << "Current player is black"; break;
+        default: break;
+    }
+    emit currentPlayerChanged(m_currentPlayer);
 }
 
 } // End of namespace KGo

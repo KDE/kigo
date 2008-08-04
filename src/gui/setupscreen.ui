@@ -5,18 +5,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>701</width>
-    <height>722</height>
+    <width>674</width>
+    <height>478</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_6" >
-   <item row="0" column="0" >
+   <item row="0" column="0" colspan="2" >
     <widget class="QFrame" name="frame" >
      <property name="sizePolicy" >
-      <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -30,127 +30,131 @@
      <property name="lineWidth" >
       <number>0</number>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4" >
+     <layout class="QHBoxLayout" name="horizontalLayout_2" >
       <property name="margin" >
        <number>0</number>
       </property>
       <item>
-       <widget class="QGroupBox" name="blackPlayerBox" >
-        <property name="title" >
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3" >
-         <item row="0" column="1" >
-          <widget class="KComboBox" name="blackPlayerCombo" >
-           <item>
-            <property name="text" >
-             <string>Human</string>
-            </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2" >
+        <item>
+         <widget class="QGroupBox" name="whitePlayerBox" >
+          <property name="title" >
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2" >
+           <item row="0" column="0" >
+            <widget class="QLabel" name="label_4" >
+             <property name="text" >
+              <string>White:</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+             <property name="buddy" >
+              <cstring>whitePlayerCombo</cstring>
+             </property>
+            </widget>
            </item>
-           <item>
-            <property name="text" >
-             <string>Computer</string>
-            </property>
+           <item row="0" column="1" >
+            <widget class="KComboBox" name="whitePlayerCombo" >
+             <item>
+              <property name="text" >
+               <string>Human</string>
+              </property>
+             </item>
+             <item>
+              <property name="text" >
+               <string>Computer</string>
+              </property>
+             </item>
+            </widget>
            </item>
-          </widget>
-         </item>
-         <item row="1" column="0" >
-          <widget class="QLabel" name="label_6" >
-           <property name="text" >
-            <string>Name:</string>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="buddy" >
-            <cstring>blackPlayerName</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" >
-          <widget class="KLineEdit" name="blackPlayerName" >
-           <property name="enabled" >
-            <bool>true</bool>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0" >
-          <widget class="QLabel" name="label_5" >
-           <property name="text" >
-            <string>Black:</string>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="buddy" >
-            <cstring>blackPlayerCombo</cstring>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="whitePlayerBox" >
-        <property name="title" >
-         <string/>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_2" >
-         <item row="0" column="0" >
-          <widget class="QLabel" name="label_4" >
-           <property name="text" >
-            <string>White:</string>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="buddy" >
-            <cstring>whitePlayerCombo</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" >
-          <widget class="KComboBox" name="whitePlayerCombo" >
-           <item>
-            <property name="text" >
-             <string>Human</string>
-            </property>
+           <item row="1" column="0" >
+            <widget class="QLabel" name="label_3" >
+             <property name="text" >
+              <string>Name:</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+             <property name="buddy" >
+              <cstring>whitePlayerName</cstring>
+             </property>
+            </widget>
            </item>
-           <item>
-            <property name="text" >
-             <string>Computer</string>
-            </property>
+           <item row="1" column="1" >
+            <widget class="KLineEdit" name="whitePlayerName" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="text" >
+              <string/>
+             </property>
+            </widget>
            </item>
-          </widget>
-         </item>
-         <item row="1" column="0" >
-          <widget class="QLabel" name="label_3" >
-           <property name="text" >
-            <string>Name:</string>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="buddy" >
-            <cstring>whitePlayerName</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" >
-          <widget class="KLineEdit" name="whitePlayerName" >
-           <property name="enabled" >
-            <bool>false</bool>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="blackPlayerBox" >
+          <property name="title" >
+           <string/>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3" >
+           <item row="0" column="0" >
+            <widget class="QLabel" name="label_5" >
+             <property name="text" >
+              <string>Black:</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+             <property name="buddy" >
+              <cstring>blackPlayerCombo</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1" >
+            <widget class="KComboBox" name="blackPlayerCombo" >
+             <item>
+              <property name="text" >
+               <string>Human</string>
+              </property>
+             </item>
+             <item>
+              <property name="text" >
+               <string>Computer</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0" >
+            <widget class="QLabel" name="label_6" >
+             <property name="text" >
+              <string>Name:</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+             <property name="buddy" >
+              <cstring>blackPlayerName</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1" >
+            <widget class="KLineEdit" name="blackPlayerName" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="text" >
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <widget class="QGroupBox" name="difficultyBox" >
@@ -158,7 +162,7 @@
          <bool>false</bool>
         </property>
         <property name="title" >
-         <string>Computer Difficulty</string>
+         <string>Computer Setup</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_4" >
          <item row="0" column="0" colspan="2" >
@@ -176,7 +180,7 @@
             <number>1</number>
            </property>
            <property name="value" >
-            <number>1</number>
+            <number>5</number>
            </property>
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
@@ -219,251 +223,251 @@
        </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="loadedGameBox" >
-        <property name="enabled" >
-         <bool>true</bool>
+       <widget class="QStackedWidget" name="gameSetupStack" >
+        <property name="currentIndex" >
+         <number>0</number>
         </property>
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title" >
-         <string>Loaded Game Setup</string>
-        </property>
-        <layout class="QHBoxLayout" name="horizontalLayout" >
-         <item>
-          <widget class="QLabel" name="label_2" >
-           <property name="text" >
-            <string>Start with Move:</string>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-           <property name="buddy" >
-            <cstring>startMoveSpinBox</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="KIntSpinBox" name="startMoveSpinBox" />
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="newGameBox" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title" >
-         <string>New Game Setup</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3" >
-         <item>
-          <widget class="KButtonGroup" name="sizeGroupBox" >
-           <property name="title" >
-            <string>BoardSize</string>
-           </property>
-           <property name="flat" >
-            <bool>false</bool>
-           </property>
-           <property name="current" stdset="0" >
-            <number>2</number>
-           </property>
-           <layout class="QGridLayout" name="gridLayout" >
-            <item row="0" column="0" colspan="2" >
-             <widget class="QRadioButton" name="sizeSmall" >
-              <property name="text" >
-               <string>Tiny (9x9)</string>
-              </property>
-              <property name="checked" >
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="2" >
-             <widget class="QRadioButton" name="sizeMedium" >
-              <property name="text" >
-               <string>Small (13x13)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2" >
-             <widget class="QRadioButton" name="sizeBig" >
-              <property name="text" >
-               <string>Normal (19x19)</string>
-              </property>
-              <property name="checked" >
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" >
-             <widget class="QRadioButton" name="sizeOther" >
-              <property name="text" >
-               <string>Other:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1" >
-             <widget class="QSpinBox" name="sizeOtherSpinBox" >
-              <property name="enabled" >
-               <bool>false</bool>
-              </property>
-              <property name="minimum" >
-               <number>5</number>
-              </property>
-              <property name="maximum" >
-               <number>19</number>
-              </property>
-              <property name="value" >
-               <number>19</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item>
-          <layout class="QGridLayout" name="gridLayout_5" >
-           <item row="0" column="0" >
-            <widget class="QLabel" name="label_7" >
-             <property name="text" >
-              <string>Komi:</string>
+        <widget class="QWidget" name="newGamePage" >
+         <property name="geometry" >
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>306</width>
+           <height>217</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_4" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="newGameBox" >
+            <property name="enabled" >
+             <bool>true</bool>
+            </property>
+            <property name="title" >
+             <string>Game Setup</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5" >
+             <item rowspan="3" row="0" column="0" >
+              <widget class="KButtonGroup" name="sizeGroupBox" >
+               <property name="title" >
+                <string>BoardSize</string>
+               </property>
+               <property name="flat" >
+                <bool>false</bool>
+               </property>
+               <property name="current" stdset="0" >
+                <number>2</number>
+               </property>
+               <layout class="QGridLayout" name="gridLayout" >
+                <item row="0" column="0" colspan="2" >
+                 <widget class="QRadioButton" name="sizeSmall" >
+                  <property name="text" >
+                   <string>Tiny (9x9)</string>
+                  </property>
+                  <property name="checked" >
+                   <bool>false</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="2" >
+                 <widget class="QRadioButton" name="sizeMedium" >
+                  <property name="text" >
+                   <string>Small (13x13)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0" colspan="2" >
+                 <widget class="QRadioButton" name="sizeBig" >
+                  <property name="text" >
+                   <string>Normal (19x19)</string>
+                  </property>
+                  <property name="checked" >
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0" >
+                 <widget class="QRadioButton" name="sizeOther" >
+                  <property name="text" >
+                   <string>Other:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1" >
+                 <widget class="QSpinBox" name="sizeOtherSpinBox" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
+                  <property name="minimum" >
+                   <number>5</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>19</number>
+                  </property>
+                  <property name="value" >
+                   <number>19</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1" >
+              <widget class="QGroupBox" name="groupBox_2" >
+               <property name="title" >
+                <string>Komi</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_6" >
+                <item>
+                 <widget class="QDoubleSpinBox" name="komiSpinBox" >
+                  <property name="suffix" >
+                   <string> Points</string>
+                  </property>
+                  <property name="decimals" >
+                   <number>1</number>
+                  </property>
+                  <property name="maximum" >
+                   <double>50.000000000000000</double>
+                  </property>
+                  <property name="value" >
+                   <double>4.500000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="1" >
+              <widget class="QGroupBox" name="handicapGroupBox" >
+               <property name="title" >
+                <string>Fixed Handicap</string>
+               </property>
+               <property name="checkable" >
+                <bool>true</bool>
+               </property>
+               <property name="checked" >
+                <bool>false</bool>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5" >
+                <item>
+                 <widget class="QSpinBox" name="handicapSpinBox" >
+                  <property name="suffix" >
+                   <string> Stones</string>
+                  </property>
+                  <property name="minimum" >
+                   <number>2</number>
+                  </property>
+                  <property name="maximum" >
+                   <number>9</number>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="1" >
+              <spacer name="verticalSpacer" >
+               <property name="orientation" >
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0" >
+                <size>
+                 <width>20</width>
+                 <height>18</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="loadGamePage" >
+         <property name="geometry" >
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>306</width>
+           <height>220</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3" >
+          <property name="margin" >
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QGroupBox" name="loadedGameBox" >
+            <property name="enabled" >
+             <bool>true</bool>
+            </property>
+            <property name="title" >
+             <string>Game Setup</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout" >
+             <item>
+              <widget class="QLabel" name="label_2" >
+               <property name="text" >
+                <string>Start with Move:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+               <property name="buddy" >
+                <cstring>startMoveSpinBox</cstring>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="KIntSpinBox" name="startMoveSpinBox" />
+             </item>
+            </layout>
+            <zorder>startMoveSpinBox</zorder>
+            <zorder>label_2</zorder>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="infoBox" >
+            <property name="title" >
+             <string>Game Information</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout" >
+             <property name="margin" >
+              <number>0</number>
              </property>
-             <property name="alignment" >
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="buddy" >
-              <cstring>komiSpinBox</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1" >
-            <widget class="QDoubleSpinBox" name="komiSpinBox" >
-             <property name="suffix" >
-              <string> Points</string>
-             </property>
-             <property name="decimals" >
-              <number>1</number>
-             </property>
-             <property name="maximum" >
-              <double>50.000000000000000</double>
-             </property>
-             <property name="value" >
-              <double>4.500000000000000</double>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" >
-            <widget class="QLabel" name="label_8" >
-             <property name="text" >
-              <string>Fixed Handicap:</string>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="buddy" >
-              <cstring>handicapSpinBox</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1" >
-            <widget class="QSpinBox" name="handicapSpinBox" >
-             <property name="suffix" >
-              <string> Stones</string>
-             </property>
-             <property name="maximum" >
-              <number>9</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <spacer name="verticalSpacer_2" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0" >
-         <size>
-          <width>38</width>
-          <height>33</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-     <zorder>blackPlayerBox</zorder>
-     <zorder>whitePlayerBox</zorder>
-     <zorder>difficultyBox</zorder>
-     <zorder>loadedGameBox</zorder>
-     <zorder>newGameBox</zorder>
-     <zorder>verticalSpacer_2</zorder>
-    </widget>
-   </item>
-   <item row="0" column="1" colspan="2" >
-    <widget class="QFrame" name="frame_3" >
-     <property name="frameShape" >
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow" >
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="lineWidth" >
-      <number>0</number>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" >
-      <property name="margin" >
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QGroupBox" name="infoBox" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="title" >
-         <string>Game Information</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout" >
-         <item>
-          <widget class="QLabel" name="label" >
-           <property name="text" >
-            <string>PLACEHOLDER</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QFrame" name="previewFrame" >
-        <property name="frameShape" >
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow" >
-         <enum>QFrame::Raised</enum>
-        </property>
+             <item>
+              <widget class="QLabel" name="label" >
+               <property name="text" >
+                <string>PLACEHOLDER</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
    <item row="1" column="0" colspan="2" >
+    <widget class="QFrame" name="previewFrame" >
+     <property name="frameShape" >
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Raised</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
     <spacer name="horizontalSpacer" >
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
@@ -476,7 +480,7 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="2" >
+   <item row="2" column="1" >
     <widget class="KPushButton" name="startButton" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >

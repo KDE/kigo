@@ -335,26 +335,29 @@ public:
     ////////////////////////////////////////////////////////////////////
 
     /**
-     * Play a stone for the player with 'color' at 'field'
+     * Play a stone for the player with 'color' at 'field'.
+     * Default color is 'InvalidPlayer' which uses the current player.
      *
-     * @param color The player's color for whom to play the stone
      * @param field The board field on which to play the stone
+     * @param color The player's color for whom to play the stone
      */
-    bool playMove(PlayerColor color, const Stone &field);
+    bool playMove(const Stone &field, PlayerColor color = InvalidPlayer);
 
     /**
      * Let the player with 'color' pass.
+     * Default color is 'InvalidPlayer' which uses the current player.
      *
      * @param color The player's color who want's to pass
      */
-    bool passMove(PlayerColor color);
+    bool passMove(PlayerColor color = InvalidPlayer);
 
     /**
      * Generate and play the supposedly best move for 'color'.
+     * Default color is 'InvalidPlayer' which uses the current player.
      *
      * @param color Play the move for player with that color
      */
-    bool generateMove(PlayerColor color);
+    bool generateMove(PlayerColor color = InvalidPlayer);
 
     /**
      * Undo last move.
@@ -369,11 +372,12 @@ public:
 
     /**
      * Play a stone of the given color at the given field.
+     * Default color is 'InvalidPlayer' which uses the current player.
      *
-     * @param color Play a stone for that color
      * @param field Play a stone at that field
+     * @param color Play a stone for that color
      */
-    bool tryMove(PlayerColor color, const Stone &field);
+    bool tryMove(const Stone &field, PlayerColor color = InvalidPlayer);
 
     /**
      * Undo a trymove.
@@ -383,6 +387,11 @@ public:
     ////////////////////////////////////////////////////////////////////
     // GTP: Board status
     ////////////////////////////////////////////////////////////////////
+
+    /**
+     *
+     */
+    PlayerColor currentPlayer() const;
 
     /**
      * Returns a pair of the last move and the player's color who made it.
@@ -439,10 +448,10 @@ public:
     /**
      * Tell whether a move at 'field' for player 'color' is legal.
      *
-     * @param color The player to test the move for
      * @param field The field to test the move for
+     * @param color The player to test the move for
      */
-    bool isLegal(PlayerColor color, const Stone &field);
+    bool isLegal(const Stone &field, PlayerColor color = InvalidPlayer);
 
     /**
      * Generate a list of the best moves for a player with 'color' with
@@ -742,7 +751,10 @@ signals:
      */
     void boardSizeChanged(int);
 
-    void nextTurn(PlayerColor);
+    /**
+     * This signal is emitted when the current player changes.
+     */
+    void currentPlayerChanged(PlayerColor);
 
 private slots:
     /**
@@ -759,8 +771,12 @@ private slots:
     bool waitResponse();
 
 private:
-    QString m_response;     ///< Stores the last answer from the engine
-    QProcess m_process;     ///< To interact with the engine executable
+    void changeCurrentPlayer(PlayerColor color);
+
+    QString m_response;             ///< Stores the last answer from the engine
+    QProcess m_process;             ///< To interact with the engine executable
+    PlayerColor m_currentPlayer;    ///< Internal storage of current player
+    bool m_fixedHandicapPlaced;     ///< Internal flag for undo/currentPlayer
 };
 
 } // End of namespace KGo

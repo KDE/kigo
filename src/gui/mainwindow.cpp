@@ -117,7 +117,7 @@ void MainWindow::loadGame()
     m_endTurnAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
-        m_setupScreen->setupLoadedGame(fileName, true);
+        m_setupScreen->setupLoadedGame(fileName);
         qobject_cast<QStackedWidget *>(centralWidget())->setCurrentWidget(m_setupScreen);
     }
 }
