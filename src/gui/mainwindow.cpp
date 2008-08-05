@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
     setCentralWidget(m_mainWidget);
     setupActions();
     setupGUI();
+    statusBar()->showMessage(i18n("Welcome to KGo"), 3000);
 
     connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
 

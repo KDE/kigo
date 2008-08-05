@@ -335,6 +335,13 @@ public:
      */
     bool setFixedHandicap(int handicap);
 
+    /**
+     * Retrieve the fixed handicap.
+     *
+     * @return The handicap (is 0 if none was set)
+     */
+    int fixedHandicap() const { return m_fixedHandicap; }
+
     ////////////////////////////////////////////////////////////////////
     // GTP: Playing and generating moves
     ////////////////////////////////////////////////////////////////////
@@ -769,7 +776,7 @@ private:
     QString m_response;             ///< Stores the last answer from the engine
     QProcess m_process;             ///< To interact with the engine executable
     PlayerColor m_currentPlayer;    ///< Internal storage of current player
-    bool m_fixedHandicapPlaced;     ///< Internal flag for undo / current player
+    int m_fixedHandicap;            ///< Internal counter, engine does not allow to query that
 };
 
 } // End of namespace KGo

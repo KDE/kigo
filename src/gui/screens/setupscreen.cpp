@@ -151,22 +151,25 @@ void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
         else if (sizeBig->isChecked())
             m_gameEngine->setBoardSize(19);
     }
+    updateHandicapBox();
 }
 
 void SetupScreen::on_sizeOtherSpinBox_valueChanged(int value)
 {
     m_gameEngine->setBoardSize(value);              // Set free board size
+    updateHandicapBox();
 }
 
-void SetupScreen::on_handicapGroupBox_toggled(bool isOn)
+void SetupScreen::on_handicapGroupBox_toggled(bool isChecked)
 {
     m_gameEngine->clearBoard();
-    if (isOn)
+    if (isChecked)
         m_gameEngine->setFixedHandicap(handicapSpinBox->value());
 }
 
 void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 {
+    //TODO: Check and adjust max amount fixed handicap for smaller boards
     m_gameEngine->clearBoard();                     // Setting fixed handicap works only
     m_gameEngine->setFixedHandicap(value);          // on a blank game board
 }
@@ -175,6 +178,16 @@ void SetupScreen::on_startButton_clicked()
 {
     saveSettings();                                 // Save current game configuration
     emit startClicked();
+}
+
+void SetupScreen::updateHandicapBox()
+{
+    // Size changed, set fixed handicap reasonable display
+    int fixedHandicap = m_gameEngine->fixedHandicap();
+    if (fixedHandicap == 0)
+        handicapGroupBox->setChecked(false);
+    //TODO: Set min value
+    handicapSpinBox->setValue(fixedHandicap);
 }
 
 void SetupScreen::loadSettings()

@@ -87,13 +87,15 @@ private:
     void drawBackground(QPainter *painter, const QRectF &);
 
     GoEngine * const m_engine;                      ///< Go engine
+
     bool m_showLabels;                              ///< Show board labels or not
     QRectF m_boardRect;                             ///< Position of board in the scene
     QRectF m_boardGridRect;                         ///<
     QRectF m_boardMouseRect;
     qreal m_boardGridCellSize;                      ///<
     int m_boardSize;                                ///< Go board size (9, 13, 19, ..)
-    QList<QGraphicsPixmapItem *> m_stoneItemList;   ///<
+    QList<QGraphicsPixmapItem *> m_stoneItemList;
+    QList<QGraphicsPixmapItem *> m_handicapStoneItemList;
 };
 
 } // End of namespace KGo

@@ -97,6 +97,8 @@ private slots:
     void on_handicapSpinBox_valueChanged(int);
     void on_startButton_clicked();
 
+    void updateHandicapBox();
+
 private:
     void loadSettings();            ///< Load KConfigXT application settings
     void saveSettings();            ///< Store KConfigXT application settings

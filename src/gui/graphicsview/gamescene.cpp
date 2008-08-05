@@ -28,9 +28,10 @@
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
 #include "gamescene.h"
-#include "game/goengine.h"
 #include "themerenderer.h"
 #include "preferences.h"
+#include "game/goengine.h"
+
 
 #include <KLocalizedString>
 #include <KDebug>
@@ -136,17 +137,31 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void GameScene::updateBoard()
 {
     kDebug() << "Update board";
-    //TODO: Show stones at positions
 
-    QList<GoEngine::Stone> whiteStones = m_engine->listStones(GoEngine::WhitePlayer);
-    QList<GoEngine::Stone> blackStones = m_engine->listStones(GoEngine::BlackPlayer);
+    // Handicap stones are not part of the move history and have to be taken into account
+    // only once the game is set up.
+    /*if (!m_handicapPlaced && handicapStones > 0) {
+        //TODO: Add handicap stones only once, remove them if board is cleared/size changed/...
+        //TODO: Keep track of board resize and board whiping to set that flag
+    }*/
 
-    foreach (const GoEngine::Stone &stone, whiteStones)
-        qDebug() << stone.toString();
-    foreach (const GoEngine::Stone &stone, blackStones)
-        qDebug() << stone.toString();
+    // We need to add only the stones that are new since the last updateBoard() call.
+    QList<QPair<GoEngine::PlayerColor, GoEngine::Stone> > moveHistory = m_engine->moveHistory();
+    int difference = moveHistory.size() - m_stoneItemList.size();
+    if (difference > 0) {
+        kDebug() << "Add" << difference << "new items to stone item list";
+        // We have to add a certain amount of new stones.
+        QGraphicsPixmapItem *newItem;
 
-    invalidate(m_boardRect, QGraphicsScene::ItemLayer);
+
+        m_stoneItemList.append(newItem);
+    } else if (difference < 0) {
+        kDebug() << "Remove" << difference << "items from stone item list";
+        // A negative difference means we have to remove a certain amount
+        // of stones. This happens for example when the user undo's moves.
+        for (int i = 0; i < difference; i++)
+            m_stoneItemList.removeLast();
+    }
 }
 
 void GameScene::changeBoardSize(int size)
