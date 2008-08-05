@@ -41,6 +41,7 @@ namespace KGo {
 
 class SetupScreen;
 class GameScreen;
+class ErrorScreen;
 class GameScene;
 
 /**
@@ -68,11 +69,11 @@ private slots:
     void redo();                            ///< Redo last move
     void endTurn();                         ///< Pass current move
     void toggleDemoMode();                  ///<
-    void showPreferences();                 ///< Show settings dialog
-    void updatePreferences();               ///< Called when the user changed preferences
+    void showPreferences();                 ///< Show configuration dialog
+    void updatePreferences();               ///< React on user changed configuration
 
 private:
-    QWidget *errorScreen();                 ///< Lazy instantiation for faster startup
+    ErrorScreen *errorScreen();             ///< Lazy instantiation for faster startup
     SetupScreen *setupScreen();             ///< Lazy instantiation for faster startup
     GameScreen *gameScreen();               ///< Lazy instantiation for faster startup
 
@@ -81,12 +82,14 @@ private:
     QStackedWidget * const m_mainWidget;
     GameScene * const m_gameScene;
 
-    QWidget *m_errorScreen;                 ///< Pointer to the engine error screen
+    ErrorScreen *m_errorScreen;             ///< Pointer to the engine error screen
     SetupScreen *m_setupScreen;             ///< Pointer to the game setup screen
     GameScreen *m_gameScreen;               ///< Pointer to the game playing screen
 
     bool m_startInDemoMode;                 ///< Start application in demo mode
 
+    KAction *m_newGameAction;
+    KAction *m_loadGameAction;
     KAction *m_saveAsAction;                ///< Action to save the current game
     KAction *m_firstMoveAction;             ///< Action to jump to the first move
     KAction *m_previousMoveAction;          ///< Action to jump to the previous move

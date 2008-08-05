@@ -527,13 +527,21 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>blackPlayerCombo</tabstop>
-  <tabstop>blackPlayerName</tabstop>
   <tabstop>whitePlayerCombo</tabstop>
   <tabstop>whitePlayerName</tabstop>
+  <tabstop>blackPlayerCombo</tabstop>
+  <tabstop>blackPlayerName</tabstop>
   <tabstop>difficultySlider</tabstop>
-  <tabstop>startMoveSpinBox</tabstop>
+  <tabstop>sizeSmall</tabstop>
+  <tabstop>sizeMedium</tabstop>
+  <tabstop>sizeBig</tabstop>
+  <tabstop>sizeOther</tabstop>
+  <tabstop>sizeOtherSpinBox</tabstop>
+  <tabstop>komiSpinBox</tabstop>
+  <tabstop>handicapGroupBox</tabstop>
+  <tabstop>handicapSpinBox</tabstop>
   <tabstop>startButton</tabstop>
+  <tabstop>startMoveSpinBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>

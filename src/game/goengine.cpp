@@ -107,7 +107,7 @@ bool GoEngine::run(const QString &command)
     quit();                                         // Close old session if there's one
     m_process.start(command.toLatin1());            // Start new process with provided command
 
-    if (!m_process.waitForStarted())                // NOTE: Blocking wait for process start
+    if (!m_process.waitForStarted())                // Blocking wait for process start
         return false;
 
     m_engineCommand = command;                      // Save for retrieval
@@ -191,7 +191,7 @@ bool GoEngine::setBoardSize(int size)
 
     m_process.write("boardsize " + QByteArray::number(size) + '\n');
     if (waitResponse()) {
-        //NOTE: Changing size wipes the board, start again with black player.
+        // Changing size wipes the board, start again with black player.
         changeCurrentPlayer(BlackPlayer);
         m_fixedHandicapPlaced = false;
         emit boardSizeChanged(size);
@@ -213,7 +213,7 @@ bool GoEngine::clearBoard()
 
     m_process.write("clear_board\n");
     if (waitResponse()) {
-        //NOTE: The board is wiped empty, start again with black player
+        //: The board is wiped empty, start again with black player
         changeCurrentPlayer(BlackPlayer);
         m_fixedHandicapPlaced = false;
         emit boardChanged();
@@ -250,8 +250,8 @@ bool GoEngine::setFixedHandicap(int handicap)
 
     m_process.write("fixed_handicap " + QByteArray::number(handicap) + '\n');
     if (waitResponse()) {
-        //NOTE: Black starts with setting his (fixed) handicap as it's first turn
-        //      which means, white is next.
+        // Black starts with setting his (fixed) handicap as it's first turn
+        // which means, white is next.
         changeCurrentPlayer(WhitePlayer);
         m_fixedHandicapPlaced = true;
         emit boardChanged();
@@ -334,8 +334,8 @@ bool GoEngine::undoMove(int i)
             } else if (m_response.startsWith("black")) {
                 changeCurrentPlayer(BlackPlayer);
             } else {
-                // NOTE: No last move means we're at the beginning of the game. The current player
-                //       depends on whether there black set a fixed handicap (white next) or not.
+                // No last move means we're at the beginning of the game. The current player
+                // depends on whether there black set a fixed handicap (white next) or not.
                 if (m_fixedHandicapPlaced)
                     changeCurrentPlayer(WhitePlayer);
                 else

@@ -22,38 +22,37 @@
  *******************************************************************/
 
 /**
- * @file This file is part of KGO and implements the class GameScreen,
- *       which acts as a compound widget to display the game view and
- *       several additional information panels.
+ * @file This file is part of KGO and implements the class ErrorScreen,
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
-#include "gamescreen.h"
-#include "preferences.h"
-#include "game/goengine.h"
-#include "gamescene.h"
-#include "gameview.h"
+#include "errorscreen.h"
+
+#include <KStandardGuiItem>
 
 namespace KGo {
 
-GameScreen::GameScreen(GameScene *scene, QWidget *parent)
+ErrorScreen::ErrorScreen(QWidget *parent)
     : QWidget(parent)
-    , m_gameEngine(scene->engine())
 {
-    if (!m_gameEngine->isRunning())
-        kFatal() << "No Go engine is running!";             // Engine should really be running here!
-
     setupUi(this);
-    GameView *gameView = new GameView(scene, this);
-    gameView->setInteractive(true);
-    gameFrame->setLayout(new QHBoxLayout());
-    gameFrame->layout()->addWidget(gameView);
-}
 
-GameScreen::~GameScreen()
-{
+    KGuiItem configureItem = KStandardGuiItem::configure();
+    configureButton->setText(configureItem.text());
+    configureButton->setIcon(configureItem.icon());
+    configureButton->setToolTip(configureItem.toolTip());
+    configureButton->setWhatsThis(configureItem.whatsThis());
+
+    KGuiItem quitItem = KStandardGuiItem::quit();
+    quitButton->setText(quitItem.text());
+    quitButton->setIcon(quitItem.icon());
+    quitButton->setToolTip(quitItem.toolTip());
+    quitButton->setWhatsThis(quitItem.whatsThis());
+
+    connect(configureButton, SIGNAL(clicked()), this, SIGNAL(configureClicked()));
+    connect(quitButton, SIGNAL(clicked()), this, SIGNAL(quitClicked()));
 }
 
 } // End of namespace KGo
 
-#include "moc_gamescreen.cpp"
+#include "moc_errorscreen.cpp"

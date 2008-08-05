@@ -1,0 +1,151 @@
+<ui version="4.0" >
+ <class>ErrorScreen</class>
+ <widget class="QWidget" name="ErrorScreen" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>431</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2" >
+   <item row="0" column="1" >
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>34</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" >
+    <spacer name="horizontalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>70</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="1" >
+    <widget class="QGroupBox" name="errorBox" >
+     <property name="title" >
+      <string/>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" >
+      <item row="0" column="0" colspan="2" >
+       <widget class="QLabel" name="label" >
+        <property name="font" >
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="frameShape" >
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="text" >
+         <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" color:#ff0000;">KGo was unable to find a suitable Go engine&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2" >
+       <widget class="Line" name="line" >
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2" >
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>The game needs GnuGo or a compatible Go engine to work correctly. Automatic configuration was unable to find a suitable Go engine but you have the option to manually add your Go engine in the configuration dialog.</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2" >
+       <widget class="Line" name="line_2" >
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" >
+       <widget class="KPushButton" name="configureButton" >
+        <property name="text" >
+         <string>&amp;Configure KGo</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="KPushButton" name="quitButton" >
+        <property name="text" >
+         <string>&amp;Quit</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="2" >
+    <spacer name="horizontalSpacer_2" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>70</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="1" >
+    <spacer name="verticalSpacer_2" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>34</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

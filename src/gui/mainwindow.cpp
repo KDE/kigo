@@ -30,12 +30,13 @@
  */
 
 #include "mainwindow.h"
-#include "preferences.h"
 #include "game/goengine.h"
-#include "gui/gamescene.h"
-#include "gui/setupscreen.h"
-#include "gui/gamescreen.h"
 #include "gui/config.h"
+#include "gui/graphicsview/gamescene.h"
+#include "gui/screens/setupscreen.h"
+#include "gui/screens/gamescreen.h"
+#include "gui/screens/errorscreen.h"
+#include "preferences.h"
 
 #include <KGameThemeSelector>
 #include <KStandardGameAction>
@@ -54,87 +55,25 @@ namespace KGo {
 
 MainWindow::MainWindow(QWidget *parent, bool startDemo)
     : KXmlGuiWindow(parent)
-    , m_mainWidget(new QStackedWidget(this))
-    , m_gameScene(new GameScene)
-    , m_errorScreen(0)
-    , m_setupScreen(0)
-    , m_gameScreen(0)
+    , m_mainWidget(new QStackedWidget(this)), m_gameScene(new GameScene)
+    , m_errorScreen(0), m_setupScreen(0), m_gameScreen(0)
     , m_startInDemoMode(startDemo)
 {
-    connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
-
-    if (!m_gameScene->engine()->run(Preferences::engineCommand()))
-        m_mainWidget->setCurrentWidget(errorScreen());
-    else
-        m_mainWidget->setCurrentWidget(setupScreen());
-
     setCentralWidget(m_mainWidget);
     setupActions();
     setupGUI();
-}
 
-QWidget *MainWindow::errorScreen()
-{
-    if (!m_errorScreen) {
-        m_errorScreen = new QWidget;
-        //TODO: Create a nicer error screen, allow more direct user input
+    connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
 
-        KPushButton *prefsButton = new KPushButton(i18n("Show preferences"));
-        connect(prefsButton, SIGNAL(clicked()), this, SLOT(showPreferences()));
-
-        //TODO: Add simple 'retry' button
-
-        QHBoxLayout *layout = new QHBoxLayout;
-        layout->addWidget(new QLabel(i18n("Go engine error, please correct it:")));
-        layout->addWidget(prefsButton);
-        m_errorScreen->setLayout(layout);
-
-        m_mainWidget->addWidget(m_errorScreen);
+    if (!m_gameScene->engine()->run(Preferences::engineCommand())) {
+        m_newGameAction->setEnabled(false);
+        m_loadGameAction->setEnabled(false);
+        m_mainWidget->setCurrentWidget(errorScreen());
+    } else {
+        m_newGameAction->setEnabled(true);
+        m_loadGameAction->setEnabled(true);
+        m_mainWidget->setCurrentWidget(setupScreen());
     }
-    return m_errorScreen;
-}
-
-SetupScreen *MainWindow::setupScreen()
-{
-    if (!m_setupScreen) {
-        m_setupScreen = new SetupScreen(m_gameScene);
-        connect(m_setupScreen, SIGNAL(startClicked()), this, SLOT(startGame()));
-        m_mainWidget->addWidget(m_setupScreen);
-    }
-    return m_setupScreen;
-}
-
-GameScreen *MainWindow::gameScreen()
-{
-    if (!m_gameScreen) {
-        m_gameScreen = new GameScreen(m_gameScene);
-        m_mainWidget->addWidget(m_gameScreen);
-    }
-    return m_gameScreen;
-}
-
-void MainWindow::setupActions()
-{
-    // Game menu
-    KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
-    KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
-    m_saveAsAction = KStandardGameAction::saveAs(this, SLOT(saveGame()), actionCollection());
-    m_saveAsAction->setEnabled(false);
-    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
-
-    // Move menu
-    //TODO: Integrate move forward/backward stuff
-    m_previousMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
-    m_previousMoveAction->setEnabled(false);
-    m_nextMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
-    m_nextMoveAction->setEnabled(false);
-    m_endTurnAction = KStandardGameAction::endTurn(this, SLOT(endTurn()), actionCollection());
-    m_endTurnAction->setEnabled(false);
-    m_demoAction = KStandardGameAction::demo(this, SLOT(toggleDemoMode()), actionCollection());
-    m_demoAction->setEnabled(false);
-
-    // Settings menu
-    KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());
 }
 
 void MainWindow::newGame()
@@ -173,8 +112,8 @@ void MainWindow::startGame()
 {
     m_saveAsAction->setEnabled(true);
     m_endTurnAction->setEnabled(true);
-    //NOTE: The GameScene should be configured and just be waiting for further input
-    //      so we only need to show the GameScreen and allow direct user-interaction
+    // The GameScene should be configured and just be waiting for further input
+    // so we only need to show the GameScreen and allow direct user-interaction
     m_mainWidget->setCurrentWidget(gameScreen());
     statusBar()->showMessage(i18n("Game started..."), 3000);
 }
@@ -221,11 +160,71 @@ void MainWindow::updatePreferences()
     //FIXME: There seems to be an issue with not-updated preferences here
     if (engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start engine...";
-        if (!engine->run(Preferences::engineCommand()))
+        if (!m_gameScene->engine()->run(Preferences::engineCommand())) {
+            m_newGameAction->setEnabled(false);
+            m_loadGameAction->setEnabled(false);
             m_mainWidget->setCurrentWidget(errorScreen());
-        else
+        } else {
+            m_newGameAction->setEnabled(true);
+            m_loadGameAction->setEnabled(true);
             m_mainWidget->setCurrentWidget(setupScreen());
+        }
     }
+}
+
+ErrorScreen *MainWindow::errorScreen()
+{
+    if (!m_errorScreen) {
+        m_errorScreen = new ErrorScreen;
+        connect(m_errorScreen, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
+        connect(m_errorScreen, SIGNAL(quitClicked()), this, SLOT(close()));
+        m_mainWidget->addWidget(m_errorScreen);
+    }
+    return m_errorScreen;
+}
+
+SetupScreen *MainWindow::setupScreen()
+{
+    if (!m_setupScreen) {
+        m_setupScreen = new SetupScreen(m_gameScene);
+        connect(m_setupScreen, SIGNAL(startClicked()), this, SLOT(startGame()));
+        m_mainWidget->addWidget(m_setupScreen);
+    }
+    return m_setupScreen;
+}
+
+GameScreen *MainWindow::gameScreen()
+{
+    if (!m_gameScreen) {
+        m_gameScreen = new GameScreen(m_gameScene);
+        m_mainWidget->addWidget(m_gameScreen);
+    }
+    return m_gameScreen;
+}
+
+void MainWindow::setupActions()
+{
+    // Game menu
+    m_newGameAction = KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
+    m_newGameAction->setEnabled(false);
+    m_loadGameAction = KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
+    m_loadGameAction->setEnabled(false);
+    m_saveAsAction = KStandardGameAction::saveAs(this, SLOT(saveGame()), actionCollection());
+    m_saveAsAction->setEnabled(false);
+    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
+
+    // Move menu
+    m_previousMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
+    m_previousMoveAction->setEnabled(false);
+    m_nextMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
+    m_nextMoveAction->setEnabled(false);
+    m_endTurnAction = KStandardGameAction::endTurn(this, SLOT(endTurn()), actionCollection());
+    m_endTurnAction->setEnabled(false);
+    m_demoAction = KStandardGameAction::demo(this, SLOT(toggleDemoMode()), actionCollection());
+    m_demoAction->setEnabled(false);
+
+    // Settings menu
+    KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());
 }
 
 } // End of namespace KGo

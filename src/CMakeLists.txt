@@ -1,19 +1,21 @@
 set(kgo_SRCS
     game/goengine.cpp
+    gui/graphicsview/themerenderer.cpp
+    gui/graphicsview/gamescene.cpp
+    gui/graphicsview/gameview.cpp
+    gui/screens/errorscreen.cpp
+    gui/screens/setupscreen.cpp
+    gui/screens/gamescreen.cpp
     gui/config.cpp
-    gui/themerenderer.cpp
-    gui/gamescene.cpp
-    gui/gameview.cpp
-    gui/gamescreen.cpp
-    gui/setupscreen.cpp
     gui/mainwindow.cpp
     main.cpp 
 )
 
 kde4_add_ui_files(kgo_SRCS 
+    gui/screens/errorscreen.ui
+    gui/screens/setupscreen.ui
+    gui/screens/gamescreen.ui
     gui/config.ui
-    gui/gamescreen.ui
-    gui/setupscreen.ui
 )
 kde4_add_kcfg_files(kgo_SRCS preferences.kcfgc)
 kde4_add_app_icon(kgo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../icons/hi*-app-kgo.png")

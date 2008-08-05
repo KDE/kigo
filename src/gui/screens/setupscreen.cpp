@@ -27,10 +27,10 @@
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
 #include "setupscreen.h"
-#include "preferences.h"
 #include "game/goengine.h"
-#include "gamescene.h"
-#include "gameview.h"
+#include "gui/graphicsview/gamescene.h"
+#include "gui/graphicsview/gameview.h"
+#include "preferences.h"
 
 #include <KDebug>
 
