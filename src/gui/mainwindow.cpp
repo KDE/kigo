@@ -69,6 +69,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
         m_newGameAction->setEnabled(false);
         m_loadGameAction->setEnabled(false);
         m_mainWidget->setCurrentWidget(errorScreen());
+        m_errorScreen->setErrorMessage(m_gameScene->engine()->response());
     } else {
         m_newGameAction->setEnabled(true);
         m_loadGameAction->setEnabled(true);
@@ -79,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
 void MainWindow::newGame()
 {
     m_saveAsAction->setEnabled(false);
-    m_endTurnAction->setEnabled(false);
+    m_passAction->setEnabled(false);
     m_setupScreen->setupNewGame();
     m_mainWidget->setCurrentWidget(setupScreen());
     statusBar()->showMessage(i18n("Play a new game..."), 3000);
@@ -88,11 +89,11 @@ void MainWindow::newGame()
 void MainWindow::loadGame()
 {
     m_saveAsAction->setEnabled(false);
-    m_endTurnAction->setEnabled(false);
+    m_passAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
         setupScreen()->setupLoadedGame(fileName);
-        m_mainWidget->setCurrentWidget(setupScreen());
+        m_mainWidget->setCurrentWidget(m_setupScreen);
         statusBar()->showMessage(i18n("Play a loaded game..."), 3000);
     }
 }
@@ -111,7 +112,7 @@ void MainWindow::saveGame()
 void MainWindow::startGame()
 {
     m_saveAsAction->setEnabled(true);
-    m_endTurnAction->setEnabled(true);
+    m_passAction->setEnabled(true);
     // The GameScene should be configured and just be waiting for further input
     // so we only need to show the GameScreen and allow direct user-interaction
     m_mainWidget->setCurrentWidget(gameScreen());
@@ -128,7 +129,7 @@ void MainWindow::redo()
     kDebug() << "Undo";
 }
 
-void MainWindow::endTurn()
+void MainWindow::pass()
 {
     kDebug() << "End turn";
 }
@@ -157,13 +158,13 @@ void MainWindow::updatePreferences()
 
     // Restart the Go engine if the engine command was changed by the user.
     GoEngine *engine = m_gameScene->engine();
-    //FIXME: There seems to be an issue with not-updated preferences here
     if (engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start engine...";
         if (!m_gameScene->engine()->run(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
             m_mainWidget->setCurrentWidget(errorScreen());
+            m_errorScreen->setErrorMessage(m_gameScene->engine()->response());
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
@@ -176,8 +177,8 @@ ErrorScreen *MainWindow::errorScreen()
 {
     if (!m_errorScreen) {
         m_errorScreen = new ErrorScreen;
-        connect(m_errorScreen, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
-        connect(m_errorScreen, SIGNAL(quitClicked()), this, SLOT(close()));
+        connect(m_errorScreen, SIGNAL(configureButtonClicked()), this, SLOT(showPreferences()));
+        connect(m_errorScreen, SIGNAL(quitButtonClicked()), this, SLOT(close()));
         m_mainWidget->addWidget(m_errorScreen);
     }
     return m_errorScreen;
@@ -218,8 +219,9 @@ void MainWindow::setupActions()
     m_previousMoveAction->setEnabled(false);
     m_nextMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
     m_nextMoveAction->setEnabled(false);
-    m_endTurnAction = KStandardGameAction::endTurn(this, SLOT(endTurn()), actionCollection());
-    m_endTurnAction->setEnabled(false);
+    m_passAction = KStandardGameAction::endTurn(this, SLOT(pass()), actionCollection());
+    m_passAction->setText(i18n("Pass move"));
+    m_passAction->setEnabled(false);
     m_demoAction = KStandardGameAction::demo(this, SLOT(toggleDemoMode()), actionCollection());
     m_demoAction->setEnabled(false);
 

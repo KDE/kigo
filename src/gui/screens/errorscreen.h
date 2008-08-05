@@ -53,9 +53,12 @@ public:
      */
     explicit ErrorScreen(QWidget *parent = 0);
 
+public slots:
+    void setErrorMessage(const QString &errorMessage);
+
 signals:
-    void configureClicked();
-    void quitClicked();
+    void configureButtonClicked();
+    void quitButtonClicked();
 };
 
 } // End of namespace KGo

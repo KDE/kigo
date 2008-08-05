@@ -757,13 +757,6 @@ signals:
 
 private slots:
     /**
-     * This slot reads everything from the process's stderr. This is
-     * mainly for debugging purposes, because this should only happen
-     * if a bug occurred.
-     */
-    void readStandardError();
-
-    /**
      * Wait gracefully for a response from the Go engine. The returned string
      * from the Go engine is stored in 'm_response'.
      */

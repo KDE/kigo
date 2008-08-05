@@ -67,7 +67,7 @@ private slots:
     void startGame();                       ///< React on setupscreen start button
     void undo();                            ///< Undo last move
     void redo();                            ///< Redo last move
-    void endTurn();                         ///< Pass current move
+    void pass();                            ///< Pass current move
     void toggleDemoMode();                  ///<
     void showPreferences();                 ///< Show configuration dialog
     void updatePreferences();               ///< React on user changed configuration
@@ -95,7 +95,7 @@ private:
     KAction *m_previousMoveAction;          ///< Action to jump to the previous move
     KAction *m_nextMoveAction;              ///< Action to jump to the next move
     KAction *m_lastMoveAction;              ///< Action to jump to the last move
-    KAction *m_endTurnAction;               ///< Action to pass current move
+    KAction *m_passAction;                  ///< Action to pass current move
     KToggleAction *m_demoAction;            ///< Action to change to demo mode
 };
 

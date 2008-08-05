@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>674</width>
-    <height>478</height>
+    <height>477</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -42,6 +42,16 @@
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_2" >
+           <item row="1" column="1" >
+            <widget class="KLineEdit" name="whitePlayerName" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="text" >
+              <string>Name</string>
+             </property>
+            </widget>
+           </item>
            <item row="0" column="0" >
             <widget class="QLabel" name="label_4" >
              <property name="text" >
@@ -52,6 +62,19 @@
              </property>
              <property name="buddy" >
               <cstring>whitePlayerCombo</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" >
+            <widget class="QLabel" name="label_3" >
+             <property name="text" >
+              <string>Name:</string>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+             <property name="buddy" >
+              <cstring>whitePlayerName</cstring>
              </property>
             </widget>
            </item>
@@ -69,30 +92,11 @@
              </item>
             </widget>
            </item>
-           <item row="1" column="0" >
-            <widget class="QLabel" name="label_3" >
-             <property name="text" >
-              <string>Name:</string>
-             </property>
-             <property name="alignment" >
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-             <property name="buddy" >
-              <cstring>whitePlayerName</cstring>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1" >
-            <widget class="KLineEdit" name="whitePlayerName" >
-             <property name="enabled" >
-              <bool>true</bool>
-             </property>
-             <property name="text" >
-              <string/>
-             </property>
-            </widget>
-           </item>
           </layout>
+          <zorder>label_4</zorder>
+          <zorder>label_3</zorder>
+          <zorder>whitePlayerName</zorder>
+          <zorder>whitePlayerCombo</zorder>
          </widget>
         </item>
         <item>
@@ -128,6 +132,16 @@
              </item>
             </widget>
            </item>
+           <item row="1" column="1" >
+            <widget class="KLineEdit" name="blackPlayerName" >
+             <property name="enabled" >
+              <bool>true</bool>
+             </property>
+             <property name="text" >
+              <string>Name</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0" >
             <widget class="QLabel" name="label_6" >
              <property name="text" >
@@ -141,16 +155,6 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1" >
-            <widget class="KLineEdit" name="blackPlayerName" >
-             <property name="enabled" >
-              <bool>true</bool>
-             </property>
-             <property name="text" >
-              <string/>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -161,8 +165,14 @@
         <property name="enabled" >
          <bool>false</bool>
         </property>
+        <property name="minimumSize" >
+         <size>
+          <width>150</width>
+          <height>0</height>
+         </size>
+        </property>
         <property name="title" >
-         <string>Computer Setup</string>
+         <string>Computer setup</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_4" >
          <item row="0" column="0" colspan="2" >
@@ -232,8 +242,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>306</width>
-           <height>217</height>
+           <width>304</width>
+           <height>207</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4" >
@@ -246,13 +256,13 @@
              <bool>true</bool>
             </property>
             <property name="title" >
-             <string>Game Setup</string>
+             <string>Game setup</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_5" >
              <item rowspan="3" row="0" column="0" >
               <widget class="KButtonGroup" name="sizeGroupBox" >
                <property name="title" >
-                <string>BoardSize</string>
+                <string>Board size</string>
                </property>
                <property name="flat" >
                 <bool>false</bool>
@@ -342,7 +352,10 @@
              <item row="1" column="1" >
               <widget class="QGroupBox" name="handicapGroupBox" >
                <property name="title" >
-                <string>Fixed Handicap</string>
+                <string>Fixed handicap</string>
+               </property>
+               <property name="flat" >
+                <bool>false</bool>
                </property>
                <property name="checkable" >
                 <bool>true</bool>
@@ -368,17 +381,7 @@
               </widget>
              </item>
              <item row="2" column="1" >
-              <spacer name="verticalSpacer" >
-               <property name="orientation" >
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0" >
-                <size>
-                 <width>20</width>
-                 <height>18</height>
-                </size>
-               </property>
-              </spacer>
+              <spacer name="verticalSpacer" />
              </item>
             </layout>
            </widget>
@@ -489,7 +492,7 @@
       </sizepolicy>
      </property>
      <property name="text" >
-      <string>Start Game</string>
+      <string>Start game</string>
      </property>
      <property name="shortcut" >
       <string>Ctrl+S</string>

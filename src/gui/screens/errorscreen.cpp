@@ -42,15 +42,19 @@ ErrorScreen::ErrorScreen(QWidget *parent)
     configureButton->setIcon(configureItem.icon());
     configureButton->setToolTip(configureItem.toolTip());
     configureButton->setWhatsThis(configureItem.whatsThis());
+    connect(configureButton, SIGNAL(clicked()), this, SIGNAL(configureButtonClicked()));
 
     KGuiItem quitItem = KStandardGuiItem::quit();
     quitButton->setText(quitItem.text());
     quitButton->setIcon(quitItem.icon());
     quitButton->setToolTip(quitItem.toolTip());
     quitButton->setWhatsThis(quitItem.whatsThis());
+    connect(quitButton, SIGNAL(clicked()), this, SIGNAL(quitButtonClicked()));
+}
 
-    connect(configureButton, SIGNAL(clicked()), this, SIGNAL(configureClicked()));
-    connect(quitButton, SIGNAL(clicked()), this, SIGNAL(quitClicked()));
+void ErrorScreen::setErrorMessage(const QString &errorMessage)
+{
+    errorMessageLabel->setText(errorMessage);
 }
 
 } // End of namespace KGo

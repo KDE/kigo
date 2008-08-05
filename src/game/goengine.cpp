@@ -93,7 +93,6 @@ GoEngine::GoEngine()
     : m_currentPlayer(BlackPlayer)
     , m_fixedHandicapPlaced(false)
 {
-    connect(&m_process, SIGNAL(readyReadStandardError()), this, SLOT(readStandardError()));
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
 
@@ -107,19 +106,19 @@ bool GoEngine::run(const QString &command)
     quit();                                         // Close old session if there's one
     m_process.start(command.toLatin1());            // Start new process with provided command
 
-    if (!m_process.waitForStarted())                // Blocking wait for process start
+    if (!m_process.waitForStarted()) {              // Blocking wait for process start
+        m_response = "Execute Go engine command \"" + command + "\" failed!";
         return false;
-
+    }
     m_engineCommand = command;                      // Save for retrieval
 
-    kDebug() << "Run new GTP engine session";
+    kDebug() << "Starting new GTP engine session...";
 
-    if (protocolVersion() == 2) {                   // We support only GTP version 2 for now
+    if (protocolVersion() >= 0) {                   // Check for supported GTP protocol version
         clearBoard();                               // Start with blank board
     } else {
         kDebug() << "Protocol version error:" << protocolVersion();
         quit();
-        m_response = "Protocol version error";
         return false;
     }
     return true;
@@ -850,15 +849,18 @@ QString GoEngine::echo(const QString &command)
     return waitResponse() ? m_response : QString();
 }
 
-void GoEngine::readStandardError()
-{
-    kWarning() << "Go engine I/O error occurred:\n" << m_process.readAllStandardError();
-}
-
 bool GoEngine::waitResponse()
 {
     if (m_process.state() != QProcess::Running) {   // No GTP connection means no computing fun!
-        kWarning() << "Go engine command failed because no GTP session is running!";
+        switch (m_process.error()) {
+            case QProcess::FailedToStart: m_response = "No Go engine is running!"; break;
+            case QProcess::Crashed: m_response = "The Go engine crashed!"; break;
+            case QProcess::Timedout: m_response = "The Go engine timed out!"; break;
+            case QProcess::WriteError: m_response = m_process.readAllStandardError(); break;
+            case QProcess::ReadError: m_response = m_process.readAllStandardError(); break;
+            case QProcess::UnknownError: m_response = "Unknown error!"; break;
+        }
+        kWarning() << "Command failed:" << m_response;
         return false;
     }
 
