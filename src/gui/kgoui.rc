@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="kgo" version="2">
+<gui name="kgo" version="3">
     <MenuBar>
         <Menu name="game">
             <Action name="game_seats" />
         </Menu>
-        <!-- <Menu name="view">
-            <text>&amp;View</text>
-            <Action name="show_last_move" />
-            <Action name="show_legal_moves" />
-            <Action name="show_moves" />
-        </Menu> -->
+        <Menu name="view">
+            <Action name="show_move_history" />
+            <Action name="show_board_labels" />
+        </Menu>
         <Menu name="settings">
-            <text>&aml;Settings</text>
             <Action name="skill" />
         </Menu>
     </MenuBar>
@@ -23,9 +20,9 @@
         <Separator />
         <Action name="move_undo" />
         <Action name="move_redo" />
-        <Separator />
         <Action name="move_end_turn" />
         <Separator />
+        <Action name="move_hint" />
         <Action name="move_demo" />
     </ToolBar>
 </gui>

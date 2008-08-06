@@ -66,26 +66,20 @@ public slots:
     void showHint();
     void resizeScene(int width, int height);
 
-protected:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
 private slots:
-    void updateBoard();
+    void updateStoneItems();
+    void updateMoveHistoryItems();
+    void updateHintItems();
     void changeBoardSize(int size);
 
 private:
-    /**
-     * Used to draw the scene background and the Go board.
-     *
-     * @param painter
-     * @param
-     * @see QGraphicsScene::drawBackground()
-     */
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void drawBackground(QPainter *painter, const QRectF &);
 
     GoEngine * const m_engine;  ///< Go engine
 
+    bool m_showMoveHistory;
     bool m_showLabels;          ///< Show board labels or not
     QRectF m_boardRect;         ///< Position of board in the scene
     QRectF m_mouseRect;         ///< Board mouse interaction rect
@@ -93,6 +87,11 @@ private:
     qreal m_cellSize;           ///< Width of board grid cell
     QSize m_stonePixmapSize;    ///< Size of Go stone pixmap
     int m_boardSize;            ///< Go board size (9, 13, 19, ..)
+
+
+    QList<QGraphicsPixmapItem *> m_stoneItems;
+    QList<QGraphicsTextItem *> m_moveHistoryItems;
+    QList<QGraphicsPixmapItem *> m_hintItems;
 };
 
 } // End of namespace KGo

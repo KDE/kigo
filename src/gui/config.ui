@@ -6,13 +6,13 @@
     <x>0</x>
     <y>0</y>
     <width>432</width>
-    <height>347</height>
+    <height>492</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2" >
+  <layout class="QVBoxLayout" name="verticalLayout_3" >
    <item>
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="sizePolicy" >
@@ -78,7 +78,21 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="kcfg_AdvancedConfiguration" >
+     <property name="title" >
+      <string>Advanced configuration</string>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2" />
+    </widget>
+   </item>
+   <item>
     <widget class="QGroupBox" name="groupBox" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
      <property name="title" >
       <string>View settings</string>
      </property>
@@ -94,16 +108,9 @@
        </widget>
       </item>
       <item>
-       <widget class="Line" name="line" >
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_AdvancedConfiguration" >
+       <widget class="QCheckBox" name="kcfg_ShowMoveHistory" >
         <property name="text" >
-         <string>Enable advanced configuration</string>
+         <string>Show move history</string>
         </property>
        </widget>
       </item>
@@ -147,7 +154,6 @@
   <tabstop>kcfg_EngineCommand</tabstop>
   <tabstop>kpushbutton_2</tabstop>
   <tabstop>kcfg_ShowBoardLabels</tabstop>
-  <tabstop>kcfg_AdvancedConfiguration</tabstop>
  </tabstops>
  <resources/>
  <connections/>

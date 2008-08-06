@@ -27,6 +27,9 @@
             <label>Determines whether board labels are shown</label>
             <default>true</default>
         </entry>
+        <entry name="ShowMoveHistory" type="Bool">
+            <default>false</default>
+        </entry>
     </group>
     <group name="Game">
         <entry name="BlackPlayerHuman" type="Bool">

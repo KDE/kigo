@@ -43,10 +43,11 @@ namespace KGo {
 
 GameScene::GameScene()
     : m_engine(new GoEngine())
+    , m_showMoveHistory(false)
     , m_showLabels(Preferences::showBoardLabels())
     , m_boardSize(Preferences::boardSize())
 {
-    connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateBoard()));
+    connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
 }
 
@@ -58,8 +59,8 @@ GoEngine * const GameScene::engine() const
 void GameScene::showMoveHistory(bool show)
 {
     kDebug() << "Show move history:" << show;
-    //TODO: Get move history from engine and display them with half-transparent go stone pixmaps
-    invalidate(m_boardRect, QGraphicsScene::ItemLayer);
+    m_showMoveHistory = show;
+    updateMoveHistoryItems();
 }
 
 void GameScene::showLabels(bool show)
@@ -72,7 +73,6 @@ void GameScene::showHint()
 {
     //TODO: Get hint from Engine and display it for some seconds
     emit statusMessage(i18n("The computer assumes this is the best move..."));
-    update();
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -88,7 +88,66 @@ void GameScene::resizeScene(int width, int height)
     m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
-    updateBoard(); // Resize means redraw of board items (stones)
+    updateStoneItems(); // Resize means redraw of board items (stones)
+    updateMoveHistoryItems();
+    updateHintItems();
+}
+
+void GameScene::updateStoneItems()
+{
+    kDebug() << "Update board";
+    QGraphicsPixmapItem *item;
+    int halfCellSize = m_cellSize / 2;
+
+    // Clear all standard Go stone graphics pixmap items
+    foreach (item, m_stoneItems)
+        removeItem(item);
+    m_stoneItems.clear();
+
+    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
+        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
+        item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
+                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
+        m_stoneItems.append(item);
+    }
+    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
+        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
+        item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
+                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
+        m_stoneItems.append(item);
+    }
+}
+
+void GameScene::updateMoveHistoryItems()
+{
+    kDebug() << "Update move history";
+    QGraphicsTextItem *item;
+    int halfCellSize = m_cellSize / 2;
+
+    foreach (item, m_moveHistoryItems)
+        removeItem(item);
+    m_moveHistoryItems.clear();
+
+    if (m_showMoveHistory) {
+        QList<QPair<GoEngine::PlayerColor, GoEngine::Stone> > history = m_engine->moveHistory();
+        for (int i = history.size(); i > 0; i--) {
+            item = addText(QString::number(i));
+            item->setPos(QPointF(m_gridRect.x() + (history[i].second.x() - 'A') * m_cellSize - halfCellSize,
+                                 m_gridRect.y() + (m_boardSize - history[i].second.y()) * m_cellSize - halfCellSize));
+            m_moveHistoryItems.append(item);
+        }
+    }
+}
+
+void GameScene::updateHintItems()
+{
+}
+
+void GameScene::changeBoardSize(int size)
+{
+    m_boardSize = size;
+    resizeScene(width(), height());
+    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
 }
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
@@ -118,33 +177,6 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         else
             emit statusMessage(i18n("Making a move at %1 is not allowed!", move.toString()));
     }
-}
-
-void GameScene::updateBoard()
-{
-    QGraphicsPixmapItem *item;
-    int halfCellSize = m_cellSize / 2;
-
-    kDebug() << "Update board";
-    clear(); // Remove all graphics items (stones) from the scene
-
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
-        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
-        item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
-                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
-    }
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
-        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
-        item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
-                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
-    }
-}
-
-void GameScene::changeBoardSize(int size)
-{
-    m_boardSize = size;
-    resizeScene(width(), height());
-    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
 }
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &)
