@@ -342,6 +342,14 @@ public:
      */
     int fixedHandicap() const { return m_fixedHandicap; }
 
+    /**
+     * Returns the maximum amount fixed handicap stones placeable at the
+     * current Go board size.
+     *
+     * @return The maximum allowed fixed handicap
+     */
+    int maximumFixedHandicap();
+
     ////////////////////////////////////////////////////////////////////
     // GTP: Playing and generating moves
     ////////////////////////////////////////////////////////////////////

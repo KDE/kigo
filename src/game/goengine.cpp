@@ -242,18 +242,44 @@ bool GoEngine::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 2 && handicap <= 9);
 
-    kDebug() << "Set fixed handicap to" << handicap;
+    if (handicap <= maximumFixedHandicap()) {
+        kDebug() << "Set fixed handicap to" << handicap;
 
-    m_process.write("fixed_handicap " + QByteArray::number(handicap) + '\n');
-    if (waitResponse()) {
-        // Black starts with setting his (fixed) handicap as it's first turn
-        // which means, white is next.
-        changeCurrentPlayer(WhitePlayer);
-        m_fixedHandicap = handicap;
-        emit boardChanged();
-        return true;
-    } else
+        m_process.write("fixed_handicap " + QByteArray::number(handicap) + '\n');
+        if (waitResponse()) {
+            // Black starts with setting his (fixed) handicap as it's first turn
+            // which means, white is next.
+            changeCurrentPlayer(WhitePlayer);
+            m_fixedHandicap = handicap;
+            emit boardChanged();
+            return true;
+        } else
+            return false;
+    } else {
+        kWarning() << "Handicap" << handicap << " not set, it is too high!";
         return false;
+    }
+}
+
+int GoEngine::maximumFixedHandicap()
+{
+    // These values are handcrafted and reflect what GnuGo accepts
+    switch (boardSize()) {
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+        case 14:
+        case 16:
+        case 18: return 4;
+        case 9:
+        case 11:
+        case 13:
+        case 15:
+        case 17:
+        case 19: return 9;
+        default: return 0;
+    }
 }
 
 bool GoEngine::playMove(const Stone &field, PlayerColor color)
@@ -359,8 +385,8 @@ bool GoEngine::tryMove(const Stone &field, PlayerColor color)
     msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
     if (waitResponse()) {
-        emit boardChanged();
         color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        emit boardChanged();
         return true;
     } else
         return false;
@@ -425,8 +451,8 @@ QList<GoEngine::Stone> GoEngine::listStones(PlayerColor color)
         msg.append("black\n");
     m_process.write(msg);
     if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(' '))
-                list.append(Stone(pos));
+        foreach (const QString &pos, m_response.split(' '))
+            list.append(Stone(pos));
     }
     return list;
 }
@@ -434,15 +460,16 @@ QList<GoEngine::Stone> GoEngine::listStones(PlayerColor color)
 QList<QPair<GoEngine::PlayerColor, GoEngine::Stone> > GoEngine::moveHistory()
 {
     QList<QPair<PlayerColor, Stone> > list;
+    //TODO: Returns incorrect results sometimes, check that!
 
     m_process.write("move_history\n");
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach(const QString &entry, m_response.split('\n')) {
+        foreach (const QString &entry, m_response.split('\n')) {
             QStringList parts = entry.split(' ');
             if (parts.size() == 2) {
                 if(parts[0] == "white")
                     list.append(QPair<PlayerColor, Stone>(WhitePlayer, Stone(parts[1])));
-                else
+                else if (parts[0] == "black")
                     list.append(QPair<PlayerColor, Stone>(BlackPlayer, Stone(parts[1])));
             }
         }
@@ -457,11 +484,13 @@ QList<GoEngine::Stone> GoEngine::moveHistory(PlayerColor color)
         return list;
 
     m_process.write("move_history\n");
-    if (waitResponse()) {
-        QStringList tokens = m_response.split(' ');
-        for (int i = 0; i < tokens.size(); i += 2)
-            if (color == WhitePlayer && tokens[i] == "white" || color == BlackPlayer && tokens[i] == "black")
-                list.append(Stone(Stone(tokens[i + 1])));
+    if (waitResponse() && !m_response.isEmpty()) {
+        foreach (const QString &entry, m_response.split('\n')) {
+            QStringList parts = entry.split(' ');
+            if (parts.size() == 2)
+                if (color == WhitePlayer && parts[0] == "white" || color == BlackPlayer && parts[0] == "black")
+                    list.append(Stone(parts[1]));
+        }
     }
     return list;
 }
@@ -483,8 +512,8 @@ QList<GoEngine::Stone> GoEngine::findLiberties(const Stone &field)
 
     m_process.write("findlib " + field.toLatin1() + '\n');
     if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &entry, m_response.split(' '))
-                list.append(GoEngine::Stone(entry));
+        foreach (const QString &entry, m_response.split(' '))
+            list.append(GoEngine::Stone(entry));
     }
     return list;
 }
@@ -533,8 +562,8 @@ QList<GoEngine::Stone> GoEngine::legalMoves(PlayerColor color)
         msg.append("black\n");
     m_process.write(msg);
     if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &entry, m_response.split(' '))
-                list.append(Stone(entry));
+        foreach (const QString &entry, m_response.split(' '))
+            list.append(Stone(entry));
     }
     return list;
 }
@@ -679,8 +708,8 @@ QList<GoEngine::Stone> GoEngine::finalStatusList(FinalState state)
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &entry, m_response.split(' '))
-                list.append(Stone(entry));
+        foreach (const QString &entry, m_response.split(' '))
+            list.append(Stone(entry));
     }
     return list;
 }
@@ -783,10 +812,9 @@ QList<GoEngine::Stone> GoEngine::wormStones(const Stone &field)
         return list;
 
     m_process.write("worm_stones " + field.toLatin1() + '\n');
-    if (waitResponse()) {
-        if (!m_response.isEmpty())
-            foreach (const QString &entry, m_response.split(' '))
-                list.append(Stone(entry));
+    if (waitResponse() && !m_response.isEmpty()) {
+        foreach (const QString &entry, m_response.split(' '))
+            list.append(Stone(entry));
     }
     return list;
 }
@@ -801,7 +829,7 @@ QList<QString> GoEngine::help()
 {
     m_process.write("help\n");
     QList<QString> list;
-    if (waitResponse()) {
+    if (waitResponse() && !m_response.isEmpty()) {
         foreach (const QString &entry, m_response.split('\n'))
             list.append(entry);
     }

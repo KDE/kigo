@@ -104,6 +104,8 @@ private:
     void saveSettings();            ///< Store KConfigXT application settings
 
     GoEngine * const m_gameEngine;  ///<
+
+    int m_lastFixedHandicap;        ///<
 };
 
 } // End of namespace KGo

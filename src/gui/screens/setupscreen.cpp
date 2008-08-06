@@ -39,6 +39,7 @@ namespace KGo {
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
     , m_gameEngine(scene->engine())
+    , m_lastFixedHandicap(Preferences::fixedHandicapValue())
 {
     if (!m_gameEngine->isRunning())
         kFatal() << "No Go engine is running!";             // Engine should really be running here!
@@ -139,7 +140,7 @@ void SetupScreen::on_difficultySlider_valueChanged(int value)
 
 void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
 {
-    if (sizeOther->isChecked()) {
+    if (sizeOther->isChecked()) {                   // Custom size enabled
         sizeOtherSpinBox->setEnabled(true);
         m_gameEngine->setBoardSize(sizeOtherSpinBox->value());
     } else {
@@ -151,7 +152,7 @@ void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
         else if (sizeBig->isChecked())
             m_gameEngine->setBoardSize(19);
     }
-    updateHandicapBox();
+    updateHandicapBox();                            // Handicap depends on board size
 }
 
 void SetupScreen::on_sizeOtherSpinBox_valueChanged(int value)
@@ -162,14 +163,14 @@ void SetupScreen::on_sizeOtherSpinBox_valueChanged(int value)
 
 void SetupScreen::on_handicapGroupBox_toggled(bool isChecked)
 {
-    m_gameEngine->clearBoard();
-    if (isChecked)
+    m_gameEngine->clearBoard();                     // Also removes handicap
+    if (isChecked)                                  // Set handicap if checked
         m_gameEngine->setFixedHandicap(handicapSpinBox->value());
 }
 
 void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 {
-    //TODO: Check and adjust max amount fixed handicap for smaller boards
+    m_lastFixedHandicap = handicapSpinBox->value(); //
     m_gameEngine->clearBoard();                     // Setting fixed handicap works only
     m_gameEngine->setFixedHandicap(value);          // on a blank game board
 }
@@ -182,12 +183,27 @@ void SetupScreen::on_startButton_clicked()
 
 void SetupScreen::updateHandicapBox()
 {
-    // Size changed, set fixed handicap reasonable display
-    int fixedHandicap = m_gameEngine->fixedHandicap();
-    if (fixedHandicap == 0)
-        handicapGroupBox->setChecked(false);
-    //TODO: Set min value
-    handicapSpinBox->setValue(fixedHandicap);
+    kDebug() << "Update fixed handicap box";
+    int maxFixedHandicap = m_gameEngine->maximumFixedHandicap();
+
+    if (maxFixedHandicap == 0) {
+        handicapGroupBox->setEnabled(false);
+    } else {
+        handicapGroupBox->setEnabled(true);
+
+        if (maxFixedHandicap >= handicapSpinBox->minimum()) {
+            handicapSpinBox->setMaximum(maxFixedHandicap);
+
+            if (m_lastFixedHandicap >= maxFixedHandicap)
+                handicapSpinBox->setValue(maxFixedHandicap);
+            else
+                handicapSpinBox->setValue(m_lastFixedHandicap);
+
+            if (handicapGroupBox->isChecked())
+                m_gameEngine->setFixedHandicap(handicapSpinBox->value());
+        } else
+            handicapGroupBox->setChecked(false);
+    }
 }
 
 void SetupScreen::loadSettings()

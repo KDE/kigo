@@ -85,11 +85,10 @@ void GameScene::resizeScene(int width, int height)
 
     size = static_cast<int>(m_cellSize * (m_boardSize - 1));
     m_gridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-    m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8,
-                                                 m_cellSize / 8,   m_cellSize / 8);
+    m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
-    updateBoard();
+    updateBoard(); // Resize means redraw of board items (stones)
 }
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
@@ -114,29 +113,28 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
         // Convert to Go board coordinates and try to play the move
         GoEngine::Stone move('A' + row, m_boardSize - col);
-        if (m_engine->playMove(move)) {
+        if (m_engine->playMove(move))
             emit statusMessage(i18n("Made move at %1", move.toString()));
-            updateBoard();
-        } else {
+        else
             emit statusMessage(i18n("Making a move at %1 is not allowed!", move.toString()));
-        }
     }
 }
 
 void GameScene::updateBoard()
 {
-    clear();
-
-    int halfCellSize = m_cellSize / 2;
     QGraphicsPixmapItem *item;
+    int halfCellSize = m_cellSize / 2;
 
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
-        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
+    kDebug() << "Update board";
+    clear(); // Remove all graphics items (stones) from the scene
+
+    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
+        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
     }
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
-        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
+    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
+        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
     }
