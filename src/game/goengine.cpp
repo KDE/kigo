@@ -39,14 +39,14 @@
 namespace KGo {
 
 GoEngine::Stone::Stone(const QString &stone)
-    : m_x(stone[0].toLatin1())
+    : m_x(stone[0].toUpper().toLatin1())
     , m_y(stone.mid(1).toInt())
 {
 }
 
 bool GoEngine::Stone::isValid() const
 {
-    return (m_y >= 1 && m_y <= 19 && ((m_x >= 'a' && m_x < 't') || (m_x >= 'A' && m_x <= 'T')));
+    return m_y >= 1 && m_y <= 19 && m_x >= 'A' && m_x < 'T';
 }
 
 QByteArray GoEngine::Stone::toLatin1() const
@@ -59,17 +59,14 @@ QByteArray GoEngine::Stone::toLatin1() const
 
 QString GoEngine::Stone::toString() const
 {
-    return QString("%1%2").arg(m_x).arg(m_y);
+    return QString(m_x + QString::number(m_y));
 }
 
 ////////////////////////////////////////////////////////////////////
 
 GoEngine::Score::Score(const QString &scoreString)
 {
-    if (scoreString[0] == 'W')
-        m_player = WhitePlayer;
-    else
-        m_player = BlackPlayer;
+    scoreString[0] == 'W' ? m_player = WhitePlayer : m_player = BlackPlayer;
     int i = scoreString.indexOf(' ');
     m_score = scoreString.mid(2, i - 1).toInt();
     //m_upperBound = scoreString.mid(
@@ -79,12 +76,12 @@ GoEngine::Score::Score(const QString &scoreString)
 
 bool GoEngine::Score::isValid() const
 {
-    return m_score >= 0;
+    return m_score >= 0 && (m_player == WhitePlayer || m_player == BlackPlayer);
 }
 
 QString GoEngine::Score::toString() const
 {
-    return QString("%1+%2 (upper bound: %3, lower: %4").arg(m_player == WhitePlayer ? 'W' : 'B').arg(m_score).arg(m_upperBound).arg(m_lowerBound);
+    return QString("%1+%2 (upper bound: %3, lower: %4)").arg(m_player == WhitePlayer ? 'W' : 'B').arg(m_score).arg(m_upperBound).arg(m_lowerBound);
 }
 
 ////////////////////////////////////////////////////////////////////

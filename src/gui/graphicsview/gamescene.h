@@ -32,8 +32,6 @@
 
 #include <QGraphicsScene>
 
-class QGraphicsPixmapItem;
-
 namespace KGo {
 
 class GoEngine;
@@ -86,16 +84,15 @@ private:
      */
     void drawBackground(QPainter *painter, const QRectF &);
 
-    GoEngine * const m_engine;                      ///< Go engine
+    GoEngine * const m_engine;  ///< Go engine
 
-    bool m_showLabels;                              ///< Show board labels or not
-    QRectF m_boardRect;                             ///< Position of board in the scene
-    QRectF m_boardGridRect;                         ///<
-    QRectF m_boardMouseRect;
-    qreal m_boardGridCellSize;                      ///<
-    int m_boardSize;                                ///< Go board size (9, 13, 19, ..)
-    QList<QGraphicsPixmapItem *> m_stoneItemList;
-    QList<QGraphicsPixmapItem *> m_handicapStoneItemList;
+    bool m_showLabels;          ///< Show board labels or not
+    QRectF m_boardRect;         ///< Position of board in the scene
+    QRectF m_mouseRect;         ///< Board mouse interaction rect
+    QRectF m_gridRect;          ///< Board grid rect
+    qreal m_cellSize;           ///< Width of board grid cell
+    QSize m_stonePixmapSize;    ///< Size of Go stone pixmap
+    int m_boardSize;            ///< Go board size (9, 13, 19, ..)
 };
 
 } // End of namespace KGo

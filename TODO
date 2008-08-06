@@ -1,10 +1,11 @@
-* Replace some kWarnings and kDebugs with reasonable status-bar messages
+* Cache longer lists retrieved from the backend in the GoEngine (for example
+  move history, stone lists for either player, ...) to save computing time
+
+* Implement the Demo mode
+
+* Add move controls to toolbar instead of undo / redo:
+  First Move | Previous Move | Next Move | Last Move
 
 * Ship further go board themes (two should be enough to show)
 
-* Add move controls to toolbar instead of Undo/Redo:
-  First Move | Previous Move | Next Move | Last Move
-
 * Add multiplayer support via GGZ and traditional Go servers
-
-* Implement the Demo mode
