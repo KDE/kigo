@@ -63,13 +63,9 @@ public:
      * @param parent The parent widget or none
      */
     explicit GameScreen(GameScene *scene, QWidget *parent = 0);
-    ~GameScreen();
 
-signals:
-
-public slots:
-    //void setMoveHistoryVisible(bool visible);
-    //void setGameStatisticsVisible(bool visible);
+private slots:
+    void updateStatistics();
 
 private:
     GoEngine * const m_gameEngine;  ///<

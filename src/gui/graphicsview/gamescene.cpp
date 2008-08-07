@@ -38,6 +38,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsPixmapItem>
 #include <QPainter>
+#include <QTimer>
 
 namespace KGo {
 
@@ -71,8 +72,14 @@ void GameScene::showLabels(bool show)
 
 void GameScene::showHint()
 {
-    //TODO: Get hint from Engine and display it for some seconds
-    emit statusMessage(i18n("The computer assumes this is the best move..."));
+    kDebug() << "Show hint";
+
+    int halfCellSize = m_cellSize / 2;
+
+    //kDebug() << "Hint:" << m_engine->topMoves(m_engine->currentPlayer());
+
+    emit statusMessage(i18n("The computer assumes these are the best moves..."));
+    QTimer::singleShot(Preferences::hintVisibleTime(), this, SLOT(disableHint()));
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -88,9 +95,9 @@ void GameScene::resizeScene(int width, int height)
     m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
-    updateStoneItems(); // Resize means redraw of board items (stones)
+    disableHint();
+    updateStoneItems();             // Resize means redraw of board items (stones)
     updateMoveHistoryItems();
-    updateHintItems();
 }
 
 void GameScene::updateStoneItems()
@@ -129,18 +136,21 @@ void GameScene::updateMoveHistoryItems()
     m_moveHistoryItems.clear();
 
     if (m_showMoveHistory) {
-        QList<QPair<GoEngine::PlayerColor, GoEngine::Stone> > history = m_engine->moveHistory();
+        QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > history = m_engine->moveHistory();
         for (int i = history.size(); i > 0; i--) {
             item = addText(QString::number(i));
-            item->setPos(QPointF(m_gridRect.x() + (history[i].second.x() - 'A') * m_cellSize - halfCellSize,
-                                 m_gridRect.y() + (m_boardSize - history[i].second.y()) * m_cellSize - halfCellSize));
+            item->setPos(QPointF(m_gridRect.x() + (history[i].first.x() - 'A') * m_cellSize - halfCellSize,
+                                 m_gridRect.y() + (m_boardSize - history[i].first.y()) * m_cellSize - halfCellSize));
             m_moveHistoryItems.append(item);
         }
     }
 }
 
-void GameScene::updateHintItems()
+void GameScene::disableHint()
 {
+    foreach (QGraphicsPixmapItem *item, m_hintItems)
+        removeItem(item);
+    m_hintItems.clear();
 }
 
 void GameScene::changeBoardSize(int size)
@@ -169,6 +179,8 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
         if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
             return;
+
+        disableHint();  // A click invalidates the move hint
 
         // Convert to Go board coordinates and try to play the move
         GoEngine::Stone move('A' + row, m_boardSize - col);

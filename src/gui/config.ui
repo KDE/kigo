@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>432</width>
-    <height>492</height>
+    <width>440</width>
+    <height>395</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3" >
+  <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
     <widget class="QGroupBox" name="groupBox_2" >
      <property name="sizePolicy" >
@@ -31,14 +31,14 @@
          <string>Engine command:</string>
         </property>
         <property name="alignment" >
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
          <cstring>kcfg_EngineCommand</cstring>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
+      <item row="2" column="1" colspan="2" >
        <widget class="KLineEdit" name="kcfg_EngineCommand" />
       </item>
       <item row="0" column="1" colspan="2" >
@@ -47,7 +47,7 @@
       <item row="0" column="0" >
        <widget class="QLabel" name="label_3" >
         <property name="text" >
-         <string>Search executable:</string>
+         <string>Executable path:</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -57,20 +57,10 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0" >
+      <item row="3" column="1" >
        <widget class="KPushButton" name="kpushbutton_2" >
         <property name="text" >
-         <string>Check</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1" >
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
-         <string>Go engine is working:</string>
-        </property>
-        <property name="alignment" >
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         <string>Test</string>
         </property>
        </widget>
       </item>
@@ -78,39 +68,78 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="kcfg_AdvancedConfiguration" >
+    <widget class="QGroupBox" name="s" >
      <property name="title" >
-      <string>Advanced configuration</string>
+      <string>View configuration</string>
      </property>
      <property name="checkable" >
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" />
+     <layout class="QGridLayout" name="gridLayout_2" >
+      <item row="0" column="0" colspan="2" >
+       <widget class="QCheckBox" name="kcfg_ShowBoardLabels" >
+        <property name="text" >
+         <string>Display board labels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2" >
+       <widget class="QCheckBox" name="kcfg_AdvancedStatistics" >
+        <property name="text" >
+         <string>Display advanced statistics</string>
+        </property>
+       </widget>
+      </item>
+      <item rowspan="2" row="0" column="2" >
+       <widget class="QGroupBox" name="groupBox_3" >
+        <property name="title" >
+         <string>Hint visibility</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3" >
+         <item>
+          <widget class="QDoubleSpinBox" name="kcfg_HintVisibleTime" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="suffix" >
+            <string> Seconds</string>
+           </property>
+           <property name="decimals" >
+            <number>1</number>
+           </property>
+           <property name="minimum" >
+            <double>1.000000000000000</double>
+           </property>
+           <property name="maximum" >
+            <double>5.000000000000000</double>
+           </property>
+           <property name="singleStep" >
+            <double>0.500000000000000</double>
+           </property>
+           <property name="value" >
+            <double>3.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox" >
-     <property name="enabled" >
-      <bool>false</bool>
-     </property>
      <property name="title" >
-      <string>View settings</string>
+      <string>Expert configuration</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout" >
       <item>
-       <widget class="QCheckBox" name="kcfg_ShowBoardLabels" >
+       <widget class="QCheckBox" name="kcfg_AdvancedGameOptions" >
         <property name="text" >
-         <string>Show board labels</string>
-        </property>
-        <property name="checked" >
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_ShowMoveHistory" >
-        <property name="text" >
-         <string>Show move history</string>
+         <string>Enable advanced game options</string>
         </property>
        </widget>
       </item>
@@ -152,8 +181,6 @@
  <tabstops>
   <tabstop>kcfg_EngineExecutable</tabstop>
   <tabstop>kcfg_EngineCommand</tabstop>
-  <tabstop>kpushbutton_2</tabstop>
-  <tabstop>kcfg_ShowBoardLabels</tabstop>
  </tabstops>
  <resources/>
  <connections/>

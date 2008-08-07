@@ -69,7 +69,7 @@ public slots:
 private slots:
     void updateStoneItems();
     void updateMoveHistoryItems();
-    void updateHintItems();
+    void disableHint();
     void changeBoardSize(int size);
 
 private:

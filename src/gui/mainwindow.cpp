@@ -84,7 +84,6 @@ void MainWindow::newGame()
     m_passAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
-    m_boardLabelAction->setEnabled(false);
     m_setupScreen->setupNewGame();
     m_mainWidget->setCurrentWidget(setupScreen());
     statusBar()->showMessage(i18n("Play a new game..."), 3000);
@@ -96,7 +95,6 @@ void MainWindow::loadGame()
     m_passAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
-    m_boardLabelAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
         setupScreen()->setupLoadedGame(fileName);
@@ -122,7 +120,6 @@ void MainWindow::startGame()
     m_passAction->setEnabled(true);
     m_hintAction->setEnabled(true);
     m_moveHistoryAction->setEnabled(true);
-    m_boardLabelAction->setEnabled(true);
     // The GameScene should be configured and just be waiting for further input
     // so we only need to show the GameScreen and allow direct user-interaction
     m_mainWidget->setCurrentWidget(gameScreen());
@@ -238,15 +235,11 @@ void MainWindow::setupActions()
     m_hintAction->setEnabled(false);
 
     // View menu
-    m_moveHistoryAction = new KToggleAction(i18n("Show move history"), this);
+    m_moveHistoryAction = new KToggleAction(i18n("&Move history"), this);
+    m_moveHistoryAction->setShortcut(i18n("M"));
     m_moveHistoryAction->setEnabled(false);
+    actionCollection()->addAction("move_history", m_moveHistoryAction);
     connect(m_moveHistoryAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showMoveHistory(bool)));
-    actionCollection()->addAction("show_move_history", m_moveHistoryAction);
-
-    m_boardLabelAction = new KToggleAction(i18n("Show board labels"), this);
-    m_boardLabelAction->setEnabled(false);
-    connect(m_boardLabelAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showLabels(bool)));
-    actionCollection()->addAction("show_board_labels", m_boardLabelAction);
 
     // Settings menu
     KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());

@@ -24,15 +24,27 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="informationBox" >
+    <widget class="QGroupBox" name="statisticsBox" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize" >
+      <size>
+       <width>180</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize" >
+      <size>
+       <width>180</width>
+       <height>16777215</height>
+      </size>
+     </property>
      <property name="title" >
-      <string>Information</string>
+      <string>Statistics</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2" >
       <item>
@@ -42,9 +54,9 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout" >
          <item>
-          <widget class="QLabel" name="label_2" >
+          <widget class="QLabel" name="scoreLabel" >
            <property name="text" >
-            <string>PLACEHOLDER</string>
+            <string>No scores yet</string>
            </property>
           </widget>
          </item>

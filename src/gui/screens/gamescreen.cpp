@@ -49,10 +49,22 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     gameView->setInteractive(true);
     gameFrame->setLayout(new QHBoxLayout());
     gameFrame->layout()->addWidget(gameView);
+
+    connect(m_gameEngine, SIGNAL(boardChanged()), this, SLOT(updateStatistics()));
 }
 
-GameScreen::~GameScreen()
+void GameScreen::updateStatistics()
 {
+    GoEngine::Score score = m_gameEngine->estimateScore();
+    if (score.isValid()) {
+        QString scoreString;
+        score.player() == GoEngine::WhitePlayer ? scoreString.append(i18n("White")) : scoreString.append(i18n("Black"));
+        scoreString.append(i18n(" leads (+%1 points)\n", QString::number(score.score())));
+        scoreString.append(i18n("Bounds: %1 - %2", QString::number(score.lowerBound()), QString::number(score.upperBound())));
+        scoreLabel->setText(scoreString);
+    }
+    whiteCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::WhitePlayer)));
+    blackCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::BlackPlayer)));
 }
 
 } // End of namespace KGo

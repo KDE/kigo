@@ -39,9 +39,12 @@
 namespace KGo {
 
 GoEngine::Stone::Stone(const QString &stone)
-    : m_x(stone[0].toUpper().toLatin1())
-    , m_y(stone.mid(1).toInt())
+    : m_x(0), m_y(0)
 {
+    if (stone.size() >= 2) {
+        m_x = stone[0].toUpper().toLatin1();
+        m_y = stone.mid(1).toInt();
+    }
 }
 
 bool GoEngine::Stone::isValid() const
@@ -65,13 +68,22 @@ QString GoEngine::Stone::toString() const
 ////////////////////////////////////////////////////////////////////
 
 GoEngine::Score::Score(const QString &scoreString)
+    : m_player(InvalidPlayer)
+    , m_score(0), m_lowerBound(0), m_upperBound(0)
 {
-    scoreString[0] == 'W' ? m_player = WhitePlayer : m_player = BlackPlayer;
-    int i = scoreString.indexOf(' ');
-    m_score = scoreString.mid(2, i - 1).toInt();
-    //m_upperBound = scoreString.mid(
-    //TODO: Implement Score class, the bounds should be considered optional and can
-    // be the same as the score if none given
+    if (scoreString.size() >= 2) {
+        if (scoreString[0] == 'W')
+            m_player = WhitePlayer;
+        else if (scoreString[0] == 'B')
+            m_player = BlackPlayer;
+        else
+            m_player = InvalidPlayer;
+        int i = scoreString.indexOf(' ');
+        m_score = scoreString.mid(2, i - 1).toInt();
+        //m_upperBound = scoreString.mid(
+        //TODO: Implement Score class, the bounds should be considered optional and can
+        // be the same as the score if none given
+    }
 }
 
 bool GoEngine::Score::isValid() const
@@ -81,7 +93,15 @@ bool GoEngine::Score::isValid() const
 
 QString GoEngine::Score::toString() const
 {
-    return QString("%1+%2 (upper bound: %3, lower: %4)").arg(m_player == WhitePlayer ? 'W' : 'B').arg(m_score).arg(m_upperBound).arg(m_lowerBound);
+    QString ret;
+    if (m_player == WhitePlayer)
+        ret += "W+";
+    else if (m_player == BlackPlayer)
+        ret += "B+";
+    else
+        ret += "?+";
+    ret += QString::number(m_score) + " (" + QString::number(m_lowerBound) + " - " + QString::number(m_upperBound) + ")";
+    return ret;
 }
 
 ////////////////////////////////////////////////////////////////////
@@ -407,17 +427,17 @@ GoEngine::PlayerColor GoEngine::currentPlayer() const
     return m_currentPlayer;
 }
 
-QPair<GoEngine::PlayerColor, GoEngine::Stone> GoEngine::lastMove()
+QPair<GoEngine::Stone, GoEngine::PlayerColor> GoEngine::lastMove()
 {
+    QPair<Stone, PlayerColor> pair(Stone(), InvalidPlayer);
     m_process.write("last_move\n");
-    QPair<PlayerColor, Stone> pair(InvalidPlayer, Stone());
     if (waitResponse()) {
         if (m_response.startsWith("white")) {
-            pair.first = WhitePlayer;
-            pair.second = Stone(m_response.split(' ')[1]);
+            pair.first = Stone(m_response.split(' ')[1]);
+            pair.second = WhitePlayer;
         } else if (m_response.startsWith("black")) {
-            pair.first = BlackPlayer;
-            pair.second = Stone(m_response.split(' ')[1]);
+            pair.first = Stone(m_response.split(' ')[1]);
+            pair.second = BlackPlayer;
         }
     }
     return pair;
@@ -457,10 +477,9 @@ QList<GoEngine::Stone> GoEngine::listStones(PlayerColor color)
     return list;
 }
 
-QList<QPair<GoEngine::PlayerColor, GoEngine::Stone> > GoEngine::moveHistory()
+QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > GoEngine::moveHistory()
 {
-    QList<QPair<PlayerColor, Stone> > list;
-    //TODO: Returns incorrect results sometimes, check that!
+    QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > list;
 
     m_process.write("move_history\n");
     if (waitResponse() && !m_response.isEmpty()) {
@@ -468,9 +487,9 @@ QList<QPair<GoEngine::PlayerColor, GoEngine::Stone> > GoEngine::moveHistory()
             QStringList parts = entry.split(' ');
             if (parts.size() == 2) {
                 if(parts[0] == "white")
-                    list.append(QPair<PlayerColor, Stone>(WhitePlayer, Stone(parts[1])));
+                    list.append(QPair<Stone, PlayerColor>(Stone(parts[1]), WhitePlayer));
                 else if (parts[0] == "black")
-                    list.append(QPair<PlayerColor, Stone>(BlackPlayer, Stone(parts[1])));
+                    list.append(QPair<Stone, PlayerColor>(Stone(parts[1]), BlackPlayer));
             }
         }
     }
@@ -535,10 +554,11 @@ bool GoEngine::isLegal(const Stone &field, PlayerColor color)
     return waitResponse() && m_response == "1";
 }
 
-QString GoEngine::topMoves(PlayerColor color)
+QHash<GoEngine::Stone, float> GoEngine::topMoves(PlayerColor color)
 {
+    QHash<Stone, float> hash;
     if (color == InvalidPlayer)
-        return QString();
+        return hash;
 
     QByteArray msg("top_moves_");
     if (color == WhitePlayer)
@@ -546,7 +566,16 @@ QString GoEngine::topMoves(PlayerColor color)
     else
         msg.append("black\n");
     m_process.write(msg);
-    return waitResponse() ? m_response : QString();
+    if (waitResponse() && !m_response.isEmpty()) {
+        QStringList stoneAndWeightsList = m_response.split(' ');
+        if (stoneAndWeightsList.size() % 2 == 0) {
+            //TODO: Reimplement
+            /*foreach (const QString &entry, stoneAndWeightsList) {
+                list.append(
+            }*/
+        }
+    }
+    return hash;
 }
 
 QList<GoEngine::Stone> GoEngine::legalMoves(PlayerColor color)
@@ -891,6 +920,9 @@ bool GoEngine::waitResponse()
     // is invoked when this happens and we continue after the next line.
     m_process.waitForReadyRead();
     m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
+
+    if (m_response.size() < 1)
+        return false;
 
     QChar tmp = m_response[0];                      // First message character indicates success or error
     m_response.remove(0, 2);                        // Remove the first two chars (e.g. "? " or "= ")

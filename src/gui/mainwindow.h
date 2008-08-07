@@ -98,7 +98,6 @@ private:
     KAction *m_passAction;                  ///< Action to pass current move
     KAction *m_hintAction;
     KToggleAction *m_moveHistoryAction;
-    KToggleAction *m_boardLabelAction;
     KToggleAction *m_demoAction;            ///< Action to change to demo mode
 };
 

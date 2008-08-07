@@ -33,6 +33,7 @@
 #define KGO_GOENGINE_H
 
 #include <QProcess>
+#include <QHash>
 #include <QList>
 #include <QPair>
 #include <QString>
@@ -122,7 +123,7 @@ public:
          * @param x The x coordinate of the stone
          * @param y The y coordinate of the stone
          */
-        Stone(char x = -1, int y = -1) : m_x(x), m_y(y) {}
+        Stone(char x = 0, int y = 0) : m_x(x), m_y(y) {}
 
         /**
          * Constructor to set from a stone given as a string.
@@ -418,7 +419,7 @@ public:
      *
      * @return A Pair with the player color and the last move.
      */
-     QPair<PlayerColor, Stone> lastMove();
+     QPair<Stone, PlayerColor> lastMove();
 
     /**
      * Return the color (state) of a specific board field.
@@ -441,7 +442,7 @@ public:
      *
      * @return
      */
-    QList<QPair<PlayerColor, Stone> > moveHistory();
+    QList<QPair<Stone, PlayerColor> > moveHistory();
 
     /**
      * Returns a list of all moves by 'color' sorted historically.
@@ -479,7 +480,7 @@ public:
      *
      * @param color Player to generate the list for
      */
-    QString topMoves(PlayerColor color);
+    QHash<Stone, float> topMoves(PlayerColor color);
 
     /**
      * List all legal moves for either color.
