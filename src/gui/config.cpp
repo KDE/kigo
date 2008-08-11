@@ -28,7 +28,7 @@
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
-#include "config.h"
+#include "config.h" // krazy:exclude=includes
 
 namespace KGo {
 

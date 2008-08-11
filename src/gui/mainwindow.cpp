@@ -128,17 +128,21 @@ void MainWindow::startGame()
 
 void MainWindow::undo()
 {
-    kDebug() << "Redo";
+    m_gameScene->engine()->undoMove();
 }
 
 void MainWindow::redo()
 {
-    kDebug() << "Undo";
 }
 
 void MainWindow::pass()
 {
-    kDebug() << "End turn";
+    m_gameScene->engine()->passMove();
+}
+
+void MainWindow::hint()
+{
+    m_gameScene->showHint(true);
 }
 
 void MainWindow::toggleDemoMode()
@@ -219,6 +223,11 @@ void MainWindow::setupActions()
     m_loadGameAction->setEnabled(false);
     m_saveAsAction = KStandardGameAction::saveAs(this, SLOT(saveGame()), actionCollection());
     m_saveAsAction->setEnabled(false);
+    m_editGameAction = new KAction(KIcon("games-config-board"), i18n("&Edit game"), this);
+    m_editGameAction->setShortcut(i18n("Ctrl+E"));
+    m_editGameAction->setEnabled(false);
+    actionCollection()->addAction("game_edit", m_editGameAction);
+    //TODO: Connect edit game action with board editor
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
     // Move menu
@@ -231,11 +240,11 @@ void MainWindow::setupActions()
     m_passAction->setEnabled(false);
     m_demoAction = KStandardGameAction::demo(this, SLOT(toggleDemoMode()), actionCollection());
     m_demoAction->setEnabled(false);
-    m_hintAction = KStandardGameAction::hint(m_gameScene, SLOT(showHint()), actionCollection());
+    m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
     m_hintAction->setEnabled(false);
 
     // View menu
-    m_moveHistoryAction = new KToggleAction(i18n("&Move history"), this);
+    m_moveHistoryAction = new KToggleAction(KIcon("lastmoves"), i18n("&Move history"), this);
     m_moveHistoryAction->setShortcut(i18n("M"));
     m_moveHistoryAction->setEnabled(false);
     actionCollection()->addAction("move_history", m_moveHistoryAction);

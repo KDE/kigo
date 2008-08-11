@@ -66,6 +66,7 @@ public:
 
 private slots:
     void updateStatistics();
+    void showScoreEstimates();
 
 private:
     GoEngine * const m_gameEngine;  ///<

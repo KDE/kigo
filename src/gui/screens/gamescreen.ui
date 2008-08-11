@@ -5,14 +5,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
-    <height>474</height>
+    <width>674</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout_2" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
    <item>
     <widget class="QFrame" name="gameFrame" >
      <property name="frameShape" >
@@ -24,89 +27,168 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="statisticsBox" >
+    <widget class="QGroupBox" name="infoBox" >
      <property name="sizePolicy" >
       <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize" >
-      <size>
-       <width>180</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize" >
-      <size>
-       <width>180</width>
-       <height>16777215</height>
-      </size>
-     </property>
      <property name="title" >
-      <string>Statistics</string>
+      <string/>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" >
-      <item>
-       <widget class="QGroupBox" name="scoreBox" >
-        <property name="title" >
-         <string>Score</string>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout" >
-         <item>
-          <widget class="QLabel" name="scoreLabel" >
-           <property name="text" >
-            <string>No scores yet</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
+     <layout class="QGridLayout" name="gridLayout_3" >
+      <item row="4" column="0" colspan="2" >
        <widget class="QGroupBox" name="capturesBox" >
         <property name="title" >
-         <string>Captures</string>
+         <string>White</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout" >
-         <item>
+        <layout class="QGridLayout" name="gridLayout" >
+         <item row="2" column="0" >
           <widget class="QLabel" name="label" >
            <property name="text" >
-            <string>White:</string>
+            <string>Captures:</string>
            </property>
            <property name="alignment" >
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
-         <item>
+         <item row="2" column="1" >
           <widget class="QLabel" name="whiteCapturesLabel" >
            <property name="text" >
             <string>0</string>
            </property>
+           <property name="alignment" >
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_4" >
+         <item row="1" column="0" >
+          <widget class="QLabel" name="label_2" >
            <property name="text" >
-            <string>Black:</string>
+            <string>Time:</string>
            </property>
            <property name="alignment" >
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QLabel" name="blackCapturesLabel" >
+         <item row="1" column="1" >
+          <widget class="QLabel" name="whiteTimeLabel" >
            <property name="text" >
-            <string>0</string>
+            <string>00:00</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2" >
+          <widget class="KLineEdit" name="whitePlayerName" >
+           <property name="enabled" >
+            <bool>true</bool>
+           </property>
+           <property name="text" >
+            <string>Name</string>
+           </property>
+           <property name="readOnly" >
+            <bool>true</bool>
+           </property>
+           <property name="urlDropsEnabled" >
+            <bool>false</bool>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
       </item>
-      <item>
+      <item row="5" column="0" colspan="2" >
+       <widget class="QGroupBox" name="groupBox" >
+        <property name="title" >
+         <string>Black</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2" >
+         <item row="2" column="0" >
+          <widget class="QLabel" name="label_4" >
+           <property name="text" >
+            <string>Captures:</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" >
+          <widget class="QLabel" name="blackCapturesLabel" >
+           <property name="text" >
+            <string>0</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" >
+          <widget class="QLabel" name="label_6" >
+           <property name="text" >
+            <string>Time:</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" >
+          <widget class="QLabel" name="blackTimeLabel" >
+           <property name="text" >
+            <string>00:00</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2" >
+          <widget class="KLineEdit" name="blackPlayerName" >
+           <property name="enabled" >
+            <bool>true</bool>
+           </property>
+           <property name="text" >
+            <string>Name</string>
+           </property>
+           <property name="readOnly" >
+            <bool>true</bool>
+           </property>
+           <property name="urlDropsEnabled" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="7" column="0" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>Komi:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" >
+       <widget class="QLabel" name="label_5" >
+        <property name="text" >
+         <string>Handicap:</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0" colspan="2" >
        <spacer name="verticalSpacer" >
         <property name="orientation" >
          <enum>Qt::Vertical</enum>
@@ -119,11 +201,117 @@
         </property>
        </spacer>
       </item>
+      <item row="1" column="0" colspan="2" >
+       <widget class="QLineEdit" name="playerLabel" >
+        <property name="focusPolicy" >
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="0" colspan="2" >
+       <widget class="KPushButton" name="countButton" >
+        <property name="text" >
+         <string>Count</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2" >
+       <widget class="Line" name="line" >
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0" colspan="2" >
+       <widget class="Line" name="line_2" >
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="1" >
+       <widget class="QSpinBox" name="handicapSpinBox" >
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols" >
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="suffix" >
+         <string> Stones</string>
+        </property>
+        <property name="minimum" >
+         <number>2</number>
+        </property>
+        <property name="maximum" >
+         <number>9</number>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="1" >
+       <widget class="QDoubleSpinBox" name="komiSpinBox" >
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols" >
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="suffix" >
+         <string> Points</string>
+        </property>
+        <property name="decimals" >
+         <number>1</number>
+        </property>
+        <property name="maximum" >
+         <double>50.000000000000000</double>
+        </property>
+        <property name="value" >
+         <double>4.500000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2" >
+       <widget class="QSpinBox" name="moveSpinBox" >
+        <property name="readOnly" >
+         <bool>true</bool>
+        </property>
+        <property name="buttonSymbols" >
+         <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="suffix" >
+         <string/>
+        </property>
+        <property name="prefix" >
+         <string>Move </string>
+        </property>
+        <property name="maximum" >
+         <number>1000000</number>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

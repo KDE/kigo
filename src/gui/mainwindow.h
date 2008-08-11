@@ -68,6 +68,7 @@ private slots:
     void undo();                            ///< Undo last move
     void redo();                            ///< Redo last move
     void pass();                            ///< Pass current move
+    void hint();
     void toggleDemoMode();                  ///<
     void showPreferences();                 ///< Show configuration dialog
     void updatePreferences();               ///< React on user changed configuration
@@ -91,6 +92,7 @@ private:
     KAction *m_newGameAction;
     KAction *m_loadGameAction;
     KAction *m_saveAsAction;                ///< Action to save the current game
+    KAction *m_editGameAction;
     KAction *m_firstMoveAction;             ///< Action to jump to the first move
     KAction *m_previousMoveAction;          ///< Action to jump to the previous move
     KAction *m_nextMoveAction;              ///< Action to jump to the next move

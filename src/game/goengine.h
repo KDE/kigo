@@ -33,7 +33,6 @@
 #define KGO_GOENGINE_H
 
 #include <QProcess>
-#include <QHash>
 #include <QList>
 #include <QPair>
 #include <QString>
@@ -123,7 +122,7 @@ public:
          * @param x The x coordinate of the stone
          * @param y The y coordinate of the stone
          */
-        Stone(char x = 0, int y = 0) : m_x(x), m_y(y) {}
+        explicit Stone(char x = 0, int y = 0) : m_x(x), m_y(y) {}
 
         /**
          * Constructor to set from a stone given as a string.
@@ -322,6 +321,8 @@ public:
      */
     bool setKomi(float komi);
 
+    float komi() const { return m_komi; }
+
     /**
      * Set the Go engine strength level.
      *
@@ -480,7 +481,7 @@ public:
      *
      * @param color Player to generate the list for
      */
-    QHash<Stone, float> topMoves(PlayerColor color);
+    QList<QPair<Stone, float> > topMoves(PlayerColor color);
 
     /**
      * List all legal moves for either color.
@@ -722,7 +723,7 @@ public:
     /**
      * Turn uncertainty reports from owl_attack and owl_defend on or off.
      *
-     * @param enabled Wether to turn uncertainty reports on or off
+     * @param enabled Whether to turn uncertainty reports on or off
      */
     bool reportUncertainty(bool enabled);
 
@@ -769,7 +770,7 @@ signals:
     /**
      * This signal is emitted when the current player changes.
      */
-    void currentPlayerChanged(PlayerColor);
+    void currentPlayerChanged(GoEngine::PlayerColor);
 
 private slots:
     /**
@@ -785,6 +786,7 @@ private:
     QString m_response;             ///< Stores the last answer from the engine
     QProcess m_process;             ///< To interact with the engine executable
     PlayerColor m_currentPlayer;    ///< Internal storage of current player
+    float m_komi;
     int m_fixedHandicap;            ///< Internal counter, engine does not allow to query that
 };
 

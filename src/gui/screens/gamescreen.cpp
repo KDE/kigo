@@ -29,6 +29,7 @@
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
 #include "gamescreen.h"
+#include "preferences.h"
 #include "game/goengine.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
@@ -49,22 +50,46 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     gameView->setInteractive(true);
     gameFrame->setLayout(new QHBoxLayout());
     gameFrame->layout()->addWidget(gameView);
+    connect(countButton, SIGNAL(clicked()), this, SLOT(showScoreEstimates()));
+
+    whitePlayerName->setText(Preferences::whitePlayerName());
+    blackPlayerName->setText(Preferences::blackPlayerName());
+    komiSpinBox->setValue(m_gameEngine->komi());
+    handicapSpinBox->setValue(m_gameEngine->fixedHandicap());
+
+    switch (m_gameEngine->currentPlayer()) {
+        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
+        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
+    }
 
     connect(m_gameEngine, SIGNAL(boardChanged()), this, SLOT(updateStatistics()));
 }
 
 void GameScreen::updateStatistics()
 {
-    GoEngine::Score score = m_gameEngine->estimateScore();
-    if (score.isValid()) {
-        QString scoreString;
-        score.player() == GoEngine::WhitePlayer ? scoreString.append(i18n("White")) : scoreString.append(i18n("Black"));
-        scoreString.append(i18n(" leads (+%1 points)\n", QString::number(score.score())));
-        scoreString.append(i18n("Bounds: %1 - %2", QString::number(score.lowerBound()), QString::number(score.upperBound())));
-        scoreLabel->setText(scoreString);
+    switch (m_gameEngine->currentPlayer()) {
+        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
+        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
     }
+
+    //TODO: Set move number
+
+    QPair<GoEngine::Stone, GoEngine::PlayerColor> lastMove = m_gameEngine->lastMove();
+    switch (lastMove.second) {
+        case GoEngine::WhitePlayer: moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
+        case GoEngine::BlackPlayer: moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
+        case GoEngine::InvalidPlayer: moveSpinBox->setSuffix(""); break;
+    }
+
     whiteCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::WhitePlayer)));
     blackCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::BlackPlayer)));
+}
+
+void GameScreen::showScoreEstimates()
+{
+    kDebug() << "Show score estimates ...";
 }
 
 } // End of namespace KGo

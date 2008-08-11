@@ -61,15 +61,14 @@ signals:
     void statusMessage(const QString &);
 
 public slots:
+    void resizeScene(int width, int height);
     void showMoveHistory(bool show);
     void showLabels(bool show);
-    void showHint();
-    void resizeScene(int width, int height);
+    void showHint(bool show);
 
 private slots:
     void updateStoneItems();
     void updateMoveHistoryItems();
-    void disableHint();
     void changeBoardSize(int size);
 
 private:
@@ -87,7 +86,6 @@ private:
     qreal m_cellSize;           ///< Width of board grid cell
     QSize m_stonePixmapSize;    ///< Size of Go stone pixmap
     int m_boardSize;            ///< Go board size (9, 13, 19, ..)
-
 
     QList<QGraphicsPixmapItem *> m_stoneItems;
     QList<QGraphicsTextItem *> m_moveHistoryItems;

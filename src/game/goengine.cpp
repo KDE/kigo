@@ -49,7 +49,8 @@ GoEngine::Stone::Stone(const QString &stone)
 
 bool GoEngine::Stone::isValid() const
 {
-    return m_y >= 1 && m_y <= 19 && m_x >= 'A' && m_x < 'T';
+    // Go coordinates are somewhat complicated ...
+    return m_y >= 1 && m_y <= 19 && m_x >= 'A' && m_x != 'I' && m_x <= 'T';
 }
 
 QByteArray GoEngine::Stone::toLatin1() const
@@ -100,7 +101,7 @@ QString GoEngine::Score::toString() const
         ret += "B+";
     else
         ret += "?+";
-    ret += QString::number(m_score) + " (" + QString::number(m_lowerBound) + " - " + QString::number(m_upperBound) + ")";
+    ret += QString::number(m_score) + " (" + QString::number(m_lowerBound) + " - " + QString::number(m_upperBound) + ')';
     return ret;
 }
 
@@ -108,7 +109,7 @@ QString GoEngine::Score::toString() const
 
 GoEngine::GoEngine()
     : m_currentPlayer(BlackPlayer)
-    , m_fixedHandicap(0)
+    , m_komi(0), m_fixedHandicap(0)
 {
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
@@ -162,7 +163,7 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
     m_process.write("loadsgf " + fileName.toLatin1() + ' ' + QByteArray::number(moveNumber) + '\n');
     if (waitResponse()) {
         //TODO: Set current player based on last turn in sgf file
-        //TODO: Check wether handicap was placed
+        //TODO: Check whether handicap was placed
         changeCurrentPlayer(InvalidPlayer);
         emit boardChanged();
         return true;
@@ -245,7 +246,11 @@ bool GoEngine::setKomi(float komi)
     kDebug() << "Set komi to" << komi;
 
     m_process.write("komi " + QByteArray::number(komi) + '\n');
-    return waitResponse();
+    if (waitResponse()) {
+        m_komi = komi;
+        return true;
+    } else
+        return false;
 }
 
 bool GoEngine::setLevel(int level)
@@ -554,28 +559,25 @@ bool GoEngine::isLegal(const Stone &field, PlayerColor color)
     return waitResponse() && m_response == "1";
 }
 
-QHash<GoEngine::Stone, float> GoEngine::topMoves(PlayerColor color)
+QList<QPair<GoEngine::Stone, float> > GoEngine::topMoves(PlayerColor color)
 {
-    QHash<Stone, float> hash;
+    QList<QPair<Stone, float> > list;
     if (color == InvalidPlayer)
-        return hash;
+        return list;
 
-    QByteArray msg("top_moves_");
     if (color == WhitePlayer)
-        msg.append("white\n");
+        m_process.write("top_moves_white\n");
     else
-        msg.append("black\n");
-    m_process.write(msg);
+        m_process.write("top_moves_black\n");
     if (waitResponse() && !m_response.isEmpty()) {
-        QStringList stoneAndWeightsList = m_response.split(' ');
-        if (stoneAndWeightsList.size() % 2 == 0) {
-            //TODO: Reimplement
-            /*foreach (const QString &entry, stoneAndWeightsList) {
-                list.append(
-            }*/
-        }
+        kDebug() << "Generating top moves...";
+        QStringList parts = m_response.split(' ');
+        if (parts.size() % 2 == 0)
+            for (int i = 0; i < parts.size(); i += 2)
+                list.append(QPair<Stone, float>(Stone(parts[i]), QString(parts[i + 1]).toFloat()));
     }
-    return hash;
+    kDebug() << "Response was" << m_response;
+    return list;
 }
 
 QList<GoEngine::Stone> GoEngine::legalMoves(PlayerColor color)
@@ -686,6 +688,9 @@ GoEngine::DragonStatus GoEngine::dragonStatus(const Stone &field)
 
 bool GoEngine::isSameDragon(const Stone &field1, const Stone &field2)
 {
+    if (!field1.isValid() || !field2.isValid())
+        return false;
+
     m_process.write("same_dragon " + field1.toLatin1() + ' ' + field2.toLatin1() + '\n');
     return waitResponse() && m_response == "1";
 }
@@ -920,6 +925,8 @@ bool GoEngine::waitResponse()
     // is invoked when this happens and we continue after the next line.
     m_process.waitForReadyRead();
     m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
+    kDebug() << "Raw response:" << m_response;
+
 
     if (m_response.size() < 1)
         return false;

@@ -57,31 +57,6 @@ GoEngine * const GameScene::engine() const
     return m_engine;
 }
 
-void GameScene::showMoveHistory(bool show)
-{
-    kDebug() << "Show move history:" << show;
-    m_showMoveHistory = show;
-    updateMoveHistoryItems();
-}
-
-void GameScene::showLabels(bool show)
-{
-    m_showLabels = show;
-    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
-}
-
-void GameScene::showHint()
-{
-    kDebug() << "Show hint";
-
-    int halfCellSize = m_cellSize / 2;
-
-    //kDebug() << "Hint:" << m_engine->topMoves(m_engine->currentPlayer());
-
-    emit statusMessage(i18n("The computer assumes these are the best moves..."));
-    QTimer::singleShot(Preferences::hintVisibleTime(), this, SLOT(disableHint()));
-}
-
 void GameScene::resizeScene(int width, int height)
 {
     setSceneRect(0, 0, width, height);
@@ -95,9 +70,67 @@ void GameScene::resizeScene(int width, int height)
     m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
-    disableHint();
+    showHint(false);
     updateStoneItems();             // Resize means redraw of board items (stones)
     updateMoveHistoryItems();
+}
+
+void GameScene::showMoveHistory(bool show)
+{
+    kDebug() << "Show move history:" << show;
+    m_showMoveHistory = show;
+    updateMoveHistoryItems();
+}
+
+void GameScene::showLabels(bool show)
+{
+    m_showLabels = show;
+    invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
+}
+
+void GameScene::showHint(bool show)
+{
+    kDebug() << "Show hint" << show;
+    QGraphicsPixmapItem *item;
+
+    if (show) {
+        int halfCellSize = m_cellSize / 2;
+
+        GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
+
+        QPair<GoEngine::Stone, float> entry;
+        foreach (entry, m_engine->topMoves(currentPlayer)) {
+            QPixmap stonePixmap;
+            if (currentPlayer == GoEngine::WhitePlayer)
+                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+            else if (currentPlayer == GoEngine::BlackPlayer)
+                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+
+            QPainter painter(&stonePixmap);
+            if (currentPlayer == GoEngine::WhitePlayer)
+                painter.setPen(Qt::black);
+            else if (currentPlayer == GoEngine::BlackPlayer)
+                painter.setPen(Qt::white);
+            QFont f = painter.font();
+            f.setPointSizeF(m_cellSize / 4);
+            painter.setFont(f);
+            painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(entry.second));
+            painter.end();
+
+            item = addPixmap(stonePixmap);
+            int xOff = entry.first.x() >= 'I' ? entry.first.x() - 'A' - 1 : entry.first.x() - 'A';
+            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
+                                 m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
+            m_hintItems.append(item);
+        }
+
+        emit statusMessage(i18n("The computer assumes these are the best moves..."));
+        QTimer::singleShot(Preferences::hintVisibleTime() * 1000, this, SLOT(showHint(false)));
+    } else {
+        foreach (item, m_hintItems)
+            removeItem(item);
+        m_hintItems.clear();
+    }
 }
 
 void GameScene::updateStoneItems()
@@ -113,13 +146,15 @@ void GameScene::updateStoneItems()
 
     foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
-        item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
+        int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
         m_stoneItems.append(item);
     }
     foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
-        item->setPos(QPointF(m_gridRect.x() + (stone.x() - 'A') * m_cellSize - halfCellSize,
+        int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
         m_stoneItems.append(item);
     }
@@ -139,18 +174,12 @@ void GameScene::updateMoveHistoryItems()
         QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > history = m_engine->moveHistory();
         for (int i = history.size(); i > 0; i--) {
             item = addText(QString::number(i));
-            item->setPos(QPointF(m_gridRect.x() + (history[i].first.x() - 'A') * m_cellSize - halfCellSize,
+            int xOff = history[i].first.x() >= 'I' ? history[i].first.x() - 'A' - 1 : history[i].first.x() - 'A';
+            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                                  m_gridRect.y() + (m_boardSize - history[i].first.y()) * m_cellSize - halfCellSize));
             m_moveHistoryItems.append(item);
         }
     }
-}
-
-void GameScene::disableHint()
-{
-    foreach (QGraphicsPixmapItem *item, m_hintItems)
-        removeItem(item);
-    m_hintItems.clear();
 }
 
 void GameScene::changeBoardSize(int size)
@@ -165,9 +194,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QPixmap map;
     if (m_mouseRect.contains(event->scenePos())) {
         if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
-            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize);
+            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
         else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
-            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize);
+            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
     }
     emit cursorPixmapChanged(map);
 }
@@ -180,10 +209,14 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
             return;
 
-        disableHint();  // A click invalidates the move hint
+        showHint(false);  // A click invalidates the move hint
 
-        // Convert to Go board coordinates and try to play the move
+        // Convert to Go board coordinates and try to play the move. GnuGo coordinates don't use the 'I'
+        // column, if the row is bigger than 'I', we have to add 1 to jump over that (strange, eh?).
+        if (row >= 8)
+            row += 1;
         GoEngine::Stone move('A' + row, m_boardSize - col);
+
         if (m_engine->playMove(move))
             emit statusMessage(i18n("Made move at %1", move.toString()));
         else
@@ -206,6 +239,10 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 
         if (m_showLabels) {
             QChar c('A' + i);
+            // GnuGo does not use the 'I' column (for whatever strange reason), we have to skip that too
+            if (i >= 8)
+                c = QChar('A' + i + 1);
+
             QString n = QString::number(m_boardSize - i);
             QFont f = painter->font();
             f.setPointSizeF(m_cellSize / 4);

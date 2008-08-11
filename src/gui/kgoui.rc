@@ -4,6 +4,7 @@
     <MenuBar>
         <Menu name="game">
             <text>&amp;Game</text>
+            <Action name="game_edit" />
             <Action name="game_seats" />
         </Menu>
         <Menu name="move">
