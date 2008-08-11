@@ -82,9 +82,6 @@
              <property name="text" >
               <string>Name</string>
              </property>
-             <property name="readOnly" >
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item row="0" column="1" >
