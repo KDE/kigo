@@ -77,7 +77,6 @@ void GameScene::resizeScene(int width, int height)
 
 void GameScene::showMoveHistory(bool show)
 {
-    kDebug() << "Show move history:" << show;
     m_showMoveHistory = show;
     updateMoveHistoryItems();
 }
@@ -90,7 +89,6 @@ void GameScene::showLabels(bool show)
 
 void GameScene::showHint(bool show)
 {
-    kDebug() << "Show hint" << show;
     QGraphicsPixmapItem *item;
 
     if (show) {
@@ -112,7 +110,7 @@ void GameScene::showHint(bool show)
             else if (currentPlayer == GoEngine::BlackPlayer)
                 painter.setPen(Qt::white);
             QFont f = painter.font();
-            f.setPointSizeF(m_cellSize / 4);
+            f.setPointSizeF(m_cellSize / 5);
             painter.setFont(f);
             painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(entry.second));
             painter.end();
@@ -125,7 +123,7 @@ void GameScene::showHint(bool show)
         }
 
         emit statusMessage(i18n("The computer assumes these are the best moves..."));
-        QTimer::singleShot(Preferences::hintVisibleTime() * 1000, this, SLOT(showHint(false)));
+        QTimer::singleShot(Preferences::hintVisibleTime() * 1000, this, SLOT(showHint()));
     } else {
         foreach (item, m_hintItems)
             removeItem(item);
@@ -135,7 +133,6 @@ void GameScene::showHint(bool show)
 
 void GameScene::updateStoneItems()
 {
-    kDebug() << "Update board";
     QGraphicsPixmapItem *item;
     int halfCellSize = m_cellSize / 2;
 
@@ -212,7 +209,7 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         showHint(false);  // A click invalidates the move hint
 
         // Convert to Go board coordinates and try to play the move. GnuGo coordinates don't use the 'I'
-        // column, if the row is bigger than 'I', we have to add 1 to jump over that (strange, eh?).
+        // column, if the row is bigger than 'I', we have to add 1 to jump over that.
         if (row >= 8)
             row += 1;
         GoEngine::Stone move('A' + row, m_boardSize - col);

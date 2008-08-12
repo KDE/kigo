@@ -195,23 +195,23 @@ public:
          * Returns the amount of points (aka score) which the leading
          * player has more than the other.
          */
-        int score() const { return m_score; }
+        float score() const { return m_score; }
 
         /**
          * Returns the lower bound for a score estimate.
          */
-        int lowerBound() const { return m_lowerBound; }
+        float lowerBound() const { return m_lowerBound; }
 
         /**
          * Returns the upper bound for a score estimate.
          */
-        int upperBound() const { return m_upperBound; }
+        float upperBound() const { return m_upperBound; }
 
     private:
         PlayerColor m_player;   ///< The player which has more points
-        int m_score;            ///< The amount of points the player leads with
-        int m_lowerBound;       ///< Estimate lower bound
-        int m_upperBound;       ///< Estimate upper bound
+        float m_score;          ///< The amount of points the player leads with
+        float m_lowerBound;     ///< Estimate lower bound
+        float m_upperBound;     ///< Estimate upper bound
     };
 
     ////////////////////////////////////////////////////////////////////
@@ -329,6 +329,8 @@ public:
      * @param level The strength level (from 1 to 10)
      */
     bool setLevel(int level);
+
+    int level() const { return m_level; }
 
     /**
      * Set up fixed placement handicap stones.
@@ -772,6 +774,9 @@ signals:
      */
     void currentPlayerChanged(GoEngine::PlayerColor);
 
+    void waitStarted();
+    void waitFinished();
+
 private slots:
     /**
      * Wait gracefully for a response from the Go engine. The returned string
@@ -786,6 +791,7 @@ private:
     QString m_response;             ///< Stores the last answer from the engine
     QProcess m_process;             ///< To interact with the engine executable
     PlayerColor m_currentPlayer;    ///< Internal storage of current player
+    int m_level;
     float m_komi;
     int m_fixedHandicap;            ///< Internal counter, engine does not allow to query that
 };

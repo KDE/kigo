@@ -34,7 +34,6 @@
 #include <KDebug>
 
 #include <QFile>
-#include <QApplication>
 
 namespace KGo {
 
@@ -80,10 +79,13 @@ GoEngine::Score::Score(const QString &scoreString)
         else
             m_player = InvalidPlayer;
         int i = scoreString.indexOf(' ');
-        m_score = scoreString.mid(2, i - 1).toInt();
-        //m_upperBound = scoreString.mid(
-        //TODO: Implement Score class, the bounds should be considered optional and can
-        // be the same as the score if none given
+        m_score = scoreString.mid(2, i - 1).toFloat();
+        QString upperBound = scoreString.section(' ', 3, 3);
+        upperBound.chop(1);
+        m_upperBound = upperBound.toFloat();
+        QString lowerBound = scoreString.section(' ', 5, 5);
+        lowerBound.chop(1);
+        m_lowerBound = lowerBound.toFloat();
     }
 }
 
@@ -109,7 +111,7 @@ QString GoEngine::Score::toString() const
 
 GoEngine::GoEngine()
     : m_currentPlayer(BlackPlayer)
-    , m_komi(0), m_fixedHandicap(0)
+    , m_level(0), m_komi(0), m_fixedHandicap(0)
 {
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
@@ -123,7 +125,6 @@ bool GoEngine::run(const QString &command)
 {
     quit();                                         // Close old session if there's one
     m_process.start(command.toLatin1());            // Start new process with provided command
-
     if (!m_process.waitForStarted()) {              // Blocking wait for process start
         m_response = "Execute Go engine command \"" + command + "\" failed!";
         return false;
@@ -131,11 +132,8 @@ bool GoEngine::run(const QString &command)
     m_engineCommand = command;                      // Save for retrieval
 
     kDebug() << "Starting new GTP engine session...";
-
-    if (protocolVersion() >= 0) {                   // Check for supported GTP protocol version
-        clearBoard();                               // Start with blank board
-    } else {
-        kDebug() << "Protocol version error:" << protocolVersion();
+    if (protocolVersion() <= 0) {                   // Check for supported GTP protocol version
+        kDebug() << "Protocol version error";
         quit();
         return false;
     }
@@ -260,7 +258,11 @@ bool GoEngine::setLevel(int level)
     kDebug() << "Set difficulty level to" << level;
 
     m_process.write("level " + QByteArray::number(level) + '\n');
-    return waitResponse();
+    if (waitResponse()) {
+        m_level = level;
+        return true;
+    } else
+        return false;
 }
 
 bool GoEngine::setFixedHandicap(int handicap)
@@ -435,6 +437,7 @@ GoEngine::PlayerColor GoEngine::currentPlayer() const
 QPair<GoEngine::Stone, GoEngine::PlayerColor> GoEngine::lastMove()
 {
     QPair<Stone, PlayerColor> pair(Stone(), InvalidPlayer);
+
     m_process.write("last_move\n");
     if (waitResponse()) {
         if (m_response.startsWith("white")) {
@@ -576,7 +579,6 @@ QList<QPair<GoEngine::Stone, float> > GoEngine::topMoves(PlayerColor color)
             for (int i = 0; i < parts.size(); i += 2)
                 list.append(QPair<Stone, float>(Stone(parts[i]), QString(parts[i + 1]).toFloat()));
     }
-    kDebug() << "Response was" << m_response;
     return list;
 }
 
@@ -921,28 +923,27 @@ bool GoEngine::waitResponse()
         return false;
     }
 
-    // Block and wait till command execution finished. The slot GoEngine::readStandardOutput()
-    // is invoked when this happens and we continue after the next line.
-    m_process.waitForReadyRead();
-    m_response = m_process.readAllStandardOutput(); // Reponse arrived, fetch all stdin contents
-    kDebug() << "Raw response:" << m_response;
-
+    // Block and wait till command execution finished. We have to do this till '\n\n' arives in our
+    // input buffer to show that the Go engine is done processing our request.
+    m_response.clear();
+    emit waitStarted();
+    do {
+        m_process.waitForReadyRead();
+        m_response += m_process.readAllStandardOutput();
+    } while(!m_response.endsWith("\n\n"));
+    emit waitFinished();
 
     if (m_response.size() < 1)
         return false;
-
     QChar tmp = m_response[0];                      // First message character indicates success or error
     m_response.remove(0, 2);                        // Remove the first two chars (e.g. "? " or "= ")
-    m_response.remove(m_response.size() - 2, 2);    // Remove the two trailing newlines
-
+    m_response = m_response.trimmed();              // Remove further whitespaces, newlines, ...
     return tmp != '?';                              // '?' Means the engine didn't understand the query
 }
 
 void GoEngine::changeCurrentPlayer(PlayerColor color)
 {
     m_currentPlayer = color;
-    if (m_currentPlayer == InvalidPlayer)
-        kWarning() << "Current player is invalid!";
     emit currentPlayerChanged(m_currentPlayer);
 }
 
