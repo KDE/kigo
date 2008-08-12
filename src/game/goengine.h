@@ -390,6 +390,8 @@ public:
      */
     bool undoMove(int i = 1);
 
+    int moveNumber() const { return m_moveNumber; }
+
     /////////////////////////////////////////////////////////////////////
     // GTP: Retractable moves
     /////////////////////////////////////////////////////////////////////
@@ -794,6 +796,7 @@ private:
     int m_level;
     float m_komi;
     int m_fixedHandicap;            ///< Internal counter, engine does not allow to query that
+    int m_moveNumber;
 };
 
 } // End of namespace KGo

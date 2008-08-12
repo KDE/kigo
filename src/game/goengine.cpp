@@ -112,6 +112,7 @@ QString GoEngine::Score::toString() const
 GoEngine::GoEngine()
     : m_currentPlayer(BlackPlayer)
     , m_level(0), m_komi(0), m_fixedHandicap(0)
+    , m_moveNumber(0)
 {
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
@@ -325,6 +326,7 @@ bool GoEngine::playMove(const Stone &field, PlayerColor color)
     m_process.write(msg);
     if (waitResponse()) {
         color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        m_moveNumber++;
         emit boardChanged();
         return true;
     } else
@@ -345,6 +347,7 @@ bool GoEngine::passMove(PlayerColor color)
     m_process.write(msg);
     if (waitResponse()) {
         color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        m_moveNumber++;
         emit boardChanged();
         return true;
     } else
@@ -364,6 +367,7 @@ bool GoEngine::generateMove(PlayerColor color)
     m_process.write(msg);
     if (waitResponse()) {
         color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        m_moveNumber++;
         emit boardChanged();
         return true;
     } else
@@ -391,6 +395,7 @@ bool GoEngine::undoMove(int i)
                     changeCurrentPlayer(BlackPlayer);
             }
         }
+        m_moveNumber--;
         emit boardChanged();
         return true;
     } else
