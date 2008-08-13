@@ -59,11 +59,8 @@ SetupScreen::~SetupScreen()
 
 void SetupScreen::setupNewGame()
 {
-    gameSetupStack->setCurrentIndex(0);
     loadSettings();
-
-    m_gameEngine->setLevel(Preferences::difficulty());
-    m_gameEngine->setKomi(Preferences::komi());
+    gameSetupStack->setCurrentIndex(0);
     m_gameEngine->setBoardSize(Preferences::boardSize());
     if (Preferences::fixedHandicapEnabled())
         m_gameEngine->setFixedHandicap(Preferences::fixedHandicapValue());
@@ -73,69 +70,17 @@ void SetupScreen::setupLoadedGame(const QString &fileName)
 {
     Q_ASSERT(!fileName.isEmpty());
 
-    gameSetupStack->setCurrentIndex(1);
     loadSettings();
-
+    gameSetupStack->setCurrentIndex(1);
     m_gameEngine->loadSgf(fileName);
     //TODO: Set max value of startMoveSpinBox
     //TODO: Display all related game information in the info box
-}
-
-void SetupScreen::on_whitePlayerCombo_currentIndexChanged(const QString &text)
-{
-    if (text == tr("Human")) {
-        whitePlayerName->setEnabled(true);
-        if (blackPlayerCombo->currentText() == tr("Human")) {
-            difficultyBox->setEnabled(false);
-            difficultySlider->setEnabled(false);
-        } else {
-            difficultyBox->setEnabled(true);
-            difficultySlider->setEnabled(true);
-        }
-    } else if (text == tr("Computer")) {
-        whitePlayerName->setEnabled(false);
-        if (blackPlayerCombo->currentText() == tr("Computer")) {
-            difficultyBox->setEnabled(false);
-            difficultySlider->setEnabled(false);
-        } else {
-            difficultyBox->setEnabled(true);
-            difficultySlider->setEnabled(true);
-        }
-    }
-}
-
-void SetupScreen::on_blackPlayerCombo_currentIndexChanged(const QString &text)
-{
-    if (text == tr("Human")) {
-        blackPlayerName->setEnabled(true);
-        if (whitePlayerCombo->currentText() == tr("Human")) {
-            difficultyBox->setEnabled(false);
-            difficultySlider->setEnabled(false);
-        } else {
-            difficultyBox->setEnabled(true);
-            difficultySlider->setEnabled(true);
-        }
-    } else if (text == tr("Computer")) {
-        blackPlayerName->setEnabled(false);
-        if (whitePlayerCombo->currentText() == tr("Computer")) {
-            difficultyBox->setEnabled(false);
-            difficultySlider->setEnabled(false);
-        } else {
-            difficultyBox->setEnabled(true);
-            difficultySlider->setEnabled(true);
-        }
-    }
 }
 
 void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
 {
     Q_UNUSED(value);
     //TODO: Show the corresponding board
-}
-
-void SetupScreen::on_difficultySlider_valueChanged(int value)
-{
-    m_gameEngine->setLevel(value);                  // Go engine difficulty level
 }
 
 void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
@@ -177,14 +122,32 @@ void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 
 void SetupScreen::on_startButton_clicked()
 {
-    saveSettings();                                 // Save current game configuration
+    saveSettings();
+    m_gameEngine->setPlayerStrength(GoEngine::WhitePlayer, Preferences::whitePlayerStrength());
+    if (Preferences::whitePlayerHuman())
+        m_gameEngine->setPlayerType(GoEngine::WhitePlayer, GoEngine::HumanPlayer);
+    else
+        m_gameEngine->setPlayerType(GoEngine::WhitePlayer, GoEngine::ComputerPlayer);
+
+    m_gameEngine->setPlayerStrength(GoEngine::BlackPlayer, Preferences::blackPlayerStrength());
+    if (Preferences::blackPlayerHuman())
+        m_gameEngine->setPlayerType(GoEngine::BlackPlayer, GoEngine::HumanPlayer);
+    else
+        m_gameEngine->setPlayerType(GoEngine::BlackPlayer, GoEngine::ComputerPlayer);
+
+    // Set additional configuration based on game type
+    if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game
+
+        m_gameEngine->setKomi(Preferences::komi());
+    } else {                                        // The user configured a loaded game
+
+    }
     emit startClicked();
 }
 
 void SetupScreen::updateHandicapBox()
 {
-    kDebug() << "Update fixed handicap box";
-    int maxFixedHandicap = m_gameEngine->maximumFixedHandicap();
+    int maxFixedHandicap = m_gameEngine->fixedHandicapMax();
 
     if (maxFixedHandicap == 0) {
         handicapGroupBox->setEnabled(false);
@@ -209,31 +172,21 @@ void SetupScreen::updateHandicapBox()
 void SetupScreen::loadSettings()
 {
     kDebug() << "Load settings";
-    if (Preferences::whitePlayerHuman()) {
-        whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(tr("Human")));
-        whitePlayerName->setEnabled(true);
-    } else {
-        whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(tr("Computer")));
-        whitePlayerName->setEnabled(false);
-    }
+
     whitePlayerName->setText(Preferences::whitePlayerName());
+    whiteStrengthSlider->setValue(Preferences::whitePlayerStrength());
+    if (Preferences::whitePlayerHuman())
+        whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(i18n("Human")));
+    else
+        whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(i18n("Computer")));
 
-    if (Preferences::blackPlayerHuman()) {
-        blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(tr("Human")));
-        blackPlayerName->setEnabled(true);
-    } else {
-        blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(tr("Computer")));
-        blackPlayerName->setEnabled(false);
-    }
     blackPlayerName->setText(Preferences::blackPlayerName());
+    blackStrengthSlider->setValue(Preferences::blackPlayerStrength());
+    if (Preferences::blackPlayerHuman())
+        blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(i18n("Human")));
+    else
+        blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(i18n("Computer")));
 
-    if ((Preferences::blackPlayerHuman() && !Preferences::whitePlayerHuman())
-        || (!Preferences::blackPlayerHuman() && Preferences::whitePlayerHuman())) {
-        difficultyBox->setEnabled(true);
-        difficultySlider->setEnabled(true);
-    }
-
-    difficultySlider->setValue(Preferences::difficulty());
     komiSpinBox->setValue(Preferences::komi());
     handicapGroupBox->setChecked(Preferences::fixedHandicapEnabled());
     handicapSpinBox->setValue(Preferences::fixedHandicapValue());
@@ -259,12 +212,14 @@ void SetupScreen::loadSettings()
 void SetupScreen::saveSettings()
 {
     kDebug () << "Save settings";
-    Preferences::setWhitePlayerHuman(whitePlayerCombo->currentText() == tr("Human"));
     Preferences::setWhitePlayerName(whitePlayerName->text());
-    Preferences::setBlackPlayerHuman(blackPlayerCombo->currentText() == tr("Human"));
-    Preferences::setBlackPlayerName(blackPlayerName->text());
+    Preferences::setWhitePlayerStrength(whiteStrengthSlider->value());
+    Preferences::setWhitePlayerHuman(whitePlayerCombo->currentText() == i18n("Human"));
 
-    Preferences::setDifficulty(difficultySlider->value());
+    Preferences::setBlackPlayerName(blackPlayerName->text());
+    Preferences::setBlackPlayerStrength(blackStrengthSlider->value());
+    Preferences::setBlackPlayerHuman(blackPlayerCombo->currentText() == i18n("Human"));
+
     Preferences::setKomi(komiSpinBox->value());
     Preferences::setFixedHandicapEnabled(handicapGroupBox->isChecked());
     Preferences::setFixedHandicapValue(handicapSpinBox->value());

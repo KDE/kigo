@@ -11,7 +11,6 @@
             <text>&amp;Move</text>
             <Action name="move_hint" />
             <Action name="move_history" />
-            <Action name="move_demo" />
         </Menu>
     </MenuBar>
     <ToolBar name="mainToolBar">
@@ -27,6 +26,5 @@
         <Separator />
         <Action name="move_hint" />
         <Action name="move_history" />
-        <Action name="move_demo" />
     </ToolBar>
 </gui>

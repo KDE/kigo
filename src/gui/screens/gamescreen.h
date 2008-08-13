@@ -65,6 +65,7 @@ public:
     explicit GameScreen(GameScene *scene, QWidget *parent = 0);
 
 private slots:
+    void showEvent(QShowEvent *);
     void updateStatistics();
     void showScoreEstimates();
 

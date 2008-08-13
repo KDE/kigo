@@ -39,6 +39,7 @@ namespace KGo {
 GameView::GameView(GameScene *scene, QWidget *parent)
     : QGraphicsView(scene, parent)
     , m_gameScene(scene)
+    , m_renderInactive(false)
 {
     setCacheMode(QGraphicsView::CacheBackground);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -74,13 +75,11 @@ void GameView::resizeEvent(QResizeEvent *event)
 
 void GameView::drawForeground(QPainter *painter, const QRectF &rect)
 {
-    // Visually show the user that the current view is inactive by rendering
-    // a semi-transparent grey rectangle on top of the game scene.
-    if (!isInteractive()) {
-        painter->save();
-        painter->setBrush(QBrush(QColor(70, 70, 70, 100), Qt::Dense4Pattern));
+    if (m_renderInactive) {
+        // Visually show the user that the current view is inactive by rendering
+        // a semi-transparent grey rectangle on top of the game scene.
+        painter->setBrush(QBrush(QColor(70, 70, 70, 80), Qt::Dense4Pattern));
         painter->drawRect(rect);
-        painter->restore();
     }
 }
 

@@ -38,23 +38,24 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QGraphicsPixmapItem>
 #include <QPainter>
-#include <QTimer>
 
 namespace KGo {
 
 GameScene::GameScene()
     : m_engine(new GoEngine())
-    , m_showMoveHistory(false)
     , m_showLabels(Preferences::showBoardLabels())
+    , m_showHint(false)
+    , m_showMoveHistory(Preferences::showMoveHistory())
     , m_boardSize(Preferences::boardSize())
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
+    connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
 }
 
-GoEngine * const GameScene::engine() const
+GameScene::~GameScene()
 {
-    return m_engine;
+    delete m_engine;
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -70,15 +71,8 @@ void GameScene::resizeScene(int width, int height)
     m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
-    showHint(false);
     updateStoneItems();             // Resize means redraw of board items (stones)
-    updateMoveHistoryItems();
-}
-
-void GameScene::showMoveHistory(bool show)
-{
-    m_showMoveHistory = show;
-    updateMoveHistoryItems();
+    updateHintItems();
 }
 
 void GameScene::showLabels(bool show)
@@ -89,46 +83,14 @@ void GameScene::showLabels(bool show)
 
 void GameScene::showHint(bool show)
 {
-    QGraphicsPixmapItem *item;
+    m_showHint = show;
+    updateHintItems();
+}
 
-    if (show) {
-        int halfCellSize = m_cellSize / 2;
-
-        GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
-
-        QPair<GoEngine::Stone, float> entry;
-        foreach (entry, m_engine->topMoves(currentPlayer)) {
-            QPixmap stonePixmap;
-            if (currentPlayer == GoEngine::WhitePlayer)
-                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-            else if (currentPlayer == GoEngine::BlackPlayer)
-                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
-
-            QPainter painter(&stonePixmap);
-            if (currentPlayer == GoEngine::WhitePlayer)
-                painter.setPen(Qt::black);
-            else if (currentPlayer == GoEngine::BlackPlayer)
-                painter.setPen(Qt::white);
-            QFont f = painter.font();
-            f.setPointSizeF(m_cellSize / 5);
-            painter.setFont(f);
-            painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(entry.second));
-            painter.end();
-
-            item = addPixmap(stonePixmap);
-            int xOff = entry.first.x() >= 'I' ? entry.first.x() - 'A' - 1 : entry.first.x() - 'A';
-            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
-                                 m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
-            m_hintItems.append(item);
-        }
-
-        emit statusMessage(i18n("The computer assumes these are the best moves..."));
-        QTimer::singleShot(Preferences::hintVisibleTime() * 1000, this, SLOT(showHint()));
-    } else {
-        foreach (item, m_hintItems)
-            removeItem(item);
-        m_hintItems.clear();
-    }
+void GameScene::showMoveHistory(bool show)
+{
+    m_showMoveHistory = show;
+    updateStoneItems();
 }
 
 void GameScene::updateStoneItems()
@@ -155,27 +117,74 @@ void GameScene::updateStoneItems()
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
         m_stoneItems.append(item);
     }
-}
-
-void GameScene::updateMoveHistoryItems()
-{
-    kDebug() << "Update move history";
-    QGraphicsTextItem *item;
-    int halfCellSize = m_cellSize / 2;
-
-    foreach (item, m_moveHistoryItems)
-        removeItem(item);
-    m_moveHistoryItems.clear();
 
     if (m_showMoveHistory) {
         QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > history = m_engine->moveHistory();
-        for (int i = history.size(); i > 0; i--) {
-            item = addText(QString::number(i));
+        for (int i = 0; i < history.size(); i++) {
             int xOff = history[i].first.x() >= 'I' ? history[i].first.x() - 'A' - 1 : history[i].first.x() - 'A';
-            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
-                                 m_gridRect.y() + (m_boardSize - history[i].first.y()) * m_cellSize - halfCellSize));
-            m_moveHistoryItems.append(item);
+            QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
+                                  m_gridRect.y() + (m_boardSize - history[i].first.y()) * m_cellSize);
+
+            QGraphicsPixmapItem *item = static_cast<QGraphicsPixmapItem *>(itemAt(pos));
+            if (item) {
+                // We found an item in the scene that is in our move history, so we paint it's move number
+                // on top of the item and that's all.
+                //TODO: Check for existing move number to do special treatment
+                QPixmap pixmap = item->pixmap();
+                QPainter painter(&pixmap);
+                if (history[i].second == GoEngine::WhitePlayer)
+                    painter.setPen(Qt::black);
+                else if (history[i].second == GoEngine::BlackPlayer)
+                    painter.setPen(Qt::white);
+                QFont f = painter.font();
+                f.setPointSizeF(m_cellSize / 4);
+                painter.setFont(f);
+                painter.drawText(pixmap.rect(), Qt::AlignCenter, QString::number(i));
+                item->setPixmap(pixmap);
+            }
         }
+    }
+}
+
+void GameScene::updateHintItems()
+{
+    QGraphicsPixmapItem *item;
+
+    // Old hint is invalid, remove it first
+    foreach (QGraphicsPixmapItem *item, m_hintItems)
+        removeItem(item);
+    m_hintItems.clear();
+
+    if (m_showHint) {
+        int halfCellSize = m_cellSize / 2;
+        GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
+
+        QPair<GoEngine::Stone, float> entry;
+        foreach (entry, m_engine->topMoves(currentPlayer)) {
+            QPixmap stonePixmap;
+            if (currentPlayer == GoEngine::WhitePlayer)
+                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+            else if (currentPlayer == GoEngine::BlackPlayer)
+                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+
+            QPainter painter(&stonePixmap);
+            if (currentPlayer == GoEngine::WhitePlayer)
+                painter.setPen(Qt::black);
+            else if (currentPlayer == GoEngine::BlackPlayer)
+                painter.setPen(Qt::white);
+            QFont f = painter.font();
+            f.setPointSizeF(m_cellSize / 4);
+            painter.setFont(f);
+            painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(entry.second));
+            painter.end();
+
+            item = addPixmap(stonePixmap);
+            int xOff = entry.first.x() >= 'I' ? entry.first.x() - 'A' - 1 : entry.first.x() - 'A';
+            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
+                                 m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
+            m_hintItems.append(item);
+        }
+        emit statusMessage(i18n("The Go engine recommends these moves ..."));
     }
 }
 
@@ -205,8 +214,6 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
         if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
             return;
-
-        showHint(false);  // A click invalidates the move hint
 
         // Convert to Go board coordinates and try to play the move. GnuGo coordinates don't use the 'I'
         // column, if the row is bigger than 'I', we have to add 1 to jump over that.

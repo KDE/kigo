@@ -50,6 +50,12 @@
             <label>The name of the black player</label>
             <default>Black Player</default>
         </entry>
+        <entry name="BlackPlayerStrength" type="Int">
+            <label>The strength of the black player</label>
+            <default>10</default>
+            <min>1</min>
+            <max>10</max>
+        </entry>
         <entry name="WhitePlayerHuman" type="Bool">
             <label>Is white a human player?</label>
             <default>false</default>
@@ -58,13 +64,12 @@
             <label>The name of the white player</label>
             <default>White Player</default>
         </entry>
-        <entry name="Difficulty" type="Int">
-            <label>Difficulty level</label>
-            <tooltip>The difficulty level controls the computer player's strength</tooltip>
+        <entry name="WhitePlayerStrength" type="Int">
+            <label>The strength of the white player</label>
             <default>10</default>
             <min>1</min>
             <max>10</max>
-        </entry> 
+        </entry>
         <entry name="BoardSize" type="Int">
             <label>Go board size</label>
             <tooltip></tooltip>

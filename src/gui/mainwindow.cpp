@@ -33,6 +33,7 @@
 #include "game/goengine.h"
 #include "gui/config.h"
 #include "gui/graphicsview/gamescene.h"
+#include "gui/graphicsview/gameview.h"
 #include "gui/screens/setupscreen.h"
 #include "gui/screens/gamescreen.h"
 #include "gui/screens/errorscreen.h"
@@ -46,6 +47,7 @@
 #include <KActionCollection>
 #include <KConfigDialog>
 #include <KStatusBar>
+#include <KMenuBar>
 #include <KFileDialog>
 
 #include <QStackedWidget>
@@ -57,31 +59,43 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
     : KXmlGuiWindow(parent)
     , m_mainWidget(new QStackedWidget(this)), m_gameScene(new GameScene)
     , m_errorScreen(0), m_setupScreen(0), m_gameScreen(0)
-    , m_startInDemoMode(startDemo)
 {
     setCentralWidget(m_mainWidget);
-    setupActions();
-    setupGUI();
-    statusBar()->showMessage(i18n("Welcome to KGo"), 3000);
 
-    connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
+    if (startDemo) {
+        setupGUI();
 
-    if (!m_gameScene->engine()->run(Preferences::engineCommand())) {
-        m_newGameAction->setEnabled(false);
-        m_loadGameAction->setEnabled(false);
-        m_mainWidget->setCurrentWidget(errorScreen());
-        m_errorScreen->setErrorMessage(m_gameScene->engine()->response());
+        GameView *gameView = new GameView(m_gameScene, this);
+        gameView->setInteractive(false);
+        m_mainWidget->addWidget(gameView);
+        m_mainWidget->setCurrentWidget(gameView);
+
+        //TODO: Implement demo mode
     } else {
-        m_newGameAction->setEnabled(true);
-        m_loadGameAction->setEnabled(true);
-        m_mainWidget->setCurrentWidget(setupScreen());
+        setupActions();
+        setupGUI();
+        statusBar()->showMessage(i18n("Welcome to KGo, the KDE Go board game"), 5000);
+
+        connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
+
+        if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
+            m_newGameAction->setEnabled(false);
+            m_loadGameAction->setEnabled(false);
+            m_mainWidget->setCurrentWidget(errorScreen());
+            m_errorScreen->setErrorMessage(m_gameScene->engine()->lastResponse());
+        } else {
+            m_newGameAction->setEnabled(true);
+            m_loadGameAction->setEnabled(true);
+            m_mainWidget->setCurrentWidget(setupScreen());
+        }
     }
 }
 
 void MainWindow::newGame()
 {
     m_saveAsAction->setEnabled(false);
-    m_passAction->setEnabled(false);
+    m_previousMoveAction->setEnabled(false);
+    m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
     m_setupScreen->setupNewGame();
@@ -92,7 +106,8 @@ void MainWindow::newGame()
 void MainWindow::loadGame()
 {
     m_saveAsAction->setEnabled(false);
-    m_passAction->setEnabled(false);
+    m_previousMoveAction->setEnabled(true);
+    m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
@@ -117,7 +132,8 @@ void MainWindow::saveGame()
 void MainWindow::startGame()
 {
     m_saveAsAction->setEnabled(true);
-    m_passAction->setEnabled(true);
+    m_previousMoveAction->setEnabled(true);
+    m_passMoveAction->setEnabled(true);
     m_hintAction->setEnabled(true);
     m_moveHistoryAction->setEnabled(true);
     // The GameScene should be configured and just be waiting for further input
@@ -171,11 +187,11 @@ void MainWindow::updatePreferences()
     GoEngine *engine = m_gameScene->engine();
     if (engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start engine...";
-        if (!m_gameScene->engine()->run(Preferences::engineCommand())) {
+        if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
             m_mainWidget->setCurrentWidget(errorScreen());
-            m_errorScreen->setErrorMessage(m_gameScene->engine()->response());
+            m_errorScreen->setErrorMessage(m_gameScene->engine()->lastResponse());
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
@@ -235,11 +251,9 @@ void MainWindow::setupActions()
     m_previousMoveAction->setEnabled(false);
     m_nextMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
     m_nextMoveAction->setEnabled(false);
-    m_passAction = KStandardGameAction::endTurn(this, SLOT(pass()), actionCollection());
-    m_passAction->setText(i18n("Pass move"));
-    m_passAction->setEnabled(false);
-    m_demoAction = KStandardGameAction::demo(this, SLOT(toggleDemoMode()), actionCollection());
-    m_demoAction->setEnabled(false);
+    m_passMoveAction = KStandardGameAction::endTurn(this, SLOT(pass()), actionCollection());
+    m_passMoveAction->setText(i18n("Pass move"));
+    m_passMoveAction->setEnabled(false);
     m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
     m_hintAction->setEnabled(false);
 
@@ -247,6 +261,7 @@ void MainWindow::setupActions()
     m_moveHistoryAction = new KToggleAction(KIcon("lastmoves"), i18n("&Move history"), this);
     m_moveHistoryAction->setShortcut(i18n("M"));
     m_moveHistoryAction->setEnabled(false);
+    m_moveHistoryAction->setChecked(Preferences::showMoveHistory());
     actionCollection()->addAction("move_history", m_moveHistoryAction);
     connect(m_moveHistoryAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showMoveHistory(bool)));
 

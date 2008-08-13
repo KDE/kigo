@@ -111,8 +111,9 @@ QString GoEngine::Score::toString() const
 
 GoEngine::GoEngine()
     : m_currentPlayer(BlackPlayer)
-    , m_level(0), m_komi(0), m_fixedHandicap(0)
-    , m_moveNumber(0)
+    , m_whitePlayerType(HumanPlayer), m_whitePlayerStrength(10)
+    , m_blackPlayerType(HumanPlayer), m_blackPlayerStrength(10)
+    , m_komi(0), m_fixedHandicap(0), m_moveNumber(0)
 {
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
@@ -122,7 +123,7 @@ GoEngine::~GoEngine()
     quit();
 }
 
-bool GoEngine::run(const QString &command)
+bool GoEngine::start(const QString &command)
 {
     quit();                                         // Close old session if there's one
     m_process.start(command.toLatin1());            // Start new process with provided command
@@ -157,8 +158,6 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
     if (fileName.isEmpty() || !QFile::exists(fileName))
         return false;
 
-    kDebug() << "Attempting to load move" << moveNumber << "from" << fileName;
-
     m_process.write("loadsgf " + fileName.toLatin1() + ' ' + QByteArray::number(moveNumber) + '\n');
     if (waitResponse()) {
         //TODO: Set current player based on last turn in sgf file
@@ -174,8 +173,6 @@ bool GoEngine::saveSgf(const QString &fileName)
 {
     if (fileName.isEmpty())
         return false;
-
-    kDebug() << "Attempting to save game to" << fileName;
 
     m_process.write("printsgf " + fileName.toLatin1() + '\n');
     return waitResponse();
@@ -203,8 +200,6 @@ bool GoEngine::setBoardSize(int size)
 {
     Q_ASSERT(size >= 1 && size <= 19);
 
-    kDebug() << "Set board size to"  << size;
-
     m_process.write("boardsize " + QByteArray::number(size) + '\n');
     if (waitResponse()) {
         // Changing size wipes the board, start again with black player.
@@ -225,8 +220,6 @@ int GoEngine::boardSize()
 
 bool GoEngine::clearBoard()
 {
-    kDebug() << "Clear board";
-
     m_process.write("clear_board\n");
     if (waitResponse()) {
         //: The board is wiped empty, start again with black player
@@ -242,8 +235,6 @@ bool GoEngine::setKomi(float komi)
 {
     Q_ASSERT(komi >= 0);
 
-    kDebug() << "Set komi to" << komi;
-
     m_process.write("komi " + QByteArray::number(komi) + '\n');
     if (waitResponse()) {
         m_komi = komi;
@@ -252,27 +243,49 @@ bool GoEngine::setKomi(float komi)
         return false;
 }
 
-bool GoEngine::setLevel(int level)
+void GoEngine::setPlayerStrength(PlayerColor color, int strength)
 {
-    Q_ASSERT(level >= 1 && level <= 10);
+    switch (color) {
+        case WhitePlayer: m_whitePlayerStrength = strength; break;
+        case BlackPlayer: m_blackPlayerStrength = strength; break;
+        case InvalidPlayer: break;
+    }
+}
 
-    kDebug() << "Set difficulty level to" << level;
+int GoEngine::playerStrength(PlayerColor color) const
+{
+    if (color == WhitePlayer)
+        return m_whitePlayerStrength;
+    else if (color == BlackPlayer)
+        return m_blackPlayerStrength;
+    else
+        return -1;
+}
 
-    m_process.write("level " + QByteArray::number(level) + '\n');
-    if (waitResponse()) {
-        m_level = level;
-        return true;
-    } else
-        return false;
+void GoEngine::setPlayerType(PlayerColor color, PlayerType type)
+{
+    switch (color) {
+        case WhitePlayer: m_whitePlayerType = type; break;
+        case BlackPlayer: m_blackPlayerType = type; break;
+        case InvalidPlayer: break;
+    }
+}
+
+GoEngine::PlayerType GoEngine::playerType(PlayerColor color) const
+{
+    if (color == WhitePlayer)
+        return m_whitePlayerType;
+    else if (color == BlackPlayer)
+        return m_blackPlayerType;
+    else
+        return HumanPlayer;
 }
 
 bool GoEngine::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 2 && handicap <= 9);
 
-    if (handicap <= maximumFixedHandicap()) {
-        kDebug() << "Set fixed handicap to" << handicap;
-
+    if (handicap <= fixedHandicapMax()) {
         m_process.write("fixed_handicap " + QByteArray::number(handicap) + '\n');
         if (waitResponse()) {
             // Black starts with setting his (fixed) handicap as it's first turn
@@ -289,7 +302,7 @@ bool GoEngine::setFixedHandicap(int handicap)
     }
 }
 
-int GoEngine::maximumFixedHandicap()
+int GoEngine::fixedHandicapMax()
 {
     // These values are handcrafted and reflect what GnuGo accepts
     switch (boardSize()) {
@@ -360,10 +373,15 @@ bool GoEngine::generateMove(PlayerColor color)
         color = m_currentPlayer;
 
     QByteArray msg("genmove ");
-    if(color == WhitePlayer)
+    if (color == WhitePlayer) {
+        m_process.write("level " + QByteArray::number(m_whitePlayerStrength) + '\n');
+        waitResponse(); // Setting level is not mission-critical, no error checking
         msg.append("white\n");
-    else
+    } else {
+        m_process.write("level " + QByteArray::number(m_blackPlayerStrength) + '\n');
+        waitResponse(); // Setting level is not mission-critical, no error checking
         msg.append("black\n");
+    }
     m_process.write(msg);
     if (waitResponse()) {
         color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
@@ -500,9 +518,9 @@ QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > GoEngine::moveHistory()
             QStringList parts = entry.split(' ');
             if (parts.size() == 2) {
                 if(parts[0] == "white")
-                    list.append(QPair<Stone, PlayerColor>(Stone(parts[1]), WhitePlayer));
+                    list.prepend(QPair<Stone, PlayerColor>(Stone(parts[1]), WhitePlayer));
                 else if (parts[0] == "black")
-                    list.append(QPair<Stone, PlayerColor>(Stone(parts[1]), BlackPlayer));
+                    list.prepend(QPair<Stone, PlayerColor>(Stone(parts[1]), BlackPlayer));
             }
         }
     }
@@ -521,7 +539,7 @@ QList<GoEngine::Stone> GoEngine::moveHistory(PlayerColor color)
             QStringList parts = entry.split(' ');
             if (parts.size() == 2)
                 if (color == WhitePlayer && parts[0] == "white" || color == BlackPlayer && parts[0] == "black")
-                    list.append(Stone(parts[1]));
+                    list.prepend(Stone(parts[1]));
         }
     }
     return list;
@@ -578,7 +596,6 @@ QList<QPair<GoEngine::Stone, float> > GoEngine::topMoves(PlayerColor color)
     else
         m_process.write("top_moves_black\n");
     if (waitResponse() && !m_response.isEmpty()) {
-        kDebug() << "Generating top moves...";
         QStringList parts = m_response.split(' ');
         if (parts.size() % 2 == 0)
             for (int i = 0; i < parts.size(); i += 2)

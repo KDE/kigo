@@ -50,7 +50,7 @@ namespace KGo {
  * GoEngine *engine = new GoEngine;
  *
  * // Run a session with a Go engine in GTP mode
- * engine->run("gnugo --mode gtp");
+ * engine->start("gnugo --mode gtp");
  *
  * // Get some information about the Go engine
  * engine->name();
@@ -75,6 +75,11 @@ public:
         WhitePlayer = 1,        ///< The white player
         BlackPlayer,            ///< The black player
         InvalidPlayer           ///< Is only used as return value
+    };
+
+    enum PlayerType {
+        HumanPlayer = 1,
+        ComputerPlayer,
     };
 
     /**
@@ -230,7 +235,7 @@ public:
      *
      * @param command The executable command to start in GTP mode.
      */
-    bool run(const QString &command = "gnugo --mode gtp");
+    bool start(const QString &command = "gnugo --mode gtp");
 
     /**
      * Check whether the GoEngine object is connected to a Go engine, running
@@ -242,7 +247,7 @@ public:
      * Retrieve the last response the Go game engine made  occuredafter it
      * received a command.
      */
-    QString response() const { return m_response; }
+    QString lastResponse() const { return m_response; }
 
     /**
      * Gracefully stop and exit the Go game engine.
@@ -321,16 +326,30 @@ public:
      */
     bool setKomi(float komi);
 
+    /**
+     *
+     */
     float komi() const { return m_komi; }
 
     /**
-     * Set the Go engine strength level.
      *
-     * @param level The strength level (from 1 to 10)
      */
-    bool setLevel(int level);
+    void setPlayerStrength(PlayerColor color, int strength);
 
-    int level() const { return m_level; }
+    /**
+     *
+     */
+    int playerStrength(PlayerColor color) const;
+
+    /**
+     *
+     */
+    void setPlayerType(PlayerColor color, PlayerType type);
+
+    /**
+     *
+     */
+    PlayerType playerType(PlayerColor color) const;
 
     /**
      * Set up fixed placement handicap stones.
@@ -352,7 +371,7 @@ public:
      *
      * @return The maximum allowed fixed handicap
      */
-    int maximumFixedHandicap();
+    int fixedHandicapMax();
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Playing and generating moves
@@ -793,9 +812,15 @@ private:
     QString m_response;             ///< Stores the last answer from the engine
     QProcess m_process;             ///< To interact with the engine executable
     PlayerColor m_currentPlayer;    ///< Internal storage of current player
-    int m_level;
+
+    PlayerType m_whitePlayerType;
+    int m_whitePlayerStrength;
+
+    PlayerType m_blackPlayerType;
+    int m_blackPlayerStrength;
+
     float m_komi;
-    int m_fixedHandicap;            ///< Internal counter, engine does not allow to query that
+    int m_fixedHandicap;
     int m_moveNumber;
 };
 

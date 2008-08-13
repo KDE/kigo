@@ -70,6 +70,8 @@ private:
     void drawForeground(QPainter *painter, const QRectF &rect);
 
     GameScene * const m_gameScene;  ///< Pointer to the game scene
+
+    bool m_renderInactive;
 };
 
 } // End of namespace KGo

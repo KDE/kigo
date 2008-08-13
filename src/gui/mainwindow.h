@@ -87,8 +87,6 @@ private:
     SetupScreen *m_setupScreen;             ///< Pointer to the game setup screen
     GameScreen *m_gameScreen;               ///< Pointer to the game playing screen
 
-    bool m_startInDemoMode;                 ///< Start application in demo mode
-
     KAction *m_newGameAction;
     KAction *m_loadGameAction;
     KAction *m_saveAsAction;                ///< Action to save the current game
@@ -97,10 +95,9 @@ private:
     KAction *m_previousMoveAction;          ///< Action to jump to the previous move
     KAction *m_nextMoveAction;              ///< Action to jump to the next move
     KAction *m_lastMoveAction;              ///< Action to jump to the last move
-    KAction *m_passAction;                  ///< Action to pass current move
+    KAction *m_passMoveAction;              ///< Action to pass current move
     KAction *m_hintAction;
     KToggleAction *m_moveHistoryAction;
-    KToggleAction *m_demoAction;            ///< Action to change to demo mode
 };
 
 } // End of namespace KGo

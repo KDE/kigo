@@ -87,10 +87,7 @@ signals:
     void startClicked();
 
 private slots:
-    void on_whitePlayerCombo_currentIndexChanged(const QString &);
-    void on_blackPlayerCombo_currentIndexChanged(const QString &);
     void on_startMoveSpinBox_valueChanged(int);
-    void on_difficultySlider_valueChanged(int);
     void on_sizeGroupBox_changed(int);
     void on_sizeOtherSpinBox_valueChanged(int);
     void on_handicapGroupBox_toggled(bool);

@@ -53,8 +53,9 @@ class GameScene : public QGraphicsScene
 
 public:
     GameScene();
+    ~GameScene();
 
-    GoEngine * const engine() const;
+    GoEngine * const engine() const { return m_engine; };
 
 signals:
     void cursorPixmapChanged(const QPixmap &);
@@ -62,14 +63,15 @@ signals:
 
 public slots:
     void resizeScene(int width, int height);
-    void showMoveHistory(bool show);
     void showLabels(bool show);
     void showHint(bool show);
+    void showMoveHistory(bool show);
 
 private slots:
     void updateStoneItems();
-    void updateMoveHistoryItems();
+    void updateHintItems();
     void changeBoardSize(int size);
+    void hideHint() { showHint(false); }
 
 private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
@@ -78,8 +80,9 @@ private:
 
     GoEngine * const m_engine;  ///< Go engine
 
-    bool m_showMoveHistory;
     bool m_showLabels;          ///< Show board labels or not
+    bool m_showHint;
+    bool m_showMoveHistory;
     QRectF m_boardRect;         ///< Position of board in the scene
     QRectF m_mouseRect;         ///< Board mouse interaction rect
     QRectF m_gridRect;          ///< Board grid rect
@@ -88,7 +91,6 @@ private:
     int m_boardSize;            ///< Go board size (9, 13, 19, ..)
 
     QList<QGraphicsPixmapItem *> m_stoneItems;
-    QList<QGraphicsTextItem *> m_moveHistoryItems;
     QList<QGraphicsPixmapItem *> m_hintItems;
 };
 
