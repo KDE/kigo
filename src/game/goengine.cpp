@@ -392,29 +392,20 @@ bool GoEngine::generateMove(PlayerColor color)
         return false;
 }
 
-bool GoEngine::undoMove(int i)
+bool GoEngine::undoMove()
 {
-    Q_ASSERT(i >= 0);
-
-    m_process.write("undo " + QByteArray::number(i) + '\n');
+    m_process.write("last_move\n");
     if (waitResponse()) {
-        m_process.write("last_move\n");
+        QString lastMove = m_response;
+        m_process.write("undo\n");
         if (waitResponse()) {
-            if (m_response.startsWith("white")) {
+            if (lastMove.startsWith("white"))
                 changeCurrentPlayer(WhitePlayer);
-            } else if (m_response.startsWith("black")) {
+            else if (lastMove.startsWith("black"))
                 changeCurrentPlayer(BlackPlayer);
-            } else {
-                // No last move means we're at the beginning of the game. The current player
-                // depends on whether there black set a fixed handicap (white next) or not.
-                if (m_fixedHandicap > 0)
-                    changeCurrentPlayer(WhitePlayer);
-                else
-                    changeCurrentPlayer(BlackPlayer);
-            }
+            m_moveNumber--;
+            emit boardChanged();
         }
-        m_moveNumber--;
-        emit boardChanged();
         return true;
     } else
         return false;

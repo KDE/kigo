@@ -79,7 +79,6 @@ void SetupScreen::setupLoadedGame(const QString &fileName)
 
 void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
 {
-    Q_UNUSED(value);
     //TODO: Show the corresponding board
 }
 
@@ -123,6 +122,7 @@ void SetupScreen::on_handicapSpinBox_valueChanged(int value)
 void SetupScreen::on_startButton_clicked()
 {
     saveSettings();
+
     m_gameEngine->setPlayerStrength(GoEngine::WhitePlayer, Preferences::whitePlayerStrength());
     if (Preferences::whitePlayerHuman())
         m_gameEngine->setPlayerType(GoEngine::WhitePlayer, GoEngine::HumanPlayer);
@@ -171,8 +171,6 @@ void SetupScreen::updateHandicapBox()
 
 void SetupScreen::loadSettings()
 {
-    kDebug() << "Load settings";
-
     whitePlayerName->setText(Preferences::whitePlayerName());
     whiteStrengthSlider->setValue(Preferences::whitePlayerStrength());
     if (Preferences::whitePlayerHuman())
@@ -211,7 +209,6 @@ void SetupScreen::loadSettings()
 
 void SetupScreen::saveSettings()
 {
-    kDebug () << "Save settings";
     Preferences::setWhitePlayerName(whitePlayerName->text());
     Preferences::setWhitePlayerStrength(whiteStrengthSlider->value());
     Preferences::setWhitePlayerHuman(whitePlayerCombo->currentText() == i18n("Human"));

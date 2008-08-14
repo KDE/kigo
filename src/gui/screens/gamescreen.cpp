@@ -56,12 +56,6 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
 
 void GameScreen::showEvent(QShowEvent *)
 {
-    switch (m_gameEngine->currentPlayer()) {
-        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
-        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
-        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
-    }
-
     if (Preferences::whitePlayerHuman())
         whitePlayerName->setText(Preferences::whitePlayerName());
     else
@@ -72,6 +66,8 @@ void GameScreen::showEvent(QShowEvent *)
         blackPlayerName->setText(i18n("Computer (Level %1)", Preferences::blackPlayerStrength()));
     komiSpinBox->setValue(m_gameEngine->komi());
     handicapSpinBox->setValue(m_gameEngine->fixedHandicap());
+
+    updateStatistics();
 }
 
 void GameScreen::updateStatistics()
@@ -83,6 +79,11 @@ void GameScreen::updateStatistics()
         case GoEngine::WhitePlayer: moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
         case GoEngine::BlackPlayer: moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
         case GoEngine::InvalidPlayer: moveSpinBox->setSuffix(""); break;
+    }
+    switch (m_gameEngine->currentPlayer()) {
+        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
+        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
     }
 
     whiteCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::WhitePlayer)));

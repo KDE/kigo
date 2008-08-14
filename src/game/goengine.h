@@ -404,10 +404,8 @@ public:
 
     /**
      * Undo last move.
-     *
-     * @param i
      */
-    bool undoMove(int i = 1);
+    bool undoMove();
 
     int moveNumber() const { return m_moveNumber; }
 
