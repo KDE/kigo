@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>440</width>
-    <height>395</height>
+    <width>342</width>
+    <height>353</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -28,41 +28,51 @@
       <item row="2" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Engine command:</string>
+         <string>Parameters:</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_EngineCommand</cstring>
+         <cstring>engineParameters</cstring>
         </property>
        </widget>
       </item>
       <item row="2" column="1" colspan="2" >
-       <widget class="KLineEdit" name="kcfg_EngineCommand" />
+       <widget class="KLineEdit" name="engineParameters" />
       </item>
       <item row="0" column="1" colspan="2" >
-       <widget class="KUrlRequester" name="kcfg_EngineExecutable" />
+       <widget class="KUrlRequester" name="engineExecutable" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+          <horstretch>1</horstretch>
+          <verstretch>1</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0" >
        <widget class="QLabel" name="label_3" >
         <property name="text" >
-         <string>Executable path:</string>
+         <string>Executable:</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_EngineExecutable</cstring>
+         <cstring>engineExecutable</cstring>
         </property>
        </widget>
       </item>
       <item row="3" column="1" >
-       <widget class="KPushButton" name="kpushbutton_2" >
+       <widget class="KPushButton" name="engineCheckButton" >
         <property name="text" >
-         <string>Test</string>
+         <string>Check</string>
         </property>
        </widget>
+      </item>
+      <item row="3" column="2" >
+       <widget class="QLabel" name="engineCheckLabel" />
       </item>
      </layout>
     </widget>
@@ -179,8 +189,8 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>kcfg_EngineExecutable</tabstop>
-  <tabstop>kcfg_EngineCommand</tabstop>
+  <tabstop>engineExecutable</tabstop>
+  <tabstop>engineParameters</tabstop>
  </tabstops>
  <resources/>
  <connections/>

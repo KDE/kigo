@@ -185,7 +185,7 @@ void MainWindow::updatePreferences()
 
     // Restart the Go engine if the engine command was changed by the user.
     GoEngine *engine = m_gameScene->engine();
-    if (engine->engineCommand() != Preferences::engineCommand()) {
+    if (engine->command() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start engine...";
         if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);

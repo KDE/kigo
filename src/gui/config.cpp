@@ -29,6 +29,8 @@
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  */
 #include "config.h" // krazy:exclude=includes
+#include "preferences.h"
+#include "game/goengine.h"
 
 namespace KGo {
 
@@ -36,6 +38,29 @@ GeneralConfig::GeneralConfig(QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
+
+    QString engineCommand = Preferences::engineCommand();
+    engineExecutable->setUrl(KUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
+    engineParameters->setText(engineCommand.section(' ', 1));
+    connect(engineCheckButton, SIGNAL(clicked()), this, SLOT(checkEngine()));
+}
+
+GeneralConfig::~GeneralConfig()
+{
+    QString engineCommand = engineExecutable->url().toLocalFile() + ' ' + engineParameters->text();
+    Preferences::setEngineCommand(engineCommand);
+    Preferences::self()->writeConfig();
+}
+
+void GeneralConfig::checkEngine()
+{
+    GoEngine engine;
+    QString engineCommand = engineExecutable->url().toLocalFile() + ' ' + engineParameters->text();
+    kDebug() << "Checking" << engineCommand;
+    if(engine.start(engineCommand) && !engine.name().isEmpty())
+        engineCheckLabel->setText("<span style=\"color: green;\">" + i18n("Works") + "</span>");
+    else
+        engineCheckLabel->setText("<span style=\"color: red;\">" + i18n("Error") + "</span>");
 }
 
 } // End of namespace KGo

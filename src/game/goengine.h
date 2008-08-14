@@ -277,22 +277,22 @@ public:
     /**
      * Retrieves the name of the Go game engine application.
      */
-    QString engineName();
+    QString name();
 
     /**
      *
      */
-    QString engineCommand() const { return m_engineCommand; }
+    QString command() const { return m_engineCommand; }
 
     /**
      * Retrieves the GTP protocol version implemented by the Go game engine.
      */
-    int protocolVersion();
+    int protocol();
 
     /**
      * Retrieves the version of the Go game engine application.
      */
-    QString engineVersion();
+    QString version();
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Setting the board size, clearing

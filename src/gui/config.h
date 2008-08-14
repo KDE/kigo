@@ -53,6 +53,10 @@ public:
      * Standard Constructor. Sets up the loaded user interface.
      */
     explicit GeneralConfig(QWidget *parent = 0);
+    ~GeneralConfig();
+
+private slots:
+    void checkEngine();
 };
 
 } // End of namespace KGo

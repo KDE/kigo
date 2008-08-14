@@ -5,12 +5,8 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
     <kcfgfile name="kgo" />
     <group name="Backend">
-        <entry name="EngineExecutable" type="String">
-            <default></default>
-        </entry>
         <entry name="EngineCommand" type="String">
-            <label>Path to the Go game engine</label>
-            <tooltip>Enter here a valid path to your favorite Go game engine executable</tooltip>
+            <label>The Go game engine command with optional parameters</label>
             <default>gnugo --mode gtp</default>
         </entry>
         <entry name="AdvancedGameOptions" type="Bool">
