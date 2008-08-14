@@ -89,6 +89,15 @@
            <property name="enabled" >
             <bool>true</bool>
            </property>
+           <property name="focusPolicy" >
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="contextMenuPolicy" >
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="acceptDrops" >
+            <bool>false</bool>
+           </property>
            <property name="text" >
             <string>Name</string>
            </property>
@@ -118,6 +127,9 @@
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
+        <property name="buddy" >
+         <cstring>komiSpinBox</cstring>
+        </property>
        </widget>
       </item>
       <item row="8" column="0" >
@@ -127,6 +139,9 @@
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>handicapSpinBox</cstring>
         </property>
        </widget>
       </item>
@@ -147,6 +162,12 @@
        <widget class="QLineEdit" name="playerLabel" >
         <property name="focusPolicy" >
          <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="contextMenuPolicy" >
+         <enum>Qt::NoContextMenu</enum>
+        </property>
+        <property name="acceptDrops" >
+         <bool>false</bool>
         </property>
         <property name="text" >
          <string/>
@@ -179,6 +200,12 @@
       </item>
       <item row="8" column="1" >
        <widget class="QSpinBox" name="handicapSpinBox" >
+        <property name="focusPolicy" >
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="contextMenuPolicy" >
+         <enum>Qt::NoContextMenu</enum>
+        </property>
         <property name="readOnly" >
          <bool>true</bool>
         </property>
@@ -198,6 +225,12 @@
       </item>
       <item row="7" column="1" >
        <widget class="QDoubleSpinBox" name="komiSpinBox" >
+        <property name="focusPolicy" >
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="contextMenuPolicy" >
+         <enum>Qt::NoContextMenu</enum>
+        </property>
         <property name="readOnly" >
          <bool>true</bool>
         </property>
@@ -220,6 +253,12 @@
       </item>
       <item row="0" column="0" colspan="2" >
        <widget class="QSpinBox" name="moveSpinBox" >
+        <property name="focusPolicy" >
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="contextMenuPolicy" >
+         <enum>Qt::NoContextMenu</enum>
+        </property>
         <property name="readOnly" >
          <bool>true</bool>
         </property>
@@ -288,6 +327,15 @@
            <property name="enabled" >
             <bool>true</bool>
            </property>
+           <property name="focusPolicy" >
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="contextMenuPolicy" >
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="acceptDrops" >
+            <bool>false</bool>
+           </property>
            <property name="text" >
             <string>Computer (Level 10)</string>
            </property>
@@ -326,6 +374,9 @@
    <header>kpushbutton.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>countButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

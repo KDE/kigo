@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>342</width>
-    <height>353</height>
+    <height>384</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -46,7 +46,7 @@
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
           <horstretch>1</horstretch>
-          <verstretch>1</verstretch>
+          <verstretch>0</verstretch>
          </sizepolicy>
         </property>
        </widget>
@@ -72,7 +72,14 @@
        </widget>
       </item>
       <item row="3" column="2" >
-       <widget class="QLabel" name="engineCheckLabel" />
+       <widget class="QLabel" name="engineCheckLabel" >
+        <property name="frameShape" >
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow" >
+         <enum>QFrame::Sunken</enum>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

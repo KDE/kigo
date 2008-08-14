@@ -146,8 +146,8 @@ bool GoEngine::start(const QString &command)
     }
 
     // Check for supported GTP protocol version
-    if (protocol() != 2) {
-        m_response = "Program does not support GTP version 2";
+    if (protocol() < 0) {
+        m_response = "Program does not support correct GTP version";
         kDebug() << m_response;
         quit();
         return false;

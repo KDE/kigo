@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
-    <height>489</height>
+    <width>582</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -54,22 +54,8 @@
         <property name="title" >
          <string>White player</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_4" >
-         <item>
-          <widget class="KComboBox" name="whitePlayerCombo" >
-           <item>
-            <property name="text" >
-             <string>Human</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Computer</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
+        <layout class="QGridLayout" name="gridLayout_4" >
+         <item row="0" column="1" >
           <widget class="QStackedWidget" name="whitePlayerStack" >
            <property name="currentIndex" >
             <number>0</number>
@@ -79,18 +65,11 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>208</width>
+              <width>162</width>
               <height>61</height>
              </rect>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_2" >
-             <item>
-              <widget class="QLabel" name="label_3" >
-               <property name="text" >
-                <string>Name:</string>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="KLineEdit" name="whitePlayerName" >
                <property name="enabled" >
@@ -108,12 +87,12 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>200</width>
+              <width>162</width>
               <height>61</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_8" >
-             <item row="0" column="1" colspan="2" >
+             <item row="0" column="0" colspan="2" >
               <widget class="QSlider" name="whiteStrengthSlider" >
                <property name="minimum" >
                 <number>1</number>
@@ -138,7 +117,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1" >
+             <item row="1" column="0" >
               <widget class="QLabel" name="label1_2" >
                <property name="text" >
                 <string>Weak</string>
@@ -148,7 +127,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="2" >
+             <item row="1" column="1" >
               <widget class="QLabel" name="label2_2" >
                <property name="text" >
                 <string>Strong</string>
@@ -158,18 +137,27 @@
                </property>
               </widget>
              </item>
-             <item rowspan="2" row="0" column="0" >
-              <widget class="QLabel" name="label_4" >
-               <property name="text" >
-                <string>Strength:</string>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </widget>
          </item>
+         <item row="0" column="0" >
+          <widget class="KComboBox" name="whitePlayerCombo" >
+           <item>
+            <property name="text" >
+             <string>Human</string>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Computer</string>
+            </property>
+           </item>
+          </widget>
+         </item>
         </layout>
+        <zorder>whitePlayerStack</zorder>
+        <zorder>whitePlayerCombo</zorder>
        </widget>
       </item>
       <item rowspan="2" row="0" column="1" >
@@ -182,7 +170,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>319</width>
+           <width>304</width>
            <height>216</height>
           </rect>
          </property>
@@ -196,7 +184,7 @@
              <bool>true</bool>
             </property>
             <property name="title" >
-             <string>Game setup</string>
+             <string>New game</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_5" >
              <item rowspan="3" row="0" column="0" >
@@ -343,7 +331,7 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>311</width>
+           <width>304</width>
            <height>216</height>
           </rect>
          </property>
@@ -357,7 +345,7 @@
              <bool>true</bool>
             </property>
             <property name="title" >
-             <string>Game setup</string>
+             <string>Loaded game</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout" >
              <item>
@@ -384,7 +372,7 @@
           <item>
            <widget class="QGroupBox" name="infoBox" >
             <property name="title" >
-             <string>Game information</string>
+             <string>Information</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_7" >
              <item row="0" column="0" >
@@ -409,22 +397,8 @@
         <property name="title" >
          <string>Black player</string>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3" >
-         <item>
-          <widget class="KComboBox" name="blackPlayerCombo" >
-           <item>
-            <property name="text" >
-             <string>Human</string>
-            </property>
-           </item>
-           <item>
-            <property name="text" >
-             <string>Computer</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
+        <layout class="QGridLayout" name="gridLayout_6" >
+         <item row="0" column="1" >
           <widget class="QStackedWidget" name="blackPlayerStack" >
            <property name="currentIndex" >
             <number>0</number>
@@ -434,12 +408,12 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>208</width>
+              <width>162</width>
               <height>61</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_2" >
-             <item row="0" column="1" >
+             <item row="0" column="0" >
               <widget class="KLineEdit" name="blackPlayerName" >
                <property name="enabled" >
                 <bool>true</bool>
@@ -449,26 +423,22 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0" >
-              <widget class="QLabel" name="label_5" >
-               <property name="text" >
-                <string>Name:</string>
-               </property>
-              </widget>
-             </item>
             </layout>
+            <zorder>blackPlayerName</zorder>
+            <zorder>label_5</zorder>
+            <zorder>blackPlayerCombo</zorder>
            </widget>
            <widget class="QWidget" name="blackComputerPage" >
             <property name="geometry" >
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>200</width>
+              <width>162</width>
               <height>61</height>
              </rect>
             </property>
             <layout class="QGridLayout" name="gridLayout_3" >
-             <item row="0" column="1" colspan="2" >
+             <item row="0" column="0" colspan="2" >
               <widget class="QSlider" name="blackStrengthSlider" >
                <property name="minimum" >
                 <number>1</number>
@@ -493,7 +463,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="1" >
+             <item row="1" column="0" >
               <widget class="QLabel" name="label1_3" >
                <property name="text" >
                 <string>Weak</string>
@@ -503,7 +473,7 @@
                </property>
               </widget>
              </item>
-             <item row="1" column="2" >
+             <item row="1" column="1" >
               <widget class="QLabel" name="label2_3" >
                <property name="text" >
                 <string>Strong</string>
@@ -513,21 +483,33 @@
                </property>
               </widget>
              </item>
-             <item rowspan="2" row="0" column="0" >
-              <widget class="QLabel" name="label_6" >
-               <property name="text" >
-                <string>Strength:</string>
-               </property>
-              </widget>
-             </item>
             </layout>
            </widget>
           </widget>
          </item>
+         <item row="0" column="0" >
+          <widget class="KComboBox" name="blackPlayerCombo" >
+           <item>
+            <property name="text" >
+             <string>Human</string>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Computer</string>
+            </property>
+           </item>
+          </widget>
+         </item>
         </layout>
+        <zorder>blackPlayerStack</zorder>
+        <zorder>blackPlayerCombo</zorder>
        </widget>
       </item>
      </layout>
+     <zorder>whitePlayerBox</zorder>
+     <zorder>gameSetupStack</zorder>
+     <zorder>blackPlayerBox</zorder>
     </widget>
    </item>
    <item row="1" column="0" colspan="2" >
@@ -601,9 +583,11 @@
  </customwidgets>
  <tabstops>
   <tabstop>whitePlayerCombo</tabstop>
-  <tabstop>blackPlayerCombo</tabstop>
   <tabstop>whitePlayerName</tabstop>
+  <tabstop>whiteStrengthSlider</tabstop>
+  <tabstop>blackPlayerCombo</tabstop>
   <tabstop>blackPlayerName</tabstop>
+  <tabstop>blackStrengthSlider</tabstop>
   <tabstop>sizeSmall</tabstop>
   <tabstop>sizeMedium</tabstop>
   <tabstop>sizeBig</tabstop>
@@ -612,10 +596,8 @@
   <tabstop>komiSpinBox</tabstop>
   <tabstop>handicapGroupBox</tabstop>
   <tabstop>handicapSpinBox</tabstop>
-  <tabstop>startButton</tabstop>
   <tabstop>startMoveSpinBox</tabstop>
-  <tabstop>blackStrengthSlider</tabstop>
-  <tabstop>whiteStrengthSlider</tabstop>
+  <tabstop>startButton</tabstop>
  </tabstops>
  <resources/>
  <connections>

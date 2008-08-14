@@ -66,7 +66,7 @@
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
 &lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" color:#ff0000;">KGo failed to start the Go engine&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" color:#ff0000;">KGo needs a working Go engine&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignCenter</set>
@@ -83,7 +83,7 @@ p, li { white-space: pre-wrap; }
       <item row="2" column="0" colspan="2" >
        <widget class="QLabel" name="label_2" >
         <property name="text" >
-         <string>The game needs GnuGo or a compatible Go engine to work correctly. Automatic configuration was unable to find a suitable Go engine but you have the option to manually add your Go engine in the configuration dialog.</string>
+         <string>The game needs GnuGo or a compatible Go engine backend to work correctly. Please set up your Go engine in the configuration dialog.</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
