@@ -79,7 +79,7 @@ public:
 
     enum PlayerType {
         HumanPlayer = 1,
-        ComputerPlayer,
+        ComputerPlayer
     };
 
     /**
@@ -99,7 +99,7 @@ public:
         AliveDragon = 1,        ///< The dragon lives
         CriticalDragon,         ///< The dragon is critical
         DeadDragon,             ///< The dragon is dead
-        UnknownDragon,          ///< The state of the dragon is unknown
+        UnknownDragon          ///< The state of the dragon is unknown
     };
 
     /**
