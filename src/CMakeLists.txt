@@ -21,7 +21,7 @@ kde4_add_kcfg_files(kgo_SRCS preferences.kcfgc)
 kde4_add_app_icon(kgo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../icons/hi*-app-kgo.png")
 kde4_add_executable(kgo ${kgo_SRCS})
 
-target_link_libraries(kgo ${KDE4_KDEUI_LIBS} kdegames ${KDE_KNEWSTUFF2_LIBS} ${KGGZGAMES_LIBS})
+target_link_libraries(kgo ${KDE4_KDEUI_LIBS} ${KDEGAMES_LIBRARY} ${KDE_KNEWSTUFF2_LIBS} ${KGGZGAMES_LIBS})
 
 install(TARGETS kgo DESTINATION ${BIN_INSTALL_DIR})
 install(FILES gui/kgo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
