@@ -42,7 +42,7 @@
 namespace KGo {
 
 GameScene::GameScene()
-    : m_engine(new GoEngine())
+    : m_engine(new GoEngine)
     , m_showLabels(Preferences::showBoardLabels())
     , m_showHint(false)
     , m_showMoveHistory(Preferences::showMoveHistory())
@@ -51,6 +51,10 @@ GameScene::GameScene()
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
+
+    m_gamePopup.setMessageTimeout(3000);
+    m_gamePopup.setHideOnMouseClick(true);
+    addItem(&m_gamePopup);
 }
 
 GameScene::~GameScene()
@@ -91,6 +95,14 @@ void GameScene::showMoveHistory(bool show)
 {
     m_showMoveHistory = show;
     updateStoneItems();
+}
+
+void GameScene::showPopupMessage(const QString &message)
+{
+    if (message.isEmpty())
+        m_gamePopup.forceHide();
+    else
+        m_gamePopup.showMessage(message, KGamePopupItem::BottomLeft, KGamePopupItem::ReplacePrevious);
 }
 
 void GameScene::updateStoneItems()
@@ -184,7 +196,7 @@ void GameScene::updateHintItems()
                                  m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
             m_hintItems.append(item);
         }
-        emit statusMessage(i18n("The Go engine recommends these moves ..."));
+        showPopupMessage(i18n("The Go engine recommends these moves ..."));
     }
 }
 
@@ -222,9 +234,9 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         GoEngine::Stone move('A' + row, m_boardSize - col);
 
         if (m_engine->playMove(move))
-            emit statusMessage(i18n("Made move at %1", move.toString()));
+            showPopupMessage(i18n("Made move at %1", move.toString()));
         else
-            emit statusMessage(i18n("Making a move at %1 is not allowed!", move.toString()));
+            showPopupMessage(i18n("Making a move at %1 is not allowed!", move.toString()));
     }
 }
 

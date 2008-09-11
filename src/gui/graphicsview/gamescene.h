@@ -30,6 +30,8 @@
 #ifndef KGO_GAMESCENE_H
 #define KGO_GAMESCENE_H
 
+#include <KGamePopupItem>
+
 #include <QGraphicsScene>
 
 namespace KGo {
@@ -59,13 +61,13 @@ public:
 
 signals:
     void cursorPixmapChanged(const QPixmap &);
-    void statusMessage(const QString &);
 
 public slots:
     void resizeScene(int width, int height);
     void showLabels(bool show);
     void showHint(bool show);
     void showMoveHistory(bool show);
+    void showPopupMessage(const QString &message);
 
 private slots:
     void updateStoneItems();
@@ -80,6 +82,7 @@ private:
 
     GoEngine * const m_engine;  ///< Go engine
 
+    KGamePopupItem m_gamePopup;
     bool m_showLabels;          ///< Show board labels or not
     bool m_showHint;
     bool m_showMoveHistory;

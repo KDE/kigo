@@ -46,7 +46,6 @@
 #include <KAction>
 #include <KActionCollection>
 #include <KConfigDialog>
-#include <KStatusBar>
 #include <KMenuBar>
 #include <KFileDialog>
 
@@ -61,9 +60,8 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
     , m_errorScreen(0), m_setupScreen(0), m_gameScreen(0)
 {
     setCentralWidget(m_mainWidget);
-
     if (startDemo) {
-        setupGUI();
+        setupGUI(KXmlGuiWindow::Save);
 
         GameView *gameView = new GameView(m_gameScene, this);
         gameView->setInteractive(false);
@@ -73,10 +71,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
         //TODO: Implement demo mode
     } else {
         setupActions();
-        setupGUI();
-        statusBar()->showMessage(i18n("Welcome to KGo, the KDE Go board game"), 5000);
-
-        connect(m_gameScene, SIGNAL(statusMessage(const QString &)), statusBar(), SLOT(showMessage(const QString &)));
+        setupGUI(KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
 
         if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
@@ -86,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
-            m_mainWidget->setCurrentWidget(setupScreen());
+            newGame();
         }
     }
 }
@@ -98,9 +93,9 @@ void MainWindow::newGame()
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
-    m_setupScreen->setupNewGame();
+    setupScreen()->setupNewGame();
     m_mainWidget->setCurrentWidget(setupScreen());
-    statusBar()->showMessage(i18n("Play a new game..."), 3000);
+    m_gameScene->showPopupMessage(i18n("Set up and play a new game..."));
 }
 
 void MainWindow::loadGame()
@@ -114,7 +109,7 @@ void MainWindow::loadGame()
     if (!fileName.isEmpty()) {
         setupScreen()->setupLoadedGame(fileName);
         m_mainWidget->setCurrentWidget(m_setupScreen);
-        statusBar()->showMessage(i18n("Play a loaded game..."), 3000);
+        m_gameScene->showPopupMessage(i18n("Set up and play a loaded game..."));
     }
 }
 
@@ -122,10 +117,11 @@ void MainWindow::saveGame()
 {
     QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
+        m_gameScene->engine()->saveSgf(fileName);
         if (m_gameScene->engine()->saveSgf(fileName))
-            statusBar()->showMessage(i18n("Game saved to %1", fileName), 3000);
+            m_gameScene->showPopupMessage(i18n("Game saved to %1", fileName));
         else
-            statusBar()->showMessage(i18n("Unable to save game to %1!", fileName), 3000);
+            m_gameScene->showPopupMessage(i18n("Unable to save game to %1!", fileName));
     }
 }
 
@@ -139,7 +135,7 @@ void MainWindow::startGame()
     // The GameScene should be configured and just be waiting for further input
     // so we only need to show the GameScreen and allow direct user-interaction
     m_mainWidget->setCurrentWidget(gameScreen());
-    statusBar()->showMessage(i18n("Game started..."), 3000);
+    //statusBar()->showMessage(i18n("Game started..."), 3000);
 }
 
 void MainWindow::undo()

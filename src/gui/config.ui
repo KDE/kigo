@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>342</width>
-    <height>384</height>
+    <width>452</width>
+    <height>378</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
@@ -19,7 +19,7 @@
       </sizepolicy>
      </property>
      <property name="title" >
-      <string>Go engine configuration</string>
+      <string>Backend</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" >
       <item row="2" column="0" >
@@ -84,7 +84,7 @@
    <item>
     <widget class="QGroupBox" name="s" >
      <property name="title" >
-      <string>View configuration</string>
+      <string>Appearance</string>
      </property>
      <property name="checkable" >
       <bool>false</bool>
@@ -97,48 +97,59 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2" >
+      <item row="2" column="0" colspan="2" >
        <widget class="QCheckBox" name="kcfg_AdvancedStatistics" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
         <property name="text" >
          <string>Display advanced statistics</string>
         </property>
        </widget>
       </item>
-      <item rowspan="2" row="0" column="2" >
-       <widget class="QGroupBox" name="groupBox_3" >
-        <property name="title" >
-         <string>Hint visibility</string>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="label_2" >
+        <property name="text" >
+         <string>Board hints visible:</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_3" >
-         <item>
-          <widget class="QDoubleSpinBox" name="kcfg_HintVisibleTime" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="suffix" >
-            <string> Seconds</string>
-           </property>
-           <property name="decimals" >
-            <number>1</number>
-           </property>
-           <property name="minimum" >
-            <double>1.000000000000000</double>
-           </property>
-           <property name="maximum" >
-            <double>5.000000000000000</double>
-           </property>
-           <property name="singleStep" >
-            <double>0.500000000000000</double>
-           </property>
-           <property name="value" >
-            <double>3.000000000000000</double>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QDoubleSpinBox" name="kcfg_HintVisibleTime" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="suffix" >
+         <string> Seconds</string>
+        </property>
+        <property name="decimals" >
+         <number>1</number>
+        </property>
+        <property name="minimum" >
+         <double>1.000000000000000</double>
+        </property>
+        <property name="maximum" >
+         <double>5.000000000000000</double>
+        </property>
+        <property name="singleStep" >
+         <double>0.500000000000000</double>
+        </property>
+        <property name="value" >
+         <double>3.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2" >
+       <widget class="Line" name="line" >
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
        </widget>
       </item>
      </layout>
@@ -147,31 +158,21 @@
    <item>
     <widget class="QGroupBox" name="groupBox" >
      <property name="title" >
-      <string>Expert configuration</string>
+      <string>Advanced</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout" >
       <item>
        <widget class="QCheckBox" name="kcfg_AdvancedGameOptions" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
         <property name="text" >
-         <string>Enable advanced game options</string>
+         <string>Enable expert game options</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer" >
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0" >
-      <size>
-       <width>20</width>
-       <height>256</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

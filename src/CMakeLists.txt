@@ -1,3 +1,5 @@
+include_directories(${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIR})
+
 set(kgo_SRCS
     game/goengine.cpp
     gui/graphicsview/themerenderer.cpp

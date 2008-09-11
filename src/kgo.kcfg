@@ -31,7 +31,7 @@
             <default>false</default>
         </entry>
         <entry name="HintVisibleTime" type="Double">
-            <label>Amount of time of which a hint is visible</label>
+            <label>Amount of seconds of which a hint is visible</label>
             <default>3.0</default>
             <min>1.0</min>
             <max>5.0</max>
@@ -86,7 +86,7 @@
         </entry>
         <entry name="FixedHandicapValue" type="Int">
             <label>Extra stones for the black player</label>
-            <default>2</default>
+            <default>4</default>
             <min>2</min>
             <max>9</max>
         </entry>
