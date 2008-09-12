@@ -100,13 +100,13 @@ void MainWindow::newGame()
 
 void MainWindow::loadGame()
 {
-    m_saveAsAction->setEnabled(false);
-    m_previousMoveAction->setEnabled(true);
-    m_passMoveAction->setEnabled(false);
-    m_hintAction->setEnabled(false);
-    m_moveHistoryAction->setEnabled(false);
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
+        m_saveAsAction->setEnabled(false);
+        m_previousMoveAction->setEnabled(false);
+        m_passMoveAction->setEnabled(false);
+        m_hintAction->setEnabled(false);
+        m_moveHistoryAction->setEnabled(true);
         setupScreen()->setupLoadedGame(fileName);
         m_mainWidget->setCurrentWidget(m_setupScreen);
         m_gameScene->showPopupMessage(i18n("Set up and play a loaded game..."));
@@ -135,7 +135,7 @@ void MainWindow::startGame()
     // The GameScene should be configured and just be waiting for further input
     // so we only need to show the GameScreen and allow direct user-interaction
     m_mainWidget->setCurrentWidget(gameScreen());
-    //statusBar()->showMessage(i18n("Game started..."), 3000);
+    m_gameScene->showPopupMessage(i18n("Game started..."));
 }
 
 void MainWindow::undo()
@@ -145,6 +145,7 @@ void MainWindow::undo()
 
 void MainWindow::redo()
 {
+    //TODO: Implement redo stuff
 }
 
 void MainWindow::pass()
@@ -155,10 +156,6 @@ void MainWindow::pass()
 void MainWindow::hint()
 {
     m_gameScene->showHint(true);
-}
-
-void MainWindow::toggleDemoMode()
-{
 }
 
 void MainWindow::showPreferences()
@@ -182,7 +179,7 @@ void MainWindow::updatePreferences()
     // Restart the Go engine if the engine command was changed by the user.
     GoEngine *engine = m_gameScene->engine();
     if (engine->command() != Preferences::engineCommand()) {
-        kDebug() << "Engine command changed or engine not running, (re)start engine...";
+        kDebug() << "Engine command changed or engine not running, (re)start backend...";
         if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
@@ -192,6 +189,7 @@ void MainWindow::updatePreferences()
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
             m_mainWidget->setCurrentWidget(setupScreen());
+            m_gameScene->showPopupMessage(i18n("Restarted Go backend..."));
         }
     }
 }

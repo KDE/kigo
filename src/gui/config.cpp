@@ -38,29 +38,27 @@ GeneralConfig::GeneralConfig(QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
+    kcfg_EngineCommand->hide(); // Only used internally
 
     QString engineCommand = Preferences::engineCommand();
     engineExecutable->setUrl(KUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
+    connect(engineExecutable, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
     engineParameters->setText(engineCommand.section(' ', 1));
-    connect(engineCheckButton, SIGNAL(clicked()), this, SLOT(checkEngine()));
+    connect(engineParameters, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
+
+    updateEngineCommand();
 }
 
-GeneralConfig::~GeneralConfig()
+void GeneralConfig::updateEngineCommand()
 {
-    QString engineCommand = engineExecutable->url().toLocalFile() + ' ' + engineParameters->text();
-    Preferences::setEngineCommand(engineCommand);
-    Preferences::self()->writeConfig();
-}
+    kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + ' ' + engineParameters->text());
 
-void GeneralConfig::checkEngine()
-{
+    // Check if the configured Go engine backend actually works and tell the user
     GoEngine engine;
-    QString engineCommand = engineExecutable->url().toLocalFile() + ' ' + engineParameters->text();
-    kDebug() << "Checking" << engineCommand;
-    if(engine.start(engineCommand) && !engine.name().isEmpty())
-        engineCheckLabel->setText("<span style=\"color: green;\">" + i18n("Works") + "</span>");
+    if(engine.start(kcfg_EngineCommand->text()) && !engine.name().isEmpty())
+        engineLed->setState(KLed::On);
     else
-        engineCheckLabel->setText("<span style=\"color: red;\">" + i18n("Error") + "</span>");
+        engineLed->setState(KLed::Off);
 }
 
 } // End of namespace KGo

@@ -133,25 +133,28 @@ bool GoEngine::start(const QString &command)
         return false;
     }
     m_engineCommand = command;                      // Save for retrieval
+    kDebug() << "Engine" << m_engineCommand << "started...";
 
     // Test if we started a GTP-compatible Go engine
     m_process.write("name\n");
     m_process.waitForReadyRead();
     QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith("=")) {
-        m_response = "Program did not respond to GTP command \"name\": " + response;
+        m_response = "Engine did not respond to GTP command \"name\"";
         kDebug() << m_response;
         quit();
         return false;
     }
+    kDebug() << "Engine is a GTP-compatible Go engine";
 
     // Check for supported GTP protocol version
     if (protocol() < 0) {
-        m_response = "Program does not support correct GTP version";
+        m_response = "Engine does not support correct GTP version";
         kDebug() << m_response;
         quit();
         return false;
     }
+    kDebug() << "Engine supports correct GTP version";
     return true;
 }
 
@@ -172,10 +175,23 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
 
     m_process.write("loadsgf " + fileName.toLatin1() + ' ' + QByteArray::number(moveNumber) + '\n');
     if (waitResponse()) {
-        //TODO: Set current player based on last turn in sgf file
-        //TODO: Check whether handicap was placed
-        changeCurrentPlayer(InvalidPlayer);
-        emit boardChanged();
+        m_moveNumber = moveNumber;                  // Store move number
+        if (m_response.startsWith("white"))         // Check which player is current
+            changeCurrentPlayer(WhitePlayer);
+        else if (m_response.startsWith("black"))
+            changeCurrentPlayer(BlackPlayer);
+        else
+            changeCurrentPlayer(InvalidPlayer);
+
+        m_process.write("get_komi\n");              // Query komi from engine and store it
+        if (waitResponse())
+            m_komi = m_response.toFloat();
+        m_process.write("get_handicap\n");          // Query fixed handicap and store it
+        if (waitResponse())
+            m_fixedHandicap = m_response.toInt();
+        kDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
+
+        emit boardChanged();                        // All done, tell the world!
         return true;
     } else
         return false;

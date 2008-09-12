@@ -69,7 +69,6 @@ private slots:
     void redo();                            ///< Redo last move
     void pass();                            ///< Pass current move
     void hint();
-    void toggleDemoMode();                  ///<
     void showPreferences();                 ///< Show configuration dialog
     void updatePreferences();               ///< React on user changed configuration
 

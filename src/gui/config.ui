@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>452</width>
-    <height>378</height>
+    <width>343</width>
+    <height>409</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
@@ -19,10 +19,43 @@
       </sizepolicy>
      </property>
      <property name="title" >
-      <string>Backend</string>
+      <string>Go backend</string>
      </property>
      <layout class="QGridLayout" name="gridLayout" >
-      <item row="2" column="0" >
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_3" >
+        <property name="text" >
+         <string>Executable</string>
+        </property>
+        <property name="alignment" >
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>engineExecutable</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="2" >
+       <widget class="KUrlRequester" name="engineExecutable" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Select the executable file to start the Go engine</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="KLineEdit" name="engineParameters" >
+        <property name="toolTip" >
+         <string>Add here the necessary parameters to start the Engine in GTP mode</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
          <string>Parameters:</string>
@@ -35,46 +68,47 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2" >
-       <widget class="KLineEdit" name="engineParameters" />
-      </item>
-      <item row="0" column="1" colspan="2" >
-       <widget class="KUrlRequester" name="engineExecutable" >
+      <item row="1" column="2" >
+       <widget class="KLed" name="engineLed" >
         <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-          <horstretch>1</horstretch>
+         <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+          <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip" >
+         <string>Indicates whether the Go engine works correctly</string>
+        </property>
+        <property name="state" >
+         <enum>KLed::Off</enum>
+        </property>
+        <property name="shape" >
+         <enum>KLed::Circular</enum>
+        </property>
        </widget>
       </item>
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label_3" >
+      <item row="2" column="1" >
+       <widget class="KLineEdit" name="kcfg_EngineCommand" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="focusPolicy" >
+         <enum>Qt::NoFocus</enum>
+        </property>
+        <property name="toolTip" >
+         <string>This is the resulting engine command which will be used by KGo</string>
+        </property>
         <property name="text" >
-         <string>Executable:</string>
+         <string/>
         </property>
-        <property name="alignment" >
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        <property name="readOnly" >
+         <bool>true</bool>
         </property>
-        <property name="buddy" >
-         <cstring>engineExecutable</cstring>
+        <property name="contextMenuEnabled" >
+         <bool>false</bool>
         </property>
-       </widget>
-      </item>
-      <item row="3" column="1" >
-       <widget class="KPushButton" name="engineCheckButton" >
-        <property name="text" >
-         <string>Check</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="2" >
-       <widget class="QLabel" name="engineCheckLabel" >
-        <property name="frameShape" >
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow" >
-         <enum>QFrame::Sunken</enum>
+        <property name="urlDropsEnabled" >
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -97,23 +131,16 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="0" colspan="2" >
-       <widget class="QCheckBox" name="kcfg_AdvancedStatistics" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="text" >
-         <string>Display advanced statistics</string>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0" >
        <widget class="QLabel" name="label_2" >
         <property name="text" >
-         <string>Board hints visible:</string>
+         <string>Move hint visibility:</string>
         </property>
         <property name="alignment" >
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy" >
+         <cstring>kcfg_HintVisibleTime</cstring>
         </property>
        </widget>
       </item>
@@ -162,6 +189,16 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout" >
       <item>
+       <widget class="QCheckBox" name="kcfg_AdvancedStatistics" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>Show detailed statistics</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QCheckBox" name="kcfg_AdvancedGameOptions" >
         <property name="enabled" >
          <bool>false</bool>
@@ -178,14 +215,14 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>KLed</class>
+   <extends>QWidget</extends>
+   <header>kled.h</header>
+  </customwidget>
+  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
   </customwidget>
   <customwidget>
    <class>KUrlRequester</class>
@@ -194,8 +231,10 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>engineExecutable</tabstop>
-  <tabstop>engineParameters</tabstop>
+  <tabstop>kcfg_ShowBoardLabels</tabstop>
+  <tabstop>kcfg_HintVisibleTime</tabstop>
+  <tabstop>kcfg_AdvancedStatistics</tabstop>
+  <tabstop>kcfg_AdvancedGameOptions</tabstop>
  </tabstops>
  <resources/>
  <connections/>

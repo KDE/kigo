@@ -34,6 +34,8 @@
 
 #include <KDebug>
 
+#include <QFile>
+
 namespace KGo {
 
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
@@ -42,14 +44,14 @@ SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     , m_lastFixedHandicap(Preferences::fixedHandicapValue())
 {
     if (!m_gameEngine->isRunning())
-        kFatal() << "No Go engine is running!";             // Engine should really be running here!
+        kFatal() << "No Go engine is running!";         // Engine should be running here
 
     setupUi(this);
     GameView *gameView = new GameView(scene, this);
-    gameView->setInteractive(false);                        // This is just a preview scene
+    gameView->setInteractive(false);                    // This is just a preview scene
     previewFrame->setLayout(new QHBoxLayout());
     previewFrame->layout()->addWidget(gameView);
-    setupNewGame();                                         // Configure new game per default
+    setupNewGame();                                     // Default configure new game
 }
 
 SetupScreen::~SetupScreen()
@@ -73,13 +75,74 @@ void SetupScreen::setupLoadedGame(const QString &fileName)
     loadSettings();
     gameSetupStack->setCurrentIndex(1);
     m_gameEngine->loadSgf(fileName);
-    //TODO: Set max value of startMoveSpinBox
-    //TODO: Display all related game information in the info box
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    m_lastFileName = fileName;
+    QTextStream in(&file);
+    QString content = in.readAll();
+    file.close();
+
+    QRegExp re;
+
+    // Parse additional game information from SGF file
+    re.setPattern("EV\\[([\\w ]+)\\]");             // Capture and set event
+    if (re.indexIn(content) > -1)
+        infoEvent->setText(re.cap(1));
+    re.setPattern("RO\\[(\\d+)\\]");                // Capture and set round
+    if (re.indexIn(content) > -1)
+        infoRound->setText(re.cap(1));
+    re.setPattern("DT\\[([\\w/\\-:\\.]+)\\]");      // Capture and set date
+    if (re.indexIn(content) > -1)
+        infoDate->setText(re.cap(1));
+
+    re.setPattern("PB\\[([\\w ]+)\\]");             // Capture and set black player name
+    if (re.indexIn(content) > -1)
+        infoBlack->setText(re.cap(1));
+    re.setPattern("BR\\[([\\w ]+)\\]");             // Capture and set black player rank
+    if (re.indexIn(content) > -1)
+        infoBlack->setText(infoBlack->text() + " (" + re.cap(1) + ")");
+    re.setPattern("PW\\[([\\w ]+)\\]");             // Capture and set white player name
+    if (re.indexIn(content) > -1)
+        infoWhite->setText(re.cap(1));
+    re.setPattern("WR\\[([\\w ]+)\\]");             // Capture and set white player rank
+    if (re.indexIn(content) > -1)
+        infoWhite->setText(infoWhite->text() + " (" + re.cap(1) + ")");
+
+    re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
+    if (re.indexIn(content) > -1)
+        infoKomi->setValue(re.cap(1).toFloat());
+    re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
+    if (re.indexIn(content) > -1)
+        infoScore->setText(re.cap(1));
+
+    // Parse move count
+    re.setPattern("[BW]\\[\\w\\w\\]");
+    int pos = 0;
+    int count = 0;
+    while (pos >= 0) {                              // Count all occurences of our pattern
+        pos = re.indexIn(content, pos);
+        if (pos >= 0) {
+            pos += re.matchedLength();
+            ++count;
+        }
+    }
+    startMoveSpinBox->setSuffix(i18n(" of %1", count));
+    startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
+    startMoveSpinBox->setValue(count);              // move.
 }
 
 void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
 {
-    //TODO: Show the corresponding board
+    if (!m_lastFileName.isEmpty())
+        m_gameEngine->loadSgf(m_lastFileName, value);
+
+    switch (m_gameEngine->currentPlayer()) {
+        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
+        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
+    }
 }
 
 void SetupScreen::on_sizeGroupBox_changed(int /*id*/)
@@ -137,10 +200,8 @@ void SetupScreen::on_startButton_clicked()
 
     // Set additional configuration based on game type
     if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game
-
         m_gameEngine->setKomi(Preferences::komi());
     } else {                                        // The user configured a loaded game
-
     }
     emit startClicked();
 }

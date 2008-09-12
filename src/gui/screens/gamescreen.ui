@@ -213,10 +213,13 @@
          <string> Stones</string>
         </property>
         <property name="minimum" >
-         <number>2</number>
+         <number>0</number>
         </property>
         <property name="maximum" >
          <number>9</number>
+        </property>
+        <property name="value" >
+         <number>2</number>
         </property>
        </widget>
       </item>
@@ -244,7 +247,7 @@
          <double>50.000000000000000</double>
         </property>
         <property name="value" >
-         <double>4.500000000000000</double>
+         <double>0.500000000000000</double>
         </property>
        </widget>
       </item>

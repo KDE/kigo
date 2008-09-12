@@ -103,6 +103,7 @@ private:
     GoEngine * const m_gameEngine;  ///<
 
     int m_lastFixedHandicap;        ///<
+    QString m_lastFileName;         ///<
 };
 
 } // End of namespace KGo

@@ -72,6 +72,7 @@ void GameScreen::showEvent(QShowEvent *)
 
 void GameScreen::updateStatistics()
 {
+    kDebug() << "Update statistics";
     moveSpinBox->setValue(m_gameEngine->moveNumber());
 
     QPair<GoEngine::Stone, GoEngine::PlayerColor> lastMove = m_gameEngine->lastMove();

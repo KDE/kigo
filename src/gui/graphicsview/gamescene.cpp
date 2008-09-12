@@ -66,7 +66,7 @@ void GameScene::resizeScene(int width, int height)
 {
     setSceneRect(0, 0, width, height);
 
-    int size = qMin(width, height) - 10; // Add 10 pixel padding around the board
+    int size = qMin(width, height) - 10;    // Add 10 pixel padding around the board
     m_boardRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
     m_cellSize = m_boardRect.width() / (m_boardSize + 1);
 
@@ -75,8 +75,8 @@ void GameScene::resizeScene(int width, int height)
     m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
-    updateStoneItems();             // Resize means redraw of board items (stones)
-    updateHintItems();
+    updateStoneItems();                     // Resize means redraw of board items (stones)
+    updateHintItems();                      // and move hint items
 }
 
 void GameScene::showLabels(bool show)
@@ -100,7 +100,7 @@ void GameScene::showMoveHistory(bool show)
 void GameScene::showPopupMessage(const QString &message)
 {
     if (message.isEmpty())
-        m_gamePopup.forceHide();
+        m_gamePopup.forceHide();            // Now message hide the last one
     else
         m_gamePopup.showMessage(message, KGamePopupItem::BottomLeft, KGamePopupItem::ReplacePrevious);
 }
@@ -110,8 +110,7 @@ void GameScene::updateStoneItems()
     QGraphicsPixmapItem *item;
     int halfCellSize = m_cellSize / 2;
 
-    // Clear all standard Go stone graphics pixmap items
-    foreach (item, m_stoneItems)
+    foreach (item, m_stoneItems)            // Clear all standard Go stone graphics pixmap items
         removeItem(item);
     m_stoneItems.clear();
 
