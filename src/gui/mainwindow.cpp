@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
 
 void MainWindow::newGame()
 {
+    //setCaption(i18n("New game"));
     m_saveAsAction->setEnabled(false);
     m_previousMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
@@ -102,6 +103,7 @@ void MainWindow::loadGame()
 {
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
+        //setCaption(i18n("Loaded game"));
         m_saveAsAction->setEnabled(false);
         m_previousMoveAction->setEnabled(false);
         m_passMoveAction->setEnabled(false);

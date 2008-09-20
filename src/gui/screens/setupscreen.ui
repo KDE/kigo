@@ -937,7 +937,7 @@
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>Start game</string>
+         <string>Start new game</string>
         </property>
         <property name="shortcut" >
          <string>Ctrl+S</string>

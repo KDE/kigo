@@ -51,7 +51,7 @@ SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     gameView->setInteractive(false);                    // This is just a preview scene
     previewFrame->setLayout(new QHBoxLayout());
     previewFrame->layout()->addWidget(gameView);
-    setupNewGame();                                     // Default configure new game
+    //setupNewGame();
 }
 
 SetupScreen::~SetupScreen()
@@ -61,6 +61,7 @@ SetupScreen::~SetupScreen()
 
 void SetupScreen::setupNewGame()
 {
+    startButton->setText(i18n("Start new game"));
     loadSettings();
     gameSetupStack->setCurrentIndex(0);
     m_gameEngine->setBoardSize(Preferences::boardSize());
@@ -72,6 +73,7 @@ void SetupScreen::setupLoadedGame(const QString &fileName)
 {
     Q_ASSERT(!fileName.isEmpty());
 
+    startButton->setText(i18n("Start loaded game"));
     loadSettings();
     gameSetupStack->setCurrentIndex(1);
     m_gameEngine->loadSgf(fileName);

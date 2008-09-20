@@ -102,7 +102,7 @@ void GameScene::showPopupMessage(const QString &message)
     if (message.isEmpty())
         m_gamePopup.forceHide();            // Now message hide the last one
     else
-        m_gamePopup.showMessage(message, KGamePopupItem::BottomLeft, KGamePopupItem::ReplacePrevious);
+        m_gamePopup.showMessage(message, KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
 
 void GameScene::updateStoneItems()

@@ -113,7 +113,7 @@ GoEngine::GoEngine()
     : m_currentPlayer(BlackPlayer)
     , m_whitePlayerType(HumanPlayer), m_whitePlayerStrength(10)
     , m_blackPlayerType(HumanPlayer), m_blackPlayerStrength(10)
-    , m_komi(0), m_fixedHandicap(0), m_moveNumber(0)
+    , m_komi(0), m_fixedHandicap(0), m_moveNumber(0), m_consecutivePassMoveNumber(0)
 {
     connect(&m_process, SIGNAL(error(QProcess::ProcessError)), SIGNAL(error(QProcess::ProcessError)));
 }
@@ -177,11 +177,11 @@ bool GoEngine::loadSgf(const QString &fileName, int moveNumber)
     if (waitResponse()) {
         m_moveNumber = moveNumber;                  // Store move number
         if (m_response.startsWith("white"))         // Check which player is current
-            changeCurrentPlayer(WhitePlayer);
+            setCurrentPlayer(WhitePlayer);
         else if (m_response.startsWith("black"))
-            changeCurrentPlayer(BlackPlayer);
+            setCurrentPlayer(BlackPlayer);
         else
-            changeCurrentPlayer(InvalidPlayer);
+            setCurrentPlayer(InvalidPlayer);
 
         m_process.write("get_komi\n");              // Query komi from engine and store it
         if (waitResponse())
@@ -242,7 +242,7 @@ bool GoEngine::setBoardSize(int size)
     m_process.write("boardsize " + QByteArray::number(size) + '\n');
     if (waitResponse()) {
         // Changing size wipes the board, start again with black player.
-        changeCurrentPlayer(BlackPlayer);
+        setCurrentPlayer(BlackPlayer);
         m_fixedHandicap = 0;
         m_moveNumber = 0;
         emit boardSizeChanged(size);
@@ -269,7 +269,7 @@ bool GoEngine::clearBoard()
     m_process.write("clear_board\n");
     if (waitResponse()) {
         //: The board is wiped empty, start again with black player
-        changeCurrentPlayer(BlackPlayer);
+        setCurrentPlayer(BlackPlayer);
         m_fixedHandicap = 0;
         m_moveNumber = 0;
         emit boardChanged();
@@ -341,7 +341,7 @@ bool GoEngine::setFixedHandicap(int handicap)
         if (waitResponse()) {
             // Black starts with setting his (fixed) handicap as it's first turn
             // which means, white is next.
-            changeCurrentPlayer(WhitePlayer);
+            setCurrentPlayer(WhitePlayer);
             m_fixedHandicap = handicap;
             emit boardChanged();
             return true;
@@ -392,8 +392,9 @@ bool GoEngine::playMove(const Stone &field, PlayerColor color)
     msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
     if (waitResponse()) {
-        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
         m_moveNumber++;
+        m_consecutivePassMoveNumber = 0;
         emit boardChanged();
         return true;
     } else
@@ -415,8 +416,11 @@ bool GoEngine::passMove(PlayerColor color)
     msg.append("pass\n");
     m_process.write(msg);
     if (waitResponse()) {
-        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
         m_moveNumber++;
+        if (m_consecutivePassMoveNumber > 0)
+            emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+        m_consecutivePassMoveNumber++;
         emit boardChanged();
         return true;
     } else
@@ -442,9 +446,20 @@ bool GoEngine::generateMove(PlayerColor color)
     }
     m_process.write(msg);
     if (waitResponse()) {
-        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
-        m_moveNumber++;
-        emit boardChanged();
+        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
+
+        if (m_response == "PASS") {
+            m_moveNumber++;
+            if (m_consecutivePassMoveNumber > 0)
+                emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+            m_consecutivePassMoveNumber++;
+        } else if (m_response == "resign") {
+            emit playerResigned(m_currentPlayer);
+        } else {
+            m_moveNumber++;
+            m_consecutivePassMoveNumber = 0;
+            emit boardChanged();
+        }
         return true;
     } else
         return false;
@@ -461,10 +476,12 @@ bool GoEngine::undoMove()
         m_process.write("undo\n");
         if (waitResponse()) {
             if (lastMove.startsWith("white"))
-                changeCurrentPlayer(WhitePlayer);
+                setCurrentPlayer(WhitePlayer);
             else if (lastMove.startsWith("black"))
-                changeCurrentPlayer(BlackPlayer);
+                setCurrentPlayer(BlackPlayer);
             m_moveNumber--;
+            if (m_consecutivePassMoveNumber > 0)
+                m_consecutivePassMoveNumber--;
             emit boardChanged();
         }
         return true;
@@ -472,7 +489,7 @@ bool GoEngine::undoMove()
         return false;
 }
 
-bool GoEngine::tryMove(const Stone &field, PlayerColor color)
+/*bool GoEngine::tryMove(const Stone &field, PlayerColor color)
 {
     if (!isRunning() || !field.isValid())
         return false;
@@ -487,7 +504,7 @@ bool GoEngine::tryMove(const Stone &field, PlayerColor color)
     msg.append(field.toLatin1() + '\n');
     m_process.write(msg);
     if (waitResponse()) {
-        color == WhitePlayer ? changeCurrentPlayer(BlackPlayer) : changeCurrentPlayer(WhitePlayer);
+        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
         emit boardChanged();
         return true;
     } else
@@ -505,7 +522,7 @@ bool GoEngine::popGo()
         return true;
     } else
         return false;
-}
+}*/
 
 GoEngine::PlayerColor GoEngine::currentPlayer() const
 {
@@ -1079,7 +1096,7 @@ bool GoEngine::waitResponse()
     return tmp != '?';                              // '?' Means the engine didn't understand the query
 }
 
-void GoEngine::changeCurrentPlayer(PlayerColor color)
+void GoEngine::setCurrentPlayer(PlayerColor color)
 {
     m_currentPlayer = color;
     emit currentPlayerChanged(m_currentPlayer);

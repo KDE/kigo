@@ -420,12 +420,12 @@ public:
      * @param field Play a stone at that field
      * @param color Play a stone for that color
      */
-    bool tryMove(const Stone &field, PlayerColor color = InvalidPlayer);
+    //bool tryMove(const Stone &field, PlayerColor color = InvalidPlayer);
 
     /**
      * Undo a trymove.
      */
-    bool popGo();
+    //bool popGo();
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Board status
@@ -649,9 +649,7 @@ public:
      */
     int getLifeNodeCounter();
 
-    /**
-     * Reset the count of life nodes.
-     */
+    /** Reset the count of life nodes. */
     bool resetLifeNodeCounter();
 
     /**
@@ -661,9 +659,7 @@ public:
      */
     int getOwlNodeCounter();
 
-    /**
-     * Reset the count of owl nodes.
-     */
+    /** Reset the count of owl nodes. */
     bool resetOwlNodeCounter();
 
     /**
@@ -673,33 +669,23 @@ public:
      */
     int getReadingNodeCounter();
 
-    /**
-     * Reset the count of reading nodes.
-     */
+    /** Reset the count of reading nodes. */
     bool resetReadingNodeCounter();
 
-    /**
-     * Retrieve the count of trymoves/trykos.
-     */
+    /** Retrieve the count of trymoves/trykos. */
     int getTryMoveCounter();
 
-    /**
-     * Reset the count of trymoves/trykos.
-     */
+    /** Reset the count of trymoves/trykos. */
     bool resetTryMoveCounter();
 
     /////////////////////////////////////////////////////////////////////
     // GTP: debug
     /////////////////////////////////////////////////////////////////////
 
-    /**
-     * Write the complete board to stdout.
-     */
+    /** Write the complete board to stdout. */
     bool showBoard();
 
-    /**
-     * Dump stack to stdout.
-     */
+    /** Dump stack to stdout. */
     bool dumpStack();
 
     /**
@@ -772,9 +758,7 @@ public:
     QString echo(const QString &command);
 
 signals:
-    /**
-     * This signal is emmited when the process encounters an error.
-     */
+    /** This signal is emmited when the process encounters an error. */
     void error(QProcess::ProcessError);
 
     /**
@@ -783,14 +767,16 @@ signals:
      */
     void boardChanged();
 
-    /**
-     * This signal is emitted when the board size was changed.
-     */
+    /** This signal is emitted when the board size was changed. */
     void boardSizeChanged(int);
 
-    /**
-     * This signal is emitted when the current player changes.
-     */
+    /** This signal is emitted when a player resigns. */
+    void playerResigned(GoEngine::PlayerColor);
+
+    /** This signal is emitted when both players played a pass move after another. */
+    void consecutivePassMovesPlayed(int);
+
+    /** This signal is emitted when the current player changes. */
     void currentPlayerChanged(GoEngine::PlayerColor);
 
     void waitStarted();
@@ -804,7 +790,7 @@ private slots:
     bool waitResponse();
 
 private:
-    void changeCurrentPlayer(PlayerColor color);
+    void setCurrentPlayer(PlayerColor color);
 
     QString m_engineCommand;
     QString m_response;             ///< Stores the last answer from the engine
@@ -820,6 +806,7 @@ private:
     float m_komi;
     int m_fixedHandicap;
     int m_moveNumber;
+    int m_consecutivePassMoveNumber;
 };
 
 } // End of namespace KGo
