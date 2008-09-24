@@ -7,7 +7,15 @@ Categories=Qt;KDE;Game;BoardGame;
 
 Name=KGo
 Name[sv]=Kgo
+Name[x-test]=xxKGoxx
 
 GenericName=Go Board Game
+GenericName[el]=Επιτραπέζιο παιχνίδι Go
 GenericName[et]=Go-mäng
+GenericName[ga]=Cluiche Boird "Go"
+GenericName[gl]=Xogo do Go
+GenericName[km]=ល្បែង​របស់ Go Board
+GenericName[pt]=Jogo de Tabuleiro Go
 GenericName[sv]=Brädspelet Go
+GenericName[uk]=Гра у го на дошці
+GenericName[x-test]=xxGo Board Gamexx
