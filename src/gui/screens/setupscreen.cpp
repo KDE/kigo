@@ -51,7 +51,6 @@ SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     gameView->setInteractive(false);                    // This is just a preview scene
     previewFrame->setLayout(new QHBoxLayout());
     previewFrame->layout()->addWidget(gameView);
-    //setupNewGame();
 }
 
 SetupScreen::~SetupScreen()
@@ -76,7 +75,7 @@ void SetupScreen::setupLoadedGame(const QString &fileName)
     startButton->setText(i18n("Start loaded game"));
     loadSettings();
     gameSetupStack->setCurrentIndex(1);
-    m_gameEngine->loadSgf(fileName);
+    m_gameEngine->loadGameFromSGF(fileName);
 
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -138,7 +137,7 @@ void SetupScreen::setupLoadedGame(const QString &fileName)
 void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
 {
     if (!m_lastFileName.isEmpty())
-        m_gameEngine->loadSgf(m_lastFileName, value);
+        m_gameEngine->loadGameFromSGF(m_lastFileName, value);
 
     switch (m_gameEngine->currentPlayer()) {
         case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;

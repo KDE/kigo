@@ -73,11 +73,10 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
         setupActions();
         setupGUI(KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
 
-        if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
+        if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
             m_mainWidget->setCurrentWidget(errorScreen());
-            m_errorScreen->setErrorMessage(m_gameScene->engine()->lastResponse());
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
@@ -88,13 +87,14 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
 
 void MainWindow::newGame()
 {
-    //setCaption(i18n("New game"));
     m_saveAsAction->setEnabled(false);
     m_previousMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
+
     setupScreen()->setupNewGame();
+
     m_mainWidget->setCurrentWidget(setupScreen());
     m_gameScene->showPopupMessage(i18n("Set up and play a new game..."));
 }
@@ -103,13 +103,14 @@ void MainWindow::loadGame()
 {
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
-        //setCaption(i18n("Loaded game"));
         m_saveAsAction->setEnabled(false);
         m_previousMoveAction->setEnabled(false);
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
         m_moveHistoryAction->setEnabled(true);
+
         setupScreen()->setupLoadedGame(fileName);
+
         m_mainWidget->setCurrentWidget(m_setupScreen);
         m_gameScene->showPopupMessage(i18n("Set up and play a loaded game..."));
     }
@@ -119,8 +120,7 @@ void MainWindow::saveGame()
 {
     QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
-        m_gameScene->engine()->saveSgf(fileName);
-        if (m_gameScene->engine()->saveSgf(fileName))
+        if (m_gameScene->engine()->saveGameToSGF(fileName))
             m_gameScene->showPopupMessage(i18n("Game saved to %1", fileName));
         else
             m_gameScene->showPopupMessage(i18n("Unable to save game to %1!", fileName));
@@ -134,6 +134,7 @@ void MainWindow::startGame()
     m_passMoveAction->setEnabled(true);
     m_hintAction->setEnabled(true);
     m_moveHistoryAction->setEnabled(true);
+
     // The GameScene should be configured and just be waiting for further input
     // so we only need to show the GameScreen and allow direct user-interaction
     m_mainWidget->setCurrentWidget(gameScreen());
@@ -143,6 +144,7 @@ void MainWindow::startGame()
 void MainWindow::undo()
 {
     m_gameScene->engine()->undoMove();
+    m_gameScene->showPopupMessage("");
 }
 
 void MainWindow::redo()
@@ -180,13 +182,12 @@ void MainWindow::updatePreferences()
 
     // Restart the Go engine if the engine command was changed by the user.
     GoEngine *engine = m_gameScene->engine();
-    if (engine->command() != Preferences::engineCommand()) {
+    if (engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start backend...";
-        if (!m_gameScene->engine()->start(Preferences::engineCommand())) {
+        if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
             m_mainWidget->setCurrentWidget(errorScreen());
-            m_errorScreen->setErrorMessage(m_gameScene->engine()->lastResponse());
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);

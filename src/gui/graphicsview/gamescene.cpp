@@ -30,7 +30,6 @@
 #include "gamescene.h"
 #include "themerenderer.h"
 #include "preferences.h"
-#include "game/goengine.h"
 
 #include <KLocalizedString>
 #include <KDebug>
@@ -51,10 +50,12 @@ GameScene::GameScene()
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
+    connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showPassMessage(int)));
+    connect(m_engine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(showResignMessage(GoEngine::PlayerColor())));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
-    addItem(&m_gamePopup);
+    addItem(&m_gamePopup);                  // TODO: Fix initial placement issue
 }
 
 GameScene::~GameScene()
@@ -204,6 +205,20 @@ void GameScene::changeBoardSize(int size)
     m_boardSize = size;
     resizeScene(width(), height());
     invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
+}
+
+void GameScene::showPassMessage(int)
+{
+    m_gamePopup.showMessage(i18n("Both players passed, decide if you want to finish the game and count scores..."),
+                            KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
+}
+
+void GameScene::showResignMessage(GoEngine::PlayerColor player)
+{
+    QString looser;
+    player == GoEngine::WhitePlayer ? looser = "White" : looser = "Black";
+    m_gamePopup.showMessage(i18n("%1 has resigned and you have won the game, count your scores...", looser),
+                            KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

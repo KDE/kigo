@@ -55,7 +55,7 @@ void GeneralConfig::updateEngineCommand()
 
     // Check if the configured Go engine backend actually works and tell the user
     GoEngine engine;
-    if(engine.start(kcfg_EngineCommand->text()) && !engine.name().isEmpty())
+    if(engine.startEngine(kcfg_EngineCommand->text()) && !engine.engineName().isEmpty())
         engineLed->setState(KLed::On);
     else
         engineLed->setState(KLed::Off);

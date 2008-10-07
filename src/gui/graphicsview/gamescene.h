@@ -30,13 +30,13 @@
 #ifndef KGO_GAMESCENE_H
 #define KGO_GAMESCENE_H
 
+#include "game/goengine.h"
+
 #include <KGamePopupItem>
 
 #include <QGraphicsScene>
 
 namespace KGo {
-
-class GoEngine;
 
 /**
  * This class provides a graphical representation of the go game using
@@ -74,6 +74,8 @@ private slots:
     void updateHintItems();
     void changeBoardSize(int size);
     void hideHint() { showHint(false); }
+    void showPassMessage(int);
+    void showResignMessage(GoEngine::PlayerColor);
 
 private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

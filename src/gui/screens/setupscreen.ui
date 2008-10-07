@@ -36,13 +36,13 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4" >
       <item>
-       <widget class="QGroupBox" name="whitePlayerBox" >
+       <widget class="QGroupBox" name="playerBox" >
         <property name="title" >
-         <string>White</string>
+         <string>Players</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_4" >
-         <item row="0" column="0" >
-          <widget class="KComboBox" name="whitePlayerCombo" >
+         <item row="2" column="1" >
+          <widget class="KComboBox" name="blackPlayerCombo" >
            <item>
             <property name="text" >
              <string>Human</string>
@@ -55,123 +55,7 @@
            </item>
           </widget>
          </item>
-         <item row="0" column="1" >
-          <widget class="QStackedWidget" name="whitePlayerStack" >
-           <property name="frameShape" >
-            <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="currentIndex" >
-            <number>0</number>
-           </property>
-           <widget class="QWidget" name="whiteHumanPage" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>211</width>
-              <height>30</height>
-             </rect>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_2" >
-             <property name="margin" >
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="KLineEdit" name="whitePlayerName" >
-               <property name="enabled" >
-                <bool>true</bool>
-               </property>
-               <property name="text" >
-                <string>Name</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="whiteComputerPage" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>211</width>
-              <height>30</height>
-             </rect>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_8" >
-             <property name="margin" >
-              <number>0</number>
-             </property>
-             <item row="0" column="1" colspan="2" >
-              <widget class="QSlider" name="whiteStrengthSlider" >
-               <property name="minimum" >
-                <number>1</number>
-               </property>
-               <property name="maximum" >
-                <number>10</number>
-               </property>
-               <property name="pageStep" >
-                <number>1</number>
-               </property>
-               <property name="value" >
-                <number>5</number>
-               </property>
-               <property name="orientation" >
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="tickPosition" >
-                <enum>QSlider::TicksBelow</enum>
-               </property>
-               <property name="tickInterval" >
-                <number>0</number>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0" >
-              <widget class="QLabel" name="label1" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text" >
-                <string>Weak</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3" >
-              <widget class="QLabel" name="label2" >
-               <property name="sizePolicy" >
-                <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text" >
-                <string>Strong</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="blackPlayerBox" >
-        <property name="title" >
-         <string>Black</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_6" >
-         <item row="0" column="1" >
+         <item row="2" column="2" colspan="2" >
           <widget class="QStackedWidget" name="blackPlayerStack" >
            <property name="currentIndex" >
             <number>0</number>
@@ -181,7 +65,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>211</width>
+              <width>163</width>
               <height>30</height>
              </rect>
             </property>
@@ -206,7 +90,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>211</width>
+              <width>163</width>
               <height>30</height>
              </rect>
             </property>
@@ -275,8 +159,141 @@
            </widget>
           </widget>
          </item>
-         <item row="0" column="0" >
-          <widget class="KComboBox" name="blackPlayerCombo" >
+         <item row="1" column="2" colspan="2" >
+          <widget class="QStackedWidget" name="whitePlayerStack" >
+           <property name="frameShape" >
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="currentIndex" >
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="whiteHumanPage" >
+            <property name="geometry" >
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>163</width>
+              <height>30</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="KLineEdit" name="whitePlayerName" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="text" >
+                <string>Name</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="whiteComputerPage" >
+            <property name="geometry" >
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>163</width>
+              <height>30</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8" >
+             <property name="margin" >
+              <number>0</number>
+             </property>
+             <item row="0" column="0" >
+              <widget class="QLabel" name="label1" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Weak</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="3" >
+              <widget class="QLabel" name="label2" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Strong</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" >
+              <widget class="QSlider" name="whiteStrengthSlider" >
+               <property name="minimum" >
+                <number>1</number>
+               </property>
+               <property name="maximum" >
+                <number>10</number>
+               </property>
+               <property name="pageStep" >
+                <number>1</number>
+               </property>
+               <property name="value" >
+                <number>5</number>
+               </property>
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="tickPosition" >
+                <enum>QSlider::TicksBelow</enum>
+               </property>
+               <property name="tickInterval" >
+                <number>0</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+         <item row="1" column="0" >
+          <widget class="QLabel" name="label" >
+           <property name="text" >
+            <string>White:</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+           <property name="buddy" >
+            <cstring>whitePlayerCombo</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" >
+          <widget class="QLabel" name="label_2" >
+           <property name="text" >
+            <string>Black:</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+           <property name="buddy" >
+            <cstring>blackPlayerCombo</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" >
+          <widget class="KComboBox" name="whitePlayerCombo" >
            <item>
             <property name="text" >
              <string>Human</string>
@@ -295,7 +312,7 @@
       <item>
        <widget class="QStackedWidget" name="gameSetupStack" >
         <property name="currentIndex" >
-         <number>1</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="newGamePage" >
          <property name="geometry" >
@@ -303,7 +320,7 @@
            <x>0</x>
            <y>0</y>
            <width>321</width>
-           <height>357</height>
+           <height>368</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_7" >
@@ -948,6 +965,8 @@
     </widget>
    </item>
   </layout>
+  <zorder>groupBox</zorder>
+  <zorder>previewFrame</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -979,10 +998,11 @@
  </customwidgets>
  <tabstops>
   <tabstop>whitePlayerCombo</tabstop>
-  <tabstop>whitePlayerName</tabstop>
-  <tabstop>whiteStrengthSlider</tabstop>
   <tabstop>blackPlayerCombo</tabstop>
+  <tabstop>whitePlayerName</tabstop>
   <tabstop>blackPlayerName</tabstop>
+  <tabstop>whiteStrengthSlider</tabstop>
+  <tabstop>blackStrengthSlider</tabstop>
   <tabstop>sizeSmall</tabstop>
   <tabstop>sizeMedium</tabstop>
   <tabstop>sizeBig</tabstop>
@@ -1003,12 +1023,12 @@
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>584</x>
-     <y>88</y>
+     <x>546</x>
+     <y>73</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>789</x>
-     <y>105</y>
+     <x>720</x>
+     <y>74</y>
     </hint>
    </hints>
   </connection>
@@ -1019,12 +1039,12 @@
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>584</x>
-     <y>198</y>
+     <x>519</x>
+     <y>98</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>789</x>
-     <y>215</y>
+     <x>697</x>
+     <y>86</y>
     </hint>
    </hints>
   </connection>

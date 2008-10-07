@@ -175,9 +175,9 @@
        </widget>
       </item>
       <item row="11" column="0" colspan="2" >
-       <widget class="KPushButton" name="countButton" >
+       <widget class="KPushButton" name="checkButton" >
         <property name="text" >
-         <string>Count</string>
+         <string>Check scores</string>
         </property>
        </widget>
       </item>
@@ -357,6 +357,16 @@
         </layout>
        </widget>
       </item>
+      <item row="12" column="0" colspan="2" >
+       <widget class="KPushButton" name="finishButton" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>Finish scores</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -375,7 +385,7 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>countButton</tabstop>
+  <tabstop>checkButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

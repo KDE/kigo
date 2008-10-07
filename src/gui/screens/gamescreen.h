@@ -67,7 +67,10 @@ public:
 private slots:
     void showEvent(QShowEvent *);
     void updateStatistics();
-    void showScoreEstimates();
+    void handlePass(int);
+    void handleResign();
+    void scoreEstimates();
+    void finishGame();
 
 private:
     GoEngine * const m_gameEngine;  ///<

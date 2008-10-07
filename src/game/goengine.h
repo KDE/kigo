@@ -50,14 +50,14 @@ namespace KGo {
  * GoEngine *engine = new GoEngine;
  *
  * // Run a session with a Go engine in GTP mode
- * engine->start("gnugo --mode gtp");
+ * engine->startEngine("gnugo --mode gtp");
  *
  * // Get some information about the Go engine
- * engine->name();
- * engine->version();
+ * engine->engineName();
+ * engine->engineVersion();
  * engine->help();
  *
- * engine->quit();
+ * engine->engineQuit();
  * @endcode
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -235,40 +235,18 @@ public:
      *
      * @param command The executable command to start in GTP mode.
      */
-    bool start(const QString &command = "gnugo --mode gtp");
+    bool startEngine(const QString &command = "gnugo --mode gtp");
 
     /**
      * Check whether the GoEngine object is connected to a Go engine, running
      * and waiting for commands to be fed with.
      */
-    bool isRunning() const { return m_process.state() == QProcess::Running; }
-
-    /**
-     * Retrieve the last response the Go game engine made  occuredafter it
-     * received a command.
-     */
-    QString lastResponse() const { return m_response; }
+    bool isRunning() const { return m_engineProcess.state() == QProcess::Running; }
 
     /**
      * Gracefully stop and exit the Go game engine.
      */
-    void quit();
-
-    /**
-     * Load a SGF file, possibly up to a move number or the first
-     * occurrence of a move.
-     *
-     * @param fileName The SGF file name
-     * @param moveNumber The move number
-     */
-    bool loadSgf(const QString &fileName, int moveNumber = 0);
-
-    /**
-     * Save the current game as a SGF filer.
-     *
-     * @param fileName The SGF file name
-     */
-    bool saveSgf(const QString &fileName);
+    void quitEngine();
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Program identity
@@ -277,26 +255,42 @@ public:
     /**
      * Retrieves the name of the Go game engine application.
      */
-    QString name();
+    QString engineName();
 
     /**
      *
      */
-    QString command() const { return m_engineCommand; }
+    QString engineCommand() const { return m_engineCommand; }
 
     /**
      * Retrieves the GTP protocol version implemented by the Go game engine.
      */
-    int protocol();
+    int engineProtocol();
 
     /**
      * Retrieves the version of the Go game engine application.
      */
-    QString version();
+    QString engineVersion();
 
     ////////////////////////////////////////////////////////////////////
-    // GTP: Setting the board size, clearing
+    // GTP: Setting komi, level, handicap, board size, loaded games, ...
     ////////////////////////////////////////////////////////////////////
+
+    /**
+     * Load a SGF file, possibly up to a move number or the first
+     * occurrence of a move.
+     *
+     * @param fileName The SGF file name
+     * @param moveNumber The move number
+     */
+    bool loadGameFromSGF(const QString &fileName, int moveNumber = 0);
+
+    /**
+     * Save the current game as a SGF filer.
+     *
+     * @param fileName The SGF file name
+     */
+    bool saveGameToSGF(const QString &fileName);
 
     /**
      * Set the board size to NxN.
@@ -314,10 +308,6 @@ public:
      * Clears the board.
      */
     bool clearBoard();
-
-    ////////////////////////////////////////////////////////////////////
-    // GTP: Setting komi, level, handicap
-    ////////////////////////////////////////////////////////////////////
 
     /**
      * Set the komi.
@@ -407,7 +397,7 @@ public:
      */
     bool undoMove();
 
-    int moveNumber() const { return m_moveNumber; }
+    int currentMoveNumber() const { return m_moveNumber; }
 
     /////////////////////////////////////////////////////////////////////
     // GTP: Retractable moves
@@ -758,9 +748,6 @@ public:
     QString echo(const QString &command);
 
 signals:
-    /** This signal is emmited when the process encounters an error. */
-    void error(QProcess::ProcessError);
-
     /**
      * This signal is emitted when the board situation changed and
      * can be used to trigger an update to a visual representation.
@@ -773,19 +760,19 @@ signals:
     /** This signal is emitted when a player resigns. */
     void playerResigned(GoEngine::PlayerColor);
 
-    /** This signal is emitted when both players played a pass move after another. */
+    /**
+     * This signal is emitted when both players played a pass move
+     * after another. It is also send when pass moves are gone
+     * (which is indicated by a value of 0).*/
     void consecutivePassMovesPlayed(int);
 
     /** This signal is emitted when the current player changes. */
     void currentPlayerChanged(GoEngine::PlayerColor);
 
-    void waitStarted();
-    void waitFinished();
-
 private slots:
     /**
      * Wait gracefully for a response from the Go engine. The returned string
-     * from the Go engine is stored in 'm_response'.
+     * from the Go engine is stored in 'm_engineResponse'.
      */
     bool waitResponse();
 
@@ -793,16 +780,14 @@ private:
     void setCurrentPlayer(PlayerColor color);
 
     QString m_engineCommand;
-    QString m_response;             ///< Stores the last answer from the engine
-    QProcess m_process;             ///< To interact with the engine executable
-    PlayerColor m_currentPlayer;    ///< Internal storage of current player
+    QString m_engineResponse;
+    QProcess m_engineProcess;
 
+    PlayerColor m_currentPlayer;
     PlayerType m_whitePlayerType;
     int m_whitePlayerStrength;
-
     PlayerType m_blackPlayerType;
     int m_blackPlayerStrength;
-
     float m_komi;
     int m_fixedHandicap;
     int m_moveNumber;
