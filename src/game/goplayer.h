@@ -17,34 +17,54 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
+#ifndef KGO_GOPLAYER_H
+#define KGO_GOPLAYER_H
 
-#include "ui_config.h"
-
-#include <QWidget>
+#include <QString>
+#include <QObject>
 
 namespace KGo {
 
+class GoEngine;
+
 /**
- * Represents the general configuration tab in the KGo
- * configuration screen.
  *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
  */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+class GoPlayer : public QObject
 {
     Q_OBJECT
 
 public:
-    /**
-     * Standard Constructor. Sets up the loaded user interface.
-     */
-    explicit GeneralConfig(QWidget *parent = 0);
+    enum Color {
+        White = 1,          ///< The white player
+        Black               ///< The black player
+    };
 
-private slots:
-    void updateEngineCommand();
+    enum Type {
+        Human = 1,          ///<
+        Computer            ///<
+    };
+
+    Color color() const { return m_color; }
+
+    void setName(const QString &name);
+    QString name() const { return m_name; }
+
+    void setType(Type type) { m_type = type; }
+    Type type() const { return m_type; }
+
+    void setStrength(int strength);
+    int strength() const { return m_strength; }
+
+private:
+    GoPlayer(Color color, Type type, const QString &name = QString(), int strength = 10);
+
+    const Color m_color;
+    Type m_type;
+    QString m_name;
+    int m_strength;
+
+    friend class GoEngine;
 };
 
 } // End of namespace KGo

@@ -1,35 +1,24 @@
-/*******************************************************************
- *
- * Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
- *
- * This file is part of the KDE project "KGo"
- *
- * KGo is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * KGo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with KReversi; see the file COPYING.  If not, write to
- * the Free Software Foundation, 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301, USA.
- *
- *******************************************************************/
+/***************************************************************************
+ *   Copyright (C) 2008 by Sascha Peilicke <sasch.pe@gmx.de>               *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 
-/**
- * @file This file is part of KGO and implements the class GameScreen,
- *       which acts as a compound widget to display the game view and
- *       several additional information panels.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- */
 #include "gamescreen.h"
-#include "game/goengine.h"
+#include "game/oldgoengine.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
 #include "preferences.h"
@@ -55,7 +44,7 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
 
     connect(m_gameEngine, SIGNAL(boardChanged()), this, SLOT(updateStatistics()));
     connect(m_gameEngine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(handlePass(int)));
-    connect(m_gameEngine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(handleResign()));
+    connect(m_gameEngine, SIGNAL(playerResigned(OldGoEngine::PlayerColor)), this, SLOT(handleResign()));
 
     connect(checkButton, SIGNAL(clicked()), this, SLOT(scoreEstimates()));
     connect(finishButton, SIGNAL(clicked()), this, SLOT(finishGame()));
@@ -81,20 +70,20 @@ void GameScreen::updateStatistics()
 {
     moveSpinBox->setValue(m_gameEngine->currentMoveNumber());
 
-    QPair<GoEngine::Stone, GoEngine::PlayerColor> lastMove = m_gameEngine->lastMove();
+    QPair<OldGoEngine::Stone, OldGoEngine::PlayerColor> lastMove = m_gameEngine->lastMove();
     switch (lastMove.second) {
-        case GoEngine::WhitePlayer: moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
-        case GoEngine::BlackPlayer: moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
-        case GoEngine::InvalidPlayer: moveSpinBox->setSuffix(""); break;
+        case OldGoEngine::WhitePlayer: moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
+        case OldGoEngine::BlackPlayer: moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
+        case OldGoEngine::InvalidPlayer: moveSpinBox->setSuffix(""); break;
     }
     switch (m_gameEngine->currentPlayer()) {
-        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
-        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
-        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
+        case OldGoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
+        case OldGoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case OldGoEngine::InvalidPlayer: playerLabel->setText(""); break;
     }
 
-    whiteCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::WhitePlayer)));
-    blackCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::BlackPlayer)));
+    whiteCapturesLabel->setText(QString::number(m_gameEngine->captures(OldGoEngine::WhitePlayer)));
+    blackCapturesLabel->setText(QString::number(m_gameEngine->captures(OldGoEngine::BlackPlayer)));
 }
 
 void GameScreen::handlePass(int count)

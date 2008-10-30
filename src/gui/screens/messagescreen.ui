@@ -1,5 +1,5 @@
 <ui version="4.0" >
- <class>ErrorScreen</class>
+ <class>MessageScreen</class>
  <widget class="QWidget" name="ErrorScreen" >
   <property name="geometry" >
    <rect>

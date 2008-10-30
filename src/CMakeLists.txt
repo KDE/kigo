@@ -1,11 +1,14 @@
 include_directories(${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIR})
 
 set(kgo_SRCS
+    game/oldgoengine.cpp
+    game/goplayer.cpp
+    game/goscore.cpp
     game/goengine.cpp
     gui/graphicsview/themerenderer.cpp
     gui/graphicsview/gamescene.cpp
     gui/graphicsview/gameview.cpp
-    gui/screens/errorscreen.cpp
+    gui/screens/messagescreen.cpp
     gui/screens/setupscreen.cpp
     gui/screens/gamescreen.cpp
     gui/config.cpp
@@ -14,7 +17,7 @@ set(kgo_SRCS
 )
 
 kde4_add_ui_files(kgo_SRCS 
-    gui/screens/errorscreen.ui
+    gui/screens/messagescreen.ui
     gui/screens/setupscreen.ui
     gui/screens/gamescreen.ui
     gui/config.ui

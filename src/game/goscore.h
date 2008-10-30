@@ -17,34 +17,36 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
+#ifndef KGO_GOSCORE_H
+#define KGO_GOSCORE_H
 
-#include "ui_config.h"
+#include "goplayer.h"
 
-#include <QWidget>
+#include <QString>
 
 namespace KGo {
 
-/**
- * Represents the general configuration tab in the KGo
- * configuration screen.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+class GoEngine;
+
+class GoScore
 {
-    Q_OBJECT
-
 public:
-    /**
-     * Standard Constructor. Sets up the loaded user interface.
-     */
-    explicit GeneralConfig(QWidget *parent = 0);
+    GoPlayer::Color leader() const { return m_leader; }
+    float score() const { return m_score; }
+    float lowerBound() const { return m_lowerBound; }
+    float upperBound() const { return m_upperBound; }
 
-private slots:
-    void updateEngineCommand();
+    QString toString() const;
+
+private:
+    GoScore(const QString &scoreString);
+
+    GoPlayer::Color m_leader;       ///< The player which has more points
+    float m_score;                  ///< The amount of points the player leads with
+    float m_lowerBound;             ///< Estimate lower bound
+    float m_upperBound;             ///< Estimate upper bound
+
+    friend class GoEngine;
 };
 
 } // End of namespace KGo

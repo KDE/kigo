@@ -17,36 +17,37 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
+#include "messagescreen.h"
 
-#include "ui_config.h"
-
-#include <QWidget>
+#include <KStandardGuiItem>
 
 namespace KGo {
 
-/**
- * Represents the general configuration tab in the KGo
- * configuration screen.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+MessageScreen::MessageScreen(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
+    setupUi(this);
 
-public:
-    /**
-     * Standard Constructor. Sets up the loaded user interface.
-     */
-    explicit GeneralConfig(QWidget *parent = 0);
+    KGuiItem configureItem = KStandardGuiItem::configure();
+    configureButton->setText(configureItem.text());
+    configureButton->setIcon(configureItem.icon());
+    configureButton->setToolTip(configureItem.toolTip());
+    configureButton->setWhatsThis(configureItem.whatsThis());
+    connect(configureButton, SIGNAL(clicked()), this, SIGNAL(configureButtonClicked()));
 
-private slots:
-    void updateEngineCommand();
-};
+    KGuiItem quitItem = KStandardGuiItem::quit();
+    quitButton->setText(quitItem.text());
+    quitButton->setIcon(quitItem.icon());
+    quitButton->setToolTip(quitItem.toolTip());
+    quitButton->setWhatsThis(quitItem.whatsThis());
+    connect(quitButton, SIGNAL(clicked()), this, SIGNAL(quitButtonClicked()));
+}
+
+void MessageScreen::setMessageMessage(const QString &errorMessage)
+{
+    errorMessageLabel->setText(errorMessage);
+}
 
 } // End of namespace KGo
 
-#endif
+#include "moc_messagescreen.cpp"

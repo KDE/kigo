@@ -17,36 +17,45 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
-
-#include "ui_config.h"
-
-#include <QWidget>
+#include "goscore.h"
 
 namespace KGo {
 
-/**
- * Represents the general configuration tab in the KGo
- * configuration screen.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+GoScore::GoScore(const QString &scoreString)
+    : m_score(0), m_lowerBound(0), m_upperBound(0)
 {
-    Q_OBJECT
+    if (scoreString.size() >= 2) {
+        if (scoreString[0] == 'W')
+            m_leader = GoPlayer::White;
+        else if (scoreString[0] == 'B')
+            m_leader = GoPlayer::Black;
+        /*else
+            m_leader = GoPlayer::Unknown;*/
 
-public:
-    /**
-     * Standard Constructor. Sets up the loaded user interface.
-     */
-    explicit GeneralConfig(QWidget *parent = 0);
+        //TODO: Check this Unkown stuff, better to get rid of it
 
-private slots:
-    void updateEngineCommand();
-};
+        int i = scoreString.indexOf(' ');
+        m_score = scoreString.mid(2, i - 1).toFloat();
+        QString upperBound = scoreString.section(' ', 3, 3);
+        upperBound.chop(1);
+        m_upperBound = upperBound.toFloat();
+        QString lowerBound = scoreString.section(' ', 5, 5);
+        lowerBound.chop(1);
+        m_lowerBound = lowerBound.toFloat();
+    }
+}
+
+QString GoScore::toString() const
+{
+    QString ret;
+    if (m_leader == GoPlayer::White)
+        ret += "W+";
+    else if (m_leader == GoPlayer::Black)
+        ret += "B+";
+    else
+        ret += "?+";
+    ret += QString::number(m_score) + " (" + QString::number(m_lowerBound) + " - " + QString::number(m_upperBound) + ')';
+    return ret;
+}
 
 } // End of namespace KGo
-
-#endif

@@ -1,32 +1,22 @@
-/*******************************************************************
- *
- * Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
- *
- * This file is part of the KDE project "KGo"
- *
- * KGo is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * KGo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with KReversi; see the file COPYING.  If not, write to
- * the Free Software Foundation, 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301, USA.
- *
- *******************************************************************/
+/***************************************************************************
+ *   Copyright (C) 2008 by Sascha Peilicke <sasch.pe@gmx.de>               *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 
-/**
- * @file This file is part of KGO and implements the class GameScene,
- *       which displays the go game.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- */
 #include "gamescene.h"
 #include "themerenderer.h"
 #include "preferences.h"
@@ -41,7 +31,7 @@
 namespace KGo {
 
 GameScene::GameScene()
-    : m_engine(new GoEngine)
+    : m_engine(new OldGoEngine)
     , m_showLabels(Preferences::showBoardLabels())
     , m_showHint(false)
     , m_showMoveHistory(Preferences::showMoveHistory())
@@ -49,9 +39,9 @@ GameScene::GameScene()
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
-    connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
+    connect(m_engine, SIGNAL(currentPlayerChanged(OldGoEngine::PlayerColor)), this, SLOT(hideHint()));
     connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showPassMessage(int)));
-    connect(m_engine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(showResignMessage(GoEngine::PlayerColor())));
+    connect(m_engine, SIGNAL(playerResigned(OldGoEngine::PlayerColor)), this, SLOT(showResignMessage(OldGoEngine::PlayerColor())));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -115,14 +105,14 @@ void GameScene::updateStoneItems()
         removeItem(item);
     m_stoneItems.clear();
 
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
+    foreach (const OldGoEngine::Stone &stone, m_engine->listStones(OldGoEngine::BlackPlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
         m_stoneItems.append(item);
     }
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
+    foreach (const OldGoEngine::Stone &stone, m_engine->listStones(OldGoEngine::WhitePlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
@@ -131,7 +121,7 @@ void GameScene::updateStoneItems()
     }
 
     if (m_showMoveHistory) {
-        QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > history = m_engine->moveHistory();
+        QList<QPair<OldGoEngine::Stone, OldGoEngine::PlayerColor> > history = m_engine->moveHistory();
         for (int i = 0; i < history.size(); i++) {
             int xOff = history[i].first.x() >= 'I' ? history[i].first.x() - 'A' - 1 : history[i].first.x() - 'A';
             QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
@@ -144,9 +134,9 @@ void GameScene::updateStoneItems()
                 //TODO: Check for existing move number to do special treatment
                 QPixmap pixmap = item->pixmap();
                 QPainter painter(&pixmap);
-                if (history[i].second == GoEngine::WhitePlayer)
+                if (history[i].second == OldGoEngine::WhitePlayer)
                     painter.setPen(Qt::black);
-                else if (history[i].second == GoEngine::BlackPlayer)
+                else if (history[i].second == OldGoEngine::BlackPlayer)
                     painter.setPen(Qt::white);
                 QFont f = painter.font();
                 f.setPointSizeF(m_cellSize / 4);
@@ -169,20 +159,20 @@ void GameScene::updateHintItems()
 
     if (m_showHint) {
         int halfCellSize = m_cellSize / 2;
-        GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
+        OldGoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
 
-        QPair<GoEngine::Stone, float> entry;
+        QPair<OldGoEngine::Stone, float> entry;
         foreach (entry, m_engine->topMoves(currentPlayer)) {
             QPixmap stonePixmap;
-            if (currentPlayer == GoEngine::WhitePlayer)
+            if (currentPlayer == OldGoEngine::WhitePlayer)
                 stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-            else if (currentPlayer == GoEngine::BlackPlayer)
+            else if (currentPlayer == OldGoEngine::BlackPlayer)
                 stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
 
             QPainter painter(&stonePixmap);
-            if (currentPlayer == GoEngine::WhitePlayer)
+            if (currentPlayer == OldGoEngine::WhitePlayer)
                 painter.setPen(Qt::black);
-            else if (currentPlayer == GoEngine::BlackPlayer)
+            else if (currentPlayer == OldGoEngine::BlackPlayer)
                 painter.setPen(Qt::white);
             QFont f = painter.font();
             f.setPointSizeF(m_cellSize / 4);
@@ -213,10 +203,10 @@ void GameScene::showPassMessage(int)
                             KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
 
-void GameScene::showResignMessage(GoEngine::PlayerColor player)
+void GameScene::showResignMessage(OldGoEngine::PlayerColor player)
 {
     QString looser;
-    player == GoEngine::WhitePlayer ? looser = "White" : looser = "Black";
+    player == OldGoEngine::WhitePlayer ? looser = "White" : looser = "Black";
     m_gamePopup.showMessage(i18n("%1 has resigned and you have won the game, count your scores...", looser),
                             KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
@@ -225,9 +215,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QPixmap map;
     if (m_mouseRect.contains(event->scenePos())) {
-        if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
+        if (m_engine->currentPlayer() == OldGoEngine::WhitePlayer)
             map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-        else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
+        else if (m_engine->currentPlayer() == OldGoEngine::BlackPlayer)
             map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
     }
     emit cursorPixmapChanged(map);
@@ -245,7 +235,7 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         // column, if the row is bigger than 'I', we have to add 1 to jump over that.
         if (row >= 8)
             row += 1;
-        GoEngine::Stone move('A' + row, m_boardSize - col);
+        OldGoEngine::Stone move('A' + row, m_boardSize - col);
 
         if (m_engine->playMove(move))
             showPopupMessage(i18n("Made move at %1", move.toString()));

@@ -17,34 +17,39 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
+#ifndef KGO_ERRORSCREEN_H
+#define KGO_ERRORSCREEN_H
 
-#include "ui_config.h"
+#include "ui_messagescreen.h"
 
 #include <QWidget>
 
 namespace KGo {
 
 /**
- * Represents the general configuration tab in the KGo
- * configuration screen.
+ * This message screen is shown if the game was unable to start the
+ * configured Go engine. A warning is shown and the user is asked
+ * to (re)configure the Go engine in the configuration dialog.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
+ * @since 0.2
  */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+class MessageScreen : public QWidget, private Ui::MessageScreen
 {
     Q_OBJECT
 
 public:
     /**
-     * Standard Constructor. Sets up the loaded user interface.
+     *
      */
-    explicit GeneralConfig(QWidget *parent = 0);
+    explicit MessageScreen(QWidget *parent = 0);
 
-private slots:
-    void updateEngineCommand();
+public slots:
+    void setMessageMessage(const QString &errorMessage);
+
+signals:
+    void configureButtonClicked();
+    void quitButtonClicked();
 };
 
 } // End of namespace KGo

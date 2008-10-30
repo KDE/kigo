@@ -17,36 +17,33 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
-
-#include "ui_config.h"
-
-#include <QWidget>
+#include "goplayer.h"
 
 namespace KGo {
 
-/**
- * Represents the general configuration tab in the KGo
- * configuration screen.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+GoPlayer::GoPlayer(Color color, Type type, const QString &name, int strength)
+    : m_color(color), m_type(type), m_name(name), m_strength(strength)
 {
-    Q_OBJECT
+    Q_ASSERT(strength >= 1 && strength <= 10);
 
-public:
-    /**
-     * Standard Constructor. Sets up the loaded user interface.
-     */
-    explicit GeneralConfig(QWidget *parent = 0);
+    if (m_name.isEmpty())
+        m_color == White ? m_name = "White Player" : m_name = "Black Player";
+}
 
-private slots:
-    void updateEngineCommand();
-};
+void GoPlayer::setName(const QString &name)
+{
+    m_name = name;
+    if (m_name.isEmpty())
+        m_color == White ? m_name = "White Player" : m_name = "Black Player";
+}
+
+void GoPlayer::setStrength(int strength)
+{
+    Q_ASSERT(strength >= 1 && strength <= 10);
+
+    m_strength = strength;
+}
 
 } // End of namespace KGo
 
-#endif
+#include "moc_goplayer.cpp"

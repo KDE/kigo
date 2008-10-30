@@ -1,42 +1,30 @@
-/*******************************************************************
- *
- * Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
- *
- * This file is part of the KDE project "KGo"
- *
- * KGo is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * KGo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with KReversi; see the file COPYING.  If not, write to
- * the Free Software Foundation, 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301, USA.
- *
- *******************************************************************/
-
-/**
- * @file This file is part of KGO and implements the class MainWindow,
- *       which acts as the main window of the graphical user interface
- *       for KGo.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- */
+/***************************************************************************
+ *   Copyright (C) 2008 by Sascha Peilicke <sasch.pe@gmx.de>               *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
 
 #include "mainwindow.h"
-#include "game/goengine.h"
+#include "game/oldgoengine.h"
 #include "gui/config.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
 #include "gui/screens/setupscreen.h"
 #include "gui/screens/gamescreen.h"
-#include "gui/screens/errorscreen.h"
+#include "gui/screens/messagescreen.h"
 #include "preferences.h"
 
 #include <KGameThemeSelector>
@@ -57,7 +45,7 @@ namespace KGo {
 MainWindow::MainWindow(QWidget *parent, bool startDemo)
     : KXmlGuiWindow(parent)
     , m_mainWidget(new QStackedWidget(this)), m_gameScene(new GameScene)
-    , m_errorScreen(0), m_setupScreen(0), m_gameScreen(0)
+    , m_messageScreen(0), m_setupScreen(0), m_gameScreen(0)
 {
     setCentralWidget(m_mainWidget);
     if (startDemo) {
@@ -76,7 +64,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
         if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
-            m_mainWidget->setCurrentWidget(errorScreen());
+            m_mainWidget->setCurrentWidget(messageScreen());
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
@@ -181,13 +169,13 @@ void MainWindow::updatePreferences()
     m_gameScene->showLabels(Preferences::showBoardLabels());
 
     // Restart the Go engine if the engine command was changed by the user.
-    GoEngine *engine = m_gameScene->engine();
+    OldGoEngine *engine = m_gameScene->engine();
     if (engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start backend...";
         if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
-            m_mainWidget->setCurrentWidget(errorScreen());
+            m_mainWidget->setCurrentWidget(messageScreen());
         } else {
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
@@ -197,15 +185,15 @@ void MainWindow::updatePreferences()
     }
 }
 
-ErrorScreen *MainWindow::errorScreen()
+MessageScreen *MainWindow::messageScreen()
 {
-    if (!m_errorScreen) {
-        m_errorScreen = new ErrorScreen;
-        connect(m_errorScreen, SIGNAL(configureButtonClicked()), this, SLOT(showPreferences()));
-        connect(m_errorScreen, SIGNAL(quitButtonClicked()), this, SLOT(close()));
-        m_mainWidget->addWidget(m_errorScreen);
+    if (!m_messageScreen) {
+        m_messageScreen = new MessageScreen;
+        connect(m_messageScreen, SIGNAL(configureButtonClicked()), this, SLOT(showPreferences()));
+        connect(m_messageScreen, SIGNAL(quitButtonClicked()), this, SLOT(close()));
+        m_mainWidget->addWidget(m_messageScreen);
     }
-    return m_errorScreen;
+    return m_messageScreen;
 }
 
 SetupScreen *MainWindow::setupScreen()
