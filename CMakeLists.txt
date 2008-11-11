@@ -11,8 +11,6 @@ if(NOT KDE4_FOUND)
 endif(NOT KDE4_FOUND)
 
 add_subdirectory(src)
-add_subdirectory(icons)
-add_subdirectory(themes)
 add_subdirectory(data)
-add_subdirectory(sounds)
 add_subdirectory(docs)
+add_subdirectory(tests) # Unit tests

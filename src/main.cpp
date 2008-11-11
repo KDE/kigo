@@ -18,6 +18,7 @@
  ***************************************************************************/
 
 #include "gui/mainwindow.h"
+#include "game/goengine.h"
 
 #include <KAboutData>
 #include <KCmdLineArgs>

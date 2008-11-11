@@ -1073,6 +1073,7 @@ bool OldGoEngine::waitResponse()
     // input buffer to show that the Go engine is done processing our request.
     m_engineResponse.clear();
     do {
+        //qApp->processEvents();
         m_engineProcess.waitForReadyRead();
         m_engineResponse += m_engineProcess.readAllStandardOutput();
     } while(!m_engineResponse.endsWith("\n\n"));

@@ -19,6 +19,8 @@
 
 #include "goengine.h"
 
+#include <KDebug>
+
 namespace KGo {
 
 GoEngine::GoEngine()
@@ -26,6 +28,8 @@ GoEngine::GoEngine()
     , m_blackPlayer(GoPlayer::Black, GoPlayer::Human)
     , m_currentPlayer(&m_blackPlayer)
 {
+    connect(&m_process, SIGNAL(error(QProcess::ProcessError)), this, SLOT(processError(QProcess::ProcessError)));
+    connect(&m_process, SIGNAL(readyRead()), this, SLOT(processResponse()));
 }
 
 GoEngine::~GoEngine()
@@ -35,45 +39,48 @@ GoEngine::~GoEngine()
 
 void GoEngine::start(const QString &command)
 {
+    kDebug() << command;
     stop(IgnoreRequests);
-    m_replyBuffer.clear();
-    m_commandQueue.clear();
-    m_resultQueue.clear();
+    m_buffer.clear();
+    m_requestQueue.clear();
+    m_requestNumber = 0;
+    m_result.clear();
 
-    m_engineProcess.start(command.toLatin1());
-    if (!m_engineProcess.waitForStarted()) {        // Blocking wait for process start
-        emit error(GoEngine::EngineNotResponding);
+    m_process.start(command.toLatin1());
+    if (!m_process.waitForStarted()) {        // Blocking wait for process start
+        /*emit error(GoEngine::FailedToStart);*/
         return;
     }
 
     // Test if we started a GTP-compatible Go engine
-    m_engineProcess.write("name\n");
-    m_engineProcess.waitForReadyRead();
-    QString response = m_engineProcess.readAllStandardOutput();
+    m_process.write("name\n");
+    m_process.waitForReadyRead();
+    QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith("=")) {
-        emit error(GoEngine::EngineNotSupported);
         stop(IgnoreRequests);
+        emit error(GoEngine::NotSupported);
         return;
     }
 
     emit started();
 }
 
-void GoEngine::stop(StopOption op)
+void GoEngine::stop(StopOption options)
 {
-    if (m_engineProcess.isOpen()) {
-        if (op == FinishRequests) {
+    if (m_process.isOpen()) {
+        if (options == FinishRequests) {
             // TODO: Wait till last command is processed
         }
-        m_engineProcess.write("quit\n");
-        m_engineProcess.close();
+        m_process.write("quit\n");
+        m_process.close();
         emit stopped();
     }
 }
 
-bool GoEngine::send(GoEngine::Command command, const QVariantList &arguments)
+void GoEngine::send(GoEngine::Command command, const QVariantList &arguments)
 {
-    QString commandString;
+    kDebug() << command << arguments;
+    QByteArray commandString;
 
     switch (command) {
         case GetEngineName: commandString = "name\n"; break;
@@ -82,17 +89,17 @@ bool GoEngine::send(GoEngine::Command command, const QVariantList &arguments)
 
         case LoadGameFromSGF:
             if (arguments.size() != 2  || arguments[0].type() != QVariant::String || arguments[1].type() != QVariant::Int) {
-                emit error(GoEngine::CommandArgumentMismatch);
-                return false;
+                emit error(GoEngine::ArgumentMismatch);
+                return;
             }
-            commandString = "loadsgf " + arguments[0].toString() + ' ' + arguments[1].toInt() + '\n';
+            commandString = "loadsgf " + arguments[0].toByteArray() + ' ' + QByteArray::number(arguments[1].toInt()) + '\n';
             break;
         case SaveGameToSGF:
             if (arguments.size() != 1 || arguments[0].type() != QVariant::String) {
-                emit error(GoEngine::CommandArgumentMismatch);
-                return false;
+                emit error(GoEngine::ArgumentMismatch);
+                return;
             }
-            commandString = "printsgf " + arguments[0].toString() + '\n';
+            commandString = "printsgf " + arguments[0].toByteArray() + '\n';
             break;
 
         case GetPlayerType:
@@ -102,13 +109,13 @@ bool GoEngine::send(GoEngine::Command command, const QVariantList &arguments)
         case GetPlayerStrength:
         case SetPlayerStrength:
         case GetCurrentPlayer:
-            emit error(GoEngine::CommandNotSupported); return false;
+            emit error(GoEngine::NotSupported); return;
 
         case GetBoardSize: commandString = "query_boardsize\n"; break;
         case SetBoardSize:
             if (arguments.size() != 1 || arguments[0].type() != QVariant::Int) {
-                emit error(GoEngine::CommandArgumentMismatch);
-                return false;
+                emit error(GoEngine::ArgumentMismatch);
+                return;
             }
             commandString = "board_size " + arguments[0].toByteArray() + '\n';
             break;
@@ -117,19 +124,63 @@ bool GoEngine::send(GoEngine::Command command, const QVariantList &arguments)
         case SetKomi:
         case GetFixedHandicap:
         case SetFixedHandicap:
-            emit error(GoEngine::CommandNotSupported); return false;
+            emit error(GoEngine::NotSupported); return;
 
-        default: emit error(GoEngine::CommandNotSupported); return false;
+        default: emit error(GoEngine::NotSupported); return;
     }
 
-    m_commandQueue.enqueue(QPair<GoEngine::Command, QString>(command, commandString));
-    return true;
+    m_requestQueue.enqueue(QPair<GoEngine::Command, QByteArray>(command, commandString));
+
+    if (m_requestQueue.size() == 1)
+        dispatchRequest();
 }
 
-QVariant GoEngine::nextResult()
+QVariant GoEngine::result() const
 {
-    //TODO: Implement
-    return QVariant();
+    return m_result;
+}
+
+void GoEngine::dispatchRequest()
+{
+    kDebug();
+    if (!m_requestQueue.isEmpty()) {
+        QPair<GoEngine::Command, QByteArray> request = m_requestQueue.dequeue();
+        m_pending = request.first;
+        m_process.write(QByteArray::number(m_requestNumber++) + ' ' + request.second);
+    }
+}
+
+void GoEngine::processResponse()
+{
+    kDebug();
+    m_buffer += m_process.readAllStandardOutput();
+    if (m_buffer.endsWith("\n\n")) {
+        kDebug() << "Response completed:" << m_buffer;
+        // Decompose result and store into reponse queue
+
+    /*if (m_engineResponse.size() < 1)
+        return false;
+    QChar tmp = m_engineResponse[0];                // First message character indicates success or error
+    m_engineResponse.remove(0, 2);                  // Remove the first two chars (e.g. "? " or "= ")
+    m_engineResponse = m_engineResponse.trimmed();  // Remove further whitespaces, newlines, ...*/
+
+        m_buffer.clear();
+        dispatchRequest();
+        emit resultReady(m_pending);
+    }
+}
+
+void GoEngine::processError(QProcess::ProcessError processError)
+{
+    kDebug() << processError;
+    switch (processError) {
+        case QProcess::FailedToStart: emit error(GoEngine::FailedToStart); break;
+        case QProcess::Crashed: emit error(GoEngine::Crashed); break;
+        case QProcess::Timedout: emit error(GoEngine::TimedOut); break;
+        case QProcess::WriteError: emit error(GoEngine::WriteError); break;
+        case QProcess::ReadError: emit error(GoEngine::ReadError); break;
+        case QProcess::UnknownError: emit error(GoEngine::UnknownError); break;
+    }
 }
 
 } // End of namespace KGo

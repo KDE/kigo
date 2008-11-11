@@ -46,11 +46,14 @@ class GoEngine : public QObject
 
 public:
     enum Error {
-        EngineNotResponding = 1,        //< Engine does not exist
-        EngineNotSupported,             //< Engine does not support GTP
-
-        CommandArgumentMismatch,        //< Wrong parameters used
-        CommandNotSupported             //< Command unknown to engine
+        FailedToStart = 1,              //< See QProcess::ProcessError
+        Crashed,                        //< See QProcess::ProcessError
+        TimedOut,                       //< See QProcess::ProcessError
+        WriteError,                     //< See QProcess::ProcessError
+        ReadError,                      //< See QProcess::ProcessError
+        UnknownError,                   //< See QProcess::ProcessError
+        NotSupported,                   //< Engine does not support the command
+        ArgumentMismatch                //< Wrong parameters for command used
     };
 
     enum StopOption {
@@ -83,13 +86,14 @@ public:
     };
 
     GoEngine();
-    ~GoEngine();
+    virtual ~GoEngine();
+
+    QVariant result() const;
 
 public slots:
     void start(const QString &command = "gnugo --mode gtp");
-    void stop(StopOption op = FinishRequests);
-    bool send(GoEngine::Command command, const QVariantList &arguments = QVariantList());
-    QVariant nextResult();
+    void stop(StopOption options = FinishRequests);
+    void send(GoEngine::Command command, const QVariantList &arguments = QVariantList());
 
 signals:
     void started();
@@ -97,15 +101,23 @@ signals:
     void error(GoEngine::Error);
     void resultReady(GoEngine::Command);
 
+private slots:
+    void dispatchRequest();
+    void processResponse();
+    void processError(QProcess::ProcessError);
+
 private:
+    QProcess m_process;
+    QByteArray m_buffer;
+
+    QQueue<QPair<GoEngine::Command, QByteArray> > m_requestQueue;
+    quint32 m_requestNumber;
+    GoEngine::Command m_pending;
+    QVariant m_result;
+
     GoPlayer m_whitePlayer;
     GoPlayer m_blackPlayer;
     GoPlayer *m_currentPlayer;
-
-    QProcess m_engineProcess;
-    QByteArray m_replyBuffer;
-    QQueue<QPair<GoEngine::Command, QString> > m_commandQueue;
-    QQueue<QPair<GoEngine::Command, QVariant> > m_resultQueue;
 };
 
 } // End of namespace KGo

@@ -199,16 +199,14 @@ void GameScene::changeBoardSize(int size)
 
 void GameScene::showPassMessage(int)
 {
-    m_gamePopup.showMessage(i18n("Both players passed, decide if you want to finish the game and count scores..."),
-                            KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
+    m_gamePopup.showMessage(i18n("Both players passed, decide if you want to finish the game and count scores..."), KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
 
 void GameScene::showResignMessage(OldGoEngine::PlayerColor player)
 {
     QString looser;
     player == OldGoEngine::WhitePlayer ? looser = "White" : looser = "Black";
-    m_gamePopup.showMessage(i18n("%1 has resigned and you have won the game, count your scores...", looser),
-                            KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
+    m_gamePopup.showMessage(i18n("%1 has resigned and you have won the game, please count your scores...", looser), KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
