@@ -27,7 +27,7 @@
 namespace KGo {
 
 class GameScene;
-class OldGoEngine;
+class GoEngine;
 
 /**
  * The game screen acts as a compound widget for the game view and
@@ -62,7 +62,7 @@ private slots:
     void finishGame();
 
 private:
-    OldGoEngine * const m_gameEngine;  ///<
+    GoEngine * const m_gameEngine;  ///<
 };
 
 } // End of namespace KGo

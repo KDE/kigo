@@ -18,7 +18,7 @@
  ***************************************************************************/
 
 #include "setupscreen.h"
-#include "game/oldgoengine.h"
+#include "game/goengine.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
 #include "preferences.h"
@@ -131,9 +131,9 @@ void SetupScreen::on_startMoveSpinBox_valueChanged(int value)
         m_gameEngine->loadGameFromSGF(m_lastFileName, value);
 
     switch (m_gameEngine->currentPlayer()) {
-        case OldGoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
-        case OldGoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
-        case OldGoEngine::InvalidPlayer: playerLabel->setText(""); break;
+        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
+        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
     }
 }
 
@@ -178,17 +178,17 @@ void SetupScreen::on_startButton_clicked()
 {
     saveSettings();
 
-    m_gameEngine->setPlayerStrength(OldGoEngine::WhitePlayer, Preferences::whitePlayerStrength());
+    m_gameEngine->setPlayerStrength(GoEngine::WhitePlayer, Preferences::whitePlayerStrength());
     if (Preferences::whitePlayerHuman())
-        m_gameEngine->setPlayerType(OldGoEngine::WhitePlayer, OldGoEngine::HumanPlayer);
+        m_gameEngine->setPlayerType(GoEngine::WhitePlayer, GoEngine::HumanPlayer);
     else
-        m_gameEngine->setPlayerType(OldGoEngine::WhitePlayer, OldGoEngine::ComputerPlayer);
+        m_gameEngine->setPlayerType(GoEngine::WhitePlayer, GoEngine::ComputerPlayer);
 
-    m_gameEngine->setPlayerStrength(OldGoEngine::BlackPlayer, Preferences::blackPlayerStrength());
+    m_gameEngine->setPlayerStrength(GoEngine::BlackPlayer, Preferences::blackPlayerStrength());
     if (Preferences::blackPlayerHuman())
-        m_gameEngine->setPlayerType(OldGoEngine::BlackPlayer, OldGoEngine::HumanPlayer);
+        m_gameEngine->setPlayerType(GoEngine::BlackPlayer, GoEngine::HumanPlayer);
     else
-        m_gameEngine->setPlayerType(OldGoEngine::BlackPlayer, OldGoEngine::ComputerPlayer);
+        m_gameEngine->setPlayerType(GoEngine::BlackPlayer, GoEngine::ComputerPlayer);
 
     // Set additional configuration based on game type
     if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game

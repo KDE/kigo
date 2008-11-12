@@ -18,7 +18,7 @@
  ***************************************************************************/
 
 #include "mainwindow.h"
-#include "game/oldgoengine.h"
+#include "game/goengine.h"
 #include "gui/config.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
@@ -70,6 +70,8 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
             m_loadGameAction->setEnabled(true);
             newGame();
         }
+
+        connect(m_gameScene->engine(), SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
     }
 }
 
@@ -169,9 +171,10 @@ void MainWindow::updatePreferences()
     m_gameScene->showLabels(Preferences::showBoardLabels());
 
     // Restart the Go engine if the engine command was changed by the user.
-    OldGoEngine *engine = m_gameScene->engine();
+    GoEngine *engine = m_gameScene->engine();
     if (engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start backend...";
+        //m_gameScene->showPopupMessage(i18n("Go backend (re)starting..."));
         if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
             m_loadGameAction->setEnabled(false);
@@ -180,9 +183,15 @@ void MainWindow::updatePreferences()
             m_newGameAction->setEnabled(true);
             m_loadGameAction->setEnabled(true);
             m_mainWidget->setCurrentWidget(setupScreen());
-            m_gameScene->showPopupMessage(i18n("Restarted Go backend..."));
         }
     }
+}
+
+void MainWindow::showBusy(bool busy)
+{
+    setDisabled(busy);
+    m_gameScreen->setEnabled(true);
+    m_gameScene->showPopupMessage(i18n("The engine is thinking..."), 0);
 }
 
 MessageScreen *MainWindow::messageScreen()

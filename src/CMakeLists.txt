@@ -1,9 +1,6 @@
 include_directories(${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIR})
 
 set(kgo_SRCS
-    game/oldgoengine.cpp
-    game/goplayer.cpp
-    game/goscore.cpp
     game/goengine.cpp
     gui/graphicsview/themerenderer.cpp
     gui/graphicsview/gamescene.cpp

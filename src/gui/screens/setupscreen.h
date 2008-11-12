@@ -26,7 +26,7 @@
 
 namespace KGo {
 
-class OldGoEngine;
+class GoEngine;
 class GameScene;
 
 /**
@@ -91,7 +91,7 @@ private:
     void loadSettings();            ///< Load KConfigXT application settings
     void saveSettings();            ///< Store KConfigXT application settings
 
-    OldGoEngine * const m_gameEngine;  ///<
+    GoEngine * const m_gameEngine;  ///<
 
     int m_lastFixedHandicap;        ///<
     QString m_lastFileName;         ///<

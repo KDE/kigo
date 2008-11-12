@@ -19,7 +19,7 @@
 
 #include "config.h" // krazy:exclude=includes
 #include "preferences.h"
-#include "game/oldgoengine.h"
+#include "game/goengine.h"
 
 namespace KGo {
 
@@ -43,7 +43,7 @@ void GeneralConfig::updateEngineCommand()
     kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + ' ' + engineParameters->text());
 
     // Check if the configured Go engine backend actually works and tell the user
-    OldGoEngine engine;
+    GoEngine engine;
     if(engine.startEngine(kcfg_EngineCommand->text()) && !engine.engineName().isEmpty())
         engineLed->setState(KLed::On);
     else

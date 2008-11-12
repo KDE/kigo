@@ -13,4 +13,3 @@ endif(NOT KDE4_FOUND)
 add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(docs)
-add_subdirectory(tests) # Unit tests

@@ -60,6 +60,7 @@ private slots:
     void hint();
     void showPreferences();                 ///< Show configuration dialog
     void updatePreferences();               ///< React on user changed configuration
+    void showBusy(bool busy);
 
 private:
     MessageScreen *messageScreen();         ///< Lazy instantiation for faster startup

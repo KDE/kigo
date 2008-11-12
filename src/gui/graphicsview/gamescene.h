@@ -20,7 +20,7 @@
 #ifndef KGO_GAMESCENE_H
 #define KGO_GAMESCENE_H
 
-#include "game/oldgoengine.h"
+#include "game/goengine.h"
 
 #include <KGamePopupItem>
 
@@ -33,7 +33,7 @@ namespace KGo {
  * QGraphicsScene.
  *
  * It displays the go board in its current state, receives mouse events,
- * translates them and interacts with the OldGoEngine. It also drives the game
+ * translates them and interacts with the GoEngine. It also drives the game
  * flow, i.e. tells game when to make the next move.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -47,7 +47,7 @@ public:
     GameScene();
     ~GameScene();
 
-    OldGoEngine *engine() const { return m_engine; };
+    GoEngine *engine() const { return m_engine; };
 
 signals:
     void cursorPixmapChanged(const QPixmap &);
@@ -57,7 +57,7 @@ public slots:
     void showLabels(bool show);
     void showHint(bool show);
     void showMoveHistory(bool show);
-    void showPopupMessage(const QString &message);
+    void showPopupMessage(const QString &message, int msecs = 2000);
 
 private slots:
     void updateStoneItems();
@@ -65,14 +65,14 @@ private slots:
     void changeBoardSize(int size);
     void hideHint() { showHint(false); }
     void showPassMessage(int);
-    void showResignMessage(OldGoEngine::PlayerColor);
+    void showResignMessage(GoEngine::PlayerColor);
 
 private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void drawBackground(QPainter *painter, const QRectF &);
 
-    OldGoEngine * const m_engine;  ///< Go engine
+    GoEngine * const m_engine;  ///< Go engine
 
     KGamePopupItem m_gamePopup;
     bool m_showLabels;          ///< Show board labels or not
