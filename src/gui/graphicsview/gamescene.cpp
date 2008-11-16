@@ -92,7 +92,7 @@ void GameScene::showPopupMessage(const QString &message, int msecs)
 {
     m_gamePopup.setMessageTimeout(msecs);
     if (message.isEmpty())
-        m_gamePopup.forceHide();            // Now message hide the last one
+        m_gamePopup.forceHide();            // Now message hides the last one
     else
         m_gamePopup.showMessage(message, KGamePopupItem::BottomLeft, KGamePopupItem::ReplacePrevious);
 }
@@ -187,7 +187,7 @@ void GameScene::updateHintItems()
                                  m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
             m_hintItems.append(item);
         }
-        showPopupMessage(i18n("The Go engine recommends these moves ..."));
+        showPopupMessage(i18n("The computer recommends these moves ..."));
     }
 }
 

@@ -39,10 +39,10 @@ namespace KGo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("kgo", 0, ki18n("KGo"), "v0.3",
+    KAboutData aboutData("kgo", 0, ki18n("KGo"), "v0.4",
             ki18n("KDE Go Board Game"),    KAboutData::License_GPL_V3,
             ki18n("Copyright (c) 2008 Sascha Peilicke"));
-    aboutData.addAuthor(ki18n("Sascha Peilicke"), ki18n("Original author"), "sasch.pe@gmx.de");
+    aboutData.addAuthor(ki18n("Sascha Peilicke (saschpe)"), ki18n("Original author"), "sasch.pe@gmx.de");
     //aboutData.setHomepage("http://games.kde.org/kgo");
     KCmdLineArgs::init(argc, argv, &aboutData);
 

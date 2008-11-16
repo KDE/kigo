@@ -30,6 +30,7 @@
 #include <KGameThemeSelector>
 #include <KStandardGameAction>
 #include <KStandardAction>
+#include <KToolBar>
 #include <KToggleAction>
 #include <KAction>
 #include <KActionCollection>
@@ -60,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
     } else {
         setupActions();
         setupGUI(KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
+        connect(m_gameScene->engine(), SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
 
         if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
@@ -70,8 +72,6 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
             m_loadGameAction->setEnabled(true);
             newGame();
         }
-
-        connect(m_gameScene->engine(), SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
     }
 }
 
@@ -86,7 +86,7 @@ void MainWindow::newGame()
     setupScreen()->setupNewGame();
 
     m_mainWidget->setCurrentWidget(setupScreen());
-    m_gameScene->showPopupMessage(i18n("Set up and play a new game..."));
+    m_gameScene->showPopupMessage(i18n("Play a new game..."));
 }
 
 void MainWindow::loadGame()
@@ -102,7 +102,7 @@ void MainWindow::loadGame()
         setupScreen()->setupLoadedGame(fileName);
 
         m_mainWidget->setCurrentWidget(m_setupScreen);
-        m_gameScene->showPopupMessage(i18n("Set up and play a loaded game..."));
+        m_gameScene->showPopupMessage(i18n("Play a loaded game..."));
     }
 }
 
@@ -189,9 +189,17 @@ void MainWindow::updatePreferences()
 
 void MainWindow::showBusy(bool busy)
 {
-    setDisabled(busy);
-    m_gameScreen->setEnabled(true);
-    m_gameScene->showPopupMessage(i18n("The engine is thinking..."), 0);
+    //setDisabled(busy);
+    toolBar()->setDisabled(busy);
+    menuBar()->setDisabled(busy);
+
+    /*if (m_previousMoveAction->isEnabled())
+        m_previousMoveAction->setDisabled(busy);
+    if (m_nextMoveAction->isEnabled())
+    m_passMoveAction->setDisabled(busy);
+    m_hintAction->setDisabled(busy);
+    m_moveHistoryAction->setDisabled(busy);*/
+    m_gameScene->showPopupMessage(i18n("The computer is thinking..."), 0);
 }
 
 MessageScreen *MainWindow::messageScreen()

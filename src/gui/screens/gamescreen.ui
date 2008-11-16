@@ -142,19 +142,6 @@
         </property>
        </widget>
       </item>
-      <item row="10" column="0" colspan="2" >
-       <spacer name="verticalSpacer" >
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0" >
-         <size>
-          <width>20</width>
-          <height>280</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item row="1" column="0" colspan="2" >
        <widget class="QLineEdit" name="playerLabel" >
         <property name="focusPolicy" >
@@ -171,13 +158,6 @@
         </property>
         <property name="readOnly" >
          <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="11" column="0" colspan="2" >
-       <widget class="KPushButton" name="checkButton" >
-        <property name="text" >
-         <string>Check scores</string>
         </property>
        </widget>
       </item>
@@ -357,15 +337,18 @@
         </layout>
        </widget>
       </item>
-      <item row="12" column="0" colspan="2" >
-       <widget class="KPushButton" name="finishButton" >
-        <property name="enabled" >
-         <bool>false</bool>
+      <item row="10" column="0" colspan="2" >
+       <spacer name="verticalSpacer" >
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
         </property>
-        <property name="text" >
-         <string>Finish scores</string>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>20</width>
+          <height>280</height>
+         </size>
         </property>
-       </widget>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -378,15 +361,7 @@
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
   </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>checkButton</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

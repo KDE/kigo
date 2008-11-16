@@ -46,8 +46,8 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     connect(m_gameEngine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(handlePass(int)));
     connect(m_gameEngine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(handleResign()));
 
-    connect(checkButton, SIGNAL(clicked()), this, SLOT(scoreEstimates()));
-    connect(finishButton, SIGNAL(clicked()), this, SLOT(finishGame()));
+    //connect(checkButton, SIGNAL(clicked()), this, SLOT(scoreEstimates()));
+    //connect(finishButton, SIGNAL(clicked()), this, SLOT(finishGame()));
 }
 
 void GameScreen::showEvent(QShowEvent *)
@@ -89,18 +89,18 @@ void GameScreen::updateStatistics()
 void GameScreen::handlePass(int count)
 {
     if (count > 0) {
-        finishButton->setEnabled(true);
-        finishButton->setFocus();
+        /*finishButton->setEnabled(true);
+        finishButton->setFocus();*/
     } else {
-        finishButton->setEnabled(false);
+        //finishButton->setEnabled(false);
     }
 }
 
 void GameScreen::handleResign()
 {
     kDebug() << "TODO: Handle resign";
-    finishButton->setEnabled(true);
-    finishButton->setFocus();
+    /*finishButton->setEnabled(true);
+    finishButton->setFocus();*/
 }
 
 void GameScreen::scoreEstimates()
