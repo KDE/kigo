@@ -28,7 +28,7 @@
 #include <QGraphicsPixmapItem>
 #include <QPainter>
 
-namespace KGo {
+namespace Kigo {
 
 GameScene::GameScene()
     : m_engine(new GoEngine)
@@ -281,6 +281,6 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
     }
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_gamescene.cpp"

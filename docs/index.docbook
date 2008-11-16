@@ -2,7 +2,7 @@
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!-- Define an entity for your application if it is not part of KDE
        CVS -->
-  <!ENTITY kgo "KGo">
+  <!ENTITY kigo "Kigo">
   <!ENTITY package "kdegames"><!-- kdebase, kdeadmin, etc.  Leave
                                      this unchanged if your
                                      application is not maintained in KDE CVS -->
@@ -13,7 +13,7 @@
 
 <book lang="&language;">
 <bookinfo>
-<title>The &kgo; Handbook</title>
+<title>The &kigo; Handbook</title>
 
 <authorgroup>
 	<author>
@@ -37,11 +37,11 @@
 <releaseinfo>0.1</releaseinfo>
 
 <abstract>
-	<para>KGo is an open-source implementation of the popular Go game (also known as Weiqi).</para>
+	<para>Kigo is an open-source implementation of the popular Go game (also known as Weiqi).</para>
 </abstract>
 <keywordset>
 	<keyword>KDE</keyword>
-	<keyword>&kgo;</keyword>
+	<keyword>&kigo;</keyword>
 </keywordset>
 </bookinfo>
 
@@ -57,7 +57,7 @@ consistent documentation style across all KDE apps. -->
   <chapter id="introduction">
     <title>Introduction</title>
 <para>
-&kgo; is a program that lets you do absolutely nothing. Please report
+&kigo; is a program that lets you do absolutely nothing. Please report
 any problems or feature requests to the &kde; mailing lists.
 </para>
 <!-- The introduction chapter contains a brief introduction for the
@@ -67,7 +67,7 @@ revision history. (see installation appendix comment) -->
   </chapter>
 
 <chapter id="using-kapp">
-<title>Using &kgo;</title>
+<title>Using &kigo;</title>
 
 <!-- This chapter should tell the user how to use your app. You should use as
 many sections (Chapter, Sect1, Sect3, etc...) as is necessary to fully document
@@ -79,7 +79,7 @@ your application. -->
 patent issues. -->
 
 <screenshot>
-<screeninfo>Here's a screenshot of &kgo;</screeninfo>
+<screeninfo>Here's a screenshot of &kigo;</screeninfo>
     <mediaobject>
       <imageobject>
         <imagedata fileref="screenshot.png" format="PNG"/>
@@ -96,7 +96,7 @@ patent issues. -->
 
 
 <sect1 id="kapp-features">
-<title>More &kgo; features</title>
+<title>More &kigo; features</title>
 
 <para>It slices! It dices! and it comes with a free toaster!</para>
 <para>
@@ -111,7 +111,7 @@ The Squiggle Tool <guiicon><inlinemediaobject>
         <phrase>Squiggle</phrase>
       </textobject>
 </inlinemediaobject></guiicon> is used to draw squiggly lines all over
-the &kgo; main window. It's not a bug, it's a feature!
+the &kigo; main window. It's not a bug, it's a feature!
 </para>
 
 </sect1>
@@ -127,7 +127,7 @@ menus or toolbars. This may not be necessary for small apps or apps with no tool
 or menu bars. -->
 
 <sect1 id="kapp-mainwindow">
-<title>The main &kgo; window</title>
+<title>The main &kigo; window</title>
 
 <sect2>
 <title>The File Menu</title>
@@ -161,7 +161,7 @@ or menu bars. -->
 <guimenu>File</guimenu>
 <guimenuitem>Quit</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Quits</action> &kgo;</para></listitem>
+<listitem><para><action>Quits</action> &kigo;</para></listitem>
 </varlistentry>
 </variablelist>
 </para>
@@ -183,14 +183,14 @@ or menu bars. -->
 </sect1>
 </chapter>
 <chapter id="developers">
-<title>Developer's Guide to &kgo;</title>
+<title>Developer's Guide to &kigo;</title>
 
 <!-- (OPTIONAL) A Programming/Scripting reference chapter should be
 used for apps that use plugins or that provide their own scripting hooks
 and/or development libraries. -->
 
 <para>
-Programming &kgo; plugins is a joy to behold. Just read through the next
+Programming &kigo; plugins is a joy to behold. Just read through the next
 66 pages of API's to learn how!
 </para>
 
@@ -345,7 +345,7 @@ application work. -->
 <qandaset id="faqlist">
 <qandaentry>
 <question>
-<para>My Mouse doesn't work. How do I quit &kgo;?</para>
+<para>My Mouse doesn't work. How do I quit &kigo;?</para>
 </question>
 <answer>
 <para>You silly goose! Check out the <link linkend="commands">Commands
@@ -374,7 +374,7 @@ distribution. -->
 <title>Credits and License</title>
 
 <para>
-&kgo;
+&kigo;
 </para>
 <para>
 Program copyright 2007 Sascha Peilicke <email>sasch.pe@gmx.de</email>
@@ -411,7 +411,7 @@ Documentation Copyright &copy; 2007 Sascha Peilicke <email>sasch.pe@gmx.de</emai
 <title>Installation</title>
 
 <sect1 id="getting-kapp">
-<title>How to obtain &kgo;</title>
+<title>How to obtain &kigo;</title>
 
 <!-- This first entity contains boiler plate for applications that are
 part of KDE CVS.  You should remove it if you are releasing your
@@ -436,15 +436,15 @@ information here.
 -->
 
 <para>
-In order to successfully use &kgo;, you need &kde; 1.1. Foobar.lib is
-required in order to support the advanced &kgo; features. &kgo; uses
+In order to successfully use &kigo;, you need &kde; 1.1. Foobar.lib is
+required in order to support the advanced &kigo; features. &kigo; uses
 about 5 megs of memory to run, but this may vary depending on your
 platform and configuration.
 </para>
 
 <para>
-All required libraries as well as kgo; itself can be found
-on <ulink url="ftp://ftp.kapp.org">The &kgo; home page</ulink>.
+All required libraries as well as kigo; itself can be found
+on <ulink url="ftp://ftp.kapp.org">The &kigo; home page</ulink>.
 </para>
 
 <!-- For a list of updates, you may refer to the application web site
@@ -470,7 +470,7 @@ url="http://apps.kde.org/kapp">http://apps.kde.org/kapp</ulink>.
 <title>Configuration</title>
 
 <para>Don't forget to tell your system to start the <filename>dtd</filename>
-dicer-toaster daemon first, or &kgo; won't work !</para>
+dicer-toaster daemon first, or &kigo; won't work !</para>
 
 </sect1>
 

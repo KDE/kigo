@@ -24,7 +24,7 @@
 
 #include <QWidget>
 
-namespace KGo {
+namespace Kigo {
 
 class GameScene;
 class GoEngine;
@@ -65,6 +65,6 @@ private:
     GoEngine * const m_gameEngine;  ///<
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

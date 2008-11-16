@@ -1,3 +1,3 @@
 install(FILES
-    default.desktop kgo_default.svgz
-DESTINATION ${DATA_INSTALL_DIR}/kgo/themes)
+    default.desktop kigo_default.svgz
+DESTINATION ${DATA_INSTALL_DIR}/kigo/themes)

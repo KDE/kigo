@@ -19,7 +19,7 @@
 
 #include "goscore.h"
 
-namespace KGo {
+namespace Kigo {
 
 GoScore::GoScore(const QString &scoreString)
     : m_score(0), m_lowerBound(0), m_upperBound(0)
@@ -58,4 +58,4 @@ QString GoScore::toString() const
     return ret;
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo

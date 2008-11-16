@@ -24,7 +24,7 @@
 
 #include <QWidget>
 
-namespace KGo {
+namespace Kigo {
 
 /**
  * This message screen is shown if the game was unable to start the
@@ -52,6 +52,6 @@ signals:
     void quitButtonClicked();
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

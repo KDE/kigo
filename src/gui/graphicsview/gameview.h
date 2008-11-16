@@ -22,7 +22,7 @@
 
 #include <QGraphicsView>
 
-namespace KGo {
+namespace Kigo {
 
 class GameScene;
 
@@ -60,6 +60,6 @@ private:
     bool m_renderInactive;
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

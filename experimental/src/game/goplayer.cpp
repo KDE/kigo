@@ -19,7 +19,7 @@
 
 #include "goplayer.h"
 
-namespace KGo {
+namespace Kigo {
 
 GoPlayer::GoPlayer(Color color, Type type, const QString &name, int strength)
     : m_color(color), m_type(type), m_name(name), m_strength(strength)
@@ -44,6 +44,6 @@ void GoPlayer::setStrength(int strength)
     m_strength = strength;
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_goplayer.cpp"

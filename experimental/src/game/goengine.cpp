@@ -21,7 +21,7 @@
 
 #include <KDebug>
 
-namespace KGo {
+namespace Kigo {
 
 GoEngine::GoEngine()
     : m_whitePlayer(GoPlayer::White, GoPlayer::Human)
@@ -183,6 +183,6 @@ void GoEngine::processError(QProcess::ProcessError processError)
     }
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_goengine.cpp"

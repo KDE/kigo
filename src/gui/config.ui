@@ -96,7 +96,7 @@
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="toolTip" >
-         <string>This is the resulting engine command which will be used by KGo</string>
+         <string>This is the resulting engine command which will be used by Kigo</string>
         </property>
         <property name="text" >
          <string/>

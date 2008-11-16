@@ -21,7 +21,7 @@
 #include "preferences.h"
 #include "game/goengine.h"
 
-namespace KGo {
+namespace Kigo {
 
 GeneralConfig::GeneralConfig(QWidget *parent)
     : QWidget(parent)
@@ -50,6 +50,6 @@ void GeneralConfig::updateEngineCommand()
         engineLed->setState(KLed::Off);
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_config.cpp"

@@ -24,10 +24,10 @@
 
 #include <QWidget>
 
-namespace KGo {
+namespace Kigo {
 
 /**
- * Represents the general configuration tab in the KGo
+ * Represents the general configuration tab in the Kigo
  * configuration screen.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -47,6 +47,6 @@ private slots:
     void updateEngineCommand();
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

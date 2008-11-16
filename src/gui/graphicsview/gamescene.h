@@ -26,7 +26,7 @@
 
 #include <QGraphicsScene>
 
-namespace KGo {
+namespace Kigo {
 
 /**
  * This class provides a graphical representation of the go game using
@@ -89,6 +89,6 @@ private:
     QList<QGraphicsPixmapItem *> m_hintItems;
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

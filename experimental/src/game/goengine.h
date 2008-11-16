@@ -28,7 +28,7 @@
 #include <QProcess>
 #include <QVariant>
 
-namespace KGo {
+namespace Kigo {
 
 /**
  * The GoEngine class implements the Go game and acts as a wrapper around a
@@ -120,6 +120,6 @@ private:
     GoPlayer *m_currentPlayer;
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

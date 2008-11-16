@@ -1,7 +1,7 @@
 [ModuleInfo]
-Name = KGo
+Name = Kigo
 Author = Sascha Peilicke
-CommandLine = kgo
+CommandLine = kigo
 Frontend = kde
 Homepage = http://games.kde.org/
 ProtocolEngine = Go

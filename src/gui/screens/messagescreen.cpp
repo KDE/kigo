@@ -21,7 +21,7 @@
 
 #include <KStandardGuiItem>
 
-namespace KGo {
+namespace Kigo {
 
 MessageScreen::MessageScreen(QWidget *parent)
     : QWidget(parent)
@@ -48,6 +48,6 @@ void MessageScreen::setMessageMessage(const QString &errorMessage)
     errorMessageLabel->setText(errorMessage);
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_messagescreen.cpp"

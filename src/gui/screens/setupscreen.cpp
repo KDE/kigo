@@ -27,7 +27,7 @@
 
 #include <QFile>
 
-namespace KGo {
+namespace Kigo {
 
 SetupScreen::SetupScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
@@ -286,6 +286,6 @@ void SetupScreen::saveSettings()
     Preferences::self()->writeConfig();
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_setupscreen.cpp"

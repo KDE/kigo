@@ -26,7 +26,7 @@ class KToggleAction;
 class KAction;
 class QStackedWidget;
 
-namespace KGo {
+namespace Kigo {
 
 class SetupScreen;
 class GameScreen;
@@ -34,7 +34,7 @@ class MessageScreen;
 class GameScene;
 
 /**
- * The MainWindow class acts as the main window of the KGo graphical
+ * The MainWindow class acts as the main window of the Kigo graphical
  * user interface. Holds the different screens for setup and gameplay,
  * displays configuration dialog(s) and the GameScene object (which is
  * modified and passed around the differend sub-screens).
@@ -87,6 +87,6 @@ private:
     KToggleAction *m_moveHistoryAction;
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

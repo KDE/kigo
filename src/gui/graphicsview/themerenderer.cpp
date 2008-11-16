@@ -29,11 +29,11 @@
 #include <QPixmap>
 #include <QPainter>
 
-namespace KGo {
+namespace Kigo {
 
 ThemeRenderer::ThemeRenderer()
     : m_renderer(new KSvgRenderer)
-    , m_cache(new KPixmapCache("kgo-cache"))
+    , m_cache(new KPixmapCache("kigo-cache"))
 {
     m_cache->setCacheLimit(3 * 1024);
     if (!loadTheme(Preferences::theme()))
@@ -186,6 +186,6 @@ QSize ThemeRenderer::elementSize(Element element) const
     return QSize((int)sizeRect.width(), (int)sizeRect.height());
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_themerenderer.cpp"

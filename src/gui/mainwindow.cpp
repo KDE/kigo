@@ -41,7 +41,7 @@
 #include <QStackedWidget>
 #include <QDir>
 
-namespace KGo {
+namespace Kigo {
 
 MainWindow::MainWindow(QWidget *parent, bool startDemo)
     : KXmlGuiWindow(parent)
@@ -160,7 +160,7 @@ void MainWindow::showPreferences()
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"), "games-config-theme");
-    dialog->setHelp(QString(),"KGo");
+    dialog->setHelp(QString(),"Kigo");
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(updatePreferences()));
     dialog->show();
 }
@@ -271,6 +271,6 @@ void MainWindow::setupActions()
     KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_mainwindow.cpp"

@@ -27,9 +27,9 @@
 #include <KApplication>
 
 /**
- * This namespace collects all classes related to KGo, the Go board game.
+ * This namespace collects all classes related to Kigo, the Go board game.
  */
-namespace KGo { /* This is only a Doxygen stub */ }
+namespace Kigo { /* This is only a Doxygen stub */ }
 
 /**
  * The standard C/C++ program entry point. Application 'about' data
@@ -39,11 +39,11 @@ namespace KGo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("kgo", 0, ki18n("KGo"), "v0.4",
+    KAboutData aboutData("kigo", 0, ki18n("Kigo"), "v0.4",
             ki18n("KDE Go Board Game"),    KAboutData::License_GPL_V3,
             ki18n("Copyright (c) 2008 Sascha Peilicke"));
     aboutData.addAuthor(ki18n("Sascha Peilicke (saschpe)"), ki18n("Original author"), "sasch.pe@gmx.de");
-    //aboutData.setHomepage("http://games.kde.org/kgo");
+    //aboutData.setHomepage("http://games.kde.org/kigo");
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
@@ -55,11 +55,11 @@ int main(int argc, char *argv[])
 
     if (app.isSessionRestored()) {
         kDebug() << "Restore last session";
-        RESTORE(KGo::MainWindow)
+        RESTORE(Kigo::MainWindow)
     } else {
         kDebug() << "Start new session";
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        KGo::MainWindow *mainWin = new KGo::MainWindow(0, args->isSet("demo"));
+        Kigo::MainWindow *mainWin = new Kigo::MainWindow(0, args->isSet("demo"));
         mainWin->show();
         args->clear();
     }

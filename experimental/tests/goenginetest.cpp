@@ -6,7 +6,7 @@
 
 void GoEngineTest::initTestCase()
 {
-    m_engine = new KGo::GoEngine;
+    m_engine = new Kigo::GoEngine;
 }
 
 void GoEngineTest::cleanupTestCase()

@@ -25,7 +25,7 @@
 
 #include <KDebug>
 
-namespace KGo {
+namespace Kigo {
 
 GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     : QWidget(parent)
@@ -113,6 +113,6 @@ void GameScreen::finishGame()
     kDebug() << "TODO: Show end/finish screen ...";
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_gamescreen.cpp"

@@ -23,7 +23,7 @@
 #include <QString>
 #include <QObject>
 
-namespace KGo {
+namespace Kigo {
 
 class GoEngine;
 
@@ -67,6 +67,6 @@ private:
     friend class GoEngine;
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

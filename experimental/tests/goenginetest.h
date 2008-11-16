@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-namespace KGo {
+namespace Kigo {
     class GoEngine;
 }
 
@@ -27,7 +27,7 @@ public slots:
     void onError();
 
 private:
-    KGo::GoEngine *m_engine;
+    Kigo::GoEngine *m_engine;
 };
 
 #endif

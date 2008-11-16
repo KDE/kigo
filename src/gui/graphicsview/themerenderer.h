@@ -29,7 +29,7 @@ class QPainter;
 class QSize;
 class QRectF;
 
-namespace KGo {
+namespace Kigo {
 
 /**
  * The class ThemeRenderer loads shapes from a SVG theme file and converts them into
@@ -112,6 +112,6 @@ private:
     KPixmapCache *m_cache;          ///< Stores pixmaps efficiently
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif

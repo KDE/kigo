@@ -2,14 +2,14 @@
  *
  * Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
  *
- * This file is part of the KDE project "KGo"
+ * This file is part of the KDE project "Kigo"
  *
- * KGo is free software; you can redistribute it and/or modify
+ * Kigo is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
  *
- * KGo is distributed in the hope that it will be useful,
+ * Kigo is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
@@ -28,7 +28,7 @@
 #include <QFile>
 #include <QApplication>
 
-namespace KGo {
+namespace Kigo {
 
 GoEngine::Stone::Stone(const QString &stone)
     : m_x(0), m_y(0)
@@ -1116,6 +1116,6 @@ void GoEngine::setCurrentPlayer(PlayerColor color)
     emit currentPlayerChanged(m_currentPlayer);
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_goengine.cpp"

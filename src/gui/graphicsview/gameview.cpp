@@ -24,7 +24,7 @@
 
 #include <QResizeEvent>
 
-namespace KGo {
+namespace Kigo {
 
 GameView::GameView(GameScene *scene, QWidget *parent)
     : QGraphicsView(scene, parent)
@@ -73,6 +73,6 @@ void GameView::drawForeground(QPainter *painter, const QRectF &rect)
     }
 }
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #include "moc_gameview.cpp"

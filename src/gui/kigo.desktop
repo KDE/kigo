@@ -1,13 +1,13 @@
 [Desktop Entry]
 Type=Application
-Icon=kgo
-Exec=kgo %i -caption "%c"
+Icon=kigo
+Exec=kigo %i -caption "%c"
 Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
 
-Name=KGo
-Name[sv]=Kgo
-Name[x-test]=xxKGoxx
+Name=Kigo
+Name[sv]=Kigo
+Name[x-test]=xxKigoxx
 
 GenericName=Go Board Game
 GenericName[el]=Επιτραπέζιο παιχνίδι Go

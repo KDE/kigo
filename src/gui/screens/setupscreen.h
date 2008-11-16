@@ -24,7 +24,7 @@
 
 #include <QWidget>
 
-namespace KGo {
+namespace Kigo {
 
 class GoEngine;
 class GameScene;
@@ -34,10 +34,10 @@ class GameScene;
  * options preview the configured game and start it.
  *
  * The user can make all necessary settings for the game he/she
- * wishes to start, the welcome screen only sets the KGo::Game to
+ * wishes to start, the welcome screen only sets the Kigo::Game to
  * these values and emits a signal when the user wants to start.
- * Further interaction with the KGo::Game (and it's graphical
- * representation KGo::BoardView and KGo::BoardScene) has to happen
+ * Further interaction with the Kigo::Game (and it's graphical
+ * representation Kigo::BoardView and Kigo::BoardScene) has to happen
  * elsewhere.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -97,6 +97,6 @@ private:
     QString m_lastFileName;         ///<
 };
 
-} // End of namespace KGo
+} // End of namespace Kigo
 
 #endif
