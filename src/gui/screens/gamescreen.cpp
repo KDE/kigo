@@ -43,11 +43,8 @@ GameScreen::GameScreen(GameScene *scene, QWidget *parent)
     gameFrame->layout()->addWidget(gameView);
 
     connect(m_gameEngine, SIGNAL(boardChanged()), this, SLOT(updateStatistics()));
-    connect(m_gameEngine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(handlePass(int)));
-    connect(m_gameEngine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(handleResign()));
-
-    //connect(checkButton, SIGNAL(clicked()), this, SLOT(scoreEstimates()));
-    //connect(finishButton, SIGNAL(clicked()), this, SLOT(finishGame()));
+    connect(m_gameEngine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(pass(int)));
+    connect(m_gameEngine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(resign()));
 }
 
 void GameScreen::showEvent(QShowEvent *)
@@ -72,9 +69,12 @@ void GameScreen::updateStatistics()
 
     QPair<GoEngine::Stone, GoEngine::PlayerColor> lastMove = m_gameEngine->lastMove();
     switch (lastMove.second) {
-        case GoEngine::WhitePlayer: moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
-        case GoEngine::BlackPlayer: moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
-        case GoEngine::InvalidPlayer: moveSpinBox->setSuffix(""); break;
+        case GoEngine::WhitePlayer:
+            moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
+        case GoEngine::BlackPlayer:
+            moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
+        case GoEngine::InvalidPlayer:
+            moveSpinBox->setSuffix(""); break;
     }
     switch (m_gameEngine->currentPlayer()) {
         case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
@@ -86,21 +86,16 @@ void GameScreen::updateStatistics()
     blackCapturesLabel->setText(QString::number(m_gameEngine->captures(GoEngine::BlackPlayer)));
 }
 
-void GameScreen::handlePass(int count)
+void GameScreen::pass(int count)
 {
     if (count > 0) {
-        /*finishButton->setEnabled(true);
-        finishButton->setFocus();*/
     } else {
-        //finishButton->setEnabled(false);
     }
 }
 
-void GameScreen::handleResign()
+void GameScreen::resign()
 {
     kDebug() << "TODO: Handle resign";
-    /*finishButton->setEnabled(true);
-    finishButton->setFocus();*/
 }
 
 void GameScreen::scoreEstimates()

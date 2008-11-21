@@ -56,8 +56,8 @@ public:
 private slots:
     void showEvent(QShowEvent *);
     void updateStatistics();
-    void handlePass(int);
-    void handleResign();
+    void pass(int);
+    void resign();
     void scoreEstimates();
     void finishGame();
 

@@ -36,6 +36,7 @@ GameScene::GameScene()
     , m_showHint(false)
     , m_showMoveHistory(Preferences::showMoveHistory())
     , m_boardSize(Preferences::boardSize())
+    , m_placementMarkerItem(0)
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
@@ -63,11 +64,17 @@ void GameScene::resizeScene(int width, int height)
 
     size = static_cast<int>(m_cellSize * (m_boardSize - 1));
     m_gridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
-    m_mouseRect = m_gridRect.adjusted(-m_cellSize / 8, - m_cellSize / 8, m_cellSize / 8,   m_cellSize / 8);
+    m_mouseRect = m_gridRect.adjusted(-m_cellSize / 2, - m_cellSize / 2, m_cellSize / 2,   m_cellSize / 2);
 
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
     updateStoneItems();                     // Resize means redraw of board items (stones)
     updateHintItems();                      // and move hint items
+
+    if (m_placementMarkerItem)              // Set the mouse/stone postion placementmarker
+        removeItem(m_placementMarkerItem);
+    m_placementMarkerPixmapSize = QSize(static_cast<int>(m_cellSize / 4), static_cast<int>(m_cellSize / 4));
+    m_placementMarkerItem = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::PlacementMarker, m_placementMarkerPixmapSize));
+    m_placementMarkerItem->setVisible(false);
 }
 
 void GameScene::showLabels(bool show)
@@ -214,10 +221,21 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QPixmap map;
     if (m_mouseRect.contains(event->scenePos())) {
+        int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
+        int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
+
+        int x = m_mouseRect.x() + row * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.width()/2;
+        int y = m_mouseRect.y() + col * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.height()/2;
+
+        m_placementMarkerItem->setVisible(true);
+        m_placementMarkerItem->setPos(x, y);
+
         if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
             map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
         else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
             map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+    } else {
+        m_placementMarkerItem->setVisible(false);
     }
     emit cursorPixmapChanged(map);
 }
@@ -250,7 +268,7 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 
     for (int i = 0; i < m_boardSize; i++) {
         qreal offset = i * m_cellSize;
-        painter->setPen(QPen(QColor(20, 30, 20), m_cellSize / 15));
+        painter->setPen(QPen(QColor(20, 30, 20), m_cellSize / 16));
         painter->drawLine(QPointF(m_gridRect.left(),  m_gridRect.top() + offset),
                           QPointF(m_gridRect.right(), m_gridRect.top() + offset));
         painter->drawLine(QPointF(m_gridRect.left() + offset, m_gridRect.top()),

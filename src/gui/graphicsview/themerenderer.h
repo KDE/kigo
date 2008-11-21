@@ -59,7 +59,8 @@ public:
         WhiteStone,                 ///<
         WhiteStoneTransparent,      ///<
         BlackStone,                 ///<
-        BlackStoneTransparent       //<<
+        BlackStoneTransparent,      ///<
+        PlacementMarker             ///<
     };
 
     /**

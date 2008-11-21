@@ -72,18 +72,20 @@ private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void drawBackground(QPainter *painter, const QRectF &);
 
-    GoEngine * const m_engine;  ///< Go engine
+    GoEngine * const m_engine;              ///< Go engine
 
     KGamePopupItem m_gamePopup;
-    bool m_showLabels;          ///< Show board labels or not
+    bool m_showLabels;                      ///< Show board labels or not
     bool m_showHint;
     bool m_showMoveHistory;
-    QRectF m_boardRect;         ///< Position of board in the scene
-    QRectF m_mouseRect;         ///< Board mouse interaction rect
-    QRectF m_gridRect;          ///< Board grid rect
-    qreal m_cellSize;           ///< Width of board grid cell
-    QSize m_stonePixmapSize;    ///< Size of Go stone pixmap
-    int m_boardSize;            ///< Go board size (9, 13, 19, ..)
+    QRectF m_boardRect;                     ///< Position of board in the scene
+    QRectF m_mouseRect;                     ///< Board mouse interaction rect
+    QRectF m_gridRect;                      ///< Board grid rect
+    qreal m_cellSize;                       ///< Width of board grid cell
+    QSize m_stonePixmapSize;                ///< Size of Go stone pixmap
+    QSize m_placementMarkerPixmapSize;
+    int m_boardSize;                        ///< Go board size (9, 13, 19, ..)
+    QGraphicsPixmapItem *m_placementMarkerItem;
 
     QList<QGraphicsPixmapItem *> m_stoneItems;
     QList<QGraphicsPixmapItem *> m_hintItems;

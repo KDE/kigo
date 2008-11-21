@@ -10,6 +10,7 @@ Short term
   move history, stone lists for either player, ...) to save computing time
 * Implement move controls and add to toolbar instead of undo / redo:
   First Move | Previous Move | Next Move | Last Move
+* Add a random move go engine
 
 
 Long term
@@ -17,3 +18,16 @@ Long term
 
 * Ship further go board themes and own icons
 * Add multiplayer support via GGZ and traditional Go servers
+
+
+Go engines
+==========
+
+These engines support the GTP protocol:
+
+| Engine        | Command           |
+|---------------|-------------------|
+| GnuGo         | gnugo --mode gtp  |
+| Aya           | aya --mode gtp    |
+| CrazyStone    | ?                 |
+| Brown         | ?                 |

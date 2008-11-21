@@ -119,6 +119,9 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
         case BlackStoneTransparent:
             cacheName = QString("board_stone_black_%1x%2_trans").arg(size.width()).arg(size.height());
             break;
+        case PlacementMarker:
+            cacheName = QString("board_placementmarker_%1x%2").arg(size.width()).arg(size.height());
+            break;
     }
 
     // Check if board element is already in cache, if not render it
@@ -151,6 +154,9 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
                 p.setOpacity(0.5);
                 m_renderer->render(&p, "board_stone_black");
                 break;
+            case PlacementMarker:
+                m_renderer->render(&p, "board_placementmarker");
+                break;
         }
         m_cache->insert(cacheName, pixmap);
     }
@@ -181,6 +187,9 @@ QSize ThemeRenderer::elementSize(Element element) const
             break;
         case BlackStoneTransparent:
             sizeRect = m_renderer->boundsOnElement("board_stone_black");
+            break;
+        case PlacementMarker:
+            sizeRect = m_renderer->boundsOnElement("board_placementmarker");
             break;
     }
     return QSize((int)sizeRect.width(), (int)sizeRect.height());
