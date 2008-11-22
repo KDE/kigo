@@ -24,6 +24,7 @@
 #ifndef KGO_GOENGINE_H
 #define KGO_GOENGINE_H
 
+#include <QUndoStack>
 #include <QProcess>
 #include <QList>
 #include <QPair>
@@ -366,7 +367,7 @@ public:
      * @param field The board field on which to play the stone
      * @param color The player's color for whom to play the stone
      */
-    bool playMove(const Stone &field, PlayerColor color = InvalidPlayer);
+    bool playMove(const Stone &field, PlayerColor color = InvalidPlayer, bool avoidUndo = false);
 
     /**
      * Let the player with 'color' pass.
@@ -374,7 +375,7 @@ public:
      *
      * @param color The player's color who want's to pass
      */
-    bool passMove(PlayerColor color = InvalidPlayer);
+    bool passMove(PlayerColor color = InvalidPlayer, bool avoidUndo = false);
 
     /**
      * Generate and play the supposedly best move for 'color'.
@@ -382,12 +383,13 @@ public:
      *
      * @param color Play the move for player with that color
      */
-    bool generateMove(PlayerColor color = InvalidPlayer);
+    bool generateMove(PlayerColor color = InvalidPlayer, bool avoidUndo = false);
 
     /**
      * Undo last move.
      */
     bool undoMove();
+    bool redoMove();
 
     int currentMoveNumber() const { return m_moveNumber; }
 
@@ -768,6 +770,12 @@ signals:
      */
     void waiting(bool);
 
+    /** This signal is emitted when availability of redo moves changes */
+    void canRedoChanged(bool);
+
+    /** This signal is emitted when availability of undo moves changes */
+    void canUndoChanged(bool);
+
 private slots:
     /**
      * Wait gracefully for a response from the Go engine. The returned string
@@ -789,6 +797,7 @@ private:
     QString m_engineCommand;
     QString m_engineResponse;
     QProcess m_engineProcess;
+    QUndoStack m_undoStack;
 
     PlayerColor m_currentPlayer;
     PlayerType m_whitePlayerType;

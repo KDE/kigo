@@ -75,6 +75,7 @@ void GameScene::resizeScene(int width, int height)
     m_placementMarkerPixmapSize = QSize(static_cast<int>(m_cellSize / 4), static_cast<int>(m_cellSize / 4));
     m_placementMarkerItem = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::PlacementMarker, m_placementMarkerPixmapSize));
     m_placementMarkerItem->setVisible(false);
+    m_placementMarkerItem->setZValue(1);
 }
 
 void GameScene::showLabels(bool show)
@@ -115,6 +116,7 @@ void GameScene::updateStoneItems()
 
     foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
+        item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
@@ -122,6 +124,7 @@ void GameScene::updateStoneItems()
     }
     foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
+        item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
@@ -189,6 +192,7 @@ void GameScene::updateHintItems()
             painter.end();
 
             item = addPixmap(stonePixmap);
+            item->setZValue(4);
             int xOff = entry.first.x() >= 'I' ? entry.first.x() - 'A' - 1 : entry.first.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
                                  m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));

@@ -109,6 +109,8 @@ GoEngine::GoEngine()
     , m_komi(0), m_fixedHandicap(0), m_moveNumber(0), m_consecutivePassMoveNumber(0)
 {
     connect(&m_engineProcess, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
+    connect(&m_undoStack, SIGNAL(canRedoChanged(bool)), this, SIGNAL(canRedoChanged(bool)));
+    connect(&m_undoStack, SIGNAL(canUndoChanged(bool)), this, SIGNAL(canUndoChanged(bool)));
 }
 
 GoEngine::~GoEngine()
@@ -148,6 +150,8 @@ bool GoEngine::startEngine(const QString &command)
         return false;
     }
     kDebug() << "Engine supports correct GTP version";
+
+    m_undoStack.clear();
     return true;
 }
 
@@ -211,6 +215,7 @@ bool GoEngine::loadGameFromSGF(const QString &fileName, int moveNumber)
             m_fixedHandicap = m_engineResponse.toInt();
         kDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
 
+        m_undoStack.clear();
         emit boardChanged();                            // All done, tell the world!
         return true;
     } else
@@ -238,6 +243,7 @@ bool GoEngine::setBoardSize(int size)
         setCurrentPlayer(BlackPlayer);
         m_fixedHandicap = 0;
         m_moveNumber = 0;
+        m_undoStack.clear();
         emit boardSizeChanged(size);
         emit boardChanged();
         return true;
@@ -265,6 +271,7 @@ bool GoEngine::clearBoard()
         setCurrentPlayer(BlackPlayer);
         m_fixedHandicap = 0;
         m_moveNumber = 0;
+        m_undoStack.clear();
         emit boardChanged();
         return true;
     } else
@@ -370,7 +377,7 @@ int GoEngine::fixedHandicapMax()
     }
 }
 
-bool GoEngine::playMove(const Stone &field, PlayerColor color)
+bool GoEngine::playMove(const Stone &field, PlayerColor color, bool avoidUndo)
 {
     if (!isRunning() || !field.isValid())
         return false;
@@ -385,16 +392,26 @@ bool GoEngine::playMove(const Stone &field, PlayerColor color)
     msg.append(field.toLatin1() + '\n');
     m_engineProcess.write(msg);
     if (waitResponse()) {
-        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
+        QString undoString;
+        if (color == WhitePlayer) {
+            undoString = "W-" + field.toLatin1();
+            setCurrentPlayer(BlackPlayer);
+        } else {
+            undoString = "B-" + field.toLatin1();
+            setCurrentPlayer(WhitePlayer);
+        }
         m_moveNumber++;
         m_consecutivePassMoveNumber = 0;
+        kDebug() << "Push new undo command" << undoString;
+        if (!avoidUndo)
+            m_undoStack.push(new QUndoCommand(undoString));
         emit boardChanged();
         return true;
     } else
         return false;
 }
 
-bool GoEngine::passMove(PlayerColor color)
+bool GoEngine::passMove(PlayerColor color, bool avoidUndo)
 {
     if (!isRunning())
         return false;
@@ -409,18 +426,28 @@ bool GoEngine::passMove(PlayerColor color)
     msg.append("pass\n");
     m_engineProcess.write(msg);
     if (waitResponse()) {
-        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
+        QString undoString;
+        if (color == WhitePlayer) {
+            undoString = "W--";
+            setCurrentPlayer(BlackPlayer);
+        } else {
+            undoString = "B--";
+            setCurrentPlayer(WhitePlayer);
+        }
         m_moveNumber++;
         if (m_consecutivePassMoveNumber > 0)
             emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
         m_consecutivePassMoveNumber++;
+        kDebug() << "Push new undo command" << undoString;
+        if (!avoidUndo)
+            m_undoStack.push(new QUndoCommand(undoString));
         emit boardChanged();
         return true;
     } else
         return false;
 }
 
-bool GoEngine::generateMove(PlayerColor color)
+bool GoEngine::generateMove(PlayerColor color, bool avoidUndo)
 {
     if (!isRunning())
         return false;
@@ -439,20 +466,34 @@ bool GoEngine::generateMove(PlayerColor color)
     }
     m_engineProcess.write(msg);
     if (waitResponse(true)) {
-        color == WhitePlayer ? setCurrentPlayer(BlackPlayer) : setCurrentPlayer(WhitePlayer);
+        QString undoString;
+        if (color == WhitePlayer) {
+            undoString = "W-";
+            setCurrentPlayer(BlackPlayer);
+        } else {
+            undoString = "B-";
+            setCurrentPlayer(WhitePlayer);
+        }
 
         if (m_engineResponse == "PASS") {
             m_moveNumber++;
             if (m_consecutivePassMoveNumber > 0)
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
             m_consecutivePassMoveNumber++;
+            undoString += '-';
         } else if (m_engineResponse == "resign") {
             emit playerResigned(m_currentPlayer);
+            undoString += 'R';
         } else {
             m_moveNumber++;
             m_consecutivePassMoveNumber = 0;
+            undoString += "TODO";
+            kDebug() << "TODO: set field" << m_engineResponse;
             emit boardChanged();
         }
+        kDebug() << "Push new undo command" << undoString;
+        if (!avoidUndo)
+            m_undoStack.push(new QUndoCommand(undoString));
         return true;
     } else
         return false;
@@ -475,11 +516,46 @@ bool GoEngine::undoMove()
             m_moveNumber--;
             if (m_consecutivePassMoveNumber > 0)
                 m_consecutivePassMoveNumber--;
+            m_undoStack.undo();
             emit boardChanged();
         }
         return true;
     } else
         return false;
+}
+
+bool GoEngine::redoMove()
+{
+    if (!isRunning())
+        return false;
+
+    QString undoString = m_undoStack.text(m_undoStack.index());
+
+    PlayerColor color;
+    if (undoString.startsWith('B')) {
+        color = BlackPlayer;
+    } else if (undoString.startsWith('W')) {
+        color = WhitePlayer;
+    } else {
+        kDebug() << "Invalid undo/redo command found:" << undoString;
+        return false;
+    }
+
+    undoString.remove(0, 2);
+    if (undoString.startsWith('-')) {
+        kDebug() << "Redo a pass move for" << color << undoString;
+        passMove(color, true);
+    } else if (undoString.startsWith('R')) {
+        // Note: Altough it is possible to undo after a resign and redo it,
+        //       it is a bit questionable wether this makes sense logically.
+        kDebug() << "Redo a resign for" << color << undoString;
+        emit playerResigned(m_currentPlayer);
+    } else {
+        kDebug() << "Redo a normal move for" << color << undoString;
+        playMove(Stone(undoString), color, true);
+    }
+    m_undoStack.redo();
+    return false;
 }
 
 /*bool GoEngine::tryMove(const Stone &field, PlayerColor color)

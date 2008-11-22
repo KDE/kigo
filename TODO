@@ -5,19 +5,16 @@ Short term
 * Demo mode (aka let computer's play against each other)
 * Final results screen to display with full-flegded statistics when
   a game is over (aka ResultsScreen)
-* Save-game management (something similar to palapeli)
-* Cache longer lists retrieved from the backend in the GoEngine (for example
-  move history, stone lists for either player, ...) to save computing time
-* Implement move controls and add to toolbar instead of undo / redo:
-  First Move | Previous Move | Next Move | Last Move
-* Add a random move go engine
 
 
 Long term
 =========
 
 * Ship further go board themes and own icons
+* Save-game management (something similar to palapeli)
 * Add multiplayer support via GGZ and traditional Go servers
+* Cache longer lists retrieved from the backend in the GoEngine (for example
+  move history, stone lists for either player, ...) to save computing time
 
 
 Go engines

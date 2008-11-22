@@ -62,6 +62,8 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
         setupActions();
         setupGUI(KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys | KXmlGuiWindow::Save | KXmlGuiWindow::Create);
         connect(m_gameScene->engine(), SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
+        connect(m_gameScene->engine(), SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
+        connect(m_gameScene->engine(), SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
 
         if (!m_gameScene->engine()->startEngine(Preferences::engineCommand())) {
             m_newGameAction->setEnabled(false);
@@ -78,7 +80,8 @@ MainWindow::MainWindow(QWidget *parent, bool startDemo)
 void MainWindow::newGame()
 {
     m_saveAsAction->setEnabled(false);
-    m_previousMoveAction->setEnabled(false);
+    m_undoMoveAction->setEnabled(false);
+    m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveHistoryAction->setEnabled(false);
@@ -94,7 +97,8 @@ void MainWindow::loadGame()
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
         m_saveAsAction->setEnabled(false);
-        m_previousMoveAction->setEnabled(false);
+        m_undoMoveAction->setEnabled(false);
+        m_redoMoveAction->setEnabled(false);
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
         m_moveHistoryAction->setEnabled(true);
@@ -120,7 +124,7 @@ void MainWindow::saveGame()
 void MainWindow::startGame()
 {
     m_saveAsAction->setEnabled(true);
-    m_previousMoveAction->setEnabled(true);
+    m_undoMoveAction->setEnabled(true);
     m_passMoveAction->setEnabled(true);
     m_hintAction->setEnabled(true);
     m_moveHistoryAction->setEnabled(true);
@@ -133,18 +137,23 @@ void MainWindow::startGame()
 
 void MainWindow::undo()
 {
-    m_gameScene->engine()->undoMove();
-    m_gameScene->showPopupMessage("");
+    if (m_gameScene->engine()->undoMove()) {
+        m_redoMoveAction->setEnabled(true);
+        m_gameScene->showPopupMessage("Undone move");
+    }
 }
 
 void MainWindow::redo()
 {
-    //TODO: Implement redo stuff
+    if (m_gameScene->engine()->redoMove()) {
+        m_gameScene->showPopupMessage("Redone move");
+    }
 }
 
 void MainWindow::pass()
 {
     m_gameScene->engine()->passMove();
+    m_gameScene->showPopupMessage("Passed move");
 }
 
 void MainWindow::hint()
@@ -193,9 +202,9 @@ void MainWindow::showBusy(bool busy)
     toolBar()->setDisabled(busy);
     menuBar()->setDisabled(busy);
 
-    /*if (m_previousMoveAction->isEnabled())
-        m_previousMoveAction->setDisabled(busy);
-    if (m_nextMoveAction->isEnabled())
+    /*if (m_undoMoveAction->isEnabled())
+        m_undoMoveAction->setDisabled(busy);
+    if (m_redoMoveAction->isEnabled())
     m_passMoveAction->setDisabled(busy);
     m_hintAction->setDisabled(busy);
     m_moveHistoryAction->setDisabled(busy);*/
@@ -244,15 +253,15 @@ void MainWindow::setupActions()
     m_editGameAction = new KAction(KIcon("games-config-board"), i18n("&Edit game"), this);
     m_editGameAction->setShortcut(i18n("Ctrl+E"));
     m_editGameAction->setEnabled(false);
-    actionCollection()->addAction("game_edit", m_editGameAction);
+    //actionCollection()->addAction("game_edit", m_editGameAction);
     //TODO: Connect edit game action with board editor
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
     // Move menu
-    m_previousMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
-    m_previousMoveAction->setEnabled(false);
-    m_nextMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
-    m_nextMoveAction->setEnabled(false);
+    m_undoMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
+    m_undoMoveAction->setEnabled(false);
+    m_redoMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
+    m_redoMoveAction->setEnabled(false);
     m_passMoveAction = KStandardGameAction::endTurn(this, SLOT(pass()), actionCollection());
     m_passMoveAction->setText(i18n("Pass move"));
     m_passMoveAction->setEnabled(false);

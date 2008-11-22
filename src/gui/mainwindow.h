@@ -80,8 +80,8 @@ private:
     KAction *m_loadGameAction;
     KAction *m_saveAsAction;                ///< Action to save the current game
     KAction *m_editGameAction;
-    KAction *m_previousMoveAction;          ///< Action to jump to the previous move
-    KAction *m_nextMoveAction;              ///< Action to jump to the next move
+    KAction *m_undoMoveAction;              ///< Action to jump to the previous move
+    KAction *m_redoMoveAction;              ///< Action to jump to the next move
     KAction *m_passMoveAction;              ///< Action to pass current move
     KAction *m_hintAction;
     KToggleAction *m_moveHistoryAction;
