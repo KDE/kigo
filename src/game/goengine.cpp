@@ -487,8 +487,6 @@ bool GoEngine::generateMove(PlayerColor color, bool avoidUndo)
         } else {
             m_moveNumber++;
             m_consecutivePassMoveNumber = 0;
-            undoString += "TODO";
-            kDebug() << "TODO: set field" << m_engineResponse;
             emit boardChanged();
         }
         kDebug() << "Push new undo command" << undoString;
