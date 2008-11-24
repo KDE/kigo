@@ -38,10 +38,7 @@ class GameWidget : public QWidget, private Ui::GameWidget
     Q_OBJECT
 
 public:
-    /**
-     *
-     */
-    explicit GameWidget(GoEngine *engine, QWidget *parent = 0);
+    GameWidget(GoEngine *engine, QWidget *parent = 0);
 
 public slots:
     void init();

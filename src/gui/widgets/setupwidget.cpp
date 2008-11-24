@@ -101,7 +101,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         pos = re.indexIn(content, pos);
         if (pos >= 0) {
             pos += re.matchedLength();
-            ++count;
+            count++;
         }
     }
     startMoveSpinBox->setSuffix(i18n(" of %1", count));

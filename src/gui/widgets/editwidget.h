@@ -37,8 +37,7 @@ class EditWidget : public QWidget, private Ui::EditWidget
     Q_OBJECT
 
 public:
-    /** */
-    explicit EditWidget(GoEngine *engine, QWidget *parent = 0);
+    EditWidget(GoEngine *engine, QWidget *parent = 0);
 
 private:
     GoEngine *m_engine;

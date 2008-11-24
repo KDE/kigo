@@ -120,7 +120,7 @@ public:
          * @param x The x coordinate of the stone
          * @param y The y coordinate of the stone
          */
-        explicit Stone(char x = 0, int y = 0) : m_x(x), m_y(y) {}
+        Stone(char x = 0, int y = 0) : m_x(x), m_y(y) {}
 
         /**
          * Constructor to set from a stone given as a string.

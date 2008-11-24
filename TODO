@@ -2,9 +2,9 @@ Short term
 ==========
 
 * Playing against computer (UI integration)
-* Demo mode (aka let computer's play against each other)
 * Final results screen to display with full-flegded statistics when
   a game is over (aka ResultsScreen)
+* Better Go engine configuration (multiple engines to choose from)
 
 
 Long term
@@ -15,6 +15,7 @@ Long term
 * Add multiplayer support via GGZ and traditional Go servers
 * Cache longer lists retrieved from the backend in the GoEngine (for example
   move history, stone lists for either player, ...) to save computing time
+* Create a screensaver with 2 engines battling each other on a Kigo::GameView
 
 
 Go engines

@@ -18,7 +18,6 @@
  ***************************************************************************/
 
 #include "gui/mainwindow.h"
-#include "game/goengine.h"
 
 #include <KAboutData>
 #include <KCmdLineArgs>
@@ -46,10 +45,6 @@ int main(int argc, char *argv[])
     //aboutData.setHomepage("http://games.kde.org/kigo");
     KCmdLineArgs::init(argc, argv, &aboutData);
 
-    KCmdLineOptions options;
-    options.add("demo", ki18n("Start with a demo game playing"));
-    KCmdLineArgs::addCmdLineOptions(options);
-
     KApplication app;
     KGlobal::locale()->insertCatalog("libkdegames");
 
@@ -58,10 +53,8 @@ int main(int argc, char *argv[])
         RESTORE(Kigo::MainWindow)
     } else {
         kDebug() << "Start new session";
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        Kigo::MainWindow *mainWin = new Kigo::MainWindow(0, args->isSet("demo"));
+        Kigo::MainWindow *mainWin = new Kigo::MainWindow(0);
         mainWin->show();
-        args->clear();
     }
     return app.exec();
 }

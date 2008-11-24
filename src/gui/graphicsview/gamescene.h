@@ -44,10 +44,8 @@ class GameScene : public QGraphicsScene
     Q_OBJECT
 
 public:
-    GameScene();
+    GameScene(GoEngine *engine);
     ~GameScene();
-
-    GoEngine *engine() const { return m_engine; };
 
 signals:
     void cursorPixmapChanged(const QPixmap &);
@@ -64,8 +62,6 @@ private slots:
     void updateHintItems();
     void changeBoardSize(int size);
     void hideHint() { showHint(false); }
-    void showPassMessage(int);
-    void showResignMessage(GoEngine::PlayerColor);
 
 private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

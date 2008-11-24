@@ -28,6 +28,7 @@ class QDockWidget;
 
 namespace Kigo {
 
+class GoEngine;
 class GameScene;
 class GameView;
 class SetupWidget;
@@ -44,7 +45,8 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0, bool startDemo = false);
+    MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
 private slots:
     void newGame();                         ///< Configure new game
@@ -60,11 +62,13 @@ private slots:
     void showPreferences();                 ///< Show configuration dialog
     void updatePreferences();               ///< React changed configuration
     void showBusy(bool busy);               ///< Signal the user a busy app
+    void showFinish();
 
 private:
     void setupActions();
     void setupDockWindows();
 
+    GoEngine *m_engine;
     GameScene *m_gameScene;
     GameView *m_gameView;
 

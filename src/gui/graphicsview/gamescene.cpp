@@ -30,19 +30,16 @@
 
 namespace Kigo {
 
-GameScene::GameScene()
-    : m_engine(new GoEngine)
+GameScene::GameScene(GoEngine *engine)
+    : m_engine(engine)
     , m_showLabels(Preferences::showBoardLabels())
     , m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
-    , m_boardSize(Preferences::boardSize())
-    , m_placementMarkerItem(0)
+    , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
     connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
-    connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showPassMessage(int)));
-    connect(m_engine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(showResignMessage(GoEngine::PlayerColor)));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -207,18 +204,6 @@ void GameScene::changeBoardSize(int size)
     m_boardSize = size;
     resizeScene(width(), height());
     invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
-}
-
-void GameScene::showPassMessage(int)
-{
-    m_gamePopup.showMessage(i18n("Both players passed, decide if you want to finish the game and count scores..."), KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
-}
-
-void GameScene::showResignMessage(GoEngine::PlayerColor player)
-{
-    QString looser;
-    player == GoEngine::WhitePlayer ? looser = "White" : looser = "Black";
-    m_gamePopup.showMessage(i18n("%1 has resigned and you have won the game, please count your scores...", looser), KGamePopupItem::TopLeft, KGamePopupItem::ReplacePrevious);
 }
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

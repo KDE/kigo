@@ -37,8 +37,7 @@ class SetupWidget : public QWidget, private Ui::SetupWidget
     Q_OBJECT
 
 public:
-    /** */
-    explicit SetupWidget(GoEngine *engine, QWidget *parent = 0);
+    SetupWidget(GoEngine *engine, QWidget *parent = 0);
     ~SetupWidget();
 
 public slots:
