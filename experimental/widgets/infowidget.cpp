@@ -21,6 +21,7 @@
 #include "game/goengine.h"
 
 #include <QFile>
+#include <QTextStream>
 
 namespace Kigo {
 
@@ -32,12 +33,14 @@ InfoWidget::InfoWidget(GoEngine *engine, QWidget *parent)
 
 void InfoWidget::update()
 {
-    //TODO: Load info from SGF and display
+    //TODO: This update method takes only info from the goengine
+}
 
-    /*QFile file(fileName);
+void InfoWidget::update(const QString & fileName)
+{
+    QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
-    m_lastFileName = fileName;
     QTextStream in(&file);
     QString content = in.readAll();
     file.close();
@@ -68,27 +71,12 @@ void InfoWidget::update()
     if (re.indexIn(content) > -1)
         infoWhite->setText(infoWhite->text() + " (" + re.cap(1) + ")");
 
-    re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
+    /*re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
     if (re.indexIn(content) > -1)
-        infoKomi->setValue(re.cap(1).toFloat());
+        infoKomi->setValue(re.cap(1).toFloat());*/
     re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
     if (re.indexIn(content) > -1)
         infoScore->setText(re.cap(1));
-
-    // Parse move count
-    re.setPattern("[BW]\\[\\w\\w\\]");
-    int pos = 0;
-    int count = 0;
-    while (pos >= 0) {                              // Count all occurences of our pattern
-        pos = re.indexIn(content, pos);
-        if (pos >= 0) {
-            pos += re.matchedLength();
-            ++count;
-        }
-    }
-    startMoveSpinBox->setSuffix(i18n(" of %1", count));
-    startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
-    startMoveSpinBox->setValue(count);              // move.*/
 }
 
 } // End of namespace Kigo

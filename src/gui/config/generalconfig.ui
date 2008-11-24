@@ -183,33 +183,17 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
-      <string>Advanced</string>
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout" >
-      <item>
-       <widget class="QCheckBox" name="kcfg_AdvancedStatistics" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="text" >
-         <string>Show detailed statistics</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_AdvancedGameOptions" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="text" >
-         <string>Enable expert game options</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
@@ -233,8 +217,6 @@
  <tabstops>
   <tabstop>kcfg_ShowBoardLabels</tabstop>
   <tabstop>kcfg_HintVisibleTime</tabstop>
-  <tabstop>kcfg_AdvancedStatistics</tabstop>
-  <tabstop>kcfg_AdvancedGameOptions</tabstop>
  </tabstops>
  <resources/>
  <connections/>

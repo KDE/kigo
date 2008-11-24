@@ -9,10 +9,6 @@
             <label>The Go game engine command with optional parameters</label>
             <default>gnugo --mode gtp</default>
         </entry>
-        <entry name="AdvancedGameOptions" type="Bool">
-            <label>Advanced (new) game configuration settings</label>
-            <default>false</default>
-        </entry>
     </group>
     <group name="UserInterface">
         <entry name="Theme" type="String">
@@ -25,9 +21,6 @@
         </entry>
         <entry name="ShowMoveNumbers" type="Bool">
             <label>Move numbers are drawn onto stones if enabled</label>
-            <default>false</default>
-        </entry>
-        <entry name="AdvancedStatistics" type="Bool">
             <default>false</default>
         </entry>
         <entry name="HintVisibleTime" type="Double">

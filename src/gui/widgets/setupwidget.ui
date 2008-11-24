@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>308</width>
-    <height>316</height>
+    <height>313</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -265,6 +265,13 @@
        </widget>
       </item>
      </layout>
+     <zorder>blackPlayerCombo</zorder>
+     <zorder>blackPlayerStack</zorder>
+     <zorder>whitePlayerStack</zorder>
+     <zorder>label</zorder>
+     <zorder>label_2</zorder>
+     <zorder>whitePlayerCombo</zorder>
+     <zorder>gameSetupStack</zorder>
     </widget>
    </item>
    <item row="1" column="0" >
@@ -297,8 +304,8 @@
             <property name="title" >
              <string>New game</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout_9" >
-             <item rowspan="3" row="0" column="0" >
+            <layout class="QGridLayout" name="gridLayout_7" >
+             <item rowspan="2" row="0" column="0" >
               <widget class="KButtonGroup" name="sizeGroupBox" >
                <property name="title" >
                 <string>Board size</string>
@@ -456,33 +463,186 @@
              <string>Loaded game</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_5" >
-             <item row="0" column="0" >
-              <widget class="QLabel" name="label_3" >
-               <property name="text" >
-                <string>Continue with move:</string>
-               </property>
-               <property name="alignment" >
-                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-               </property>
-               <property name="buddy" >
-                <cstring>startMoveSpinBox</cstring>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1" >
+             <item row="0" column="1" colspan="3" >
               <widget class="KIntSpinBox" name="startMoveSpinBox" >
                <property name="suffix" >
-                <string> of 999999</string>
+                <string> of 999</string>
+               </property>
+               <property name="prefix" >
+                <string>Move </string>
                </property>
                <property name="minimum" >
                 <number>1</number>
                </property>
                <property name="maximum" >
-                <number>999999</number>
+                <number>9999</number>
                </property>
               </widget>
              </item>
-             <item row="1" column="1" >
+             <item row="4" column="3" colspan="2" >
+              <widget class="KLineEdit" name="infoLocation" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="focusPolicy" >
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="readOnly" >
+                <bool>true</bool>
+               </property>
+               <property name="contextMenuEnabled" >
+                <bool>false</bool>
+               </property>
+               <property name="urlDropsEnabled" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="1" colspan="2" >
+              <widget class="KLineEdit" name="infoDate" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="focusPolicy" >
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="maxLength" >
+                <number>10</number>
+               </property>
+               <property name="readOnly" >
+                <bool>true</bool>
+               </property>
+               <property name="contextMenuEnabled" >
+                <bool>false</bool>
+               </property>
+               <property name="urlDropsEnabled" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1" colspan="4" >
+              <widget class="KLineEdit" name="infoEvent" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="focusPolicy" >
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="readOnly" >
+                <bool>true</bool>
+               </property>
+               <property name="contextMenuEnabled" >
+                <bool>false</bool>
+               </property>
+               <property name="urlDropsEnabled" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" >
+              <widget class="QLabel" name="label_8" >
+               <property name="text" >
+                <string>Event:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" >
+              <widget class="QLabel" name="label_9" >
+               <property name="text" >
+                <string>Location:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="5" >
+              <widget class="Line" name="line_2" >
+               <property name="orientation" >
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="3" >
+              <widget class="QLabel" name="label_10" >
+               <property name="text" >
+                <string>Score:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0" >
+              <widget class="QLabel" name="label_11" >
+               <property name="text" >
+                <string>Round:</string>
+               </property>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="4" >
+              <widget class="KLineEdit" name="infoScore" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="focusPolicy" >
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="readOnly" >
+                <bool>true</bool>
+               </property>
+               <property name="contextMenuEnabled" >
+                <bool>false</bool>
+               </property>
+               <property name="urlDropsEnabled" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1" colspan="2" >
+              <widget class="KLineEdit" name="infoRound" >
+               <property name="enabled" >
+                <bool>true</bool>
+               </property>
+               <property name="focusPolicy" >
+                <enum>Qt::NoFocus</enum>
+               </property>
+               <property name="text" >
+                <string/>
+               </property>
+               <property name="maxLength" >
+                <number>3</number>
+               </property>
+               <property name="readOnly" >
+                <bool>true</bool>
+               </property>
+               <property name="contextMenuEnabled" >
+                <bool>false</bool>
+               </property>
+               <property name="urlDropsEnabled" >
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="4" >
               <widget class="QLineEdit" name="playerLabel" >
                <property name="focusPolicy" >
                 <enum>Qt::NoFocus</enum>
@@ -494,27 +654,41 @@
                 <bool>false</bool>
                </property>
                <property name="text" >
-                <string>Black's move</string>
+                <string>for Black</string>
                </property>
                <property name="readOnly" >
                 <bool>true</bool>
                </property>
               </widget>
              </item>
-             <item row="2" column="0" colspan="2" >
-              <spacer name="verticalSpacer_2" >
-               <property name="orientation" >
-                <enum>Qt::Vertical</enum>
+             <item row="0" column="0" >
+              <widget class="QLabel" name="label_3" >
+               <property name="text" >
+                <string>Continue</string>
                </property>
-               <property name="sizeHint" stdset="0" >
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
+               <property name="alignment" >
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                </property>
-              </spacer>
+               <property name="buddy" >
+                <cstring>startMoveSpinBox</cstring>
+               </property>
+              </widget>
              </item>
             </layout>
+            <zorder>startMoveSpinBox</zorder>
+            <zorder>infoLocation</zorder>
+            <zorder>infoDate</zorder>
+            <zorder>infoEvent</zorder>
+            <zorder>label_8</zorder>
+            <zorder>label_9</zorder>
+            <zorder>line_2</zorder>
+            <zorder>label_3</zorder>
+            <zorder>line</zorder>
+            <zorder>label_10</zorder>
+            <zorder>label_11</zorder>
+            <zorder>infoScore</zorder>
+            <zorder>infoRound</zorder>
+            <zorder>playerLabel</zorder>
            </widget>
           </item>
          </layout>

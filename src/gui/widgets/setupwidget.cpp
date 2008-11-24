@@ -21,7 +21,7 @@
 #include "game/goengine.h"
 #include "preferences.h"
 
-#include <KDebug>
+#include <QFile>
 
 namespace Kigo {
 
@@ -44,7 +44,6 @@ void SetupWidget::newGame()
     m_engine->setBoardSize(Preferences::boardSize());
     if (Preferences::fixedHandicapEnabled())
         m_engine->setFixedHandicap(Preferences::fixedHandicapValue());
-    //TODO: Update info widget
 }
 
 void SetupWidget::loadedGame(const QString &fileName)
@@ -54,7 +53,60 @@ void SetupWidget::loadedGame(const QString &fileName)
     loadSettings();
     gameSetupStack->setCurrentIndex(1);
     m_engine->loadGameFromSGF(fileName);
-    // TODO: Update info widget
+    m_lastFileName = fileName;
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    QTextStream in(&file);
+    QString content = in.readAll();
+    file.close();
+
+    QRegExp re;
+
+    // Parse additional game information from SGF file
+    re.setPattern("EV\\[([\\w ]+)\\]");             // Capture and set event
+    if (re.indexIn(content) > -1)
+        infoEvent->setText(re.cap(1));
+    re.setPattern("RO\\[(\\d+)\\]");                // Capture and set round
+    if (re.indexIn(content) > -1)
+        infoRound->setText(re.cap(1));
+    re.setPattern("DT\\[([\\w/\\-:\\.]+)\\]");      // Capture and set date
+    if (re.indexIn(content) > -1)
+        infoDate->setText(re.cap(1));
+
+    re.setPattern("PB\\[([\\w ]+)\\]");             // Capture and set black player name
+    if (re.indexIn(content) > -1)
+        blackPlayerName->setText(re.cap(1));
+    re.setPattern("BR\\[([\\w ]+)\\]");             // Capture and set black player rank
+    if (re.indexIn(content) > -1)
+        blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ")");
+    re.setPattern("PW\\[([\\w ]+)\\]");             // Capture and set white player name
+    if (re.indexIn(content) > -1)
+        whitePlayerName->setText(re.cap(1));
+    re.setPattern("WR\\[([\\w ]+)\\]");             // Capture and set white player rank
+    if (re.indexIn(content) > -1)
+        whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ")");
+
+    /*re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
+    if (re.indexIn(content) > -1)
+        infoKomi->setValue(re.cap(1).toFloat());*/
+    re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
+    if (re.indexIn(content) > -1)
+        infoScore->setText(re.cap(1));
+
+    re.setPattern("[BW]\\[\\w\\w\\]");              // Parse move count
+    int pos = 0, count = 0;
+    while (pos >= 0) {                              // Count all occurences of our pattern
+        pos = re.indexIn(content, pos);
+        if (pos >= 0) {
+            pos += re.matchedLength();
+            ++count;
+        }
+    }
+    startMoveSpinBox->setSuffix(i18n(" of %1", count));
+    startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
+    startMoveSpinBox->setValue(count);              // move.
 }
 
 void SetupWidget::commit()
@@ -77,6 +129,7 @@ void SetupWidget::commit()
     if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game
         m_engine->setKomi(Preferences::komi());
     } else {                                        // The user configured a loaded game
+        //Note: None currently
     }
 }
 
@@ -86,8 +139,8 @@ void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
         m_engine->loadGameFromSGF(m_lastFileName, value);
 
     switch (m_engine->currentPlayer()) {
-        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
-        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
+        case GoEngine::WhitePlayer: playerLabel->setText(i18n("for White")); break;
+        case GoEngine::BlackPlayer: playerLabel->setText(i18n("for Black")); break;
         case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
     }
 }
@@ -193,12 +246,17 @@ void SetupWidget::loadSettings()
 
 void SetupWidget::saveSettings()
 {
-    Preferences::setWhitePlayerName(whitePlayerName->text());
-    Preferences::setWhitePlayerStrength(whiteStrengthSlider->value());
-    Preferences::setWhitePlayerHuman(whitePlayerCombo->currentText() == i18n("Human"));
+    if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game
+        Preferences::setWhitePlayerName(whitePlayerName->text());
+        Preferences::setBlackPlayerName(blackPlayerName->text());
+    } else {
+        //Note: Don't save player names for a loaded game because the names set by
+        //      the user are overriden by those found in the SGF file.
+    }
 
-    Preferences::setBlackPlayerName(blackPlayerName->text());
+    Preferences::setWhitePlayerStrength(whiteStrengthSlider->value());
     Preferences::setBlackPlayerStrength(blackStrengthSlider->value());
+    Preferences::setWhitePlayerHuman(whitePlayerCombo->currentText() == i18n("Human"));
     Preferences::setBlackPlayerHuman(blackPlayerCombo->currentText() == i18n("Human"));
 
     Preferences::setKomi(komiSpinBox->value());

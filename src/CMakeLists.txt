@@ -7,7 +7,6 @@ set(kigo_SRCS
     gui/graphicsview/gameview.cpp
     gui/widgets/gamewidget.cpp
     gui/widgets/setupwidget.cpp
-    gui/widgets/infowidget.cpp
     gui/widgets/editwidget.cpp
     gui/config/generalconfig.cpp
     gui/mainwindow.cpp
@@ -17,7 +16,6 @@ set(kigo_SRCS
 kde4_add_ui_files(kigo_SRCS 
     gui/widgets/gamewidget.ui
     gui/widgets/setupwidget.ui
-    gui/widgets/infowidget.ui
     gui/widgets/editwidget.ui
     gui/config/generalconfig.ui
 )

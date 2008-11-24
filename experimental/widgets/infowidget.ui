@@ -86,28 +86,6 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="3" >
-    <widget class="KLineEdit" name="infoLocation" >
-     <property name="enabled" >
-      <bool>true</bool>
-     </property>
-     <property name="focusPolicy" >
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="text" >
-      <string/>
-     </property>
-     <property name="readOnly" >
-      <bool>true</bool>
-     </property>
-     <property name="contextMenuEnabled" >
-      <bool>false</bool>
-     </property>
-     <property name="urlDropsEnabled" >
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
    <item row="2" column="0" colspan="4" >
     <widget class="Line" name="line_2" >
      <property name="orientation" >
@@ -201,12 +179,6 @@
      <property name="enabled" >
       <bool>true</bool>
      </property>
-     <property name="maximumSize" >
-      <size>
-       <width>80</width>
-       <height>16777215</height>
-      </size>
-     </property>
      <property name="focusPolicy" >
       <enum>Qt::NoFocus</enum>
      </property>
@@ -227,64 +199,10 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="2" >
-    <widget class="QLabel" name="label_4" >
-     <property name="text" >
-      <string>Komi:</string>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="3" >
-    <widget class="QDoubleSpinBox" name="infoKomi" >
-     <property name="focusPolicy" >
-      <enum>Qt::NoFocus</enum>
-     </property>
-     <property name="contextMenuPolicy" >
-      <enum>Qt::NoContextMenu</enum>
-     </property>
-     <property name="readOnly" >
-      <bool>true</bool>
-     </property>
-     <property name="buttonSymbols" >
-      <enum>QAbstractSpinBox::NoButtons</enum>
-     </property>
-     <property name="suffix" >
-      <string> Points</string>
-     </property>
-     <property name="decimals" >
-      <number>1</number>
-     </property>
-     <property name="maximum" >
-      <double>50.000000000000000</double>
-     </property>
-     <property name="value" >
-      <double>0.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="0" >
-    <widget class="QLabel" name="label_10" >
-     <property name="text" >
-      <string>Score:</string>
-     </property>
-     <property name="alignment" >
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="7" column="1" >
-    <widget class="KLineEdit" name="infoScore" >
+   <item row="1" column="3" >
+    <widget class="KLineEdit" name="infoLocation" >
      <property name="enabled" >
       <bool>true</bool>
-     </property>
-     <property name="maximumSize" >
-      <size>
-       <width>80</width>
-       <height>16777215</height>
-      </size>
      </property>
      <property name="focusPolicy" >
       <enum>Qt::NoFocus</enum>
@@ -300,6 +218,38 @@
      </property>
      <property name="urlDropsEnabled" >
       <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1" >
+    <widget class="KLineEdit" name="infoScore" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="readOnly" >
+      <bool>true</bool>
+     </property>
+     <property name="contextMenuEnabled" >
+      <bool>false</bool>
+     </property>
+     <property name="urlDropsEnabled" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" >
+    <widget class="QLabel" name="label_10" >
+     <property name="text" >
+      <string>Score:</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
     </widget>
    </item>
@@ -341,7 +291,64 @@
      </property>
     </widget>
    </item>
+   <item row="6" column="2" >
+    <widget class="QLabel" name="label_4" >
+     <property name="text" >
+      <string>Komi:</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="3" >
+    <widget class="QDoubleSpinBox" name="infoKomi" >
+     <property name="focusPolicy" >
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="contextMenuPolicy" >
+      <enum>Qt::NoContextMenu</enum>
+     </property>
+     <property name="readOnly" >
+      <bool>true</bool>
+     </property>
+     <property name="buttonSymbols" >
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="suffix" >
+      <string> Points</string>
+     </property>
+     <property name="decimals" >
+      <number>1</number>
+     </property>
+     <property name="maximum" >
+      <double>50.000000000000000</double>
+     </property>
+     <property name="value" >
+      <double>0.000000000000000</double>
+     </property>
+    </widget>
+   </item>
   </layout>
+  <zorder>label_8</zorder>
+  <zorder>infoEvent</zorder>
+  <zorder>label_9</zorder>
+  <zorder>infoDate</zorder>
+  <zorder>line_2</zorder>
+  <zorder>label_7</zorder>
+  <zorder>infoWhite</zorder>
+  <zorder>label_6</zorder>
+  <zorder>infoBlack</zorder>
+  <zorder>line_4</zorder>
+  <zorder>label_11</zorder>
+  <zorder>infoRound</zorder>
+  <zorder>label_4</zorder>
+  <zorder>infoKomi</zorder>
+  <zorder>label_5</zorder>
+  <zorder>infoHandicap</zorder>
+  <zorder>label_10</zorder>
+  <zorder>infoScore</zorder>
+  <zorder>infoLocation</zorder>
  </widget>
  <customwidgets>
   <customwidget>

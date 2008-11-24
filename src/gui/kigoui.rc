@@ -19,7 +19,6 @@
                 <Action name="show_setup_panel" />
                 <Action name="show_edit_panel" />
                 <Action name="show_game_panel" />
-                <Action name="show_info_panel" />
                 <Action name="show_moves_panel" />
             </Menu>
         </Menu>

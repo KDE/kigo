@@ -42,13 +42,20 @@ public:
     ~SetupWidget();
 
 public slots:
-    /** */
+    /**
+     *
+     */
     void newGame();
 
-    /** @param fileName The SGF file to load the game from */
+    /**
+     * @param fileName The SGF file to load the game from
+     */
     void loadedGame(const QString &fileName);
 
-    /** */
+    /**
+     * To actually commit the configured values to the Go backend,
+     * this method has to be called.
+     */
     void commit();
 
 private slots:

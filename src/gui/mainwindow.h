@@ -48,7 +48,7 @@ public:
 
 private slots:
     void newGame();                         ///< Configure new game
-    void loadGame();                        ///< Configure loaded game with ~
+    void loadGame();                        ///< Configure loaded game
     void editGame();
     void saveGame();                        ///< Save the current game state
     void startGame();                       ///< React on start button
@@ -72,7 +72,6 @@ private:
 
     QDockWidget *m_setupDock;
     QDockWidget *m_gameDock;
-    QDockWidget *m_infoDock;
     QDockWidget *m_movesDock;
     QDockWidget *m_editDock;
 

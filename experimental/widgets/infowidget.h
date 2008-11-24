@@ -42,6 +42,7 @@ public:
 
 public slots:
     void update();
+    void update(const QString &);
 
 private:
     GoEngine *m_engine;

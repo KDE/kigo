@@ -24,7 +24,6 @@
 #include "gui/graphicsview/gameview.h"
 #include "gui/widgets/gamewidget.h"
 #include "gui/widgets/setupwidget.h"
-#include "gui/widgets/infowidget.h"
 #include "gui/widgets/editwidget.h"
 #include "preferences.h"
 
@@ -161,6 +160,10 @@ void MainWindow::editGame()
 void MainWindow::saveGame()
 {
     QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
+
+    //TODO: Don't forgot to commit all set values back to go engine so that
+    //      they are included in the savegame!
+
     if (!fileName.isEmpty()) {
         if (m_gameScene->engine()->saveGameToSGF(fileName))
             m_gameScene->showPopupMessage(i18n("Game saved..."));
@@ -179,6 +182,7 @@ void MainWindow::startGame()
     m_startGameAction->setVisible(false);
     //m_finishGameAction->setVisible(false);
 
+    m_setupWidget->commit();
     m_gameView->setInteractive(true);
 
     m_setupDock->setVisible(false);
@@ -306,14 +310,13 @@ void MainWindow::setupActions()
     // Settings menu
     KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());
 
-
     // Not found in menus
     m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start game"), this);
     m_startGameAction->setShortcut(Qt::Key_S);
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
     actionCollection()->addAction("game_start", m_startGameAction);
 
-    m_finishGameAction = new KAction(KIcon("games-highscores"), i18nc("@action", "Finish game"), this);
+    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish game"), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
 }
@@ -349,15 +352,6 @@ void MainWindow::setupDockWindows()
     m_gameDock->toggleViewAction()->setShortcut(Qt::Key_G);
     actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
-
-    // Info dock
-    m_infoDock = new QDockWidget(i18nc("@title:window", "Info"), this);
-    m_infoDock->setObjectName("infoDock");
-    m_infoDock->setWidget(new InfoWidget(m_gameScene->engine(), this));
-    m_infoDock->toggleViewAction()->setText(i18nc("@title:window", "Info"));
-    m_infoDock->toggleViewAction()->setShortcut(Qt::Key_I);
-    actionCollection()->addAction("show_info_panel", m_infoDock->toggleViewAction());
-    addDockWidget(Qt::RightDockWidgetArea, m_infoDock);
 
     // Move history dock
     m_movesDock = new QDockWidget(i18nc("@title:window", "Move history"), this);
