@@ -17,8 +17,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_SETUPSCREEN_H
-#define KGO_SETUPSCREEN_H
+#ifndef KIGO_SETUPSCREEN_H
+#define KIGO_SETUPSCREEN_H
 
 #include "ui_setupscreen.h"
 

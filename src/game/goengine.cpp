@@ -24,6 +24,7 @@
 #include "goengine.h"
 
 #include <KDebug>
+#include <KLocale>
 
 #include <QFile>
 #include <QApplication>
@@ -108,7 +109,7 @@ GoEngine::GoEngine()
     , m_blackPlayerType(HumanPlayer), m_blackPlayerStrength(10)
     , m_komi(0), m_fixedHandicap(0), m_moveNumber(0), m_consecutivePassMoveNumber(0)
 {
-    connect(&m_engineProcess, SIGNAL(readyRead()), this, SLOT(onReadyRead()));
+    connect(&m_engineProcess, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(&m_undoStack, SIGNAL(canRedoChanged(bool)), this, SIGNAL(canRedoChanged(bool)));
     connect(&m_undoStack, SIGNAL(canUndoChanged(bool)), this, SIGNAL(canUndoChanged(bool)));
 }
@@ -394,10 +395,10 @@ bool GoEngine::playMove(const Stone &field, PlayerColor color, bool avoidUndo)
     if (waitResponse()) {
         QString undoString;
         if (color == WhitePlayer) {
-            undoString = "W-" + field.toLatin1();
+            undoString = i18n("White ") + field.toLatin1();
             setCurrentPlayer(BlackPlayer);
         } else {
-            undoString = "B-" + field.toLatin1();
+            undoString = i18n("Black ") + field.toLatin1();
             setCurrentPlayer(WhitePlayer);
         }
         m_moveNumber++;
@@ -428,10 +429,10 @@ bool GoEngine::passMove(PlayerColor color, bool avoidUndo)
     if (waitResponse()) {
         QString undoString;
         if (color == WhitePlayer) {
-            undoString = "W--";
+            undoString = i18n("White pass");
             setCurrentPlayer(BlackPlayer);
         } else {
-            undoString = "B--";
+            undoString = i18n("Black pass");
             setCurrentPlayer(WhitePlayer);
         }
         m_moveNumber++;
@@ -468,10 +469,10 @@ bool GoEngine::generateMove(PlayerColor color, bool avoidUndo)
     if (waitResponse(true)) {
         QString undoString;
         if (color == WhitePlayer) {
-            undoString = "W-";
+            undoString = i18n("White ");
             setCurrentPlayer(BlackPlayer);
         } else {
-            undoString = "B-";
+            undoString = i18n("Black ");
             setCurrentPlayer(WhitePlayer);
         }
 
@@ -480,10 +481,10 @@ bool GoEngine::generateMove(PlayerColor color, bool avoidUndo)
             if (m_consecutivePassMoveNumber > 0)
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
             m_consecutivePassMoveNumber++;
-            undoString += '-';
+            undoString += i18n("pass");
         } else if (m_engineResponse == "resign") {
             emit playerResigned(m_currentPlayer);
-            undoString += 'R';
+            undoString += i18n("resign");
         } else {
             m_moveNumber++;
             m_consecutivePassMoveNumber = 0;
@@ -530,20 +531,21 @@ bool GoEngine::redoMove()
     QString undoString = m_undoStack.text(m_undoStack.index());
 
     PlayerColor color;
-    if (undoString.startsWith('B')) {
+    if (undoString.startsWith(i18n("Black "))) {
         color = BlackPlayer;
-    } else if (undoString.startsWith('W')) {
+    } else if (undoString.startsWith(i18n("White "))) {
         color = WhitePlayer;
     } else {
         kDebug() << "Invalid undo/redo command found:" << undoString;
         return false;
     }
 
-    undoString.remove(0, 2);
-    if (undoString.startsWith('-')) {
+    undoString.remove(0, undoString.indexOf(' ')+1);
+    kDebug() << "FOO" << undoString;
+    if (undoString.startsWith(i18n("pass"))) {
         kDebug() << "Redo a pass move for" << color << undoString;
         passMove(color, true);
-    } else if (undoString.startsWith('R')) {
+    } else if (undoString.startsWith(i18n("resign"))) {
         // Note: Altough it is possible to undo after a resign and redo it,
         //       it is a bit questionable wether this makes sense logically.
         kDebug() << "Redo a resign for" << color << undoString;
@@ -1179,7 +1181,7 @@ bool GoEngine::waitResponse(bool nonBlocking)
     return tmp != '?';                              // '?' Means the engine didn't understand the query
 }
 
-void GoEngine::onReadyRead()
+void GoEngine::readyRead()
 {
     m_waitAndProcessEvents = false;
 }

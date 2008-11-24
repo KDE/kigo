@@ -17,47 +17,34 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KIGO_GAMEVIEW_H
-#define KIGO_GAMEVIEW_H
+#ifndef KIGO_CONFIG_H
+#define KIGO_CONFIG_H
 
-#include <QGraphicsView>
+#include "ui_generalconfig.h"
+
+#include <QWidget>
 
 namespace Kigo {
 
-class GameScene;
-
 /**
- * This class represents a view on a Go game view. This widget can be
- * included into a main window.
+ * Represents the general configuration tab in the Kigo
+ * configuration screen.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
  */
-class GameView : public QGraphicsView
+class GeneralConfig : public QWidget, private Ui::GeneralConfig
 {
     Q_OBJECT
 
 public:
     /**
-     * Standard constructor. Creates a game view based on a given game scene.
-     *
-     * @param scene The game scene
-     * @param parent The (optional) parent widget
-     * @see GameScene
+     * Standard Constructor. Sets up the loaded user interface.
      */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
+    explicit GeneralConfig(QWidget *parent = 0);
 
 private slots:
-    void changeCursor(const QPixmap &cursorPixmap);
-
-private:
-    void showEvent(QShowEvent *event);
-    void resizeEvent(QResizeEvent *event);
-    void drawForeground(QPainter *painter, const QRectF &rect);
-
-    GameScene * const m_gameScene;  ///< Pointer to the game scene
-
-    bool m_renderInactive;
+    void updateEngineCommand();
 };
 
 } // End of namespace Kigo

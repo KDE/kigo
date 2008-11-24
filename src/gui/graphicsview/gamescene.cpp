@@ -34,7 +34,7 @@ GameScene::GameScene()
     : m_engine(new GoEngine)
     , m_showLabels(Preferences::showBoardLabels())
     , m_showHint(false)
-    , m_showMoveHistory(Preferences::showMoveHistory())
+    , m_showMoveNumbers(Preferences::showMoveNumbers())
     , m_boardSize(Preferences::boardSize())
     , m_placementMarkerItem(0)
 {
@@ -42,7 +42,7 @@ GameScene::GameScene()
     connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
     connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showPassMessage(int)));
-    connect(m_engine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(showResignMessage(GoEngine::PlayerColor())));
+    connect(m_engine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(showResignMessage(GoEngine::PlayerColor)));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -90,9 +90,9 @@ void GameScene::showHint(bool show)
     updateHintItems();
 }
 
-void GameScene::showMoveHistory(bool show)
+void GameScene::showMoveNumbers(bool show)
 {
-    m_showMoveHistory = show;
+    m_showMoveNumbers = show;
     updateStoneItems();
 }
 
@@ -131,23 +131,23 @@ void GameScene::updateStoneItems()
         m_stoneItems.append(item);
     }
 
-    if (m_showMoveHistory) {
-        QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > history = m_engine->moveHistory();
-        for (int i = 0; i < history.size(); i++) {
-            int xOff = history[i].first.x() >= 'I' ? history[i].first.x() - 'A' - 1 : history[i].first.x() - 'A';
+    if (m_showMoveNumbers) {
+        QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > numbers = m_engine->moveHistory();
+        for (int i = 0; i < numbers.size(); i++) {
+            int xOff = numbers[i].first.x() >= 'I' ? numbers[i].first.x() - 'A' - 1 : numbers[i].first.x() - 'A';
             QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
-                                  m_gridRect.y() + (m_boardSize - history[i].first.y()) * m_cellSize);
+                                  m_gridRect.y() + (m_boardSize - numbers[i].first.y()) * m_cellSize);
 
             QGraphicsPixmapItem *item = static_cast<QGraphicsPixmapItem *>(itemAt(pos));
             if (item) {
-                // We found an item in the scene that is in our move history, so we paint it's move number
+                // We found an item in the scene that is in our move numbers, so we paint it's move number
                 // on top of the item and that's all.
                 //TODO: Check for existing move number to do special treatment
                 QPixmap pixmap = item->pixmap();
                 QPainter painter(&pixmap);
-                if (history[i].second == GoEngine::WhitePlayer)
+                if (numbers[i].second == GoEngine::WhitePlayer)
                     painter.setPen(Qt::black);
-                else if (history[i].second == GoEngine::BlackPlayer)
+                else if (numbers[i].second == GoEngine::BlackPlayer)
                     painter.setPen(Qt::white);
                 QFont f = painter.font();
                 f.setPointSizeF(m_cellSize / 4);

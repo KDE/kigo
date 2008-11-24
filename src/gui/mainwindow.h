@@ -17,27 +17,24 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_MAINWINDOW_H
-#define KGO_MAINWINDOW_H
+#ifndef KIGO_MAINWINDOW_H
+#define KIGO_MAINWINDOW_H
 
 #include <KXmlGuiWindow>
 
-class KToggleAction;
 class KAction;
-class QStackedWidget;
+class KToggleAction;
+class QDockWidget;
 
 namespace Kigo {
 
-class SetupScreen;
-class GameScreen;
-class MessageScreen;
 class GameScene;
+class GameView;
+class SetupWidget;
 
 /**
- * The MainWindow class acts as the main window of the Kigo graphical
- * user interface. Holds the different screens for setup and gameplay,
- * displays configuration dialog(s) and the GameScene object (which is
- * modified and passed around the differend sub-screens).
+ * The MainWindow class acts as the main window for the Kigo graphical
+ * user interface.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
@@ -50,41 +47,46 @@ public:
     explicit MainWindow(QWidget *parent = 0, bool startDemo = false);
 
 private slots:
-    void newGame();                         ///< Configure new game with setupscreen
+    void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game with ~
+    void editGame();
     void saveGame();                        ///< Save the current game state
-    void startGame();                       ///< React on setupscreen start button
+    void startGame();                       ///< React on start button
+    void finishGame();
     void undo();                            ///< Undo last move
     void redo();                            ///< Redo last move
     void pass();                            ///< Pass current move
     void hint();
     void showPreferences();                 ///< Show configuration dialog
-    void updatePreferences();               ///< React on user changed configuration
-    void showBusy(bool busy);
+    void updatePreferences();               ///< React changed configuration
+    void showBusy(bool busy);               ///< Signal the user a busy app
 
 private:
-    MessageScreen *messageScreen();         ///< Lazy instantiation for faster startup
-    SetupScreen *setupScreen();             ///< Lazy instantiation for faster startup
-    GameScreen *gameScreen();               ///< Lazy instantiation for faster startup
-
     void setupActions();
+    void setupDockWindows();
 
-    QStackedWidget * const m_mainWidget;
-    GameScene * const m_gameScene;
+    GameScene *m_gameScene;
+    GameView *m_gameView;
 
-    MessageScreen *m_messageScreen;         ///< Pointer to the engine message screen
-    SetupScreen *m_setupScreen;             ///< Pointer to the game setup screen
-    GameScreen *m_gameScreen;               ///< Pointer to the game playing screen
+    SetupWidget *m_setupWidget;
+
+    QDockWidget *m_setupDock;
+    QDockWidget *m_gameDock;
+    QDockWidget *m_infoDock;
+    QDockWidget *m_movesDock;
+    QDockWidget *m_editDock;
 
     KAction *m_newGameAction;
     KAction *m_loadGameAction;
-    KAction *m_saveAsAction;                ///< Action to save the current game
-    KAction *m_editGameAction;
-    KAction *m_undoMoveAction;              ///< Action to jump to the previous move
+    KAction *m_saveAction;                  ///< Action to save the current game
+    KAction *m_editorAction;
+    KAction *m_undoMoveAction;              ///< Action to jump to the last move
     KAction *m_redoMoveAction;              ///< Action to jump to the next move
     KAction *m_passMoveAction;              ///< Action to pass current move
     KAction *m_hintAction;
-    KToggleAction *m_moveHistoryAction;
+    KAction *m_startGameAction;
+    KAction *m_finishGameAction;
+    KToggleAction *m_moveNumbersAction;
 };
 
 } // End of namespace Kigo

@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="kigo" version="4">
+<gui name="kigo" version="6">
     <MenuBar>
         <Menu name="game">
-            <text>&amp;Game</text>
+            <text context="@title:menu">&amp;Game</text>
             <Action name="game_edit" />
             <Action name="game_seats" />
         </Menu>
         <Menu name="move">
-            <text>&amp;Move</text>
+            <text context="@title:menu">&amp;Move</text>
             <Action name="move_hint" />
-            <Action name="move_history" />
+            <Action name="move_numbers" />
+        </Menu>
+        <Menu name="settings">
+            <text context="@title:menu">&amp;Settings</text>
+            <Menu name="panels">
+                <text context="@title:menu">Panels</text>
+                <Action name="show_setup_panel" />
+                <Action name="show_edit_panel" />
+                <Action name="show_game_panel" />
+                <Action name="show_info_panel" />
+                <Action name="show_moves_panel" />
+            </Menu>
         </Menu>
     </MenuBar>
     <ToolBar name="mainToolBar">
-        <text>Main ToolBar</text>
+        <text context="@title:menu">Main ToolBar</text>
         <Action name="game_new" />
         <Action name="game_load" />
-        <Action name="game_save_as" />
+        <Action name="game_save" />
         <Separator />
         <Action name="move_undo" />
         <Action name="move_redo" />
@@ -26,5 +37,8 @@
         <Separator />
         <Action name="move_hint" />
         <Action name="move_history" />
+        <Separator />
+        <Action name="game_start" />
+        <Action name="game_finish" />
     </ToolBar>
 </gui>

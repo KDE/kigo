@@ -17,8 +17,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_THEMERENDERER_H
-#define KGO_THEMERENDERER_H
+#ifndef KIGO_THEMERENDERER_H
+#define KIGO_THEMERENDERER_H
 
 #include <QString>
 

@@ -17,36 +17,39 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_CONFIG_H
-#define KGO_CONFIG_H
-
-#include "ui_config.h"
-
-#include <QWidget>
+#include "generalconfig.h"
+#include "preferences.h"
+#include "game/goengine.h"
 
 namespace Kigo {
 
-/**
- * Represents the general configuration tab in the Kigo
- * configuration screen.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GeneralConfig : public QWidget, private Ui::GeneralConfig
+GeneralConfig::GeneralConfig(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
+    setupUi(this);
+    kcfg_EngineCommand->hide(); // Only used internally
 
-public:
-    /**
-     * Standard Constructor. Sets up the loaded user interface.
-     */
-    explicit GeneralConfig(QWidget *parent = 0);
+    QString engineCommand = Preferences::engineCommand();
+    engineExecutable->setUrl(KUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
+    connect(engineExecutable, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
+    engineParameters->setText(engineCommand.section(' ', 1));
+    connect(engineParameters, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
 
-private slots:
-    void updateEngineCommand();
-};
+    updateEngineCommand();
+}
+
+void GeneralConfig::updateEngineCommand()
+{
+    kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + ' ' + engineParameters->text());
+
+    // Check if the configured Go engine backend actually works and tell the user
+    GoEngine engine;
+    if(engine.startEngine(kcfg_EngineCommand->text()) && !engine.engineName().isEmpty())
+        engineLed->setState(KLed::On);
+    else
+        engineLed->setState(KLed::Off);
+}
 
 } // End of namespace Kigo
 
-#endif
+#include "moc_generalconfig.cpp"

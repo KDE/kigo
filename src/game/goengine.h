@@ -21,8 +21,8 @@
  *
  *******************************************************************/
 
-#ifndef KGO_GOENGINE_H
-#define KGO_GOENGINE_H
+#ifndef KIGO_GOENGINE_H
+#define KIGO_GOENGINE_H
 
 #include <QUndoStack>
 #include <QProcess>
@@ -216,6 +216,8 @@ public:
 
     GoEngine();
     ~GoEngine();
+
+    QUndoStack *undoStack() { return &m_undoStack; }
 
     ////////////////////////////////////////////////////////////////////
     // GTP: Administrative commands
@@ -789,7 +791,7 @@ private slots:
     /**
      * Slot to handle QProcess's readyRead signal.
      */
-    void onReadyRead();
+    void readyRead();
 
 private:
     void setCurrentPlayer(PlayerColor color);

@@ -17,47 +17,52 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KIGO_GAMEVIEW_H
-#define KIGO_GAMEVIEW_H
+#ifndef KIGO_GAMESCREEN_H
+#define KIGO_GAMESCREEN_H
 
-#include <QGraphicsView>
+#include "ui_gamescreen.h"
+
+#include <QWidget>
 
 namespace Kigo {
 
 class GameScene;
+class GoEngine;
 
 /**
- * This class represents a view on a Go game view. This widget can be
- * included into a main window.
+ * The game screen acts as a compound widget for the game view and
+ * some additional information panels. The panels include the move
+ * history and game statistics.
  *
+ * @see GameView
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
  */
-class GameView : public QGraphicsView
+class GameScreen : public QWidget, private Ui::GameScreen
 {
     Q_OBJECT
 
 public:
     /**
-     * Standard constructor. Creates a game view based on a given game scene.
+     * Standard constructor. Creates a new game screen and sets up
+     * some informational panels as well as the main Go game board
+     * view.
      *
-     * @param scene The game scene
-     * @param parent The (optional) parent widget
-     * @see GameScene
+     * @param scene A configured, ready to start game scene
+     * @param parent The parent widget or none
      */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
+    explicit GameScreen(GameScene *scene, QWidget *parent = 0);
 
 private slots:
-    void changeCursor(const QPixmap &cursorPixmap);
+    void showEvent(QShowEvent *);
+    void updateStatistics();
+    void pass(int);
+    void resign();
+    void scoreEstimates();
+    void finishGame();
 
 private:
-    void showEvent(QShowEvent *event);
-    void resizeEvent(QResizeEvent *event);
-    void drawForeground(QPainter *painter, const QRectF &rect);
-
-    GameScene * const m_gameScene;  ///< Pointer to the game scene
-
-    bool m_renderInactive;
+    GoEngine * const m_gameEngine;  ///<
 };
 
 } // End of namespace Kigo

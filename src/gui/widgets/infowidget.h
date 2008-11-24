@@ -17,39 +17,36 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include "config.h" // krazy:exclude=includes
-#include "preferences.h"
-#include "game/goengine.h"
+#ifndef KIGO_INFOWIDGET_H
+#define KIGO_INFOWIDGET_H
+
+#include "ui_infowidget.h"
+
+#include <QWidget>
 
 namespace Kigo {
 
-GeneralConfig::GeneralConfig(QWidget *parent)
-    : QWidget(parent)
+class GoEngine;
+
+/**
+ * @author Sascha Peilicke <sasch.pe@gmx.de>
+ * @since 0.5
+ */
+class InfoWidget : public QWidget, private Ui::InfoWidget
 {
-    setupUi(this);
-    kcfg_EngineCommand->hide(); // Only used internally
+    Q_OBJECT
 
-    QString engineCommand = Preferences::engineCommand();
-    engineExecutable->setUrl(KUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
-    connect(engineExecutable, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
-    engineParameters->setText(engineCommand.section(' ', 1));
-    connect(engineParameters, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
+public:
+    /** */
+    explicit InfoWidget(GoEngine *engine, QWidget *parent = 0);
 
-    updateEngineCommand();
-}
+public slots:
+    void update();
 
-void GeneralConfig::updateEngineCommand()
-{
-    kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + ' ' + engineParameters->text());
-
-    // Check if the configured Go engine backend actually works and tell the user
-    GoEngine engine;
-    if(engine.startEngine(kcfg_EngineCommand->text()) && !engine.engineName().isEmpty())
-        engineLed->setState(KLed::On);
-    else
-        engineLed->setState(KLed::Off);
-}
+private:
+    GoEngine *m_engine;
+};
 
 } // End of namespace Kigo
 
-#include "moc_config.cpp"
+#endif

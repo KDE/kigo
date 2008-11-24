@@ -5,19 +5,21 @@ set(kigo_SRCS
     gui/graphicsview/themerenderer.cpp
     gui/graphicsview/gamescene.cpp
     gui/graphicsview/gameview.cpp
-    gui/screens/messagescreen.cpp
-    gui/screens/setupscreen.cpp
-    gui/screens/gamescreen.cpp
-    gui/config.cpp
+    gui/widgets/gamewidget.cpp
+    gui/widgets/setupwidget.cpp
+    gui/widgets/infowidget.cpp
+    gui/widgets/editwidget.cpp
+    gui/config/generalconfig.cpp
     gui/mainwindow.cpp
     main.cpp 
 )
 
 kde4_add_ui_files(kigo_SRCS 
-    gui/screens/messagescreen.ui
-    gui/screens/setupscreen.ui
-    gui/screens/gamescreen.ui
-    gui/config.ui
+    gui/widgets/gamewidget.ui
+    gui/widgets/setupwidget.ui
+    gui/widgets/infowidget.ui
+    gui/widgets/editwidget.ui
+    gui/config/generalconfig.ui
 )
 kde4_add_kcfg_files(kigo_SRCS preferences.kcfgc)
 kde4_add_app_icon(kigo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../icons/hi*-app-kigo.png")

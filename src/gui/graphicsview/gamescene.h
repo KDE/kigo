@@ -17,8 +17,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_GAMESCENE_H
-#define KGO_GAMESCENE_H
+#ifndef KIGO_GAMESCENE_H
+#define KIGO_GAMESCENE_H
 
 #include "game/goengine.h"
 
@@ -56,7 +56,7 @@ public slots:
     void resizeScene(int width, int height);
     void showLabels(bool show);
     void showHint(bool show);
-    void showMoveHistory(bool show);
+    void showMoveNumbers(bool show);
     void showPopupMessage(const QString &message, int msecs = 2000);
 
 private slots:
@@ -72,12 +72,12 @@ private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void drawBackground(QPainter *painter, const QRectF &);
 
-    GoEngine * const m_engine;              ///< Go engine
+    GoEngine *m_engine;                     ///< Go engine
 
     KGamePopupItem m_gamePopup;
     bool m_showLabels;                      ///< Show board labels or not
     bool m_showHint;
-    bool m_showMoveHistory;
+    bool m_showMoveNumbers;
     QRectF m_boardRect;                     ///< Position of board in the scene
     QRectF m_mouseRect;                     ///< Board mouse interaction rect
     QRectF m_gridRect;                      ///< Board grid rect

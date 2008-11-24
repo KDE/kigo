@@ -17,47 +17,55 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KIGO_GAMEVIEW_H
-#define KIGO_GAMEVIEW_H
+#ifndef KIGO_SETUPWIDGET_H
+#define KIGO_SETUPWIDGET_H
 
-#include <QGraphicsView>
+#include "ui_setupwidget.h"
+
+#include <QWidget>
 
 namespace Kigo {
 
-class GameScene;
+class GoEngine;
 
 /**
- * This class represents a view on a Go game view. This widget can be
- * included into a main window.
- *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
+ * @since 0.5
  */
-class GameView : public QGraphicsView
+class SetupWidget : public QWidget, private Ui::SetupWidget
 {
     Q_OBJECT
 
 public:
-    /**
-     * Standard constructor. Creates a game view based on a given game scene.
-     *
-     * @param scene The game scene
-     * @param parent The (optional) parent widget
-     * @see GameScene
-     */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
+    /** */
+    explicit SetupWidget(GoEngine *engine, QWidget *parent = 0);
+    ~SetupWidget();
+
+public slots:
+    /** */
+    void newGame();
+
+    /** @param fileName The SGF file to load the game from */
+    void loadedGame(const QString &fileName);
+
+    /** */
+    void commit();
 
 private slots:
-    void changeCursor(const QPixmap &cursorPixmap);
+    void on_startMoveSpinBox_valueChanged(int);
+    void on_sizeGroupBox_changed(int);
+    void on_sizeOtherSpinBox_valueChanged(int);
+    void on_handicapGroupBox_toggled(bool);
+    void on_handicapSpinBox_valueChanged(int);
 
 private:
-    void showEvent(QShowEvent *event);
-    void resizeEvent(QResizeEvent *event);
-    void drawForeground(QPainter *painter, const QRectF &rect);
+    void updateHandicapBox();
+    void loadSettings();
+    void saveSettings();
 
-    GameScene * const m_gameScene;  ///< Pointer to the game scene
-
-    bool m_renderInactive;
+    GoEngine *m_engine;
+    QString m_lastFileName;
+    int m_lastFixedHandicap;
 };
 
 } // End of namespace Kigo

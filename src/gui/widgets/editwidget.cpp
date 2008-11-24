@@ -17,54 +17,17 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef KGO_GAMESCREEN_H
-#define KGO_GAMESCREEN_H
-
-#include "ui_gamescreen.h"
-
-#include <QWidget>
+#include "editwidget.h"
+#include "game/goengine.h"
 
 namespace Kigo {
 
-class GameScene;
-class GoEngine;
-
-/**
- * The game screen acts as a compound widget for the game view and
- * some additional information panels. The panels include the move
- * history and game statistics.
- *
- * @see GameView
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GameScreen : public QWidget, private Ui::GameScreen
+EditWidget::EditWidget(GoEngine *engine, QWidget *parent)
+    : QWidget(parent), m_engine(engine)
 {
-    Q_OBJECT
-
-public:
-    /**
-     * Standard constructor. Creates a new game screen and sets up
-     * some informational panels as well as the main Go game board
-     * view.
-     *
-     * @param scene A configured, ready to start game scene
-     * @param parent The parent widget or none
-     */
-    explicit GameScreen(GameScene *scene, QWidget *parent = 0);
-
-private slots:
-    void showEvent(QShowEvent *);
-    void updateStatistics();
-    void pass(int);
-    void resign();
-    void scoreEstimates();
-    void finishGame();
-
-private:
-    GoEngine * const m_gameEngine;  ///<
-};
+    setupUi(this);
+}
 
 } // End of namespace Kigo
 
-#endif
+#include "moc_editwidget.cpp"
