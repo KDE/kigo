@@ -94,12 +94,12 @@ void MainWindow::newGame()
 
     m_gameView->setInteractive(false);
 
-    m_setupDock->setVisible(true);
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
     m_movesDock->setVisible(false);
     m_movesDock->toggleViewAction()->setEnabled(false);
     m_editDock->setVisible(false);
+    m_setupDock->setVisible(true);
 
     m_setupWidget->newGame();
     m_gameScene->showPopupMessage(i18n("Setup a new game..."));
@@ -120,12 +120,12 @@ void MainWindow::loadGame()
 
         m_gameView->setInteractive(false);
 
-        m_setupDock->setVisible(true);
         m_gameDock->setVisible(false);
         m_gameDock->toggleViewAction()->setEnabled(false);
         m_movesDock->setVisible(false);
         m_movesDock->toggleViewAction()->setEnabled(false);
         m_editDock->setVisible(false);
+        m_setupDock->setVisible(true);
 
         m_setupWidget->loadedGame(fileName);
         m_gameScene->showPopupMessage(i18n("Setup a loaded game..."));
@@ -142,7 +142,8 @@ void MainWindow::editGame()
     m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
-    m_moveNumbersAction->setEnabled(false);
+    m_moveNumbersAction->setEnabled(true);
+
     m_startGameAction->setVisible(false);
     m_finishGameAction->setVisible(false);
 
@@ -189,11 +190,11 @@ void MainWindow::startGame()
     m_gameView->setInteractive(true);
 
     m_setupDock->setVisible(false);
+    m_editDock->setVisible(false);
     m_gameDock->setVisible(true);
     m_gameDock->toggleViewAction()->setEnabled(true);
     m_movesDock->setVisible(true);
     m_movesDock->toggleViewAction()->setEnabled(true);
-    m_editDock->setVisible(false);
 
     m_gameScene->showPopupMessage(i18n("Game started..."));
 }
@@ -213,20 +214,23 @@ void MainWindow::finishGame()
 
 void MainWindow::undo()
 {
-    if (m_engine->undoMove())
+    if (m_engine->undoMove()) {
         m_gameScene->showPopupMessage("Undone move");
+    }
 }
 
 void MainWindow::redo()
 {
-    if (m_engine->redoMove())
+    if (m_engine->redoMove()) {
         m_gameScene->showPopupMessage("Redone move");
+    }
 }
 
 void MainWindow::pass()
 {
-    if (m_engine->passMove())
+    if (m_engine->passMove()) {
         m_gameScene->showPopupMessage("Passed move");
+    }
 }
 
 void MainWindow::hint()
@@ -329,12 +333,12 @@ void MainWindow::setupActions()
 void MainWindow::setupDockWindows()
 {
     // Setup dock
-    m_setupDock = new QDockWidget(i18nc("@title:window", "Setup"), this);
+    m_setupDock = new QDockWidget(i18nc("@title:window", "Game setup"), this);
     m_setupDock->setObjectName("setupDock");
     m_setupDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_setupWidget = new SetupWidget(m_engine, this);
     m_setupDock->setWidget(m_setupWidget);
-    //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Setup"));
+    //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
     //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
     //actionCollection()->addAction("show_setup_panel", m_setupDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_setupDock);

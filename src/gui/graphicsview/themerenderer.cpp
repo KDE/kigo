@@ -36,8 +36,9 @@ ThemeRenderer::ThemeRenderer()
     , m_cache(new KPixmapCache("kigo-cache"))
 {
     m_cache->setCacheLimit(3 * 1024);
-    if (!loadTheme(Preferences::theme()))
+    if (!loadTheme(Preferences::theme())) {
         kDebug() << "Failed to load any game theme!";
+    }
 }
 
 ThemeRenderer::~ThemeRenderer()

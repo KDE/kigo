@@ -23,7 +23,7 @@ kde4_add_kcfg_files(kigo_SRCS preferences.kcfgc)
 kde4_add_app_icon(kigo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../icons/hi*-app-kigo.png")
 kde4_add_executable(kigo ${kigo_SRCS})
 
-target_link_libraries(kigo ${KDE4_KDEUI_LIBS} ${KDEGAMES_LIBRARY} ${KDE_KNEWSTUFF2_LIBS} ${KGGZGAMES_LIBS})
+target_link_libraries(kigo ${KDE4_KDEUI_LIBS} ${KDEGAMES_LIBRARY} ${KDE_KNEWSTUFF2_LIBS})# ${KGGZGAMES_LIBS})
 
 install(TARGETS kigo DESTINATION ${BIN_INSTALL_DIR})
 install(FILES gui/kigo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
