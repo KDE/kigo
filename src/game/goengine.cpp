@@ -1,25 +1,22 @@
-/*******************************************************************
- *
- * Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
- *
- * This file is part of the KDE project "Kigo"
- *
- * Kigo is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * Kigo is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with KReversi; see the file COPYING.  If not, write to
- * the Free Software Foundation, 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301, USA.
- *
- *******************************************************************/
+/*
+    Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation; either version 2 of
+    the License or (at your option) version 3 or any later version
+    accepted by the membership of KDE e.V. (or its successor approved
+    by the membership of KDE e.V.), which shall act as a proxy
+    defined in Section 14 of version 3 of the license.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "goengine.h"
 
@@ -547,7 +544,7 @@ bool GoEngine::redoMove()
         passMove(color, true);
     } else if (undoString.startsWith(i18n("resign"))) {
         // Note: Altough it is possible to undo after a resign and redo it,
-        //       it is a bit questionable wether this makes sense logically.
+        //       it is a bit questionable whether this makes sense logically.
         kDebug() << "Redo a resign for" << color << undoString;
         emit playerResigned(m_currentPlayer);
     } else {
@@ -1152,7 +1149,7 @@ bool GoEngine::waitResponse(bool nonBlocking)
 
     // Wait for finished command execution. We have to do this untill '\n\n' arives in our
     // input buffer to show that the Go engine is done processing our request. The 'nonBlocking'
-    // parameter decides wether we block and wait (suitable for short commands) or if we continue
+    // parameter decides whether we block and wait (suitable for short commands) or if we continue
     // processing events in between to stop the UI from blocking (suitable for longer commands).
     // The latter may introduce flickering.
     m_engineResponse.clear();

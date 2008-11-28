@@ -1,21 +1,22 @@
-/***************************************************************************
- *   Copyright (C) 2008 by Sascha Peilicke <sasch.pe@gmx.de>               *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU General Public License     *
- *   along with this program; if not, write to the                         *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
- ***************************************************************************/
+/*
+    Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
+
+    This program is free software; you can redistribute it and/or
+    modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation; either version 2 of
+    the License or (at your option) version 3 or any later version
+    accepted by the membership of KDE e.V. (or its successor approved
+    by the membership of KDE e.V.), which shall act as a proxy
+    defined in Section 14 of version 3 of the license.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 #include "setupwidget.h"
 #include "game/goengine.h"
@@ -80,13 +81,13 @@ void SetupWidget::loadedGame(const QString &fileName)
         blackPlayerName->setText(re.cap(1));
     re.setPattern("BR\\[([\\w ]+)\\]");             // Capture and set black player rank
     if (re.indexIn(content) > -1)
-        blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ")");
+        blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ')');
     re.setPattern("PW\\[([\\w ]+)\\]");             // Capture and set white player name
     if (re.indexIn(content) > -1)
         whitePlayerName->setText(re.cap(1));
     re.setPattern("WR\\[([\\w ]+)\\]");             // Capture and set white player rank
     if (re.indexIn(content) > -1)
-        whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ")");
+        whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ')');
 
     /*re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
     if (re.indexIn(content) > -1)
@@ -97,7 +98,7 @@ void SetupWidget::loadedGame(const QString &fileName)
 
     re.setPattern("[BW]\\[\\w\\w\\]");              // Parse move count
     int pos = 0, count = 0;
-    while (pos >= 0) {                              // Count all occurences of our pattern
+    while (pos >= 0) {                              // Count all occurrences of our pattern
         pos = re.indexIn(content, pos);
         if (pos >= 0) {
             pos += re.matchedLength();
@@ -251,7 +252,7 @@ void SetupWidget::saveSettings()
         Preferences::setBlackPlayerName(blackPlayerName->text());
     } else {
         //Note: Don't save player names for a loaded game because the names set by
-        //      the user are overriden by those found in the SGF file.
+        //      the user are overridden by those found in the SGF file.
     }
 
     Preferences::setWhitePlayerStrength(whiteStrengthSlider->value());
