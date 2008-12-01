@@ -211,7 +211,7 @@ public:
 
     ////////////////////////////////////////////////////////////////////
 
-    explicit GoEngine();
+    explicit GoEngine(QObject *parent = 0);
     ~GoEngine();
 
     QUndoStack *undoStack() { return &m_undoStack; }
@@ -332,6 +332,11 @@ public:
      *
      */
     PlayerType playerType(PlayerColor color) const;
+
+    /**
+     *
+     */
+    bool isPlayerHuman(PlayerColor color) const;
 
     /**
      * Set up fixed placement handicap stones.

@@ -100,8 +100,8 @@ QString GoEngine::Score::toString() const
 
 ////////////////////////////////////////////////////////////////////
 
-GoEngine::GoEngine()
-    : m_currentPlayer(BlackPlayer)
+GoEngine::GoEngine(QObject *parent)
+    : QObject(parent), m_currentPlayer(BlackPlayer)
     , m_whitePlayerType(HumanPlayer), m_whitePlayerStrength(10)
     , m_blackPlayerType(HumanPlayer), m_blackPlayerStrength(10)
     , m_komi(0), m_fixedHandicap(0), m_moveNumber(0), m_consecutivePassMoveNumber(0)
@@ -328,6 +328,16 @@ GoEngine::PlayerType GoEngine::playerType(PlayerColor color) const
         return HumanPlayer;
 }
 
+bool GoEngine::isPlayerHuman(PlayerColor color) const
+{
+    if (color == WhitePlayer)
+        return m_whitePlayerType == GoEngine::HumanPlayer;
+    else if (color == BlackPlayer)
+        return m_blackPlayerType == GoEngine::HumanPlayer;
+    else
+        return false;
+}
+
 bool GoEngine::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 2 && handicap <= 9);
@@ -400,7 +410,7 @@ bool GoEngine::playMove(const Stone &field, PlayerColor color, bool avoidUndo)
         }
         m_moveNumber++;
         m_consecutivePassMoveNumber = 0;
-        kDebug() << "Push new undo command" << undoString;
+        //kDebug() << "Push new undo command" << undoString;
         if (!avoidUndo)
             m_undoStack.push(new QUndoCommand(undoString));
         emit boardChanged();
@@ -436,7 +446,7 @@ bool GoEngine::passMove(PlayerColor color, bool avoidUndo)
         if (m_consecutivePassMoveNumber > 0)
             emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
         m_consecutivePassMoveNumber++;
-        kDebug() << "Push new undo command" << undoString;
+        //kDebug() << "Push new undo command" << undoString;
         if (!avoidUndo)
             m_undoStack.push(new QUndoCommand(undoString));
         emit boardChanged();
@@ -485,9 +495,10 @@ bool GoEngine::generateMove(PlayerColor color, bool avoidUndo)
         } else {
             m_moveNumber++;
             m_consecutivePassMoveNumber = 0;
+            undoString += m_engineResponse;
             emit boardChanged();
         }
-        kDebug() << "Push new undo command" << undoString;
+        //kDebug() << "Push new undo command" << undoString;
         if (!avoidUndo)
             m_undoStack.push(new QUndoCommand(undoString));
         return true;
@@ -538,7 +549,6 @@ bool GoEngine::redoMove()
     }
 
     undoString.remove(0, undoString.indexOf(' ')+1);
-    kDebug() << "FOO" << undoString;
     if (undoString.startsWith(i18n("pass"))) {
         kDebug() << "Redo a pass move for" << color << undoString;
         passMove(color, true);

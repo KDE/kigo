@@ -1,31 +1,10 @@
-Short term
-==========
-
 * Playing against computer (UI integration)
-* Final results screen to display with full-flegded statistics when
-  a game is over (aka ResultsScreen)
+* Final results to display with full-flegded statistics when
+  a game is over
+* Ship better go board theme and own icons
 * Better Go engine configuration (multiple engines to choose from)
-
-
-Long term
-=========
-
-* Ship further go board themes and own icons
 * Save-game management (something similar to palapeli)
 * Add multiplayer support via GGZ and traditional Go servers
 * Cache longer lists retrieved from the backend in the GoEngine (for example
   move history, stone lists for either player, ...) to save computing time
 * Create a screensaver with 2 engines battling each other on a Kigo::GameView
-
-
-Go engines
-==========
-
-These engines support the GTP protocol:
-
-| Engine        | Command           |
-|---------------|-------------------|
-| GnuGo         | gnugo --mode gtp  |
-| Aya           | aya --mode gtp    |
-| CrazyStone    | ?                 |
-| Brown         | ?                 |

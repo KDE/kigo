@@ -32,10 +32,9 @@
 
 namespace Kigo {
 
-GameScene::GameScene(GoEngine *engine)
-    : m_engine(engine)
-    , m_showLabels(Preferences::showBoardLabels())
-    , m_showHint(false)
+GameScene::GameScene(GoEngine *engine, QObject *parent)
+    : QGraphicsScene(parent), m_engine(engine)
+    , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
@@ -46,11 +45,6 @@ GameScene::GameScene(GoEngine *engine)
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
     addItem(&m_gamePopup);                  // TODO: Fix initial placement issue
-}
-
-GameScene::~GameScene()
-{
-    delete m_engine;
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -95,7 +89,7 @@ void GameScene::showMoveNumbers(bool show)
     updateStoneItems();
 }
 
-void GameScene::showPopupMessage(const QString &message, int msecs)
+void GameScene::showMessage(const QString &message, int msecs)
 {
     m_gamePopup.setMessageTimeout(msecs);
     if (message.isEmpty())
@@ -171,8 +165,11 @@ void GameScene::updateHintItems()
         int halfCellSize = m_cellSize / 2;
         GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
 
-        QPair<GoEngine::Stone, float> entry;
-        foreach (entry, m_engine->topMoves(currentPlayer)) {
+        // Note: Qt's foreach() does currently allow only one comma which makes it
+        //       unsuitable for templates with more than one parameter. To be able
+        //       to use a const reference here a simple typedef saves the day.
+        typedef QPair<GoEngine::Stone, float> MoveEntry;
+        foreach (const MoveEntry &entry, m_engine->topMoves(currentPlayer)) {
             QPixmap stonePixmap;
             if (currentPlayer == GoEngine::WhitePlayer)
                 stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
@@ -197,7 +194,6 @@ void GameScene::updateHintItems()
                                  m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
             m_hintItems.append(item);
         }
-        showPopupMessage(i18n("The computer recommends these moves ..."));
     }
 }
 
@@ -245,10 +241,7 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             row += 1;
         GoEngine::Stone move('A' + row, m_boardSize - col);
 
-        if (m_engine->playMove(move))
-            showPopupMessage(i18n("Made move at %1", move.toString()));
-        else
-            showPopupMessage(i18n("Making a move at %1 is not allowed!", move.toString()));
+        m_engine->playMove(move);
     }
 }
 

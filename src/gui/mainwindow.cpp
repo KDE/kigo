@@ -35,19 +35,21 @@
 #include <KGameThemeSelector>
 #include <KMenuBar>
 #include <KStandardGameAction>
-#include <KStandardAction>
 #include <KToggleAction>
 #include <KToolBar>
 
 #include <QDir>
 #include <QDockWidget>
+#include <QTimer>
 #include <QUndoView>
 
 namespace Kigo {
 
 MainWindow::MainWindow(QWidget *parent)
-    : KXmlGuiWindow(parent), m_engine(new GoEngine)
-    , m_gameScene(new GameScene(m_engine)), m_gameView(new GameView(m_gameScene, this))
+    : KXmlGuiWindow(parent)
+    , m_engine(new GoEngine(this))
+    , m_gameScene(new GameScene(m_engine, this))
+    , m_gameView(new GameView(m_gameScene, this))
 {
     setCentralWidget(m_gameView);
 
@@ -57,33 +59,21 @@ MainWindow::MainWindow(QWidget *parent)
              KXmlGuiWindow::Save | KXmlGuiWindow::Create);
 
     connect(m_engine, SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
-    connect(m_engine, SIGNAL(canRedoChanged(bool)),
-            m_redoMoveAction, SLOT(setEnabled(bool)));
-    connect(m_engine, SIGNAL(canUndoChanged(bool)),
-            m_undoMoveAction, SLOT(setEnabled(bool)));
     connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinish()));
     connect(m_engine, SIGNAL(playerResigned(GoEngine::PlayerColor)), this, SLOT(finishGame()));
 
     if (!m_engine->startEngine(Preferences::engineCommand())) {
-        m_newGameAction->setEnabled(false);
-        m_loadGameAction->setEnabled(false);
-        m_editorAction->setEnabled(false);
-        //TODO: Show error message
+        //showError(true);
     } else {
-        m_newGameAction->setEnabled(true);
-        m_loadGameAction->setEnabled(true);
-        m_editorAction->setEnabled(true);
+        //showError(false);
         newGame();
     }
 }
 
-MainWindow::~MainWindow()
-{
-    delete m_engine;
-}
-
 void MainWindow::newGame()
 {
+    m_gameView->setInteractive(false);
+
     m_saveAction->setEnabled(false);
     m_undoMoveAction->setEnabled(false);
     m_redoMoveAction->setEnabled(false);
@@ -93,7 +83,10 @@ void MainWindow::newGame()
     m_startGameAction->setVisible(true);
     m_finishGameAction->setVisible(false);
 
-    m_gameView->setInteractive(false);
+    disconnect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
+    disconnect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
+    disconnect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)),
+               this, SLOT(playerChanged()));
 
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
@@ -103,13 +96,15 @@ void MainWindow::newGame()
     m_setupDock->setVisible(true);
 
     m_setupWidget->newGame();
-    m_gameScene->showPopupMessage(i18n("Setup a new game..."));
+    m_gameScene->showMessage(i18n("Setup a new game..."));
 }
 
 void MainWindow::loadGame()
 {
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
+        m_gameView->setInteractive(false);
+
         m_saveAction->setEnabled(false);
         m_undoMoveAction->setEnabled(false);
         m_redoMoveAction->setEnabled(false);
@@ -119,7 +114,10 @@ void MainWindow::loadGame()
         m_startGameAction->setVisible(true);
         m_finishGameAction->setVisible(false);
 
-        m_gameView->setInteractive(false);
+        disconnect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
+        disconnect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
+        disconnect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)),
+                   this, SLOT(playerChanged()));
 
         m_gameDock->setVisible(false);
         m_gameDock->toggleViewAction()->setEnabled(false);
@@ -129,9 +127,9 @@ void MainWindow::loadGame()
         m_setupDock->setVisible(true);
 
         m_setupWidget->loadedGame(fileName);
-        m_gameScene->showPopupMessage(i18n("Setup a loaded game..."));
+        m_gameScene->showMessage(i18n("Setup a loaded game..."));
     } else {
-        m_gameScene->showPopupMessage(i18n("Unable to load game..."));
+        m_gameScene->showMessage(i18n("Unable to load game..."));
         //Note: New game implied here
     }
 }
@@ -149,6 +147,10 @@ void MainWindow::editGame()
     m_finishGameAction->setVisible(false);
 
     m_gameView->setInteractive(true);
+    disconnect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
+    disconnect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
+    disconnect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)),
+               this, SLOT(playerChanged()));
 
     m_setupDock->setVisible(false);
     m_gameDock->setVisible(false);
@@ -159,7 +161,7 @@ void MainWindow::editGame()
 
     kDebug() << "TODO: Implement edit mode";
 
-    m_gameScene->showPopupMessage(i18n("Editor started..."));
+    m_gameScene->showMessage(i18n("Editor started..."));
 }
 
 void MainWindow::saveGame()
@@ -171,24 +173,42 @@ void MainWindow::saveGame()
 
     if (!fileName.isEmpty()) {
         if (m_engine->saveGameToSGF(fileName))
-            m_gameScene->showPopupMessage(i18n("Game saved..."));
+            m_gameScene->showMessage(i18n("Game saved..."));
         else
-            m_gameScene->showPopupMessage(i18n("Unable to save game!"));
+            m_gameScene->showMessage(i18n("Unable to save game!"));
     }
 }
 
 void MainWindow::startGame()
 {
     m_saveAction->setEnabled(true);
-    m_undoMoveAction->setEnabled(true);
-    m_passMoveAction->setEnabled(true);
-    m_hintAction->setEnabled(true);
-    m_moveNumbersAction->setEnabled(true);
     m_startGameAction->setVisible(false);
     m_finishGameAction->setVisible(false);
 
     m_setupWidget->commit();
-    m_gameView->setInteractive(true);
+
+    //Decide on players how to display the UI
+    bool whiteHuman = m_engine->isPlayerHuman(GoEngine::WhitePlayer);
+    bool blackHuman = m_engine->isPlayerHuman(GoEngine::BlackPlayer);
+    if (whiteHuman || blackHuman) {
+        connect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
+        connect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
+
+        m_passMoveAction->setEnabled(true);
+        m_hintAction->setEnabled(true);
+        m_moveNumbersAction->setEnabled(true);
+
+        m_gameView->setInteractive(true);
+    } else {
+        m_passMoveAction->setEnabled(false);
+        m_hintAction->setEnabled(false);
+        m_moveNumbersAction->setEnabled(false);
+
+        m_gameView->setInteractive(false);
+        playerChanged();
+    }
+    connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)),
+            this, SLOT(playerChanged()));
 
     m_setupDock->setVisible(false);
     m_editDock->setVisible(false);
@@ -197,18 +217,19 @@ void MainWindow::startGame()
     m_movesDock->setVisible(true);
     m_movesDock->toggleViewAction()->setEnabled(true);
 
-    m_gameScene->showPopupMessage(i18n("Game started..."));
+    m_gameScene->showMessage(i18n("Game started..."));
 }
 
 void MainWindow::finishGame()
 {
+    m_gameView->setInteractive(false);
+
     m_undoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveNumbersAction->setEnabled(false);
     m_startGameAction->setVisible(false);
     m_finishGameAction->setVisible(false);
-    m_gameView->setInteractive(false);
 
     kDebug() << "TODO: Implement finishing games";
 }
@@ -216,27 +237,28 @@ void MainWindow::finishGame()
 void MainWindow::undo()
 {
     if (m_engine->undoMove()) {
-        m_gameScene->showPopupMessage("Undone move");
+        m_gameScene->showMessage("Undone move");
     }
 }
 
 void MainWindow::redo()
 {
     if (m_engine->redoMove()) {
-        m_gameScene->showPopupMessage("Redone move");
+        m_gameScene->showMessage("Redone move");
     }
 }
 
 void MainWindow::pass()
 {
     if (m_engine->passMove()) {
-        m_gameScene->showPopupMessage("Passed move");
+        m_gameScene->showMessage("Passed move");
     }
 }
 
 void MainWindow::hint()
 {
     m_gameScene->showHint(true);
+    m_gameScene->showMessage(i18n("These are the recommended moves ..."));
 }
 
 void MainWindow::showPreferences()
@@ -248,7 +270,7 @@ void MainWindow::showPreferences()
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"),
                     "games-config-theme");
-    dialog->setHelp(QString(),"Kigo");
+    dialog->setHelp(QString(), "Kigo");
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(updatePreferences()));
     dialog->show();
 }
@@ -262,14 +284,9 @@ void MainWindow::updatePreferences()
     if (m_engine->engineCommand() != Preferences::engineCommand()) {
         kDebug() << "Engine command changed or engine not running, (re)start backend...";
         if (!m_engine->startEngine(Preferences::engineCommand())) {
-            m_newGameAction->setEnabled(false);
-            m_loadGameAction->setEnabled(false);
-            m_editorAction->setEnabled(false);
-            //TODO: Show error message
+            //showError(true);
         } else {
-            m_newGameAction->setEnabled(true);
-            m_loadGameAction->setEnabled(true);
-            m_editorAction->setEnabled(true);
+            //showError(false);
             newGame();
         }
     }
@@ -277,17 +294,57 @@ void MainWindow::updatePreferences()
 
 void MainWindow::showBusy(bool busy)
 {
-    menuBar()->setDisabled(busy);
-    toolBar()->setDisabled(busy);                       // mainToolBar
-    toolBar("moveToolBar")->setDisabled(busy);
-    toolBar("gameToolBar")->setDisabled(busy);
-    if (busy)
-        m_gameScene->showPopupMessage(i18n("The computer is thinking..."), 0);
+    //Decide on players how to display the UI
+    bool whiteHuman = m_engine->isPlayerHuman(GoEngine::WhitePlayer);
+    bool blackHuman = m_engine->isPlayerHuman(GoEngine::BlackPlayer);
+
+    if (whiteHuman || blackHuman) {
+        m_undoMoveAction->setDisabled(busy);
+        m_redoMoveAction->setDisabled(busy);
+        m_passMoveAction->setDisabled(busy);
+        m_hintAction->setDisabled(busy);
+        m_moveNumbersAction->setDisabled(busy);
+    }
+
+    m_gameView->setInteractive(!busy);
 }
 
 void MainWindow::showFinish()
 {
     m_finishGameAction->setVisible(true);
+}
+
+void MainWindow::showError(bool enable)
+{
+    if (enable) {
+        kDebug() << "true";
+        setCentralWidget(new QLabel(i18n("Error"), this));
+        m_newGameAction->setEnabled(false);
+        m_loadGameAction->setEnabled(false);
+        m_editorAction->setEnabled(false);
+
+        /*m_startGameAction->setVisible(false);
+        m_finishGameAction->setVisible(false);*/
+    } else {
+        kDebug() << "false";
+        setCentralWidget(m_gameView);
+        m_newGameAction->setEnabled(true);
+        m_loadGameAction->setEnabled(true);
+        m_editorAction->setEnabled(true);
+
+    }
+}
+
+void MainWindow::playerChanged()
+{
+    if (!m_engine->isPlayerHuman(m_engine->currentPlayer())) {
+        QTimer::singleShot(200, this, SLOT(generateMove()));
+    }
+}
+
+void MainWindow::generateMove()
+{
+    m_engine->generateMove();
 }
 
 void MainWindow::setupActions()
@@ -355,22 +412,21 @@ void MainWindow::setupDockWindows()
     addDockWidget(Qt::RightDockWidgetArea, m_editDock);
 
     // Game dock
-    m_gameDock = new QDockWidget(i18nc("@title:window", "Game information"), this);
+    m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
     m_gameDock->setObjectName("gameDock");
     m_gameDock->setWidget(new GameWidget(m_engine, this));
-    m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Game information"));
+    m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
     m_gameDock->toggleViewAction()->setShortcut(Qt::Key_G);
     actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
 
     // Move history dock
-    m_movesDock = new QDockWidget(i18nc("@title:window", "Move history"), this);
+    m_movesDock = new QDockWidget(i18nc("@title:window", "Moves"), this);
     m_movesDock->setObjectName("movesDock");
     QUndoView *undoView = new QUndoView(m_engine->undoStack());
     undoView->setEmptyLabel(i18n("No move"));
-    undoView->setEnabled(false);
     m_movesDock->setWidget(undoView);
-    m_movesDock->toggleViewAction()->setText(i18nc("@title:window", "Move history"));
+    m_movesDock->toggleViewAction()->setText(i18nc("@title:window", "Moves"));
     m_movesDock->toggleViewAction()->setShortcut(Qt::Key_M);
     actionCollection()->addAction("show_moves_panel", m_movesDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_movesDock);

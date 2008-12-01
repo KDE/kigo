@@ -5,8 +5,22 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
     <kcfgfile name="kigorc" />
     <group name="Backend">
+        <entry name="EngineList" type="StringList">
+            <label>List of available/configured engine backends</label>
+            <choice>GnuGo</choice>
+            <choice>Aya</choice>
+            <choice>Brown</choice>
+            <choice>CrazyStone</choice>
+        </entry>
+        <entry name="EngineCommands" type="StringList">
+            <label>List of backend commands corresponding to the engine list</label>
+            <choice>gtp -mode gtp</choice>
+            <choice>aya -mode gtp</choice>
+            <choice></choice>
+            <choice></choice>
+        </entry>
         <entry name="EngineCommand" type="String">
-            <label>The Go game engine command with optional parameters</label>
+            <label>The current game engine command with (optional) parameters</label>
             <default>gnugo --mode gtp</default>
         </entry>
     </group>

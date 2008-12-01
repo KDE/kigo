@@ -45,8 +45,7 @@ class GameScene : public QGraphicsScene
     Q_OBJECT
 
 public:
-    GameScene(GoEngine *engine);
-    ~GameScene();
+    GameScene(GoEngine *engine, QObject *parent = 0);
 
 signals:
     void cursorPixmapChanged(const QPixmap &);
@@ -56,7 +55,7 @@ public slots:
     void showLabels(bool show);
     void showHint(bool show);
     void showMoveNumbers(bool show);
-    void showPopupMessage(const QString &message, int msecs = 2000);
+    void showMessage(const QString &message, int msecs = 2000);
 
 private slots:
     void updateStoneItems();

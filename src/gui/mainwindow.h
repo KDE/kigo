@@ -46,39 +46,42 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit MainWindow(QWidget *parent = 0);
 
 private slots:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
-    void editGame();
-    void saveGame();                        ///< Save the current game state
+    void editGame();                        ///< Start the board editor
+    void saveGame();                        ///< Save current game state
     void startGame();                       ///< React on start button
-    void finishGame();
+    void finishGame();                      ///< Final screen, scores, ...
     void undo();                            ///< Undo last move
     void redo();                            ///< Redo last move
     void pass();                            ///< Pass current move
-    void hint();
+    void hint();                            ///< Show a playing hint
     void showPreferences();                 ///< Show configuration dialog
-    void updatePreferences();               ///< React changed configuration
-    void showBusy(bool busy);               ///< Signal the user a busy app
-    void showFinish();
+    void updatePreferences();               ///< React on changed config
+    void showBusy(bool busy);               ///< Signal a busy app
+    void showFinish();                      ///< Signal a finished game
+    void showError(bool enable);
+    void playerChanged();
+    void generateMove();
 
 private:
     void setupActions();
     void setupDockWindows();
 
-    GoEngine *m_engine;
-    GameScene *m_gameScene;
-    GameView *m_gameView;
+    GoEngine *m_engine;                     ///< Handles complete game state
+    GoEngine *m_engineTwo;                  ///< Only generated computer moves
+    GameScene *m_gameScene;                 ///< QGraphicsScene for Go board
+    GameView *m_gameView;                   ///< QGraphicsView for Go board
 
     SetupWidget *m_setupWidget;
 
-    QDockWidget *m_setupDock;
-    QDockWidget *m_gameDock;
-    QDockWidget *m_movesDock;
-    QDockWidget *m_editDock;
+    QDockWidget *m_setupDock;               ///< Game setup dockwidget
+    QDockWidget *m_gameDock;                ///< Game info dockwidget
+    QDockWidget *m_movesDock;               ///< Move history dockwidget
+    QDockWidget *m_editDock;                ///< Game editor dockwidget
 
     KAction *m_newGameAction;
     KAction *m_loadGameAction;

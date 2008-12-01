@@ -11,7 +11,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2" >
    <item>
-    <widget class="QGroupBox" name="groupBox_3" >
+    <widget class="QGroupBox" name="backendGroupBox" >
      <property name="title" >
       <string>Backend</string>
      </property>
@@ -31,9 +31,6 @@
       </item>
       <item row="0" column="1" colspan="2" >
        <widget class="KUrlRequester" name="engineExecutable" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
           <horstretch>1</horstretch>
@@ -60,9 +57,6 @@
       </item>
       <item row="1" column="1" >
        <widget class="KLineEdit" name="engineParameters" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
         <property name="toolTip" >
          <string>Add here the necessary parameters to start the Engine in GTP mode</string>
         </property>
@@ -116,7 +110,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="s" >
+    <widget class="QGroupBox" name="appearanceGroupBox" >
      <property name="title" >
       <string>Appearance</string>
      </property>
