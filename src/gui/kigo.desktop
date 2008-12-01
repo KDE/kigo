@@ -6,6 +6,7 @@ Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
 
 Name=Kigo
+Name[x-test]=xxKigoxx
 
 GenericName=Go Board Game
 GenericName[el]=Επιτραπέζιο παιχνίδι Go
