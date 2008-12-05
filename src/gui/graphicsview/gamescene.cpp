@@ -59,7 +59,7 @@ void GameScene::resizeScene(int width, int height)
     m_gridRect.setRect(width / 2 - size / 2, height / 2 - size / 2, size, size);
     m_mouseRect = m_gridRect.adjusted(-m_cellSize / 2, - m_cellSize / 2, m_cellSize / 2,   m_cellSize / 2);
 
-    m_stonePixmapSize = QSize(static_cast<int>(m_cellSize), static_cast<int>(m_cellSize));
+    m_stonePixmapSize = QSize(static_cast<int>(m_cellSize * 1.4), static_cast<int>(m_cellSize * 1.4));
     updateStoneItems();                     // Resize means redraw of board items (stones)
     updateHintItems();                      // and move hint items
 
@@ -101,7 +101,7 @@ void GameScene::showMessage(const QString &message, int msecs)
 void GameScene::updateStoneItems()
 {
     QGraphicsPixmapItem *item;
-    int halfCellSize = m_cellSize / 2;
+    int halfStoneSize = m_stonePixmapSize.width() / 2;
 
     foreach (item, m_stoneItems)            // Clear all standard Go stone graphics pixmap items
         removeItem(item);
@@ -111,16 +111,16 @@ void GameScene::updateStoneItems()
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
-        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
-                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
+        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
+                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 2));
         m_stoneItems.append(item);
     }
     foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
-        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
-                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize));
+        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
+                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 2));
         m_stoneItems.append(item);
     }
 
@@ -143,7 +143,7 @@ void GameScene::updateStoneItems()
                 else if (numbers[i].second == GoEngine::BlackPlayer)
                     painter.setPen(Qt::white);
                 QFont f = painter.font();
-                f.setPointSizeF(m_cellSize / 4);
+                f.setPointSizeF(halfStoneSize / 2);
                 painter.setFont(f);
                 painter.drawText(pixmap.rect(), Qt::AlignCenter, QString::number(i));
                 item->setPixmap(pixmap);
@@ -162,7 +162,7 @@ void GameScene::updateHintItems()
     m_hintItems.clear();
 
     if (m_showHint) {
-        int halfCellSize = m_cellSize / 2;
+        int halfStoneSize = m_stonePixmapSize.width() / 2;
         GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
 
         // Note: Qt's foreach() does currently allow only one comma which makes it
@@ -190,8 +190,8 @@ void GameScene::updateHintItems()
             item = addPixmap(stonePixmap);
             item->setZValue(4);
             int xOff = entry.first.x() >= 'I' ? entry.first.x() - 'A' - 1 : entry.first.x() - 'A';
-            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize,
-                                 m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfCellSize));
+            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
+                                 m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfStoneSize + 2));
             m_hintItems.append(item);
         }
     }
