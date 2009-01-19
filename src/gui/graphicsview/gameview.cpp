@@ -21,8 +21,6 @@
 #include "gameview.h"
 #include "gamescene.h"
 
-#include <KDebug>
-
 #include <QResizeEvent>
 
 namespace Kigo {
@@ -63,15 +61,15 @@ void GameView::resizeEvent(QResizeEvent *event)
     m_gameScene->resizeScene(event->size().width(), event->size().height());
 }
 
-void GameView::drawForeground(QPainter *painter, const QRectF &rect)
+/*void GameView::drawForeground(QPainter *painter, const QRectF &rect)
 {
-    /*if (m_renderInactive) {
+    if (m_renderInactive) {
         // Visually show the user that the current view is inactive by rendering
         // a semi-transparent grey rectangle on top of the game scene.
         painter->setBrush(QBrush(QColor(70, 70, 70, 80), Qt::Dense4Pattern));
         painter->drawRect(rect);
-    }*/
-}
+    }
+}*/
 
 } // End of namespace Kigo
 

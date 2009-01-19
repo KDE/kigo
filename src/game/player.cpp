@@ -18,47 +18,48 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KIGO_GAMEVIEW_H
-#define KIGO_GAMEVIEW_H
-
-#include <QGraphicsView>
+#include "player.h"
 
 namespace Kigo {
 
-class GameScene;
-
-/**
- * This class represents a view on a Go game view. This widget can be
- * included into a main window.
- *
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
- */
-class GameView : public QGraphicsView
+Player::Player(Color color, Type type, int strength)
+    : m_color(color), m_type(type), m_strength(strength)
 {
-    Q_OBJECT
+}
 
-public:
-    /**
-     * Standard constructor. Creates a game view based on a given game scene.
-     *
-     * @param scene The game scene
-     * @param parent The (optional) parent widget
-     * @see GameScene
-     */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
+Player::Player(const Player &other)
+    : QObject(), m_name(other.m_name), m_color(other.m_color)
+    , m_type(other.m_type), m_strength(other.m_strength)
+{
+}
 
-private slots:
-    void changeCursor(const QPixmap &cursorPixmap);
+Player &Player::operator=(const Player &other)
+{
+    m_name = other.m_name;
+    m_color = other.m_color;
+    m_type = other.m_type;
+    m_strength = other.m_strength;
+    return *this;
+}
 
-private:
-    void showEvent(QShowEvent *event);
-    void resizeEvent(QResizeEvent *event);
-    //void drawForeground(QPainter *painter, const QRectF &rect);
+bool Player::operator==(const Player &other)
+{
+    return m_name == other.m_name &&
+           m_color == other.m_color &&
+           m_type == other.m_type &&
+           m_strength == other.m_type;
+}
 
-    GameScene * const m_gameScene;  ///< Pointer to the game scene
-};
+bool Player::setStrength(int strength)
+{
+    if (strength > 0 && strength < 11) {
+        m_strength = strength;
+        return true;
+    } else {
+        return false;
+    }
+}
 
 } // End of namespace Kigo
 
-#endif
+#include "moc_player.cpp"

@@ -6,8 +6,10 @@
             <text context="@title:menu">&amp;Game</text>
             <Action name="game_start" />
             <Action name="game_finish" />
-            <Action name="game_edit" />
             <Action name="game_seats" />
+            <Separator />
+            <Action name="game_start" />
+            <Action name="game_finish" />
         </Menu>
         <Menu name="move">
             <text context="@title:menu">&amp;Move</text>
@@ -19,7 +21,6 @@
             <Menu name="dockers" append="show_merge" >
                 <text context="@title:menu">&amp;Dockers</text>
                 <Action name="show_setup_panel" />
-                <Action name="show_edit_panel" />
                 <Action name="show_game_panel" />
                 <Action name="show_moves_panel" />
             </Menu>
@@ -30,6 +31,9 @@
         <Action name="game_new" />
         <Action name="game_load" />
         <Action name="game_save" />
+        <Separator />
+        <Action name="game_start" />
+        <Action name="game_finish" />
     </ToolBar>
     <ToolBar name="moveToolBar">
         <text context="@title:menu">Move Toolbar</text>
@@ -40,8 +44,5 @@
         <Separator />
         <Action name="move_hint" />
         <Action name="move_numbers" />
-        <Separator />
-        <Action name="game_start" />
-        <Action name="game_finish" />
     </ToolBar>
 </gui>

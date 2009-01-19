@@ -18,33 +18,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KIGO_EDITWIDGET_H
-#define KIGO_EDITWIDGET_H
+#include "move.h"
 
-#include "ui_editwidget.h"
-
-#include <QWidget>
+#include <KDebug>
 
 namespace Kigo {
 
-class GoEngine;
-
-/**
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.5
- */
-class EditWidget : public QWidget, private Ui::EditWidget
+Move::Move(const Player &player, const Stone &stone)
+    : m_player((Player &)player), m_stone((Stone &)stone)
 {
-    Q_OBJECT
+}
 
-public:
-    explicit EditWidget(GoEngine *engine, QWidget *parent = 0);
+Move::Move(const Move &other)
+    : QObject(), m_player(other.m_player), m_stone(other.m_stone)
+{
+}
 
-private:
-    GoEngine *m_engine;
-};
+Move &Move::operator=(const Move &other)
+{
+    m_player = other.m_player;
+    m_stone = other.m_stone;
+    return *this;
+}
 
 } // End of namespace Kigo
 
-#endif
-
+#include "moc_move.cpp"

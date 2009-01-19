@@ -19,12 +19,9 @@
 */
 
 #include "gamescene.h"
-#include "game/goengine.h"
+#include "game/engine.h"
 #include "preferences.h"
 #include "themerenderer.h"
-
-#include <KDebug>
-#include <KLocalizedString>
 
 #include <QPainter>
 #include <QGraphicsPixmapItem>
@@ -32,15 +29,15 @@
 
 namespace Kigo {
 
-GameScene::GameScene(GoEngine *engine, QObject *parent)
+GameScene::GameScene(Engine *engine, QObject *parent)
     : QGraphicsScene(parent), m_engine(engine)
     , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
-    connect(m_engine, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
-    connect(m_engine, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
-    connect(m_engine, SIGNAL(currentPlayerChanged(GoEngine::PlayerColor)), this, SLOT(hideHint()));
+    connect(m_engine, SIGNAL(changed()), this, SLOT(updateStoneItems()));
+    connect(m_engine, SIGNAL(sizeChanged(int)), this, SLOT(changeBoardSize(int)));
+    connect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -107,7 +104,7 @@ void GameScene::updateStoneItems()
         removeItem(item);
     m_stoneItems.clear();
 
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::BlackPlayer)) {
+    foreach (const Stone &stone, m_engine->stones(m_engine->blackPlayer())) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -115,7 +112,7 @@ void GameScene::updateStoneItems()
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 2));
         m_stoneItems.append(item);
     }
-    foreach (const GoEngine::Stone &stone, m_engine->listStones(GoEngine::WhitePlayer)) {
+    foreach (const Stone &stone, m_engine->stones(m_engine->whitePlayer())) {
         item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -125,27 +122,26 @@ void GameScene::updateStoneItems()
     }
 
     if (m_showMoveNumbers) {
-        QList<QPair<GoEngine::Stone, GoEngine::PlayerColor> > numbers = m_engine->moveHistory();
-        for (int i = 0; i < numbers.size(); i++) {
-            int xOff = numbers[i].first.x() >= 'I' ? numbers[i].first.x() - 'A' - 1 : numbers[i].first.x() - 'A';
+        int i = 0;
+        foreach (const Move &move, m_engine->moves()) {
+            int xOff = move.stone().x() >= 'I' ? move.stone().x() - 'A' - 1 : move.stone().x() - 'A';
             QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
-                                  m_gridRect.y() + (m_boardSize - numbers[i].first.y()) * m_cellSize);
+                                  m_gridRect.y() + (m_boardSize - move.stone().y()) * m_cellSize);
 
-            QGraphicsPixmapItem *item = static_cast<QGraphicsPixmapItem *>(itemAt(pos));
-            if (item) {
+            if (QGraphicsPixmapItem *item = static_cast<QGraphicsPixmapItem *>(itemAt(pos))) {
                 // We found an item in the scene that is in our move numbers, so we paint it's move number
                 // on top of the item and that's all.
                 //TODO: Check for existing move number to do special treatment
                 QPixmap pixmap = item->pixmap();
                 QPainter painter(&pixmap);
-                if (numbers[i].second == GoEngine::WhitePlayer)
+                if (move.player().isWhite())
                     painter.setPen(Qt::black);
-                else if (numbers[i].second == GoEngine::BlackPlayer)
+                else if (move.player().isBlack())
                     painter.setPen(Qt::white);
                 QFont f = painter.font();
                 f.setPointSizeF(halfStoneSize / 2);
                 painter.setFont(f);
-                painter.drawText(pixmap.rect(), Qt::AlignCenter, QString::number(i));
+                painter.drawText(pixmap.rect(), Qt::AlignCenter, QString::number(i++));
                 item->setPixmap(pixmap);
             }
         }
@@ -156,42 +152,36 @@ void GameScene::updateHintItems()
 {
     QGraphicsPixmapItem *item;
 
-    // Old hint is invalid, remove it first
-    foreach (QGraphicsPixmapItem *item, m_hintItems)
+    foreach (item, m_hintItems)                         // Old hint is invalid, remove it first
         removeItem(item);
     m_hintItems.clear();
 
     if (m_showHint) {
         int halfStoneSize = m_stonePixmapSize.width() / 2;
-        GoEngine::PlayerColor currentPlayer = m_engine->currentPlayer();
 
-        // Note: Qt's foreach() does currently allow only one comma which makes it
-        //       unsuitable for templates with more than one parameter. To be able
-        //       to use a const reference here a simple typedef saves the day.
-        typedef QPair<GoEngine::Stone, float> MoveEntry;
-        foreach (const MoveEntry &entry, m_engine->topMoves(currentPlayer)) {
+        foreach (const Stone &move, m_engine->bestMoves(m_engine->currentPlayer())) {
             QPixmap stonePixmap;
-            if (currentPlayer == GoEngine::WhitePlayer)
+            if (m_engine->currentPlayer().isWhite())
                 stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-            else if (currentPlayer == GoEngine::BlackPlayer)
+            else if (m_engine->currentPlayer().isBlack())
                 stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
 
             QPainter painter(&stonePixmap);
-            if (currentPlayer == GoEngine::WhitePlayer)
+            if (m_engine->currentPlayer().isWhite())
                 painter.setPen(Qt::black);
-            else if (currentPlayer == GoEngine::BlackPlayer)
+            else if (m_engine->currentPlayer().isBlack())
                 painter.setPen(Qt::white);
             QFont f = painter.font();
             f.setPointSizeF(m_cellSize / 4);
             painter.setFont(f);
-            painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(entry.second));
+            painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(move.value()));
             painter.end();
 
             item = addPixmap(stonePixmap);
             item->setZValue(4);
-            int xOff = entry.first.x() >= 'I' ? entry.first.x() - 'A' - 1 : entry.first.x() - 'A';
+            int xOff = move.x() >= 'I' ? move.x() - 'A' - 1 : move.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
-                                 m_gridRect.y() + (m_boardSize - entry.first.y()) * m_cellSize - halfStoneSize + 2));
+                                 m_gridRect.y() + (m_boardSize - move.y()) * m_cellSize - halfStoneSize + 2));
             m_hintItems.append(item);
         }
     }
@@ -217,9 +207,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         m_placementMarkerItem->setVisible(true);
         m_placementMarkerItem->setPos(x, y);
 
-        if (m_engine->currentPlayer() == GoEngine::WhitePlayer)
+        if (m_engine->currentPlayer().isWhite())
             map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-        else if (m_engine->currentPlayer() == GoEngine::BlackPlayer)
+        else if (m_engine->currentPlayer().isBlack())
             map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
     } else {
         m_placementMarkerItem->setVisible(false);
@@ -239,9 +229,7 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         // column, if the row is bigger than 'I', we have to add 1 to jump over that.
         if (row >= 8)
             row += 1;
-        GoEngine::Stone move('A' + row, m_boardSize - col);
-
-        m_engine->playMove(move);
+        m_engine->playMove(m_engine->currentPlayer(), Stone('A' + row, m_boardSize - col));
     }
 }
 

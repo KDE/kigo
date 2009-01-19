@@ -27,7 +27,7 @@
 
 namespace Kigo {
 
-class GoEngine;
+class Engine;
 
 /**
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -38,7 +38,7 @@ class SetupWidget : public QWidget, private Ui::SetupWidget
     Q_OBJECT
 
 public:
-    explicit SetupWidget(GoEngine *engine, QWidget *parent = 0);
+    explicit SetupWidget(Engine *engine, QWidget *parent = 0);
     ~SetupWidget();
 
 public slots:
@@ -70,7 +70,7 @@ private:
     void loadSettings();
     void saveSettings();
 
-    GoEngine *m_engine;
+    Engine *m_engine;
     QString m_lastFileName;
     int m_lastFixedHandicap;
 };

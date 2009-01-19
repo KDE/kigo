@@ -19,18 +19,19 @@
 */
 
 #include "gamewidget.h"
-#include "game/goengine.h"
+#include "game/engine.h"
+#include "game/stone.h"
 #include "preferences.h"
 
 #include <KDebug>
 
 namespace Kigo {
 
-GameWidget::GameWidget(GoEngine *engine, QWidget *parent)
+GameWidget::GameWidget(Engine *engine, QWidget *parent)
     : QWidget(parent), m_engine(engine)
 {
     setupUi(this);
-    connect(m_engine, SIGNAL(boardChanged()), this, SLOT(update()));
+    connect(m_engine, SIGNAL(changed()), this, SLOT(update()));
 }
 
 void GameWidget::init()
@@ -58,23 +59,25 @@ void GameWidget::update()
 {
     moveSpinBox->setValue(m_engine->currentMoveNumber());
 
-    QPair<GoEngine::Stone, GoEngine::PlayerColor> lastMove = m_engine->lastMove();
-    switch (lastMove.second) {
-        case GoEngine::WhitePlayer:
-            moveSpinBox->setSuffix(i18n("  (W %1)", lastMove.first.toString())); break;
-        case GoEngine::BlackPlayer:
-            moveSpinBox->setSuffix(i18n("  (B %1)", lastMove.first.toString())); break;
-        case GoEngine::InvalidPlayer:
-            moveSpinBox->setSuffix(""); break;
-    }
-    switch (m_engine->currentPlayer()) {
-        case GoEngine::WhitePlayer: playerLabel->setText(i18n("White's move")); break;
-        case GoEngine::BlackPlayer: playerLabel->setText(i18n("Black's move")); break;
-        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
+    if (m_engine->moves().size() > 0) {
+        Move last = m_engine->lastMove();
+        if (last.player().isWhite())
+            moveSpinBox->setSuffix(i18n(" (White %1)", last.stone().toString()));
+        else if (last.player().isBlack())
+            moveSpinBox->setSuffix(i18n(" (Black %1)", last.stone().toString()));
+        else
+            moveSpinBox->setSuffix("");
     }
 
-    whiteCapturesLabel->setText(QString::number(m_engine->captures(GoEngine::WhitePlayer)));
-    blackCapturesLabel->setText(QString::number(m_engine->captures(GoEngine::BlackPlayer)));
+    if (m_engine->currentPlayer().isWhite())
+        playerLabel->setText(i18n("White's move"));
+    else if (m_engine->currentPlayer().isBlack())
+        playerLabel->setText(i18n("Black's move"));
+    else
+        playerLabel->setText("");
+
+    whiteCapturesLabel->setText(QString::number(m_engine->captures(m_engine->whitePlayer())));
+    blackCapturesLabel->setText(QString::number(m_engine->captures(m_engine->blackPlayer())));
 }
 
 } // End of namespace Kigo

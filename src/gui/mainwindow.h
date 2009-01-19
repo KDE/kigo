@@ -26,12 +26,13 @@
 class KAction;
 class KToggleAction;
 class QDockWidget;
+class QUndoView;
 
 namespace Kigo {
 
-class GoEngine;
 class GameScene;
 class GameView;
+class Engine;
 class SetupWidget;
 
 /**
@@ -51,7 +52,6 @@ public:
 private slots:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
-    void editGame();                        ///< Start the board editor
     void saveGame();                        ///< Save current game state
     void startGame();                       ///< React on start button
     void finishGame();                      ///< Final screen, scores, ...
@@ -71,22 +71,20 @@ private:
     void setupActions();
     void setupDockWindows();
 
-    GoEngine *m_engine;                     ///< Handles complete game state
-    GoEngine *m_engineTwo;                  ///< Only generated computer moves
+    Engine *m_engine;                       ///< Handles complete game state
     GameScene *m_gameScene;                 ///< QGraphicsScene for Go board
     GameView *m_gameView;                   ///< QGraphicsView for Go board
 
     SetupWidget *m_setupWidget;
+    QUndoView *m_undoView;
 
     QDockWidget *m_setupDock;               ///< Game setup dockwidget
     QDockWidget *m_gameDock;                ///< Game info dockwidget
     QDockWidget *m_movesDock;               ///< Move history dockwidget
-    QDockWidget *m_editDock;                ///< Game editor dockwidget
 
     KAction *m_newGameAction;
     KAction *m_loadGameAction;
     KAction *m_saveAction;                  ///< Action to save the current game
-    KAction *m_editorAction;
     KAction *m_undoMoveAction;              ///< Action to jump to the last move
     KAction *m_redoMoveAction;              ///< Action to jump to the next move
     KAction *m_passMoveAction;              ///< Action to pass current move

@@ -18,17 +18,41 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "editwidget.h"
-#include "game/goengine.h"
+#ifndef KIGO_MOVE_H
+#define KIGO_MOVE_H
+
+#include "player.h"
+#include "stone.h"
 
 namespace Kigo {
 
-EditWidget::EditWidget(GoEngine *engine, QWidget *parent)
-    : QWidget(parent), m_engine(engine)
+/**
+ * The Move class is a light-weight representation of a Go
+ * move (to be) made by a Go player.
+ *
+ * @author Sascha Peilicke <sasch.pe@gmx.de>
+ * @since 0.5
+ */
+class Move : public QObject
 {
-    setupUi(this);
-}
+    Q_OBJECT
+
+public:
+    Move(const Player &player, const Stone &stone);
+    Move(const Move &other);
+    Move &operator=(const Move &other);
+
+    const Player &player() const { return m_player; }
+    const Stone &stone() const { return m_stone; }
+
+    bool isValid() const { return m_stone.isValid(); }
+    bool isPass() const { return !m_stone.isValid(); }
+
+private:
+    Player &m_player;
+    Stone &m_stone;
+};
 
 } // End of namespace Kigo
 
-#include "moc_editwidget.cpp"
+#endif

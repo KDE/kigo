@@ -19,14 +19,14 @@
 */
 
 #include "setupwidget.h"
-#include "game/goengine.h"
+#include "game/engine.h"
 #include "preferences.h"
 
 #include <QFile>
 
 namespace Kigo {
 
-SetupWidget::SetupWidget(GoEngine *engine, QWidget *parent)
+SetupWidget::SetupWidget(Engine *engine, QWidget *parent)
     : QWidget(parent), m_engine(engine)
     , m_lastFixedHandicap(Preferences::fixedHandicapValue())
 {
@@ -53,7 +53,7 @@ void SetupWidget::loadedGame(const QString &fileName)
 
     loadSettings();
     gameSetupStack->setCurrentIndex(1);
-    m_engine->loadGameFromSGF(fileName);
+    m_engine->init(fileName);
     m_lastFileName = fileName;
 
     QFile file(fileName);
@@ -114,17 +114,21 @@ void SetupWidget::commit()
 {
     saveSettings();
 
-    m_engine->setPlayerStrength(GoEngine::WhitePlayer, Preferences::whitePlayerStrength());
-    if (Preferences::whitePlayerHuman())
-        m_engine->setPlayerType(GoEngine::WhitePlayer, GoEngine::HumanPlayer);
-    else
-        m_engine->setPlayerType(GoEngine::WhitePlayer, GoEngine::ComputerPlayer);
+    if (Preferences::whitePlayerHuman()) {
+        m_engine->whitePlayer().setType(Player::Human);
+    } else {
+        m_engine->whitePlayer().setType(Player::Computer);
+    }
+    m_engine->whitePlayer().setStrength(Preferences::whitePlayerStrength());
+    m_engine->whitePlayer().setName(Preferences::whitePlayerName());
 
-    m_engine->setPlayerStrength(GoEngine::BlackPlayer, Preferences::blackPlayerStrength());
-    if (Preferences::blackPlayerHuman())
-        m_engine->setPlayerType(GoEngine::BlackPlayer, GoEngine::HumanPlayer);
-    else
-        m_engine->setPlayerType(GoEngine::BlackPlayer, GoEngine::ComputerPlayer);
+    if (Preferences::blackPlayerHuman()) {
+        m_engine->blackPlayer().setType(Player::Human);
+    } else {
+        m_engine->blackPlayer().setType(Player::Computer);
+    }
+    m_engine->blackPlayer().setStrength(Preferences::blackPlayerStrength());
+    m_engine->blackPlayer().setName(Preferences::blackPlayerName());
 
     // Set additional configuration based on game type
     if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game
@@ -137,13 +141,14 @@ void SetupWidget::commit()
 void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
 {
     if (!m_lastFileName.isEmpty())
-        m_engine->loadGameFromSGF(m_lastFileName, value);
+        m_engine->init(m_lastFileName, value);
 
-    switch (m_engine->currentPlayer()) {
-        case GoEngine::WhitePlayer: playerLabel->setText(i18n("for White")); break;
-        case GoEngine::BlackPlayer: playerLabel->setText(i18n("for Black")); break;
-        case GoEngine::InvalidPlayer: playerLabel->setText(""); break;
-    }
+    if (m_engine->currentPlayer().isWhite())
+        playerLabel->setText(i18n("for White"));
+    else if (m_engine->currentPlayer().isBlack())
+        playerLabel->setText(i18n("for Black"));
+    else
+        playerLabel->setText("");
 }
 
 void SetupWidget::on_sizeGroupBox_changed(int /*id*/)
@@ -165,13 +170,13 @@ void SetupWidget::on_sizeGroupBox_changed(int /*id*/)
 
 void SetupWidget::on_sizeOtherSpinBox_valueChanged(int value)
 {
-    m_engine->setBoardSize(value);              // Set free board size
+    m_engine->setBoardSize(value);                  // Set free board size
     updateHandicapBox();
 }
 
 void SetupWidget::on_handicapGroupBox_toggled(bool isChecked)
 {
-    m_engine->clearBoard();                     // Also removes handicap
+    m_engine->init();                               // Also removes handicap
     if (isChecked)                                  // Set handicap if checked
         m_engine->setFixedHandicap(handicapSpinBox->value());
 }
@@ -179,13 +184,13 @@ void SetupWidget::on_handicapGroupBox_toggled(bool isChecked)
 void SetupWidget::on_handicapSpinBox_valueChanged(int value)
 {
     m_lastFixedHandicap = handicapSpinBox->value(); //
-    m_engine->clearBoard();                     // Setting fixed handicap works only
-    m_engine->setFixedHandicap(value);          // on a blank game board
+    m_engine->init();                               // Setting fixed handicap works only
+    m_engine->setFixedHandicap(value);              // on a blank game board
 }
 
 void SetupWidget::updateHandicapBox()
 {
-    int maxFixedHandicap = m_engine->fixedHandicapMax();
+    int maxFixedHandicap = m_engine->fixedHandicapUpperBound();
 
     if (maxFixedHandicap == 0) {
         handicapGroupBox->setEnabled(false);

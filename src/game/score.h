@@ -18,45 +18,47 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KIGO_GAMEVIEW_H
-#define KIGO_GAMEVIEW_H
+#ifndef KIGO_SCORE_H
+#define KIGO_SCORE_H
 
-#include <QGraphicsView>
+#include <QObject>
+#include <QString>
 
 namespace Kigo {
 
-class GameScene;
-
 /**
- * This class represents a view on a Go game view. This widget can be
- * included into a main window.
+ * This class represents a Go score for either player. A score can only
+ * be created by a Kigo::Engine instance. The score will always hold the
+ * points of the leading player (together with certain probability bounds)
+ * and can thus be only created by the Go engine (Kigo::Engine).
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
+ * @since 0.5
  */
-class GameView : public QGraphicsView
+class Score : public QObject
 {
     Q_OBJECT
 
-public:
-    /**
-     * Standard constructor. Creates a game view based on a given game scene.
-     *
-     * @param scene The game scene
-     * @param parent The (optional) parent widget
-     * @see GameScene
-     */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
-
-private slots:
-    void changeCursor(const QPixmap &cursorPixmap);
+    friend class Engine;
 
 private:
-    void showEvent(QShowEvent *event);
-    void resizeEvent(QResizeEvent *event);
-    //void drawForeground(QPainter *painter, const QRectF &rect);
+    Score(const QString &score = QString());
+    Score(const Score &other);
 
-    GameScene * const m_gameScene;  ///< Pointer to the game scene
+public:
+    bool isValid() const;
+    QString toString() const;
+
+    QChar color() const { return m_color; }
+    float score() const { return m_score; }
+    float lowerBound() const { return m_lowerBound; }
+    float upperBound() const { return m_upperBound; }
+
+private:
+    QChar m_color;          ///< The color of the player which has more points
+    float m_score;          ///< The amount of points the player leads with
+    float m_lowerBound;     ///< Estimate lower bound
+    float m_upperBound;     ///< Estimate upper bound
 };
 
 } // End of namespace Kigo
