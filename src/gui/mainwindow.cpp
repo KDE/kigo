@@ -52,8 +52,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     setupActions();
     setupDockWindows();
-    setupGUI(KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys |
-             KXmlGuiWindow::Save | KXmlGuiWindow::Create);
+    setupGUI(QSize(800, 700), KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys |
+                              KXmlGuiWindow::Save | KXmlGuiWindow::Create);
 
     connect(m_engine, SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
     connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinish()));
@@ -314,13 +314,15 @@ void MainWindow::setupActions()
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start game"), this);
+    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start"), this);
     m_startGameAction->setShortcut(Qt::Key_S);
+    m_startGameAction->setToolTip(i18nc("@action", "Start game"));
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
     actionCollection()->addAction("game_start", m_startGameAction);
 
-    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish game"), this);
+    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish"), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
+    m_finishGameAction->setToolTip(i18nc("@action", "Finish game"));
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
     actionCollection()->addAction("game_finish", m_finishGameAction);
 
@@ -354,7 +356,7 @@ void MainWindow::setupDockWindows()
     //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
     //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
     //actionCollection()->addAction("show_setup_panel", m_setupDock->toggleViewAction());
-    addDockWidget(Qt::RightDockWidgetArea, m_setupDock);
+    addDockWidget(Qt::BottomDockWidgetArea, m_setupDock);
 
     // Game dock
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);

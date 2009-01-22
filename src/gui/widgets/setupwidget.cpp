@@ -89,9 +89,9 @@ void SetupWidget::loadedGame(const QString &fileName)
     if (re.indexIn(content) > -1)
         whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ')');
 
-    /*re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
+    re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
     if (re.indexIn(content) > -1)
-        infoKomi->setValue(re.cap(1).toFloat());*/
+        infoKomi->setText(re.cap(1));
     re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
     if (re.indexIn(content) > -1)
         infoScore->setText(re.cap(1));
@@ -108,6 +108,7 @@ void SetupWidget::loadedGame(const QString &fileName)
     startMoveSpinBox->setSuffix(i18n(" of %1", count));
     startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
     startMoveSpinBox->setValue(count);              // move.
+    startMoveSpinBox->setFocus(Qt::OtherFocusReason);
 }
 
 void SetupWidget::commit()
