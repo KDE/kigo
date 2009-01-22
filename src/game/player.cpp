@@ -60,6 +60,12 @@ bool Player::setStrength(int strength)
     }
 }
 
+QString Player::toString() const
+{
+    return m_name + " [" + (m_color == White ? "White" : "Black") +
+           ':' + QByteArray::number(m_strength) + ']';
+}
+
 } // End of namespace Kigo
 
 #include "moc_player.cpp"

@@ -31,9 +31,9 @@ namespace Kigo {
 
 Engine::Engine(QObject *parent)
     : QObject(parent)
-    , m_currentMove(0), m_currentPlayer(m_blackPlayer)
+    , m_currentMove(0), m_currentPlayer(&m_blackPlayer)
     , m_blackPlayer(Player::Black), m_whitePlayer(Player::White)
-    , m_komi(0), m_boardSize(-1), m_fixedHandicap(0), m_consecutivePassMoveNumber(0)
+    , m_komi(4.5), m_boardSize(19), m_fixedHandicap(5), m_consecutivePassMoveNumber(0)
 {
     connect(&m_process, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(&m_undoStack, SIGNAL(canRedoChanged(bool)), this, SIGNAL(canRedoChanged(bool)));
@@ -91,9 +91,12 @@ bool Engine::init()
     if (!isRunning())
         return false;
 
+    kDebug() << "Init game!";
+
     m_process.write("clear_board\n");
     if (waitResponse()) {
         // The board is wiped empty, start again with black player
+        kDebug() << "Set current to black:" << m_blackPlayer.toString();
         setCurrentPlayer(m_blackPlayer);
         m_fixedHandicap = 0;
         m_consecutivePassMoveNumber = 0;
@@ -242,8 +245,10 @@ bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
         return false;
 
     Player tmp = player;
-    if (!tmp.isValid())
-        tmp = m_currentPlayer;
+    if (!tmp.isValid()) {
+        //kDebug() << "Invalid player argument, using current player!";
+        tmp = *m_currentPlayer;
+    }
 
     QByteArray msg("play ");                    // The command to be sent
     if (tmp.isWhite())
@@ -300,8 +305,10 @@ bool Engine::generateMove(const Player &player, bool undoable)
         return false;
 
     Player tmp = player;
-    if (!tmp.isValid())
-        tmp = m_currentPlayer;
+    if (!tmp.isValid()) {
+        //kDebug() << "Invalid player argument, using current player!";
+        tmp = *m_currentPlayer;
+    }
 
     if (tmp.isWhite()) {
         m_process.write("level " + QByteArray::number(m_whitePlayer.strength()) + '\n');
@@ -329,7 +336,7 @@ bool Engine::generateMove(const Player &player, bool undoable)
             m_consecutivePassMoveNumber++;
             undoStr += i18n("pass");
         } else if (m_response == "resign") {
-            emit resigned(m_currentPlayer);
+            emit resigned(*m_currentPlayer);
             undoStr += i18n("resign");
         } else {
             m_currentMove++;
@@ -632,10 +639,12 @@ void Engine::readyRead()
     m_waitAndProcessEvents = false;
 }
 
-void Engine::setCurrentPlayer(const Player &player)
+void Engine::setCurrentPlayer(Player &player)
 {
-    m_currentPlayer = player;
-    emit currentPlayerChanged(m_currentPlayer);
+    m_currentPlayer = &player;
+    kDebug() << "Set current player to" << m_currentPlayer->toString() << "from"
+             << player.toString();
+    emit currentPlayerChanged(*m_currentPlayer);
 }
 
 } // End of namespace Kigo

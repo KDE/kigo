@@ -24,8 +24,8 @@
 
 namespace Kigo {
 
-Move::Move(const Player &player, const Stone &stone)
-    : m_player((Player &)player), m_stone((Stone &)stone)
+Move::Move(Player &player, const Stone &stone)
+    : m_player(&player), m_stone(stone)
 {
 }
 

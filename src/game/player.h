@@ -59,14 +59,13 @@ private:
 public:
     Player &operator=(const Player &other);
 
-    bool operator==(const Player &other);
-
     void setName(const QString &name) { m_name = name; }
     QString name() const { return m_name; }
 
     bool setStrength(int strength);
     int strength() const { return m_strength; }
 
+    void setColor(Color color) { m_color = color; }
     Color color() const { return m_color; }
 
     void setType(Type type) { m_type = type; }
@@ -75,9 +74,11 @@ public:
     bool isWhite() const { return m_color == White; }
     bool isBlack() const { return m_color == Black; }
     bool isValid() const { return m_color != Invalid; }
-
     bool isHuman() const { return m_type == Human; }
     bool isComputer() const { return m_type == Computer; }
+
+    bool operator==(const Player &other);
+    QString toString() const;
 
 private:
     QString m_name;

@@ -155,8 +155,8 @@ public:
      */
     int fixedHandicapUpperBound();
 
-    Player &currentPlayer() { return m_currentPlayer; }
-    const Player &currentPlayer() const { return m_currentPlayer; }
+    Player &currentPlayer() { return *m_currentPlayer; }
+    const Player &currentPlayer() const { return *m_currentPlayer; }
     Player &whitePlayer() { return m_whitePlayer; }
     const Player &whitePlayer() const { return m_whitePlayer; }
     Player &blackPlayer() { return m_blackPlayer; }
@@ -289,7 +289,7 @@ private slots:
     void readyRead();
 
 private:
-    void setCurrentPlayer(const Player &player);
+    void setCurrentPlayer(Player &player);
 
     QProcess m_process;
 
@@ -302,7 +302,7 @@ private:
     int m_currentMove;
     QUndoStack m_undoStack;
 
-    Player &m_currentPlayer;
+    Player *m_currentPlayer;
     Player m_blackPlayer;
     Player m_whitePlayer;
 
