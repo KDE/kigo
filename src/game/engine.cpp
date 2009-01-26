@@ -96,7 +96,6 @@ bool Engine::init()
     m_process.write("clear_board\n");
     if (waitResponse()) {
         // The board is wiped empty, start again with black player
-        kDebug() << "Set current to black:" << m_blackPlayer.toString();
         setCurrentPlayer(m_blackPlayer);
         m_fixedHandicap = 0;
         m_consecutivePassMoveNumber = 0;
@@ -642,8 +641,6 @@ void Engine::readyRead()
 void Engine::setCurrentPlayer(Player &player)
 {
     m_currentPlayer = &player;
-    kDebug() << "Set current player to" << m_currentPlayer->toString() << "from"
-             << player.toString();
     emit currentPlayerChanged(*m_currentPlayer);
 }
 

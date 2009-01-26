@@ -1,8 +1,5 @@
 project(kigo)
 
-set(CMAKE_BUILD_TYPE Debug)
-#set(CMAKE_BUILD_TYPE Release)
-
 if(NOT KDE4_FOUND)
     find_package(KDE4 REQUIRED)
     find_package(LibKDEGames REQUIRED)
