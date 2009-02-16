@@ -27,7 +27,7 @@ kde4_add_executable(kigo ${kigo_SRCS})
 
 target_link_libraries(kigo ${KDE4_KDEUI_LIBS} ${KDEGAMES_LIBRARY} ${KDE_KNEWSTUFF2_LIBS})# ${KGGZGAMES_LIBS})
 
-install(TARGETS kigo DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS kigo ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(FILES kigo.knsrc DESTINATION ${CONFIG_INSTALL_DIR})
 install(FILES gui/kigo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
