@@ -38,7 +38,7 @@
             <default>false</default>
         </entry>
         <entry name="HintVisibleTime" type="Double">
-            <label>Amount of seconds of which a hint is visible</label>
+            <label>Number of seconds for which a hint is visible</label>
             <default>3.0</default>
             <min>1.0</min>
             <max>5.0</max>

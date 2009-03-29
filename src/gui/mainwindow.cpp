@@ -138,7 +138,7 @@ void MainWindow::saveGame()
         if (m_engine->save(fileName))
             m_gameScene->showMessage(i18n("Game saved..."));
         else
-            m_gameScene->showMessage(i18n("Unable to save game!"));
+            m_gameScene->showMessage(i18n("Unable to save game."));
     }
 }
 
@@ -222,7 +222,7 @@ void MainWindow::pass()
 void MainWindow::hint()
 {
     m_gameScene->showHint(true);
-    m_gameScene->showMessage(i18n("These are the recommended moves ..."));
+    m_gameScene->showMessage(i18n("These are the recommended moves..."));
 }
 
 void MainWindow::showPreferences()
