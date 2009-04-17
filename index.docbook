@@ -34,7 +34,7 @@
 <!--<legalnotice>&FDLNotice;</legalnotice>-->
 
 <date>2008-04-15</date>
-<releaseinfo>0.1</releaseinfo>
+<releaseinfo>0.5.2</releaseinfo>
 
 <abstract>
 	<para>Kigo is an open-source implementation of the popular Go game (also known as Weiqi).</para>
