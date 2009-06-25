@@ -80,7 +80,6 @@ bool Engine::start(const QString &command)
 void Engine::stop()
 {
     if (m_process.isOpen()) {
-        kDebug() << "Quit GTP engine session";
         m_process.write("quit\n");
         m_process.close();
     }

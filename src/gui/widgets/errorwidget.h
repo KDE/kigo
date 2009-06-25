@@ -18,47 +18,34 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KIGO_GAMEVIEW_H
-#define KIGO_GAMEVIEW_H
+#ifndef KIGO_ERRORWIDGET_H
+#define KIGO_ERRORWIDGET_H
 
-#include <QGraphicsView>
+#include "ui_errorwidget.h"
+
+#include <QWidget>
 
 namespace Kigo {
 
-class GameScene;
-
 /**
- * This class represents a view on a Go game view. This widget can be
- * included into a main window.
- *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.1
+ * @since 0.5
  */
-class GameView : public QGraphicsView
+class ErrorWidget : public QWidget, private Ui::ErrorWidget
 {
     Q_OBJECT
 
 public:
-    /**
-     * Standard constructor. Creates a game view based on a given game scene.
-     *
-     * @param scene The game scene
-     * @param parent The (optional) parent widget
-     * @see GameScene
-     */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
+    explicit ErrorWidget(QWidget *parent = 0);
+    ~ErrorWidget();
 
 private slots:
-    void changeCursor(const QPixmap &cursorPixmap);
+    void on_configureButton_clicked(int);
 
 private:
-    void drawForeground(QPainter *painter, const QRectF &rect);
-    void showEvent(QShowEvent *event);
-    void resizeEvent(QResizeEvent *event);
-
-    GameScene * const m_gameScene;  ///< Pointer to the game scene
 };
 
 } // End of namespace Kigo
 
 #endif
+

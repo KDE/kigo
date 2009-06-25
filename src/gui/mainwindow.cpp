@@ -23,6 +23,7 @@
 #include "gui/config/generalconfig.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
+#include "gui/widgets/errorwidget.h"
 #include "gui/widgets/gamewidget.h"
 #include "gui/widgets/setupwidget.h"
 #include "preferences.h"
@@ -46,7 +47,7 @@ namespace Kigo {
 
 MainWindow::MainWindow(QWidget *parent)
     : KXmlGuiWindow(parent), m_engine(new Engine(this))
-    , m_gameScene(new GameScene(m_engine, this)), m_gameView(new GameView(m_gameScene, this))
+    , m_gameScene(new GameScene(m_engine)), m_gameView(new GameView(m_gameScene))
 {
     setCentralWidget(m_gameView);
 
@@ -59,26 +60,30 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinish()));
     connect(m_engine, SIGNAL(resigned(const Player &)), this, SLOT(finishGame()));
 
-    if (!m_engine->start(Preferences::engineCommand())) {
-        //showError(true);
-    } else {
-        //showError(false);
+    if (isBackendWorking()) {
         newGame();
+    } else {
+        backendError();
     }
 }
 
 void MainWindow::newGame()
 {
+    m_engine->start(Preferences::engineCommand());
+
     m_gameView->setInteractive(false);
 
+    m_newGameAction->setEnabled(true);
+    m_loadGameAction->setEnabled(true);
     m_saveAction->setEnabled(false);
+    m_startGameAction->setEnabled(true);
+    m_finishGameAction->setEnabled(false);
+
     m_undoMoveAction->setEnabled(false);
     m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveNumbersAction->setEnabled(false);
-    m_startGameAction->setEnabled(true);
-    m_finishGameAction->setEnabled(false);
 
     disconnect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
@@ -89,6 +94,7 @@ void MainWindow::newGame()
     m_movesDock->setVisible(false);
     m_movesDock->toggleViewAction()->setEnabled(false);
     m_setupDock->setVisible(true);
+    m_errorDock->setVisible(false);
 
     m_setupWidget->newGame();
     m_gameScene->showMessage(i18n("Setup a new game..."));
@@ -98,16 +104,21 @@ void MainWindow::loadGame()
 {
     QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     if (!fileName.isEmpty()) {
+        m_engine->start(Preferences::engineCommand());
+
         m_gameView->setInteractive(false);
 
+        m_newGameAction->setEnabled(true);
+        m_loadGameAction->setEnabled(true);
         m_saveAction->setEnabled(false);
+        m_startGameAction->setEnabled(true);
+        m_finishGameAction->setEnabled(false);
+
         m_undoMoveAction->setEnabled(false);
         m_redoMoveAction->setEnabled(false);
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
         m_moveNumbersAction->setEnabled(true);
-        m_startGameAction->setEnabled(true);
-        m_finishGameAction->setEnabled(false);
 
         disconnect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
         disconnect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
@@ -118,6 +129,7 @@ void MainWindow::loadGame()
         m_movesDock->setVisible(false);
         m_movesDock->toggleViewAction()->setEnabled(false);
         m_setupDock->setVisible(true);
+        m_errorDock->setVisible(false);
 
         m_setupWidget->loadedGame(fileName);
         m_gameScene->showMessage(i18n("Setup a loaded game..."));
@@ -125,6 +137,37 @@ void MainWindow::loadGame()
         m_gameScene->showMessage(i18n("Unable to load game..."));
         //Note: New game implied here
     }
+}
+
+void MainWindow::backendError()
+{
+    m_gameView->setInteractive(false);
+
+    m_newGameAction->setEnabled(false);
+    m_loadGameAction->setEnabled(false);
+    m_saveAction->setEnabled(false);
+    m_startGameAction->setEnabled(false);
+    m_finishGameAction->setEnabled(false);
+
+    m_undoMoveAction->setEnabled(false);
+    m_redoMoveAction->setEnabled(false);
+    m_passMoveAction->setEnabled(false);
+    m_hintAction->setEnabled(false);
+    m_moveNumbersAction->setEnabled(false);
+
+    disconnect(m_engine, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
+    disconnect(m_engine, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
+    disconnect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
+
+    m_gameDock->setVisible(false);
+    m_gameDock->toggleViewAction()->setEnabled(false);
+    m_movesDock->setVisible(false);
+    m_movesDock->toggleViewAction()->setEnabled(false);
+    m_setupDock->setVisible(false);
+    m_errorDock->setVisible(true);
+
+    kDebug () << "Backend error, TODO: Add error overlay";
+    // Add error stuff as overlay
 }
 
 void MainWindow::saveGame()
@@ -172,10 +215,8 @@ void MainWindow::startGame()
     }
     connect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
 
-    //TODO: Remove this if undo/redo can handle jumps in it's history:
-    m_undoView->setEnabled(false);
-
     m_setupDock->setVisible(false);
+    m_errorDock->setVisible(false);
     m_gameDock->setVisible(true);
     m_gameDock->toggleViewAction()->setEnabled(true);
     m_movesDock->setVisible(true);
@@ -235,24 +276,21 @@ void MainWindow::showPreferences()
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"),
                     "games-config-theme");
     dialog->setHelp(QString(), "Kigo");
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(updatePreferences()));
+    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(applyPreferences()));
     dialog->show();
 }
 
-void MainWindow::updatePreferences()
+void MainWindow::applyPreferences()
 {
-    kDebug() << "Update settings based on changed configuration...";
+    //kDebug() << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
 
-    // Restart the Go engine if the engine command was changed by the user.
-    if (m_engine->command() != Preferences::engineCommand()) {
-        kDebug() << "Engine command changed or engine not running, (re)start backend...";
-        if (!m_engine->start(Preferences::engineCommand())) {
-            //showError(true);
-        } else {
-            //showError(false);
-            newGame();
-        }
+    if (!isBackendWorking()) {
+        backendError();
+    } else if (m_engine->command() != Preferences::engineCommand()) {
+        // Restart the Go engine if the engine command was changed by the user.
+        m_gameScene->showMessage(i18n("Backend was changed, restart necessary..."));
+        newGame();
     }
 }
 
@@ -273,25 +311,6 @@ void MainWindow::showBusy(bool busy)
 void MainWindow::showFinish()
 {
     m_finishGameAction->setEnabled(true);
-}
-
-void MainWindow::showError(bool enable)
-{
-    if (enable) {
-        kDebug() << "true";
-        setCentralWidget(new QLabel(i18n("Error"), this));
-        m_newGameAction->setEnabled(false);
-        m_loadGameAction->setEnabled(false);
-
-        /*m_startGameAction->setVisible(false);
-        m_finishGameAction->setVisible(false);*/
-    } else {
-        kDebug() << "false";
-        setCentralWidget(m_gameView);
-        m_newGameAction->setEnabled(true);
-        m_loadGameAction->setEnabled(true);
-
-    }
 }
 
 void MainWindow::playerChanged()
@@ -377,6 +396,20 @@ void MainWindow::setupDockWindows()
     m_movesDock->toggleViewAction()->setShortcut(Qt::Key_M);
     actionCollection()->addAction("show_moves_panel", m_movesDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_movesDock);
+
+    m_errorDock = new QDockWidget(i18nc("@title:window", "Error"), this);
+    m_errorDock->setObjectName("errorDock");
+    m_errorDock->setWidget(new ErrorWidget(this));
+    //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
+    //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);
+    //actionCollection()->addAction("show_error_panel", m_errorDock->toggleViewAction());
+    addDockWidget(Qt::BottomDockWidgetArea, m_errorDock);
+}
+
+bool MainWindow::isBackendWorking()
+{
+    Engine engine;
+    return engine.start(Preferences::engineCommand());
 }
 
 } // End of namespace Kigo

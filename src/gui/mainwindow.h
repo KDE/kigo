@@ -52,6 +52,7 @@ public:
 private slots:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
+    void backendError();                    ///<
     void saveGame();                        ///< Save current game state
     void startGame();                       ///< React on start button
     void finishGame();                      ///< Final screen, scores, ...
@@ -60,10 +61,9 @@ private slots:
     void pass();                            ///< Pass current move
     void hint();                            ///< Show a playing hint
     void showPreferences();                 ///< Show configuration dialog
-    void updatePreferences();               ///< React on changed config
+    void applyPreferences();                ///< React on changed config
     void showBusy(bool busy);               ///< Signal a busy app
     void showFinish();                      ///< Signal a finished game
-    void showError(bool enable);
     void playerChanged();
     void generateMove();
 
@@ -71,16 +71,19 @@ private:
     void setupActions();
     void setupDockWindows();
 
+    bool isBackendWorking();
+
     Engine *m_engine;                       ///< Handles complete game state
     GameScene *m_gameScene;                 ///< QGraphicsScene for Go board
     GameView *m_gameView;                   ///< QGraphicsView for Go board
 
-    SetupWidget *m_setupWidget;
-    QUndoView *m_undoView;
+    SetupWidget *m_setupWidget;             ///< Part of dock widget
+    QUndoView *m_undoView;                  ///< Part of dock widget
 
-    QDockWidget *m_setupDock;               ///< Game setup dockwidget
-    QDockWidget *m_gameDock;                ///< Game info dockwidget
-    QDockWidget *m_movesDock;               ///< Move history dockwidget
+    QDockWidget *m_setupDock;               ///< Game setup dock widget
+    QDockWidget *m_gameDock;                ///< Game info dock widget
+    QDockWidget *m_movesDock;               ///< Move history dock widget
+    QDockWidget *m_errorDock;               ///< Dock shown when errors occur
 
     KAction *m_newGameAction;
     KAction *m_loadGameAction;

@@ -48,6 +48,17 @@ void GameView::changeCursor(const QPixmap &cursorPixmap)
         setCursor(QCursor(cursorPixmap));
 }
 
+void GameView::drawForeground(QPainter *painter, const QRectF &rect)
+{
+    //TODO: Get rid of that ugly looking white pixels on the left and top of rect
+    if (!isInteractive()) {
+        painter->save();
+        painter->setBrush(QBrush(QColor(60,60,60,100), Qt::Dense4Pattern));
+        painter->drawRect(rect);
+        painter->restore();
+    }
+}
+
 void GameView::showEvent(QShowEvent *)
 {
     // Make sure that the game scene has the correct size according to the current view
@@ -60,16 +71,6 @@ void GameView::resizeEvent(QResizeEvent *event)
 {
     m_gameScene->resizeScene(event->size().width(), event->size().height());
 }
-
-/*void GameView::drawForeground(QPainter *painter, const QRectF &rect)
-{
-    if (m_renderInactive) {
-        // Visually show the user that the current view is inactive by rendering
-        // a semi-transparent grey rectangle on top of the game scene.
-        painter->setBrush(QBrush(QColor(70, 70, 70, 80), Qt::Dense4Pattern));
-        painter->drawRect(rect);
-    }
-}*/
 
 } // End of namespace Kigo
 

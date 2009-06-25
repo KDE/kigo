@@ -5,7 +5,7 @@
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
     <kcfgfile name="kigorc" />
     <group name="Backend">
-        <entry name="EngineList" type="StringList">
+        <!-- <entry name="EngineList" type="StringList">
             <label>List of available/configured engine backends</label>
             <choice>GnuGo</choice>
             <choice>Aya</choice>
@@ -18,10 +18,13 @@
             <choice>aya -mode gtp</choice>
             <choice></choice>
             <choice></choice>
-        </entry>
+        </entry> -->
         <entry name="EngineCommand" type="String">
             <label>The current game engine command with (optional) parameters</label>
             <default>gnugo --mode gtp</default>
+        </entry>
+        <entry name="EngineWorking" type="Bool">
+            <default>true</default>
         </entry>
     </group>
     <group name="UserInterface">

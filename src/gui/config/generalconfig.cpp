@@ -45,10 +45,11 @@ void GeneralConfig::updateEngineCommand()
 
     // Check if the configured Go engine backend actually works and tell the user
     Engine engine;
-    if(engine.start(kcfg_EngineCommand->text()) && !engine.name().isEmpty())
+    if (engine.start(kcfg_EngineCommand->text())) {
         engineLed->setState(KLed::On);
-    else
+    } else {
         engineLed->setState(KLed::Off);
+    }
 }
 
 } // End of namespace Kigo

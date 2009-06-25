@@ -1,174 +1,126 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>GeneralConfig</class>
- <widget class="QWidget" name="GeneralConfig" >
-  <property name="geometry" >
+ <widget class="QWidget" name="GeneralConfig">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>249</width>
-    <height>359</height>
+    <width>361</width>
+    <height>406</height>
    </rect>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2" >
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QGroupBox" name="backendGroupBox" >
-     <property name="title" >
+    <widget class="QGroupBox" name="backendGroupBox">
+     <property name="title">
       <string>Backend</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout" >
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label_3" >
-        <property name="text" >
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
          <string>Executable:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>engineExecutable</cstring>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2" >
-       <widget class="KUrlRequester" name="engineExecutable" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+      <item row="2" column="1" colspan="2">
+       <widget class="KUrlRequester" name="engineExecutable">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>1</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Select the executable file to start the Go engine</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="label" >
-        <property name="text" >
+      <item row="3" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
          <string>Parameters:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
-        <property name="buddy" >
+        <property name="buddy">
          <cstring>engineParameters</cstring>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
-       <widget class="KLineEdit" name="engineParameters" >
-        <property name="toolTip" >
+      <item row="3" column="1">
+       <widget class="KLineEdit" name="engineParameters">
+        <property name="toolTip">
          <string>Add here the necessary parameters to start the Engine in GTP mode</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2" >
-       <widget class="KLineEdit" name="kcfg_EngineCommand" >
-        <property name="enabled" >
+      <item row="4" column="1" colspan="2">
+       <widget class="KLineEdit" name="kcfg_EngineCommand">
+        <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="focusPolicy" >
+        <property name="focusPolicy">
          <enum>Qt::NoFocus</enum>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>This is the resulting engine command which will be used by Kigo</string>
         </property>
-        <property name="text" >
+        <property name="text">
          <string/>
         </property>
-        <property name="readOnly" >
+        <property name="readOnly">
          <bool>true</bool>
         </property>
-        <property name="contextMenuEnabled" >
+        <property name="contextMenuEnabled">
          <bool>false</bool>
         </property>
-        <property name="urlDropsEnabled" >
+        <property name="urlDropsEnabled">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="1" column="2" >
-       <widget class="KLed" name="engineLed" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+      <item row="3" column="2">
+       <widget class="KLed" name="engineLed">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
+        <property name="toolTip">
          <string>Indicates whether the Go engine works correctly</string>
         </property>
-        <property name="state" >
+        <property name="state">
          <enum>KLed::Off</enum>
         </property>
-        <property name="shape" >
-         <enum>KLed::Circular</enum>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Please select a Go engine that supports the &lt;span style=&quot; font-style:italic;&quot;&gt;GnuGo Text Procotol (GTP)&lt;/span&gt;. The indicator light turns green when the selected backend is working.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="appearanceGroupBox" >
-     <property name="title" >
-      <string>Appearance</string>
-     </property>
-     <property name="checkable" >
-      <bool>false</bool>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2" >
-      <item row="0" column="0" colspan="2" >
-       <widget class="QCheckBox" name="kcfg_ShowBoardLabels" >
-        <property name="text" >
-         <string>Display board labels</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
-         <string>Move hint visibility:</string>
-        </property>
-        <property name="alignment" >
-         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-        </property>
-        <property name="buddy" >
-         <cstring>kcfg_HintVisibleTime</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1" >
-       <widget class="QDoubleSpinBox" name="kcfg_HintVisibleTime" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="suffix" >
-         <string> Seconds</string>
-        </property>
-        <property name="decimals" >
-         <number>1</number>
-        </property>
-        <property name="minimum" >
-         <double>1.000000000000000</double>
-        </property>
-        <property name="maximum" >
-         <double>5.000000000000000</double>
-        </property>
-        <property name="singleStep" >
-         <double>0.500000000000000</double>
-        </property>
-        <property name="value" >
-         <double>3.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" colspan="2" >
-       <widget class="Line" name="line" >
-        <property name="orientation" >
+      <item row="1" column="0" colspan="3">
+       <widget class="Line" name="line_2">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
@@ -177,11 +129,78 @@
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer" >
-     <property name="orientation" >
+    <widget class="QGroupBox" name="appearanceGroupBox">
+     <property name="title">
+      <string>Appearance</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="kcfg_ShowBoardLabels">
+        <property name="text">
+         <string>Display board labels</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Move hint visibility:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="buddy">
+         <cstring>kcfg_HintVisibleTime</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QDoubleSpinBox" name="kcfg_HintVisibleTime">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="suffix">
+         <string> Seconds</string>
+        </property>
+        <property name="decimals">
+         <number>1</number>
+        </property>
+        <property name="minimum">
+         <double>1.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>10.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.500000000000000</double>
+        </property>
+        <property name="value">
+         <double>5.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2">
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
-     <property name="sizeHint" stdset="0" >
+     <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
        <height>40</height>
@@ -198,14 +217,14 @@
    <header>kled.h</header>
   </customwidget>
   <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>KUrlRequester</class>
    <extends>QFrame</extends>
    <header>kurlrequester.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
