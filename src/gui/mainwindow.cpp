@@ -399,11 +399,12 @@ void MainWindow::setupDockWindows()
 
     m_errorDock = new QDockWidget(i18nc("@title:window", "Error"), this);
     m_errorDock->setObjectName("errorDock");
-    m_errorDock->setWidget(new ErrorWidget(this));
+    ErrorWidget *errorWidget = new ErrorWidget(this);
+    m_errorDock->setWidget(errorWidget);
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
     //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);
     //actionCollection()->addAction("show_error_panel", m_errorDock->toggleViewAction());
-    connect(m_errorDock, SIGNAL(configureClicked), this, SLOT(showPreferences()));
+    connect(errorWidget, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
     addDockWidget(Qt::BottomDockWidgetArea, m_errorDock);
 }
 

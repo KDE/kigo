@@ -38,7 +38,7 @@ GameScene::GameScene(Engine *engine, QObject *parent)
     connect(m_engine, SIGNAL(changed()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(sizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
-    connect(ThemeRenderer::self(), SIGNAL(themeChanged()), this, SLOT(themeChanged()));
+    connect(ThemeRenderer::self(), SIGNAL(themeChanged(const QString &)), this, SLOT(themeChanged()));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -197,9 +197,7 @@ void GameScene::changeBoardSize(int size)
 
 void GameScene::themeChanged()
 {
-    QSize size = sceneRect().size().toSize();
-    //resizeScene(size.width(), size.height());
-    invalidate();
+    invalidate(sceneRect(), QGraphicsScene::AllLayers);
 }
 
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
