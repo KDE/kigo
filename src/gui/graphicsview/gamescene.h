@@ -62,6 +62,7 @@ private slots:
     void updateHintItems();
     void changeBoardSize(int size);
     void hideHint() { showHint(false); }
+    void themeChanged();
 
 private:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

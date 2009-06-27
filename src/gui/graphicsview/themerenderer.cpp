@@ -55,6 +55,8 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
     if (!m_currentTheme.isEmpty() && m_currentTheme == themeName) {
         kDebug() << "Notice: Loading the same theme";
         return true;        // We don't have to do anything
+    } else {
+        discardCache = true;
     }
 
     m_currentTheme = themeName;
@@ -68,6 +70,7 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
 
         discardCache = true;
         m_currentTheme = "default";
+        emit themeChanged(m_currentTheme);
     }
 
     kDebug() << "Loading" << theme.graphics();

@@ -37,12 +37,12 @@ class ErrorWidget : public QWidget, private Ui::ErrorWidget
 
 public:
     explicit ErrorWidget(QWidget *parent = 0);
-    ~ErrorWidget();
+
+signals:
+    void configureClicked();
 
 private slots:
-    void on_configureButton_clicked(int);
-
-private:
+    void on_configureButton_clicked();
 };
 
 } // End of namespace Kigo

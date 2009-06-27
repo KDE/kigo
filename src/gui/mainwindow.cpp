@@ -23,6 +23,7 @@
 #include "gui/config/generalconfig.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
+#include "gui/graphicsview/themerenderer.h"
 #include "gui/widgets/errorwidget.h"
 #include "gui/widgets/gamewidget.h"
 #include "gui/widgets/setupwidget.h"
@@ -165,9 +166,6 @@ void MainWindow::backendError()
     m_movesDock->toggleViewAction()->setEnabled(false);
     m_setupDock->setVisible(false);
     m_errorDock->setVisible(true);
-
-    kDebug () << "Backend error, TODO: Add error overlay";
-    // Add error stuff as overlay
 }
 
 void MainWindow::saveGame()
@@ -282,8 +280,10 @@ void MainWindow::showPreferences()
 
 void MainWindow::applyPreferences()
 {
-    //kDebug() << "Update settings based on changed configuration...";
+    kDebug() << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
+
+    ThemeRenderer::self()->loadTheme(Preferences::theme());
 
     if (!isBackendWorking()) {
         backendError();
@@ -403,6 +403,7 @@ void MainWindow::setupDockWindows()
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
     //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);
     //actionCollection()->addAction("show_error_panel", m_errorDock->toggleViewAction());
+    connect(m_errorDock, SIGNAL(configureClicked), this, SLOT(showPreferences()));
     addDockWidget(Qt::BottomDockWidgetArea, m_errorDock);
 }
 

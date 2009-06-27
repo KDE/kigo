@@ -21,6 +21,7 @@
 #ifndef KIGO_THEMERENDERER_H
 #define KIGO_THEMERENDERER_H
 
+#include <QObject>
 #include <QString>
 
 class KPixmapCache;
@@ -43,8 +44,10 @@ namespace Kigo {
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
  */
-class ThemeRenderer
+class ThemeRenderer : public QObject
 {
+    Q_OBJECT
+
 private:
     ThemeRenderer();
     ~ThemeRenderer();
@@ -66,14 +69,14 @@ public:
 
     /**
      * Only one ThemeRenderer is needed per application, this method returns
-     * the singleton instance.
+     * the singleton self.
      *
-     * @return ThemeRenderer instance
+     * @return ThemeRenderer self
      */
-    inline static ThemeRenderer* instance()
+    inline static ThemeRenderer* self()
     {
-        static ThemeRenderer instance;
-        return &instance;
+        static ThemeRenderer self;
+        return &self;
     }
 
     /**
@@ -107,6 +110,9 @@ public:
      * @return The rounded size of the elements rectangle
      */
     QSize elementSize(Element element) const;
+
+signals:
+    void themeChanged(const QString &);
 
 private:
     QString m_currentTheme;         ///< Holds the current seleted theme

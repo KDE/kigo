@@ -38,6 +38,7 @@ GameScene::GameScene(Engine *engine, QObject *parent)
     connect(m_engine, SIGNAL(changed()), this, SLOT(updateStoneItems()));
     connect(m_engine, SIGNAL(sizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
+    connect(ThemeRenderer::self(), SIGNAL(themeChanged()), this, SLOT(themeChanged()));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -63,7 +64,7 @@ void GameScene::resizeScene(int width, int height)
     if (m_placementMarkerItem)              // Set the mouse/stone postion placementmarker
         removeItem(m_placementMarkerItem);
     m_placementMarkerPixmapSize = QSize(static_cast<int>(m_cellSize / 4), static_cast<int>(m_cellSize / 4));
-    m_placementMarkerItem = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::PlacementMarker, m_placementMarkerPixmapSize));
+    m_placementMarkerItem = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::PlacementMarker, m_placementMarkerPixmapSize));
     m_placementMarkerItem->setVisible(false);
     m_placementMarkerItem->setZValue(1);
 }
@@ -105,7 +106,7 @@ void GameScene::updateStoneItems()
     m_stoneItems.clear();
 
     foreach (const Stone &stone, m_engine->stones(m_engine->blackPlayer())) {
-        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
+        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
@@ -113,7 +114,7 @@ void GameScene::updateStoneItems()
         m_stoneItems.append(item);
     }
     foreach (const Stone &stone, m_engine->stones(m_engine->whitePlayer())) {
-        item = addPixmap(ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
+        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
@@ -162,9 +163,9 @@ void GameScene::updateHintItems()
         foreach (const Stone &move, m_engine->bestMoves(m_engine->currentPlayer())) {
             QPixmap stonePixmap;
             if (m_engine->currentPlayer().isWhite())
-                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+                stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
             else if (m_engine->currentPlayer().isBlack())
-                stonePixmap = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+                stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
 
             QPainter painter(&stonePixmap);
             if (m_engine->currentPlayer().isWhite())
@@ -194,6 +195,13 @@ void GameScene::changeBoardSize(int size)
     invalidate(m_boardRect, QGraphicsScene::BackgroundLayer);
 }
 
+void GameScene::themeChanged()
+{
+    QSize size = sceneRect().size().toSize();
+    //resizeScene(size.width(), size.height());
+    invalidate();
+}
+
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QPixmap map;
@@ -208,9 +216,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         m_placementMarkerItem->setPos(x, y);
 
         if (m_engine->currentPlayer().isWhite())
-            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+            map = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
         else if (m_engine->currentPlayer().isBlack())
-            map = ThemeRenderer::instance()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+            map = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
     } else {
         m_placementMarkerItem->setVisible(false);
     }
@@ -235,8 +243,8 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &)
 {
-    ThemeRenderer::instance()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
-    ThemeRenderer::instance()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
+    ThemeRenderer::self()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
+    ThemeRenderer::self()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
 
     for (int i = 0; i < m_boardSize; i++) {
         qreal offset = i * m_cellSize;

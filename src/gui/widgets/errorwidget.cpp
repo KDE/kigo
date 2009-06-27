@@ -21,6 +21,9 @@
 #include "errorwidget.h"
 #include "preferences.h"
 
+#include <KGuiItem>
+#include <KStandardGuiItem>
+
 #include <QFile>
 
 namespace Kigo {
@@ -29,15 +32,15 @@ ErrorWidget::ErrorWidget(QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
+
+    KGuiItem gi = KStandardGuiItem::configure();
+    configureButton->setIcon(gi.icon());
+    //errorLabel->setPixmap();
 }
 
-ErrorWidget::~ErrorWidget()
+void ErrorWidget::on_configureButton_clicked()
 {
-}
-
-void ErrorWidget::on_configureButton_clicked(int)
-{
-    kDebug() << "TODO";
+    emit configureClicked();
 }
 
 } // End of namespace Kigo
