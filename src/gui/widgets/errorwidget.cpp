@@ -21,8 +21,7 @@
 #include "errorwidget.h"
 #include "preferences.h"
 
-#include <KGuiItem>
-#include <KStandardGuiItem>
+#include <KIcon>
 
 #include <QFile>
 
@@ -33,9 +32,8 @@ ErrorWidget::ErrorWidget(QWidget *parent)
 {
     setupUi(this);
 
-    KGuiItem gi = KStandardGuiItem::configure();
-    configureButton->setIcon(gi.icon());
-    //errorLabel->setPixmap();
+    configureButton->setIcon(KIcon("configure"));
+    //QPixmap errorPixmap = KIcon("dialog-error").pixmap(errorLabel->height(), errorLabel->height());
 }
 
 void ErrorWidget::on_configureButton_clicked()

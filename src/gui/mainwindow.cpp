@@ -399,6 +399,7 @@ void MainWindow::setupDockWindows()
 
     m_errorDock = new QDockWidget(i18nc("@title:window", "Error"), this);
     m_errorDock->setObjectName("errorDock");
+    m_errorDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     ErrorWidget *errorWidget = new ErrorWidget(this);
     m_errorDock->setWidget(errorWidget);
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
