@@ -280,7 +280,7 @@ void MainWindow::showPreferences()
 
 void MainWindow::applyPreferences()
 {
-    kDebug() << "Update settings based on changed configuration...";
+    //kDebug() << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
 
     ThemeRenderer::self()->loadTheme(Preferences::theme());

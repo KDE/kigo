@@ -135,6 +135,7 @@ void GameScene::updateStoneItems()
                 //TODO: Check for existing move number to do special treatment
                 QPixmap pixmap = item->pixmap();
                 QPainter painter(&pixmap);
+                kDebug() << "player color is white" << move.player().isWhite() << "or black" << move.player().isBlack();
                 if (move.player().isWhite())
                     painter.setPen(Qt::black);
                 else if (move.player().isBlack())
