@@ -41,6 +41,9 @@ public:
     explicit SetupWidget(Engine *engine, QWidget *parent = 0);
     ~SetupWidget();
 
+signals:
+    void startClicked();
+
 public slots:
     /**
      *

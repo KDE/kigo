@@ -333,13 +333,13 @@ void MainWindow::setupActions()
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start"), this);
+    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start game"), this);
     m_startGameAction->setShortcut(Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start game"));
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
     actionCollection()->addAction("game_start", m_startGameAction);
 
-    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish"), this);
+    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish game"), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish game"));
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
@@ -372,6 +372,7 @@ void MainWindow::setupDockWindows()
     m_setupDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_setupWidget = new SetupWidget(m_engine, this);
     m_setupDock->setWidget(m_setupWidget);
+    connect(m_setupWidget, SIGNAL(startClicked()), this, SLOT(startGame()));
     //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
     //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
     //actionCollection()->addAction("show_setup_panel", m_setupDock->toggleViewAction());
@@ -380,10 +381,13 @@ void MainWindow::setupDockWindows()
     // Game dock
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
     m_gameDock->setObjectName("gameDock");
-    m_gameDock->setWidget(new GameWidget(m_engine, this));
-    m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
-    m_gameDock->toggleViewAction()->setShortcut(Qt::Key_G);
-    actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
+    m_gameDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+    GameWidget *gameWidget = new GameWidget(m_engine, this);
+    connect(gameWidget, SIGNAL(finishClicked()), this, SLOT(finishGame()));
+    m_gameDock->setWidget(gameWidget);
+    //m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
+    //m_gameDock->toggleViewAction()->setShortcut(Qt::Key_G);
+    //actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
 
     // Move history dock
@@ -401,11 +405,11 @@ void MainWindow::setupDockWindows()
     m_errorDock->setObjectName("errorDock");
     m_errorDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     ErrorWidget *errorWidget = new ErrorWidget(this);
+    connect(errorWidget, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
     m_errorDock->setWidget(errorWidget);
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
     //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);
     //actionCollection()->addAction("show_error_panel", m_errorDock->toggleViewAction());
-    connect(errorWidget, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
     addDockWidget(Qt::BottomDockWidgetArea, m_errorDock);
 }
 

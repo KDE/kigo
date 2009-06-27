@@ -1,142 +1,137 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>GameWidget</class>
- <widget class="QWidget" name="GameWidget" >
-  <property name="geometry" >
+ <widget class="QWidget" name="GameWidget">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>175</width>
-    <height>405</height>
+    <width>258</width>
+    <height>498</height>
    </rect>
   </property>
-  <property name="sizePolicy" >
-   <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout_3" >
-   <item row="0" column="0" colspan="2" >
-    <widget class="QSpinBox" name="moveSpinBox" >
-     <property name="focusPolicy" >
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0" colspan="2">
+    <widget class="QSpinBox" name="moveSpinBox">
+     <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
-     <property name="contextMenuPolicy" >
+     <property name="contextMenuPolicy">
       <enum>Qt::NoContextMenu</enum>
      </property>
-     <property name="readOnly" >
+     <property name="readOnly">
       <bool>true</bool>
      </property>
-     <property name="buttonSymbols" >
+     <property name="buttonSymbols">
       <enum>QAbstractSpinBox::NoButtons</enum>
      </property>
-     <property name="suffix" >
+     <property name="suffix">
       <string/>
      </property>
-     <property name="prefix" >
+     <property name="prefix">
       <string>Move </string>
      </property>
-     <property name="maximum" >
+     <property name="maximum">
       <number>1000000</number>
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="2" >
-    <widget class="KLineEdit" name="playerLabel" >
-     <property name="focusPolicy" >
+   <item row="1" column="0" colspan="2">
+    <widget class="KLineEdit" name="playerLabel">
+     <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
-     <property name="contextMenuPolicy" >
+     <property name="contextMenuPolicy">
       <enum>Qt::NoContextMenu</enum>
      </property>
-     <property name="acceptDrops" >
+     <property name="acceptDrops">
       <bool>false</bool>
      </property>
-     <property name="text" >
+     <property name="text">
       <string/>
      </property>
-     <property name="readOnly" >
+     <property name="readOnly">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="2" >
-    <widget class="QGroupBox" name="capturesBox" >
-     <property name="title" >
+   <item row="2" column="0" colspan="2">
+    <widget class="QGroupBox" name="capturesBox">
+     <property name="title">
       <string>White player</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout" >
-      <item row="5" column="0" >
-       <widget class="QLabel" name="label" >
-        <property name="text" >
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="5" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
          <string>Captures:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="5" column="1" >
-       <widget class="QLabel" name="whiteCapturesLabel" >
-        <property name="text" >
+      <item row="5" column="1">
+       <widget class="QLabel" name="whiteCapturesLabel">
+        <property name="text">
          <string>0</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="label_2" >
-        <property name="text" >
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
          <string>Time left:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="4" column="1" >
-       <widget class="QLabel" name="whiteTimeLabel" >
-        <property name="text" >
+      <item row="4" column="1">
+       <widget class="QLabel" name="whiteTimeLabel">
+        <property name="text">
          <string>00:00</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" colspan="2" >
-       <widget class="KLineEdit" name="whitePlayerName" >
-        <property name="enabled" >
+      <item row="2" column="0" colspan="2">
+       <widget class="KLineEdit" name="whitePlayerName">
+        <property name="enabled">
          <bool>true</bool>
         </property>
-        <property name="focusPolicy" >
+        <property name="focusPolicy">
          <enum>Qt::NoFocus</enum>
         </property>
-        <property name="contextMenuPolicy" >
+        <property name="contextMenuPolicy">
          <enum>Qt::NoContextMenu</enum>
         </property>
-        <property name="acceptDrops" >
+        <property name="acceptDrops">
          <bool>false</bool>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>Name</string>
         </property>
-        <property name="readOnly" >
+        <property name="readOnly">
          <bool>true</bool>
         </property>
-        <property name="urlDropsEnabled" >
+        <property name="urlDropsEnabled">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="2" >
-       <widget class="Line" name="line_3" >
-        <property name="orientation" >
+      <item row="3" column="0" colspan="2">
+       <widget class="Line" name="line_3">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
@@ -144,80 +139,80 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2" >
-    <widget class="QGroupBox" name="groupBox" >
-     <property name="title" >
+   <item row="3" column="0" colspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
       <string>Black player</string>
      </property>
-     <layout class="QGridLayout" name="gridLayout_2" >
-      <item row="3" column="0" >
-       <widget class="QLabel" name="label_4" >
-        <property name="text" >
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
          <string>Captures:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" >
-       <widget class="QLabel" name="blackCapturesLabel" >
-        <property name="text" >
+      <item row="3" column="1">
+       <widget class="QLabel" name="blackCapturesLabel">
+        <property name="text">
          <string>0</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="label_6" >
-        <property name="text" >
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
          <string>Time left:</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QLabel" name="blackTimeLabel" >
-        <property name="text" >
+      <item row="2" column="1">
+       <widget class="QLabel" name="blackTimeLabel">
+        <property name="text">
          <string>00:00</string>
         </property>
-        <property name="alignment" >
+        <property name="alignment">
          <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
-      <item row="0" column="0" colspan="2" >
-       <widget class="KLineEdit" name="blackPlayerName" >
-        <property name="enabled" >
+      <item row="0" column="0" colspan="2">
+       <widget class="KLineEdit" name="blackPlayerName">
+        <property name="enabled">
          <bool>true</bool>
         </property>
-        <property name="focusPolicy" >
+        <property name="focusPolicy">
          <enum>Qt::NoFocus</enum>
         </property>
-        <property name="contextMenuPolicy" >
+        <property name="contextMenuPolicy">
          <enum>Qt::NoContextMenu</enum>
         </property>
-        <property name="acceptDrops" >
+        <property name="acceptDrops">
          <bool>false</bool>
         </property>
-        <property name="text" >
+        <property name="text">
          <string>Computer (Level 10)</string>
         </property>
-        <property name="readOnly" >
+        <property name="readOnly">
          <bool>true</bool>
         </property>
-        <property name="urlDropsEnabled" >
+        <property name="urlDropsEnabled">
          <bool>false</bool>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2" >
-       <widget class="Line" name="line_4" >
-        <property name="orientation" >
+      <item row="1" column="0" colspan="2">
+       <widget class="Line" name="line_4">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
        </widget>
@@ -225,94 +220,146 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2" >
-    <widget class="Line" name="line" >
-     <property name="orientation" >
+   <item row="4" column="0" colspan="2">
+    <widget class="Line" name="line">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
-   <item row="5" column="0" >
-    <widget class="QLabel" name="label_3" >
-     <property name="text" >
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
       <string>Komi:</string>
      </property>
-     <property name="alignment" >
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <property name="buddy" >
+     <property name="buddy">
       <cstring>komiSpinBox</cstring>
      </property>
     </widget>
    </item>
-   <item row="5" column="1" >
-    <widget class="QDoubleSpinBox" name="komiSpinBox" >
-     <property name="focusPolicy" >
+   <item row="5" column="1">
+    <widget class="QDoubleSpinBox" name="komiSpinBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
-     <property name="contextMenuPolicy" >
+     <property name="contextMenuPolicy">
       <enum>Qt::NoContextMenu</enum>
      </property>
-     <property name="readOnly" >
+     <property name="readOnly">
       <bool>true</bool>
      </property>
-     <property name="buttonSymbols" >
+     <property name="buttonSymbols">
       <enum>QAbstractSpinBox::NoButtons</enum>
      </property>
-     <property name="suffix" >
+     <property name="suffix">
       <string> Points</string>
      </property>
-     <property name="decimals" >
+     <property name="decimals">
       <number>1</number>
      </property>
-     <property name="maximum" >
+     <property name="maximum">
       <double>50.000000000000000</double>
      </property>
-     <property name="value" >
+     <property name="value">
       <double>0.500000000000000</double>
      </property>
     </widget>
    </item>
-   <item row="6" column="0" >
-    <widget class="QLabel" name="label_5" >
-     <property name="text" >
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
       <string>Handicap:</string>
      </property>
-     <property name="alignment" >
+     <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
      </property>
-     <property name="buddy" >
+     <property name="buddy">
       <cstring>handicapSpinBox</cstring>
      </property>
     </widget>
    </item>
-   <item row="6" column="1" >
-    <widget class="QSpinBox" name="handicapSpinBox" >
-     <property name="focusPolicy" >
+   <item row="6" column="1">
+    <widget class="QSpinBox" name="handicapSpinBox">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="focusPolicy">
       <enum>Qt::NoFocus</enum>
      </property>
-     <property name="contextMenuPolicy" >
+     <property name="contextMenuPolicy">
       <enum>Qt::NoContextMenu</enum>
      </property>
-     <property name="readOnly" >
+     <property name="readOnly">
       <bool>true</bool>
      </property>
-     <property name="buttonSymbols" >
+     <property name="buttonSymbols">
       <enum>QAbstractSpinBox::NoButtons</enum>
      </property>
-     <property name="suffix" >
+     <property name="suffix">
       <string> Stones</string>
      </property>
-     <property name="minimum" >
+     <property name="minimum">
       <number>0</number>
      </property>
-     <property name="maximum" >
+     <property name="maximum">
       <number>9</number>
      </property>
-     <property name="value" >
+     <property name="value">
       <number>2</number>
      </property>
     </widget>
+   </item>
+   <item row="7" column="0" colspan="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>1</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="KPushButton" name="finishButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Finish game</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -321,6 +368,11 @@
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

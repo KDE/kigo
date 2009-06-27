@@ -41,9 +41,15 @@ class GameWidget : public QWidget, private Ui::GameWidget
 public:
     explicit GameWidget(Engine *engine, QWidget *parent = 0);
 
+signals:
+    void finishClicked();
+
 public slots:
     void init();
     void update();
+
+private slots:
+    void enableFinish();
 
 private:
     Engine *m_engine;

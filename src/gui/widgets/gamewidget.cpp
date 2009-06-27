@@ -31,7 +31,12 @@ GameWidget::GameWidget(Engine *engine, QWidget *parent)
     : QWidget(parent), m_engine(engine)
 {
     setupUi(this);
+
+    finishButton->setIcon(KIcon("media-playback-stop"));
+
     connect(m_engine, SIGNAL(changed()), this, SLOT(update()));
+    connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinish()));
+    connect(finishButton, SIGNAL(clicked()), this, SIGNAL(finishClicked()));
 }
 
 void GameWidget::init()
@@ -78,6 +83,11 @@ void GameWidget::update()
 
     whiteCapturesLabel->setText(QString::number(m_engine->captures(m_engine->whitePlayer())));
     blackCapturesLabel->setText(QString::number(m_engine->captures(m_engine->blackPlayer())));
+}
+
+void GameWidget::enableFinish()
+{
+    finishButton->setEnabled(true);
 }
 
 } // End of namespace Kigo

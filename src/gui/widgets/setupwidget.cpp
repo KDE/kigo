@@ -31,6 +31,10 @@ SetupWidget::SetupWidget(Engine *engine, QWidget *parent)
     , m_lastFixedHandicap(Preferences::fixedHandicapValue())
 {
     setupUi(this);
+
+    startButton->setIcon(KIcon("media-playback-start"));
+
+    connect(startButton, SIGNAL(clicked()), this, SIGNAL(startClicked()));
 }
 
 SetupWidget::~SetupWidget()

@@ -1,0 +1,13 @@
+[KGameTheme]
+Name=Marble and bamboo
+Name[de]=Marmor und Bambus
+Name[x-test]=xxMarble and bambooxx
+Description=Kigo marble and bamboo theme for KDE 4
+Description[de]=Marmor und Bambus Design für Kigo in KDE 4
+Description[x-test]=xxKigo marble and bamboo theme for KDE 4xx
+VersionFormat=1
+Author=Alexa Kernchen
+AuthorEmail=alexa.kernchen@st.ovgu.de
+Type=SVG
+FileName=kigo_marble-bamboo.svgz
+Preview=kigo_marble-bamboo.png

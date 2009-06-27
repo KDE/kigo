@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="kigo" version="9">
+<gui name="kigo" version="10">
     <MenuBar>
         <Menu name="game">
             <text context="@title:menu">&amp;Game</text>
@@ -32,9 +32,9 @@
         <Action name="game_new" />
         <!-- <Action name="game_load" /> -->
         <!-- <Action name="game_save" /> -->
-        <Separator />
+        <!-- <Separator />
         <Action name="game_start" />
-        <Action name="game_finish" />
+        <Action name="game_finish" /> -->
     </ToolBar>
     <ToolBar name="moveToolBar">
         <text context="@title:menu">Move Toolbar</text>
