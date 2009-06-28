@@ -1,10 +1,6 @@
 [KGameTheme]
 Name=Wood and fabric
-Name[de]=Holz und Stoff
-Name[x-test]=xxWood and fabricxx
 Description=Kigo wood and fabric theme for KDE 4
-Description[de]=Holz und Stoff Design für Kigo in KDE 4
-Description[x-test]=xxKigo wood and fabric theme for KDE 4xx
 VersionFormat=1
 Author=Alexa Kernchen
 AuthorEmail=alexa.kernchen@st.ovgu.de

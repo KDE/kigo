@@ -1,10 +1,6 @@
 [KGameTheme]
 Name=Wood and metal
-Name[de]=Holz und Metal
-Name[x-test]=xxWood and metalxx
 Description=Kigo wood and metal theme for KDE 4
-Description[de]=Holz und Metal Design für Kigo in KDE 4
-Description[x-test]=xxKigo wood and metal theme for KDE 4xx
 VersionFormat=1
 Author=Alexa Kernchen
 AuthorEmail=alexa.kernchen@st.ovgu.de

@@ -1,10 +1,6 @@
 [KGameTheme]
 Name=Marble
-Name[de]=Marmor
-Name[x-test]=xxMarblexx
 Description=Kigo marble theme for KDE 4
-Description[de]=Marmor Design für Kigo in KDE 4
-Description[x-test]=xxKigo marble theme for KDE 4xx
 VersionFormat=1
 Author=Alexa Kernchen
 AuthorEmail=alexa.kernchen@st.ovgu.de
