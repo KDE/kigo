@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Wood and fabric
+Name[sv]=Trä och struktur
+Name[uk]=Дерево і тканина
 Description=Kigo wood and fabric theme for KDE 4
+Description[sv]=Kigo trä- och strukturtema för KDE 4
+Description[uk]=Тема Kigo «Дерево і тканина» для KDE 4
 VersionFormat=1
 Author=Alexa Kernchen
 AuthorEmail=alexa.kernchen@st.ovgu.de
