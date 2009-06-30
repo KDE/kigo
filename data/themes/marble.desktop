@@ -2,9 +2,11 @@
 Name=Marble
 Name[sv]=Marmor
 Name[uk]=Мармур
+Name[x-test]=xxMarblexx
 Description=Kigo marble theme for KDE 4
 Description[sv]=Kigo marmortema för KDE 4
 Description[uk]=Тема Kigo «Мармур» для KDE 4
+Description[x-test]=xxKigo marble theme for KDE 4xx
 VersionFormat=1
 Author=Alexa Kernchen
 AuthorEmail=alexa.kernchen@st.ovgu.de
