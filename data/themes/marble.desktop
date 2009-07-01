@@ -1,9 +1,13 @@
 [KGameTheme]
 Name=Marble
+Name[et]=Marmor
 Name[sv]=Marmor
 Name[uk]=Мармур
 Name[x-test]=xxMarblexx
 Description=Kigo marble theme for KDE 4
+Description[et]=Kigo KDE4 marmoriteema
+Description[pt]=Tema de mármore do Kigo para o KDE 4
+Description[pt_BR]=Tema de mármore do Kigo para o KDE 4
 Description[sv]=Kigo marmortema för KDE 4
 Description[uk]=Тема Kigo «Мармур» для KDE 4
 Description[x-test]=xxKigo marble theme for KDE 4xx
