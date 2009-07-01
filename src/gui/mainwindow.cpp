@@ -382,6 +382,7 @@ void MainWindow::setupDockWindows()
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
     m_gameDock->setObjectName("gameDock");
     m_gameDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
+    m_gameDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     GameWidget *gameWidget = new GameWidget(m_engine, this);
     connect(gameWidget, SIGNAL(finishClicked()), this, SLOT(finishGame()));
     m_gameDock->setWidget(gameWidget);
