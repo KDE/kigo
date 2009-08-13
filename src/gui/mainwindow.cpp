@@ -333,15 +333,15 @@ void MainWindow::setupActions()
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start game"), this);
+    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start Game"), this);
     m_startGameAction->setShortcut(Qt::Key_S);
-    m_startGameAction->setToolTip(i18nc("@action", "Start game"));
+    m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
     actionCollection()->addAction("game_start", m_startGameAction);
 
-    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish game"), this);
+    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish Game"), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
-    m_finishGameAction->setToolTip(i18nc("@action", "Finish game"));
+    m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
     actionCollection()->addAction("game_finish", m_finishGameAction);
 
@@ -354,7 +354,7 @@ void MainWindow::setupActions()
     m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
 
     // View menu
-    m_moveNumbersAction = new KToggleAction(KIcon("lastmoves"), i18nc("@action:inmenu View", "Show move &numbers"), this);
+    m_moveNumbersAction = new KToggleAction(KIcon("lastmoves"), i18nc("@action:inmenu View", "Show Move &Numbers"), this);
     m_moveNumbersAction->setShortcut(Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showMoveNumbers(bool)));
@@ -367,7 +367,7 @@ void MainWindow::setupActions()
 void MainWindow::setupDockWindows()
 {
     // Setup dock
-    m_setupDock = new QDockWidget(i18nc("@title:window", "Game setup"), this);
+    m_setupDock = new QDockWidget(i18nc("@title:window", "Game Setup"), this);
     m_setupDock->setObjectName("setupDock");
     m_setupDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_setupWidget = new SetupWidget(m_engine, this);

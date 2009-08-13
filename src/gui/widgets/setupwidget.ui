@@ -22,7 +22,7 @@
         </sizepolicy>
        </property>
        <property name="title">
-        <string>White player</string>
+        <string>White Player</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
         <item row="1" column="1">
@@ -148,7 +148,7 @@
         </sizepolicy>
        </property>
        <property name="title">
-        <string>Black player</string>
+        <string>Black Player</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_9">
         <item row="1" column="0">
@@ -273,7 +273,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="newGamePage">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -298,13 +298,13 @@
              <bool>true</bool>
             </property>
             <property name="title">
-             <string>New game</string>
+             <string>New Game</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_7">
              <item row="0" column="0" rowspan="2">
               <widget class="KButtonGroup" name="sizeGroupBox">
                <property name="title">
-                <string>Board size</string>
+                <string>Board Size</string>
                </property>
                <property name="flat">
                 <bool>false</bool>
@@ -394,7 +394,7 @@
              <item row="1" column="1">
               <widget class="QGroupBox" name="handicapGroupBox">
                <property name="title">
-                <string>Fixed handicap</string>
+                <string>Fixed Handicap</string>
                </property>
                <property name="flat">
                 <bool>false</bool>
@@ -456,7 +456,7 @@
              <bool>true</bool>
             </property>
             <property name="title">
-             <string>Loaded game</string>
+             <string>Loaded Game</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="1" colspan="3">
@@ -726,7 +726,7 @@
    <item row="3" column="1">
     <widget class="KPushButton" name="startButton">
      <property name="text">
-      <string>Start game</string>
+      <string>Start Game</string>
      </property>
     </widget>
    </item>
@@ -747,20 +747,20 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
+  <customwidget>
    <class>KButtonGroup</class>
    <extends>QGroupBox</extends>
    <header>kbuttongroup.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
   </customwidget>
   <customwidget>
    <class>KLineEdit</class>
@@ -768,9 +768,9 @@
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

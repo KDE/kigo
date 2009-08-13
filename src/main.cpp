@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     if (app.isSessionRestored()) {
         RESTORE(Kigo::MainWindow)
     } else {
-        Kigo::MainWindow *mainWin = new Kigo::MainWindow(0);
+        Kigo::MainWindow *mainWin = new Kigo::MainWindow(NULL);
         mainWin->show();
     }
     return app.exec();

@@ -58,7 +58,7 @@
    <item row="2" column="0" colspan="2">
     <widget class="QGroupBox" name="capturesBox">
      <property name="title">
-      <string>White player</string>
+      <string>White Player</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="5" column="0">
@@ -84,7 +84,7 @@
       <item row="4" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Time left:</string>
+         <string>Time Left:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -139,7 +139,7 @@
    <item row="3" column="0" colspan="2">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Black player</string>
+      <string>Black Player</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="3" column="0">
@@ -165,7 +165,7 @@
       <item row="2" column="0">
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Time left:</string>
+         <string>Time Left:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -352,7 +352,7 @@
         <bool>false</bool>
        </property>
        <property name="text">
-        <string>Finish game</string>
+        <string>Finish Game</string>
        </property>
       </widget>
      </item>
@@ -362,14 +362,14 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>KPushButton</class>
    <extends>QPushButton</extends>
    <header>kpushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
