@@ -27,6 +27,8 @@
 
 namespace Kigo {
 
+class Game;
+
 /**
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.5
@@ -36,7 +38,7 @@ class ScoreWidget : public QWidget, private Ui::ScoreWidget
     Q_OBJECT
 
 public:
-    explicit ScoreWidget(QWidget *parent = 0);
+    explicit ScoreWidget(Game *game, QWidget *parent = 0);
 };
 
 } // End of namespace Kigo

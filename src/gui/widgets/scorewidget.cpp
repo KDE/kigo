@@ -19,13 +19,33 @@
 */
 
 #include "scorewidget.h"
+#include "game/game.h"
+#include "preferences.h"
 
 namespace Kigo {
 
-ScoreWidget::ScoreWidget(QWidget *parent)
+ScoreWidget::ScoreWidget(Game *game, QWidget *parent)
     : QWidget(parent)
 {
     setupUi(this);
+
+    if (Preferences::whitePlayerHuman()) {
+        whitePlayerName->setText(Preferences::whitePlayerName());
+    } else {
+        whitePlayerName->setText(i18n("Computer (Level %1)", Preferences::whitePlayerStrength()));
+    }
+    if (Preferences::blackPlayerHuman()) {
+        blackPlayerName->setText(Preferences::blackPlayerName());
+    } else {
+        blackPlayerName->setText(i18n("Computer (Level %1)", Preferences::blackPlayerStrength()));
+    }
+    whiteCapturesLineEdit->setText(QString::number(game->captures(game->whitePlayer())));
+    blackCapturesLineEdit->setText(QString::number(game->captures(game->blackPlayer())));
+    komiSpinBox->setValue(game->komi());
+    handicapSpinBox->setValue(game->fixedHandicap());
+
+    if (game->moves().size() > 0) {
+    }
 }
 
 } // End of namespace Kigo

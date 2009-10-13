@@ -240,12 +240,13 @@ void MainWindow::finishGame()
 
     m_movesDock->widget()->setEnabled(false);
 
+    // Show a modal score dialog
     KDialog *scoreDialog = new KDialog(this);
     scoreDialog->setCaption(i18n("Game Scores"));
     scoreDialog->setButtons(KDialog::Close);
     scoreDialog->setModal(true);
 
-    ScoreWidget *scoreWidget = new ScoreWidget(scoreDialog);
+    ScoreWidget *scoreWidget = new ScoreWidget(m_game, scoreDialog);
     scoreDialog->setMainWidget(scoreWidget);
 
     scoreDialog->show();

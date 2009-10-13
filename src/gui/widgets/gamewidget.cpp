@@ -30,6 +30,7 @@ namespace Kigo {
 GameWidget::GameWidget(Game *game, QWidget *parent)
     : QWidget(parent), m_game(game)
 {
+    Q_ASSERT(m_game);
     setupUi(this);
 
     finishButton->setIcon(KIcon("media-playback-stop"));
