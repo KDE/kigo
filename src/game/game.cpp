@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "engine.h"
+#include "game.h"
 #include "score.h"
 
 #include <KDebug>
@@ -29,7 +29,7 @@
 
 namespace Kigo {
 
-Engine::Engine(QObject *parent)
+Game::Game(QObject *parent)
     : QObject(parent)
     , m_currentMove(0), m_currentPlayer(&m_blackPlayer)
     , m_blackPlayer(Player::Black), m_whitePlayer(Player::White)
@@ -40,12 +40,12 @@ Engine::Engine(QObject *parent)
     connect(&m_undoStack, SIGNAL(canUndoChanged(bool)), this, SIGNAL(canUndoChanged(bool)));
 }
 
-Engine::~Engine()
+Game::~Game()
 {
     stop();
 }
 
-bool Engine::start(const QString &command)
+bool Game::start(const QString &command)
 {
     stop();                                   // Close old session if there's one
     m_process.start(command.toLatin1());      // Start new process with provided command
@@ -55,21 +55,21 @@ bool Engine::start(const QString &command)
         return false;
     }
     m_engineCommand = command;
-    kDebug() << "Engine" << command << "started...";
+    kDebug() << "Game" << command << "started...";
 
-    // Test if we started a GTP-compatible Go engine
+    // Test if we started a GTP-compatible Go game
     m_process.write("name\n");
     m_process.waitForReadyRead();
     QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith("=")) {
-        m_response = "Engine did not respond to GTP command \"name\"";
+        m_response = "Game did not respond to GTP command \"name\"";
         kDebug() << m_response;
         stop();
         return false;
     } else {
         m_engineName = m_response;
     }
-    kDebug() << "Engine is a GTP-compatible Go engine";
+    kDebug() << "Game is a GTP-compatible Go game";
 
     m_process.write("version\n");
     if (waitResponse())
@@ -77,7 +77,7 @@ bool Engine::start(const QString &command)
     return true;
 }
 
-void Engine::stop()
+void Game::stop()
 {
     if (m_process.isOpen()) {
         m_process.write("quit\n");
@@ -85,7 +85,7 @@ void Engine::stop()
     }
 }
 
-bool Engine::init()
+bool Game::init()
 {
     if (!isRunning())
         return false;
@@ -108,7 +108,7 @@ bool Engine::init()
         return false;
 }
 
-bool Engine::init(const QString &fileName, int moveNumber)
+bool Game::init(const QString &fileName, int moveNumber)
 {
     Q_ASSERT(moveNumber >= 0);
     if (!isRunning() || fileName.isEmpty() || !QFile::exists(fileName))
@@ -121,10 +121,10 @@ bool Engine::init(const QString &fileName, int moveNumber)
         else
             setCurrentPlayer(m_blackPlayer);
 
-        m_process.write("query_boardsize\n");       // Query board size from engine
+        m_process.write("query_boardsize\n");       // Query board size from game
         if (waitResponse())
             m_boardSize = m_response.toInt();
-        m_process.write("get_komi\n");              // Query komi from engine and store it
+        m_process.write("get_komi\n");              // Query komi from game and store it
         if (waitResponse())
             m_komi = m_response.toFloat();
         m_process.write("get_handicap\n");          // Query fixed handicap and store it
@@ -143,7 +143,7 @@ bool Engine::init(const QString &fileName, int moveNumber)
         return false;
 }
 
-bool Engine::save(const QString &fileName)
+bool Game::save(const QString &fileName)
 {
     if (!isRunning() || fileName.isEmpty())
         return false;
@@ -152,7 +152,7 @@ bool Engine::save(const QString &fileName)
     return waitResponse();
 }
 
-bool Engine::setBoardSize(int size)
+bool Game::setBoardSize(int size)
 {
     Q_ASSERT(size >= 1 && size <= 19);
     if (!isRunning())
@@ -168,14 +168,14 @@ bool Engine::setBoardSize(int size)
         m_currentMove = 0;
         m_movesList.clear();
         m_undoStack.clear();
-        emit sizeChanged(size);
+        emit boardSizeChanged(size);
         emit changed();
         return true;
     } else
         return false;
 }
 
-bool Engine::setKomi(float komi)
+bool Game::setKomi(float komi)
 {
     Q_ASSERT(komi >= 0);
     if (!isRunning())
@@ -189,7 +189,7 @@ bool Engine::setKomi(float komi)
         return false;
 }
 
-bool Engine::setFixedHandicap(int handicap)
+bool Game::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 2 && handicap <= 9);
     if (!isRunning())
@@ -212,7 +212,7 @@ bool Engine::setFixedHandicap(int handicap)
     }
 }
 
-int Engine::fixedHandicapUpperBound()
+int Game::fixedHandicapUpperBound()
 {
     switch (m_boardSize) {  // Handcrafted values reflect what GnuGo accepts
         case 7:
@@ -232,12 +232,12 @@ int Engine::fixedHandicapUpperBound()
     }
 }
 
-bool Engine::playMove(const Move &move, bool undoable)
+bool Game::playMove(const Move &move, bool undoable)
 {
     return playMove(*move.player(), move.stone(), undoable);
 }
 
-bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
+bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
 {
     if (!isRunning())
         return false;
@@ -297,7 +297,7 @@ bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
         return false;
 }
 
-bool Engine::generateMove(const Player &player, bool undoable)
+bool Game::generateMove(const Player &player, bool undoable)
 {
     if (!isRunning())
         return false;
@@ -353,7 +353,7 @@ bool Engine::generateMove(const Player &player, bool undoable)
         return false;
 }
 
-bool Engine::undoMove()
+bool Game::undoMove()
 {
     if (!isRunning())
         return false;
@@ -377,7 +377,7 @@ bool Engine::undoMove()
         return false;
 }
 
-bool Engine::redoMove()
+bool Game::redoMove()
 {
     if (!isRunning())
         return false;
@@ -412,7 +412,7 @@ bool Engine::redoMove()
     return false;
 }
 
-Move Engine::lastMove() const
+Move Game::lastMove() const
 {
     Q_ASSERT(!m_movesList.isEmpty());
     /*if (m_movesList.isEmpty())
@@ -421,7 +421,7 @@ Move Engine::lastMove() const
     return m_movesList.last();
 }
 
-QList<Stone> Engine::stones(const Player &player)
+QList<Stone> Game::stones(const Player &player)
 {
     QList<Stone> list;
     if (!isRunning())
@@ -445,7 +445,7 @@ QList<Stone> Engine::stones(const Player &player)
     return list;
 }
 
-QList<Move> Engine::moves(const Player &player)
+QList<Move> Game::moves(const Player &player)
 {
     QList<Move> list;
     if (!isRunning())
@@ -462,7 +462,7 @@ QList<Move> Engine::moves(const Player &player)
     return list;
 }
 
-QList<Stone> Engine::liberties(const Stone &stone)
+QList<Stone> Game::liberties(const Stone &stone)
 {
     QList<Stone> list;
     if (!isRunning() || !stone.isValid())
@@ -476,7 +476,7 @@ QList<Stone> Engine::liberties(const Stone &stone)
     return list;
 }
 
-QList<Stone> Engine::bestMoves(const Player &player)
+QList<Stone> Game::bestMoves(const Player &player)
 {
     QList<Stone> list;
     if (!isRunning() || !player.isValid())
@@ -495,7 +495,7 @@ QList<Stone> Engine::bestMoves(const Player &player)
     return list;
 }
 
-QList<Stone> Engine::legalMoves(const Player &player)
+QList<Stone> Game::legalMoves(const Player &player)
 {
     QList<Stone> list;
     if (!isRunning() || !player.isValid())
@@ -512,7 +512,7 @@ QList<Stone> Engine::legalMoves(const Player &player)
     return list;
 }
 
-int Engine::captures(const Player &player)
+int Game::captures(const Player &player)
 {
     if (!isRunning() || !player.isValid())
         return 0;
@@ -524,7 +524,7 @@ int Engine::captures(const Player &player)
     return waitResponse() ? m_response.toInt() : 0;
 }
 
-Engine::FinalState Engine::finalState(const Stone &stone)
+Game::FinalState Game::finalState(const Stone &stone)
 {
     if (!isRunning() || !stone.isValid())
         return FinalStateInvalid;
@@ -542,7 +542,7 @@ Engine::FinalState Engine::finalState(const Stone &stone)
         return FinalStateInvalid;
 }
 
-QList<Stone> Engine::finalStates(FinalState state)
+QList<Stone> Game::finalStates(FinalState state)
 {
     QList<Stone> list;
     if (!isRunning() || state == FinalStateInvalid)
@@ -567,7 +567,7 @@ QList<Stone> Engine::finalStates(FinalState state)
     return list;
 }
 
-Score Engine::finalScore()
+Score Game::finalScore()
 {
     if (!isRunning())
         return Score();
@@ -576,7 +576,7 @@ Score Engine::finalScore()
     return waitResponse() ? Score(m_response) : Score();
 }
 
-Score Engine::estimateScore()
+Score Game::estimatedScore()
 {
     if (!isRunning())
         return Score();
@@ -585,13 +585,13 @@ Score Engine::estimateScore()
     return waitResponse() ? Score(m_response) : Score();
 }
 
-bool Engine::waitResponse(bool nonBlocking)
+bool Game::waitResponse(bool nonBlocking)
 {
     if (m_process.state() != QProcess::Running) {   // No GTP connection means no computing fun!
         switch (m_process.error()) {
-            case QProcess::FailedToStart: m_response = "No Go engine is running!"; break;
-            case QProcess::Crashed: m_response = "The Go engine crashed!"; break;
-            case QProcess::Timedout: m_response = "The Go engine timed out!"; break;
+            case QProcess::FailedToStart: m_response = "No Go game is running!"; break;
+            case QProcess::Crashed: m_response = "The Go game crashed!"; break;
+            case QProcess::Timedout: m_response = "The Go game timed out!"; break;
             case QProcess::WriteError: m_response = m_process.readAllStandardError(); break;
             case QProcess::ReadError: m_response = m_process.readAllStandardError(); break;
             case QProcess::UnknownError: m_response = "Unknown error!"; break;
@@ -604,7 +604,7 @@ bool Engine::waitResponse(bool nonBlocking)
         emit waiting(true);
 
     // Wait for finished command execution. We have to do this untill '\n\n' arives in our
-    // input buffer to show that the Go engine is done processing our request. The 'nonBlocking'
+    // input buffer to show that the Go game is done processing our request. The 'nonBlocking'
     // parameter decides whether we block and wait (suitable for short commands) or if we continue
     // processing events in between to stop the UI from blocking (suitable for longer commands).
     // The latter may introduce flickering.
@@ -629,15 +629,15 @@ bool Engine::waitResponse(bool nonBlocking)
     QChar tmp = m_response[0];                  // First message character indicates success or error
     m_response.remove(0, 2);                    // Remove the first two chars (e.g. "? " or "= ")
     m_response = m_response.trimmed();          // Remove further whitespaces, newlines, ...
-    return tmp != '?';                          // '?' Means the engine didn't understand the query
+    return tmp != '?';                          // '?' Means the game didn't understand the query
 }
 
-void Engine::readyRead()
+void Game::readyRead()
 {
     m_waitAndProcessEvents = false;
 }
 
-void Engine::setCurrentPlayer(Player &player)
+void Game::setCurrentPlayer(Player &player)
 {
     m_currentPlayer = &player;
     emit currentPlayerChanged(*m_currentPlayer);
@@ -645,4 +645,4 @@ void Engine::setCurrentPlayer(Player &player)
 
 } // End of namespace Kigo
 
-#include "moc_engine.cpp"
+#include "moc_game.cpp"

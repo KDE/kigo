@@ -27,7 +27,7 @@
 
 namespace Kigo {
 
-class Engine;
+class Game;
 
 /**
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -38,7 +38,7 @@ class SetupWidget : public QWidget, private Ui::SetupWidget
     Q_OBJECT
 
 public:
-    explicit SetupWidget(Engine *engine, QWidget *parent = 0);
+    explicit SetupWidget(Game *game, QWidget *parent = 0);
     ~SetupWidget();
 
 signals:
@@ -73,7 +73,7 @@ private:
     void loadSettings();
     void saveSettings();
 
-    Engine *m_engine;
+    Game *m_game;
     QString m_lastFileName;
     int m_lastFixedHandicap;
 };

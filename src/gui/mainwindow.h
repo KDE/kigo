@@ -32,7 +32,7 @@ namespace Kigo {
 
 class GameScene;
 class GameView;
-class Engine;
+class Game;
 class SetupWidget;
 
 /**
@@ -73,7 +73,7 @@ private:
 
     bool isBackendWorking();
 
-    Engine *m_engine;                       ///< Handles complete game state
+    Game *m_game;                           ///< Handles complete game state
     GameScene *m_gameScene;                 ///< QGraphicsScene for Go board
     GameView *m_gameView;                   ///< QGraphicsView for Go board
 

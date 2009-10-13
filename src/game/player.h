@@ -30,7 +30,7 @@ namespace Kigo {
 /**
  * The Player class holds all basic attributes of a Go player. These mean
  * mostly name, skill and color. Instances are particular to a specific
- * game and can thus only be created by the Go engine (Kigo::Engine).
+ * game and can thus only be created by the Go engine (Kigo::Game).
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.5
@@ -39,7 +39,7 @@ class Player : public QObject
 {
     Q_OBJECT
 
-    friend class Engine;
+    friend class Game;
 
 public:
     enum Color {

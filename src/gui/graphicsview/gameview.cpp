@@ -48,7 +48,7 @@ void GameView::changeCursor(const QPixmap &cursorPixmap)
         setCursor(QCursor(cursorPixmap));
 }
 
-void GameView::drawForeground(QPainter *painter, const QRectF &rect)
+void GameView::drawForeground(QPainter * /*painter*/, const QRectF & /*rect*/)
 {
     //TODO: Get rid of that ugly looking white pixels on the left and top of rect
     /*if (!isInteractive()) {

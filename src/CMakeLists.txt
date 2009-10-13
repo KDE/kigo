@@ -1,7 +1,7 @@
 include_directories(${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIR})
 
 set(kigo_SRCS
-    game/engine.cpp
+    game/game.cpp
     game/move.cpp
     game/player.cpp
     game/score.cpp

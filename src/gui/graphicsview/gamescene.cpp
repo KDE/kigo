@@ -19,7 +19,7 @@
 */
 
 #include "gamescene.h"
-#include "game/engine.h"
+#include "game/game.h"
 #include "preferences.h"
 #include "themerenderer.h"
 
@@ -29,15 +29,15 @@
 
 namespace Kigo {
 
-GameScene::GameScene(Engine *engine, QObject *parent)
-    : QGraphicsScene(parent), m_engine(engine)
+GameScene::GameScene(Game *game, QObject *parent)
+    : QGraphicsScene(parent), m_game(game)
     , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
-    connect(m_engine, SIGNAL(changed()), this, SLOT(updateStoneItems()));
-    connect(m_engine, SIGNAL(sizeChanged(int)), this, SLOT(changeBoardSize(int)));
-    connect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
+    connect(m_game, SIGNAL(changed()), this, SLOT(updateStoneItems()));
+    connect(m_game, SIGNAL(sizeChanged(int)), this, SLOT(changeBoardSize(int)));
+    connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
     connect(ThemeRenderer::self(), SIGNAL(themeChanged(const QString &)), this, SLOT(themeChanged()));
 
     m_gamePopup.setMessageTimeout(3000);
@@ -61,8 +61,9 @@ void GameScene::resizeScene(int width, int height)
     updateStoneItems();                     // Resize means redraw of board items (stones)
     updateHintItems();                      // and move hint items
 
-    if (m_placementMarkerItem)              // Set the mouse/stone postion placementmarker
+    if (m_placementMarkerItem) {            // Set the mouse/stone postion placementmarker
         removeItem(m_placementMarkerItem);
+    }
     m_placementMarkerPixmapSize = QSize(static_cast<int>(m_cellSize / 4), static_cast<int>(m_cellSize / 4));
     m_placementMarkerItem = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::PlacementMarker, m_placementMarkerPixmapSize));
     m_placementMarkerItem->setVisible(false);
@@ -90,10 +91,11 @@ void GameScene::showMoveNumbers(bool show)
 void GameScene::showMessage(const QString &message, int msecs)
 {
     m_gamePopup.setMessageTimeout(msecs);
-    if (message.isEmpty())
+    if (message.isEmpty()) {
         m_gamePopup.forceHide();            // Now message hides the last one
-    else
+    } else {
         m_gamePopup.showMessage(message, KGamePopupItem::BottomLeft, KGamePopupItem::ReplacePrevious);
+    }
 }
 
 void GameScene::updateStoneItems()
@@ -101,11 +103,12 @@ void GameScene::updateStoneItems()
     QGraphicsPixmapItem *item;
     int halfStoneSize = m_stonePixmapSize.width() / 2;
 
-    foreach (item, m_stoneItems)            // Clear all standard Go stone graphics pixmap items
+    foreach (item, m_stoneItems) {          // Clear all standard Go stone graphics pixmap items
         removeItem(item);
+    }
     m_stoneItems.clear();
 
-    foreach (const Stone &stone, m_engine->stones(m_engine->blackPlayer())) {
+    foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -113,7 +116,7 @@ void GameScene::updateStoneItems()
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 2));
         m_stoneItems.append(item);
     }
-    foreach (const Stone &stone, m_engine->stones(m_engine->whitePlayer())) {
+    foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -124,7 +127,7 @@ void GameScene::updateStoneItems()
 
     if (m_showMoveNumbers) {
         int i = 0;
-        foreach (const Move &move, m_engine->moves()) {
+        foreach (const Move &move, m_game->moves()) {
             int xOff = move.stone().x() >= 'I' ? move.stone().x() - 'A' - 1 : move.stone().x() - 'A';
             QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
                                   m_gridRect.y() + (m_boardSize - move.stone().y()) * m_cellSize);
@@ -153,25 +156,28 @@ void GameScene::updateHintItems()
 {
     QGraphicsPixmapItem *item;
 
-    foreach (item, m_hintItems)                         // Old hint is invalid, remove it first
+    foreach (item, m_hintItems) {                       // Old hint is invalid, remove it first
         removeItem(item);
+    }
     m_hintItems.clear();
 
     if (m_showHint) {
         int halfStoneSize = m_stonePixmapSize.width() / 2;
 
-        foreach (const Stone &move, m_engine->bestMoves(m_engine->currentPlayer())) {
+        foreach (const Stone &move, m_game->bestMoves(m_game->currentPlayer())) {
             QPixmap stonePixmap;
-            if (m_engine->currentPlayer().isWhite())
+            if (m_game->currentPlayer().isWhite()) {
                 stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-            else if (m_engine->currentPlayer().isBlack())
+            } else if (m_game->currentPlayer().isBlack()) {
                 stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+            }
 
             QPainter painter(&stonePixmap);
-            if (m_engine->currentPlayer().isWhite())
+            if (m_game->currentPlayer().isWhite()) {
                 painter.setPen(Qt::black);
-            else if (m_engine->currentPlayer().isBlack())
+            } else if (m_game->currentPlayer().isBlack()) {
                 painter.setPen(Qt::white);
+            }
             QFont f = painter.font();
             f.setPointSizeF(m_cellSize / 4);
             painter.setFont(f);
@@ -216,10 +222,10 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         m_placementMarkerItem->setVisible(true);
         m_placementMarkerItem->setPos(x, y);
 
-        if (m_engine->currentPlayer().isHuman()) {
-            if (m_engine->currentPlayer().isWhite()) {
+        if (m_game->currentPlayer().isHuman()) {
+            if (m_game->currentPlayer().isWhite()) {
                 map = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-            } else if (m_engine->currentPlayer().isBlack()) {
+            } else if (m_game->currentPlayer().isBlack()) {
                 map = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
             }
             emit cursorPixmapChanged(map);
@@ -235,14 +241,16 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if (m_mouseRect.contains(event->scenePos())) {
         int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
         int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
-        if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize)
+        if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize) {
             return;
+        }
 
         // Convert to Go board coordinates and try to play the move. GnuGo coordinates don't use the 'I'
         // column, if the row is bigger than 'I', we have to add 1 to jump over that.
-        if (row >= 8)
+        if (row >= 8) {
             row += 1;
-        m_engine->playMove(m_engine->currentPlayer(), Stone('A' + row, m_boardSize - col));
+        }
+        m_game->playMove(m_game->currentPlayer(), Stone('A' + row, m_boardSize - col));
     }
 }
 
@@ -262,8 +270,9 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
         if (m_showLabels) {
             QChar c('A' + i);
             // GnuGo does not use the 'I' column (for whatever strange reason), we have to skip that too
-            if (i >= 8)
+            if (i >= 8) {
                 c = QChar('A' + i + 1);
+            }
 
             QString n = QString::number(m_boardSize - i);
             QFont f = painter->font();

@@ -19,7 +19,7 @@
 */
 
 #include "gamewidget.h"
-#include "game/engine.h"
+#include "game/game.h"
 #include "game/stone.h"
 #include "preferences.h"
 
@@ -27,62 +27,66 @@
 
 namespace Kigo {
 
-GameWidget::GameWidget(Engine *engine, QWidget *parent)
-    : QWidget(parent), m_engine(engine)
+GameWidget::GameWidget(Game *game, QWidget *parent)
+    : QWidget(parent), m_game(game)
 {
     setupUi(this);
 
     finishButton->setIcon(KIcon("media-playback-stop"));
 
-    connect(m_engine, SIGNAL(changed()), this, SLOT(update()));
-    connect(m_engine, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinish()));
+    connect(m_game, SIGNAL(changed()), this, SLOT(update()));
+    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinish()));
     connect(finishButton, SIGNAL(clicked()), this, SIGNAL(finishClicked()));
 }
 
 void GameWidget::init()
 {
-    if (!m_engine->isRunning()) {
-        kDebug() << "Engine is not running, no information update";
+    if (!m_game->isRunning()) {
+        kDebug() << "Game is not running, no information update";
         return;
     }
 
-    if (Preferences::whitePlayerHuman())
+    if (Preferences::whitePlayerHuman()) {
         whitePlayerName->setText(Preferences::whitePlayerName());
-    else
+    } else {
         whitePlayerName->setText(i18n("Computer (Level %1)", Preferences::whitePlayerStrength()));
-    if (Preferences::blackPlayerHuman())
+    }
+    if (Preferences::blackPlayerHuman()) {
         blackPlayerName->setText(Preferences::blackPlayerName());
-    else
+    } else {
         blackPlayerName->setText(i18n("Computer (Level %1)", Preferences::blackPlayerStrength()));
-    komiSpinBox->setValue(m_engine->komi());
-    handicapSpinBox->setValue(m_engine->fixedHandicap());
+    }
+    komiSpinBox->setValue(m_game->komi());
+    handicapSpinBox->setValue(m_game->fixedHandicap());
 
     update();
 }
 
 void GameWidget::update()
 {
-    moveSpinBox->setValue(m_engine->currentMoveNumber());
+    moveSpinBox->setValue(m_game->currentMoveNumber());
 
-    if (m_engine->moves().size() > 0) {
-        Move last = m_engine->lastMove();
-        if (last.player()->isWhite())
+    if (m_game->moves().size() > 0) {
+        Move last = m_game->lastMove();
+        if (last.player()->isWhite()) {
             moveSpinBox->setSuffix(i18n(" (White %1)", last.stone().toString()));
-        else if (last.player()->isBlack())
+        } else if (last.player()->isBlack()) {
             moveSpinBox->setSuffix(i18n(" (Black %1)", last.stone().toString()));
-        else
+        } else {
             moveSpinBox->setSuffix("");
+        }
     }
 
-    if (m_engine->currentPlayer().isWhite())
-        playerLabel->setText(i18n("White's move"));
-    else if (m_engine->currentPlayer().isBlack())
-        playerLabel->setText(i18n("Black's move"));
-    else
-        playerLabel->setText("");
+    if (m_game->currentPlayer().isWhite()) {
+        playerLineEdit->setText(i18n("White's move"));
+    } else if (m_game->currentPlayer().isBlack()) {
+        playerLineEdit->setText(i18n("Black's move"));
+    } else {
+        playerLineEdit->setText("");
+    }
 
-    whiteCapturesLabel->setText(QString::number(m_engine->captures(m_engine->whitePlayer())));
-    blackCapturesLabel->setText(QString::number(m_engine->captures(m_engine->blackPlayer())));
+    whiteCapturesLineEdit->setText(QString::number(m_game->captures(m_game->whitePlayer())));
+    blackCapturesLineEdit->setText(QString::number(m_game->captures(m_game->blackPlayer())));
 }
 
 void GameWidget::enableFinish()

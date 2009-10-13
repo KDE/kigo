@@ -19,15 +19,15 @@
 */
 
 #include "setupwidget.h"
-#include "game/engine.h"
+#include "game/game.h"
 #include "preferences.h"
 
 #include <QFile>
 
 namespace Kigo {
 
-SetupWidget::SetupWidget(Engine *engine, QWidget *parent)
-    : QWidget(parent), m_engine(engine)
+SetupWidget::SetupWidget(Game *game, QWidget *parent)
+    : QWidget(parent), m_game(game)
     , m_lastFixedHandicap(Preferences::fixedHandicapValue())
 {
     setupUi(this);
@@ -46,9 +46,10 @@ void SetupWidget::newGame()
 {
     loadSettings();
     gameSetupStack->setCurrentIndex(0);
-    m_engine->setBoardSize(Preferences::boardSize());
-    if (Preferences::fixedHandicapEnabled())
-        m_engine->setFixedHandicap(Preferences::fixedHandicapValue());
+    m_game->setBoardSize(Preferences::boardSize());
+    if (Preferences::fixedHandicapEnabled()) {
+        m_game->setFixedHandicap(Preferences::fixedHandicapValue());
+    }
 }
 
 void SetupWidget::loadedGame(const QString &fileName)
@@ -57,12 +58,13 @@ void SetupWidget::loadedGame(const QString &fileName)
 
     loadSettings();
     gameSetupStack->setCurrentIndex(1);
-    m_engine->init(fileName);
+    m_game->init(fileName);
     m_lastFileName = fileName;
 
     QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return;
+    }
     QTextStream in(&file);
     QString content = in.readAll();
     file.close();
@@ -71,34 +73,43 @@ void SetupWidget::loadedGame(const QString &fileName)
 
     // Parse additional game information from SGF file
     re.setPattern("EV\\[([\\w ]+)\\]");             // Capture and set event
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         infoEvent->setText(re.cap(1));
+    }
     re.setPattern("RO\\[(\\d+)\\]");                // Capture and set round
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         infoRound->setText(re.cap(1));
+    }
     re.setPattern("DT\\[([\\w/\\-:\\.]+)\\]");      // Capture and set date
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         infoDate->setText(re.cap(1));
+    }
 
     re.setPattern("PB\\[([\\w ]+)\\]");             // Capture and set black player name
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         blackPlayerName->setText(re.cap(1));
+    }
     re.setPattern("BR\\[([\\w ]+)\\]");             // Capture and set black player rank
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ')');
+    }
     re.setPattern("PW\\[([\\w ]+)\\]");             // Capture and set white player name
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         whitePlayerName->setText(re.cap(1));
+    }
     re.setPattern("WR\\[([\\w ]+)\\]");             // Capture and set white player rank
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ')');
+    }
 
     re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         infoKomi->setText(re.cap(1));
+    }
     re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
-    if (re.indexIn(content) > -1)
+    if (re.indexIn(content) > -1) {
         infoScore->setText(re.cap(1));
+    }
 
     re.setPattern("[BW]\\[\\w\\w\\]");              // Parse move count
     int pos = 0, count = 0;
@@ -120,24 +131,24 @@ void SetupWidget::commit()
     saveSettings();
 
     if (Preferences::whitePlayerHuman()) {
-        m_engine->whitePlayer().setType(Player::Human);
+        m_game->whitePlayer().setType(Player::Human);
     } else {
-        m_engine->whitePlayer().setType(Player::Computer);
+        m_game->whitePlayer().setType(Player::Computer);
     }
-    m_engine->whitePlayer().setStrength(Preferences::whitePlayerStrength());
-    m_engine->whitePlayer().setName(Preferences::whitePlayerName());
+    m_game->whitePlayer().setStrength(Preferences::whitePlayerStrength());
+    m_game->whitePlayer().setName(Preferences::whitePlayerName());
 
     if (Preferences::blackPlayerHuman()) {
-        m_engine->blackPlayer().setType(Player::Human);
+        m_game->blackPlayer().setType(Player::Human);
     } else {
-        m_engine->blackPlayer().setType(Player::Computer);
+        m_game->blackPlayer().setType(Player::Computer);
     }
-    m_engine->blackPlayer().setStrength(Preferences::blackPlayerStrength());
-    m_engine->blackPlayer().setName(Preferences::blackPlayerName());
+    m_game->blackPlayer().setStrength(Preferences::blackPlayerStrength());
+    m_game->blackPlayer().setName(Preferences::blackPlayerName());
 
     // Set additional configuration based on game type
     if (gameSetupStack->currentIndex() == 0) {      // The user configured a new game
-        m_engine->setKomi(Preferences::komi());
+        m_game->setKomi(Preferences::komi());
     } else {                                        // The user configured a loaded game
         //Note: None currently
     }
@@ -145,57 +156,61 @@ void SetupWidget::commit()
 
 void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
 {
-    if (!m_lastFileName.isEmpty())
-        m_engine->init(m_lastFileName, value);
+    if (!m_lastFileName.isEmpty()) {
+        m_game->init(m_lastFileName, value);
+    }
 
-    if (m_engine->currentPlayer().isWhite())
+    if (m_game->currentPlayer().isWhite()) {
         playerLabel->setText(i18n("for White"));
-    else if (m_engine->currentPlayer().isBlack())
+    } else if (m_game->currentPlayer().isBlack()) {
         playerLabel->setText(i18n("for Black"));
-    else
+    } else {
         playerLabel->setText("");
+    }
 }
 
 void SetupWidget::on_sizeGroupBox_changed(int /*id*/)
 {
     if (sizeOther->isChecked()) {                   // Custom size enabled
         sizeOtherSpinBox->setEnabled(true);
-        m_engine->setBoardSize(sizeOtherSpinBox->value());
+        m_game->setBoardSize(sizeOtherSpinBox->value());
     } else {
         sizeOtherSpinBox->setEnabled(false);
-        if (sizeSmall->isChecked())
-            m_engine->setBoardSize(9);
-        else if (sizeMedium->isChecked())
-            m_engine->setBoardSize(13);
-        else if (sizeBig->isChecked())
-            m_engine->setBoardSize(19);
+        if (sizeSmall->isChecked()) {
+            m_game->setBoardSize(9);
+        } else if (sizeMedium->isChecked()) {
+            m_game->setBoardSize(13);
+        } else if (sizeBig->isChecked()) {
+            m_game->setBoardSize(19);
+        }
     }
     updateHandicapBox();                            // Handicap depends on board size
 }
 
 void SetupWidget::on_sizeOtherSpinBox_valueChanged(int value)
 {
-    m_engine->setBoardSize(value);                  // Set free board size
+    m_game->setBoardSize(value);                  // Set free board size
     updateHandicapBox();
 }
 
 void SetupWidget::on_handicapGroupBox_toggled(bool isChecked)
 {
-    m_engine->init();                               // Also removes handicap
-    if (isChecked)                                  // Set handicap if checked
-        m_engine->setFixedHandicap(handicapSpinBox->value());
+    m_game->init();                               // Also removes handicap
+    if (isChecked) {                                // Set handicap if checked
+        m_game->setFixedHandicap(handicapSpinBox->value());
+    }
 }
 
 void SetupWidget::on_handicapSpinBox_valueChanged(int value)
 {
     m_lastFixedHandicap = handicapSpinBox->value(); //
-    m_engine->init();                               // Setting fixed handicap works only
-    m_engine->setFixedHandicap(value);              // on a blank game board
+    m_game->init();                               // Setting fixed handicap works only
+    m_game->setFixedHandicap(value);              // on a blank game board
 }
 
 void SetupWidget::updateHandicapBox()
 {
-    int maxFixedHandicap = m_engine->fixedHandicapUpperBound();
+    int maxFixedHandicap = m_game->fixedHandicapUpperBound();
 
     if (maxFixedHandicap == 0) {
         handicapGroupBox->setEnabled(false);
@@ -205,15 +220,18 @@ void SetupWidget::updateHandicapBox()
         if (maxFixedHandicap >= handicapSpinBox->minimum()) {
             handicapSpinBox->setMaximum(maxFixedHandicap);
 
-            if (m_lastFixedHandicap >= maxFixedHandicap)
+            if (m_lastFixedHandicap >= maxFixedHandicap) {
                 handicapSpinBox->setValue(maxFixedHandicap);
-            else
+            } else {
                 handicapSpinBox->setValue(m_lastFixedHandicap);
+            }
 
-            if (handicapGroupBox->isChecked())
-                m_engine->setFixedHandicap(handicapSpinBox->value());
-        } else
+            if (handicapGroupBox->isChecked()) {
+                m_game->setFixedHandicap(handicapSpinBox->value());
+            }
+        } else {
             handicapGroupBox->setChecked(false);
+        }
     }
 }
 
@@ -221,17 +239,19 @@ void SetupWidget::loadSettings()
 {
     whitePlayerName->setText(Preferences::whitePlayerName());
     whiteStrengthSlider->setValue(Preferences::whitePlayerStrength());
-    if (Preferences::whitePlayerHuman())
+    if (Preferences::whitePlayerHuman()) {
         whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(i18n("Human")));
-    else
+    } else {
         whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(i18n("Computer")));
+    }
 
     blackPlayerName->setText(Preferences::blackPlayerName());
     blackStrengthSlider->setValue(Preferences::blackPlayerStrength());
-    if (Preferences::blackPlayerHuman())
+    if (Preferences::blackPlayerHuman()) {
         blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(i18n("Human")));
-    else
+    } else {
         blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(i18n("Computer")));
+    }
 
     komiSpinBox->setValue(Preferences::komi());
     handicapGroupBox->setChecked(Preferences::fixedHandicapEnabled());
@@ -274,15 +294,15 @@ void SetupWidget::saveSettings()
     Preferences::setFixedHandicapEnabled(handicapGroupBox->isChecked());
     Preferences::setFixedHandicapValue(handicapSpinBox->value());
 
-    if (sizeSmall->isChecked())
+    if (sizeSmall->isChecked()) {
         Preferences::setBoardSize(9);
-    else if (sizeMedium->isChecked())
+    } else if (sizeMedium->isChecked()) {
         Preferences::setBoardSize(13);
-    else if (sizeBig->isChecked())
+    } else if (sizeBig->isChecked()) {
         Preferences::setBoardSize(19);
-    else if (sizeOther->isChecked())
+    } else if (sizeOther->isChecked()) {
         Preferences::setBoardSize(sizeOtherSpinBox->value());
-
+    }
     Preferences::self()->writeConfig();
 }
 

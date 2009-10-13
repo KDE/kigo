@@ -28,9 +28,9 @@ namespace Kigo {
 
 /**
  * This class represents a Go score for either player. A score can only
- * be created by a Kigo::Engine instance. The score will always hold the
+ * be created by a Kigo::Game instance. The score will always hold the
  * points of the leading player (together with certain probability bounds)
- * and can thus be only created by the Go engine (Kigo::Engine).
+ * and can thus be only created by the Go engine (Kigo::Game).
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.5
@@ -39,7 +39,7 @@ class Score : public QObject
 {
     Q_OBJECT
 
-    friend class Engine;
+    friend class Game;
 
 private:
     Score(const QString &score = QString());

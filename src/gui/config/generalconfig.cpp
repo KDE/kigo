@@ -20,7 +20,7 @@
 
 #include "generalconfig.h"
 #include "preferences.h"
-#include "game/engine.h"
+#include "game/game.h"
 
 namespace Kigo {
 
@@ -44,8 +44,8 @@ void GeneralConfig::updateEngineCommand()
     kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + ' ' + engineParameters->text());
 
     // Check if the configured Go engine backend actually works and tell the user
-    Engine engine;
-    if (engine.start(kcfg_EngineCommand->text())) {
+    Game game;
+    if (game.start(kcfg_EngineCommand->text())) {
         engineLed->setState(KLed::On);
     } else {
         engineLed->setState(KLed::Off);

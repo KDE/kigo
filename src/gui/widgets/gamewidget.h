@@ -27,10 +27,10 @@
 
 namespace Kigo {
 
-class Engine;
+class Game;
 
 /**
- * @see Engine
+ * @see Game
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.5
  */
@@ -39,7 +39,7 @@ class GameWidget : public QWidget, private Ui::GameWidget
     Q_OBJECT
 
 public:
-    explicit GameWidget(Engine *engine, QWidget *parent = 0);
+    explicit GameWidget(Game *game, QWidget *parent = 0);
 
 signals:
     void finishClicked();
@@ -52,7 +52,7 @@ private slots:
     void enableFinish();
 
 private:
-    Engine *m_engine;
+    Game *m_game;
 };
 
 } // End of namespace Kigo

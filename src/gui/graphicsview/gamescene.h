@@ -27,14 +27,14 @@
 
 namespace Kigo {
 
-class Engine;
+class Game;
 
 /**
  * This class provides a graphical representation of the go game using
  * QGraphicsScene.
  *
  * It displays the go board in its current state, receives mouse events,
- * translates them and interacts with the Engine. It also drives the game
+ * translates them and interacts with the Game. It also drives the game
  * flow, i.e. tells game when to make the next move.
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
@@ -45,7 +45,7 @@ class GameScene : public QGraphicsScene
     Q_OBJECT
 
 public:
-    GameScene(Engine *engine, QObject *parent = 0);
+    GameScene(Game *game, QObject *parent = 0);
 
 signals:
     void cursorPixmapChanged(const QPixmap &);
@@ -69,7 +69,7 @@ private:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void drawBackground(QPainter *painter, const QRectF &);
 
-    Engine *m_engine;                       ///< Go engine
+    Game *m_game;                           ///< Go game
 
     KGamePopupItem m_gamePopup;
     bool m_showLabels;                      ///< Show board labels or not

@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KIGO_ENGINE_H
-#define KIGO_ENGINE_H
+#ifndef KIGO_GAME_H
+#define KIGO_GAME_H
 
 #include "move.h"
 #include "player.h"
@@ -35,29 +35,29 @@ namespace Kigo {
 class Score;
 
 /**
- * The Engine class implements the Go game and acts as a wrapper around a
- * remote Go Game engine implementing the Go Text Protocol (GTP). It uses
- * GTP protocol version 2 and interfaces the engine executable in an
- * synchronous manor. The best supported engine should (naturally)
+ * The Game class implements the Go game and acts as a wrapper around a
+ * remote Go Game game implementing the Go Text Protocol (GTP). It uses
+ * GTP protocol version 2 and interfaces the game executable in an
+ * synchronous manor. The best supported game should (naturally)
  * be GnuGo.
  *
  * @code
- * Engine *engine = new Engine;
+ * Game *game = new Game;
  *
- * // Run a session with a Go engine in GTP mode
- * engine->start("gnugo --mode gtp");
+ * // Run a session with a Go game in GTP mode
+ * game->start("gnugo --mode gtp");
  *
- * // Get some information about the Go engine
- * engine->name();
- * engine->version();
+ * // Get some information about the Go game
+ * game->name();
+ * game->version();
  *
- * engine->stop();
+ * game->stop();
  * @endcode
  *
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.1
  */
-class Engine : public QObject
+class Game : public QObject
 {
     Q_OBJECT
 
@@ -75,31 +75,31 @@ public:
         FinalStateInvalid       ///< The state is invalid, shows error
     };
 
-    explicit Engine(QObject *parent = 0);
-    ~Engine();
+    explicit Game(QObject *parent = 0);
+    ~Game();
 
     /**
-     * Connect to the given Go game engine in GTP mode. The most common
+     * Connect to the given Go game game in GTP mode. The most common
      * used case is 'gnugo --mode gtp' but this depends on your platform
-     * and installed Go engine(s).
+     * and installed Go game(s).
      *
      * @param command The executable command to start in GTP mode.
      */
     bool start(const QString &command = "gnugo --mode gtp");
 
     /**
-     * Gracefully stop and exit the Go game engine.
+     * Gracefully stop and exit the Go game game.
      */
     void stop();
 
     /**
-     * Check whether the Engine object is connected to a Go engine, running
+     * Check whether the Game object is connected to a Go game, running
      * and waiting for commands to be fed with.
      */
     bool isRunning() const { return m_process.state() == QProcess::Running; }
-    QString name() const { return m_engineName; }
-    QString version() const { return m_engineVersion; }
-    QString command() const { return m_engineCommand; }
+    QString engineName() const { return m_engineName; }
+    QString engineVersion() const { return m_engineVersion; }
+    QString engineCommand() const { return m_engineCommand; }
     QUndoStack *undoStack() { return &m_undoStack; }
 
     /**
@@ -236,7 +236,7 @@ public:
      * Returns an estimate of the final score based on the current game
      * situation.
      */
-    Score estimateScore();
+    Score estimatedScore();
 
     bool canRedo() const { return m_undoStack.canRedo(); }
     bool canUndo() const { return m_undoStack.canUndo(); }
@@ -249,7 +249,7 @@ signals:
     void changed();
 
     /** This signal is emitted when the board size was changed. */
-    void sizeChanged(int);
+    void boardSizeChanged(int);
 
     /** This signal is emitted when a player resigns. */
     void resigned(const Player &);
@@ -264,7 +264,7 @@ signals:
     void currentPlayerChanged(const Player &);
 
     /**
-     * This signal is emitted when the engine starts or ends a
+     * This signal is emitted when the game starts or ends a
      * non-blocking wait. This is useful to reflect the wait state
      * in the UI.
      */
@@ -278,8 +278,8 @@ signals:
 
 private slots:
     /**
-     * Wait gracefully for a response from the Go engine. The returned string
-     * from the Go engine is stored in 'm_response'.
+     * Wait gracefully for a response from the Go game. The returned string
+     * from the Go game is stored in 'm_response'.
      *
      * @param nonBlocking This should be set for commands that take a long
      *                    time to complete to avoid ugly UI blocking.
