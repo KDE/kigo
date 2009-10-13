@@ -43,7 +43,7 @@ Move &Move::operator=(const Move &other)
 
 QDebug operator<<(QDebug debug, const Move &move)
 {
-    debug.nospace() << "(Move " << move.stone() << " by " << *move.player() << ")";
+    debug.nospace() << "move of " << move.stone() << " by " << *move.player();
     return debug;
 }
 

@@ -63,14 +63,13 @@ bool Player::setStrength(int strength)
 QDebug operator<<(QDebug debug, const Player &player)
 {
     if (player.isWhite()) {
-        debug.nospace() << "(White";
+        debug.nospace() << "white";
     } else if (player.isBlack()) {
-        debug.nospace() << "(Black";
+        debug.nospace() << "black";
     } else {
-        debug.nospace() << "(Invalid";
+        debug.nospace() << "invalid";
     }
-    debug.nospace() << " player " << player.name()
-                    << " of strength " << player.strength() << ")";
+    debug.nospace() << " player " << player.name();
     return debug;
 }
 

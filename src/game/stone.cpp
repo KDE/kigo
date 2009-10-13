@@ -70,8 +70,8 @@ QString Stone::toString() const
 
 QDebug operator<<(QDebug debug, const Stone &stone)
 {
-    debug.nospace() << "(Stone at " << stone.x() << "," << stone.y()
-                    << " of value " << stone.value() << ")";
+    debug.nospace() << "stone at " << stone.x() << "," << stone.y()
+                    << " of value " << stone.value();
     return debug;
 }
 
