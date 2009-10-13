@@ -13,6 +13,7 @@ set(kigo_SRCS
     gui/graphicsview/themerenderer.cpp
     gui/widgets/errorwidget.cpp
     gui/widgets/gamewidget.cpp
+    gui/widgets/scorewidget.cpp
     gui/widgets/setupwidget.cpp
     main.cpp 
 )
@@ -21,6 +22,7 @@ kde4_add_ui_files(kigo_SRCS
     gui/config/generalconfig.ui
     gui/widgets/errorwidget.ui
     gui/widgets/gamewidget.ui
+    gui/widgets/scorewidget.ui
     gui/widgets/setupwidget.ui
 )
 kde4_add_kcfg_files(kigo_SRCS preferences.kcfgc)

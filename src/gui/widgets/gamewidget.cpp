@@ -35,8 +35,8 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
     finishButton->setIcon(KIcon("media-playback-stop"));
 
     connect(m_game, SIGNAL(changed()), this, SLOT(update()));
-    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinish()));
-    connect(finishButton, SIGNAL(clicked()), this, SIGNAL(finishClicked()));
+    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinishButton()));
+    connect(finishButton, SIGNAL(clicked()), this, SLOT(finishButtonClicked()));
 }
 
 void GameWidget::init()
@@ -89,7 +89,13 @@ void GameWidget::update()
     blackCapturesLineEdit->setText(QString::number(m_game->captures(m_game->blackPlayer())));
 }
 
-void GameWidget::enableFinish()
+void GameWidget::finishButtonClicked()
+{
+    finishButton->setEnabled(false);
+    emit finishClicked();
+}
+
+void GameWidget::enableFinishButton()
 {
     finishButton->setEnabled(true);
 }

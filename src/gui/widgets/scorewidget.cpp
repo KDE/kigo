@@ -1,5 +1,5 @@
 /*
-    Copyright 2008 Sascha Peilicke <sasch.pe@gmx.de>
+    Copyright 2009 Sascha Peilicke <sasch.pe@gmx.de>
 
     This program is free software; you can redistribute it and/or
     modify it under the terms of the GNU General Public License as
@@ -18,44 +18,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KIGO_GAMEWIDGET_H
-#define KIGO_GAMEWIDGET_H
-
-#include "ui_gamewidget.h"
-
-#include <QWidget>
+#include "scorewidget.h"
 
 namespace Kigo {
 
-class Game;
-
-/**
- * @see Game
- * @author Sascha Peilicke <sasch.pe@gmx.de>
- * @since 0.5
- */
-class GameWidget : public QWidget, private Ui::GameWidget
+ScoreWidget::ScoreWidget(QWidget *parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
-
-public:
-    explicit GameWidget(Game *game, QWidget *parent = 0);
-
-signals:
-    void finishClicked();
-
-public slots:
-    void init();
-    void update();
-
-private slots:
-    void finishButtonClicked();
-    void enableFinishButton();
-
-private:
-    Game *m_game;
-};
+    setupUi(this);
+}
 
 } // End of namespace Kigo
 
-#endif
+#include "moc_scorewidget.cpp"

@@ -48,4 +48,3 @@ private slots:
 } // End of namespace Kigo
 
 #endif
-

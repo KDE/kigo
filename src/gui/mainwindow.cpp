@@ -26,6 +26,7 @@
 #include "gui/graphicsview/themerenderer.h"
 #include "gui/widgets/errorwidget.h"
 #include "gui/widgets/gamewidget.h"
+#include "gui/widgets/scorewidget.h"
 #include "gui/widgets/setupwidget.h"
 #include "preferences.h"
 
@@ -239,13 +240,21 @@ void MainWindow::finishGame()
 
     m_movesDock->widget()->setEnabled(false);
 
-    kDebug() << "TODO: Implement finishing games";
+    KDialog *scoreDialog = new KDialog(this);
+    scoreDialog->setCaption(i18n("Game Scores"));
+    scoreDialog->setButtons(KDialog::Close);
+    scoreDialog->setModal(true);
+
+    ScoreWidget *scoreWidget = new ScoreWidget(scoreDialog);
+    scoreDialog->setMainWidget(scoreWidget);
+
+    scoreDialog->show();
 }
 
 void MainWindow::undo()
 {
     if (m_game->undoMove()) {
-        m_gameScene->showMessage("Undone move");
+        m_gameScene->showMessage(i18n("Undone move"));
         m_gameScene->showHint(false);
     }
 }
@@ -253,7 +262,7 @@ void MainWindow::undo()
 void MainWindow::redo()
 {
     if (m_game->redoMove()) {
-        m_gameScene->showMessage("Redone move");
+        m_gameScene->showMessage(i18n("Redone move"));
         m_gameScene->showHint(false);
     }
 }
@@ -261,7 +270,7 @@ void MainWindow::redo()
 void MainWindow::pass()
 {
     if (m_game->playMove(m_game->currentPlayer())) {     // E.g. Pass move
-        m_gameScene->showMessage("Passed move");
+        m_gameScene->showMessage(i18n("Passed move"));
         m_gameScene->showHint(false);
     }
 }
@@ -329,6 +338,7 @@ void MainWindow::showBusy(bool busy)
 
 void MainWindow::showFinish()
 {
+    kDebug() << "Enable finish game action";
     m_finishGameAction->setEnabled(true);
 }
 
