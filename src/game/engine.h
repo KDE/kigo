@@ -238,6 +238,9 @@ public:
      */
     Score estimateScore();
 
+    bool canRedo() const { return m_undoStack.canRedo(); }
+    bool canUndo() const { return m_undoStack.canUndo(); }
+
 signals:
     /**
      * This signal is emitted when the board situation changed and

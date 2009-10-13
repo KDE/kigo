@@ -219,6 +219,7 @@ void MainWindow::startGame()
     m_gameDock->toggleViewAction()->setEnabled(true);
     m_movesDock->setVisible(true);
     m_movesDock->toggleViewAction()->setEnabled(true);
+    m_movesDock->widget()->setEnabled(true);
 
     m_gameScene->showMessage(i18n("Game started..."));
 }
@@ -226,13 +227,17 @@ void MainWindow::startGame()
 void MainWindow::finishGame()
 {
     m_gameView->setInteractive(false);
+    m_gameScene->showHint(false);
 
     m_undoMoveAction->setEnabled(false);
+    m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
     m_moveNumbersAction->setEnabled(false);
     m_startGameAction->setEnabled(false);
     m_finishGameAction->setEnabled(false);
+
+    m_movesDock->widget()->setEnabled(false);
 
     kDebug() << "TODO: Implement finishing games";
 }
@@ -241,6 +246,7 @@ void MainWindow::undo()
 {
     if (m_engine->undoMove()) {
         m_gameScene->showMessage("Undone move");
+        m_gameScene->showHint(false);
     }
 }
 
@@ -248,6 +254,7 @@ void MainWindow::redo()
 {
     if (m_engine->redoMove()) {
         m_gameScene->showMessage("Redone move");
+        m_gameScene->showHint(false);
     }
 }
 
@@ -255,6 +262,7 @@ void MainWindow::pass()
 {
     if (m_engine->playMove(m_engine->currentPlayer())) {     // E.g. Pass move
         m_gameScene->showMessage("Passed move");
+        m_gameScene->showHint(false);
     }
 }
 
@@ -298,11 +306,22 @@ void MainWindow::showBusy(bool busy)
 {
     //Decide on players how to display the UI
     if (m_engine->whitePlayer().isHuman() || m_engine->blackPlayer().isHuman()) {
-        m_undoMoveAction->setDisabled(busy);
-        m_redoMoveAction->setDisabled(busy);
+        if (busy) {
+            m_undoMoveAction->setDisabled(true);
+            m_redoMoveAction->setDisabled(true);
+        } else {
+            // Only re-enable undo/redo if it actually makes sense
+            if (m_engine->canUndo()) {
+                m_undoMoveAction->setDisabled(false);
+            }
+            if (m_engine->canRedo()) {
+                m_redoMoveAction->setDisabled(false);
+            }
+        }
         m_passMoveAction->setDisabled(busy);
         m_hintAction->setDisabled(busy);
         m_moveNumbersAction->setDisabled(busy);
+        m_movesDock->widget()->setDisabled(busy);
     }
 
     m_gameView->setInteractive(!busy);
