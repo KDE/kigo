@@ -212,6 +212,9 @@ void MainWindow::startGame()
         playerChanged();
     }
     connect(m_engine, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
+    // Trigger the slot once to make a move if the starting player
+    // (black) is a computer player.
+    playerChanged();
 
     m_setupDock->setVisible(false);
     m_errorDock->setVisible(false);
