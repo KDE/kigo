@@ -226,7 +226,8 @@ public:
     QList<Stone> finalStates(FinalState state);
 
     /**
-     * Compute the score of a finished game.
+     * Compute the score of a finished game. This method can take a
+     * long time to complete. It is thus recommended to use estimatedScore().
      *
      * @return Score in SGF format (RE property)
      */

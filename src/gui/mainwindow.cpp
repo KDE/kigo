@@ -20,13 +20,13 @@
 
 #include "mainwindow.h"
 #include "game/game.h"
+#include "game/score.h"
 #include "gui/config/generalconfig.h"
 #include "gui/graphicsview/gamescene.h"
 #include "gui/graphicsview/gameview.h"
 #include "gui/graphicsview/themerenderer.h"
 #include "gui/widgets/errorwidget.h"
 #include "gui/widgets/gamewidget.h"
-#include "gui/widgets/scorewidget.h"
 #include "gui/widgets/setupwidget.h"
 #include "preferences.h"
 
@@ -59,7 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
                               KXmlGuiWindow::Save | KXmlGuiWindow::Create);
 
     connect(m_game, SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
-    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinish()));
+    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinishGameAction()));
     connect(m_game, SIGNAL(resigned(const Player &)), this, SLOT(finishGame()));
 
     if (isBackendWorking()) {
@@ -73,6 +73,7 @@ void MainWindow::newGame()
 {
     m_game->start(Preferences::engineCommand());
 
+    m_gameScene->showTerritory(false);
     m_gameView->setInteractive(false);
 
     m_newGameAction->setEnabled(true);
@@ -108,6 +109,7 @@ void MainWindow::loadGame()
     if (!fileName.isEmpty()) {
         m_game->start(Preferences::engineCommand());
 
+        m_gameScene->showTerritory(false);
         m_gameView->setInteractive(false);
 
         m_newGameAction->setEnabled(true);
@@ -207,8 +209,8 @@ void MainWindow::startGame()
 
         m_gameView->setInteractive(false);
         m_undoView->setEnabled(false);
-        playerChanged();
     }
+
     connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
     // Trigger the slot once to make a move if the starting player
     // (black) is a computer player.
@@ -220,7 +222,7 @@ void MainWindow::startGame()
     m_gameDock->toggleViewAction()->setEnabled(true);
     m_movesDock->setVisible(true);
     m_movesDock->toggleViewAction()->setEnabled(true);
-    m_movesDock->widget()->setEnabled(true);
+    m_undoView->setEnabled(false);
 
     m_gameScene->showMessage(i18n("Game started..."));
 }
@@ -229,6 +231,7 @@ void MainWindow::finishGame()
 {
     m_gameView->setInteractive(false);
     m_gameScene->showHint(false);
+    m_gameScene->showTerritory(true);
 
     m_undoMoveAction->setEnabled(false);
     m_redoMoveAction->setEnabled(false);
@@ -238,18 +241,19 @@ void MainWindow::finishGame()
     m_startGameAction->setEnabled(false);
     m_finishGameAction->setEnabled(false);
 
-    m_movesDock->widget()->setEnabled(false);
+    m_undoView->setEnabled(false);
 
-    // Show a modal score dialog
-    KDialog *scoreDialog = new KDialog(this);
-    scoreDialog->setCaption(i18n("Game Scores"));
-    scoreDialog->setButtons(KDialog::Close);
-    scoreDialog->setModal(true);
-
-    ScoreWidget *scoreWidget = new ScoreWidget(m_game, scoreDialog);
-    scoreDialog->setMainWidget(scoreWidget);
-
-    scoreDialog->show();
+    kDebug() << "Fetching final score from engine ...";
+    Score score = m_game->estimatedScore();
+    QString name;
+    if (score.color() == 'W') {
+        name = m_game->whitePlayer().name() + " (White)";
+    } else {
+        name = m_game->blackPlayer().name() + " (Black)";
+    }
+    // Show a score message that stays visible until the next
+    // popup message arrives
+    m_gameScene->showMessage(i18n("%1 has won this game with a score of %2.", name, score.score()), 0);
 }
 
 void MainWindow::undo()
@@ -331,15 +335,14 @@ void MainWindow::showBusy(bool busy)
         m_passMoveAction->setDisabled(busy);
         m_hintAction->setDisabled(busy);
         m_moveNumbersAction->setDisabled(busy);
-        m_movesDock->widget()->setDisabled(busy);
+        m_undoView->setEnabled(false);
     }
 
     m_gameView->setInteractive(!busy);
 }
 
-void MainWindow::showFinish()
+void MainWindow::showFinishGameAction()
 {
-    kDebug() << "Enable finish game action";
     m_finishGameAction->setEnabled(true);
 }
 

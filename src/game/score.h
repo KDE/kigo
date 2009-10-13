@@ -43,9 +43,11 @@ class Score : public QObject
 
 private:
     Score(const QString &score = QString());
-    Score(const Score &other);
 
 public:
+    Score(const Score &other);
+    Score &operator=(const Score &other);
+
     bool isValid() const;
     QString toString() const;
 

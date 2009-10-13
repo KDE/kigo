@@ -55,9 +55,9 @@ public:
 
 private:
     Player(Color color, Type type = Human);
-    Player(const Player &other);
 
 public:
+    Player(const Player &other);
     Player &operator=(const Player &other);
 
     void setName(const QString &name) { m_name = name; }

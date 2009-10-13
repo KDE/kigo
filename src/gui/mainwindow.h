@@ -30,9 +30,9 @@ class QUndoView;
 
 namespace Kigo {
 
+class Game;
 class GameScene;
 class GameView;
-class Game;
 class SetupWidget;
 
 /**
@@ -63,7 +63,7 @@ private slots:
     void showPreferences();                 ///< Show configuration dialog
     void applyPreferences();                ///< React on changed config
     void showBusy(bool busy);               ///< Signal a busy app
-    void showFinish();                      ///< Signal a finished game
+    void showFinishGameAction();
     void playerChanged();
     void generateMove();
 

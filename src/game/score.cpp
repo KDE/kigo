@@ -48,6 +48,15 @@ Score::Score(const Score &other)
 {
 }
 
+Score &Score::operator=(const Score &other)
+{
+    m_color = other.m_color;
+    m_score = other.m_score;
+    m_lowerBound = other.m_lowerBound;
+    m_upperBound = other.m_upperBound;
+    return *this;
+}
+
 bool Score::isValid() const
 {
     return m_score >= 0 && (m_color == 'W' || m_color == 'B');

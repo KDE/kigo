@@ -33,6 +33,7 @@ GameScene::GameScene(Game *game, QObject *parent)
     : QGraphicsScene(parent), m_game(game)
     , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
+    , m_showTerritory(false)
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
     connect(m_game, SIGNAL(changed()), this, SLOT(updateStoneItems()));
@@ -96,6 +97,12 @@ void GameScene::showMessage(const QString &message, int msecs)
     } else {
         m_gamePopup.showMessage(message, KGamePopupItem::BottomLeft, KGamePopupItem::ReplacePrevious);
     }
+}
+
+void GameScene::showTerritory(bool show)
+{
+    m_showTerritory = show;
+    updateStoneItems();
 }
 
 void GameScene::updateStoneItems()

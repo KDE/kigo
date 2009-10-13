@@ -56,6 +56,7 @@ public slots:
     void showHint(bool show);
     void showMoveNumbers(bool show);
     void showMessage(const QString &message, int msecs = 2000);
+    void showTerritory(bool show);
 
 private slots:
     void updateStoneItems();
@@ -75,6 +76,7 @@ private:
     bool m_showLabels;                      ///< Show board labels or not
     bool m_showHint;
     bool m_showMoveNumbers;
+    bool m_showTerritory;
     QRectF m_boardRect;                     ///< Position of board in the scene
     QRectF m_mouseRect;                     ///< Board mouse interaction rect
     QRectF m_gridRect;                      ///< Board grid rect
