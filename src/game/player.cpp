@@ -22,8 +22,8 @@
 
 namespace Kigo {
 
-Player::Player(Color color, Type type, int strength)
-    : m_color(color), m_type(type), m_strength(strength)
+Player::Player(Color color, Type type)
+    : m_color(color), m_type(type), m_strength(10)
 {
 }
 
@@ -60,10 +60,18 @@ bool Player::setStrength(int strength)
     }
 }
 
-QString Player::toString() const
+QDebug operator<<(QDebug debug, const Player &player)
 {
-    return m_name + " [" + (m_color == White ? "White" : "Black") +
-           ':' + QByteArray::number(m_strength) + ']';
+    if (player.isWhite()) {
+        debug.nospace() << "(White";
+    } else if (player.isBlack()) {
+        debug.nospace() << "(Black";
+    } else {
+        debug.nospace() << "(Invalid";
+    }
+    debug.nospace() << " player " << player.name()
+                    << " of strength " << player.strength() << ")";
+    return debug;
 }
 
 } // End of namespace Kigo

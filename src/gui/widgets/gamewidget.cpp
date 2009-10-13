@@ -66,9 +66,9 @@ void GameWidget::update()
 
     if (m_engine->moves().size() > 0) {
         Move last = m_engine->lastMove();
-        if (last.player().isWhite())
+        if (last.player()->isWhite())
             moveSpinBox->setSuffix(i18n(" (White %1)", last.stone().toString()));
-        else if (last.player().isBlack())
+        else if (last.player()->isBlack())
             moveSpinBox->setSuffix(i18n(" (Black %1)", last.stone().toString()));
         else
             moveSpinBox->setSuffix("");

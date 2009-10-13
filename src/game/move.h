@@ -24,6 +24,8 @@
 #include "player.h"
 #include "stone.h"
 
+#include <QDebug>
+
 namespace Kigo {
 
 /**
@@ -38,20 +40,22 @@ class Move : public QObject
     Q_OBJECT
 
 public:
-    Move(Player &player, const Stone &stone);
+    Move(const Player *player, const Stone &stone);
     Move(const Move &other);
     Move &operator=(const Move &other);
 
-    const Player &player() const { return *m_player; }
+    const Player *player() const { return m_player; }
     const Stone &stone() const { return m_stone; }
 
     bool isValid() const { return m_stone.isValid(); }
     bool isPass() const { return !m_stone.isValid(); }
 
 private:
-    Player *m_player;
+    const Player *m_player;
     Stone m_stone;
 };
+
+QDebug operator<<(QDebug debug, const Move &move);
 
 } // End of namespace Kigo
 

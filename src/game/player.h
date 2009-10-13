@@ -21,6 +21,7 @@
 #ifndef KIGO_PLAYER_H
 #define KIGO_PLAYER_H
 
+#include <QDebug>
 #include <QObject>
 #include <QString>
 
@@ -53,7 +54,7 @@ public:
     };
 
 private:
-    Player(Color color, Type type = Human, int strength = 10);
+    Player(Color color, Type type = Human);
     Player(const Player &other);
 
 public:
@@ -78,7 +79,6 @@ public:
     bool isComputer() const { return m_type == Computer; }
 
     bool operator==(const Player &other);
-    QString toString() const;
 
 private:
     QString m_name;
@@ -86,6 +86,8 @@ private:
     Type m_type;
     int m_strength;
 };
+
+QDebug operator<<(QDebug debug, const Player &player);
 
 } // End of namespace Kigo
 

@@ -21,6 +21,7 @@
 #ifndef KIGO_STONE_H
 #define KIGO_STONE_H
 
+#include <QDebug>
 #include <QObject>
 #include <QString>
 
@@ -68,6 +69,8 @@ private:
     int m_y;            ///< The vertical field coordinate (from 1 to 19)
     float m_value;      ///<
 };
+
+QDebug operator<<(QDebug debug, const Stone &stone);
 
 } // End of namespace Kigo
 

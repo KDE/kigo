@@ -24,8 +24,8 @@
 
 namespace Kigo {
 
-Move::Move(Player &player, const Stone &stone)
-    : m_player(&player), m_stone(stone)
+Move::Move(const Player *player, const Stone &stone)
+    : m_player(player), m_stone(stone)
 {
 }
 
@@ -39,6 +39,12 @@ Move &Move::operator=(const Move &other)
     m_player = other.m_player;
     m_stone = other.m_stone;
     return *this;
+}
+
+QDebug operator<<(QDebug debug, const Move &move)
+{
+    debug.nospace() << "(Move " << move.stone() << " by " << *move.player() << ")";
+    return debug;
 }
 
 } // End of namespace Kigo

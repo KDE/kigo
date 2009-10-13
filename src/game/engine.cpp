@@ -234,7 +234,7 @@ int Engine::fixedHandicapUpperBound()
 
 bool Engine::playMove(const Move &move, bool undoable)
 {
-    return playMove(move.player(), move.stone(), undoable);
+    return playMove(*move.player(), move.stone(), undoable);
 }
 
 bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
@@ -242,14 +242,14 @@ bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
     if (!isRunning())
         return false;
 
-    Player tmp = player;
-    if (!tmp.isValid()) {
+    const Player *tmp = &player;
+    if (!tmp->isValid()) {
         //kDebug() << "Invalid player argument, using current player!";
-        tmp = *m_currentPlayer;
+        tmp = m_currentPlayer;
     }
 
     QByteArray msg("play ");                    // The command to be sent
-    if (tmp.isWhite())
+    if (tmp->isWhite())
         msg.append("white ");
     else
         msg.append("black ");
@@ -260,7 +260,7 @@ bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
 
     m_process.write(msg);                       // Send command to backend
     if (waitResponse()) {
-        if (tmp.isWhite())                     // Determine the next current player
+        if (tmp->isWhite())                     // Determine the next current player
             setCurrentPlayer(m_blackPlayer);
         else
             setCurrentPlayer(m_whitePlayer);
@@ -278,7 +278,7 @@ bool Engine::playMove(const Player &player, const Stone &stone, bool undoable)
 
         if (undoable) {                         // Do undo stuff if desired
             QString undoStr;
-            if (tmp.isWhite())
+            if (tmp->isWhite())
                 undoStr = i18n("White ");
             else
                 undoStr = i18n("Black ");
@@ -302,13 +302,13 @@ bool Engine::generateMove(const Player &player, bool undoable)
     if (!isRunning())
         return false;
 
-    Player tmp = player;
-    if (!tmp.isValid()) {
+    const Player *tmp = &player;
+    if (!tmp->isValid()) {
         //kDebug() << "Invalid player argument, using current player!";
-        tmp = *m_currentPlayer;
+        tmp = m_currentPlayer;
     }
 
-    if (tmp.isWhite()) {
+    if (tmp->isWhite()) {
         m_process.write("level " + QByteArray::number(m_whitePlayer.strength()) + '\n');
         waitResponse(); // Setting level is not mission-critical, no error checking
         m_process.write("genmove white\n");
@@ -319,7 +319,7 @@ bool Engine::generateMove(const Player &player, bool undoable)
     }
     if (waitResponse(true)) {
         QString undoStr;
-        if (tmp.isWhite()) {
+        if (tmp->isWhite()) {
             undoStr = i18n("White ");
             setCurrentPlayer(m_blackPlayer);
         } else {
@@ -455,7 +455,7 @@ QList<Move> Engine::moves(const Player &player)
         list = m_movesList;
     } else {
         foreach (const Move &move, m_movesList) {
-            if (move.player().color() == player.color())
+            if (move.player()->color() == player.color())
                 list.append(move);
         }
     }

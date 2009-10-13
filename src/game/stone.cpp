@@ -68,6 +68,13 @@ QString Stone::toString() const
     return QString(m_x + QString::number(m_y));
 }
 
+QDebug operator<<(QDebug debug, const Stone &stone)
+{
+    debug.nospace() << "(Stone at " << stone.x() << "," << stone.y()
+                    << " of value " << stone.value() << ")";
+    return debug;
+}
+
 } // End of namespace Kigo
 
 #include "moc_stone.cpp"
