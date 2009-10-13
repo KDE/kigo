@@ -203,6 +203,7 @@ void GameScene::themeChanged()
 void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QPixmap map;
+
     if (m_mouseRect.contains(event->scenePos())) {
         int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
         int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
@@ -210,17 +211,23 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         int x = m_mouseRect.x() + row * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.width()/2;
         int y = m_mouseRect.y() + col * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.height()/2;
 
+        // Show a placement marker at the nearest board intersection
+        // as a visual aid for the user.
         m_placementMarkerItem->setVisible(true);
         m_placementMarkerItem->setPos(x, y);
 
-        if (m_engine->currentPlayer().isWhite())
-            map = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
-        else if (m_engine->currentPlayer().isBlack())
-            map = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+        if (m_engine->currentPlayer().isHuman()) {
+            if (m_engine->currentPlayer().isWhite()) {
+                map = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+            } else if (m_engine->currentPlayer().isBlack()) {
+                map = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+            }
+            emit cursorPixmapChanged(map);
+        }
     } else {
         m_placementMarkerItem->setVisible(false);
+        emit cursorPixmapChanged(map);
     }
-    emit cursorPixmapChanged(map);
 }
 
 void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
