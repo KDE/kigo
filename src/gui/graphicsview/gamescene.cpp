@@ -37,7 +37,7 @@ GameScene::GameScene(Game *game, QObject *parent)
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
     connect(m_game, SIGNAL(changed()), this, SLOT(updateStoneItems()));
-    connect(m_game, SIGNAL(sizeChanged(int)), this, SLOT(changeBoardSize(int)));
+    connect(m_game, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
     connect(ThemeRenderer::self(), SIGNAL(themeChanged(const QString &)), this, SLOT(themeChanged()));
 
