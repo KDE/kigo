@@ -36,7 +36,7 @@ GameScene::GameScene(Game *game, QObject *parent)
     , m_showTerritory(false)
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
-    connect(m_game, SIGNAL(changed()), this, SLOT(updateStoneItems()));
+    connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_game, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
     connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
     connect(ThemeRenderer::self(), SIGNAL(themeChanged(const QString &)), this, SLOT(themeChanged()));
@@ -114,6 +114,7 @@ void GameScene::updateStoneItems()
         removeItem(item);
     }
     m_stoneItems.clear();
+    kDebug() << "fofofo";
 
     foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));

@@ -247,7 +247,7 @@ signals:
      * This signal is emitted when the board situation changed and
      * can be used to trigger an update to a visual representation.
      */
-    void changed();
+    void boardChanged();
 
     /** This signal is emitted when the board size was changed. */
     void boardSizeChanged(int);

@@ -55,7 +55,7 @@ bool Game::start(const QString &command)
         return false;
     }
     m_engineCommand = command;
-    kDebug() << "Game" << command << "started...";
+    //kDebug() << "Game" << command << "started...";
 
     // Test if we started a GTP-compatible Go game
     m_process.write("name\n");
@@ -69,7 +69,7 @@ bool Game::start(const QString &command)
     } else {
         m_engineName = m_response;
     }
-    kDebug() << "Game is a GTP-compatible Go game";
+    //kDebug() << "Game is a GTP-compatible Go game";
 
     m_process.write("version\n");
     if (waitResponse())
@@ -90,7 +90,7 @@ bool Game::init()
     if (!isRunning())
         return false;
 
-    kDebug() << "Init game!";
+    //kDebug() << "Init game!";
 
     m_process.write("clear_board\n");
     if (waitResponse()) {
@@ -102,7 +102,7 @@ bool Game::init()
         m_movesList.clear();
         m_undoStack.clear();
 
-        emit changed();
+        emit boardChanged();
         return true;
     } else
         return false;
@@ -137,7 +137,7 @@ bool Game::init(const QString &fileName, int moveNumber)
         m_movesList.clear();
         m_undoStack.clear();
 
-        emit changed();                             // All done, tell the world!
+        emit boardChanged();                             // All done, tell the world!
         return true;
     } else
         return false;
@@ -169,7 +169,7 @@ bool Game::setBoardSize(int size)
         m_movesList.clear();
         m_undoStack.clear();
         emit boardSizeChanged(size);
-        emit changed();
+        emit boardChanged();
         return true;
     } else
         return false;
@@ -202,7 +202,7 @@ bool Game::setFixedHandicap(int handicap)
             // which means, white is next.
             setCurrentPlayer(m_whitePlayer);
             m_fixedHandicap = handicap;
-            emit changed();
+            emit boardChanged();
             return true;
         } else
             return false;
@@ -291,7 +291,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
             m_undoStack.push(new QUndoCommand(undoStr));
         }
 
-        emit changed();
+        emit boardChanged();
         return true;
     } else
         return false;
@@ -341,7 +341,7 @@ bool Game::generateMove(const Player &player, bool undoable)
             m_movesList.append(Move(tmp, Stone(m_response)));
             m_consecutivePassMoveNumber = 0;
             undoStr += m_response;
-            emit changed();
+            emit boardChanged();
         }
 
         if (undoable) {
@@ -371,7 +371,7 @@ bool Game::undoMove()
             m_consecutivePassMoveNumber--;
         m_undoStack.undo();*/
 
-        emit changed();
+        emit boardChanged();
         return true;
     } else
         return false;

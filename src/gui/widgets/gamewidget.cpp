@@ -35,7 +35,7 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
 
     finishButton->setIcon(KIcon("media-playback-stop"));
 
-    connect(m_game, SIGNAL(changed()), this, SLOT(update()));
+    connect(m_game, SIGNAL(boardChanged()), this, SLOT(update()));
     connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinishButton()));
     connect(finishButton, SIGNAL(clicked()), this, SLOT(finishButtonClicked()));
 }
