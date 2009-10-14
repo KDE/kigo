@@ -43,7 +43,7 @@ GameScene::GameScene(Game *game, QObject *parent)
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
-    addItem(&m_gamePopup);                  // TODO: Fix initial placement issue
+    addItem(&m_gamePopup);
 }
 
 void GameScene::resizeScene(int width, int height)
@@ -102,6 +102,7 @@ void GameScene::showMessage(const QString &message, int msecs)
 void GameScene::showTerritory(bool show)
 {
     m_showTerritory = show;
+    //TODO: Implement showing territory
     updateStoneItems();
 }
 
@@ -114,7 +115,6 @@ void GameScene::updateStoneItems()
         removeItem(item);
     }
     m_stoneItems.clear();
-    kDebug() << "fofofo";
 
     foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));

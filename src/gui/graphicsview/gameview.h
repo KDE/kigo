@@ -52,7 +52,7 @@ private slots:
     void changeCursor(const QPixmap &cursorPixmap);
 
 private:
-    void drawForeground(QPainter *painter, const QRectF &rect);
+    //void drawForeground(QPainter *painter, const QRectF &rect);
     void showEvent(QShowEvent *event);
     void resizeEvent(QResizeEvent *event);
 

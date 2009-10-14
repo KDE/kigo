@@ -72,8 +72,9 @@ bool Game::start(const QString &command)
     //kDebug() << "Game is a GTP-compatible Go game";
 
     m_process.write("version\n");
-    if (waitResponse())
+    if (waitResponse()) {
         m_engineVersion = m_response;
+    }
     return true;
 }
 
@@ -87,8 +88,9 @@ void Game::stop()
 
 bool Game::init()
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     //kDebug() << "Init game!";
 
@@ -104,32 +106,38 @@ bool Game::init()
 
         emit boardChanged();
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::init(const QString &fileName, int moveNumber)
 {
     Q_ASSERT(moveNumber >= 0);
-    if (!isRunning() || fileName.isEmpty() || !QFile::exists(fileName))
+    if (!isRunning() || fileName.isEmpty() || !QFile::exists(fileName)) {
         return false;
+    }
 
     m_process.write("loadsgf " + fileName.toLatin1() + ' ' + QByteArray::number(moveNumber) + '\n');
     if (waitResponse()) {
-        if (m_response.startsWith("white"))         // Check which player is current
+        if (m_response.startsWith("white")) {       // Check which player is current
             setCurrentPlayer(m_whitePlayer);
-        else
+        } else {
             setCurrentPlayer(m_blackPlayer);
+        }
 
         m_process.write("query_boardsize\n");       // Query board size from game
-        if (waitResponse())
+        if (waitResponse()) {
             m_boardSize = m_response.toInt();
+        }
         m_process.write("get_komi\n");              // Query komi from game and store it
-        if (waitResponse())
+        if (waitResponse()) {
             m_komi = m_response.toFloat();
+        }
         m_process.write("get_handicap\n");          // Query fixed handicap and store it
-        if (waitResponse())
+        if (waitResponse()) {
             m_fixedHandicap = m_response.toInt();
+        }
         //kDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
 
         m_consecutivePassMoveNumber = 0;
@@ -139,14 +147,16 @@ bool Game::init(const QString &fileName, int moveNumber)
 
         emit boardChanged();                             // All done, tell the world!
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::save(const QString &fileName)
 {
-    if (!isRunning() || fileName.isEmpty())
+    if (!isRunning() || fileName.isEmpty()) {
         return false;
+    }
 
     m_process.write("printsgf " + fileName.toLatin1() + '\n');
     return waitResponse();
@@ -155,8 +165,9 @@ bool Game::save(const QString &fileName)
 bool Game::setBoardSize(int size)
 {
     Q_ASSERT(size >= 1 && size <= 19);
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     m_process.write("boardsize " + QByteArray::number(size) + '\n');
     if (waitResponse()) {
@@ -171,29 +182,33 @@ bool Game::setBoardSize(int size)
         emit boardSizeChanged(size);
         emit boardChanged();
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::setKomi(float komi)
 {
     Q_ASSERT(komi >= 0);
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     m_process.write("komi " + QByteArray::number(komi) + '\n');
     if (waitResponse()) {
         m_komi = komi;
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::setFixedHandicap(int handicap)
 {
     Q_ASSERT(handicap >= 2 && handicap <= 9);
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     if (handicap <= fixedHandicapUpperBound()) {
         m_process.write("fixed_handicap " + QByteArray::number(handicap) + '\n');
@@ -204,8 +219,9 @@ bool Game::setFixedHandicap(int handicap)
             m_fixedHandicap = handicap;
             emit boardChanged();
             return true;
-        } else
+        } else {
             return false;
+        }
     } else {
         kWarning() << "Handicap" << handicap << " not set, it is too high!";
         return false;
@@ -239,8 +255,9 @@ bool Game::playMove(const Move &move, bool undoable)
 
 bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     const Player *tmp = &player;
     if (!tmp->isValid()) {
@@ -249,58 +266,66 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
     }
 
     QByteArray msg("play ");                    // The command to be sent
-    if (tmp->isWhite())
+    if (tmp->isWhite()) {
         msg.append("white ");
-    else
+    } else {
         msg.append("black ");
-    if (stone.isValid())
+    }
+    if (stone.isValid()) {
         msg.append(stone.toLatin1() + '\n');
-    else
+    } else {
         msg.append("pass\n");
+    }
 
     m_process.write(msg);                       // Send command to backend
     if (waitResponse()) {
-        if (tmp->isWhite())                     // Determine the next current player
+        if (tmp->isWhite()) {                   // Determine the next current player
             setCurrentPlayer(m_blackPlayer);
-        else
+        } else {
             setCurrentPlayer(m_whitePlayer);
+        }
 
         if (stone.isValid()) {                  // Normal move handling
             m_movesList.append(Move(tmp, stone));
             m_consecutivePassMoveNumber = 0;
         } else {                                // And pass move handling
             m_movesList.append(Move(tmp, Stone::Pass));
-            if (m_consecutivePassMoveNumber > 0)
+            if (m_consecutivePassMoveNumber > 0) {
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+            }
             m_consecutivePassMoveNumber++;
         }
         m_currentMove++;
 
         if (undoable) {                         // Do undo stuff if desired
             QString undoStr;
-            if (tmp->isWhite())
+            if (tmp->isWhite()) {
                 undoStr = i18n("White ");
-            else
+            } else {
                 undoStr = i18n("Black ");
+            }
 
-            if (stone.isValid())
+            if (stone.isValid()) {
                 undoStr += stone.toLatin1();
-            else
+            } else {
                 undoStr += i18n("passed");
+            }
             //kDebug() << "Push new undo command" << undoStr;
             m_undoStack.push(new QUndoCommand(undoStr));
         }
 
         emit boardChanged();
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::generateMove(const Player &player, bool undoable)
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     const Player *tmp = &player;
     if (!tmp->isValid()) {
@@ -329,8 +354,9 @@ bool Game::generateMove(const Player &player, bool undoable)
 
         if (m_response == "PASS") {
             m_currentMove++;
-            if (m_consecutivePassMoveNumber > 0)
+            if (m_consecutivePassMoveNumber > 0) {
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+            }
             m_consecutivePassMoveNumber++;
             undoStr += i18n("pass");
         } else if (m_response == "resign") {
@@ -349,47 +375,52 @@ bool Game::generateMove(const Player &player, bool undoable)
             m_undoStack.push(new QUndoCommand(undoStr));
         }
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::undoMove()
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     m_process.write("undo\n");
     if (waitResponse()) {
-        //TODO: What happens with pass moves ?!?
-        /*Move lastMove = m_movesList.takeLast();
+        Move lastMove = m_movesList.takeLast();
         m_currentMove--;
-        if (lastMove.second == WhitePlayer)
-            setCurrentPlayer(WhitePlayer);
-        else
-            setCurrentPlayer(BlackPlayer);
-        if (m_consecutivePassMoveNumber > 0)
+        if (lastMove.player()->isWhite()) {
+            setCurrentPlayer(m_whitePlayer);
+        } else {
+            setCurrentPlayer(m_blackPlayer);
+        }
+        if (m_consecutivePassMoveNumber > 0) {
             m_consecutivePassMoveNumber--;
-        m_undoStack.undo();*/
+        }
+        //TODO: What happens with pass moves deeper in the history?
+        m_undoStack.undo();
 
         emit boardChanged();
         return true;
-    } else
+    } else {
         return false;
+    }
 }
 
 bool Game::redoMove()
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return false;
+    }
 
     QString undoStr = m_undoStack.text(m_undoStack.index());
 
-    //TODO: Reimplement this
-    /*PlayerColor color;
+    Player *player;
     if (undoStr.startsWith(i18n("Black "))) {
-        color = BlackPlayer;
+        player = &m_blackPlayer;
     } else if (undoStr.startsWith(i18n("White "))) {
-        color = WhitePlayer;
+        player = &m_whitePlayer;
     } else {
         kDebug() << "Invalid undo/redo command found:" << undoStr;
         return false;
@@ -397,17 +428,18 @@ bool Game::redoMove()
 
     undoStr.remove(0, undoStr.indexOf(' ')+1);
     if (undoStr.startsWith(i18n("pass"))) {
-        kDebug() << "Redo a pass move for" << color << undoStr;
-        playMove(Stone(), color, true);         // E.g. pass move
+        kDebug() << "Redo a pass move for" << player << undoStr;
+        playMove(*player, Stone(), false);         // E.g. pass move
     } else if (undoStr.startsWith(i18n("resign"))) {
         // Note: Altough it is possible to undo after a resign and redo it,
         //       it is a bit questionable whether this makes sense logically.
-        kDebug() << "Redo a resign for" << color << undoStr;
-        emit resigned(m_currentPlayer);
+        kDebug() << "Redo a resign for" << player << undoStr;
+        emit resigned(*player);
+        //emit resigned(*m_currentPlayer);
     } else {
-        kDebug() << "Redo a normal move for" << color << undoStr;
-        playMove(Stone(undoStr), color, true);
-    }*/
+        kDebug() << "Redo a normal move for" << player << undoStr;
+        playMove(*player, Stone(undoStr), false);
+    }
     m_undoStack.redo();
     return false;
 }
@@ -424,22 +456,25 @@ Move Game::lastMove() const
 QList<Stone> Game::stones(const Player &player)
 {
     QList<Stone> list;
-    if (!isRunning())
+    if (!isRunning()) {
         return list;
+    }
 
     // Invalid player means all stones
     if (!player.isWhite()) {
         m_process.write("list_stones black\n");
         if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(' '))
+            foreach (const QString &pos, m_response.split(' ')) {
                 list.append(Stone(pos));
+            }
         }
     }
     if (!player.isBlack()) {
         m_process.write("list_stones white\n");
         if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(' '))
+            foreach (const QString &pos, m_response.split(' ')) {
                 list.append(Stone(pos));
+            }
         }
     }
     return list;
@@ -448,15 +483,17 @@ QList<Stone> Game::stones(const Player &player)
 QList<Move> Game::moves(const Player &player)
 {
     QList<Move> list;
-    if (!isRunning())
+    if (!isRunning()) {
         return list;
+    }
 
     if (!player.isValid()) {
         list = m_movesList;
     } else {
         foreach (const Move &move, m_movesList) {
-            if (move.player()->color() == player.color())
+            if (move.player()->color() == player.color()) {
                 list.append(move);
+            }
         }
     }
     return list;
@@ -465,13 +502,15 @@ QList<Move> Game::moves(const Player &player)
 QList<Stone> Game::liberties(const Stone &stone)
 {
     QList<Stone> list;
-    if (!isRunning() || !stone.isValid())
+    if (!isRunning() || !stone.isValid()) {
         return list;
+    }
 
     m_process.write("findlib " + stone.toLatin1() + '\n');
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(' '))
+        foreach (const QString &entry, m_response.split(' ')) {
             list.append(Stone(entry));
+        }
     }
     return list;
 }
@@ -479,18 +518,22 @@ QList<Stone> Game::liberties(const Stone &stone)
 QList<Stone> Game::bestMoves(const Player &player)
 {
     QList<Stone> list;
-    if (!isRunning() || !player.isValid())
+    if (!isRunning() || !player.isValid()) {
         return list;
+    }
 
-    if (player.isWhite())
+    if (player.isWhite()) {
         m_process.write("top_moves_white\n");
-    else
+    } else {
         m_process.write("top_moves_black\n");
+    }
     if (waitResponse(true) && !m_response.isEmpty()) {
         QStringList parts = m_response.split(' ');
-        if (parts.size() % 2 == 0)
-            for (int i = 0; i < parts.size(); i += 2)
+        if (parts.size() % 2 == 0) {
+            for (int i = 0; i < parts.size(); i += 2) {
                 list.append(Stone(parts[i], QString(parts[i + 1]).toFloat()));
+            }
+        }
     }
     return list;
 }
@@ -498,36 +541,42 @@ QList<Stone> Game::bestMoves(const Player &player)
 QList<Stone> Game::legalMoves(const Player &player)
 {
     QList<Stone> list;
-    if (!isRunning() || !player.isValid())
+    if (!isRunning() || !player.isValid()) {
         return list;
+    }
 
-    if (player.isWhite())
+    if (player.isWhite()) {
         m_process.write("all_legal white\n");
-    else
+    } else {
         m_process.write("all_legal black\n");
+    }
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(' '))
+        foreach (const QString &entry, m_response.split(' ')) {
             list.append(Stone(entry));
+        }
     }
     return list;
 }
 
 int Game::captures(const Player &player)
 {
-    if (!isRunning() || !player.isValid())
+    if (!isRunning() || !player.isValid()) {
         return 0;
+    }
 
-    if (player.isWhite())
+    if (player.isWhite()) {
         m_process.write("captures white\n");
-    else
+    } else {
         m_process.write("captures black\n");
+    }
     return waitResponse() ? m_response.toInt() : 0;
 }
 
 Game::FinalState Game::finalState(const Stone &stone)
 {
-    if (!isRunning() || !stone.isValid())
+    if (!isRunning() || !stone.isValid()) {
         return FinalStateInvalid;
+    }
 
     m_process.write("final_status " + stone.toLatin1() + '\n');
     if (waitResponse()) {
@@ -545,8 +594,9 @@ Game::FinalState Game::finalState(const Stone &stone)
 QList<Stone> Game::finalStates(FinalState state)
 {
     QList<Stone> list;
-    if (!isRunning() || state == FinalStateInvalid)
+    if (!isRunning() || state == FinalStateInvalid) {
         return list;
+    }
 
     QByteArray msg("final_status_list ");
     switch (state) {
@@ -561,16 +611,18 @@ QList<Stone> Game::finalStates(FinalState state)
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(' '))
+        foreach (const QString &entry, m_response.split(' ')) {
             list.append(Stone(entry));
+        }
     }
     return list;
 }
 
 Score Game::finalScore()
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return Score();
+    }
 
     m_process.write("final_score\n");
     return waitResponse() ? Score(m_response) : Score();
@@ -578,8 +630,9 @@ Score Game::finalScore()
 
 Score Game::estimatedScore()
 {
-    if (!isRunning())
+    if (!isRunning()) {
         return Score();
+    }
 
     m_process.write("estimate_score\n");
     return waitResponse() ? Score(m_response) : Score();
@@ -600,8 +653,9 @@ bool Game::waitResponse(bool nonBlocking)
         return false;
     }
 
-    if (nonBlocking)
+    if (nonBlocking) {
         emit waiting(true);
+    }
 
     // Wait for finished command execution. We have to do this untill '\n\n' arives in our
     // input buffer to show that the Go game is done processing our request. The 'nonBlocking'
@@ -621,11 +675,13 @@ bool Game::waitResponse(bool nonBlocking)
         m_response += m_process.readAllStandardOutput();
     } while(!m_response.endsWith("\n\n"));
 
-    if (nonBlocking)
+    if (nonBlocking) {
         emit waiting(false);
+    }
 
-    if (m_response.size() < 1)
+    if (m_response.size() < 1) {
         return false;
+    }
     QChar tmp = m_response[0];                  // First message character indicates success or error
     m_response.remove(0, 2);                    // Remove the first two chars (e.g. "? " or "= ")
     m_response = m_response.trimmed();          // Remove further whitespaces, newlines, ...
