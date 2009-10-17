@@ -61,7 +61,7 @@ bool Game::start(const QString &command)
     m_process.write("name\n");
     m_process.waitForReadyRead();
     QString response = m_process.readAllStandardOutput();
-    if (response.isEmpty() || !response.startsWith("=")) {
+    if (response.isEmpty() || !response.startsWith(QLatin1String("="))) {
         m_response = "Game did not respond to GTP command \"name\"";
         kDebug() << m_response;
         stop();
@@ -120,7 +120,7 @@ bool Game::init(const QString &fileName, int moveNumber)
 
     m_process.write("loadsgf " + fileName.toLatin1() + ' ' + QByteArray::number(moveNumber) + '\n');
     if (waitResponse()) {
-        if (m_response.startsWith("white")) {       // Check which player is current
+        if (m_response.startsWith(QLatin1String("white"))) { // Check which player is current
             setCurrentPlayer(m_whitePlayer);
         } else {
             setCurrentPlayer(m_blackPlayer);
@@ -673,7 +673,7 @@ bool Game::waitResponse(bool nonBlocking)
             m_process.waitForReadyRead();       // Blocking wait
         }
         m_response += m_process.readAllStandardOutput();
-    } while(!m_response.endsWith("\n\n"));
+    } while(!m_response.endsWith(QLatin1String("\n\n")));
 
     if (nonBlocking) {
         emit waiting(false);

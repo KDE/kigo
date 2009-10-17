@@ -44,14 +44,14 @@ public:
      * @param x The x coordinate of the stone
      * @param y The y coordinate of the stone
      */
-    Stone(char x = 0, int y = 0, float value = 0);
+    explicit Stone(char x = 0, int y = 0, float value = 0);
 
     /**
      * Constructor to set from a stone given as a string.
      *
      * @param stone The stone as string
      */
-    Stone(const QString &stone, float value = 0);
+    explicit Stone(const QString &stone, float value = 0);
 
     Stone(const Stone &other);
     Stone &operator=(const Stone &other);

@@ -36,6 +36,7 @@
 #include <KFileDialog>
 #include <KGameThemeSelector>
 #include <KMenuBar>
+#include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <KToolBar>

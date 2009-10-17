@@ -54,7 +54,7 @@ public:
     };
 
 private:
-    Player(Color color, Type type = Human);
+    explicit Player(Color color, Type type = Human);
 
 public:
     Player(const Player &other);
@@ -78,7 +78,7 @@ public:
     bool isHuman() const { return m_type == Human; }
     bool isComputer() const { return m_type == Computer; }
 
-    bool operator==(const Player &other);
+    bool operator==(const Player &other) const;
 
 private:
     QString m_name;

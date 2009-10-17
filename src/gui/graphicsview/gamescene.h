@@ -45,7 +45,7 @@ class GameScene : public QGraphicsScene
     Q_OBJECT
 
 public:
-    GameScene(Game *game, QObject *parent = 0);
+    explicit GameScene(Game *game, QObject *parent = 0);
 
 signals:
     void cursorPixmapChanged(const QPixmap &);

@@ -42,7 +42,7 @@ Player &Player::operator=(const Player &other)
     return *this;
 }
 
-bool Player::operator==(const Player &other)
+bool Player::operator==(const Player &other) const
 {
     return m_name == other.m_name &&
            m_color == other.m_color &&
