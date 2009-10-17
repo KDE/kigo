@@ -106,7 +106,8 @@ void MainWindow::newGame()
 
 void MainWindow::loadGame()
 {
-    QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
+    //QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
+    QString fileName = KFileDialog::getOpenFileName(KUrl(KStandardDirs::locate("appdata", "games/")), "*.sgf");
     if (!fileName.isEmpty()) {
         m_game->start(Preferences::engineCommand());
 
@@ -142,6 +143,12 @@ void MainWindow::loadGame()
         m_gameScene->showMessage(i18n("Unable to load game..."));
         //Note: New game implied here
     }
+}
+
+void MainWindow::getMoreGames()
+{
+    //TODO: Implement this!
+    // view http://techbase.kde.org/Development/Tutorials/K_Hot_New_Stuff2
 }
 
 void MainWindow::backendError()
@@ -294,8 +301,7 @@ void MainWindow::showPreferences()
 
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
-    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"),
-                    "games-config-theme");
+    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"), "games-config-theme");
     dialog->setHelp(QString(), "Kigo");
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(applyPreferences()));
     dialog->show();
@@ -364,6 +370,11 @@ void MainWindow::setupActions()
     // Game menu
     m_newGameAction = KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
     m_loadGameAction = KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
+    m_getMoreGamesAction = new KAction(KIcon("get-hot-new-stuff"), i18nc("@action", "Get More Games..."), this);
+    m_getMoreGamesAction->setShortcut(Qt::CTRL + Qt::Key_G);
+    m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
+    connect(m_getMoreGamesAction, SIGNAL(triggered(bool)), this, SLOT(getMoreGames()));
+    actionCollection()->addAction("get_more_games", m_getMoreGamesAction);
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
@@ -383,7 +394,7 @@ void MainWindow::setupActions()
     m_undoMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
     m_redoMoveAction = KStandardGameAction::redo(this, SLOT(redo()), actionCollection());
     m_passMoveAction = KStandardGameAction::endTurn(this, SLOT(pass()), actionCollection());
-    m_passMoveAction->setText(i18nc("@action:inmenu Move", "Pass move"));
+    m_passMoveAction->setText(i18nc("@action:inmenu Move", "Pass Move"));
     m_passMoveAction->setShortcut(Qt::Key_P);
     m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
 

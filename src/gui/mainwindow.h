@@ -52,6 +52,7 @@ public:
 private slots:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
+    void getMoreGames();
     void backendError();                    ///<
     void saveGame();                        ///< Save current game state
     void startGame();                       ///< React on start button
@@ -87,6 +88,7 @@ private:
 
     KAction *m_newGameAction;
     KAction *m_loadGameAction;
+    KAction *m_getMoreGamesAction;
     KAction *m_saveAction;                  ///< Action to save the current game
     KAction *m_undoMoveAction;              ///< Action to jump to the last move
     KAction *m_redoMoveAction;              ///< Action to jump to the next move
