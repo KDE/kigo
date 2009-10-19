@@ -20,7 +20,7 @@
 
 #include "move.h"
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Kigo {
 
@@ -30,7 +30,7 @@ Move::Move(const Player *player, const Stone &stone)
 }
 
 Move::Move(const Move &other)
-    : QObject(), m_player(other.m_player), m_stone(other.m_stone)
+    : m_player(other.m_player), m_stone(other.m_stone)
 {
 }
 
@@ -48,5 +48,3 @@ QDebug operator<<(QDebug debug, const Move &move)
 }
 
 } // End of namespace Kigo
-
-#include "moc_move.cpp"

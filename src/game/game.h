@@ -292,6 +292,8 @@ private slots:
      */
     void readyRead();
 
+    void undoIndexChanged(int index);
+
 private:
     void setCurrentPlayer(Player &player);
 
@@ -305,6 +307,7 @@ private:
     QList<Move> m_movesList;
     int m_currentMove;
     QUndoStack m_undoStack;
+    int m_lastUndoIndex;
 
     Player *m_currentPlayer;
     Player m_blackPlayer;

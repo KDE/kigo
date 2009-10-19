@@ -20,6 +20,8 @@
 
 #include "player.h"
 
+#include <QDebug>
+
 namespace Kigo {
 
 Player::Player(Color color, Type type)
@@ -28,7 +30,7 @@ Player::Player(Color color, Type type)
 }
 
 Player::Player(const Player &other)
-    : QObject(), m_name(other.m_name), m_color(other.m_color)
+    : m_name(other.m_name), m_color(other.m_color)
     , m_type(other.m_type), m_strength(other.m_strength)
 {
 }
@@ -74,5 +76,3 @@ QDebug operator<<(QDebug debug, const Player &player)
 }
 
 } // End of namespace Kigo
-
-#include "moc_player.cpp"

@@ -20,6 +20,8 @@
 
 #include "stone.h"
 
+#include <QDebug>
+
 namespace Kigo {
 
 Stone Stone::Pass = Stone();
@@ -40,7 +42,7 @@ Stone::Stone(const QString &stone, float value)
 }
 
 Stone::Stone(const Stone &other)
-    : QObject(), m_x(other.m_x), m_y(other.m_y), m_value(other.m_value)
+    : m_x(other.m_x), m_y(other.m_y), m_value(other.m_value)
 {
 }
 
@@ -76,5 +78,3 @@ QDebug operator<<(QDebug debug, const Stone &stone)
 }
 
 } // End of namespace Kigo
-
-#include "moc_stone.cpp"

@@ -21,8 +21,6 @@
 #ifndef KIGO_PLAYER_H
 #define KIGO_PLAYER_H
 
-#include <QDebug>
-#include <QObject>
 #include <QString>
 
 namespace Kigo {
@@ -35,10 +33,8 @@ namespace Kigo {
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.5
  */
-class Player : public QObject
+class Player
 {
-    Q_OBJECT
-
     friend class Game;
 
 public:

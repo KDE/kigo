@@ -21,8 +21,6 @@
 #ifndef KIGO_STONE_H
 #define KIGO_STONE_H
 
-#include <QDebug>
-#include <QObject>
 #include <QString>
 
 namespace Kigo {
@@ -30,10 +28,8 @@ namespace Kigo {
 /**
  * This class represents a stone on a field of the game board.
  */
-class Stone : public QObject
+class Stone
 {
-    Q_OBJECT
-
 public:
     static Stone Pass;      ///< A standard pass move object
     static Stone Invalid;   ///< A standard invalid move object

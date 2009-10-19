@@ -24,8 +24,6 @@
 #include "player.h"
 #include "stone.h"
 
-#include <QDebug>
-
 namespace Kigo {
 
 /**
@@ -35,10 +33,8 @@ namespace Kigo {
  * @author Sascha Peilicke <sasch.pe@gmx.de>
  * @since 0.5
  */
-class Move : public QObject
+class Move
 {
-    Q_OBJECT
-
 public:
     Move(const Player *player, const Stone &stone);
     Move(const Move &other);

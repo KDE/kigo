@@ -31,13 +31,14 @@ namespace Kigo {
 
 Game::Game(QObject *parent)
     : QObject(parent)
-    , m_currentMove(0), m_currentPlayer(&m_blackPlayer)
+    , m_currentMove(0), m_lastUndoIndex(0), m_currentPlayer(&m_blackPlayer)
     , m_blackPlayer(Player::Black), m_whitePlayer(Player::White)
     , m_komi(4.5), m_boardSize(19), m_fixedHandicap(5), m_consecutivePassMoveNumber(0)
 {
     connect(&m_process, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(&m_undoStack, SIGNAL(canRedoChanged(bool)), this, SIGNAL(canRedoChanged(bool)));
     connect(&m_undoStack, SIGNAL(canUndoChanged(bool)), this, SIGNAL(canUndoChanged(bool)));
+    connect(&m_undoStack, SIGNAL(indexChanged(int)), this, SLOT(undoIndexChanged(int)));
 }
 
 Game::~Game()
@@ -691,6 +692,27 @@ bool Game::waitResponse(bool nonBlocking)
 void Game::readyRead()
 {
     m_waitAndProcessEvents = false;
+}
+
+void Game::undoIndexChanged(int index)
+{
+    /*int diff = index - m_lastUndoIndex;
+
+    //TODO: Fix this ugly mess!
+    kDebug() << "Undo stack index changed by " << diff << "...";
+    // Bigger index changed usually mean that some QUndoView got a MouseClickEvent.
+    // This means we have to replay more undo/redo steps than normally. If the
+    // difference is greater than 1 we have to replay diff-1 steps.
+    if (diff > 1) {
+        for (int i = 0; i < diff; i++) {
+            redoMove();
+        }
+    } else if (diff < -1) {
+        for (int i = 0; i > diff; i--) {
+            undoMove();
+        }
+    }*/
+    m_lastUndoIndex = index;
 }
 
 void Game::setCurrentPlayer(Player &player)
