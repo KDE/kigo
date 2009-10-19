@@ -36,12 +36,12 @@
 #include <KFileDialog>
 #include <KGameThemeSelector>
 #include <KMenuBar>
+#include <knewstuff2/engine.h>
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <KToolBar>
 
-#include <QDir>
 #include <QDockWidget>
 #include <QTimer>
 #include <QUndoView>
@@ -106,7 +106,6 @@ void MainWindow::newGame()
 
 void MainWindow::loadGame()
 {
-    //QString fileName = KFileDialog::getOpenFileName(KUrl(QDir::homePath()), "*.sgf");
     QString fileName = KFileDialog::getOpenFileName(KUrl(KStandardDirs::locate("appdata", "games/")), "*.sgf");
     if (!fileName.isEmpty()) {
         m_game->start(Preferences::engineCommand());
@@ -147,8 +146,15 @@ void MainWindow::loadGame()
 
 void MainWindow::getMoreGames()
 {
-    //TODO: Implement this!
-    // view http://techbase.kde.org/Development/Tutorials/K_Hot_New_Stuff2
+    KNS::Engine engine(0);
+
+    if (engine.init("kigo-games.knsrc")) {
+        KNS::Entry::List entries = engine.downloadDialogModal(this);
+        /*if (entries.size() > 0) {
+            // do something with the modified entries here if you want
+            // such as rescaning your data folder or whatnot
+        }*/
+    }
 }
 
 void MainWindow::backendError()
@@ -230,9 +236,11 @@ void MainWindow::startGame()
     m_gameDock->toggleViewAction()->setEnabled(true);
     m_movesDock->setVisible(true);
     m_movesDock->toggleViewAction()->setEnabled(true);
-    m_undoView->setEnabled(false);
 
     m_gameScene->showMessage(i18n("Game started..."));
+
+    //TODO: Fix undo view clicking somehow
+    m_undoView->setEnabled(false);
 }
 
 void MainWindow::finishGame()
@@ -441,6 +449,10 @@ void MainWindow::setupDockWindows()
     m_movesDock->setObjectName("movesDock");
     m_undoView = new QUndoView(m_game->undoStack());
     m_undoView->setEmptyLabel(i18n("No move"));
+    m_undoView->setAlternatingRowColors(true);
+    m_undoView->setFocusPolicy(Qt::NoFocus);
+    m_undoView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_undoView->setSelectionMode(QAbstractItemView::NoSelection);
     m_movesDock->setWidget(m_undoView);
     m_movesDock->toggleViewAction()->setText(i18nc("@title:window", "Moves"));
     m_movesDock->toggleViewAction()->setShortcut(Qt::Key_M);
