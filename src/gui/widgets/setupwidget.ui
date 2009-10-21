@@ -273,7 +273,7 @@
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="newGamePage">
       <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -489,9 +489,6 @@
                <property name="readOnly">
                 <bool>true</bool>
                </property>
-               <property name="contextMenuEnabled">
-                <bool>false</bool>
-               </property>
                <property name="urlDropsEnabled">
                 <bool>false</bool>
                </property>
@@ -514,9 +511,6 @@
                <property name="readOnly">
                 <bool>true</bool>
                </property>
-               <property name="contextMenuEnabled">
-                <bool>false</bool>
-               </property>
                <property name="urlDropsEnabled">
                 <bool>false</bool>
                </property>
@@ -535,9 +529,6 @@
                </property>
                <property name="readOnly">
                 <bool>true</bool>
-               </property>
-               <property name="contextMenuEnabled">
-                <bool>false</bool>
                </property>
                <property name="urlDropsEnabled">
                 <bool>false</bool>
@@ -621,9 +612,6 @@
                <property name="readOnly">
                 <bool>true</bool>
                </property>
-               <property name="contextMenuEnabled">
-                <bool>false</bool>
-               </property>
                <property name="urlDropsEnabled">
                 <bool>false</bool>
                </property>
@@ -638,7 +626,7 @@
                 <enum>Qt::NoFocus</enum>
                </property>
                <property name="contextMenuPolicy">
-                <enum>Qt::NoContextMenu</enum>
+                <enum>Qt::DefaultContextMenu</enum>
                </property>
                <property name="acceptDrops">
                 <bool>false</bool>
@@ -669,9 +657,6 @@
                <property name="readOnly">
                 <bool>true</bool>
                </property>
-               <property name="contextMenuEnabled">
-                <bool>false</bool>
-               </property>
                <property name="urlDropsEnabled">
                 <bool>false</bool>
                </property>
@@ -683,7 +668,7 @@
                 <enum>Qt::NoFocus</enum>
                </property>
                <property name="contextMenuPolicy">
-                <enum>Qt::NoContextMenu</enum>
+                <enum>Qt::DefaultContextMenu</enum>
                </property>
                <property name="readOnly">
                 <bool>true</bool>

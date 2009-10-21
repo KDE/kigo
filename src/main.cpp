@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
             ki18n("Copyright (c) 2008,2009 Sascha Peilicke"));
     aboutData.addAuthor(ki18n("Sascha Peilicke (saschpe)"), ki18n("Original author"),
                         "sasch.pe@gmx.de", "http://saschpe.wordpress.com");
-    //aboutData.setHomepage("http://games.kde.org/kigo");
+    aboutData.setHomepage("http://games.kde.org/kigo");
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KApplication app;

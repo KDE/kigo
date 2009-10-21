@@ -42,7 +42,7 @@
       <enum>Qt::NoFocus</enum>
      </property>
      <property name="contextMenuPolicy">
-      <enum>Qt::NoContextMenu</enum>
+      <enum>Qt::DefaultContextMenu</enum>
      </property>
      <property name="acceptDrops">
       <bool>false</bool>
@@ -73,7 +73,7 @@
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
+         <enum>Qt::DefaultContextMenu</enum>
         </property>
         <property name="acceptDrops">
          <bool>false</bool>
@@ -100,9 +100,6 @@
        <widget class="KLineEdit" name="blackCapturesLineEdit">
         <property name="readOnly">
          <bool>true</bool>
-        </property>
-        <property name="contextMenuEnabled">
-         <bool>false</bool>
         </property>
         <property name="urlDropsEnabled">
          <bool>false</bool>
@@ -316,7 +313,7 @@
          <enum>Qt::NoFocus</enum>
         </property>
         <property name="contextMenuPolicy">
-         <enum>Qt::NoContextMenu</enum>
+         <enum>Qt::DefaultContextMenu</enum>
         </property>
         <property name="acceptDrops">
          <bool>false</bool>
@@ -343,9 +340,6 @@
        <widget class="KLineEdit" name="whiteCapturesLineEdit">
         <property name="readOnly">
          <bool>true</bool>
-        </property>
-        <property name="contextMenuEnabled">
-         <bool>false</bool>
         </property>
         <property name="urlDropsEnabled">
          <bool>false</bool>
