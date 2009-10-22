@@ -46,7 +46,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="KPushButton" name="configureButton">
        <property name="text">
-        <string>Configure Kigo ...</string>
+        <string>Configure Kigo...</string>
        </property>
       </widget>
      </item>
