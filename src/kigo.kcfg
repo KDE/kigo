@@ -72,14 +72,14 @@
         </entry>
         <entry name="WhitePlayerStrength" type="Int">
             <label>The strength of the white player</label>
-            <default>10</default>
+            <default>1</default>
             <min>1</min>
             <max>10</max>
         </entry>
         <entry name="BoardSize" type="Int">
             <label>Go board size</label>
             <tooltip></tooltip>
-            <default>19</default>
+            <default>9</default>
             <min>3</min>
             <max>19</max>
         </entry>

@@ -391,6 +391,15 @@ bool Game::undoMove()
     if (waitResponse()) {
         Move lastMove = m_movesList.takeLast();
         m_currentMove--;
+        if (lastMove.player()->isComputer()) {
+            // Do one more undo
+            m_process.write("undo\n");
+            if (waitResponse()) {
+                lastMove = m_movesList.takeLast();
+                m_currentMove--;
+            }
+            m_undoStack.undo();
+        }
         if (lastMove.player()->isWhite()) {
             setCurrentPlayer(m_whitePlayer);
         } else {
