@@ -1,6 +1,16 @@
 [KGameTheme]
 Name=Default
+Name[en_GB]=Default
+Name[pt]=Predefinição
+Name[sv]=Standard
+Name[uk]=Типова
+Name[x-test]=xxDefaultxx
 Description=Kigo Default theme for KDE 4
+Description[en_GB]=Kigo Default theme for KDE 4
+Description[pt]=Tema predefinido do Kigo para o KDE 4
+Description[sv]=Kigo standardtema för KDE 4
+Description[uk]=Типова тема Kigo для KDE 4
+Description[x-test]=xxKigo Default theme for KDE 4xx
 VersionFormat=1
 Author=Sascha Peilicke
 AuthorEmail=sasch.pe@gmx.de
