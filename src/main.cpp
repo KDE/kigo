@@ -38,11 +38,15 @@ namespace Kigo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
-    KAboutData aboutData("kigo", 0, ki18n("Kigo"), "v0.5.4",
+    KAboutData aboutData("kigo", 0, ki18n("Kigo"), "v0.5.5",
             ki18n("KDE Go Board Game"), KAboutData::License_GPL_V3,
             ki18n("Copyright (c) 2008,2009 Sascha Peilicke"));
     aboutData.addAuthor(ki18n("Sascha Peilicke (saschpe)"), ki18n("Original author"),
                         "sasch.pe@gmx.de", "http://saschpe.wordpress.com");
+    aboutData.addCredit(ki18n("Yuri Chornoivan"), ki18n("Documentation editor"),
+                        "yurchor@ukr.net");
+    aboutData.addCredit(ki18n("Arturo Silva"), ki18n("Default theme designer"),
+                        "jasilva28@gmail.com");
     aboutData.setHomepage("http://games.kde.org/kigo");
     KCmdLineArgs::init(argc, argv, &aboutData);
 

@@ -28,21 +28,29 @@
 </authorgroup>
 
 <copyright>
-	<year>2008-04-15</year>
+	<year>2008-2009</year>
 	<holder>Sascha Peilicke</holder>
 </copyright>
 
 <!--<legalnotice>&FDLNotice;</legalnotice>-->
 
-<date>2008-04-15</date>
-<releaseinfo>0.5.2</releaseinfo>
+<date>2009-10-25</date>
+<releaseinfo>0.5.5</releaseinfo>
 
 <abstract>
 	<para>&kigo; is an open-source implementation of the popular Go game (also known as Weiqi).</para>
 </abstract>
 <keywordset>
 	<keyword>KDE</keyword>
-	<keyword>&kigo;</keyword>
+	<keyword>kdegames</keyword> <!-- do not change this! -->
+	<keyword>game</keyword> <!-- do not change this! -->
+	<keyword>kigo</keyword><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword>logic</keyword>
+	<keyword>board</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword>one player</keyword>
+	<keyword>two players</keyword>
 </keywordset>
 </bookinfo>
 
@@ -55,69 +63,294 @@ system. Any chapter labelled (OPTIONAL) may be left out at the author's
 discretion. Other chapters should not be left out in order to maintain a
 consistent documentation style across all KDE apps. -->
 
-  <chapter id="introduction">
+<chapter id="introduction">
     <title>Introduction</title>
-<para>
-&kigo; is an open-source implementation of the popular Go game (also known as Weiqi).
-</para>
+	<note><title>Gametype:</title><para>Logic, Board</para></note><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note><title>Number of possible players:</title><para>Two</para></note><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<para>&kigo; is an open-source implementation of the popular Go game (also known as Weiqi).</para>
+	<para>
+	Go is a strategic board game for two players. It is also known as igo (Japanese), weiqi or wei ch'i (Chinese) or baduk (Korean). Go is noted for being rich in strategic complexity despite its simple rules.
+	</para>
+	
+	<para>
+	The game is played by two players who alternately place black and white stones (playing pieces, now usually made of glass or plastic) on the vacant intersections of a grid of 19×19 lines (9x9 or 13x13 lines for easier flavors).
+	</para>
 <!-- The introduction chapter contains a brief introduction for the
 application that explains what it does and where to report
 problems. Basically a long version of the abstract.  Don't include a
 revision history. (see installation appendix comment) -->
-  </chapter>
+</chapter>
 
-<chapter id="commands">
-<title>Command Reference</title>
+<chapter id="howto">
+    <title>How to Play</title> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note><title>Objective:</title>
+	<para>The object of the game is to control a larger portion of the board than the opponent. A stone or a group of stones is captured and removed if it has no empty adjacent intersections, the result of being completely surrounded by stones of the opposing color. Fill the grid so that each column, row as well as each square sector on the game field contains only one instance of each symbol.</para></note><!--Describe the objective of the game.-->
+    <sect1 id="starting">
+    <title>Starting a Game</title>
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para>When you have started Kigo you have two options to play the wonderful game of Go. You can either start a new game or continue an old one.</para>
+    
+    <sect2 id="new_game">
+    <title>Setup a new game</title>
+      <para>
+	When you have started Kigo you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select <guimenuitem>Start Game</guimenuitem> from the <guimenu>Game</guimenu>, click on <guibutton>Start Game</guibutton> in the <quote>Game setup</quote> dock widget or by simply pressing the key <keycap>S</keycap>.
+      </para>
+      <screenshot>
+      <screeninfo>New game screen</screeninfo>
+      <mediaobject>
+      <imageobject><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+      <textobject><phrase>New Game Screen.</phrase></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+     <sect2 id="load_game">
+     <title>Setup a loaded game</title>
+      <para>
+      If you decide to continue a previously unﬁnished game you can simply choose the <guimenuitem>Load...</guimenuitem> option in the <guimenu>Game</guimenu> menu (the menu is shown in the screenshot above). A ﬁle chooser should now pop up, use it to select and load the desired savegame ﬁle.
+      </para>
+      
+      <para>
+      Now you should see a screen similar to the one shown on the screenshot below. If you do not want to continue with the last move made, you can revert as many moves as you like. You should see the board changing as you change the current move number. The setup screen also presents a lot of additional information about the saved game.
+      </para>
+      
+      <para>
+      Just press <guibutton>Start Game</guibutton> to continue.
+      </para>
+      <screenshot>
+      <screeninfo>Loaded game screen</screeninfo>
+      <mediaobject>
+      <imageobject><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+      <textobject><phrase>Loaded Game Screen.</phrase></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+    </sect1>
+    
+    <sect1 id="playing">
+    <title>Playing a game</title>
+      <para>Now you are ready to play your ﬁrst round of Go. If you are not familiar with the rules, we recommend reading the corresponding <ulink url="http://en.wikipedia.org/wiki/Go_game">Wikipedia article</ulink> or take <ulink url=" http://playgo.to/interactive/">The Interactive Way To Go</ulink> from Hiroki Mori.
+      </para>
+      
+      <para>
+      Making a move is simple, just click on one of the intersections on the Go board. You should see a little black point which shows you where your stone would land if you click.
+      </para>
+      
+      <para>
+      The current player can be determined either by the cursor, which changes to a black or a white stone depending on which player is next.
+      </para>
+      
+      <para>
+      You can also check the game information which shows also the previous move and some statistics. A complete move history is also available. If you want to remember in which order the stones on the board where placed, just click the <guibutton>Show move numbers</guibutton> button. If you think that you can’t gain anything by placing another stone, just click <guibutton>Pass Move</guibutton> and let your opponent take his turn. If both players pass, the game can be ﬁnished. Note that ending a Go game is always a cooperative step!
+      </para>
+      <screenshot>
+      <screeninfo>Playing a fresh game</screeninfo>
+      <mediaobject>
+      <imageobject><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+      <textobject><phrase>Playing a Fresh Game.</phrase></textobject>
+      </mediaobject>
+      </screenshot>	
+      <para>
+      Note that you can save the current game at any time. Do this by entering the <guimenu>Game</guimenu> menu and choose <guimenuitem>Save</guimenuitem> item.
+      </para>
 
-<!-- (OPTIONAL, BUT RECOMMENDED) This chapter should list all of the
-application windows and their menubar and toolbar commands for easy reference.
-Also include any keys that have a special function but have no equivalent in the
-menus or toolbars. This may not be necessary for small apps or apps with no tool
-or menu bars. -->
+	<sect2 id="hint">
+	<title>Getting a hint</title>
+	<para>
+	Sometimes it is diﬃcult to decide which move to make. If you want the computer to give you a little hint, just press the <guibutton>Hint</guibutton> button shown in the screenshot below. Now some transparent stones with a number on top should appear. These are actually your recommendations with a score. The score determines how good that move is. Feel free to click on any of the recommended moves or any other free ﬁeld to make set your next stone.
+	</para>
+      <screenshot>
+      <screeninfo> Getting a hint</screeninfo>
+      <mediaobject>
+      <imageobject><imagedata format="PNG" fileref="hint.png"/></imageobject>
+      <textobject><phrase>Getting a Hint.</phrase></textobject>
+      </mediaobject>
+      </screenshot>	
+      </sect2>
+      </sect1>
+      
+      <sect1 id="strattips">
+      <title>Strategies and Tips</title>
+      <itemizedlist>
+      <listitem><para>Go is more about surrounding territory (empty space) than capturing your opponent's pieces.</para></listitem>
+      <listitem><para>Territory is easiest to surround near the corners (on two sides) then near the edges (on three sides) and lastly in the center.</para></listitem>
+      <listitem><para>At the start of the game, space your pieces out. Only fill in your fence-lines when your opponent starts to intrude</para></listitem>
+      <listitem><para>Do not play unsupported stones right next to your opponent's stones when attacking.  They will tend to get swallowed and GnuGo is very good at that. It is often better to attack indirectly.</para></listitem>
+      <listitem><para>To avoid capture, a group of stones must have two <quote>eyes</quote> or be able to make them if attacked.  <quote>Eyes</quote> are disconnected spaces. Think of a doughnut with two holes. Your opponent can surround the outside, but cannot fill both holes at once.</para></listitem>
+      <listitem><para>On the 19x19 board there are typically several territories being created, attacked or defended.  You have to fight several battles simultaneously. The strategy involves evaluating the strengths and weaknesses in various areas and allocating your moves between them.  Is it better to attack there or defend here?</para></listitem>
+      <listitem><para>As the board fills up and the end-game approaches, it becomes important to play closer up, nibbling at your opponent's fences or reinforcing your own.  Small mistakes and omissions can become very costly.</para></listitem>
+      </itemizedlist>
+      </sect1>
+</chapter>
 
-<sect1 id="kapp-mainwindow">
-<title>The main &kigo; window</title>
+<chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
+<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist> and <varlistentry>. Split the chapter into sections using <sect1(2,3)> for better viewing.-->
+<sect1 id="game-menu">
+	<title>The <guimenu>Game</guimenu> Menu</title>
+		<variablelist>
+			<varlistentry id="game-menu-new">
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>New</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Starts a new game.</action></para></listitem>
+			</varlistentry>
+			<varlistentry  id="game-menu-load">
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>Load...</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Loads a saved game.</action></para></listitem>
+			</varlistentry>
+			<varlistentry  id="game-menu-get-more">
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>Get More Games...</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Opens standard &kde; KNEWStuff dialog to load other users' saved games.</action></para></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-save">
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>Save</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Saves</action> the current game as a default save file.</para></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-start">
+				<term><menuchoice>
+					<shortcut><keycap>S</keycap></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>Start</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Starts</action> the new or the loaded game.</para></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-finish">
+				<term><menuchoice>
+				<shortcut><keycap>F</keycap></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>Finish</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Finishes</action> the current game. Remember that ending a Go game is always a cooperative step.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
+					<guimenu>Game</guimenu>
+					<guimenuitem>Quit</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Quits</action> &kappname;.</para></listitem>
+			</varlistentry>
+		</variablelist>
+</sect1>
+<sect1 id="move-menu">
+	<title>The <guimenu>Move</guimenu> Menu</title>
+		<variablelist>
+			<varlistentry id="move-menu-undo">
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
+					<guimenu>Move</guimenu>
+					<guimenuitem>Undo</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Undo</action> your last move.</para></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-redo">
+				<term><menuchoice>
+					<shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo></shortcut>
+					<guimenu>Move</guimenu>
+					<guimenuitem>Redo</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Redo</action> a move that was undone.</para></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-pass">
+				<term><menuchoice>
+					<shortcut><keycap>P</keycap></shortcut>
+					<guimenu>Move</guimenu>
+					<guimenuitem>Pass Move</guimenuitem>
+				</menuchoice></term>
+				<listitem><para>Allows you to <action>pass</action> a move.</para></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-hint">
+				<term><menuchoice>
+					<shortcut><keycap>H</keycap></shortcut>
+					<guimenu>Move</guimenu>
+					<guimenuitem>Hint</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Gives a Hint</action> by flashing a matching pair of tiles.</para></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-numbers">
+				<term><menuchoice>
+					<shortcut><keycap>N</keycap></shortcut>
+					<guimenu>Move</guimenu>
+					<guimenuitem>Show Move Numbers</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Toggles</action> move numbers visibility.</para></listitem>
+			</varlistentry>
+		</variablelist>
+</sect1>
+<sect1 id="settings-menu">
+	<title>The <guimenu>Settings</guimenu> Menu</title>
+		<variablelist>
+			<varlistentry>
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guisubmenu>Toolbars</guisubmenu>
+					<guimenuitem>Main Toolbar</guimenuitem>
+				</menuchoice></term>
+				<listitem><para>Shows or hides the Main Toolbar.</para></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-hide-move">
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guisubmenu>Toolbars</guisubmenu>
+					<guimenuitem>Move Toolbar</guimenuitem>
+				</menuchoice></term>
+				<listitem><para>Shows or hides the Move Toolbar.</para></listitem>
+			</varlistentry>
 
-<sect2>
-<title>The File Menu</title>
-<para>
-<variablelist>
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo>
-</shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>New</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Creates a new document</action></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo>
-</shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Save</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Saves the document</action></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<shortcut>
-<keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
-</shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Quit</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Quits</action> &kigo;</para></listitem>
-</varlistentry>
-</variablelist>
-</para>
+			<varlistentry id="settings-menu-hide-docker">
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guisubmenu>Dockers</guisubmenu>
+					<guimenuitem>Moves</guimenuitem>
+				</menuchoice></term>
+				<listitem><para>Shows or hides the Moves sidebar.</para></listitem>
+			</varlistentry>
 
-</sect2>
-
-<sect2>
+			<varlistentry id="settings-menu-statusbar">
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guimenuitem>Show Statusbar</guimenuitem>
+				</menuchoice></term>
+				<listitem><para>Shows or hides the Statusbar.</para></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-shortcuts">
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guimenuitem>Configure Shortcuts...</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Displays a standard &kde; shortcut configuration dialog</action> to change the keyboard shortcuts for &kappname;.</para></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-toolbar">
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guimenuitem>Configure Toolbars...</guimenuitem>
+				</menuchoice></term>
+				<listitem><para>Displays a standard &kde; dialog where you can configure the toolbar icons.</para></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-settings">
+				<term><menuchoice>
+					<guimenu>Settings</guimenu>
+					<guimenuitem>Configure &kappname;...</guimenuitem>
+				</menuchoice></term>
+				<listitem><para><action>Opens a dialog to configure &kappname;.</action> See <link linkend="configuration">Game Configuration</link> section for details.</para></listitem>
+			</varlistentry>
+		</variablelist>
+</sect1>
+<sect1>
 <title>The <guimenu>Help</guimenu> Menu</title>
 
 <!-- Assuming you have a standard help menu (help, what's this, about -->
@@ -126,8 +359,6 @@ or menu bars. -->
 <!-- valid.  -->
 
 &help.menu.documentation;
-
-</sect2>
 
 </sect1>
 </chapter>
@@ -149,6 +380,51 @@ application work. -->
 &updating.documentation;
 
 </chapter>
+<chapter id="configuration">
+<title>Game Configuration</title> <!-- do not change this! -->
+<!--This section describes configuration GUI. If your game is configured using menubar exclusively, please remove this section.-->
+  <para>
+  If you want to change how &kappname; is conﬁgured you can do that by navigating to the <guimenu>Settings</guimenu> menu and clicking on the <guimenuitem>Conﬁgure Kigo...</guimenuitem> action.
+  </para>
+  
+  <para>
+  You should now see the conﬁguration dialog as shown in the screenshot below. You can reach it also by pressing the key combination <keycombo>&Alt;<keycap>S</keycap></keycombo> followed by <keycombo>&Alt;<keycap>C</keycap></keycombo>.
+  </para>
+  
+  <para>
+  &kappname; is extremly ﬂexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have diﬀerent actions accessible there. To do this just click on the <guimenu>Settings</guimenu> menu and choose <guimenuitem>Configure toolbars...</guimenuitem>. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game ﬁeld you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
+  </para>
+  <sect1 id="genconig">
+  <title>General Configuration</title>
+    <para>
+      The most important aspect here is the Go engine backend conﬁguration. &kappname; needs a valid backend to function properly. As you can see in the screenshot below, it used GnuGo by default. The little light next to the engine command shines green if everything works ﬁne. If this is not the case or if you want to use a diﬀerent Go backend, you should install a diﬀerent Go engine which can speak the GnuGo Text Procotol (GTP) and set its command and parameters accordingly. Details about this step should be found in the corresponding Go engine documentation.
+    </para>
+    <screenshot>
+    <screeninfo>General conﬁguration</screeninfo>
+    <mediaobject>
+    <imageobject><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+    <textobject><phrase>General Conﬁguration.</phrase></textobject>
+    </mediaobject>
+    </screenshot>
+    </sect1>
+    <sect1 id="configuration-theme">
+    <title>Theme Configuration</title>
+    <screenshot>
+    <screeninfo>Configure &kappname; - Themes</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="setup-theme.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase>Theme Configuration</phrase>
+	  </textobject>
+	</mediaobject>
+    </screenshot>
+    <para>
+    This page will allow you to change the theme &kappname; uses.
+    </para>
+    </sect1>
+</chapter>
 
 <chapter id="credits">
 
@@ -163,11 +439,19 @@ distribution. -->
 &kigo;
 </para>
 <para>
-Program copyright 2007 Sascha Peilicke <email>sasch.pe@gmx.de</email>
+Program copyright 2009 Sascha Peilicke <email>sasch.pe@gmx.de</email>
 </para>
 
 <para>
-Documentation Copyright &copy; 2007 Sascha Peilicke <email>sasch.pe@gmx.de</email>
+Documentation Copyright &copy; 2009 Sascha Peilicke <email>sasch.pe@gmx.de</email>
+</para>
+
+<para>
+Documentation editing and Docbook conversion by Yuri Chornoivan <email>yurchor@ukr.net</email>
+</para>
+
+<para>
+Default theme designed by Arturo Silva <email>jasilva28@gmail.com</email>
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
