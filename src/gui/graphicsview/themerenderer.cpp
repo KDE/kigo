@@ -24,7 +24,6 @@
 #include <KGameTheme>
 #include <KSvgRenderer>
 #include <KPixmapCache>
-#include <KStandardDirs>
 #include <KDebug>
 
 #include <QPixmap>

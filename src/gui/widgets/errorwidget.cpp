@@ -23,7 +23,6 @@
 
 #include <KIcon>
 
-#include <QFile>
 
 namespace Kigo {
 

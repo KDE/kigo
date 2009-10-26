@@ -35,12 +35,10 @@
 #include <KConfigDialog>
 #include <KFileDialog>
 #include <KGameThemeSelector>
-#include <KMenuBar>
 #include <knewstuff2/engine.h>
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
-#include <KToolBar>
 
 #include <QDockWidget>
 #include <QTimer>
