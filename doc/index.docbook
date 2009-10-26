@@ -71,7 +71,7 @@ consistent documentation style across all KDE apps. -->
 	<para>
 	Go is a strategic board game for two players. It is also known as igo (Japanese), weiqi or wei ch'i (Chinese) or baduk (Korean). Go is noted for being rich in strategic complexity despite its simple rules.
 	</para>
-	
+
 	<para>
 	The game is played by two players who alternately place black and white stones (playing pieces, now usually made of glass or plastic) on the vacant intersections of a grid of 19×19 lines (9x9 or 13x13 lines for easier flavors).
 	</para>
@@ -90,7 +90,7 @@ revision history. (see installation appendix comment) -->
     <title>Starting a Game</title>
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
 	<para>When you have started &kappname; you have two options to play the wonderful game of Go. You can either start a new game or continue an old one.</para>
-    
+
     <sect2 id="new_game">
     <title>Setup a new game</title>
       <para>
@@ -109,11 +109,11 @@ revision history. (see installation appendix comment) -->
       <para>
       If you decide to continue a previously unﬁnished game you can simply choose the <guimenuitem>Load...</guimenuitem> option in the <guimenu>Game</guimenu> menu (the menu is shown in the screenshot above). A ﬁle chooser should now pop up, use it to select and load the desired savegame ﬁle.
       </para>
-      
+
       <para>
       Now you should see a screen similar to the one shown on the screenshot below. If you do not want to continue with the last move made, you can revert as many moves as you like. You should see the board changing as you change the current move number. The setup screen also presents a lot of additional information about the saved game.
       </para>
-      
+
       <para>
       Just press <guibutton>Start Game</guibutton> to continue.
       </para>
@@ -124,22 +124,37 @@ revision history. (see installation appendix comment) -->
       <textobject><phrase>Loaded Game Screen.</phrase></textobject>
       </mediaobject>
       </screenshot>
+
+      <para>
+        There is also the option to download history Go games or saved games
+uploaded by other users from the internet. Just click the <guimenuitem>Get More
+Games...</guimenuitem> in the <guimenu>Game</guimenu> menu. You should then see
+a dialog which allows you to choose which content to download.
+      </para>
+      <screenshot>
+      <screeninfo>Get new games</screeninfo>
+      <mediaobject>
+      <imageobject><imagedata format="PNG"
+fileref="get-new-games.png"/></imageobject>
+      <textobject><phrase>Get New Games Screen.</phrase></textobject>
+      </mediaobject>
+      </screenshot>
      </sect2>
     </sect1>
-    
+
     <sect1 id="playing">
     <title>Playing a game</title>
       <para>Now you are ready to play your ﬁrst round of Go. If you are not familiar with the rules, we recommend reading the corresponding <ulink url="http://en.wikipedia.org/wiki/Go_game">Wikipedia article</ulink> or take <ulink url=" http://playgo.to/interactive/">The Interactive Way To Go</ulink> from Hiroki Mori.
       </para>
-      
+
       <para>
       Making a move is simple, just click on one of the intersections on the Go board. You should see a little black point which shows you where your stone would land if you click.
       </para>
-      
+
       <para>
       The current player can be determined either by the cursor, which changes to a black or a white stone depending on which player is next.
       </para>
-      
+
       <para>
       You can also check the game information which shows also the previous move and some statistics. A complete move history is also available. If you want to remember in which order the stones on the board where placed, just click the <guibutton>Show move numbers</guibutton> button. If you think that you can’t gain anything by placing another stone, just click <guibutton>Pass Move</guibutton> and let your opponent take his turn. If both players pass, the game can be ﬁnished. Note that ending a Go game is always a cooperative step!
       </para>
@@ -149,7 +164,7 @@ revision history. (see installation appendix comment) -->
       <imageobject><imagedata format="PNG" fileref="play-game.png"/></imageobject>
       <textobject><phrase>Playing a Fresh Game.</phrase></textobject>
       </mediaobject>
-      </screenshot>	
+      </screenshot>
       <para>
       Note that you can save the current game at any time. Do this by entering the <guimenu>Game</guimenu> menu and choose <guimenuitem>Save</guimenuitem> item.
       </para>
@@ -165,10 +180,10 @@ revision history. (see installation appendix comment) -->
       <imageobject><imagedata format="PNG" fileref="hint.png"/></imageobject>
       <textobject><phrase>Getting a Hint.</phrase></textobject>
       </mediaobject>
-      </screenshot>	
+      </screenshot>
       </sect2>
       </sect1>
-      
+
       <sect1 id="strattips">
       <title>Strategies and Tips</title>
       <itemizedlist>
@@ -342,11 +357,11 @@ revision history. (see installation appendix comment) -->
   <para>
   If you want to change how &kappname; is conﬁgured you can do that by navigating to the <guimenu>Settings</guimenu> menu and clicking on the <guimenuitem>Conﬁgure &kappname;...</guimenuitem> action.
   </para>
-  
+
   <para>
   You should now see the conﬁguration dialog as shown in the screenshot below. You can reach it also by pressing the key combination <keycombo>&Alt;<keycap>S</keycap></keycombo> followed by <keycombo>&Alt;<keycap>C</keycap></keycombo>.
   </para>
-  
+
   <para>
   &kappname; is extremely ﬂexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have diﬀerent actions accessible there. To do this just click on the <guimenu>Settings</guimenu> menu and choose <guimenuitem>Configure toolbars...</guimenuitem>. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game ﬁeld you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
   </para>
@@ -365,6 +380,9 @@ revision history. (see installation appendix comment) -->
     </sect1>
     <sect1 id="configuration-theme">
     <title>Theme Configuration</title>
+    <para>
+    This page will allow you to change the theme &kappname; uses.
+    </para>
     <screenshot>
     <screeninfo>Configure &kappname; - Themes</screeninfo>
 	<mediaobject>
@@ -376,9 +394,6 @@ revision history. (see installation appendix comment) -->
 	  </textobject>
 	</mediaobject>
     </screenshot>
-    <para>
-    This page will allow you to change the theme &kappname; uses.
-    </para>
     </sect1>
 </chapter>
 
