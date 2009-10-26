@@ -94,7 +94,7 @@ revision history. (see installation appendix comment) -->
     <sect2 id="new_game">
     <title>Setup a new game</title>
       <para>
-	When you have started &kappname; you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select <guimenuitem>Start Game</guimenuitem> from the <guimenu>Game</guimenu>, click on <guibutton>Start Game</guibutton> in the <quote>Game setup</quote> dock widget or by simply pressing the key <keycap>S</keycap>.
+	When you have started &kappname; you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select <guimenuitem>Start Game</guimenuitem> from the <guimenu>Game</guimenu> menu, click on <guibutton>Start Game</guibutton> in the <quote>Game setup</quote> dock widget or by simply pressing the key <keycap>S</keycap>.
       </para>
       <screenshot>
       <screeninfo>New game screen</screeninfo>
