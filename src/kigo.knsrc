@@ -1,4 +1,4 @@
 [KNewStuff2]
-ProvidersUrl=http://newstuff.kde.org/cgi-bin/hotstuff-provider?site=kigo-themes
+ProvidersUrl=http://newstuff.kde.org/cgi-bin/hotstuff-provider?site=kigo
 TargetDir=kigo/themes
 Uncompress=never
