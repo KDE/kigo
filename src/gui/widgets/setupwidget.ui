@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>308</width>
-    <height>337</height>
+    <width>400</width>
+    <height>366</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
@@ -319,7 +319,7 @@
                    <string>Tiny (9x9)</string>
                   </property>
                   <property name="checked">
-                   <bool>true</bool>
+                   <bool>false</bool>
                   </property>
                  </widget>
                 </item>
@@ -336,7 +336,7 @@
                    <string>Normal (19x19)</string>
                   </property>
                   <property name="checked">
-                   <bool>false</bool>
+                   <bool>true</bool>
                   </property>
                  </widget>
                 </item>
@@ -461,6 +461,12 @@
             <layout class="QGridLayout" name="gridLayout_5">
              <item row="0" column="1" colspan="3">
               <widget class="KIntSpinBox" name="startMoveSpinBox">
+               <property name="accelerated">
+                <bool>true</bool>
+               </property>
+               <property name="correctionMode">
+                <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+               </property>
                <property name="suffix">
                 <string> of 999</string>
                </property>
@@ -784,12 +790,12 @@
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>186</x>
-     <y>55</y>
+     <x>142</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>217</x>
-     <y>77</y>
+     <x>142</x>
+     <y>95</y>
     </hint>
    </hints>
   </connection>
@@ -800,12 +806,12 @@
    <slot>setCurrentIndex(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>307</x>
-     <y>57</y>
+     <x>293</x>
+     <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>425</x>
-     <y>74</y>
+     <x>293</x>
+     <y>95</y>
     </hint>
    </hints>
   </connection>

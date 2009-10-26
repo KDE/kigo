@@ -125,7 +125,7 @@ void MainWindow::loadGame()
 
         disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
         disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-        disconnect(m_game, SIGNAL(currentPlayerChanged(Game::PlayerColor)), this, SLOT(playerChanged()));
+        disconnect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
 
         m_gameDock->setVisible(false);
         m_gameDock->toggleViewAction()->setEnabled(false);

@@ -146,6 +146,7 @@ bool Game::init(const QString &fileName, int moveNumber)
         m_movesList.clear();
         m_undoStack.clear();
 
+        emit boardSizeChanged(m_boardSize);
         emit boardChanged();                             // All done, tell the world!
         return true;
     } else {
