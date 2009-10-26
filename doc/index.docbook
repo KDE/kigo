@@ -89,12 +89,12 @@ revision history. (see installation appendix comment) -->
     <sect1 id="starting">
     <title>Starting a Game</title>
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
-	<para>When you have started Kigo you have two options to play the wonderful game of Go. You can either start a new game or continue an old one.</para>
+	<para>When you have started &kappname; you have two options to play the wonderful game of Go. You can either start a new game or continue an old one.</para>
     
     <sect2 id="new_game">
     <title>Setup a new game</title>
       <para>
-	When you have started Kigo you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select <guimenuitem>Start Game</guimenuitem> from the <guimenu>Game</guimenu>, click on <guibutton>Start Game</guibutton> in the <quote>Game setup</quote> dock widget or by simply pressing the key <keycap>S</keycap>.
+	When you have started &kappname; you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select <guimenuitem>Start Game</guimenuitem> from the <guimenu>Game</guimenu>, click on <guibutton>Start Game</guibutton> in the <quote>Game setup</quote> dock widget or by simply pressing the key <keycap>S</keycap>.
       </para>
       <screenshot>
       <screeninfo>New game screen</screeninfo>
@@ -184,41 +184,17 @@ revision history. (see installation appendix comment) -->
 </chapter>
 
 <chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
-<!-- This section has to do with menubar. Describe every single entry in order. Use <variablelist> and <varlistentry>. Split the chapter into sections using <sect1(2,3)> for better viewing.-->
-<sect1 id="game-menu">
-	<title>The <guimenu>Game</guimenu> Menu</title>
+<sect1 id="menus">
+<title>The &kappname; Menues</title>
+<para>&kappname; has a default &kde; game menus, except for the following items.</para>
 		<variablelist>
-			<varlistentry id="game-menu-new">
-				<term><menuchoice>
-					<shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
-					<guimenu>Game</guimenu>
-					<guimenuitem>New</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Starts a new game.</action></para></listitem>
-			</varlistentry>
-			<varlistentry  id="game-menu-load">
-				<term><menuchoice>
-					<shortcut><keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
-					<guimenu>Game</guimenu>
-					<guimenuitem>Load...</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Loads a saved game.</action></para></listitem>
-			</varlistentry>
 			<varlistentry  id="game-menu-get-more">
 				<term><menuchoice>
 					<shortcut><keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
 					<guimenu>Game</guimenu>
 					<guimenuitem>Get More Games...</guimenuitem>
 				</menuchoice></term>
-				<listitem><para><action>Opens standard &kde; KNEWStuff dialog to load other users' saved games.</action></para></listitem>
-			</varlistentry>
-			<varlistentry id="game-menu-save">
-				<term><menuchoice>
-					<shortcut><keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
-					<guimenu>Game</guimenu>
-					<guimenuitem>Save</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Saves</action> the current game as a default save file.</para></listitem>
+				<listitem><para><action>Opens standard &kde; KNewStuff dialog to load other users' saved games.</action></para></listitem>
 			</varlistentry>
 			<varlistentry id="game-menu-start">
 				<term><menuchoice>
@@ -236,35 +212,6 @@ revision history. (see installation appendix comment) -->
 				</menuchoice></term>
 				<listitem><para><action>Finishes</action> the current game. Remember that ending a Go game is always a cooperative step.</para></listitem>
 			</varlistentry>
-			<varlistentry>
-				<term><menuchoice>
-					<shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
-					<guimenu>Game</guimenu>
-					<guimenuitem>Quit</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Quits</action> &kappname;.</para></listitem>
-			</varlistentry>
-		</variablelist>
-</sect1>
-<sect1 id="move-menu">
-	<title>The <guimenu>Move</guimenu> Menu</title>
-		<variablelist>
-			<varlistentry id="move-menu-undo">
-				<term><menuchoice>
-					<shortcut><keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo></shortcut>
-					<guimenu>Move</guimenu>
-					<guimenuitem>Undo</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Undo</action> your last move.</para></listitem>
-			</varlistentry>
-			<varlistentry id="move-menu-redo">
-				<term><menuchoice>
-					<shortcut><keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo></shortcut>
-					<guimenu>Move</guimenu>
-					<guimenuitem>Redo</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Redo</action> a move that was undone.</para></listitem>
-			</varlistentry>
 			<varlistentry id="move-menu-pass">
 				<term><menuchoice>
 					<shortcut><keycap>P</keycap></shortcut>
@@ -279,7 +226,7 @@ revision history. (see installation appendix comment) -->
 					<guimenu>Move</guimenu>
 					<guimenuitem>Hint</guimenuitem>
 				</menuchoice></term>
-				<listitem><para><action>Gives a Hint</action> by flashing a matching pair of tiles.</para></listitem>
+				<listitem><para><action>Gives a Hint</action> by showing the transparent stones with the score on them.</para></listitem>
 			</varlistentry>
 			<varlistentry id="move-menu-numbers">
 				<term><menuchoice>
@@ -289,28 +236,6 @@ revision history. (see installation appendix comment) -->
 				</menuchoice></term>
 				<listitem><para><action>Toggles</action> move numbers visibility.</para></listitem>
 			</varlistentry>
-		</variablelist>
-</sect1>
-<sect1 id="settings-menu">
-	<title>The <guimenu>Settings</guimenu> Menu</title>
-		<variablelist>
-			<varlistentry>
-				<term><menuchoice>
-					<guimenu>Settings</guimenu>
-					<guisubmenu>Toolbars</guisubmenu>
-					<guimenuitem>Main Toolbar</guimenuitem>
-				</menuchoice></term>
-				<listitem><para>Shows or hides the Main Toolbar.</para></listitem>
-			</varlistentry>
-			<varlistentry id="settings-menu-hide-move">
-				<term><menuchoice>
-					<guimenu>Settings</guimenu>
-					<guisubmenu>Toolbars</guisubmenu>
-					<guimenuitem>Move Toolbar</guimenuitem>
-				</menuchoice></term>
-				<listitem><para>Shows or hides the Move Toolbar.</para></listitem>
-			</varlistentry>
-
 			<varlistentry id="settings-menu-hide-docker">
 				<term><menuchoice>
 					<guimenu>Settings</guimenu>
@@ -318,28 +243,6 @@ revision history. (see installation appendix comment) -->
 					<guimenuitem>Moves</guimenuitem>
 				</menuchoice></term>
 				<listitem><para>Shows or hides the Moves sidebar.</para></listitem>
-			</varlistentry>
-
-			<varlistentry id="settings-menu-statusbar">
-				<term><menuchoice>
-					<guimenu>Settings</guimenu>
-					<guimenuitem>Show Statusbar</guimenuitem>
-				</menuchoice></term>
-				<listitem><para>Shows or hides the Statusbar.</para></listitem>
-			</varlistentry>
-			<varlistentry id="settings-menu-shortcuts">
-				<term><menuchoice>
-					<guimenu>Settings</guimenu>
-					<guimenuitem>Configure Shortcuts...</guimenuitem>
-				</menuchoice></term>
-				<listitem><para><action>Displays a standard &kde; shortcut configuration dialog</action> to change the keyboard shortcuts for &kappname;.</para></listitem>
-			</varlistentry>
-			<varlistentry id="settings-menu-toolbar">
-				<term><menuchoice>
-					<guimenu>Settings</guimenu>
-					<guimenuitem>Configure Toolbars...</guimenuitem>
-				</menuchoice></term>
-				<listitem><para>Displays a standard &kde; dialog where you can configure the toolbar icons.</para></listitem>
 			</varlistentry>
 			<varlistentry id="settings-menu-settings">
 				<term><menuchoice>
@@ -350,41 +253,94 @@ revision history. (see installation appendix comment) -->
 			</varlistentry>
 		</variablelist>
 </sect1>
-<sect1>
-<title>The <guimenu>Help</guimenu> Menu</title>
 
-<!-- Assuming you have a standard help menu (help, what's this, about -->
-<!-- &kmyapplication;, about KDE) then the documentation is already written. -->
-<!-- The following entity is valid anywhere that a variablelist is -->
-<!-- valid.  -->
+<sect1 id="keybindings">
+<title id="keybindings-title">Shortcuts</title>
+  <para>The default shortcuts are:</para>
 
-&help.menu.documentation;
-
+  <table>
+  <title>Shortcuts</title>
+  <tgroup cols="2">
+  <tbody>
+  <row>
+    <entry>Finish the current game</entry>
+    <entry><keycap>F</keycap></entry>
+  </row>
+  <row>
+    <entry>Get new games uploaded by other users</entry>
+    <entry>
+      <keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>Help</entry>
+    <entry><keycap>F1</keycap></entry>
+   </row>
+  <row>
+    <entry>Load saved game</entry>
+    <entry>
+    <keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>Pass a move</entry>
+    <entry><keycap>P</keycap></entry>
+  </row>
+  <row>
+    <entry>Quit</entry>
+    <entry>
+    <keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>Redo a move that was undone</entry>
+    <entry>
+      <keycombo action="simul">&Ctrl;&Shift;<keycap>Z</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>Save the current game</entry>
+    <entry>
+      <keycombo action="simul">&Ctrl;<keycap>S</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>Start a new game</entry>
+    <entry>
+    <keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>Start new or loaded game</entry>
+    <entry><keycap>S</keycap></entry>
+  </row>
+  <row>
+    <entry>Toggle move numbers visibility</entry>
+    <entry><keycap>N</keycap></entry>
+  </row>
+  <row>
+    <entry>Undo your last move</entry>
+    <entry>
+      <keycombo action="simul">&Ctrl;<keycap>Z</keycap></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry>What's this?</entry>
+    <entry>
+    <keycombo action="simul">&Shift;<keycap>F1</keycap></keycombo>
+    </entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
 </sect1>
 </chapter>
 
-<chapter id="faq">
-<title>Questions and Answers</title>
-
-<!-- (OPTIONAL but recommended) This chapter should include all of the silly
-(and not-so-silly) newbie questions that fill up your mailbox. This chapter
-should be reserved for BRIEF questions and answers! If one question uses more
-than a page or so then it should probably be part of the
-"Using this Application" chapter instead. You should use links to
-cross-reference questions to the parts of your documentation that answer them.
-This is also a great place to provide pointers to other FAQ's if your users
-must do some complicated configuration on other programs in order for your
-application work. -->
-
-&reporting.bugs;
-&updating.documentation;
-
-</chapter>
 <chapter id="configuration">
 <title>Game Configuration</title> <!-- do not change this! -->
 <!--This section describes configuration GUI. If your game is configured using menubar exclusively, please remove this section.-->
   <para>
-  If you want to change how &kappname; is conﬁgured you can do that by navigating to the <guimenu>Settings</guimenu> menu and clicking on the <guimenuitem>Conﬁgure Kigo...</guimenuitem> action.
+  If you want to change how &kappname; is conﬁgured you can do that by navigating to the <guimenu>Settings</guimenu> menu and clicking on the <guimenuitem>Conﬁgure &kappname;...</guimenuitem> action.
   </para>
   
   <para>
@@ -392,7 +348,7 @@ application work. -->
   </para>
   
   <para>
-  &kappname; is extremly ﬂexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have diﬀerent actions accessible there. To do this just click on the <guimenu>Settings</guimenu> menu and choose <guimenuitem>Configure toolbars...</guimenuitem>. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game ﬁeld you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
+  &kappname; is extremely ﬂexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have diﬀerent actions accessible there. To do this just click on the <guimenu>Settings</guimenu> menu and choose <guimenuitem>Configure toolbars...</guimenuitem>. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game ﬁeld you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
   </para>
   <sect1 id="genconig">
   <title>General Configuration</title>
