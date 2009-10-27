@@ -99,7 +99,7 @@ void MainWindow::newGame()
     m_errorDock->setVisible(false);
 
     m_setupWidget->newGame();
-    m_gameScene->showMessage(i18n("Setup a new game..."));
+    m_gameScene->showMessage(i18n("Set up a new game..."));
 }
 
 void MainWindow::loadGame()
@@ -135,7 +135,7 @@ void MainWindow::loadGame()
         m_errorDock->setVisible(false);
 
         m_setupWidget->loadedGame(fileName);
-        m_gameScene->showMessage(i18n("Setup a loaded game..."));
+        m_gameScene->showMessage(i18n("Set up a loaded game..."));
     } else {
         m_gameScene->showMessage(i18n("Unable to load game..."));
         //Note: New game implied here
