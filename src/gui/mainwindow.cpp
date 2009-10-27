@@ -60,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_game, SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
     connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinishGameAction()));
     connect(m_game, SIGNAL(resigned(const Player &)), this, SLOT(finishGame()));
+    connect(m_game, SIGNAL(passMovePlayed(const Player &)), this, SLOT(passMovePlayed(const Player &)));
 
     if (isBackendWorking()) {
         newGame();
@@ -174,7 +175,6 @@ void MainWindow::backendError()
     disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
-
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
     m_movesDock->setVisible(false);
@@ -267,7 +267,8 @@ void MainWindow::finishGame()
     }
     // Show a score message that stays visible until the next
     // popup message arrives
-    m_gameScene->showMessage(i18n("%1 has won this game with a score of %2.", name, score.score()), 0);
+    m_gameScene->showMessage(i18n("%1 has won this game with a score of %2 (bounded by %3 and %4).",
+                             name, score.score(), score.upperBound(), score.lowerBound()), 0);
 }
 
 void MainWindow::undo()
@@ -289,7 +290,7 @@ void MainWindow::redo()
 void MainWindow::pass()
 {
     if (m_game->playMove(m_game->currentPlayer())) {     // E.g. Pass move
-        m_gameScene->showMessage(i18n("Passed move"));
+        //m_gameScene->showMessage(i18n("Passed move"));
         m_gameScene->showHint(false);
     }
 }
@@ -297,7 +298,7 @@ void MainWindow::pass()
 void MainWindow::hint()
 {
     m_gameScene->showHint(true);
-    m_gameScene->showMessage(i18n("These are the recommended moves..."));
+    //m_gameScene->showMessage(i18n("These are the recommended moves..."));
 }
 
 void MainWindow::showPreferences()
@@ -361,7 +362,7 @@ void MainWindow::showFinishGameAction()
 
 void MainWindow::playerChanged()
 {
-    if (!m_game->currentPlayer().isHuman()) {
+    if (!m_game->currentPlayer().isHuman() && !m_game->isFinished()) {
         QTimer::singleShot(200, this, SLOT(generateMove()));
     }
 }
@@ -369,6 +370,17 @@ void MainWindow::playerChanged()
 void MainWindow::generateMove()
 {
     m_game->generateMove(m_game->currentPlayer());
+}
+
+void MainWindow::passMovePlayed(const Player &player)
+{
+    if (player.isComputer()) {
+        if (player.isWhite()) {
+            m_gameScene->showMessage(i18n("White passed"));
+        } else {
+            m_gameScene->showMessage(i18n("Black passed"));
+        }
+    }
 }
 
 void MainWindow::setupActions()

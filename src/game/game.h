@@ -242,6 +242,8 @@ public:
     bool canRedo() const { return m_undoStack.canRedo(); }
     bool canUndo() const { return m_undoStack.canUndo(); }
 
+    bool isFinished() const { return m_gameFinished; }
+
 signals:
     /**
      * This signal is emitted when the board situation changed and
@@ -255,6 +257,7 @@ signals:
     /** This signal is emitted when a player resigns. */
     void resigned(const Player &);
 
+    void passMovePlayed(const Player &);
     /**
      * This signal is emitted when both players played a pass move
      * after another. It is also send when pass moves are gone
@@ -318,6 +321,7 @@ private:
     int m_fixedHandicap;
     int m_consecutivePassMoveNumber;
     bool m_waitAndProcessEvents;
+    bool m_gameFinished;
 };
 
 } // End of namespace Kigo

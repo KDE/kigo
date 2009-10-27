@@ -33,6 +33,7 @@ namespace Kigo {
 class Game;
 class GameScene;
 class GameView;
+class Player;
 class SetupWidget;
 
 /**
@@ -67,6 +68,7 @@ private slots:
     void showFinishGameAction();
     void playerChanged();
     void generateMove();
+    void passMovePlayed(const Player &);
 
 private:
     void setupActions();

@@ -34,6 +34,7 @@ Game::Game(QObject *parent)
     , m_currentMove(0), m_lastUndoIndex(0), m_currentPlayer(&m_blackPlayer)
     , m_blackPlayer(Player::Black), m_whitePlayer(Player::White)
     , m_komi(4.5), m_boardSize(19), m_fixedHandicap(5), m_consecutivePassMoveNumber(0)
+    , m_gameFinished(false)
 {
     connect(&m_process, SIGNAL(readyRead()), this, SLOT(readyRead()));
     connect(&m_undoStack, SIGNAL(canRedoChanged(bool)), this, SIGNAL(canRedoChanged(bool)));
@@ -102,6 +103,7 @@ bool Game::init()
         m_fixedHandicap = 0;
         m_consecutivePassMoveNumber = 0;
         m_currentMove = 0;
+        m_gameFinished = false;
         m_movesList.clear();
         m_undoStack.clear();
 
@@ -143,6 +145,7 @@ bool Game::init(const QString &fileName, int moveNumber)
 
         m_consecutivePassMoveNumber = 0;
         m_currentMove = moveNumber;                  // Store move number
+        m_gameFinished = false;
         m_movesList.clear();
         m_undoStack.clear();
 
@@ -281,17 +284,12 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
 
     m_process.write(msg);                       // Send command to backend
     if (waitResponse()) {
-        if (tmp->isWhite()) {                   // Determine the next current player
-            setCurrentPlayer(m_blackPlayer);
-        } else {
-            setCurrentPlayer(m_whitePlayer);
-        }
-
         if (stone.isValid()) {                  // Normal move handling
             m_movesList.append(Move(tmp, stone));
             m_consecutivePassMoveNumber = 0;
         } else {                                // And pass move handling
             m_movesList.append(Move(tmp, Stone::Pass));
+            emit passMovePlayed(*m_currentPlayer);
             if (m_consecutivePassMoveNumber > 0) {
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
             }
@@ -314,6 +312,12 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
             }
             //kDebug() << "Push new undo command" << undoStr;
             m_undoStack.push(new QUndoCommand(undoStr));
+        }
+
+        if (tmp->isWhite()) {                   // Determine the next current player
+            setCurrentPlayer(m_blackPlayer);
+        } else {
+            setCurrentPlayer(m_whitePlayer);
         }
 
         emit boardChanged();
@@ -348,22 +352,22 @@ bool Game::generateMove(const Player &player, bool undoable)
         QString undoStr;
         if (tmp->isWhite()) {
             undoStr = i18n("White ");
-            setCurrentPlayer(m_blackPlayer);
         } else {
             undoStr = i18n("Black ");
-            setCurrentPlayer(m_whitePlayer);
         }
 
         if (m_response == "PASS") {
             m_currentMove++;
+            emit passMovePlayed(*m_currentPlayer);
             if (m_consecutivePassMoveNumber > 0) {
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
             }
             m_consecutivePassMoveNumber++;
-            undoStr += i18n("pass");
+            undoStr += i18n("passed");
         } else if (m_response == "resign") {
             emit resigned(*m_currentPlayer);
-            undoStr += i18n("resign");
+            m_gameFinished = true;
+            undoStr += i18n("resigned");
         } else {
             m_currentMove++;
             m_movesList.append(Move(tmp, Stone(m_response)));
@@ -375,6 +379,11 @@ bool Game::generateMove(const Player &player, bool undoable)
         if (undoable) {
             //kDebug() << "Push new undo command" << undoStr;
             m_undoStack.push(new QUndoCommand(undoStr));
+        }
+        if (tmp->isWhite()) {
+            setCurrentPlayer(m_blackPlayer);
+        } else {
+            setCurrentPlayer(m_whitePlayer);
         }
         return true;
     } else {
@@ -446,6 +455,7 @@ bool Game::redoMove()
         //       it is a bit questionable whether this makes sense logically.
         kDebug() << "Redo a resign for" << player << undoStr;
         emit resigned(*player);
+        m_gameFinished = true;
         //emit resigned(*m_currentPlayer);
     } else {
         kDebug() << "Redo a normal move for" << player << undoStr;
