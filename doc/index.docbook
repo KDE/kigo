@@ -85,7 +85,7 @@ revision history. (see installation appendix comment) -->
     <title>How to Play</title> <!-- do not change this! -->
 <!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
 	<note><title>Objective:</title>
-	<para>The object of the game is to control a larger portion of the board than the opponent. A stone or a group of stones is captured and removed if it has no empty adjacent intersections, the result of being completely surrounded by stones of the opposing color. Fill the grid so that each column, row as well as each square sector on the game field contains only one instance of each symbol.</para></note><!--Describe the objective of the game.-->
+	<para>The object of the game is to control a larger portion of the board than the opponent. A stone or a group of stones is captured and removed if it has no empty adjacent intersections, the result of being completely surrounded by stones of the opposing color.</para></note><!--Describe the objective of the game.-->
     <sect1 id="starting">
     <title>Starting a Game</title>
 <!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
@@ -152,7 +152,7 @@ fileref="get-new-games.png"/></imageobject>
       </para>
 
       <para>
-      The current player can be determined either by the cursor, which changes to a black or a white stone depending on which player is next.
+      The current player can be determined by the cursor, which changes to a black or a white stone depending on which player is next.
       </para>
 
       <para>
@@ -201,7 +201,7 @@ fileref="get-new-games.png"/></imageobject>
 <chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
 <sect1 id="menus">
 <title>The &kappname; Menues</title>
-<para>&kappname; has a default &kde; game menus, except for the following items.</para>
+<para>&kappname; has a default &kde; game menues, except for the following items.</para>
 		<variablelist>
 			<varlistentry  id="game-menu-get-more">
 				<term><menuchoice>
