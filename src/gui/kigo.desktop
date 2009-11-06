@@ -7,14 +7,18 @@ Categories=Qt;KDE;Game;BoardGame;
 
 Name=Kigo
 Name[en_GB]=Kigo
+Name[es]=Kigo
 Name[pt]=Kigo
+Name[sv]=Kigo
 Name[tr]=Kigo
 Name[uk]=Kigo
 Name[x-test]=xxKigoxx
 
 GenericName=Go Board Game
 GenericName[en_GB]=Go Board Game
+GenericName[es]=Juego de tablero Go
 GenericName[pt]=Jogo de Tabuleiro Go
+GenericName[sv]=Brädspelet Go
 GenericName[tr]=Go Masaüstü Oyunu
 GenericName[uk]=Гра у го на дошці
 GenericName[x-test]=xxGo Board Gamexx
