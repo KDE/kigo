@@ -59,6 +59,7 @@ void GameWidget::init()
     }
     komiSpinBox->setValue(m_game->komi());
     handicapSpinBox->setValue(m_game->fixedHandicap());
+    handicapSpinBox->setSuffix(ki18np(" Stone", " Stones"));
 
     update();
 }

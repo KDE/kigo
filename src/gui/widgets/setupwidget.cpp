@@ -48,6 +48,7 @@ void SetupWidget::newGame()
     loadSettings();
     gameSetupStack->setCurrentIndex(0);
     m_game->setBoardSize(Preferences::boardSize());
+    handicapSpinBox->setSuffix(ki18np(" Stone", " Stones"));
     if (Preferences::fixedHandicapEnabled()) {
         m_game->setFixedHandicap(Preferences::fixedHandicapValue());
     }
