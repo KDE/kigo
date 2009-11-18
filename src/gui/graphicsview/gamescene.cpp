@@ -219,7 +219,7 @@ void GameScene::updateTerritoryItems()
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteTerritory, QSize(m_cellSize, m_cellSize));
         foreach (const Stone &stone, m_game->finalStates(Game::FinalWhiteTerritory)) {
             item = addPixmap(stonePixmap);
-            item->setZValue(4);
+            item->setZValue(8);
             int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
                                  m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize + 2));
@@ -229,7 +229,7 @@ void GameScene::updateTerritoryItems()
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackTerritory, QSize(m_cellSize, m_cellSize));
         foreach (const Stone &stone, m_game->finalStates(Game::FinalBlackTerritory)) {
             item = addPixmap(stonePixmap);
-            item->setZValue(4);
+            item->setZValue(8);
             int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
                                  m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize + 2));
