@@ -6,6 +6,7 @@ Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
 
 Name=Kigo
+Name[de]=Kigo
 Name[en_GB]=Kigo
 Name[es]=Kigo
 Name[et]=Kigo
@@ -17,6 +18,7 @@ Name[x-test]=xxKigoxx
 Name[zh_TW]=Kigo
 
 GenericName=Go Board Game
+GenericName[de]=„Go“-Brettspiel
 GenericName[en_GB]=Go Board Game
 GenericName[es]=Juego de tablero «Go»
 GenericName[et]=Go-mäng
