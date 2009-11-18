@@ -57,14 +57,16 @@ public:
      * Enumeration of all possible renderable scene element types.
      */
     enum Element {
-        SceneBackground = 1,        ///<
-        BoardBackground,            ///<
-        BoardHandicapMark,          ///<
-        WhiteStone,                 ///<
-        WhiteStoneTransparent,      ///<
-        BlackStone,                 ///<
-        BlackStoneTransparent,      ///<
-        PlacementMarker             ///<
+        Background = 1,
+        Board,
+        HandicapMark,
+        WhiteStone,
+        WhiteStoneTransparent,
+        WhiteTerritory,
+        BlackStone,
+        BlackStoneTransparent,
+        BlackTerritory,
+        PlacementMarker
     };
 
     /**

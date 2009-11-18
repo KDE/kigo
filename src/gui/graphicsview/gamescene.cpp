@@ -264,8 +264,8 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &)
 {
-    ThemeRenderer::self()->renderElement(ThemeRenderer::SceneBackground, painter, sceneRect());
-    ThemeRenderer::self()->renderElement(ThemeRenderer::BoardBackground, painter, m_boardRect);
+    ThemeRenderer::self()->renderElement(ThemeRenderer::Background, painter, sceneRect());
+    ThemeRenderer::self()->renderElement(ThemeRenderer::Board, painter, m_boardRect);
 
     for (int i = 0; i < m_boardSize; i++) {
         qreal offset = i * m_cellSize;
