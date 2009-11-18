@@ -61,6 +61,7 @@ void GameScene::resizeScene(int width, int height)
     m_stonePixmapSize = QSize(static_cast<int>(m_cellSize * 1.4), static_cast<int>(m_cellSize * 1.4));
     updateStoneItems();                     // Resize means redraw of board items (stones)
     updateHintItems();                      // and move hint items
+    updateTerritoryItems();
 
     if (m_placementMarkerItem) {            // Set the mouse/stone postion placementmarker
         removeItem(m_placementMarkerItem);
@@ -102,8 +103,7 @@ void GameScene::showMessage(const QString &message, int msecs)
 void GameScene::showTerritory(bool show)
 {
     m_showTerritory = show;
-    //TODO: Implement showing territory
-    updateStoneItems();
+    updateTerritoryItems();
 }
 
 void GameScene::updateStoneItems()
@@ -111,7 +111,7 @@ void GameScene::updateStoneItems()
     QGraphicsPixmapItem *item;
     int halfStoneSize = m_stonePixmapSize.width() / 2;
 
-    foreach (item, m_stoneItems) {          // Clear all standard Go stone graphics pixmap items
+    foreach (item, m_stoneItems) {  // Clear all stone items
         removeItem(item);
     }
     m_stoneItems.clear();
@@ -164,7 +164,7 @@ void GameScene::updateHintItems()
 {
     QGraphicsPixmapItem *item;
 
-    foreach (item, m_hintItems) {                       // Old hint is invalid, remove it first
+    foreach (item, m_hintItems) {   // Old hint is invalid, remove it first
         removeItem(item);
     }
     m_hintItems.clear();
@@ -198,6 +198,42 @@ void GameScene::updateHintItems()
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
                                  m_gridRect.y() + (m_boardSize - move.y()) * m_cellSize - halfStoneSize + 2));
             m_hintItems.append(item);
+        }
+    }
+}
+
+void GameScene::updateTerritoryItems()
+{
+    QGraphicsPixmapItem *item;
+
+    foreach (item, m_territoryItems) {  // Old territory is invalid, remove it first
+        removeItem(item);
+    }
+    m_territoryItems.clear();
+
+    if (m_showTerritory) {
+        QPixmap stonePixmap;
+        int halfCellSize = m_cellSize / 2;
+        kDebug() << "Fetching territory from engine ...";
+
+        stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteTerritory, QSize(m_cellSize, m_cellSize));
+        foreach (const Stone &stone, m_game->finalStates(Game::FinalWhiteTerritory)) {
+            item = addPixmap(stonePixmap);
+            item->setZValue(4);
+            int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
+                                 m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize + 2));
+            m_territoryItems.append(item);
+        }
+
+        stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackTerritory, QSize(m_cellSize, m_cellSize));
+        foreach (const Stone &stone, m_game->finalStates(Game::FinalBlackTerritory)) {
+            item = addPixmap(stonePixmap);
+            item->setZValue(4);
+            int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+            item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
+                                 m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize + 2));
+            m_territoryItems.append(item);
         }
     }
 }

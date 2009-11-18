@@ -61,6 +61,7 @@ public slots:
 private slots:
     void updateStoneItems();
     void updateHintItems();
+    void updateTerritoryItems();
     void changeBoardSize(int size);
     void hideHint() { showHint(false); }
     void themeChanged();
@@ -88,6 +89,7 @@ private:
 
     QList<QGraphicsPixmapItem *> m_stoneItems;
     QList<QGraphicsPixmapItem *> m_hintItems;
+    QList<QGraphicsPixmapItem *> m_territoryItems;
 };
 
 } // End of namespace Kigo
