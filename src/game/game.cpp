@@ -678,10 +678,11 @@ bool Game::waitResponse(bool nonBlocking)
         emit waiting(true);
     }
 
-    // Wait for finished command execution. We have to do this untill '\n\n' arives in our
-    // input buffer to show that the Go game is done processing our request. The 'nonBlocking'
-    // parameter decides whether we block and wait (suitable for short commands) or if we continue
-    // processing events in between to stop the UI from blocking (suitable for longer commands).
+    // Wait for finished command execution. We have to do this untill '\n\n' (or '\r\n\r\n' or
+    // '\r\r' in case of MS Windows and Mac, respectively) arrives in our input buffer to show
+    // that the Go game is done processing our request. The 'nonBlocking' parameter decides
+    // whether we block and wait (suitable for short commands) or if we continue processing
+    // events in between to stop the UI from blocking (suitable for longer commands).
     // The latter may introduce flickering.
     m_response.clear();
     do {
@@ -694,7 +695,9 @@ bool Game::waitResponse(bool nonBlocking)
             m_process.waitForReadyRead();       // Blocking wait
         }
         m_response += m_process.readAllStandardOutput();
-    } while(!m_response.endsWith(QLatin1String("\n\n")));
+    } while( !m_response.endsWith(QLatin1String("\r\r")) && 
+             !m_response.endsWith(QLatin1String("\n\n")) && 
+             !m_response.endsWith(QLatin1String("\r\n\r\n")) );
 
     if (nonBlocking) {
         emit waiting(false);
