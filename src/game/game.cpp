@@ -29,6 +29,25 @@
 
 namespace Kigo {
 
+class UndoCommand : public QUndoCommand
+{
+    public:
+
+    enum MoveType { Stone, Passed, Resigned };
+
+    UndoCommand(Player *player, MoveType moveType, const QString &undoStr)
+    : QUndoCommand(undoStr), m_player(player), m_moveType(moveType)
+    {}
+
+    Player *player () const { return m_player; }
+    MoveType moveType () const { return m_moveType; }
+
+    private:
+
+    Player *m_player;
+    MoveType m_moveType;
+};
+
 Game::Game(QObject *parent)
     : QObject(parent)
     , m_currentMove(0), m_lastUndoIndex(0), m_currentPlayer(&m_blackPlayer)
@@ -298,20 +317,30 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
         m_currentMove++;
 
         if (undoable) {                         // Do undo stuff if desired
+            Player *player;
+            UndoCommand::MoveType moveType;
             QString undoStr;
             if (tmp->isWhite()) {
-                undoStr = i18n("White ");
+                player = &m_whitePlayer;
+                if (stone.isValid()) {
+                    moveType = UndoCommand::Stone;
+                    undoStr = i18nc("%1 stone coordinate", "White %1", stone.toString());
+                } else {
+                    moveType = UndoCommand::Passed;
+                    undoStr = i18n("White passed");
+                }
             } else {
-                undoStr = i18n("Black ");
-            }
-
-            if (stone.isValid()) {
-                undoStr += stone.toLatin1();
-            } else {
-                undoStr += i18n("passed");
+                player = &m_blackPlayer;
+                if (stone.isValid()) {
+                    moveType = UndoCommand::Stone;
+                    undoStr = i18nc("%1 stone coordinate", "Black %1", stone.toString());
+                } else {
+                    moveType = UndoCommand::Passed;
+                    undoStr = i18n("Black passed");
+                }
             }
             //kDebug() << "Push new undo command" << undoStr;
-            m_undoStack.push(new QUndoCommand(undoStr));
+            m_undoStack.push(new UndoCommand(player, moveType, undoStr));
         }
 
         if (tmp->isWhite()) {                   // Determine the next current player
@@ -349,13 +378,15 @@ bool Game::generateMove(const Player &player, bool undoable)
         m_process.write("genmove black\n");
     }
     if (waitResponse(true)) {
+        Player *player;
+        UndoCommand::MoveType moveType;
         QString undoStr;
-        if (tmp->isWhite()) {
-            undoStr = i18n("White ");
-        } else {
-            undoStr = i18n("Black ");
-        }
 
+        if (tmp->isWhite()) {
+            player = &m_whitePlayer;
+        } else {
+            player = &m_blackPlayer;
+        }
         if (m_response == "PASS") {
             m_currentMove++;
             emit passMovePlayed(*m_currentPlayer);
@@ -363,22 +394,37 @@ bool Game::generateMove(const Player &player, bool undoable)
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
             }
             m_consecutivePassMoveNumber++;
-            undoStr += i18n("passed");
+            moveType = UndoCommand::Passed;
+            if (tmp->isWhite()) {
+                undoStr = i18n("White passed");
+            } else {
+                undoStr = i18n("Black passed");
+            }
         } else if (m_response == "resign") {
             emit resigned(*m_currentPlayer);
             m_gameFinished = true;
-            undoStr += i18n("resigned");
+            moveType = UndoCommand::Resigned;
+            if (tmp->isWhite()) {
+                undoStr = i18n("White resigned");
+            } else {
+                undoStr = i18n("Black resigned");
+            }
         } else {
             m_currentMove++;
             m_movesList.append(Move(tmp, Stone(m_response)));
             m_consecutivePassMoveNumber = 0;
-            undoStr += m_response;
+            moveType = UndoCommand::Stone;
+            if (tmp->isWhite()) {
+                undoStr = i18nc("%1 response from Go engine", "White %1", m_response);
+            } else {
+                undoStr = i18nc("%1 response from Go engine", "Black %1", m_response);
+            }
             emit boardChanged();
         }
 
         if (undoable) {
             //kDebug() << "Push new undo command" << undoStr;
-            m_undoStack.push(new QUndoCommand(undoStr));
+            m_undoStack.push(new UndoCommand(player, moveType, undoStr));
         }
         if (tmp->isWhite()) {
             setCurrentPlayer(m_blackPlayer);
@@ -434,32 +480,23 @@ bool Game::redoMove()
         return false;
     }
 
-    QString undoStr = m_undoStack.text(m_undoStack.index());
+    const UndoCommand *undoCmd = static_cast<const UndoCommand*>(m_undoStack.command(m_undoStack.index()));
 
-    Player *player;
-    if (undoStr.startsWith(i18n("Black "))) {
-        player = &m_blackPlayer;
-    } else if (undoStr.startsWith(i18n("White "))) {
-        player = &m_whitePlayer;
-    } else {
-        kDebug() << "Invalid undo/redo command found:" << undoStr;
-        return false;
-    }
+    Player *player = undoCmd->player();
 
-    undoStr.remove(0, undoStr.indexOf(' ')+1);
-    if (undoStr.startsWith(i18n("pass"))) {
-        kDebug() << "Redo a pass move for" << player << undoStr;
+    if (undoCmd->moveType() == UndoCommand::Passed) {
+        kDebug() << "Redo a pass move for" << player << undoCmd->text();
         playMove(*player, Stone(), false);         // E.g. pass move
-    } else if (undoStr.startsWith(i18n("resign"))) {
+    } else if (undoCmd->moveType() == UndoCommand::Resigned) {
         // Note: Altough it is possible to undo after a resign and redo it,
         //       it is a bit questionable whether this makes sense logically.
-        kDebug() << "Redo a resign for" << player << undoStr;
+        kDebug() << "Redo a resign for" << player << undoCmd->text();
         emit resigned(*player);
         m_gameFinished = true;
         //emit resigned(*m_currentPlayer);
     } else {
-        kDebug() << "Redo a normal move for" << player << undoStr;
-        playMove(*player, Stone(undoStr), false);
+        kDebug() << "Redo a normal move for" << player << undoCmd->text();
+        playMove(*player, Stone(undoCmd->text()), false);
     }
     m_undoStack.redo();
     return false;
