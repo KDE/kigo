@@ -7,6 +7,7 @@ Categories=Qt;KDE;Game;BoardGame;
 
 Name=Kigo
 Name[ca]=Kigo
+Name[ca@valencia]=Kigo
 Name[de]=Kigo
 Name[en_GB]=Kigo
 Name[eo]=Kigo
@@ -29,6 +30,7 @@ Name[zh_TW]=Kigo
 
 GenericName=Go Board Game
 GenericName[ca]=Joc de taula Go
+GenericName[ca@valencia]=Joc de taula Go
 GenericName[de]=„Go“-Brettspiel
 GenericName[en_GB]=Go Board Game
 GenericName[es]=Juego de tablero «Go»
