@@ -26,6 +26,7 @@ Name[sv]=Kigo
 Name[tr]=Kigo
 Name[uk]=Kigo
 Name[x-test]=xxKigoxx
+Name[zh_CN]=Kigo
 Name[zh_TW]=Kigo
 
 GenericName=Go Board Game
@@ -47,4 +48,5 @@ GenericName[sv]=Brädspelet Go
 GenericName[tr]=Go Masaüstü Oyunu
 GenericName[uk]=Гра у го на дошці
 GenericName[x-test]=xxGo Board Gamexx
+GenericName[zh_CN]=围棋游戏
 GenericName[zh_TW]=Go 棋盤遊戲
