@@ -201,7 +201,7 @@ fileref="get-new-games.png"/></imageobject>
 <chapter id="interface"><title>Interface Overview</title> <!-- do not change this! -->
 <sect1 id="menus">
 <title>The &kappname; Menues</title>
-<para>&kappname; has a default &kde; game menues, except for the following items.</para>
+<para>&kappname; has a default &kde; game menues, except for the following items:</para>
 		<variablelist>
 			<varlistentry  id="game-menu-get-more">
 				<term><menuchoice>
@@ -215,7 +215,7 @@ fileref="get-new-games.png"/></imageobject>
 				<term><menuchoice>
 					<shortcut><keycap>S</keycap></shortcut>
 					<guimenu>Game</guimenu>
-					<guimenuitem>Start</guimenuitem>
+					<guimenuitem>Start Game</guimenuitem>
 				</menuchoice></term>
 				<listitem><para><action>Starts</action> the new or the loaded game.</para></listitem>
 			</varlistentry>
@@ -223,7 +223,7 @@ fileref="get-new-games.png"/></imageobject>
 				<term><menuchoice>
 				<shortcut><keycap>F</keycap></shortcut>
 					<guimenu>Game</guimenu>
-					<guimenuitem>Finish</guimenuitem>
+					<guimenuitem>Finish Game</guimenuitem>
 				</menuchoice></term>
 				<listitem><para><action>Finishes</action> the current game. Remember that ending a Go game is always a cooperative step.</para></listitem>
 			</varlistentry>
