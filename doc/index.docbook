@@ -166,7 +166,7 @@ fileref="get-new-games.png"/></imageobject>
       </mediaobject>
       </screenshot>
       <para>
-      Note that you can save the current game at any time. Do this by entering the <guimenu>Game</guimenu> menu and choose <guimenuitem>Save</guimenuitem> item.
+      Note that you can save the current game at any time. Do this by entering the <guimenu>Game</guimenu> menu and choose the <guimenuitem>Save</guimenuitem> item.
       </para>
 
 	<sect2 id="hint">
