@@ -48,11 +48,12 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(const QString &fileName = "", QWidget *parent = 0);
 
 private slots:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
+    bool loadGame(const QString &fileName);
     void getMoreGames();
     void backendError();                    ///<
     void saveGame();                        ///< Save current game state

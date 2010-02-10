@@ -48,7 +48,14 @@ int main(int argc, char *argv[])
     aboutData.addCredit(ki18n("Arturo Silva"), ki18n("Default theme designer"),
                         "jasilva28@gmail.com");
     aboutData.setHomepage("http://games.kde.org/kigo");
+
     KCmdLineArgs::init(argc, argv, &aboutData);
+
+    KCmdLineOptions options;
+    const KLocalizedString& gameToLoad = ki18nc("@info:shell", "Game to load");
+    options.add("game", gameToLoad);
+    options.add("+[Url]", gameToLoad);
+    KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
     KGlobal::locale()->insertCatalog("libkdegames");
@@ -56,7 +63,18 @@ int main(int argc, char *argv[])
     if (app.isSessionRestored()) {
         RESTORE(Kigo::MainWindow)
     } else {
-        Kigo::MainWindow *mainWin = new Kigo::MainWindow(NULL);
+        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+
+        QString game;
+        if (args->isSet("game")) {
+            game = args->getOption("game");
+        }
+        if (args->count() == 1) {
+            game = args->arg(0);
+        }
+
+        Kigo::MainWindow *mainWin = new Kigo::MainWindow(game, NULL);
+
         mainWin->show();
     }
     return app.exec();

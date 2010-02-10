@@ -46,7 +46,7 @@
 
 namespace Kigo {
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(const QString &fileName, QWidget *parent)
     : KXmlGuiWindow(parent), m_game(new Game(this))
     , m_gameScene(new GameScene(m_game)), m_gameView(new GameView(m_gameScene))
 {
@@ -63,7 +63,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_game, SIGNAL(passMovePlayed(const Player &)), this, SLOT(passMovePlayed(const Player &)));
 
     if (isBackendWorking()) {
-        newGame();
+        if (!loadGame(fileName)) {
+            newGame();
+        }
     } else {
         backendError();
     }
@@ -107,6 +109,13 @@ void MainWindow::loadGame()
 {
     QString fileName = KFileDialog::getOpenFileName(KUrl(KStandardDirs::locate("appdata", "games/")), "*.sgf");
     if (!fileName.isEmpty()) {
+        loadGame(fileName);
+    }
+}
+
+bool MainWindow::loadGame(const QString &fileName)
+{
+    if (!fileName.isEmpty() && QFile(fileName).exists()) {
         m_game->start(Preferences::engineCommand());
 
         m_gameScene->showTerritory(false);
@@ -137,9 +146,11 @@ void MainWindow::loadGame()
 
         m_setupWidget->loadedGame(fileName);
         m_gameScene->showMessage(i18n("Set up a loaded game..."));
+        return true;
     } else {
         m_gameScene->showMessage(i18n("Unable to load game..."));
         //Note: New game implied here
+        return false;
     }
 }
 

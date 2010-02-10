@@ -4,6 +4,7 @@ Icon=kigo
 Exec=kigo %i -caption "%c"
 Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
+MimeType=application/x-go-sgf;
 
 Name=Kigo
 Name[ca]=Kigo
