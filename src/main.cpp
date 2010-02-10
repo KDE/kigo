@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
-    const KLocalizedString& gameToLoad = ki18nc("@info:shell", "Game to load");
+    const KLocalizedString& gameToLoad = ki18nc("@info:shell", "Game to load (SGF file)");
     options.add("game", gameToLoad);
     options.add("+[Url]", gameToLoad);
     KCmdLineArgs::addCmdLineOptions(options);
