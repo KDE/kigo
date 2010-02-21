@@ -225,6 +225,8 @@ void MainWindow::startGame()
 
         m_gameView->setInteractive(true);
         m_undoView->setEnabled(true);
+
+        m_gameScene->showPlacementMarker(true);
     } else {
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
@@ -232,6 +234,8 @@ void MainWindow::startGame()
 
         m_gameView->setInteractive(false);
         m_undoView->setEnabled(false);
+
+        m_gameScene->showPlacementMarker(false);
     }
 
     connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));

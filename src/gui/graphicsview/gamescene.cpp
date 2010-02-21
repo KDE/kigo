@@ -33,7 +33,7 @@ GameScene::GameScene(Game *game, QObject *parent)
     : QGraphicsScene(parent), m_game(game)
     , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
-    , m_showTerritory(false)
+    , m_showPlacementMarker(true), m_showTerritory(false)
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
     connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
@@ -88,6 +88,11 @@ void GameScene::showMoveNumbers(bool show)
 {
     m_showMoveNumbers = show;
     updateStoneItems();
+}
+
+void GameScene::showPlacementMarker(bool show)
+{
+    m_showPlacementMarker = show;
 }
 
 void GameScene::showMessage(const QString &message, int msecs)
@@ -146,10 +151,11 @@ void GameScene::updateStoneItems()
                 //TODO: Check for existing move number to do special treatment
                 QPixmap pixmap = item->pixmap();
                 QPainter painter(&pixmap);
-                if (move.player()->isWhite())
+                if (move.player()->isWhite()) {
                     painter.setPen(Qt::black);
-                else if (move.player()->isBlack())
+                } else if (move.player()->isBlack()) {
                     painter.setPen(Qt::white);
+                }
                 QFont f = painter.font();
                 f.setPointSizeF(halfStoneSize / 2);
                 painter.setFont(f);
@@ -255,16 +261,20 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     QPixmap map;
 
     if (m_mouseRect.contains(event->scenePos())) {
-        int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
-        int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
-
-        int x = m_mouseRect.x() + row * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.width()/2;
-        int y = m_mouseRect.y() + col * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.height()/2;
-
         // Show a placement marker at the nearest board intersection
         // as a visual aid for the user.
-        m_placementMarkerItem->setVisible(true);
-        m_placementMarkerItem->setPos(x, y);
+        if (m_showPlacementMarker) {
+            int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
+            int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
+
+            int x = m_mouseRect.x() + row * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.width()/2;
+            int y = m_mouseRect.y() + col * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.height()/2;
+
+            m_placementMarkerItem->setVisible(true);
+            m_placementMarkerItem->setPos(x, y);
+        } else {
+            m_placementMarkerItem->setVisible(false);
+        }
 
         if (m_game->currentPlayer().isHuman()) {
             if (m_game->currentPlayer().isWhite()) {

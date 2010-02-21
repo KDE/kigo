@@ -42,10 +42,11 @@ GameView::GameView(GameScene *scene, QWidget *parent)
 
 void GameView::changeCursor(const QPixmap &cursorPixmap)
 {
-    if (!isInteractive() || cursorPixmap.isNull())
+    if (!isInteractive() || cursorPixmap.isNull()) {
         unsetCursor();
-    else
+    } else {
         setCursor(QCursor(cursorPixmap));
+    }
 }
 
 /*void GameView::drawForeground(QPainter *painter, const QRectF &rect)
