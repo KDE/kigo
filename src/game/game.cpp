@@ -247,7 +247,7 @@ bool Game::setFixedHandicap(int handicap)
             return false;
         }
     } else {
-        kWarning() << "Handicap" << handicap << " not set, it is too high!";
+        //kWarning() << "Handicap" << handicap << " not set, it is too high!";
         return false;
     }
 }
@@ -732,9 +732,9 @@ bool Game::waitResponse(bool nonBlocking)
             m_process.waitForReadyRead();       // Blocking wait
         }
         m_response += m_process.readAllStandardOutput();
-    } while( !m_response.endsWith(QLatin1String("\r\r")) && 
-             !m_response.endsWith(QLatin1String("\n\n")) && 
-             !m_response.endsWith(QLatin1String("\r\n\r\n")) );
+    } while (!m_response.endsWith(QLatin1String("\r\r")) &&
+             !m_response.endsWith(QLatin1String("\n\n")) &&
+             !m_response.endsWith(QLatin1String("\r\n\r\n")));
 
     if (nonBlocking) {
         emit waiting(false);
