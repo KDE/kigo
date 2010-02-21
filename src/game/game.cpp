@@ -392,6 +392,7 @@ bool Game::generateMove(const Player &player, bool undoable)
             emit passMovePlayed(*m_currentPlayer);
             if (m_consecutivePassMoveNumber > 0) {
                 emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+                m_gameFinished = true;
             }
             m_consecutivePassMoveNumber++;
             moveType = UndoCommand::Passed;
