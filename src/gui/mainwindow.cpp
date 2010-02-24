@@ -35,7 +35,7 @@
 #include <KConfigDialog>
 #include <KFileDialog>
 #include <KGameThemeSelector>
-#include <knewstuff2/engine.h>
+#include <knewstuff3/downloaddialog.h>
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
@@ -156,15 +156,14 @@ bool MainWindow::loadGame(const QString &fileName)
 
 void MainWindow::getMoreGames()
 {
-    KNS::Engine engine(0);
+    KNS3::DownloadDialog dialog("kigo-games.knsrc", this);
+    dialog.exec();
 
-    if (engine.init("kigo-games.knsrc")) {
-        KNS::Entry::List entries = engine.downloadDialogModal(this);
-        /*if (entries.size() > 0) {
-            // do something with the modified entries here if you want
-            // such as rescaning your data folder or whatnot
-        }*/
-    }
+    KNS3::Entry::List entries = dialog.changedEntries();
+    /*if (entries.size() > 0) {
+        // do something with the modified entries here if you want
+        // such as rescaning your data folder or whatnot
+    }*/
 }
 
 void MainWindow::backendError()
