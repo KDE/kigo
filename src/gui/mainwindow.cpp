@@ -458,14 +458,13 @@ void MainWindow::setupDockWindows()
     // Game dock
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
     m_gameDock->setObjectName("gameDock");
-    m_gameDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_gameDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     GameWidget *gameWidget = new GameWidget(m_game, this);
     connect(gameWidget, SIGNAL(finishClicked()), this, SLOT(finishGame()));
     m_gameDock->setWidget(gameWidget);
-    //m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
-    //m_gameDock->toggleViewAction()->setShortcut(Qt::Key_G);
-    //actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
+    m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
+    m_gameDock->toggleViewAction()->setShortcut(Qt::Key_I);
+    actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
 
     // Move history dock
