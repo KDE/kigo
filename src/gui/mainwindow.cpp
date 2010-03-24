@@ -35,7 +35,7 @@
 #include <KConfigDialog>
 #include <KFileDialog>
 #include <KGameThemeSelector>
-#include <knewstuff3/downloaddialog.h>
+#include <KNS3/DownloadDialog>
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
@@ -159,8 +159,8 @@ void MainWindow::getMoreGames()
     KNS3::DownloadDialog dialog("kigo-games.knsrc", this);
     dialog.exec();
 
-    KNS3::Entry::List entries = dialog.changedEntries();
-    /*if (entries.size() > 0) {
+    /*KNS3::Entry::List entries = dialog.changedEntries();
+    if (entries.size() > 0) {
         // do something with the modified entries here if you want
         // such as rescaning your data folder or whatnot
     }*/
@@ -322,7 +322,7 @@ void MainWindow::showPreferences()
 
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
-    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self()), i18n("Themes"), "games-config-theme");
+    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), "games-config-theme");
     dialog->setHelp(QString(), "Kigo");
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(applyPreferences()));
     dialog->show();
