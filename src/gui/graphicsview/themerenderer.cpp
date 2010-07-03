@@ -22,7 +22,7 @@
 #include "preferences.h"
 
 #include <KGameTheme>
-#include <KSvgRenderer>
+#include <QSvgRenderer>
 #include <KPixmapCache>
 #include <KDebug>
 
@@ -32,7 +32,7 @@
 namespace Kigo {
 
 ThemeRenderer::ThemeRenderer()
-    : m_renderer(new KSvgRenderer)
+    : m_renderer(new QSvgRenderer)
     , m_cache(new KPixmapCache("kigo-cache"))
 {
     m_cache->setCacheLimit(3 * 1024);
