@@ -155,6 +155,7 @@ void SetupWidget::commit()
     } else {                                        // The user configured a loaded game
         //Note: None currently
     }
+    m_game->gameSetup();
 }
 
 void SetupWidget::on_startMoveSpinBox_valueChanged(int value)

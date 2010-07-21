@@ -246,6 +246,12 @@ public:
 
 signals:
     /**
+     * This signal is emitted when the board is first started and
+     * can be used to trigger an update to a visual representation.
+     */
+    void boardInitialized();
+
+    /**
      * This signal is emitted when the board situation changed and
      * can be used to trigger an update to a visual representation.
      */
@@ -280,6 +286,9 @@ signals:
     /** This signal is emitted when availability of undo moves changes */
     void canUndoChanged(bool);
 
+public slots:
+    void gameSetup();
+    
 private slots:
     /**
      * Wait gracefully for a response from the Go game. The returned string

@@ -750,6 +750,11 @@ bool Game::waitResponse(bool nonBlocking)
     return tmp != '?';                          // '?' Means the game didn't understand the query
 }
 
+void Game::gameSetup()
+{
+    emit boardInitialized();
+}
+    
 void Game::readyRead()
 {
     m_waitAndProcessEvents = false;
