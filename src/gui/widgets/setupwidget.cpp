@@ -33,7 +33,7 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     Q_ASSERT(m_game);
     setupUi(this);
 
-    startButton->setIcon(KIcon("media-playback-start"));
+    startButton->setIcon(KIcon( QLatin1String( "media-playback-start" )));
 
     connect(startButton, SIGNAL(clicked()), this, SIGNAL(startClicked()));
 }

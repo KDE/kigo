@@ -33,7 +33,7 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
     Q_ASSERT(m_game);
     setupUi(this);
 
-    finishButton->setIcon(KIcon("media-playback-stop"));
+    finishButton->setIcon(KIcon( QLatin1String( "media-playback-stop" )));
 
     connect(m_game, SIGNAL(boardInitialized()), this, SLOT(init()));
     connect(m_game, SIGNAL(boardChanged()), this, SLOT(update()));

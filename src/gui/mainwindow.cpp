@@ -402,25 +402,25 @@ void MainWindow::setupActions()
     // Game menu
     m_newGameAction = KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
     m_loadGameAction = KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
-    m_getMoreGamesAction = new KAction(KIcon("get-hot-new-stuff"), i18nc("@action", "Get More Games..."), this);
+    m_getMoreGamesAction = new KAction(KIcon( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
     m_getMoreGamesAction->setShortcut(Qt::CTRL + Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     connect(m_getMoreGamesAction, SIGNAL(triggered(bool)), this, SLOT(getMoreGames()));
-    actionCollection()->addAction("get_more_games", m_getMoreGamesAction);
+    actionCollection()->addAction( QLatin1String( "get_more_games" ), m_getMoreGamesAction);
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new KAction(KIcon("media-playback-start"), i18nc("@action", "Start Game"), this);
+    m_startGameAction = new KAction(KIcon( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     m_startGameAction->setShortcut(Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
-    actionCollection()->addAction("game_start", m_startGameAction);
+    actionCollection()->addAction( QLatin1String( "game_start" ), m_startGameAction);
 
-    m_finishGameAction = new KAction(KIcon("media-playback-stop"), i18nc("@action", "Finish Game"), this);
+    m_finishGameAction = new KAction(KIcon( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
-    actionCollection()->addAction("game_finish", m_finishGameAction);
+    actionCollection()->addAction( QLatin1String( "game_finish" ), m_finishGameAction);
 
     // Move menu
     m_undoMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
@@ -431,11 +431,11 @@ void MainWindow::setupActions()
     m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
 
     // View menu
-    m_moveNumbersAction = new KToggleAction(KIcon("lastmoves"), i18nc("@action:inmenu View", "Show Move &Numbers"), this);
+    m_moveNumbersAction = new KToggleAction(KIcon( QLatin1String( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
     m_moveNumbersAction->setShortcut(Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showMoveNumbers(bool)));
-    actionCollection()->addAction("move_numbers", m_moveNumbersAction);
+    actionCollection()->addAction( QLatin1String( "move_numbers" ), m_moveNumbersAction);
 
     // Settings menu
     KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());
@@ -445,31 +445,31 @@ void MainWindow::setupDockWindows()
 {
     // Setup dock
     m_setupDock = new QDockWidget(i18nc("@title:window", "Game Setup"), this);
-    m_setupDock->setObjectName("setupDock");
+    m_setupDock->setObjectName( QLatin1String("setupDock" ));
     m_setupDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_setupWidget = new SetupWidget(m_game, this);
     m_setupDock->setWidget(m_setupWidget);
     connect(m_setupWidget, SIGNAL(startClicked()), this, SLOT(startGame()));
     //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
     //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
-    //actionCollection()->addAction("show_setup_panel", m_setupDock->toggleViewAction());
+    //actionCollection()->addAction( QLatin1String( "show_setup_panel" ), m_setupDock->toggleViewAction());
     addDockWidget(Qt::BottomDockWidgetArea, m_setupDock);
 
     // Game dock
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
-    m_gameDock->setObjectName("gameDock");
+    m_gameDock->setObjectName( QLatin1String("gameDock" ));
     m_gameDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     GameWidget *gameWidget = new GameWidget(m_game, this);
     connect(gameWidget, SIGNAL(finishClicked()), this, SLOT(finishGame()));
     m_gameDock->setWidget(gameWidget);
     m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
     m_gameDock->toggleViewAction()->setShortcut(Qt::Key_I);
-    actionCollection()->addAction("show_game_panel", m_gameDock->toggleViewAction());
+    actionCollection()->addAction( QLatin1String( "show_game_panel" ), m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
 
     // Move history dock
     m_movesDock = new QDockWidget(i18nc("@title:window", "Moves"), this);
-    m_movesDock->setObjectName("movesDock");
+    m_movesDock->setObjectName( QLatin1String("movesDock" ));
     m_undoView = new QUndoView(m_game->undoStack());
     m_undoView->setEmptyLabel(i18n("No move"));
     m_undoView->setAlternatingRowColors(true);
@@ -479,18 +479,18 @@ void MainWindow::setupDockWindows()
     m_movesDock->setWidget(m_undoView);
     m_movesDock->toggleViewAction()->setText(i18nc("@title:window", "Moves"));
     m_movesDock->toggleViewAction()->setShortcut(Qt::Key_M);
-    actionCollection()->addAction("show_moves_panel", m_movesDock->toggleViewAction());
+    actionCollection()->addAction( QLatin1String( "show_moves_panel" ), m_movesDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_movesDock);
 
     m_errorDock = new QDockWidget(i18nc("@title:window", "Error"), this);
-    m_errorDock->setObjectName("errorDock");
+    m_errorDock->setObjectName( QLatin1String("errorDock" ));
     m_errorDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     ErrorWidget *errorWidget = new ErrorWidget(this);
     connect(errorWidget, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
     m_errorDock->setWidget(errorWidget);
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
     //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);
-    //actionCollection()->addAction("show_error_panel", m_errorDock->toggleViewAction());
+    //actionCollection()->addAction( QLatin1String( "show_error_panel" ), m_errorDock->toggleViewAction());
     addDockWidget(Qt::BottomDockWidgetArea, m_errorDock);
 }
 
