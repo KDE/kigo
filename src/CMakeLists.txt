@@ -33,7 +33,7 @@ install(TARGETS kigo ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(FILES kigo.knsrc DESTINATION ${CONFIG_INSTALL_DIR})
 install(FILES kigo-games.knsrc DESTINATION ${CONFIG_INSTALL_DIR})
-install(FILES gui/kigo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(PROGRAMS gui/kigo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 install(FILES gui/kigoui.rc DESTINATION ${DATA_INSTALL_DIR}/kigo)
 
 #register_ggz_module(module.dsc)
