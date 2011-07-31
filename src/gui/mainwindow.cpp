@@ -59,8 +59,8 @@ MainWindow::MainWindow(const QString &fileName, QWidget *parent)
 
     connect(m_game, SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
     connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinishGameAction()));
-    connect(m_game, SIGNAL(resigned(const Player &)), this, SLOT(finishGame()));
-    connect(m_game, SIGNAL(passMovePlayed(const Player &)), this, SLOT(passMovePlayed(const Player &)));
+    connect(m_game, SIGNAL(resigned(Player)), this, SLOT(finishGame()));
+    connect(m_game, SIGNAL(passMovePlayed(Player)), this, SLOT(passMovePlayed(Player)));
 
     if (isBackendWorking()) {
         if (!loadGame(fileName)) {
@@ -92,7 +92,7 @@ void MainWindow::newGame()
 
     disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-    disconnect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
+    disconnect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
 
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
@@ -135,7 +135,7 @@ bool MainWindow::loadGame(const QString &fileName)
 
         disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
         disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-        disconnect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
+        disconnect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
 
         m_gameDock->setVisible(false);
         m_gameDock->toggleViewAction()->setEnabled(false);
@@ -184,7 +184,7 @@ void MainWindow::backendError()
 
     disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-    disconnect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
+    disconnect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
     m_movesDock->setVisible(false);
@@ -237,7 +237,7 @@ void MainWindow::startGame()
         m_gameScene->showPlacementMarker(false);
     }
 
-    connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(playerChanged()));
+    connect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
     // Trigger the slot once to make a move if the starting player
     // (black) is a computer player.
     playerChanged();
@@ -324,7 +324,7 @@ void MainWindow::showPreferences()
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), "games-config-theme");
     dialog->setHelp(QString(), "Kigo");
-    connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(applyPreferences()));
+    connect(dialog, SIGNAL(settingsChanged(QString)), this, SLOT(applyPreferences()));
     dialog->show();
 }
 

@@ -38,8 +38,8 @@ GameScene::GameScene(Game *game, QObject *parent)
 {
     connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
     connect(m_game, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
-    connect(m_game, SIGNAL(currentPlayerChanged(const Player &)), this, SLOT(hideHint()));
-    connect(ThemeRenderer::self(), SIGNAL(themeChanged(const QString &)), this, SLOT(themeChanged()));
+    connect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(hideHint()));
+    connect(ThemeRenderer::self(), SIGNAL(themeChanged(QString)), this, SLOT(themeChanged()));
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
