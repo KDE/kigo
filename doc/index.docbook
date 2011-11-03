@@ -32,7 +32,7 @@
 	<holder>Sascha Peilicke</holder>
 </copyright>
 
-<!--<legalnotice>&FDLNotice;</legalnotice>-->
+<legalnotice>&FDLNotice;</legalnotice>
 
 <date>2010-01-27</date>
 <releaseinfo>0.5.6</releaseinfo>
