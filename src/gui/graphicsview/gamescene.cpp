@@ -313,9 +313,12 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
     ThemeRenderer::self()->renderElement(ThemeRenderer::Background, painter, sceneRect());
     ThemeRenderer::self()->renderElement(ThemeRenderer::Board, painter, m_boardRect);
 
+    int width = m_cellSize / 16;
+    QColor color = QColor(20, 30, 20);
+    painter->setPen(QPen(color, width));
+
     for (int i = 0; i < m_boardSize; i++) {
         qreal offset = i * m_cellSize;
-        painter->setPen(QPen(QColor(20, 30, 20), m_cellSize / 16));
         painter->drawLine(QPointF(m_gridRect.left(),  m_gridRect.top() + offset),
                           QPointF(m_gridRect.right(), m_gridRect.top() + offset));
         painter->drawLine(QPointF(m_gridRect.left() + offset, m_gridRect.top()),
