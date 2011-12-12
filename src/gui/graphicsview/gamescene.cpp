@@ -29,6 +29,10 @@
 
 namespace Kigo {
 
+    const int dotPositions9[] = {2,2, 2,6, 6,2, 6,6, 4,4};
+    const int dotPositions13[] = {3,3, 3,9, 9,3, 9,9, 6,6};
+    const int dotPositions19[] = {3,3, 3,9, 3,15, 9,3, 9,9, 9,15, 15,3, 15,9, 15,15};
+
 GameScene::GameScene(Game *game, QObject *parent)
     : QGraphicsScene(parent), m_game(game)
     , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
@@ -347,6 +351,39 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
             painter->drawText(QPointF(xHor, m_gridRect.top() - m_cellSize + fm.ascent() + 2), QString(c));
             painter->drawText(QPointF(xHor, m_gridRect.bottom() + m_cellSize - 3), QString(c));
         }
+    }
+
+    // Draw thicker connections on some defined points.
+    // This is extremely helpful to orientate oneself especially on the 19x19 board.
+    int radius = m_cellSize / 10;
+    painter->setBrush(color);
+    painter->setRenderHint(QPainter::Antialiasing);
+
+    // in order to center properly we need to take line width into account
+    // if the line has an odd width, we shift 1/5 pixel
+    qreal centerOffset = (width % 2) ? 0.5 : 0.0;
+
+    // only do this for the common board sizes,
+    // other sizes are a bit odd anyway
+    int numDots = 0;
+    const int *dotPositions;
+
+    if (m_boardSize == 9) {
+        numDots = 5;
+        dotPositions = dotPositions9;
+    } else if (m_boardSize == 13) {
+        numDots = 5;
+        dotPositions = dotPositions13;
+    } else if (m_boardSize == 19) {
+        numDots = 9;
+        dotPositions = dotPositions19;
+    }
+
+    for (int i = 0; i < numDots; ++i) {
+        painter->drawEllipse(
+            QPointF(m_gridRect.left() + m_cellSize*dotPositions[i*2] + centerOffset,
+                    m_gridRect.top() + m_cellSize*dotPositions[i*2+1] + centerOffset),
+            radius, radius);
     }
 }
 
