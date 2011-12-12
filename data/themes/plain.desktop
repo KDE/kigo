@@ -1,0 +1,10 @@
+[KGameTheme]
+Name=Plain
+Description=Plain Kigo theme based on Default theme by Arturo Silva
+VersionFormat=1
+Author=Frederik Gladhorn
+AuthorEmail=gladhorn@kde.org
+Type=SVG
+FileName=kigo_plain.svgz
+Preview=kigo_plain.png
+
