@@ -361,7 +361,7 @@ bool Game::generateMove(const Player &player, bool undoable)
     if (!isRunning()) {
         return false;
     }
-
+    bool boardChange = false;
     const Player *tmp = &player;
     if (!tmp->isValid()) {
         //kDebug() << "Invalid player argument, using current player!";
@@ -420,7 +420,7 @@ bool Game::generateMove(const Player &player, bool undoable)
             } else {
                 undoStr = i18nc("%1 response from Go engine", "Black %1", m_response);
             }
-            emit boardChanged();
+            boardChange = true;
         }
 
         if (undoable) {
@@ -431,6 +431,9 @@ bool Game::generateMove(const Player &player, bool undoable)
             setCurrentPlayer(m_blackPlayer);
         } else {
             setCurrentPlayer(m_whitePlayer);
+        }
+        if (boardChange) {
+            emit boardChanged();
         }
         return true;
     } else {
