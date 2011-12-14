@@ -1,6 +1,14 @@
 [KGameTheme]
 Name=Plain
+Name[pt_BR]=Simples
+Name[sv]=Enkelt
+Name[uk]=Проста
+Name[x-test]=xxPlainxx
 Description=Plain Kigo theme based on Default theme by Arturo Silva
+Description[pt_BR]=Tema simples do Kigo baseado no tema padrão por Arturo Silva
+Description[sv]=Enkelt Kigo-tema baserat på standardtemat av Arturo Silva
+Description[uk]=Проста тема Kigo, заснована на типовій темі, створеній Arturo Silva
+Description[x-test]=xxPlain Kigo theme based on Default theme by Arturo Silvaxx
 VersionFormat=1
 Author=Frederik Gladhorn
 AuthorEmail=gladhorn@kde.org
