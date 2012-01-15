@@ -1,6 +1,8 @@
 [KGameTheme]
 Name=Plain
+Name[ca]=Senzill
 Name[da]=Simpelt
+Name[de]=Einfach
 Name[es]=Color liso
 Name[et]=Tavaline
 Name[fr]=Uni
@@ -18,7 +20,9 @@ Name[uk]=Проста
 Name[x-test]=xxPlainxx
 Name[zh_TW]=樸素
 Description=Plain Kigo theme based on Default theme by Arturo Silva
+Description[ca]=Tema senzill del Kigo basat en el tema per defecte per l'Arturo Silva
 Description[da]=Simpelt Kigo-tema baseret på standardtemaet af Arturo Silva
+Description[de]=Einfaches Kigo-Design aufbauend auf dem Standard-Design von Arturo Silva
 Description[es]=Tema sencillo de Kigo basado en el tema por defecto de Arturo Silva
 Description[et]=Kigo tavaline teema, aluseks vaiketeema, autor: Arturo Silva
 Description[fr]=Thème Kigo uni inspiré du thème par défaut par Arturo Silva
