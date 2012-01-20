@@ -23,6 +23,8 @@
 #include "game/stone.h"
 #include "preferences.h"
 
+#include "gui/graphicsview/themerenderer.h"
+
 #include <KDebug>
 
 namespace Kigo {
@@ -49,47 +51,55 @@ void GameWidget::init()
     }
 
     if (Preferences::whitePlayerHuman()) {
-        whitePlayerName->setText(Preferences::whitePlayerName());
+        whiteNameLabel->setText(Preferences::whitePlayerName());
     } else {
-        whitePlayerName->setText(i18n("Computer (Level %1)", Preferences::whitePlayerStrength()));
+        whiteNameLabel->setText(i18n("Computer (level %1)", Preferences::whitePlayerStrength()));
     }
     if (Preferences::blackPlayerHuman()) {
-        blackPlayerName->setText(Preferences::blackPlayerName());
+        blackNameLabel->setText(Preferences::blackPlayerName());
     } else {
-        blackPlayerName->setText(i18n("Computer (Level %1)", Preferences::blackPlayerStrength()));
+        blackNameLabel->setText(i18n("Computer (level %1)", Preferences::blackPlayerStrength()));
     }
-    komiSpinBox->setValue(m_game->komi());
-    handicapSpinBox->setValue(m_game->fixedHandicap());
-    handicapSpinBox->setSuffix(ki18np(" Stone", " Stones"));
+    komiLabel->setText(QString::number(m_game->komi()));
+    handicapLabel->setText(i18np("%1 Stone", "%1 Stones", m_game->fixedHandicap()));
+
+    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(48, 48));
+    whiteStoneImageLabel->setPixmap(whiteStone);
+    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
+    blackStoneImageLabel->setPixmap(blackStone);
 
     update();
 }
 
 void GameWidget::update()
 {
-    moveSpinBox->setValue(m_game->currentMoveNumber());
+    moveLabel->setText(QString::number(m_game->currentMoveNumber()));
 
     if (m_game->moves().size() > 0) {
         Move last = m_game->lastMove();
         if (last.player()->isWhite()) {
-            moveSpinBox->setSuffix(i18n(" (White %1)", last.stone().toString()));
+            lastMoveLabel->setText(i18nc("Indication who played the last move", "%1 (white)", last.stone().toString()));
         } else if (last.player()->isBlack()) {
-            moveSpinBox->setSuffix(i18n(" (Black %1)", last.stone().toString()));
+            lastMoveLabel->setText(i18nc("Indication who played the last move", "%1 (black)", last.stone().toString()));
         } else {
-            moveSpinBox->setSuffix("");
+            lastMoveLabel->clear();
         }
     }
 
     if (m_game->currentPlayer().isWhite()) {
-        playerLineEdit->setText(i18n("White's move"));
+        QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(64, 64));
+        currentPlayerImageLabel->setPixmap(whiteStone);
+        currentPlayerLabel->setText(i18n("White's turn"));
     } else if (m_game->currentPlayer().isBlack()) {
-        playerLineEdit->setText(i18n("Black's move"));
+        QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(64, 64));
+        currentPlayerImageLabel->setPixmap(blackStone);
+        currentPlayerLabel->setText(i18n("Black's turn"));
     } else {
-        playerLineEdit->setText("");
+        currentPlayerLabel->clear();
     }
 
-    whiteCapturesLineEdit->setText(QString::number(m_game->captures(m_game->whitePlayer())));
-    blackCapturesLineEdit->setText(QString::number(m_game->captures(m_game->blackPlayer())));
+    whiteCapturesLabel->setText(i18np("%1 capture", "%1 captures", m_game->captures(m_game->whitePlayer())));
+    blackCapturesLabel->setText(i18np("%1 capture", "%1 captures", m_game->captures(m_game->blackPlayer())));
 }
 
 void GameWidget::finishButtonClicked()
