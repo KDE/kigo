@@ -88,7 +88,6 @@ void MainWindow::newGame()
     m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
-    m_moveNumbersAction->setEnabled(false);
 
     disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
@@ -131,7 +130,6 @@ bool MainWindow::loadGame(const QString &fileName)
         m_redoMoveAction->setEnabled(false);
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
-        m_moveNumbersAction->setEnabled(true);
 
         disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
         disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
@@ -180,7 +178,6 @@ void MainWindow::backendError()
     m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
-    m_moveNumbersAction->setEnabled(false);
 
     disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
     disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
@@ -220,7 +217,6 @@ void MainWindow::startGame()
 
         m_passMoveAction->setEnabled(true);
         m_hintAction->setEnabled(true);
-        m_moveNumbersAction->setEnabled(true);
 
         m_gameView->setInteractive(true);
         m_undoView->setEnabled(true);
@@ -229,7 +225,6 @@ void MainWindow::startGame()
     } else {
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
-        m_moveNumbersAction->setEnabled(false);
 
         m_gameView->setInteractive(false);
         m_undoView->setEnabled(false);
@@ -265,7 +260,6 @@ void MainWindow::finishGame()
     m_redoMoveAction->setEnabled(false);
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
-    m_moveNumbersAction->setEnabled(false);
     m_startGameAction->setEnabled(false);
     m_finishGameAction->setEnabled(false);
 
@@ -367,7 +361,6 @@ void MainWindow::showBusy(bool busy)
         }
         m_passMoveAction->setDisabled(busy);
         m_hintAction->setDisabled(busy);
-        m_moveNumbersAction->setDisabled(busy);
         m_undoView->setEnabled(false);
     }
 
