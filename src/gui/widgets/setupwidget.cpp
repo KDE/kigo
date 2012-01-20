@@ -21,6 +21,7 @@
 #include "setupwidget.h"
 #include "game/game.h"
 #include "preferences.h"
+#include "gui/graphicsview/themerenderer.h"
 
 #include <QFile>
 
@@ -34,10 +35,19 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     setupUi(this);
 
     startButton->setIcon(KIcon( QLatin1String( "media-playback-start" )));
+    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(48, 48));
+    whiteStoneImageLabel->setPixmap(whiteStone);
+    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
+    blackStoneImageLabel->setPixmap(blackStone);
 
     connect(startButton, SIGNAL(clicked()), this, SIGNAL(startClicked()));
     connect(whiteIsComputerCheckBox, SIGNAL(toggled(bool)), this, SLOT(whiteIsComputer(bool)));
     connect(blackIsComputerCheckBox, SIGNAL(toggled(bool)), this, SLOT(blackIsComputer(bool)));
+    connect(sizeSmall, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
+    connect(sizeMedium, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
+    connect(sizeBig, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
+    connect(sizeOther, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
+    connect(sizeOtherSpinBox, SIGNAL(valueChanged(int)), this, SLOT(on_boardSize_changed()));
 }
 
 SetupWidget::~SetupWidget()
@@ -52,9 +62,7 @@ void SetupWidget::newGame()
     gameSetupStack->setCurrentIndex(0);
     m_game->setBoardSize(Preferences::boardSize());
     handicapSpinBox->setSuffix(ki18np(" Stone", " Stones"));
-    if (Preferences::fixedHandicapEnabled()) {
-        m_game->setFixedHandicap(Preferences::fixedHandicapValue());
-    }
+    m_game->setFixedHandicap(Preferences::fixedHandicapValue());
 }
 
 void SetupWidget::loadedGame(const QString &fileName)
@@ -175,7 +183,7 @@ void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
     }
 }
 
-void SetupWidget::on_sizeGroupBox_changed(int /*id*/)
+void SetupWidget::on_boardSize_changed()
 {
     if (sizeOther->isChecked()) {                   // Custom size enabled
         sizeOtherSpinBox->setEnabled(true);
@@ -193,52 +201,20 @@ void SetupWidget::on_sizeGroupBox_changed(int /*id*/)
     updateHandicapBox();                            // Handicap depends on board size
 }
 
-void SetupWidget::on_sizeOtherSpinBox_valueChanged(int value)
-{
-    m_game->setBoardSize(value);                  // Set free board size
-    updateHandicapBox();
-}
-
-void SetupWidget::on_handicapGroupBox_toggled(bool isChecked)
-{
-    m_game->init();                               // Also removes handicap
-    if (isChecked) {                                // Set handicap if checked
-        m_game->setFixedHandicap(handicapSpinBox->value());
-    }
-}
-
 void SetupWidget::on_handicapSpinBox_valueChanged(int value)
 {
-    m_lastFixedHandicap = handicapSpinBox->value(); //
-    m_game->init();                               // Setting fixed handicap works only
-    m_game->setFixedHandicap(value);              // on a blank game board
+    m_lastFixedHandicap = value; // Treat 1 handicap as 0
+    m_game->init();                                   // Setting fixed handicap works only
+    m_game->setFixedHandicap(value == 1 ? 0 : value); // on a blank game board
 }
 
 void SetupWidget::updateHandicapBox()
 {
     int maxFixedHandicap = m_game->fixedHandicapUpperBound();
-
-    if (maxFixedHandicap == 0) {
-        handicapGroupBox->setEnabled(false);
-    } else {
-        handicapGroupBox->setEnabled(true);
-
-        if (maxFixedHandicap >= handicapSpinBox->minimum()) {
-            handicapSpinBox->setMaximum(maxFixedHandicap);
-
-            if (m_lastFixedHandicap >= maxFixedHandicap) {
-                handicapSpinBox->setValue(maxFixedHandicap);
-            } else {
-                handicapSpinBox->setValue(m_lastFixedHandicap);
-            }
-
-            if (handicapGroupBox->isChecked()) {
-                m_game->setFixedHandicap(handicapSpinBox->value());
-            }
-        } else {
-            handicapGroupBox->setChecked(false);
-        }
-    }
+    handicapSpinBox->setEnabled(maxFixedHandicap > 0);
+    handicapSpinBox->setMaximum(maxFixedHandicap);
+    handicapSpinBox->setValue(m_lastFixedHandicap);
+    on_handicapSpinBox_valueChanged(handicapSpinBox->value());
 }
 
 void SetupWidget::loadSettings()
@@ -252,7 +228,6 @@ void SetupWidget::loadSettings()
     blackIsComputerCheckBox->setChecked(!Preferences::blackPlayerHuman());
 
     komiSpinBox->setValue(Preferences::komi());
-    handicapGroupBox->setChecked(Preferences::fixedHandicapEnabled());
     handicapSpinBox->setValue(Preferences::fixedHandicapValue());
 
     switch (Preferences::boardSize()) {
@@ -289,7 +264,6 @@ void SetupWidget::saveSettings()
     Preferences::setBlackPlayerHuman(!blackIsComputerCheckBox->isChecked());
 
     Preferences::setKomi(komiSpinBox->value());
-    Preferences::setFixedHandicapEnabled(handicapGroupBox->isChecked());
     Preferences::setFixedHandicapValue(handicapSpinBox->value());
 
     if (sizeSmall->isChecked()) {

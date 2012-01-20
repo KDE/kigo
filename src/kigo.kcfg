@@ -90,10 +90,6 @@
             <min>0</min>
             <max>50</max>
         </entry>
-        <entry name="FixedHandicapEnabled" type="Bool">
-            <label></label>
-            <default>true</default>
-        </entry>
         <entry name="FixedHandicapValue" type="Int">
             <label>Extra stones for the black player</label>
             <default>4</default>

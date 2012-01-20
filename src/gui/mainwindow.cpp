@@ -451,7 +451,7 @@ void MainWindow::setupDockWindows()
     //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
     //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
     //actionCollection()->addAction( QLatin1String( "show_setup_panel" ), m_setupDock->toggleViewAction());
-    addDockWidget(Qt::BottomDockWidgetArea, m_setupDock);
+    addDockWidget(Qt::RightDockWidgetArea, m_setupDock);
 
     // Game dock
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
