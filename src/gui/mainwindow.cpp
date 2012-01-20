@@ -281,8 +281,13 @@ void MainWindow::finishGame()
     }
     // Show a score message that stays visible until the next
     // popup message arrives
-    m_gameScene->showMessage(i18n("%1 won with a score of %2 (bounds: %3 and %4).",
+    if (score.upperBound() == score.lowerBound()) {
+        m_gameScene->showMessage(i18n("%1 won with a score of %2.",
+                             name, score.score()), 0);
+    } else {
+        m_gameScene->showMessage(i18n("%1 won with a score of %2 (bounds: %3 and %4).",
                              name, score.score(), score.upperBound(), score.lowerBound()), 0);
+    }
 }
 
 void MainWindow::undo()
