@@ -177,6 +177,12 @@ public:
     Move lastMove() const;
 
     /**
+     * Returns the number of moves in the game so far.
+     * Especially helpful when loading a game.
+     */
+    int moveCount();
+
+    /**
      * Returns a list of all stones of that player on the board.
      */
     QList<Stone> stones(const Player &player);

@@ -163,7 +163,7 @@ bool Game::init(const QString &fileName, int moveNumber)
         //kDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
 
         m_consecutivePassMoveNumber = 0;
-        m_currentMove = moveNumber;                  // Store move number
+        m_currentMove = moveNumber;
         m_gameFinished = false;
         m_movesList.clear();
         m_undoStack.clear();
@@ -513,6 +513,19 @@ Move Game::lastMove() const
         return Move(m_currentPlayer, Stone());
     else*/
     return m_movesList.last();
+}
+
+int Game::moveCount()
+{
+    if (!isRunning()) {
+        return 0;
+    }
+
+    m_process.write("move_history\n");          // Query fixed handicap and store it
+    if (waitResponse()) {
+        return m_response.count('\n') + 1;
+    }
+    return 0;
 }
 
 QList<Stone> Game::stones(const Player &player)

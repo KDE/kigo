@@ -87,15 +87,41 @@ void SetupWidget::loadedGame(const QString &fileName)
     // Parse additional game information from SGF file
     re.setPattern("EV\\[([\\w ]+)\\]");             // Capture and set event
     if (re.indexIn(content) > -1) {
-        infoEvent->setText(re.cap(1));
+        eventLabel->setText(re.cap(1));
+        eventLabel->setVisible(true);
+        eventStaticLabel->setVisible(true);
+    } else {
+        eventLabel->setVisible(false);
+        eventStaticLabel->setVisible(false);
     }
+
+    re.setPattern("PC\\[([\\w ,]+)\\]");             // location
+    if (re.indexIn(content) > -1) {
+        locationLabel->setText(re.cap(1));
+        locationLabel->setVisible(true);
+        locationStaticLabel->setVisible(true);
+    } else {
+        locationLabel->setVisible(false);
+        locationStaticLabel->setVisible(false);
+    }
+
     re.setPattern("RO\\[(\\d+)\\]");                // Capture and set round
     if (re.indexIn(content) > -1) {
-        infoRound->setText(re.cap(1));
+        roundLabel->setText(re.cap(1));
+        roundLabel->setVisible(true);
+        roundStaticLabel->setVisible(true);
+    } else {
+        roundLabel->setVisible(false);
+        roundStaticLabel->setVisible(false);
     }
-    re.setPattern("DT\\[([\\w/\\-:\\.]+)\\]");      // Capture and set date
+    re.setPattern("DT\\[([\\w/\\-:\\.,]+)\\]");      // Capture and set date
     if (re.indexIn(content) > -1) {
-        infoDate->setText(re.cap(1));
+        dateLabel->setText(re.cap(1));
+        dateLabel->setVisible(true);
+        dateStaticLabel->setVisible(true);
+    } else {
+        dateLabel->setVisible(false);
+        dateStaticLabel->setVisible(false);
     }
 
     re.setPattern("PB\\[([\\w ]+)\\]");             // Capture and set black player name
@@ -106,6 +132,11 @@ void SetupWidget::loadedGame(const QString &fileName)
     if (re.indexIn(content) > -1) {
         blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ')');
     }
+    re.setPattern("BT\\[([\\w ]+)\\]");             // black team
+    if (re.indexIn(content) > -1) {
+        blackPlayerName->setText(blackPlayerName->text() + " [" + re.cap(1) + ']');
+    }
+
     re.setPattern("PW\\[([\\w ]+)\\]");             // Capture and set white player name
     if (re.indexIn(content) > -1) {
         whitePlayerName->setText(re.cap(1));
@@ -114,29 +145,55 @@ void SetupWidget::loadedGame(const QString &fileName)
     if (re.indexIn(content) > -1) {
         whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ')');
     }
+    re.setPattern("WT\\[([\\w ]+)\\]");             // white team
+    if (re.indexIn(content) > -1) {
+        whitePlayerName->setText(whitePlayerName->text() + " [" + re.cap(1) + ']');
+    }
 
     re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
     if (re.indexIn(content) > -1) {
-        infoKomi->setText(re.cap(1));
-    }
-    re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
-    if (re.indexIn(content) > -1) {
-        infoScore->setText(re.cap(1));
+        komiLabel->setText(re.cap(1));
+        komiLabel->setVisible(true);
+        komiStaticLabel->setVisible(true);
+    } else {
+        komiLabel->setVisible(false);
+        komiStaticLabel->setVisible(false);
     }
 
-    re.setPattern("[BW]\\[\\w\\w\\]");              // Parse move count
-    int pos = 0, count = 0;
-    while (pos >= 0) {                              // Count all occurrences of our pattern
-        pos = re.indexIn(content, pos);
-        if (pos >= 0) {
-            pos += re.matchedLength();
-            count++;
+    re.setPattern("TM\\[(\\d+)\\]");        // time limit in seconds
+    if (re.indexIn(content) > -1) {
+        int seconds = re.cap(1).toInt();
+        int hours = seconds/3600;
+        int minutes = (seconds/60)%60;
+        QString minuteString = i18ncp("Time limit of a game in minutes", "%1 minute", "%1 minutes", minutes);
+        if (hours) {
+            timeLabel->setText(i18ncp("Time limit of a game, hours, minutes", "%1 hour, %2", "%1 hours, %2", hours, minuteString));
+        } else {
+            timeLabel->setText(minuteString);
         }
+        timeLabel->setVisible(true);
+        timeStaticLabel->setVisible(true);
+    } else {
+       timeLabel->setVisible(false);
+       timeStaticLabel->setVisible(false);
     }
+
+    re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
+    if (re.indexIn(content) > -1) {
+        scoreLabel->setText(re.cap(1));
+        scoreLabel->setVisible(true);
+        scoreStaticLabel->setVisible(true);
+    } else {
+        scoreLabel->setVisible(false);
+        scoreStaticLabel->setVisible(false);
+    }
+
+    int count = m_game->moveCount();
     startMoveSpinBox->setSuffix(i18n(" of %1", count));
     startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
     startMoveSpinBox->setValue(count);              // move.
     startMoveSpinBox->setFocus(Qt::OtherFocusReason);
+    connect(startMoveSpinBox, SIGNAL(valueChanged(int)), this, SLOT(on_startMoveSpinBox_valueChanged(int)));
 }
 
 void SetupWidget::commit()
@@ -175,9 +232,9 @@ void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
     }
 
     if (m_game->currentPlayer().isWhite()) {
-        playerLabel->setText(i18n("for White"));
+        playerLabel->setText(i18n("White to play"));
     } else if (m_game->currentPlayer().isBlack()) {
-        playerLabel->setText(i18n("for Black"));
+        playerLabel->setText(i18n("Black to play"));
     } else {
         playerLabel->setText("");
     }
