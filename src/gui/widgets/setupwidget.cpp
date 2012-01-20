@@ -36,6 +36,8 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     startButton->setIcon(KIcon( QLatin1String( "media-playback-start" )));
 
     connect(startButton, SIGNAL(clicked()), this, SIGNAL(startClicked()));
+    connect(whiteIsComputerCheckBox, SIGNAL(toggled(bool)), this, SLOT(whiteIsComputer(bool)));
+    connect(blackIsComputerCheckBox, SIGNAL(toggled(bool)), this, SLOT(blackIsComputer(bool)));
 }
 
 SetupWidget::~SetupWidget()
@@ -243,19 +245,11 @@ void SetupWidget::loadSettings()
 {
     whitePlayerName->setText(Preferences::whitePlayerName());
     whiteStrengthSlider->setValue(Preferences::whitePlayerStrength());
-    if (Preferences::whitePlayerHuman()) {
-        whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(i18n("Human")));
-    } else {
-        whitePlayerCombo->setCurrentIndex(whitePlayerCombo->findText(i18n("Computer")));
-    }
+    whiteIsComputerCheckBox->setChecked(!Preferences::whitePlayerHuman());
 
     blackPlayerName->setText(Preferences::blackPlayerName());
     blackStrengthSlider->setValue(Preferences::blackPlayerStrength());
-    if (Preferences::blackPlayerHuman()) {
-        blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(i18n("Human")));
-    } else {
-        blackPlayerCombo->setCurrentIndex(blackPlayerCombo->findText(i18n("Computer")));
-    }
+    blackIsComputerCheckBox->setChecked(!Preferences::blackPlayerHuman());
 
     komiSpinBox->setValue(Preferences::komi());
     handicapGroupBox->setChecked(Preferences::fixedHandicapEnabled());
@@ -291,8 +285,8 @@ void SetupWidget::saveSettings()
 
     Preferences::setWhitePlayerStrength(whiteStrengthSlider->value());
     Preferences::setBlackPlayerStrength(blackStrengthSlider->value());
-    Preferences::setWhitePlayerHuman(whitePlayerCombo->currentText() == i18n("Human"));
-    Preferences::setBlackPlayerHuman(blackPlayerCombo->currentText() == i18n("Human"));
+    Preferences::setWhitePlayerHuman(!whiteIsComputerCheckBox->isChecked());
+    Preferences::setBlackPlayerHuman(!blackIsComputerCheckBox->isChecked());
 
     Preferences::setKomi(komiSpinBox->value());
     Preferences::setFixedHandicapEnabled(handicapGroupBox->isChecked());
@@ -308,6 +302,16 @@ void SetupWidget::saveSettings()
         Preferences::setBoardSize(sizeOtherSpinBox->value());
     }
     Preferences::self()->writeConfig();
+}
+
+void SetupWidget::blackIsComputer(bool computer)
+{
+    blackPlayerStack->setCurrentIndex(computer ? 1 : 0);
+}
+
+void SetupWidget::whiteIsComputer(bool computer)
+{
+    whitePlayerStack->setCurrentIndex(computer ? 1 : 0);
 }
 
 } // End of namespace Kigo

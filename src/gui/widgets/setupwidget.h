@@ -67,6 +67,8 @@ private slots:
     void on_sizeOtherSpinBox_valueChanged(int);
     void on_handicapGroupBox_toggled(bool);
     void on_handicapSpinBox_valueChanged(int);
+    void whiteIsComputer(bool);
+    void blackIsComputer(bool);
 
 private:
     void updateHandicapBox();

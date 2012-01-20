@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>366</height>
+    <width>463</width>
+    <height>370</height>
    </rect>
   </property>
   <layout class="QGridLayout" name="gridLayout_4">
@@ -25,7 +25,7 @@
         <string>White Player</string>
        </property>
        <layout class="QGridLayout" name="gridLayout_11">
-        <item row="1" column="1">
+        <item row="2" column="1">
          <widget class="QStackedWidget" name="whitePlayerStack">
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -122,18 +122,11 @@
           </widget>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="KComboBox" name="whitePlayerCombo">
-          <item>
-           <property name="text">
-            <string>Human</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Computer</string>
-           </property>
-          </item>
+        <item row="1" column="1">
+         <widget class="QCheckBox" name="whiteIsComputerCheckBox">
+          <property name="text">
+           <string>&amp;Computer</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -246,17 +239,10 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="KComboBox" name="blackPlayerCombo">
-          <item>
-           <property name="text">
-            <string>Human</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Computer</string>
-           </property>
-          </item>
+         <widget class="QCheckBox" name="blackIsComputerCheckBox">
+          <property name="text">
+           <string>C&amp;omputer</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -738,20 +724,10 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
-  </customwidget>
-  <customwidget>
    <class>KButtonGroup</class>
    <extends>QGroupBox</extends>
    <header>kbuttongroup.h</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
   </customwidget>
   <customwidget>
    <class>KLineEdit</class>
@@ -759,16 +735,19 @@
    <header>klineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>KComboBox</class>
-   <extends>QComboBox</extends>
-   <header>kcombobox.h</header>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>whitePlayerCombo</tabstop>
   <tabstop>whitePlayerName</tabstop>
   <tabstop>whiteStrengthSlider</tabstop>
-  <tabstop>blackPlayerCombo</tabstop>
   <tabstop>blackPlayerName</tabstop>
   <tabstop>blackStrengthSlider</tabstop>
   <tabstop>sizeSmall</tabstop>
@@ -782,38 +761,5 @@
   <tabstop>startMoveSpinBox</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>whitePlayerCombo</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>whitePlayerStack</receiver>
-   <slot>setCurrentIndex(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>142</x>
-     <y>63</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>142</x>
-     <y>95</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>blackPlayerCombo</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>blackPlayerStack</receiver>
-   <slot>setCurrentIndex(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>293</x>
-     <y>63</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>293</x>
-     <y>95</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
