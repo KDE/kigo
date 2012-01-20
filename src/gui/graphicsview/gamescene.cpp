@@ -129,16 +129,16 @@ void GameScene::updateStoneItems()
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
-        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
-                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 2));
+        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
+                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
         m_stoneItems.append(item);
     }
     foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
-        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
-                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 2));
+        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
+                             m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
         m_stoneItems.append(item);
     }
 
