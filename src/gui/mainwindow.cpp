@@ -34,11 +34,13 @@
 #include <KActionCollection>
 #include <KConfigDialog>
 #include <KFileDialog>
-#include <KGameThemeSelector>
 #include <KNS3/DownloadDialog>
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
+
+#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
+#include <libkdegamesprivate/kgamethemeselector.h>
 
 #include <QDockWidget>
 #include <QTimer>

@@ -21,10 +21,12 @@
 #include "themerenderer.h"
 #include "preferences.h"
 
-#include <KGameTheme>
 #include <QSvgRenderer>
 #include <KPixmapCache>
 #include <KDebug>
+
+#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
+#include <libkdegamesprivate/kgametheme.h>
 
 #include <QPixmap>
 #include <QPainter>
