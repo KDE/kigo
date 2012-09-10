@@ -7,5 +7,9 @@ Categories=Qt;KDE;Game;BoardGame;
 MimeType=application/x-go-sgf;
 
 Name=Kigo
+Name[uk]=Kigo
+Name[x-test]=xxKigoxx
 
 GenericName=Go Board Game
+GenericName[uk]=Гра у го на дошці
+GenericName[x-test]=xxGo Board Gamexx
