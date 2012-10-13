@@ -13,7 +13,7 @@
 <!-- ................................................................ -->
 
 <book id="kigo" lang="&language;">
-<book id="kigo"info>
+<bookinfo>
 <title>The &kigo; Handbook</title>
 
 <authorgroup>
