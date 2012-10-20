@@ -12,7 +12,7 @@
 ]>
 <!-- ................................................................ -->
 
-<book lang="&language;">
+<book id="kigo" lang="&language;">
 <bookinfo>
 <title>The &kigo; Handbook</title>
 
