@@ -4,7 +4,7 @@
 * Ship better go board theme and own icons
 * Better Go engine configuration (multiple engines to choose from)
 * Save-game management (something similar to palapeli)
-* Add multiplayer support via GGZ and traditional Go servers
+* Add multiplayer support via traditional Go servers
 * Cache longer lists retrieved from the backend in the GoEngine (for example
   move history, stone lists for either player, ...) to save computing time
 * Create a screensaver with 2 engines battling each other on a Kigo::GameView
