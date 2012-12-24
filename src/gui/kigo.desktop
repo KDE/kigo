@@ -7,6 +7,7 @@ Categories=Qt;KDE;Game;BoardGame;
 MimeType=application/x-go-sgf;
 
 Name=Kigo
+Name[bs]=Kigo
 Name[ca]=Kigo
 Name[ca@valencia]=Kigo
 Name[da]=Kigo
@@ -50,6 +51,7 @@ Name[zh_CN]=Kigo
 Name[zh_TW]=Kigo
 
 GenericName=Go Board Game
+GenericName[bs]=Igraj igru na ploči
 GenericName[ca]=Joc de taula Go
 GenericName[ca@valencia]=Joc de taula Go
 GenericName[da]=Brætspillet Go
