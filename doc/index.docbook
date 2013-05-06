@@ -34,8 +34,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2010-01-27</date>
-<releaseinfo>0.5.6</releaseinfo>
+<date>2013-05-06</date>
+<releaseinfo>0.5.6 (&kde; 4.11)</releaseinfo>
 
 <abstract>
 	<para>&kigo; is an open-source implementation of the popular Go game (also known as Weiqi).</para>
@@ -267,6 +267,13 @@ fileref="get-new-games.png"/></imageobject>
 				<listitem><para><action>Opens a dialog to configure &kappname;.</action> See <link linkend="configuration">Game Configuration</link> section for details.</para></listitem>
 			</varlistentry>
 		</variablelist>
+<para>
+Additionally &kappname; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Settings Menu</ulink> and <ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
+of the &kde; Fundamentals.
+</para>
+
 </sect1>
 
 <sect1 id="keybindings">
