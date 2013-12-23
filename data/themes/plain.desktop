@@ -1,7 +1,7 @@
 [KGameTheme]
 Name=Plain
 Name[bs]=Obični
-Name[ca]=Senzill
+Name[ca]=Normal
 Name[ca@valencia]=Senzill
 Name[cs]=Prostý
 Name[da]=Simpelt
@@ -43,7 +43,7 @@ Name[zh_CN]=纯色
 Name[zh_TW]=樸素
 Description=Plain Kigo theme based on Default theme by Arturo Silva
 Description[bs]=Plain Kigo tema bazirana na Default temi  Arturo Silva
-Description[ca]=Tema senzill del Kigo basat en el tema per defecte per l'Arturo Silva
+Description[ca]=Tema normal del Kigo basat en el tema per defecte per l'Arturo Silva
 Description[ca@valencia]=Tema senzill del Kigo basat en el tema per defecte per l'Arturo Silva
 Description[da]=Simpelt Kigo-tema baseret på standardtemaet af Arturo Silva
 Description[de]=Ein einfaches Design für Kigo (basiert auf dem Standarddesign von Arturo Silva).
