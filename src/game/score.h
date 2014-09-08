@@ -42,7 +42,7 @@ class Score : public QObject
     friend class Game;
 
 private:
-    Score(const QString &score = QString());
+    explicit Score(const QString &score = QString());
 
 public:
     Score(const Score &other);

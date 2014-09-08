@@ -39,6 +39,7 @@ public:
      *
      * @param x The x coordinate of the stone
      * @param y The y coordinate of the stone
+     * @param value The estimated quality of the move
      */
     explicit Stone(char x = 0, int y = 0, float value = 0);
 
@@ -46,6 +47,7 @@ public:
      * Constructor to set from a stone given as a string.
      *
      * @param stone The stone as string
+     * @param value The estimated quality of the move
      */
     explicit Stone(const QString &stone, float value = 0);
 
@@ -63,7 +65,7 @@ public:
 private:
     char m_x;           ///< The horizontal field coordinate (from 'A' to 'T')
     int m_y;            ///< The vertical field coordinate (from 1 to 19)
-    float m_value;      ///<
+    float m_value;      ///< The estimated quality
 };
 
 QDebug operator<<(QDebug debug, const Stone &stone);
