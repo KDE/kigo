@@ -26,7 +26,7 @@
 #include "gui/graphicsview/themerenderer.h"
 
 #include <KDebug>
-
+#include <KIcon>
 namespace Kigo {
 
 GameWidget::GameWidget(Game *game, QWidget *parent)

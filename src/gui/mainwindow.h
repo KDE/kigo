@@ -23,7 +23,7 @@
 
 #include <KXmlGuiWindow>
 
-class KAction;
+class QAction;
 class KToggleAction;
 class QDockWidget;
 class QUndoView;
@@ -89,16 +89,16 @@ private:
     QDockWidget *m_movesDock;               ///< Move history dock widget
     QDockWidget *m_errorDock;               ///< Dock shown when errors occur
 
-    KAction *m_newGameAction;
-    KAction *m_loadGameAction;
-    KAction *m_getMoreGamesAction;
-    KAction *m_saveAction;                  ///< Action to save the current game
-    KAction *m_undoMoveAction;              ///< Action to jump to the last move
-    KAction *m_redoMoveAction;              ///< Action to jump to the next move
-    KAction *m_passMoveAction;              ///< Action to pass current move
-    KAction *m_hintAction;
-    KAction *m_startGameAction;
-    KAction *m_finishGameAction;
+    QAction *m_newGameAction;
+    QAction *m_loadGameAction;
+    QAction *m_getMoreGamesAction;
+    QAction *m_saveAction;                  ///< Action to save the current game
+    QAction *m_undoMoveAction;              ///< Action to jump to the last move
+    QAction *m_redoMoveAction;              ///< Action to jump to the next move
+    QAction *m_passMoveAction;              ///< Action to pass current move
+    QAction *m_hintAction;
+    QAction *m_startGameAction;
+    QAction *m_finishGameAction;
     KToggleAction *m_moveNumbersAction;
 };
 

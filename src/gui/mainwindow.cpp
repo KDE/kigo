@@ -30,7 +30,7 @@
 #include "gui/widgets/setupwidget.h"
 #include "preferences.h"
 
-#include <KAction>
+#include <QAction>
 #include <KActionCollection>
 #include <KConfigDialog>
 #include <KFileDialog>
@@ -38,7 +38,8 @@
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
-
+#include <KUrl>
+#include <KIcon>
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
 
@@ -324,7 +325,7 @@ void MainWindow::showPreferences()
     KConfigDialog *dialog = new KConfigDialog(this, "settings", Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), "games-config-theme");
-    dialog->setHelp(QString(), "Kigo");
+    //QT5 dialog->setHelp(QString(), "Kigo");
     connect(dialog, SIGNAL(settingsChanged(QString)), this, SLOT(applyPreferences()));
     dialog->show();
 }
@@ -402,7 +403,7 @@ void MainWindow::setupActions()
     // Game menu
     m_newGameAction = KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
     m_loadGameAction = KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
-    m_getMoreGamesAction = new KAction(KIcon( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
+    m_getMoreGamesAction = new QAction(KIcon( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
     m_getMoreGamesAction->setShortcut(Qt::CTRL + Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     connect(m_getMoreGamesAction, SIGNAL(triggered(bool)), this, SLOT(getMoreGames()));
@@ -410,13 +411,13 @@ void MainWindow::setupActions()
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new KAction(KIcon( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
+    m_startGameAction = new QAction(KIcon( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     m_startGameAction->setShortcut(Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
     actionCollection()->addAction( QLatin1String( "game_start" ), m_startGameAction);
 
-    m_finishGameAction = new KAction(KIcon( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
+    m_finishGameAction = new QAction(KIcon( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));

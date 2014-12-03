@@ -1,4 +1,3 @@
-include_directories(${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIR})
 
 set(kigo_SRCS
     game/game.cpp
@@ -17,17 +16,17 @@ set(kigo_SRCS
     main.cpp 
 )
 
-kde4_add_ui_files(kigo_SRCS 
+ki18n_wrap_ui(kigo_SRCS 
     gui/config/generalconfig.ui
     gui/widgets/errorwidget.ui
     gui/widgets/gamewidget.ui
     gui/widgets/setupwidget.ui
 )
-kde4_add_kcfg_files(kigo_SRCS preferences.kcfgc)
+kconfig_add_kcfg_files(kigo_SRCS preferences.kcfgc)
 kde4_add_app_icon(kigo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/hi*-app-kigo.png")
-kde4_add_executable(kigo ${kigo_SRCS})
+add_executable(kigo ${kigo_SRCS})
 
-target_link_libraries(kigo ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} kdegames kdegamesprivate ${KDE4_KNEWSTUFF3_LIBS})
+target_link_libraries(kigo  KF5::KIOCore KF5KDEGames KF5KDEGamesPrivate  KF5::NewStuff Qt5::Svg)
 
 install(TARGETS kigo ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KCFG_INSTALL_DIR})

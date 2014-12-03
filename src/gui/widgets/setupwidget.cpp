@@ -24,7 +24,7 @@
 #include "gui/graphicsview/themerenderer.h"
 
 #include <QFile>
-
+#include <KIcon>
 namespace Kigo {
 
 SetupWidget::SetupWidget(Game *game, QWidget *parent)

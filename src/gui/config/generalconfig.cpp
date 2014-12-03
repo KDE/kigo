@@ -21,7 +21,7 @@
 #include "generalconfig.h"
 #include "preferences.h"
 #include "game/game.h"
-
+#include <KUrl>
 namespace Kigo {
 
 GeneralConfig::GeneralConfig(QWidget *parent)
