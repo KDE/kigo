@@ -40,10 +40,10 @@ GameScene::GameScene(Game *game, QObject *parent)
     , m_showPlacementMarker(true), m_showTerritory(false)
     , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
 {
-    connect(m_game, SIGNAL(boardChanged()), this, SLOT(updateStoneItems()));
-    connect(m_game, SIGNAL(boardSizeChanged(int)), this, SLOT(changeBoardSize(int)));
-    connect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(hideHint()));
-    connect(ThemeRenderer::self(), SIGNAL(themeChanged(QString)), this, SLOT(themeChanged()));
+    connect(m_game, &Game::boardChanged, this, &GameScene::updateStoneItems);
+    connect(m_game, &Game::boardSizeChanged, this, &GameScene::changeBoardSize);
+    connect(m_game, &Game::currentPlayerChanged, this, &GameScene::hideHint);
+    connect(ThemeRenderer::self(), &ThemeRenderer::themeChanged, this, &GameScene::themeChanged);
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);

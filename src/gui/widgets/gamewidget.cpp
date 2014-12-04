@@ -37,10 +37,10 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
 
     finishButton->setIcon(QIcon::fromTheme( QLatin1String( "media-playback-stop" )));
 
-    connect(m_game, SIGNAL(boardInitialized()), this, SLOT(init()));
-    connect(m_game, SIGNAL(boardChanged()), this, SLOT(update()));
-    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(enableFinishButton()));
-    connect(finishButton, SIGNAL(clicked()), this, SLOT(finishButtonClicked()));
+    connect(m_game, &Game::boardInitialized, this, &GameWidget::init);
+    connect(m_game, &Game::boardChanged, this, &GameWidget::update);
+    connect(m_game, &Game::consecutivePassMovesPlayed, this, &GameWidget::enableFinishButton);
+    connect(finishButton, &QPushButton::clicked, this, &GameWidget::finishButtonClicked);
 }
 
 void GameWidget::init()

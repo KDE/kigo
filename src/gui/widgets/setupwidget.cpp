@@ -40,14 +40,14 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
     blackStoneImageLabel->setPixmap(blackStone);
 
-    connect(startButton, SIGNAL(clicked()), this, SIGNAL(startClicked()));
-    connect(whiteIsComputerCheckBox, SIGNAL(toggled(bool)), this, SLOT(whiteIsComputer(bool)));
-    connect(blackIsComputerCheckBox, SIGNAL(toggled(bool)), this, SLOT(blackIsComputer(bool)));
-    connect(sizeSmall, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
-    connect(sizeMedium, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
-    connect(sizeBig, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
-    connect(sizeOther, SIGNAL(clicked(bool)), this, SLOT(on_boardSize_changed()));
-    connect(sizeOtherSpinBox, SIGNAL(valueChanged(int)), this, SLOT(on_boardSize_changed()));
+    connect(startButton, &QPushButton::clicked, this, &SetupWidget::startClicked);
+    connect(whiteIsComputerCheckBox, &QCheckBox::toggled, this, &SetupWidget::whiteIsComputer);
+    connect(blackIsComputerCheckBox, &QCheckBox::toggled, this, &SetupWidget::blackIsComputer);
+    connect(sizeSmall, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
+    connect(sizeMedium, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
+    connect(sizeBig, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
+    connect(sizeOther, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
+    connect(sizeOtherSpinBox, static_cast<void (KIntSpinBox::*)(int)>(&KIntSpinBox::valueChanged), this, &SetupWidget::on_boardSize_changed);
 }
 
 SetupWidget::~SetupWidget()
@@ -193,7 +193,7 @@ void SetupWidget::loadedGame(const QString &fileName)
     startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
     startMoveSpinBox->setValue(count);              // move.
     startMoveSpinBox->setFocus(Qt::OtherFocusReason);
-    connect(startMoveSpinBox, SIGNAL(valueChanged(int)), this, SLOT(on_startMoveSpinBox_valueChanged(int)));
+    connect(startMoveSpinBox, static_cast<void (KIntSpinBox::*)(int)>(&KIntSpinBox::valueChanged), this, &SetupWidget::on_startMoveSpinBox_valueChanged);
 }
 
 void SetupWidget::commit()

@@ -61,10 +61,10 @@ MainWindow::MainWindow(const QString &fileName, QWidget *parent)
     setupGUI(QSize(800, 700), KXmlGuiWindow::ToolBar | KXmlGuiWindow::Keys |
                               KXmlGuiWindow::Save | KXmlGuiWindow::Create);
 
-    connect(m_game, SIGNAL(waiting(bool)), this, SLOT(showBusy(bool)));
-    connect(m_game, SIGNAL(consecutivePassMovesPlayed(int)), this, SLOT(showFinishGameAction()));
-    connect(m_game, SIGNAL(resigned(Player)), this, SLOT(finishGame()));
-    connect(m_game, SIGNAL(passMovePlayed(Player)), this, SLOT(passMovePlayed(Player)));
+    connect(m_game, &Game::waiting, this, &MainWindow::showBusy);
+    connect(m_game, &Game::consecutivePassMovesPlayed, this, &MainWindow::showFinishGameAction);
+    connect(m_game, &Game::resigned, this, &MainWindow::finishGame);
+    connect(m_game, &Game::passMovePlayed, this, &MainWindow::passMovePlayed);
 
     if (isBackendWorking()) {
         if (!loadGame(fileName)) {
@@ -93,9 +93,9 @@ void MainWindow::newGame()
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
 
-    disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
-    disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-    disconnect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
+    disconnect(m_game, &Game::canRedoChanged, m_redoMoveAction, &QAction::setEnabled);
+    disconnect(m_game, &Game::canUndoChanged, m_undoMoveAction, &QAction::setEnabled);
+    disconnect(m_game, &Game::currentPlayerChanged, this, &MainWindow::playerChanged);
 
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
@@ -135,9 +135,9 @@ bool MainWindow::loadGame(const QString &fileName)
         m_passMoveAction->setEnabled(false);
         m_hintAction->setEnabled(false);
 
-        disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
-        disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-        disconnect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
+        disconnect(m_game, &Game::canRedoChanged, m_redoMoveAction, &QAction::setEnabled);
+        disconnect(m_game, &Game::canUndoChanged, m_undoMoveAction, &QAction::setEnabled);
+        disconnect(m_game, &Game::currentPlayerChanged, this, &MainWindow::playerChanged);
 
         m_gameDock->setVisible(false);
         m_gameDock->toggleViewAction()->setEnabled(false);
@@ -183,9 +183,9 @@ void MainWindow::backendError()
     m_passMoveAction->setEnabled(false);
     m_hintAction->setEnabled(false);
 
-    disconnect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
-    disconnect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
-    disconnect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
+    disconnect(m_game, &Game::canRedoChanged, m_redoMoveAction, &QAction::setEnabled);
+    disconnect(m_game, &Game::canUndoChanged, m_undoMoveAction, &QAction::setEnabled);
+    disconnect(m_game, &Game::currentPlayerChanged, this, &MainWindow::playerChanged);
     m_gameDock->setVisible(false);
     m_gameDock->toggleViewAction()->setEnabled(false);
     m_movesDock->setVisible(false);
@@ -216,8 +216,8 @@ void MainWindow::startGame()
 
     //Decide on players how to display the UI
     if (m_game->whitePlayer().isHuman() || m_game->blackPlayer().isHuman()) {
-        connect(m_game, SIGNAL(canRedoChanged(bool)), m_redoMoveAction, SLOT(setEnabled(bool)));
-        connect(m_game, SIGNAL(canUndoChanged(bool)), m_undoMoveAction, SLOT(setEnabled(bool)));
+        connect(m_game, &Game::canRedoChanged, m_redoMoveAction, &QAction::setEnabled);
+        connect(m_game, &Game::canUndoChanged, m_undoMoveAction, &QAction::setEnabled);
 
         m_passMoveAction->setEnabled(true);
         m_hintAction->setEnabled(true);
@@ -236,7 +236,7 @@ void MainWindow::startGame()
         m_gameScene->showPlacementMarker(false);
     }
 
-    connect(m_game, SIGNAL(currentPlayerChanged(Player)), this, SLOT(playerChanged()));
+    connect(m_game, &Game::currentPlayerChanged, this, &MainWindow::playerChanged);
     // Trigger the slot once to make a move if the starting player
     // (black) is a computer player.
     playerChanged();
@@ -327,7 +327,7 @@ void MainWindow::showPreferences()
     dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), "games-config-theme");
     //QT5 dialog->setHelp(QString(), "Kigo");
-    connect(dialog, SIGNAL(settingsChanged(QString)), this, SLOT(applyPreferences()));
+    connect(dialog, &KConfigDialog::settingsChanged, this, &MainWindow::applyPreferences);
     dialog->show();
 }
 
@@ -407,7 +407,7 @@ void MainWindow::setupActions()
     m_getMoreGamesAction = new QAction(QIcon::fromTheme( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
     m_getMoreGamesAction->setShortcut(Qt::CTRL + Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
-    connect(m_getMoreGamesAction, SIGNAL(triggered(bool)), this, SLOT(getMoreGames()));
+    connect(m_getMoreGamesAction, &QAction::triggered, this, &MainWindow::getMoreGames);
     actionCollection()->addAction( QLatin1String( "get_more_games" ), m_getMoreGamesAction);
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
@@ -415,13 +415,13 @@ void MainWindow::setupActions()
     m_startGameAction = new QAction(QIcon::fromTheme( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     m_startGameAction->setShortcut(Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
-    connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
+    connect(m_startGameAction, &QAction::triggered, this, &MainWindow::startGame);
     actionCollection()->addAction( QLatin1String( "game_start" ), m_startGameAction);
 
     m_finishGameAction = new QAction(QIcon::fromTheme( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
-    connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
+    connect(m_finishGameAction, &QAction::triggered, this, &MainWindow::finishGame);
     actionCollection()->addAction( QLatin1String( "game_finish" ), m_finishGameAction);
 
     // Move menu
@@ -436,7 +436,7 @@ void MainWindow::setupActions()
     m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QLatin1String( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
     m_moveNumbersAction->setShortcut(Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
-    connect(m_moveNumbersAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showMoveNumbers(bool)));
+    connect(m_moveNumbersAction, &KToggleAction::toggled, m_gameScene, &GameScene::showMoveNumbers);
     actionCollection()->addAction( QLatin1String( "move_numbers" ), m_moveNumbersAction);
 
     // Settings menu
@@ -451,7 +451,7 @@ void MainWindow::setupDockWindows()
     m_setupDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_setupWidget = new SetupWidget(m_game, this);
     m_setupDock->setWidget(m_setupWidget);
-    connect(m_setupWidget, SIGNAL(startClicked()), this, SLOT(startGame()));
+    connect(m_setupWidget, &SetupWidget::startClicked, this, &MainWindow::startGame);
     //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
     //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
     //actionCollection()->addAction( QLatin1String( "show_setup_panel" ), m_setupDock->toggleViewAction());
@@ -462,7 +462,7 @@ void MainWindow::setupDockWindows()
     m_gameDock->setObjectName( QLatin1String("gameDock" ));
     m_gameDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     GameWidget *gameWidget = new GameWidget(m_game, this);
-    connect(gameWidget, SIGNAL(finishClicked()), this, SLOT(finishGame()));
+    connect(gameWidget, &GameWidget::finishClicked, this, &MainWindow::finishGame);
     m_gameDock->setWidget(gameWidget);
     m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
     m_gameDock->toggleViewAction()->setShortcut(Qt::Key_I);
@@ -488,7 +488,7 @@ void MainWindow::setupDockWindows()
     m_errorDock->setObjectName( QLatin1String("errorDock" ));
     m_errorDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     ErrorWidget *errorWidget = new ErrorWidget(this);
-    connect(errorWidget, SIGNAL(configureClicked()), this, SLOT(showPreferences()));
+    connect(errorWidget, &ErrorWidget::configureClicked, this, &MainWindow::showPreferences);
     m_errorDock->setWidget(errorWidget);
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
     //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);

@@ -55,10 +55,10 @@ Game::Game(QObject *parent)
     , m_komi(4.5), m_boardSize(19), m_fixedHandicap(5), m_consecutivePassMoveNumber(0)
     , m_gameFinished(false)
 {
-    connect(&m_process, SIGNAL(readyRead()), this, SLOT(readyRead()));
-    connect(&m_undoStack, SIGNAL(canRedoChanged(bool)), this, SIGNAL(canRedoChanged(bool)));
-    connect(&m_undoStack, SIGNAL(canUndoChanged(bool)), this, SIGNAL(canUndoChanged(bool)));
-    connect(&m_undoStack, SIGNAL(indexChanged(int)), this, SLOT(undoIndexChanged(int)));
+    connect(&m_process, &QProcess::readyRead, this, &Game::readyRead);
+    connect(&m_undoStack, &QUndoStack::canRedoChanged, this, &Game::canRedoChanged);
+    connect(&m_undoStack, &QUndoStack::canUndoChanged, this, &Game::canUndoChanged);
+    connect(&m_undoStack, &QUndoStack::indexChanged, this, &Game::undoIndexChanged);
 }
 
 Game::~Game()

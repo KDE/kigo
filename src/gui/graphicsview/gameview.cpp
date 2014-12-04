@@ -37,7 +37,7 @@ GameView::GameView(GameScene *scene, QWidget *parent)
                          QGraphicsView::DontSavePainterState |
                          QGraphicsView::DontAdjustForAntialiasing);
 
-    connect(m_gameScene, SIGNAL(cursorPixmapChanged(QPixmap)), this, SLOT(changeCursor(QPixmap)));
+    connect(m_gameScene, &GameScene::cursorPixmapChanged, this, &GameView::changeCursor);
 }
 
 void GameView::changeCursor(const QPixmap &cursorPixmap)

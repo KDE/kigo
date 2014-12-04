@@ -32,9 +32,9 @@ GeneralConfig::GeneralConfig(QWidget *parent)
 
     QString engineCommand = Preferences::engineCommand();
     engineExecutable->setUrl(KUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
-    connect(engineExecutable, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
+    connect(engineExecutable, &KUrlRequester::textChanged, this, &GeneralConfig::updateEngineCommand);
     engineParameters->setText(engineCommand.section(' ', 1));
-    connect(engineParameters, SIGNAL(textChanged(QString)), this, SLOT(updateEngineCommand()));
+    connect(engineParameters, &KLineEdit::textChanged, this, &GeneralConfig::updateEngineCommand);
 
     updateEngineCommand();
 }
