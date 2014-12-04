@@ -25,8 +25,8 @@
 
 #include "gui/graphicsview/themerenderer.h"
 
-#include <KDebug>
-#include <KIcon>
+#include <QDebug>
+#include <QIcon>
 namespace Kigo {
 
 GameWidget::GameWidget(Game *game, QWidget *parent)
@@ -35,7 +35,7 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
     Q_ASSERT(m_game);
     setupUi(this);
 
-    finishButton->setIcon(KIcon( QLatin1String( "media-playback-stop" )));
+    finishButton->setIcon(QIcon::fromTheme( QLatin1String( "media-playback-stop" )));
 
     connect(m_game, SIGNAL(boardInitialized()), this, SLOT(init()));
     connect(m_game, SIGNAL(boardChanged()), this, SLOT(update()));
@@ -46,7 +46,7 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
 void GameWidget::init()
 {
     if (!m_game->isRunning()) {
-        kDebug() << "Game is not running, no information update";
+        //qDebug() << "Game is not running, no information update";
         return;
     }
 
@@ -115,5 +115,5 @@ void GameWidget::enableFinishButton()
 
 } // End of namespace Kigo
 
-#include "moc_gamewidget.cpp"
+
 

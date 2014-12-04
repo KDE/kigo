@@ -21,7 +21,7 @@
 #include "errorwidget.h"
 #include "preferences.h"
 
-#include <KIcon>
+#include <QIcon>
 
 
 namespace Kigo {
@@ -31,8 +31,8 @@ ErrorWidget::ErrorWidget(QWidget *parent)
 {
     setupUi(this);
 
-    configureButton->setIcon(KIcon( QLatin1String( "configure" )));
-    //QPixmap errorPixmap = KIcon( QLatin1String( "dialog-error" )).pixmap(errorLabel->height(), errorLabel->height());
+    configureButton->setIcon(QIcon::fromTheme( QLatin1String( "configure" )));
+    //QPixmap errorPixmap = QIcon::fromTheme( QLatin1String( "dialog-error" )).pixmap(errorLabel->height(), errorLabel->height());
 }
 
 void ErrorWidget::on_configureButton_clicked()
@@ -42,4 +42,4 @@ void ErrorWidget::on_configureButton_clicked()
 
 } // End of namespace Kigo
 
-#include "moc_errorwidget.cpp"
+

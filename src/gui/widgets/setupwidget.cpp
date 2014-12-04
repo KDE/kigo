@@ -24,7 +24,7 @@
 #include "gui/graphicsview/themerenderer.h"
 
 #include <QFile>
-#include <KIcon>
+#include <QIcon>
 namespace Kigo {
 
 SetupWidget::SetupWidget(Game *game, QWidget *parent)
@@ -34,7 +34,7 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     Q_ASSERT(m_game);
     setupUi(this);
 
-    startButton->setIcon(KIcon( QLatin1String( "media-playback-start" )));
+    startButton->setIcon(QIcon::fromTheme( QLatin1String( "media-playback-start" )));
     QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(48, 48));
     whiteStoneImageLabel->setPixmap(whiteStone);
     QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
@@ -332,7 +332,7 @@ void SetupWidget::saveSettings()
     } else if (sizeOther->isChecked()) {
         Preferences::setBoardSize(sizeOtherSpinBox->value());
     }
-    Preferences::self()->writeConfig();
+    Preferences::self()->save();
 }
 
 void SetupWidget::blackIsComputer(bool computer)
@@ -347,4 +347,4 @@ void SetupWidget::whiteIsComputer(bool computer)
 
 } // End of namespace Kigo
 
-#include "moc_setupwidget.cpp"
+

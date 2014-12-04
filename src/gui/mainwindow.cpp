@@ -39,13 +39,14 @@
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <KUrl>
-#include <KIcon>
+#include <QIcon>
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
 
 #include <QDockWidget>
 #include <QTimer>
 #include <QUndoView>
+#include <QDebug>
 
 namespace Kigo {
 
@@ -268,7 +269,7 @@ void MainWindow::finishGame()
 
     m_undoView->setEnabled(false);
 
-    // kDebug() << "Fetching final score from engine ...";
+    // //qDebug() << "Fetching final score from engine ...";
     Score score = m_game->estimatedScore();
     QString name;
     if (score.color() == 'W') {
@@ -332,7 +333,7 @@ void MainWindow::showPreferences()
 
 void MainWindow::applyPreferences()
 {
-    // kDebug() << "Update settings based on changed configuration...";
+    // //qDebug() << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
 
     ThemeRenderer::self()->loadTheme(Preferences::theme());
@@ -403,7 +404,7 @@ void MainWindow::setupActions()
     // Game menu
     m_newGameAction = KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
     m_loadGameAction = KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
-    m_getMoreGamesAction = new QAction(KIcon( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
+    m_getMoreGamesAction = new QAction(QIcon::fromTheme( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
     m_getMoreGamesAction->setShortcut(Qt::CTRL + Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     connect(m_getMoreGamesAction, SIGNAL(triggered(bool)), this, SLOT(getMoreGames()));
@@ -411,13 +412,13 @@ void MainWindow::setupActions()
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new QAction(KIcon( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
+    m_startGameAction = new QAction(QIcon::fromTheme( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     m_startGameAction->setShortcut(Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, SIGNAL(triggered(bool)), this, SLOT(startGame()));
     actionCollection()->addAction( QLatin1String( "game_start" ), m_startGameAction);
 
-    m_finishGameAction = new QAction(KIcon( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
+    m_finishGameAction = new QAction(QIcon::fromTheme( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
     m_finishGameAction->setShortcut(Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, SIGNAL(triggered(bool)), this, SLOT(finishGame()));
@@ -432,7 +433,7 @@ void MainWindow::setupActions()
     m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
 
     // View menu
-    m_moveNumbersAction = new KToggleAction(KIcon( QLatin1String( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
+    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QLatin1String( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
     m_moveNumbersAction->setShortcut(Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, SIGNAL(toggled(bool)), m_gameScene, SLOT(showMoveNumbers(bool)));
@@ -503,4 +504,4 @@ bool MainWindow::isBackendWorking()
 
 } // End of namespace Kigo
 
-#include "moc_mainwindow.cpp"
+
