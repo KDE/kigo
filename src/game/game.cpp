@@ -22,7 +22,7 @@
 #include "score.h"
 
 #include <QDebug>
-#include <KLocale>
+#include <KLocalizedString>
 
 #include <QApplication>
 #include <QFile>
