@@ -300,7 +300,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="KPushButton" name="finishButton">
+      <widget class="QPushButton" name="finishButton">
        <property name="enabled">
         <bool>false</bool>
        </property>
@@ -313,13 +313,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>finishButton</tabstop>
  </tabstops>

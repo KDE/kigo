@@ -974,7 +974,7 @@ It balances out the advantage black has by making the first move.</string>
       </spacer>
      </item>
      <item>
-      <widget class="KPushButton" name="startButton">
+      <widget class="QPushButton" name="startButton">
        <property name="text">
         <string>Start Game</string>
        </property>
@@ -991,11 +991,6 @@ It balances out the advantage black has by making the first move.</string>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
   </customwidget>
   <customwidget>
    <class>KIntSpinBox</class>

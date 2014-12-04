@@ -44,7 +44,7 @@ p, li { white-space: pre-wrap; }
       </spacer>
      </item>
      <item>
-      <widget class="KPushButton" name="configureButton">
+      <widget class="QPushButton" name="configureButton">
        <property name="text">
         <string>Configure Kigo...</string>
        </property>
@@ -54,13 +54,6 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KPushButton</class>
-   <extends>QPushButton</extends>
-   <header>kpushbutton.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
