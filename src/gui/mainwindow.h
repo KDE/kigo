@@ -51,6 +51,7 @@ public:
     explicit MainWindow(const QString &fileName = "", QWidget *parent = 0);
 
 private slots:
+    void slotHelp();
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
     bool loadGame(const QString &fileName);
