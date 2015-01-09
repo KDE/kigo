@@ -68,7 +68,7 @@
           </widget>
          </item>
          <item>
-          <widget class="KIntSpinBox" name="sizeOtherSpinBox">
+          <widget class="QSpinBox" name="sizeOtherSpinBox">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -111,7 +111,7 @@
         </widget>
        </item>
        <item row="6" column="1">
-        <widget class="KIntSpinBox" name="handicapSpinBox">
+        <widget class="KPluralHandlingSpinBox" name="handicapSpinBox">
          <property name="enabled">
           <bool>true</bool>
          </property>
@@ -127,9 +127,6 @@ Black gets a number of stones on the board before the game starts.</string>
          </property>
          <property name="specialValueText">
           <string>No handicap</string>
-         </property>
-         <property name="suffix">
-          <string> Stones</string>
          </property>
          <property name="minimum">
           <number>1</number>
@@ -444,7 +441,7 @@ It balances out the advantage black has by making the first move.</string>
            </widget>
           </item>
           <item row="7" column="1">
-           <widget class="KIntSpinBox" name="startMoveSpinBox">
+           <widget class="QSpinBox" name="startMoveSpinBox">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -988,14 +985,14 @@ It balances out the advantage black has by making the first move.</string>
  </widget>
  <customwidgets>
   <customwidget>
+   <class>KPluralHandlingSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>KPluralHandlingSpinBox</header>
+  </customwidget>
+  <customwidget>
    <class>KLineEdit</class>
    <extends>QLineEdit</extends>
    <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KIntSpinBox</class>
-   <extends>QSpinBox</extends>
-   <header>knuminput.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

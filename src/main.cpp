@@ -20,10 +20,13 @@
 
 #include "gui/mainwindow.h"
 
-#include <K4AboutData>
-#include <KCmdLineArgs>
+#include <KAboutData>
+
 #include <KLocale>
-#include <KApplication>
+#include <QApplication>
+#include <KLocalizedString>
+#include <QCommandLineParser>
+
 
 /**
  * This namespace collects all classes related to Kigo, the Go board game.
@@ -38,38 +41,39 @@ namespace Kigo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
-    K4AboutData aboutData("kigo", 0, ki18n("Kigo"), "0.5.6",
-            ki18n("KDE Go Board Game"), K4AboutData::License_GPL_V2,
-            ki18n("Copyright (c) 2008-2010 Sascha Peilicke"));
-    aboutData.addAuthor(ki18n("Sascha Peilicke (saschpe)"), ki18n("Original author"),
+    KAboutData aboutData("kigo", i18n("Kigo"), "0.5.6",
+            i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
+            i18n("Copyright (c) 2008-2010 Sascha Peilicke"));
+    aboutData.addAuthor(i18n("Sascha Peilicke (saschpe)"), i18n("Original author"),
                         "sasch.pe@gmx.de", "http://saschpe.wordpress.com");
-    aboutData.addCredit(ki18n("Yuri Chornoivan"), ki18n("Documentation editor"),
+    aboutData.addCredit(i18n("Yuri Chornoivan"), i18n("Documentation editor"),
                         "yurchor@ukr.net");
-    aboutData.addCredit(ki18n("Arturo Silva"), ki18n("Default theme designer"),
+    aboutData.addCredit(i18n("Arturo Silva"), i18n("Default theme designer"),
                         "jasilva28@gmail.com");
     aboutData.setHomepage("http://games.kde.org/kigo");
 
-    KCmdLineArgs::init(argc, argv, &aboutData);
+    QApplication app(argc, argv);
+    QCommandLineParser parser;
+    KAboutData::setApplicationData(aboutData);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    parser.addOption(QCommandLineOption(QStringList() << "game" << i18nc("@info:shell", "Game to load (SGF file)") ) );
+    parser.addOption(QCommandLineOption(QStringList() << "+[Url]" << i18nc("@info:shell", "Game to load (SGF file)") ) );
 
-    KCmdLineOptions options;
-    const KLocalizedString& gameToLoad = ki18nc("@info:shell", "Game to load (SGF file)");
-    options.add("game", gameToLoad);
-    options.add("+[Url]", gameToLoad);
-    KCmdLineArgs::addCmdLineOptions(options);
-
-    KApplication app;
+    aboutData.setupCommandLine(&parser);
+    parser.process(app);
+    aboutData.processCommandLine(&parser);
 
     if (app.isSessionRestored()) {
         RESTORE(Kigo::MainWindow)
     } else {
-        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
         QString game;
-        if (args->isSet("game")) {
-            game = args->getOption("game");
+        if (parser.isSet("game")) {
+            game = parser.value("game");
         }
-        if (args->count() == 1) {
-            game = args->arg(0);
+        if (parser.positionalArguments().count() == 1) {
+            game = parser.positionalArguments().at(0);
         }
 
         Kigo::MainWindow *mainWin = new Kigo::MainWindow(game, NULL);

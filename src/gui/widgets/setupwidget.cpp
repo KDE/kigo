@@ -47,7 +47,7 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     connect(sizeMedium, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
     connect(sizeBig, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
     connect(sizeOther, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
-    connect(sizeOtherSpinBox, static_cast<void (KIntSpinBox::*)(int)>(&KIntSpinBox::valueChanged), this, &SetupWidget::on_boardSize_changed);
+    connect(sizeOtherSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SetupWidget::on_boardSize_changed);
 }
 
 SetupWidget::~SetupWidget()
@@ -193,7 +193,7 @@ void SetupWidget::loadedGame(const QString &fileName)
     startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
     startMoveSpinBox->setValue(count);              // move.
     startMoveSpinBox->setFocus(Qt::OtherFocusReason);
-    connect(startMoveSpinBox, static_cast<void (KIntSpinBox::*)(int)>(&KIntSpinBox::valueChanged), this, &SetupWidget::on_startMoveSpinBox_valueChanged);
+    connect(startMoveSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SetupWidget::on_startMoveSpinBox_valueChanged);
 }
 
 void SetupWidget::commit()
