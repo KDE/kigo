@@ -21,7 +21,7 @@
 #include "generalconfig.h"
 #include "preferences.h"
 #include "game/game.h"
-#include <KUrl>
+#include <QUrl>
 namespace Kigo {
 
 GeneralConfig::GeneralConfig(QWidget *parent)
@@ -31,7 +31,7 @@ GeneralConfig::GeneralConfig(QWidget *parent)
     kcfg_EngineCommand->hide(); // Only used internally
 
     QString engineCommand = Preferences::engineCommand();
-    engineExecutable->setUrl(KUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
+    engineExecutable->setUrl(QUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
     connect(engineExecutable, &KUrlRequester::textChanged, this, &GeneralConfig::updateEngineCommand);
     engineParameters->setText(engineCommand.section(' ', 1));
     connect(engineParameters, &KLineEdit::textChanged, this, &GeneralConfig::updateEngineCommand);

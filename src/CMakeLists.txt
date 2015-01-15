@@ -26,7 +26,15 @@ kconfig_add_kcfg_files(kigo_SRCS preferences.kcfgc)
 kde4_add_app_icon(kigo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/hi*-app-kigo.png")
 add_executable(kigo ${kigo_SRCS})
 
-target_link_libraries(kigo  KF5::KIOCore KF5KDEGames KF5KDEGamesPrivate  KF5::NewStuff Qt5::Svg)
+target_link_libraries(kigo
+   KF5::KIOWidgets  # KUrlRequester
+   KF5::TextWidgets # KPluralHandlingSpinBox
+   KF5::KDELibs4Support # KFileDialog, KPixmapCache
+   KF5KDEGames
+   KF5KDEGamesPrivate
+   KF5::NewStuff
+   Qt5::Svg
+)
 
 install(TARGETS kigo ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KCFG_INSTALL_DIR})

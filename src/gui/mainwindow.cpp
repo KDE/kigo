@@ -38,7 +38,7 @@
 #include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
-#include <KUrl>
+#include <QUrl>
 #include <QIcon>
 #include <KHelpClient>
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
@@ -111,7 +111,7 @@ void MainWindow::newGame()
 
 void MainWindow::loadGame()
 {
-    QString fileName = KFileDialog::getOpenFileName(KUrl(KStandardDirs::locate("appdata", "games/")), "*.sgf");
+    QString fileName = KFileDialog::getOpenFileName(QUrl::fromLocalFile(KStandardDirs::locate("appdata", "games/")), "*.sgf");
     if (!fileName.isEmpty()) {
         loadGame(fileName);
     }
@@ -197,7 +197,7 @@ void MainWindow::backendError()
 
 void MainWindow::saveGame()
 {
-    QString fileName = KFileDialog::getSaveFileName(KUrl(QDir::homePath()), "*.sgf");
+    QString fileName = KFileDialog::getSaveFileName(QUrl::fromLocalFile(QDir::homePath()), "*.sgf");
 
     if (!fileName.isEmpty()) {
         if (m_game->save(fileName))
