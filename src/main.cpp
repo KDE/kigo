@@ -25,7 +25,7 @@
 #include <QApplication>
 #include <KLocalizedString>
 #include <QCommandLineParser>
-
+#include <KDBusService>
 
 /**
  * This namespace collects all classes related to Kigo, the Go board game.
@@ -40,6 +40,8 @@ namespace Kigo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
+    QApplication app(argc, argv);
+
     KAboutData aboutData("kigo", i18n("Kigo"), "0.5.6",
             i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
             i18n("Copyright (c) 2008-2010 Sascha Peilicke"));
@@ -51,7 +53,6 @@ int main(int argc, char *argv[])
                         "jasilva28@gmail.com");
     aboutData.setHomepage("http://games.kde.org/kigo");
 
-    QApplication app(argc, argv);
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
     parser.addVersionOption();
@@ -62,6 +63,7 @@ int main(int argc, char *argv[])
     aboutData.setupCommandLine(&parser);
     parser.process(app);
     aboutData.processCommandLine(&parser);
+    KDBusService service;
 
     if (app.isSessionRestored()) {
         RESTORE(Kigo::MainWindow)

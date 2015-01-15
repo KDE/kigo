@@ -33,6 +33,7 @@ target_link_libraries(kigo
    KF5KDEGames
    KF5KDEGamesPrivate
    KF5::NewStuff
+   KF5::DBusAddons
    Qt5::Svg
 )
 
