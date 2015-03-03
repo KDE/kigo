@@ -37,9 +37,9 @@ target_link_libraries(kigo
    Qt5::Svg
 )
 
-install(TARGETS kigo ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES kigo.kcfg DESTINATION ${KCFG_INSTALL_DIR})
-install(FILES kigo.knsrc DESTINATION ${CONFIG_INSTALL_DIR})
-install(FILES kigo-games.knsrc DESTINATION ${CONFIG_INSTALL_DIR})
-install(PROGRAMS gui/org.kde.kigo.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
-install(FILES gui/kigoui.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/kigo)
+install(TARGETS kigo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(FILES kigo.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+install(FILES kigo.knsrc DESTINATION ${KDE_INSTALL_CONFDIR})
+install(FILES kigo-games.knsrc DESTINATION ${KDE_INSTALL_CONFDIR})
+install(PROGRAMS gui/org.kde.kigo.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES gui/kigoui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kigo)
