@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Icon=kigo
-Exec=kigo %i -caption %c
+Exec=kigo %i -qwindowtitle %c
 Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
 MimeType=application/x-go-sgf;
