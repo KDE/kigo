@@ -41,12 +41,12 @@ namespace Kigo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
+    QApplication app(argc, argv);
+
     Kdelibs4ConfigMigrator migrate(QLatin1String("kigo"));
     migrate.setConfigFiles(QStringList() << QLatin1String("kigorc"));
     migrate.setUiFiles(QStringList() << QLatin1String("kigoui.rc"));
     migrate.migrate();
-
-    QApplication app(argc, argv);
 
     KAboutData aboutData("kigo", i18n("Kigo"), "0.5.6",
             i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
