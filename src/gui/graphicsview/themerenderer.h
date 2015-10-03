@@ -60,9 +60,11 @@ public:
         Board,
         HandicapMark,
         WhiteStone,
+        WhiteStoneLast,
         WhiteStoneTransparent,
         WhiteTerritory,
         BlackStone,
+        BlackStoneLast,
         BlackStoneTransparent,
         BlackTerritory,
         PlacementMarker

@@ -134,13 +134,16 @@ void GameScene::updateStoneItems()
     QGraphicsPixmapItem *item;
     const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
+    const Stone lastStone = (m_game->moves().size() > 0) ? m_game->lastMove().stone() : Stone::Invalid;
+
     foreach (item, m_stoneItems) {  // Clear all stone items
         removeItem(item);
     }
     m_stoneItems.clear();
 
     foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
-        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackStone, m_stonePixmapSize));
+        ThemeRenderer::Element element = (stone == lastStone) ? ThemeRenderer::Element::BlackStoneLast : ThemeRenderer::Element::BlackStone;
+        item = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
         item->setZValue(2);
         const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
@@ -148,7 +151,8 @@ void GameScene::updateStoneItems()
         m_stoneItems.append(item);
     }
     foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
-        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteStone, m_stonePixmapSize));
+        ThemeRenderer::Element element = (stone == lastStone) ? ThemeRenderer::Element::WhiteStoneLast : ThemeRenderer::Element::WhiteStone;
+        item = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
         item->setZValue(2);
         const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
