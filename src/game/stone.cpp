@@ -77,4 +77,9 @@ QDebug operator<<(QDebug debug, const Stone &stone)
     return debug;
 }
 
+bool operator==(const Stone &stone, const Stone &other)
+{
+    return (stone.x() == other.x()) && (stone.y() == other.y());
+}
+
 } // End of namespace Kigo

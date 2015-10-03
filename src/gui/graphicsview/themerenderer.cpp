@@ -114,6 +114,9 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
         case WhiteStone:
             cacheName = QString("white_stone_%1x%2").arg(size.width()).arg(size.height());
             break;
+        case WhiteStoneLast:
+            cacheName = QString("white_stone_last_%1x%2").arg(size.width()).arg(size.height());
+            break;
         case WhiteStoneTransparent:
             cacheName = QString("white_stone_%1x%2_trans").arg(size.width()).arg(size.height());
             break;
@@ -122,6 +125,9 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
             break;
         case BlackStone:
             cacheName = QString("black_stone_%1x%2").arg(size.width()).arg(size.height());
+            break;
+        case BlackStoneLast:
+            cacheName = QString("black_stone_last_%1x%2").arg(size.width()).arg(size.height());
             break;
         case BlackStoneTransparent:
             cacheName = QString("black_stone_%1x%2_trans").arg(size.width()).arg(size.height());
@@ -153,6 +159,9 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
             case WhiteStone:
                 m_renderer->render(&p, "white_stone");
                 break;
+            case WhiteStoneLast:
+                m_renderer->render(&p, "white_stone_last");
+                break;
             case WhiteStoneTransparent:
                 p.setOpacity(0.5);
                 m_renderer->render(&p, "white_stone");
@@ -162,6 +171,9 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
                 break;
             case BlackStone:
                 m_renderer->render(&p, "black_stone");
+                break;
+            case BlackStoneLast:
+                m_renderer->render(&p, "black_stone_last");
                 break;
             case BlackStoneTransparent:
                 p.setOpacity(0.5);
@@ -195,6 +207,9 @@ QSize ThemeRenderer::elementSize(Element element) const
         case WhiteStone:
             sizeRect = m_renderer->boundsOnElement("white_stone");
             break;
+        case WhiteStoneLast:
+            sizeRect = m_renderer->boundsOnElement("white_stone");
+            break;
         case WhiteStoneTransparent:
             sizeRect = m_renderer->boundsOnElement("white_stone");
             break;
@@ -202,6 +217,9 @@ QSize ThemeRenderer::elementSize(Element element) const
             sizeRect = m_renderer->boundsOnElement("white_territory");
             break;
         case BlackStone:
+            sizeRect = m_renderer->boundsOnElement("black_stone");
+            break;
+        case BlackStoneLast:
             sizeRect = m_renderer->boundsOnElement("black_stone");
             break;
         case BlackStoneTransparent:

@@ -70,6 +70,8 @@ private:
 
 QDebug operator<<(QDebug debug, const Stone &stone);
 
+bool operator==(const Stone &stone, const Stone &other);
+
 } // End of namespace Kigo
 
 #endif
