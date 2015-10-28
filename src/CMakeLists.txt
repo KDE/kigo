@@ -24,7 +24,7 @@ ki18n_wrap_ui(kigo_SRCS
 )
 kconfig_add_kcfg_files(kigo_SRCS preferences.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/*-apps-kigo.png")
-ecm_add_app_icon(kblocks_SRCS ICONS ${ICONS_SRCS})
+ecm_add_app_icon(kigo_SRCS ICONS ${ICONS_SRCS})
 
 add_executable(kigo ${kigo_SRCS})
 
