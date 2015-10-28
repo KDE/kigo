@@ -29,6 +29,7 @@ ecm_add_app_icon(kblocks_SRCS ICONS ${ICONS_SRCS})
 add_executable(kigo ${kigo_SRCS})
 
 target_link_libraries(kigo
+   KF5::XmlGui
    KF5::KIOWidgets  # KUrlRequester
    KF5::TextWidgets # KPluralHandlingSpinBox
    KF5::KDELibs4Support # KFileDialog, KPixmapCache
