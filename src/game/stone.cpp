@@ -37,7 +37,7 @@ Stone::Stone(const QString &stone, float value)
 {
     if (stone.size() >= 2) {
         m_x = stone[0].toUpper().toLatin1();
-        m_y = stone.mid(1).toInt();
+        m_y = stone.midRef(1).toInt();
     }
 }
 

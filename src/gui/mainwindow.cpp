@@ -111,7 +111,7 @@ void MainWindow::newGame()
 
 void MainWindow::loadGame()
 {
-    QString fileName = KFileDialog::getOpenFileName(QUrl::fromLocalFile(KStandardDirs::locate("appdata", "games/")), "*.sgf");
+    QString fileName = KFileDialog::getOpenFileName(QUrl::fromLocalFile(KStandardDirs::locate("appdata", QStringLiteral("games/"))), QStringLiteral("*.sgf"));
     if (!fileName.isEmpty()) {
         loadGame(fileName);
     }
@@ -159,7 +159,7 @@ bool MainWindow::loadGame(const QString &fileName)
 
 void MainWindow::getMoreGames()
 {
-    KNS3::DownloadDialog dialog("kigo-games.knsrc", this);
+    KNS3::DownloadDialog dialog(QStringLiteral("kigo-games.knsrc"), this);
     dialog.exec();
 
     /*KNS3::Entry::List entries = dialog.changedEntries();
@@ -197,7 +197,7 @@ void MainWindow::backendError()
 
 void MainWindow::saveGame()
 {
-    QString fileName = KFileDialog::getSaveFileName(QUrl::fromLocalFile(QDir::homePath()), "*.sgf");
+    QString fileName = KFileDialog::getSaveFileName(QUrl::fromLocalFile(QDir::homePath()), QStringLiteral("*.sgf"));
 
     if (!fileName.isEmpty()) {
         if (m_game->save(fileName))
@@ -321,12 +321,12 @@ void MainWindow::hint()
 
 void MainWindow::showPreferences()
 {
-    if (KConfigDialog::showDialog("settings"))
+    if (KConfigDialog::showDialog(QStringLiteral("settings")))
         return;
 
-    KConfigDialog *dialog = new KConfigDialog(this, "settings", Preferences::self());
-    dialog->addPage(new GeneralConfig(), i18n("General"), "preferences-other");
-    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), "games-config-theme");
+    KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
+    dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));
+    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), QStringLiteral("games-config-theme"));
     dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help);
     connect(dialog->button(QDialogButtonBox::Help), &QPushButton::clicked, this, &MainWindow::slotHelp);
     connect(dialog, &KConfigDialog::settingsChanged, this, &MainWindow::applyPreferences);
@@ -386,7 +386,7 @@ void MainWindow::showFinishGameAction()
 void MainWindow::playerChanged()
 {
     if (!m_game->currentPlayer().isHuman() && !m_game->isFinished()) {
-        QTimer::singleShot(200, this, SLOT(generateMove()));
+        QTimer::singleShot(200, this, &MainWindow::generateMove);
     }
 }
 
@@ -411,25 +411,25 @@ void MainWindow::setupActions()
     // Game menu
     m_newGameAction = KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
     m_loadGameAction = KStandardGameAction::load(this, SLOT(loadGame()), actionCollection());
-    m_getMoreGamesAction = new QAction(QIcon::fromTheme( QLatin1String( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
+    m_getMoreGamesAction = new QAction(QIcon::fromTheme( QStringLiteral( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
     actionCollection()->setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL + Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     connect(m_getMoreGamesAction, &QAction::triggered, this, &MainWindow::getMoreGames);
-    actionCollection()->addAction( QLatin1String( "get_more_games" ), m_getMoreGamesAction);
+    actionCollection()->addAction( QStringLiteral( "get_more_games" ), m_getMoreGamesAction);
     m_saveAction = KStandardGameAction::save(this, SLOT(saveGame()), actionCollection());
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 
-    m_startGameAction = new QAction(QIcon::fromTheme( QLatin1String( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
+    m_startGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     actionCollection()->setDefaultShortcut(m_startGameAction, Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, &QAction::triggered, this, &MainWindow::startGame);
-    actionCollection()->addAction( QLatin1String( "game_start" ), m_startGameAction);
+    actionCollection()->addAction( QStringLiteral( "game_start" ), m_startGameAction);
 
-    m_finishGameAction = new QAction(QIcon::fromTheme( QLatin1String( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
+    m_finishGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
     actionCollection()->setDefaultShortcut(m_finishGameAction,Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, &QAction::triggered, this, &MainWindow::finishGame);
-    actionCollection()->addAction( QLatin1String( "game_finish" ), m_finishGameAction);
+    actionCollection()->addAction( QStringLiteral( "game_finish" ), m_finishGameAction);
 
     // Move menu
     m_undoMoveAction = KStandardGameAction::undo(this, SLOT(undo()), actionCollection());
@@ -440,11 +440,11 @@ void MainWindow::setupActions()
     m_hintAction = KStandardGameAction::hint(this, SLOT(hint()), actionCollection());
 
     // View menu
-    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QLatin1String( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
+    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
     actionCollection()->setDefaultShortcut(m_moveNumbersAction, Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, &KToggleAction::toggled, m_gameScene, &GameScene::showMoveNumbers);
-    actionCollection()->addAction( QLatin1String( "move_numbers" ), m_moveNumbersAction);
+    actionCollection()->addAction( QStringLiteral( "move_numbers" ), m_moveNumbersAction);
 
     // Settings menu
     KStandardAction::preferences(this, SLOT(showPreferences()), actionCollection());
@@ -454,7 +454,7 @@ void MainWindow::setupDockWindows()
 {
     // Setup dock
     m_setupDock = new QDockWidget(i18nc("@title:window", "Game Setup"), this);
-    m_setupDock->setObjectName( QLatin1String("setupDock" ));
+    m_setupDock->setObjectName( QStringLiteral("setupDock" ));
     m_setupDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     m_setupWidget = new SetupWidget(m_game, this);
     m_setupDock->setWidget(m_setupWidget);
@@ -466,19 +466,19 @@ void MainWindow::setupDockWindows()
 
     // Game dock
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
-    m_gameDock->setObjectName( QLatin1String("gameDock" ));
+    m_gameDock->setObjectName( QStringLiteral("gameDock" ));
     m_gameDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     GameWidget *gameWidget = new GameWidget(m_game, this);
     connect(gameWidget, &GameWidget::finishClicked, this, &MainWindow::finishGame);
     m_gameDock->setWidget(gameWidget);
     m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
     actionCollection()->setDefaultShortcut(m_gameDock->toggleViewAction(), Qt::Key_I);
-    actionCollection()->addAction( QLatin1String( "show_game_panel" ), m_gameDock->toggleViewAction());
+    actionCollection()->addAction( QStringLiteral( "show_game_panel" ), m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
 
     // Move history dock
     m_movesDock = new QDockWidget(i18nc("@title:window", "Moves"), this);
-    m_movesDock->setObjectName( QLatin1String("movesDock" ));
+    m_movesDock->setObjectName( QStringLiteral("movesDock" ));
     m_undoView = new QUndoView(m_game->undoStack());
     m_undoView->setEmptyLabel(i18n("No move"));
     m_undoView->setAlternatingRowColors(true);
@@ -488,11 +488,11 @@ void MainWindow::setupDockWindows()
     m_movesDock->setWidget(m_undoView);
     m_movesDock->toggleViewAction()->setText(i18nc("@title:window", "Moves"));
     actionCollection()->setDefaultShortcut(m_movesDock->toggleViewAction(), Qt::Key_M);
-    actionCollection()->addAction( QLatin1String( "show_moves_panel" ), m_movesDock->toggleViewAction());
+    actionCollection()->addAction( QStringLiteral( "show_moves_panel" ), m_movesDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_movesDock);
 
     m_errorDock = new QDockWidget(i18nc("@title:window", "Error"), this);
-    m_errorDock->setObjectName( QLatin1String("errorDock" ));
+    m_errorDock->setObjectName( QStringLiteral("errorDock" ));
     m_errorDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     ErrorWidget *errorWidget = new ErrorWidget(this);
     connect(errorWidget, &ErrorWidget::configureClicked, this, &MainWindow::showPreferences);

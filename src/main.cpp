@@ -44,30 +44,30 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
 
-    Kdelibs4ConfigMigrator migrate(QLatin1String("kigo"));
-    migrate.setConfigFiles(QStringList() << QLatin1String("kigorc"));
-    migrate.setUiFiles(QStringList() << QLatin1String("kigoui.rc"));
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("kigo"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("kigorc"));
+    migrate.setUiFiles(QStringList() << QStringLiteral("kigoui.rc"));
     migrate.migrate();
 
     KLocalizedString::setApplicationDomain("kigo");
 
-    KAboutData aboutData("kigo", i18n("Kigo"), "0.5.6",
+    KAboutData aboutData(QStringLiteral("kigo"), i18n("Kigo"), QStringLiteral("0.5.6"),
             i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
             i18n("Copyright (c) 2008-2010 Sascha Peilicke"));
     aboutData.addAuthor(i18n("Sascha Peilicke (saschpe)"), i18n("Original author"),
-                        "sasch.pe@gmx.de", "http://saschpe.wordpress.com");
+                        QStringLiteral("sasch.pe@gmx.de"), QStringLiteral("http://saschpe.wordpress.com"));
     aboutData.addCredit(i18n("Yuri Chornoivan"), i18n("Documentation editor"),
-                        "yurchor@ukr.net");
+                        QStringLiteral("yurchor@ukr.net"));
     aboutData.addCredit(i18n("Arturo Silva"), i18n("Default theme designer"),
-                        "jasilva28@gmail.com");
-    aboutData.setHomepage("http://games.kde.org/kigo");
+                        QStringLiteral("jasilva28@gmail.com"));
+    aboutData.setHomepage(QStringLiteral("http://games.kde.org/kigo"));
 
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
     parser.addVersionOption();
     parser.addHelpOption();
-    parser.addOption(QCommandLineOption(QStringList() << "game" << i18nc("@info:shell", "Game to load (SGF file)") ) );
-    parser.addOption(QCommandLineOption(QStringList() << "+[Url]" << i18nc("@info:shell", "Game to load (SGF file)") ) );
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("game") << i18nc("@info:shell", "Game to load (SGF file)") ) );
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("+[Url]") << i18nc("@info:shell", "Game to load (SGF file)") ) );
 
     aboutData.setupCommandLine(&parser);
     parser.process(app);
@@ -79,8 +79,8 @@ int main(int argc, char *argv[])
     } else {
 
         QString game;
-        if (parser.isSet("game")) {
-            game = parser.value("game");
+        if (parser.isSet(QStringLiteral("game"))) {
+            game = parser.value(QStringLiteral("game"));
         }
         if (parser.positionalArguments().count() == 1) {
             game = parser.positionalArguments().at(0);

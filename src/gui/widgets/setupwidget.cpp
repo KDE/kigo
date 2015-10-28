@@ -34,7 +34,7 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     Q_ASSERT(m_game);
     setupUi(this);
 
-    startButton->setIcon(QIcon::fromTheme( QLatin1String( "media-playback-start" )));
+    startButton->setIcon(QIcon::fromTheme( QStringLiteral( "media-playback-start" )));
     QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(48, 48));
     whiteStoneImageLabel->setPixmap(whiteStone);
     QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
@@ -85,7 +85,7 @@ void SetupWidget::loadedGame(const QString &fileName)
     QRegExp re;
 
     // Parse additional game information from SGF file
-    re.setPattern("EV\\[([\\w ]+)\\]");             // Capture and set event
+    re.setPattern(QStringLiteral("EV\\[([\\w ]+)\\]"));             // Capture and set event
     if (re.indexIn(content) > -1) {
         eventLabel->setText(re.cap(1));
         eventLabel->setVisible(true);
@@ -95,7 +95,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         eventStaticLabel->setVisible(false);
     }
 
-    re.setPattern("PC\\[([\\w ,]+)\\]");             // location
+    re.setPattern(QStringLiteral("PC\\[([\\w ,]+)\\]"));             // location
     if (re.indexIn(content) > -1) {
         locationLabel->setText(re.cap(1));
         locationLabel->setVisible(true);
@@ -105,7 +105,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         locationStaticLabel->setVisible(false);
     }
 
-    re.setPattern("RO\\[(\\d+)\\]");                // Capture and set round
+    re.setPattern(QStringLiteral("RO\\[(\\d+)\\]"));                // Capture and set round
     if (re.indexIn(content) > -1) {
         roundLabel->setText(re.cap(1));
         roundLabel->setVisible(true);
@@ -114,7 +114,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         roundLabel->setVisible(false);
         roundStaticLabel->setVisible(false);
     }
-    re.setPattern("DT\\[([\\w/\\-:\\.,]+)\\]");      // Capture and set date
+    re.setPattern(QStringLiteral("DT\\[([\\w/\\-:\\.,]+)\\]"));      // Capture and set date
     if (re.indexIn(content) > -1) {
         dateLabel->setText(re.cap(1));
         dateLabel->setVisible(true);
@@ -124,33 +124,33 @@ void SetupWidget::loadedGame(const QString &fileName)
         dateStaticLabel->setVisible(false);
     }
 
-    re.setPattern("PB\\[([\\w ]+)\\]");             // Capture and set black player name
+    re.setPattern(QStringLiteral("PB\\[([\\w ]+)\\]"));             // Capture and set black player name
     if (re.indexIn(content) > -1) {
         blackPlayerName->setText(re.cap(1));
     }
-    re.setPattern("BR\\[([\\w ]+)\\]");             // Capture and set black player rank
+    re.setPattern(QStringLiteral("BR\\[([\\w ]+)\\]"));             // Capture and set black player rank
     if (re.indexIn(content) > -1) {
         blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ')');
     }
-    re.setPattern("BT\\[([\\w ]+)\\]");             // black team
+    re.setPattern(QStringLiteral("BT\\[([\\w ]+)\\]"));             // black team
     if (re.indexIn(content) > -1) {
         blackPlayerName->setText(blackPlayerName->text() + " [" + re.cap(1) + ']');
     }
 
-    re.setPattern("PW\\[([\\w ]+)\\]");             // Capture and set white player name
+    re.setPattern(QStringLiteral("PW\\[([\\w ]+)\\]"));             // Capture and set white player name
     if (re.indexIn(content) > -1) {
         whitePlayerName->setText(re.cap(1));
     }
-    re.setPattern("WR\\[([\\w ]+)\\]");             // Capture and set white player rank
+    re.setPattern(QStringLiteral("WR\\[([\\w ]+)\\]"));             // Capture and set white player rank
     if (re.indexIn(content) > -1) {
         whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ')');
     }
-    re.setPattern("WT\\[([\\w ]+)\\]");             // white team
+    re.setPattern(QStringLiteral("WT\\[([\\w ]+)\\]"));             // white team
     if (re.indexIn(content) > -1) {
         whitePlayerName->setText(whitePlayerName->text() + " [" + re.cap(1) + ']');
     }
 
-    re.setPattern("KM\\[(\\d+\\.?\\d*)\\]");        // Capture and set komi
+    re.setPattern(QStringLiteral("KM\\[(\\d+\\.?\\d*)\\]"));        // Capture and set komi
     if (re.indexIn(content) > -1) {
         komiLabel->setText(re.cap(1));
         komiLabel->setVisible(true);
@@ -160,7 +160,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         komiStaticLabel->setVisible(false);
     }
 
-    re.setPattern("TM\\[(\\d+)\\]");        // time limit in seconds
+    re.setPattern(QStringLiteral("TM\\[(\\d+)\\]"));        // time limit in seconds
     if (re.indexIn(content) > -1) {
         int seconds = re.cap(1).toInt();
         int hours = seconds/3600;
@@ -178,7 +178,7 @@ void SetupWidget::loadedGame(const QString &fileName)
        timeStaticLabel->setVisible(false);
     }
 
-    re.setPattern("RE\\[([WB]\\+[\\w\\.]+)\\]");    // Capture and set score
+    re.setPattern(QStringLiteral("RE\\[([WB]\\+[\\w\\.]+)\\]"));    // Capture and set score
     if (re.indexIn(content) > -1) {
         scoreLabel->setText(re.cap(1));
         scoreLabel->setVisible(true);
@@ -236,7 +236,7 @@ void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
     } else if (m_game->currentPlayer().isBlack()) {
         playerLabel->setText(i18n("Black to play"));
     } else {
-        playerLabel->setText("");
+        playerLabel->setText(QLatin1String(""));
     }
 }
 

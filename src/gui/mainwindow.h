@@ -48,7 +48,7 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString &fileName = "", QWidget *parent = 0);
+    explicit MainWindow(const QString &fileName = QLatin1String(""), QWidget *parent = 0);
 
 private slots:
     void slotHelp();

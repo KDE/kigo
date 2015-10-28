@@ -83,7 +83,7 @@ bool Game::start(const QString &command)
     m_process.waitForReadyRead();
     QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith(QLatin1String("="))) {
-        m_response = "Game did not respond to GTP command \"name\"";
+        m_response = QLatin1String("Game did not respond to GTP command \"name\"");
         //qDebug() << m_response;
         stop();
         return false;
@@ -387,7 +387,7 @@ bool Game::generateMove(const Player &player, bool undoable)
         } else {
             player = &m_blackPlayer;
         }
-        if (m_response == "PASS") {
+        if (m_response == QLatin1String("PASS")) {
             m_currentMove++;
             emit passMovePlayed(*m_currentPlayer);
             if (m_consecutivePassMoveNumber > 0) {
@@ -401,7 +401,7 @@ bool Game::generateMove(const Player &player, bool undoable)
             } else {
                 undoStr = i18n("Black passed");
             }
-        } else if (m_response == "resign") {
+        } else if (m_response == QLatin1String("resign")) {
             emit resigned(*m_currentPlayer);
             m_gameFinished = true;
             moveType = UndoCommand::Resigned;
@@ -655,12 +655,12 @@ Game::FinalState Game::finalState(const Stone &stone)
 
     m_process.write("final_status " + stone.toLatin1() + '\n');
     if (waitResponse()) {
-        if (m_response == "alive") return FinalAlive;
-        else if (m_response == "dead") return FinalDead;
-        else if (m_response == "seki") return FinalSeki;
-        else if (m_response == "white_territory") return FinalWhiteTerritory;
-        else if (m_response == "blacK_territory") return FinalBlackTerritory;
-        else if (m_response == "dame") return FinalDame;
+        if (m_response == QLatin1String("alive")) return FinalAlive;
+        else if (m_response == QLatin1String("dead")) return FinalDead;
+        else if (m_response == QLatin1String("seki")) return FinalSeki;
+        else if (m_response == QLatin1String("white_territory")) return FinalWhiteTerritory;
+        else if (m_response == QLatin1String("blacK_territory")) return FinalBlackTerritory;
+        else if (m_response == QLatin1String("dame")) return FinalDame;
         else return FinalStateInvalid;
     } else
         return FinalStateInvalid;
@@ -717,12 +717,12 @@ bool Game::waitResponse(bool nonBlocking)
 {
     if (m_process.state() != QProcess::Running) {   // No GTP connection means no computing fun!
         switch (m_process.error()) {
-            case QProcess::FailedToStart: m_response = "No Go game is running!"; break;
-            case QProcess::Crashed: m_response = "The Go game crashed!"; break;
-            case QProcess::Timedout: m_response = "The Go game timed out!"; break;
+            case QProcess::FailedToStart: m_response = QLatin1String("No Go game is running!"); break;
+            case QProcess::Crashed: m_response = QLatin1String("The Go game crashed!"); break;
+            case QProcess::Timedout: m_response = QLatin1String("The Go game timed out!"); break;
             case QProcess::WriteError: m_response = m_process.readAllStandardError(); break;
             case QProcess::ReadError: m_response = m_process.readAllStandardError(); break;
-            case QProcess::UnknownError: m_response = "Unknown error!"; break;
+            case QProcess::UnknownError: m_response = QLatin1String("Unknown error!"); break;
         }
         qWarning() << "Command failed:" << m_response;
         return false;

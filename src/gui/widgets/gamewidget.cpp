@@ -35,7 +35,7 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
     Q_ASSERT(m_game);
     setupUi(this);
 
-    finishButton->setIcon(QIcon::fromTheme( QLatin1String( "media-playback-stop" )));
+    finishButton->setIcon(QIcon::fromTheme( QStringLiteral( "media-playback-stop" )));
 
     connect(m_game, &Game::boardInitialized, this, &GameWidget::init);
     connect(m_game, &Game::boardChanged, this, &GameWidget::update);
