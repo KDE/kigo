@@ -361,7 +361,6 @@ bool Game::generateMove(const Player &player, bool undoable)
     if (!isRunning()) {
         return false;
     }
-    bool boardChange = false;
     const Player *tmp = &player;
     if (!tmp->isValid()) {
         ////qDebug() << "Invalid player argument, using current player!";
@@ -378,6 +377,7 @@ bool Game::generateMove(const Player &player, bool undoable)
         m_process.write("genmove black\n");
     }
     if (waitResponse(true)) {
+        bool boardChange = false;
         Player *player;
         UndoCommand::MoveType moveType;
         QString undoStr;
