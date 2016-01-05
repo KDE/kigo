@@ -22,6 +22,8 @@
 #include "preferences.h"
 #include "game/game.h"
 #include <QUrl>
+#include <QLineEdit>
+
 namespace Kigo {
 
 GeneralConfig::GeneralConfig(QWidget *parent)
@@ -34,7 +36,7 @@ GeneralConfig::GeneralConfig(QWidget *parent)
     engineExecutable->setUrl(QUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
     connect(engineExecutable, &KUrlRequester::textChanged, this, &GeneralConfig::updateEngineCommand);
     engineParameters->setText(engineCommand.section(' ', 1));
-    connect(engineParameters, &KLineEdit::textChanged, this, &GeneralConfig::updateEngineCommand);
+    connect(engineParameters, &QLineEdit::textChanged, this, &GeneralConfig::updateEngineCommand);
 
     updateEngineCommand();
 }

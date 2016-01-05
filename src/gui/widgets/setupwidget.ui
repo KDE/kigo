@@ -591,7 +591,7 @@ It balances out the advantage black has by making the first move.</string>
           </widget>
          </item>
          <item>
-          <widget class="KLineEdit" name="whitePlayerName">
+          <widget class="QLineEdit" name="whitePlayerName">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -749,7 +749,7 @@ It balances out the advantage black has by making the first move.</string>
           </widget>
          </item>
          <item>
-          <widget class="KLineEdit" name="blackPlayerName">
+          <widget class="QLineEdit" name="blackPlayerName">
            <property name="enabled">
             <bool>true</bool>
            </property>
@@ -981,18 +981,12 @@ It balances out the advantage black has by making the first move.</string>
    </item>
   </layout>
   <zorder>gameSetupStack</zorder>
-  <zorder>verticalSpacer_4</zorder>
  </widget>
  <customwidgets>
   <customwidget>
    <class>KPluralHandlingSpinBox</class>
    <extends>QSpinBox</extends>
    <header>KPluralHandlingSpinBox</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

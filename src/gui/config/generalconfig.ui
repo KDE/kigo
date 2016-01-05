@@ -57,14 +57,14 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="KLineEdit" name="engineParameters">
+       <widget class="QLineEdit" name="engineParameters">
         <property name="toolTip">
          <string>Add here the necessary parameters to start the Engine in GTP mode</string>
         </property>
        </widget>
       </item>
       <item row="4" column="1" colspan="2">
-       <widget class="KLineEdit" name="kcfg_EngineCommand">
+       <widget class="QLineEdit" name="kcfg_EngineCommand">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -79,9 +79,6 @@
         </property>
         <property name="readOnly">
          <bool>true</bool>
-        </property>
-        <property name="urlDropsEnabled">
-         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -217,11 +214,6 @@ p, li { white-space: pre-wrap; }
    <class>KUrlRequester</class>
    <extends>QFrame</extends>
    <header>kurlrequester.h</header>
-  </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
