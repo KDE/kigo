@@ -49,7 +49,7 @@ bool Player::operator==(const Player &other) const
     return m_name == other.m_name &&
            m_color == other.m_color &&
            m_type == other.m_type &&
-           m_strength == other.m_type;
+           m_strength == other.m_strength;
 }
 
 bool Player::setStrength(int strength)
