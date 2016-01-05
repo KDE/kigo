@@ -102,34 +102,34 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
     // Determine which board element we have to render and set the cache item name
     QString cacheName;
     switch (element) {
-        case Background:
+        case Element::Background:
             cacheName = QStringLiteral("background_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case Board:
+        case Element::Board:
             cacheName = QStringLiteral("board_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case HandicapMark:
+        case Element::HandicapMark:
             cacheName = QStringLiteral("handicap_mark_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case WhiteStone:
+        case Element::WhiteStone:
             cacheName = QStringLiteral("white_stone_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case WhiteStoneTransparent:
+        case Element::WhiteStoneTransparent:
             cacheName = QStringLiteral("white_stone_%1x%2_trans").arg(size.width()).arg(size.height());
             break;
-        case WhiteTerritory:
+        case Element::WhiteTerritory:
             cacheName = QStringLiteral("white_territory_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case BlackStone:
+        case Element::BlackStone:
             cacheName = QStringLiteral("black_stone_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case BlackStoneTransparent:
+        case Element::BlackStoneTransparent:
             cacheName = QStringLiteral("black_stone_%1x%2_trans").arg(size.width()).arg(size.height());
             break;
-        case BlackTerritory:
+        case Element::BlackTerritory:
             cacheName = QStringLiteral("black_territory_%1x%2").arg(size.width()).arg(size.height());
             break;
-        case PlacementMarker:
+        case Element::PlacementMarker:
             cacheName = QStringLiteral("placement_marker_%1x%2").arg(size.width()).arg(size.height());
             break;
     }
@@ -141,36 +141,36 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
         pixmap.fill(Qt::transparent);
         QPainter p(&pixmap);
         switch (element) {
-            case Background:
+            case Element::Background:
                 m_renderer->render(&p, QStringLiteral("background"));
                 break;
-            case Board:
+            case Element::Board:
                 m_renderer->render(&p, QStringLiteral("board"));
                 break;
-            case HandicapMark:
+            case Element::HandicapMark:
                 m_renderer->render(&p, QStringLiteral("handicap_mark"));
                 break;
-            case WhiteStone:
+            case Element::WhiteStone:
                 m_renderer->render(&p, QStringLiteral("white_stone"));
                 break;
-            case WhiteStoneTransparent:
+            case Element::WhiteStoneTransparent:
                 p.setOpacity(0.5);
                 m_renderer->render(&p, QStringLiteral("white_stone"));
                 break;
-            case WhiteTerritory:
+            case Element::WhiteTerritory:
                 m_renderer->render(&p, QStringLiteral("white_territory"));
                 break;
-            case BlackStone:
+            case Element::BlackStone:
                 m_renderer->render(&p, QStringLiteral("black_stone"));
                 break;
-            case BlackStoneTransparent:
+            case Element::BlackStoneTransparent:
                 p.setOpacity(0.5);
                 m_renderer->render(&p, QStringLiteral("black_stone"));
                 break;
-            case BlackTerritory:
+            case Element::BlackTerritory:
                 m_renderer->render(&p, QStringLiteral("black_territory"));
                 break;
-            case PlacementMarker:
+            case Element::PlacementMarker:
                 m_renderer->render(&p, QStringLiteral("placement_marker"));
                 break;
         }
@@ -183,34 +183,34 @@ QSize ThemeRenderer::elementSize(Element element) const
 {
     QRectF sizeRect;
     switch(element) {
-        case Background:
+        case Element::Background:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("background"));
             break;
-        case Board:
+        case Element::Board:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("board"));
             break;
-        case HandicapMark:
+        case Element::HandicapMark:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("handicap_mark"));
             break;
-        case WhiteStone:
+        case Element::WhiteStone:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("white_stone"));
             break;
-        case WhiteStoneTransparent:
+        case Element::WhiteStoneTransparent:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("white_stone"));
             break;
-        case WhiteTerritory:
+        case Element::WhiteTerritory:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("white_territory"));
             break;
-        case BlackStone:
+        case Element::BlackStone:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("black_stone"));
             break;
-        case BlackStoneTransparent:
+        case Element::BlackStoneTransparent:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("black_stone"));
             break;
-        case BlackTerritory:
+        case Element::BlackTerritory:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("black_territory"));
             break;
-        case PlacementMarker:
+        case Element::PlacementMarker:
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("placement_marker"));
             break;
     }

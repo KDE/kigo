@@ -62,9 +62,9 @@ void GameWidget::init()
     komiLabel->setText(QString::number(m_game->komi()));
     handicapLabel->setText(i18np("%1 Stone", "%1 Stones", m_game->fixedHandicap()));
 
-    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(48, 48));
+    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(48, 48));
     whiteStoneImageLabel->setPixmap(whiteStone);
-    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
+    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(48, 48));
     blackStoneImageLabel->setPixmap(blackStone);
 
     update();
@@ -86,11 +86,11 @@ void GameWidget::update()
     }
 
     if (m_game->currentPlayer().isWhite()) {
-        QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(64, 64));
+        QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(64, 64));
         currentPlayerImageLabel->setPixmap(whiteStone);
         currentPlayerLabel->setText(i18n("White's turn"));
     } else if (m_game->currentPlayer().isBlack()) {
-        QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(64, 64));
+        QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(64, 64));
         currentPlayerImageLabel->setPixmap(blackStone);
         currentPlayerLabel->setText(i18n("Black's turn"));
     } else {

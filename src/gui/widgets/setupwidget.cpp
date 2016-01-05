@@ -37,9 +37,9 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     setupUi(this);
 
     startButton->setIcon(QIcon::fromTheme( QStringLiteral( "media-playback-start" )));
-    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::WhiteStone, QSize(48, 48));
+    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(48, 48));
     whiteStoneImageLabel->setPixmap(whiteStone);
-    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::BlackStone, QSize(48, 48));
+    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(48, 48));
     blackStoneImageLabel->setPixmap(blackStone);
 
     connect(startButton, &QPushButton::clicked, this, &SetupWidget::startClicked);
@@ -203,17 +203,17 @@ void SetupWidget::commit()
     saveSettings();
 
     if (Preferences::whitePlayerHuman()) {
-        m_game->whitePlayer().setType(Player::Human);
+        m_game->whitePlayer().setType(Player::Type::Human);
     } else {
-        m_game->whitePlayer().setType(Player::Computer);
+        m_game->whitePlayer().setType(Player::Type::Computer);
     }
     m_game->whitePlayer().setStrength(Preferences::whitePlayerStrength());
     m_game->whitePlayer().setName(Preferences::whitePlayerName());
 
     if (Preferences::blackPlayerHuman()) {
-        m_game->blackPlayer().setType(Player::Human);
+        m_game->blackPlayer().setType(Player::Type::Human);
     } else {
-        m_game->blackPlayer().setType(Player::Computer);
+        m_game->blackPlayer().setType(Player::Type::Computer);
     }
     m_game->blackPlayer().setStrength(Preferences::blackPlayerStrength());
     m_game->blackPlayer().setName(Preferences::blackPlayerName());

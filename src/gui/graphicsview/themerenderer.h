@@ -56,7 +56,7 @@ public:
     /**
      * Enumeration of all possible renderable scene element types.
      */
-    enum Element {
+    enum class Element {
         Background = 1,
         Board,
         HandicapMark,

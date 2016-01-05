@@ -85,7 +85,7 @@ void GameScene::resizeScene(int width, int height)
         removeItem(m_placementMarkerItem);
     }
     m_placementMarkerPixmapSize = QSize(static_cast<int>(m_cellSize / 4), static_cast<int>(m_cellSize / 4));
-    m_placementMarkerItem = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::PlacementMarker, m_placementMarkerPixmapSize));
+    m_placementMarkerItem = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::PlacementMarker, m_placementMarkerPixmapSize));
     m_placementMarkerItem->setVisible(false);
     m_placementMarkerItem->setZValue(1);
 }
@@ -140,7 +140,7 @@ void GameScene::updateStoneItems()
     m_stoneItems.clear();
 
     foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
-        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStone, m_stonePixmapSize));
+        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
@@ -148,7 +148,7 @@ void GameScene::updateStoneItems()
         m_stoneItems.append(item);
     }
     foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
-        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStone, m_stonePixmapSize));
+        item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
         int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
@@ -199,9 +199,9 @@ void GameScene::updateHintItems()
         foreach (const Stone &move, m_game->bestMoves(m_game->currentPlayer())) {
             QPixmap stonePixmap;
             if (m_game->currentPlayer().isWhite()) {
-                stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+                stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteStoneTransparent, m_stonePixmapSize);
             } else if (m_game->currentPlayer().isBlack()) {
-                stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+                stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackStoneTransparent, m_stonePixmapSize);
             }
 
             QPainter painter(&stonePixmap);
@@ -240,8 +240,8 @@ void GameScene::updateTerritoryItems()
         int halfCellSize = m_cellSize / 2;
         //qDebug() << "Fetching territory from engine ...";
 
-        stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteTerritory, QSize(m_cellSize, m_cellSize));
-        foreach (const Stone &stone, m_game->finalStates(Game::FinalWhiteTerritory)) {
+        stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteTerritory, QSize(m_cellSize, m_cellSize));
+        foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalWhiteTerritory)) {
             item = addPixmap(stonePixmap);
             item->setZValue(8);
             int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -250,8 +250,8 @@ void GameScene::updateTerritoryItems()
             m_territoryItems.append(item);
         }
 
-        stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackTerritory, QSize(m_cellSize, m_cellSize));
-        foreach (const Stone &stone, m_game->finalStates(Game::FinalBlackTerritory)) {
+        stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackTerritory, QSize(m_cellSize, m_cellSize));
+        foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalBlackTerritory)) {
             item = addPixmap(stonePixmap);
             item->setZValue(8);
             int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -296,9 +296,9 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
         if (m_game->currentPlayer().isHuman()) {
             if (m_game->currentPlayer().isWhite()) {
-                map = ThemeRenderer::self()->renderElement(ThemeRenderer::WhiteStoneTransparent, m_stonePixmapSize);
+                map = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteStoneTransparent, m_stonePixmapSize);
             } else if (m_game->currentPlayer().isBlack()) {
-                map = ThemeRenderer::self()->renderElement(ThemeRenderer::BlackStoneTransparent, m_stonePixmapSize);
+                map = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackStoneTransparent, m_stonePixmapSize);
             }
             emit cursorPixmapChanged(map);
         }
@@ -328,8 +328,8 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void GameScene::drawBackground(QPainter *painter, const QRectF &)
 {
-    ThemeRenderer::self()->renderElement(ThemeRenderer::Background, painter, sceneRect());
-    ThemeRenderer::self()->renderElement(ThemeRenderer::Board, painter, m_boardRect);
+    ThemeRenderer::self()->renderElement(ThemeRenderer::Element::Background, painter, sceneRect());
+    ThemeRenderer::self()->renderElement(ThemeRenderer::Element::Board, painter, m_boardRect);
 
     int width = m_cellSize / 16;
     QColor color = QColor(20, 30, 20);

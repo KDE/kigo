@@ -38,19 +38,19 @@ class Player
     friend class Game;
 
 public:
-    enum Color {
+    enum class Color {
         White = 1,          ///< The white player
         Black,              ///< The black player
         Invalid
     };
 
-    enum Type {
+    enum class Type {
         Human = 1,          ///< A human player
         Computer            ///< A computer player
     };
 
 private:
-    explicit Player(Color color, Type type = Human);
+    explicit Player(Color color, Type type = Type::Human);
 
 public:
     Player(const Player &other);
@@ -68,11 +68,11 @@ public:
     void setType(Type type) { m_type = type; }
     Type type() const { return m_type; }
 
-    bool isWhite() const { return m_color == White; }
-    bool isBlack() const { return m_color == Black; }
-    bool isValid() const { return m_color != Invalid; }
-    bool isHuman() const { return m_type == Human; }
-    bool isComputer() const { return m_type == Computer; }
+    bool isWhite() const { return m_color == Color::White; }
+    bool isBlack() const { return m_color == Color::Black; }
+    bool isValid() const { return m_color != Color::Invalid; }
+    bool isHuman() const { return m_type == Type::Human; }
+    bool isComputer() const { return m_type == Type::Computer; }
 
     bool operator==(const Player &other) const;
 

@@ -65,7 +65,7 @@ public:
     /**
      * Enumeration of all possible final states of a field when a game is over
      */
-    enum FinalState {
+    enum class FinalState {
         FinalAlive = 1,         ///< The stone on the field is alive
         FinalDead,              ///< The stone on the field is dead
         FinalSeki,              ///<

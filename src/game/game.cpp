@@ -33,7 +33,7 @@ class UndoCommand : public QUndoCommand
 {
     public:
 
-    enum MoveType { Stone, Passed, Resigned };
+    enum class MoveType { Stone, Passed, Resigned };
 
     UndoCommand(Player *player, MoveType moveType, const QString &undoStr)
     : QUndoCommand(undoStr), m_player(player), m_moveType(moveType)
@@ -51,7 +51,7 @@ class UndoCommand : public QUndoCommand
 Game::Game(QObject *parent)
     : QObject(parent)
     , m_currentMove(0), m_lastUndoIndex(0), m_currentPlayer(&m_blackPlayer)
-    , m_blackPlayer(Player::Black), m_whitePlayer(Player::White)
+    , m_blackPlayer(Player::Color::Black), m_whitePlayer(Player::Color::White)
     , m_komi(4.5), m_boardSize(19), m_fixedHandicap(5), m_consecutivePassMoveNumber(0)
     , m_gameFinished(false)
 {
@@ -323,19 +323,19 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
             if (tmp->isWhite()) {
                 player = &m_whitePlayer;
                 if (stone.isValid()) {
-                    moveType = UndoCommand::Stone;
+                    moveType = UndoCommand::MoveType::Stone;
                     undoStr = i18nc("%1 stone coordinate", "White %1", stone.toString());
                 } else {
-                    moveType = UndoCommand::Passed;
+                    moveType = UndoCommand::MoveType::Passed;
                     undoStr = i18n("White passed");
                 }
             } else {
                 player = &m_blackPlayer;
                 if (stone.isValid()) {
-                    moveType = UndoCommand::Stone;
+                    moveType = UndoCommand::MoveType::Stone;
                     undoStr = i18nc("%1 stone coordinate", "Black %1", stone.toString());
                 } else {
-                    moveType = UndoCommand::Passed;
+                    moveType = UndoCommand::MoveType::Passed;
                     undoStr = i18n("Black passed");
                 }
             }
@@ -395,7 +395,7 @@ bool Game::generateMove(const Player &player, bool undoable)
                 m_gameFinished = true;
             }
             m_consecutivePassMoveNumber++;
-            moveType = UndoCommand::Passed;
+            moveType = UndoCommand::MoveType::Passed;
             if (tmp->isWhite()) {
                 undoStr = i18n("White passed");
             } else {
@@ -404,7 +404,7 @@ bool Game::generateMove(const Player &player, bool undoable)
         } else if (m_response == QLatin1String("resign")) {
             emit resigned(*m_currentPlayer);
             m_gameFinished = true;
-            moveType = UndoCommand::Resigned;
+            moveType = UndoCommand::MoveType::Resigned;
             if (tmp->isWhite()) {
                 undoStr = i18n("White resigned");
             } else {
@@ -414,7 +414,7 @@ bool Game::generateMove(const Player &player, bool undoable)
             m_currentMove++;
             m_movesList.append(Move(tmp, Stone(m_response)));
             m_consecutivePassMoveNumber = 0;
-            moveType = UndoCommand::Stone;
+            moveType = UndoCommand::MoveType::Stone;
             if (tmp->isWhite()) {
                 undoStr = i18nc("%1 response from Go engine", "White %1", m_response);
             } else {
@@ -488,10 +488,10 @@ bool Game::redoMove()
 
     Player *player = undoCmd->player();
 
-    if (undoCmd->moveType() == UndoCommand::Passed) {
+    if (undoCmd->moveType() == UndoCommand::MoveType::Passed) {
         //qDebug() << "Redo a pass move for" << player << undoCmd->text();
         playMove(*player, Stone(), false);         // E.g. pass move
-    } else if (undoCmd->moveType() == UndoCommand::Resigned) {
+    } else if (undoCmd->moveType() == UndoCommand::MoveType::Resigned) {
         // Note: Altough it is possible to undo after a resign and redo it,
         //       it is a bit questionable whether this makes sense logically.
         //qDebug() << "Redo a resign for" << player << undoCmd->text();
@@ -650,38 +650,38 @@ int Game::captures(const Player &player)
 Game::FinalState Game::finalState(const Stone &stone)
 {
     if (!isRunning() || !stone.isValid()) {
-        return FinalStateInvalid;
+        return FinalState::FinalStateInvalid;
     }
 
     m_process.write("final_status " + stone.toLatin1() + '\n');
     if (waitResponse()) {
-        if (m_response == QLatin1String("alive")) return FinalAlive;
-        else if (m_response == QLatin1String("dead")) return FinalDead;
-        else if (m_response == QLatin1String("seki")) return FinalSeki;
-        else if (m_response == QLatin1String("white_territory")) return FinalWhiteTerritory;
-        else if (m_response == QLatin1String("blacK_territory")) return FinalBlackTerritory;
-        else if (m_response == QLatin1String("dame")) return FinalDame;
-        else return FinalStateInvalid;
+        if (m_response == QLatin1String("alive")) return FinalState::FinalAlive;
+        else if (m_response == QLatin1String("dead")) return FinalState::FinalDead;
+        else if (m_response == QLatin1String("seki")) return FinalState::FinalSeki;
+        else if (m_response == QLatin1String("white_territory")) return FinalState::FinalWhiteTerritory;
+        else if (m_response == QLatin1String("blacK_territory")) return FinalState::FinalBlackTerritory;
+        else if (m_response == QLatin1String("dame")) return FinalState::FinalDame;
+        else return FinalState::FinalStateInvalid;
     } else
-        return FinalStateInvalid;
+        return FinalState::FinalStateInvalid;
 }
 
 QList<Stone> Game::finalStates(FinalState state)
 {
     QList<Stone> list;
-    if (!isRunning() || state == FinalStateInvalid) {
+    if (!isRunning() || state == FinalState::FinalStateInvalid) {
         return list;
     }
 
     QByteArray msg("final_status_list ");
     switch (state) {
-        case FinalAlive: msg.append("alive"); break;
-        case FinalDead: msg.append("dead"); break;
-        case FinalSeki: msg.append("seki"); break;
-        case FinalWhiteTerritory: msg.append("white_territory"); break;
-        case FinalBlackTerritory: msg.append("black_territory"); break;
-        case FinalDame: msg.append("dame"); break;
-        case FinalStateInvalid: /* Will never happen */ break;
+        case FinalState::FinalAlive: msg.append("alive"); break;
+        case FinalState::FinalDead: msg.append("dead"); break;
+        case FinalState::FinalSeki: msg.append("seki"); break;
+        case FinalState::FinalWhiteTerritory: msg.append("white_territory"); break;
+        case FinalState::FinalBlackTerritory: msg.append("black_territory"); break;
+        case FinalState::FinalDame: msg.append("dame"); break;
+        case FinalState::FinalStateInvalid: /* Will never happen */ break;
     }
     msg.append('\n');
     m_process.write(msg);
