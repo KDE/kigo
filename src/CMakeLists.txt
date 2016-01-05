@@ -32,7 +32,6 @@ target_link_libraries(kigo
    KF5::XmlGui
    KF5::KIOWidgets  # KUrlRequester
    KF5::TextWidgets # KPluralHandlingSpinBox
-   KF5::KDELibs4Support # KFileDialog, KPixmapCache
    KF5KDEGames
    KF5KDEGamesPrivate
    KF5::NewStuff

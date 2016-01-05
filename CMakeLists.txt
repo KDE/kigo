@@ -18,8 +18,7 @@ find_package(KF5 REQUIRED COMPONENTS
     XmlGui
     KIO
     NotifyConfig
-    NewStuff
-    KDELibs4Support)
+    NewStuff)
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 find_package(Phonon4Qt5 CONFIG REQUIRED)

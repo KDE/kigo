@@ -163,7 +163,7 @@ void GameScene::updateStoneItems()
             QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
                                   m_gridRect.y() + (m_boardSize - move.stone().y()) * m_cellSize);
 
-            if (QGraphicsPixmapItem *item = static_cast<QGraphicsPixmapItem *>(itemAt(pos))) {
+            if (QGraphicsPixmapItem *item = static_cast<QGraphicsPixmapItem *>(itemAt(pos, QTransform()))) {
                 // We found an item in the scene that is in our move numbers, so we paint it's move number
                 // on top of the item and that's all.
                 //TODO: Check for existing move number to do special treatment
