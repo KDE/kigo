@@ -33,9 +33,7 @@
 #include <QAction>
 #include <KActionCollection>
 #include <KConfigDialog>
-#include <KFileDialog>
 #include <KNS3/DownloadDialog>
-#include <KStandardDirs>
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <QUrl>
@@ -45,6 +43,7 @@
 #include <libkdegamesprivate/kgamethemeselector.h>
 
 #include <QDockWidget>
+#include <QFileDialog>
 #include <QTimer>
 #include <QUndoView>
 #include <QDebug>
@@ -111,7 +110,8 @@ void MainWindow::newGame()
 
 void MainWindow::loadGame()
 {
-    QString fileName = KFileDialog::getOpenFileName(QUrl::fromLocalFile(KStandardDirs::locate("appdata", QStringLiteral("games/"))), QStringLiteral("*.sgf"));
+    const QString folderName = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("games"), QStandardPaths::LocateDirectory);
+    const QString fileName = QFileDialog::getOpenFileName(this, QString(), folderName, i18n("Kigo Game Files | *.sgf"));
     if (!fileName.isEmpty()) {
         loadGame(fileName);
     }
@@ -197,7 +197,7 @@ void MainWindow::backendError()
 
 void MainWindow::saveGame()
 {
-    QString fileName = KFileDialog::getSaveFileName(QUrl::fromLocalFile(QDir::homePath()), QStringLiteral("*.sgf"));
+    const QString fileName = QFileDialog::getSaveFileName(this, QString(), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), i18n("Kigo Game Files | *.sgf"));
 
     if (!fileName.isEmpty()) {
         if (m_game->save(fileName))
@@ -510,5 +510,3 @@ bool MainWindow::isBackendWorking()
 }
 
 } // End of namespace Kigo
-
-
