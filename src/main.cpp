@@ -74,6 +74,8 @@ int main(int argc, char *argv[])
     aboutData.processCommandLine(&parser);
     KDBusService service;
 
+    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kigo")));
+
     if (app.isSessionRestored()) {
         RESTORE(Kigo::MainWindow)
     } else {
