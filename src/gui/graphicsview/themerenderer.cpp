@@ -215,7 +215,7 @@ QSize ThemeRenderer::elementSize(Element element) const
             sizeRect = m_renderer->boundsOnElement(QStringLiteral("placement_marker"));
             break;
     }
-    return QSize((int)sizeRect.width(), (int)sizeRect.height());
+    return QSize(static_cast<int>(sizeRect.width()), static_cast<int>(sizeRect.height()));
 }
 
 } // End of namespace Kigo
