@@ -34,7 +34,8 @@
 namespace Kigo {
 
 ThemeRenderer::ThemeRenderer()
-    : m_renderer(new QSvgRenderer)
+    : m_currentTheme()
+    , m_renderer(new QSvgRenderer)
     , m_cache(new KPixmapCache(QStringLiteral("kigo-cache")))
 {
     m_cache->setCacheLimit(3 * 1024);

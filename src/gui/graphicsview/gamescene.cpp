@@ -34,11 +34,25 @@ namespace Kigo {
     const int dotPositions19[] = {3,3, 3,9, 3,15, 9,3, 9,9, 9,15, 15,3, 15,9, 15,15};
 
 GameScene::GameScene(Game *game, QObject *parent)
-    : QGraphicsScene(parent), m_game(game)
-    , m_showLabels(Preferences::showBoardLabels()), m_showHint(false)
+    : QGraphicsScene(parent)
+    , m_game(game)
+    , m_gamePopup()
+    , m_showLabels(Preferences::showBoardLabels())
+    , m_showHint(false)
     , m_showMoveNumbers(Preferences::showMoveNumbers())
-    , m_showPlacementMarker(true), m_showTerritory(false)
-    , m_boardSize(Preferences::boardSize()), m_placementMarkerItem(0)
+    , m_showPlacementMarker(true)
+    , m_showTerritory(false)
+    , m_boardRect()
+    , m_mouseRect()
+    , m_gridRect()
+    , m_cellSize(0)
+    , m_stonePixmapSize()
+    , m_placementMarkerPixmapSize()
+    , m_boardSize(Preferences::boardSize())
+    , m_placementMarkerItem(nullptr)
+    , m_stoneItems()
+    , m_hintItems()
+    , m_territoryItems()
 {
     connect(m_game, &Game::boardChanged, this, &GameScene::updateStoneItems);
     connect(m_game, &Game::boardSizeChanged, this, &GameScene::changeBoardSize);

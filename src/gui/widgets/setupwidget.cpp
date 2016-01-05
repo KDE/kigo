@@ -28,7 +28,9 @@
 namespace Kigo {
 
 SetupWidget::SetupWidget(Game *game, QWidget *parent)
-    : QWidget(parent), m_game(game)
+    : QWidget(parent)
+    , m_game(game)
+    , m_lastFileName()
     , m_lastFixedHandicap(Preferences::fixedHandicapValue())
 {
     Q_ASSERT(m_game);
