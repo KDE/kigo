@@ -22,7 +22,7 @@
 #include "preferences.h"
 
 #include <QSvgRenderer>
-#include <KPixmapCache>
+#include <QPixmapCache>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgametheme.h>
@@ -35,9 +35,8 @@ namespace Kigo {
 ThemeRenderer::ThemeRenderer()
     : m_currentTheme()
     , m_renderer(new QSvgRenderer)
-    , m_cache(new KPixmapCache(QStringLiteral("kigo-cache")))
 {
-    m_cache->setCacheLimit(3 * 1024);
+    QPixmapCache::setCacheLimit(3 * 1024);
     if (!loadTheme(Preferences::theme())) {
         //qDebug() << "Failed to load any game theme!";
     }
@@ -45,7 +44,6 @@ ThemeRenderer::ThemeRenderer()
 
 ThemeRenderer::~ThemeRenderer()
 {
-    delete m_cache;
     delete m_renderer;
 }
 
@@ -77,7 +75,7 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
 
     if (discardCache) {
         // //qDebug() << "Discarding cache";
-        m_cache->discard();
+        QPixmapCache::clear();
     }
     emit themeChanged(m_currentTheme);
     return true;
@@ -136,7 +134,7 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
 
     // Check if board element is already in cache, if not render it
     QPixmap pixmap;
-    if (!m_cache->find(cacheName, pixmap)) {
+    if (!QPixmapCache::find(cacheName, pixmap)) {
         pixmap = QPixmap(size);
         pixmap.fill(Qt::transparent);
         QPainter p(&pixmap);
@@ -174,7 +172,7 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
                 m_renderer->render(&p, QStringLiteral("placement_marker"));
                 break;
         }
-        m_cache->insert(cacheName, pixmap);
+        QPixmapCache::insert(cacheName, pixmap);
     }
     return pixmap;
 }

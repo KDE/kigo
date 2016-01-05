@@ -24,7 +24,6 @@
 #include <QObject>
 #include <QString>
 
-class KPixmapCache;
 class QSvgRenderer;
 class QPixmap;
 class QPainter;
@@ -119,7 +118,6 @@ signals:
 private:
     QString m_currentTheme;         ///< Holds the current seleted theme
     QSvgRenderer *m_renderer;       ///< Converts SVG parts into pixmaps
-    KPixmapCache *m_cache;          ///< Stores pixmaps efficiently
 };
 
 } // End of namespace Kigo
