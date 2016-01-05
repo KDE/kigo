@@ -21,10 +21,10 @@
 #include "game.h"
 #include "score.h"
 
-#include <QDebug>
 #include <KLocalizedString>
 
 #include <QApplication>
+#include <QDebug>
 #include <QFile>
 
 namespace Kigo {

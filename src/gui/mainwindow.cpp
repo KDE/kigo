@@ -46,7 +46,6 @@
 #include <QFileDialog>
 #include <QTimer>
 #include <QUndoView>
-#include <QDebug>
 
 namespace Kigo {
 

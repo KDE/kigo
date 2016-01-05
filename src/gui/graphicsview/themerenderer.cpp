@@ -23,7 +23,6 @@
 
 #include <QSvgRenderer>
 #include <KPixmapCache>
-#include <QDebug>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgametheme.h>

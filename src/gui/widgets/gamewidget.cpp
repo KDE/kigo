@@ -25,7 +25,6 @@
 
 #include "gui/graphicsview/themerenderer.h"
 
-#include <QDebug>
 #include <QIcon>
 namespace Kigo {
 
