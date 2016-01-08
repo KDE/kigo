@@ -110,7 +110,7 @@ void MainWindow::newGame()
 void MainWindow::loadGame()
 {
     const QString folderName = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("games"), QStandardPaths::LocateDirectory);
-    const QString fileName = QFileDialog::getOpenFileName(this, QString(), folderName, i18n("Kigo Game Files | *.sgf"));
+    const QString fileName = QFileDialog::getOpenFileName(this, QString(), folderName, i18n("Kigo Game Files (*.sgf)"));
     if (!fileName.isEmpty()) {
         loadGame(fileName);
     }
@@ -196,7 +196,7 @@ void MainWindow::backendError()
 
 void MainWindow::saveGame()
 {
-    const QString fileName = QFileDialog::getSaveFileName(this, QString(), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), i18n("Kigo Game Files | *.sgf"));
+    const QString fileName = QFileDialog::getSaveFileName(this, QString(), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), i18n("Kigo Game Files (*.sgf)"));
 
     if (!fileName.isEmpty()) {
         if (m_game->save(fileName))
