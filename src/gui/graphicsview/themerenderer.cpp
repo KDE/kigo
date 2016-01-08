@@ -52,7 +52,7 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
     bool discardCache = !m_currentTheme.isEmpty();
 
     if (!m_currentTheme.isEmpty() && m_currentTheme == themeName) {
-        // //qDebug() << "Notice: Loading the same theme";
+        //qDebug() << "Notice: Loading the same theme";
         return true;        // We don't have to do anything
     }
 
@@ -60,8 +60,8 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
 
     KGameTheme theme;
     if (themeName.isEmpty() || !theme.load(themeName)) {
-        // //qDebug() << "Failed to load theme" << Preferences::theme();
-        // //qDebug() << "Trying to load default";
+        //qDebug() << "Failed to load theme" << Preferences::theme();
+        //qDebug() << "Trying to load default";
         if (!theme.loadDefault())
             return true;
 
@@ -69,12 +69,12 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
         m_currentTheme = QLatin1String("default");
     }
 
-    // //qDebug() << "Loading" << theme.graphics();
+    //qDebug() << "Loading" << theme.graphics();
     if (!m_renderer->load(theme.graphics()))
         return false;
 
     if (discardCache) {
-        // //qDebug() << "Discarding cache";
+        //qDebug() << "Discarding cache";
         QPixmapCache::clear();
     }
     emit themeChanged(m_currentTheme);
