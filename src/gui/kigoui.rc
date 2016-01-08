@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gui name="kigo" version="12"
+<gui name="kigo" version="13"
      xmlns="http://www.kde.org/standards/kxmlgui/1.0"
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
@@ -48,53 +48,4 @@
         <Action name="move_hint"/>
         <Action name="move_numbers"/>
     </ToolBar>
-
-    <State name="new-game">
-        <enable>
-            <Action name="foo"/>
-        </enable>
-        <disable>
-            <Action name="bar"/>
-        </disable>
-    </State>
-    <State name="new-game-human">
-        <enable>
-            <Action name="foo"/>
-        </enable>
-        <disable>
-            <Action name="bar"/>
-        </disable>
-    </State>
-    <State name="new-game-computer">
-        <enable>
-            <Action name="foo"/>
-        </enable>
-        <disable>
-            <Action name="bar"/>
-        </disable>
-    </State>
-    <State name="load-game">
-        <enable>
-            <Action name="foo"/>
-        </enable>
-        <disable>
-            <Action name="bar"/>
-        </disable>
-    </State>
-    <State name="busy">
-        <enable>
-            <Action name="foo"/>
-        </enable>
-        <disable>
-            <Action name="bar"/>
-        </disable>
-    </State>
-    <State name="finish-game">
-        <enable>
-            <Action name="foo"/>
-        </enable>
-        <disable>
-            <Action name="bar"/>
-        </disable>
-    </State>
 </gui>
