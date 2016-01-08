@@ -132,7 +132,7 @@ void GameScene::showTerritory(bool show)
 void GameScene::updateStoneItems()
 {
     QGraphicsPixmapItem *item;
-    int halfStoneSize = m_stonePixmapSize.width() / 2;
+    const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
     foreach (item, m_stoneItems) {  // Clear all stone items
         removeItem(item);
@@ -142,7 +142,7 @@ void GameScene::updateStoneItems()
     foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackStone, m_stonePixmapSize));
         item->setZValue(2);
-        int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+        const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
         m_stoneItems.append(item);
@@ -150,7 +150,7 @@ void GameScene::updateStoneItems()
     foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
         item = addPixmap(ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteStone, m_stonePixmapSize));
         item->setZValue(2);
-        int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+        const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
         item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
         m_stoneItems.append(item);
@@ -194,7 +194,7 @@ void GameScene::updateHintItems()
     m_hintItems.clear();
 
     if (m_showHint) {
-        int halfStoneSize = m_stonePixmapSize.width() / 2;
+        const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
         foreach (const Stone &move, m_game->bestMoves(m_game->currentPlayer())) {
             QPixmap stonePixmap;
@@ -218,7 +218,7 @@ void GameScene::updateHintItems()
 
             item = addPixmap(stonePixmap);
             item->setZValue(4);
-            int xOff = move.x() >= 'I' ? move.x() - 'A' - 1 : move.x() - 'A';
+            const int xOff = move.x() >= 'I' ? move.x() - 'A' - 1 : move.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
                                  m_gridRect.y() + (m_boardSize - move.y()) * m_cellSize - halfStoneSize + 2));
             m_hintItems.append(item);
@@ -237,14 +237,14 @@ void GameScene::updateTerritoryItems()
 
     if (m_showTerritory) {
         QPixmap stonePixmap;
-        int halfCellSize = m_cellSize / 2;
+        const int halfCellSize = m_cellSize / 2;
         //qDebug() << "Fetching territory from engine ...";
 
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteTerritory, QSize(m_cellSize, m_cellSize));
         foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalWhiteTerritory)) {
             item = addPixmap(stonePixmap);
             item->setZValue(8);
-            int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+            const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
                                  m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize + 2));
             m_territoryItems.append(item);
@@ -254,7 +254,7 @@ void GameScene::updateTerritoryItems()
         foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalBlackTerritory)) {
             item = addPixmap(stonePixmap);
             item->setZValue(8);
-            int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
+            const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
                                  m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfCellSize + 2));
             m_territoryItems.append(item);
@@ -282,11 +282,11 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         // Show a placement marker at the nearest board intersection
         // as a visual aid for the user.
         if (m_showPlacementMarker) {
-            int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
-            int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
+            const int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
+            const int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
 
-            int x = m_mouseRect.x() + row * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.width()/2;
-            int y = m_mouseRect.y() + col * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.height()/2;
+            const int x = m_mouseRect.x() + row * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.width()/2;
+            const int y = m_mouseRect.y() + col * m_cellSize + m_cellSize/2 - m_placementMarkerPixmapSize.height()/2;
 
             m_placementMarkerItem->setVisible(true);
             m_placementMarkerItem->setPos(x, y);
@@ -312,7 +312,7 @@ void GameScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     if (m_mouseRect.contains(event->scenePos())) {
         int row = static_cast<int>((event->scenePos().x() - m_mouseRect.x()) / m_cellSize);
-        int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
+        const int col = static_cast<int>((event->scenePos().y() - m_mouseRect.y()) / m_cellSize);
         if (row < 0 || row >= m_boardSize || col < 0 || col >= m_boardSize) {
             return;
         }
@@ -331,12 +331,12 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
     ThemeRenderer::self()->renderElement(ThemeRenderer::Element::Background, painter, sceneRect());
     ThemeRenderer::self()->renderElement(ThemeRenderer::Element::Board, painter, m_boardRect);
 
-    int width = m_cellSize / 16;
-    QColor color = QColor(20, 30, 20);
+    const int width = m_cellSize / 16;
+    const QColor color = QColor(20, 30, 20);
     painter->setPen(QPen(color, width));
 
     for (int i = 0; i < m_boardSize; i++) {
-        qreal offset = i * m_cellSize;
+        const qreal offset = i * m_cellSize;
         painter->drawLine(QPointF(m_gridRect.left(),  m_gridRect.top() + offset),
                           QPointF(m_gridRect.right(), m_gridRect.top() + offset));
         painter->drawLine(QPointF(m_gridRect.left() + offset, m_gridRect.top()),
@@ -349,19 +349,19 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
                 c = QChar('A' + i + 1);
             }
 
-            QString n = QString::number(m_boardSize - i);
+            const QString n = QString::number(m_boardSize - i);
             QFont f = painter->font();
             f.setPointSizeF(m_cellSize / 4);
             painter->setFont(f);
-            QFontMetrics fm = painter->fontMetrics();
+            const QFontMetrics fm = painter->fontMetrics();
 
             // Draw vertical numbers for board coordinates
-            qreal yVert = m_gridRect.top() + offset + fm.descent();
+            const qreal yVert = m_gridRect.top() + offset + fm.descent();
             painter->drawText(QPointF(m_gridRect.left() - m_cellSize + 2, yVert), n);
             painter->drawText(QPointF(m_gridRect.right() + m_cellSize - fm.width(n) - 3, yVert), n);
 
             // Draw horizontal characters for board coordinates
-            qreal xHor = m_gridRect.left() + offset - fm.width(c) / 2;
+            const qreal xHor = m_gridRect.left() + offset - fm.width(c) / 2;
             painter->drawText(QPointF(xHor, m_gridRect.top() - m_cellSize + fm.ascent() + 2), QString(c));
             painter->drawText(QPointF(xHor, m_gridRect.bottom() + m_cellSize - 3), QString(c));
         }
@@ -369,13 +369,13 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 
     // Draw thicker connections on some defined points.
     // This is extremely helpful to orientate oneself especially on the 19x19 board.
-    int radius = m_cellSize / 10;
+    const int radius = m_cellSize / 10;
     painter->setBrush(color);
     painter->setRenderHint(QPainter::Antialiasing);
 
     // in order to center properly we need to take line width into account
     // if the line has an odd width, we shift 1/5 pixel
-    qreal centerOffset = (width % 2) ? 0.5 : 0.0;
+    const qreal centerOffset = (width % 2) ? 0.5 : 0.0;
 
     // only do this for the common board sizes,
     // other sizes are a bit odd anyway
@@ -402,5 +402,3 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 }
 
 } // End of namespace Kigo
-
-

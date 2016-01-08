@@ -81,7 +81,7 @@ bool Game::start(const QString &command)
     // Test if we started a GTP-compatible Go game
     m_process.write("name\n");
     m_process.waitForReadyRead();
-    QString response = m_process.readAllStandardOutput();
+    const QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith(QLatin1String("="))) {
         m_response = QLatin1String("Game did not respond to GTP command \"name\"");
         //qDebug() << m_response;
@@ -90,7 +90,7 @@ bool Game::start(const QString &command)
     } else {
         m_engineName = m_response;
     }
-    ////qDebug() << "Game is a GTP-compatible Go game";
+    //qDebug() << "Game is a GTP-compatible Go game";
 
     m_process.write("version\n");
     if (waitResponse()) {
@@ -113,7 +113,7 @@ bool Game::init()
         return false;
     }
 
-    ////qDebug() << "Init game!";
+    //qDebug() << "Init game!";
 
     m_process.write("clear_board\n");
     if (waitResponse()) {
@@ -339,7 +339,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
                     undoStr = i18n("Black passed");
                 }
             }
-            ////qDebug() << "Push new undo command" << undoStr;
+            //qDebug() << "Push new undo command" << undoStr;
             m_undoStack.push(new UndoCommand(player, moveType, undoStr));
         }
 
@@ -603,7 +603,7 @@ QList<Stone> Game::bestMoves(const Player &player)
         m_process.write("top_moves_black\n");
     }
     if (waitResponse(true) && !m_response.isEmpty()) {
-        QStringList parts = m_response.split(' ');
+        const QStringList parts = m_response.split(' ');
         if (parts.size() % 2 == 0) {
             for (int i = 0; i < parts.size(); i += 2) {
                 list.append(Stone(parts[i], QString(parts[i + 1]).toFloat()));
@@ -804,5 +804,3 @@ void Game::setCurrentPlayer(Player &player)
 }
 
 } // End of namespace Kigo
-
-

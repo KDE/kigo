@@ -37,9 +37,9 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     setupUi(this);
 
     startButton->setIcon(QIcon::fromTheme( QStringLiteral( "media-playback-start" )));
-    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(48, 48));
+    const QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(48, 48));
     whiteStoneImageLabel->setPixmap(whiteStone);
-    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(48, 48));
+    const QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(48, 48));
     blackStoneImageLabel->setPixmap(blackStone);
 
     connect(startButton, &QPushButton::clicked, this, &SetupWidget::startClicked);
@@ -81,7 +81,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         return;
     }
     QTextStream in(&file);
-    QString content = in.readAll();
+    const QString content = in.readAll();
     file.close();
 
     QRegExp re;
@@ -164,10 +164,10 @@ void SetupWidget::loadedGame(const QString &fileName)
 
     re.setPattern(QStringLiteral("TM\\[(\\d+)\\]"));        // time limit in seconds
     if (re.indexIn(content) > -1) {
-        int seconds = re.cap(1).toInt();
-        int hours = seconds/3600;
-        int minutes = (seconds/60)%60;
-        QString minuteString = i18ncp("Time limit of a game in minutes", "%1 minute", "%1 minutes", minutes);
+        const int seconds = re.cap(1).toInt();
+        const int hours = seconds/3600;
+        const int minutes = (seconds/60)%60;
+        const QString minuteString = i18ncp("Time limit of a game in minutes", "%1 minute", "%1 minutes", minutes);
         if (hours) {
             timeLabel->setText(i18ncp("Time limit of a game, hours, minutes", "%1 hour, %2", "%1 hours, %2", hours, minuteString));
         } else {
@@ -190,7 +190,7 @@ void SetupWidget::loadedGame(const QString &fileName)
         scoreStaticLabel->setVisible(false);
     }
 
-    int count = m_game->moveCount();
+    const int count = m_game->moveCount();
     startMoveSpinBox->setSuffix(i18n(" of %1", count));
     startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
     startMoveSpinBox->setValue(count);              // move.
@@ -269,7 +269,7 @@ void SetupWidget::on_handicapSpinBox_valueChanged(int value)
 
 void SetupWidget::updateHandicapBox()
 {
-    int maxFixedHandicap = m_game->fixedHandicapUpperBound();
+    const int maxFixedHandicap = m_game->fixedHandicapUpperBound();
     handicapSpinBox->setEnabled(maxFixedHandicap > 0);
     handicapSpinBox->setMaximum(maxFixedHandicap);
     handicapSpinBox->setValue(m_lastFixedHandicap);
@@ -348,5 +348,3 @@ void SetupWidget::whiteIsComputer(bool computer)
 }
 
 } // End of namespace Kigo
-
-

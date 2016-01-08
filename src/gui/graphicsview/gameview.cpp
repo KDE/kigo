@@ -73,5 +73,3 @@ void GameView::resizeEvent(QResizeEvent *event)
 }
 
 } // End of namespace Kigo
-
-

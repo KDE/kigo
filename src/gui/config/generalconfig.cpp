@@ -32,7 +32,7 @@ GeneralConfig::GeneralConfig(QWidget *parent)
     setupUi(this);
     kcfg_EngineCommand->hide(); // Only used internally
 
-    QString engineCommand = Preferences::engineCommand();
+    const QString engineCommand = Preferences::engineCommand();
     engineExecutable->setUrl(QUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
     connect(engineExecutable, &KUrlRequester::textChanged, this, &GeneralConfig::updateEngineCommand);
     engineParameters->setText(engineCommand.section(' ', 1));

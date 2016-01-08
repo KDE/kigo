@@ -86,7 +86,7 @@ void ThemeRenderer::renderElement(Element element, QPainter *painter, const QRec
     if (!m_renderer->isValid() || rect.isEmpty() || painter == 0)
         return;
 
-    QPixmap pixmap = renderElement(element, rect.size().toSize());
+    const QPixmap pixmap = renderElement(element, rect.size().toSize());
 
     // Draw pixmap with the parameter provided painter
     painter->drawPixmap(static_cast<int>(rect.x()), static_cast<int>(rect.y()), pixmap);
@@ -216,5 +216,3 @@ QSize ThemeRenderer::elementSize(Element element) const
 }
 
 } // End of namespace Kigo
-
-

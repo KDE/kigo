@@ -62,9 +62,9 @@ void GameWidget::init()
     komiLabel->setText(QString::number(m_game->komi()));
     handicapLabel->setText(i18np("%1 Stone", "%1 Stones", m_game->fixedHandicap()));
 
-    QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(48, 48));
+    const QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(48, 48));
     whiteStoneImageLabel->setPixmap(whiteStone);
-    QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(48, 48));
+    const QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(48, 48));
     blackStoneImageLabel->setPixmap(blackStone);
 
     update();
@@ -75,7 +75,7 @@ void GameWidget::update()
     moveLabel->setText(QString::number(m_game->currentMoveNumber()));
 
     if (m_game->moves().size() > 0) {
-        Move last = m_game->lastMove();
+        const Move last = m_game->lastMove();
         if (last.player()->isWhite()) {
             lastMoveLabel->setText(i18nc("Indication who played the last move", "%1 (white)", last.stone().toString()));
         } else if (last.player()->isBlack()) {
@@ -86,11 +86,11 @@ void GameWidget::update()
     }
 
     if (m_game->currentPlayer().isWhite()) {
-        QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(64, 64));
+        const QPixmap whiteStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::WhiteStone, QSize(64, 64));
         currentPlayerImageLabel->setPixmap(whiteStone);
         currentPlayerLabel->setText(i18n("White's turn"));
     } else if (m_game->currentPlayer().isBlack()) {
-        QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(64, 64));
+        const QPixmap blackStone = ThemeRenderer::self()->renderElement(Kigo::ThemeRenderer::Element::BlackStone, QSize(64, 64));
         currentPlayerImageLabel->setPixmap(blackStone);
         currentPlayerLabel->setText(i18n("Black's turn"));
     } else {
@@ -113,6 +113,3 @@ void GameWidget::enableFinishButton()
 }
 
 } // End of namespace Kigo
-
-
-

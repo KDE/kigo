@@ -70,5 +70,3 @@ QString Score::toString() const
 }
 
 } // End of namespace Kigo
-
-
