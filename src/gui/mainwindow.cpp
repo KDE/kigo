@@ -199,10 +199,11 @@ void MainWindow::saveGame()
     const QString fileName = QFileDialog::getSaveFileName(this, QString(), QStandardPaths::writableLocation(QStandardPaths::HomeLocation), i18n("Kigo Game Files (*.sgf)"));
 
     if (!fileName.isEmpty()) {
-        if (m_game->save(fileName))
+        if (m_game->save(fileName)) {
             m_gameScene->showMessage(i18n("Game saved..."));
-        else
+        } else {
             m_gameScene->showMessage(i18n("Unable to save game."));
+        }
     }
 }
 
@@ -320,8 +321,9 @@ void MainWindow::hint()
 
 void MainWindow::showPreferences()
 {
-    if (KConfigDialog::showDialog(QStringLiteral("settings")))
+    if (KConfigDialog::showDialog(QStringLiteral("settings"))) {
         return;
+    }
 
     KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));

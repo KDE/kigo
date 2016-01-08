@@ -62,16 +62,18 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
     if (themeName.isEmpty() || !theme.load(themeName)) {
         //qDebug() << "Failed to load theme" << Preferences::theme();
         //qDebug() << "Trying to load default";
-        if (!theme.loadDefault())
+        if (!theme.loadDefault()) {
             return true;
+        }
 
         discardCache = true;
         m_currentTheme = QLatin1String("default");
     }
 
     //qDebug() << "Loading" << theme.graphics();
-    if (!m_renderer->load(theme.graphics()))
+    if (!m_renderer->load(theme.graphics())) {
         return false;
+    }
 
     if (discardCache) {
         //qDebug() << "Discarding cache";
@@ -83,8 +85,9 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
 
 void ThemeRenderer::renderElement(Element element, QPainter *painter, const QRectF &rect) const
 {
-    if (!m_renderer->isValid() || rect.isEmpty() || painter == 0)
+    if (!m_renderer->isValid() || rect.isEmpty() || painter == 0) {
         return;
+    }
 
     const QPixmap pixmap = renderElement(element, rect.size().toSize());
 
@@ -94,8 +97,9 @@ void ThemeRenderer::renderElement(Element element, QPainter *painter, const QRec
 
 QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
 {
-    if (!m_renderer->isValid() || size.isEmpty())
+    if (!m_renderer->isValid() || size.isEmpty()) {
         return QPixmap();
+    }
 
     // Determine which board element we have to render and set the cache item name
     QString cacheName;

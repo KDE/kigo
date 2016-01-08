@@ -160,7 +160,7 @@ bool Game::init(const QString &fileName, int moveNumber)
         if (waitResponse()) {
             m_fixedHandicap = m_response.toInt();
         }
-        ////qDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
+        //qDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
 
         m_consecutivePassMoveNumber = 0;
         m_currentMove = moveNumber;
@@ -285,7 +285,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
 
     const Player *tmp = &player;
     if (!tmp->isValid()) {
-        ////qDebug() << "Invalid player argument, using current player!";
+        //qDebug() << "Invalid player argument, using current player!";
         tmp = m_currentPlayer;
     }
 
@@ -363,7 +363,7 @@ bool Game::generateMove(const Player &player, bool undoable)
     }
     const Player *tmp = &player;
     if (!tmp->isValid()) {
-        ////qDebug() << "Invalid player argument, using current player!";
+        //qDebug() << "Invalid player argument, using current player!";
         tmp = m_currentPlayer;
     }
 
@@ -424,7 +424,7 @@ bool Game::generateMove(const Player &player, bool undoable)
         }
 
         if (undoable) {
-            ////qDebug() << "Push new undo command" << undoStr;
+            //qDebug() << "Push new undo command" << undoStr;
             m_undoStack.push(new UndoCommand(player, moveType, undoStr));
         }
         if (tmp->isWhite()) {
@@ -655,15 +655,16 @@ Game::FinalState Game::finalState(const Stone &stone)
 
     m_process.write("final_status " + stone.toLatin1() + '\n');
     if (waitResponse()) {
-        if (m_response == QLatin1String("alive")) return FinalState::FinalAlive;
-        else if (m_response == QLatin1String("dead")) return FinalState::FinalDead;
-        else if (m_response == QLatin1String("seki")) return FinalState::FinalSeki;
-        else if (m_response == QLatin1String("white_territory")) return FinalState::FinalWhiteTerritory;
-        else if (m_response == QLatin1String("blacK_territory")) return FinalState::FinalBlackTerritory;
-        else if (m_response == QLatin1String("dame")) return FinalState::FinalDame;
-        else return FinalState::FinalStateInvalid;
-    } else
+        if (m_response == QLatin1String("alive")) { return FinalState::FinalAlive; }
+        else if (m_response == QLatin1String("dead")) { return FinalState::FinalDead; }
+        else if (m_response == QLatin1String("seki")) { return FinalState::FinalSeki; }
+        else if (m_response == QLatin1String("white_territory")) { return FinalState::FinalWhiteTerritory; }
+        else if (m_response == QLatin1String("blacK_territory")) { return FinalState::FinalBlackTerritory; }
+        else if (m_response == QLatin1String("dame")) { return FinalState::FinalDame; }
+        else { return FinalState::FinalStateInvalid; }
+    } else {
         return FinalState::FinalStateInvalid;
+    }
 }
 
 QList<Stone> Game::finalStates(FinalState state)
