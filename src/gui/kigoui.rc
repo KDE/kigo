@@ -1,97 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="kigo" version="12">
+<gui name="kigo" version="12"
+     xmlns="http://www.kde.org/standards/kxmlgui/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
+                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
     <MenuBar>
         <Menu name="game">
             <text context="@title:menu">&amp;Game</text>
-            <Action name="game_new" />
-            <Action name="game_load" />
-            <Action name="get_more_games" />
-            <Action name="game_save" />
-            <Separator />
-            <Action name="game_start" />
-            <Action name="game_finish" />
-            <Action name="game_seats" />
+            <Action name="game_new"/>
+            <Action name="game_load"/>
+            <Action name="get_more_games"/>
+            <Action name="game_save"/>
+            <Separator/>
+            <Action name="game_start"/>
+            <Action name="game_finish"/>
+            <Action name="game_seats"/>
         </Menu>
         <Menu name="move">
             <text context="@title:menu">&amp;Move</text>
-            <Action name="move_hint" />
-            <Action name="move_numbers" />
+            <Action name="move_hint"/>
+            <Action name="move_numbers"/>
         </Menu>
         <Menu name="settings">
             <text context="@title:menu">&amp;Settings</text>
-            <Menu name="dockers" append="show_merge" >
+            <Menu name="dockers" append="show_merge">
                 <text context="@title:menu">&amp;Dockers</text>
-                <Action name="show_setup_panel" />
-                <Action name="show_game_panel" />
-                <Action name="show_moves_panel" />
+                <Action name="show_setup_panel"/>
+                <Action name="show_game_panel"/>
+                <Action name="show_moves_panel"/>
             </Menu>
         </Menu>
     </MenuBar>
 
     <ToolBar name="mainToolBar" noMerge="1" iconText="icontextright">
         <text context="@title:menu">Main Toolbar</text>
-        <Action name="game_new" />
-        <Action name="game_start" />
-        <Action name="game_finish" />
+        <Action name="game_new"/>
+        <Action name="game_start"/>
+        <Action name="game_finish"/>
     </ToolBar>
     <ToolBar name="moveToolBar">
         <text context="@title:menu">Move Toolbar</text>
-        <Action name="move_undo" />
-        <Action name="move_redo" />
-        <Separator />
-        <Action name="move_end_turn" />
-        <Separator />
-        <Action name="move_hint" />
-        <Action name="move_numbers" />
+        <Action name="move_undo"/>
+        <Action name="move_redo"/>
+        <Separator/>
+        <Action name="move_end_turn"/>
+        <Separator/>
+        <Action name="move_hint"/>
+        <Action name="move_numbers"/>
     </ToolBar>
 
     <State name="new-game">
         <enable>
-            <Action name="foo" />
+            <Action name="foo"/>
         </enable>
         <disable>
-            <Action name="bar" />
+            <Action name="bar"/>
         </disable>
     </State>
     <State name="new-game-human">
         <enable>
-            <Action name="foo" />
+            <Action name="foo"/>
         </enable>
         <disable>
-            <Action name="bar" />
+            <Action name="bar"/>
         </disable>
     </State>
     <State name="new-game-computer">
         <enable>
-            <Action name="foo" />
+            <Action name="foo"/>
         </enable>
         <disable>
-            <Action name="bar" />
+            <Action name="bar"/>
         </disable>
     </State>
     <State name="load-game">
         <enable>
-            <Action name="foo" />
+            <Action name="foo"/>
         </enable>
         <disable>
-            <Action name="bar" />
+            <Action name="bar"/>
         </disable>
     </State>
     <State name="busy">
         <enable>
-            <Action name="foo" />
+            <Action name="foo"/>
         </enable>
         <disable>
-            <Action name="bar" />
+            <Action name="bar"/>
         </disable>
     </State>
     <State name="finish-game">
         <enable>
-            <Action name="foo" />
+            <Action name="foo"/>
         </enable>
         <disable>
-            <Action name="bar" />
+            <Action name="bar"/>
         </disable>
     </State>
 </gui>
