@@ -326,15 +326,8 @@ void MainWindow::showPreferences()
     KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), QStringLiteral("games-config-theme"));
-    dialog->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel | QDialogButtonBox::Help);
-    connect(dialog->button(QDialogButtonBox::Help), &QPushButton::clicked, this, &MainWindow::slotHelp);
     connect(dialog, &KConfigDialog::settingsChanged, this, &MainWindow::applyPreferences);
     dialog->show();
-}
-
-void MainWindow::slotHelp()
-{
-    KHelpClient::invokeHelp(QString(), QStringLiteral("Kigo"));
 }
 
 void MainWindow::applyPreferences()
