@@ -85,7 +85,7 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
 
 void ThemeRenderer::renderElement(Element element, QPainter *painter, const QRectF &rect) const
 {
-    if (!m_renderer->isValid() || rect.isEmpty() || painter == 0) {
+    if (!m_renderer->isValid() || rect.isEmpty() || painter == nullptr) {
         return;
     }
 
