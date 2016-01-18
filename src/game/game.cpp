@@ -486,7 +486,7 @@ bool Game::redoMove()
 
     const UndoCommand *undoCmd = static_cast<const UndoCommand*>(m_undoStack.command(m_undoStack.index()));
 
-    Player *player = undoCmd->player();
+    const Player *player = undoCmd->player();
 
     if (undoCmd->moveType() == UndoCommand::MoveType::Passed) {
         //qDebug() << "Redo a pass move for" << player << undoCmd->text();
