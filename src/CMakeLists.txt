@@ -13,7 +13,7 @@ set(kigo_SRCS
     gui/widgets/errorwidget.cpp
     gui/widgets/gamewidget.cpp
     gui/widgets/setupwidget.cpp
-    main.cpp 
+    main.cpp
 )
 
 ki18n_wrap_ui(kigo_SRCS 
@@ -36,6 +36,7 @@ target_link_libraries(kigo
    KF5KDEGamesPrivate
    KF5::NewStuff
    KF5::DBusAddons
+   KF5::Crash
    Qt5::Svg
 )
 
