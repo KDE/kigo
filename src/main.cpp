@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
             game = parser.positionalArguments().at(0);
         }
 
-        Kigo::MainWindow *mainWin = new Kigo::MainWindow(game, NULL);
+        auto mainWin = new Kigo::MainWindow(game, nullptr);
 
         mainWin->show();
     }

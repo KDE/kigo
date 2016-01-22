@@ -462,7 +462,7 @@ void MainWindow::setupDockWindows()
     m_gameDock = new QDockWidget(i18nc("@title:window", "Information"), this);
     m_gameDock->setObjectName( QStringLiteral("gameDock" ));
     m_gameDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    GameWidget *gameWidget = new GameWidget(m_game, this);
+    auto gameWidget = new GameWidget(m_game, this);
     connect(gameWidget, &GameWidget::finishClicked, this, &MainWindow::finishGame);
     m_gameDock->setWidget(gameWidget);
     m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
@@ -488,7 +488,7 @@ void MainWindow::setupDockWindows()
     m_errorDock = new QDockWidget(i18nc("@title:window", "Error"), this);
     m_errorDock->setObjectName( QStringLiteral("errorDock" ));
     m_errorDock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-    ErrorWidget *errorWidget = new ErrorWidget(this);
+    auto errorWidget = new ErrorWidget(this);
     connect(errorWidget, &ErrorWidget::configureClicked, this, &MainWindow::showPreferences);
     m_errorDock->setWidget(errorWidget);
     //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
