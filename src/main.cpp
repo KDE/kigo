@@ -21,6 +21,7 @@
 #include "gui/mainwindow.h"
 
 #include <KAboutData>
+#include <KCrash>
 #include <Kdelibs4ConfigMigrator>
 
 #include <QApplication>
@@ -64,6 +65,7 @@ int main(int argc, char *argv[])
 
     QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
+    KCrash::initialize();
     parser.addVersionOption();
     parser.addHelpOption();
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("game") << i18nc("@info:shell", "Game to load (SGF file)") ) );
