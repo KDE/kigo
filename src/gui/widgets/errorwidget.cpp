@@ -32,7 +32,6 @@ ErrorWidget::ErrorWidget(QWidget *parent)
     setupUi(this);
 
     configureButton->setIcon(QIcon::fromTheme( QStringLiteral( "configure" )));
-    //QPixmap errorPixmap = QIcon::fromTheme( QLatin1String( "dialog-error" )).pixmap(errorLabel->height(), errorLabel->height());
 }
 
 void ErrorWidget::on_configureButton_clicked()

@@ -49,16 +49,6 @@ void GameView::changeCursor(const QPixmap &cursorPixmap)
     }
 }
 
-/*void GameView::drawForeground(QPainter *painter, const QRectF &rect)
-{
-    if (!isInteractive()) {
-        painter->save();
-        painter->setBrush(QBrush(QColor(60,60,60,100), Qt::Dense4Pattern));
-        painter->drawRect(rect);
-        painter->restore();
-    }
-}*/
-
 void GameView::showEvent(QShowEvent *)
 {
     // Make sure that the game scene has the correct size according to the current view

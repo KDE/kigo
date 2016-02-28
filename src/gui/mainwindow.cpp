@@ -270,7 +270,7 @@ void MainWindow::finishGame()
 
     m_undoView->setEnabled(false);
 
-    // //qDebug() << "Fetching final score from engine ...";
+    //qDebug() << "Fetching final score from engine ...";
     Score score = m_game->estimatedScore();
     QString name;
     if (score.color() == 'W') {
@@ -307,8 +307,7 @@ void MainWindow::redo()
 
 void MainWindow::pass()
 {
-    if (m_game->playMove(m_game->currentPlayer())) {     // E.g. Pass move
-        //m_gameScene->showMessage(i18n("Passed move"));
+    if (m_game->playMove(m_game->currentPlayer())) { // E.g. Pass move
         m_gameScene->showHint(false);
     }
 }
@@ -316,7 +315,6 @@ void MainWindow::pass()
 void MainWindow::hint()
 {
     m_gameScene->showHint(true);
-    //m_gameScene->showMessage(i18n("These are the recommended moves..."));
 }
 
 void MainWindow::showPreferences()
@@ -453,9 +451,6 @@ void MainWindow::setupDockWindows()
     m_setupWidget = new SetupWidget(m_game, this);
     m_setupDock->setWidget(m_setupWidget);
     connect(m_setupWidget, &SetupWidget::startClicked, this, &MainWindow::startGame);
-    //m_setupDock->toggleViewAction()->setText(i18nc("@title:window", "Game setup"));
-    //m_setupDock->toggleViewAction()->setShortcut(Qt::Key_S);
-    //actionCollection()->addAction( QLatin1String( "show_setup_panel" ), m_setupDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_setupDock);
 
     // Game dock
@@ -491,9 +486,6 @@ void MainWindow::setupDockWindows()
     auto errorWidget = new ErrorWidget(this);
     connect(errorWidget, &ErrorWidget::configureClicked, this, &MainWindow::showPreferences);
     m_errorDock->setWidget(errorWidget);
-    //m_errorDock->toggleViewAction()->setText(i18nc("@title:window", "Error"));
-    //m_errorDock->toggleViewAction()->setShortcut(Qt::Key_E);
-    //actionCollection()->addAction( QLatin1String( "show_error_panel" ), m_errorDock->toggleViewAction());
     addDockWidget(Qt::BottomDockWidgetArea, m_errorDock);
 }
 

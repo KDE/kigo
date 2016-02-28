@@ -492,7 +492,7 @@ bool Game::redoMove()
         //qDebug() << "Redo a pass move for" << player << undoCmd->text();
         playMove(*player, Stone(), false);         // E.g. pass move
     } else if (undoCmd->moveType() == UndoCommand::MoveType::Resigned) {
-        // Note: Altough it is possible to undo after a resign and redo it,
+        // Note: Although it is possible to undo after a resign and redo it,
         //       it is a bit questionable whether this makes sense logically.
         //qDebug() << "Redo a resign for" << player << undoCmd->text();
         emit resigned(*player);
@@ -509,9 +509,6 @@ bool Game::redoMove()
 Move Game::lastMove() const
 {
     Q_ASSERT(!m_movesList.isEmpty());
-    /*if (m_movesList.isEmpty())
-        return Move(m_currentPlayer, Stone());
-    else*/
     return m_movesList.last();
 }
 
@@ -771,7 +768,7 @@ void Game::gameSetup()
 {
     emit boardInitialized();
 }
-    
+
 void Game::readyRead()
 {
     m_waitAndProcessEvents = false;
@@ -779,22 +776,6 @@ void Game::readyRead()
 
 void Game::undoIndexChanged(int index)
 {
-    /*int diff = index - m_lastUndoIndex;
-
-    //TODO: Fix this ugly mess!
-    //qDebug() << "Undo stack index changed by " << diff << "...";
-    // Bigger index changed usually mean that some QUndoView got a MouseClickEvent.
-    // This means we have to replay more undo/redo steps than normally. If the
-    // difference is greater than 1 we have to replay diff-1 steps.
-    if (diff > 1) {
-        for (int i = 0; i < diff; i++) {
-            redoMove();
-        }
-    } else if (diff < -1) {
-        for (int i = 0; i > diff; i--) {
-            undoMove();
-        }
-    }*/
     m_lastUndoIndex = index;
 }
 
