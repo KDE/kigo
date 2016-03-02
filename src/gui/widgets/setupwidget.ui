@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>269</width>
-    <height>510</height>
+    <height>598</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -34,27 +34,27 @@
        <item row="1" column="0" colspan="2">
         <widget class="QRadioButton" name="sizeSmall">
          <property name="text">
-          <string>Tiny (9x9)</string>
+          <string>&amp;Tiny (9x9)</string>
          </property>
          <property name="checked">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="2" column="0" colspan="2">
         <widget class="QRadioButton" name="sizeMedium">
          <property name="text">
-          <string>Small (13x13)</string>
+          <string>Small (&amp;13x13)</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0" colspan="2">
         <widget class="QRadioButton" name="sizeBig">
          <property name="text">
-          <string>Normal (19x19)</string>
+          <string>No&amp;rmal (19x19)</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -63,7 +63,7 @@
          <item>
           <widget class="QRadioButton" name="sizeOther">
            <property name="text">
-            <string>Custom:</string>
+            <string>&amp;Custom:</string>
            </property>
           </widget>
          </item>
@@ -204,7 +204,16 @@ It balances out the advantage black has by making the first move.</string>
      </widget>
      <widget class="QWidget" name="loadGamePage">
       <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="margin">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
         <number>0</number>
        </property>
        <item>
@@ -583,7 +592,7 @@ It balances out the advantage black has by making the first move.</string>
          <item>
           <widget class="QLabel" name="label_6">
            <property name="text">
-            <string>Name:</string>
+            <string>&amp;Name:</string>
            </property>
            <property name="buddy">
             <cstring>whitePlayerName</cstring>
@@ -604,7 +613,16 @@ It balances out the advantage black has by making the first move.</string>
        </widget>
        <widget class="QWidget" name="whiteComputerPage">
         <layout class="QGridLayout" name="gridLayout_8">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item row="0" column="0">
@@ -741,7 +759,7 @@ It balances out the advantage black has by making the first move.</string>
          <item>
           <widget class="QLabel" name="label_7">
            <property name="text">
-            <string>Name:</string>
+            <string>Na&amp;me:</string>
            </property>
            <property name="buddy">
             <cstring>blackPlayerName</cstring>
@@ -762,7 +780,16 @@ It balances out the advantage black has by making the first move.</string>
        </widget>
        <widget class="QWidget" name="blackComputerPage">
         <layout class="QGridLayout" name="gridLayout_3">
-         <property name="margin">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
           <number>0</number>
          </property>
          <item row="0" column="4">
@@ -980,7 +1007,6 @@ It balances out the advantage black has by making the first move.</string>
     </layout>
    </item>
   </layout>
-  <zorder>gameSetupStack</zorder>
  </widget>
  <customwidgets>
   <customwidget>
