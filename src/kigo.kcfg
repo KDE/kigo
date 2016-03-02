@@ -7,7 +7,8 @@
     <group name="Backend">
         <entry name="EngineCommand" type="String">
             <label>The current game engine command with (optional) parameters</label>
-            <default>gnugo --mode gtp</default>
+            <default code="true">
+                QStandardPaths::findExecutable(QStringLiteral("gnugo")) + QStringLiteral(" --mode gtp")</default>
         </entry>
         <entry name="EngineWorking" type="Bool">
             <default>true</default>

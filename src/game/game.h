@@ -85,7 +85,7 @@ public:
      *
      * @param command The executable command to start in GTP mode.
      */
-    bool start(const QString &command = QStringLiteral("gnugo --mode gtp"));
+    bool start(const QString &command);
 
     /**
      * Gracefully stop and exit the Go game game.
