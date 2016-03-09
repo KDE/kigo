@@ -326,6 +326,9 @@ void MainWindow::showPreferences()
     KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));
     dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), QStringLiteral("games-config-theme"));
+    if (QPushButton *restore = dialog->button(QDialogButtonBox::RestoreDefaults)) {
+        restore->hide();
+    }
     connect(dialog, &KConfigDialog::settingsChanged, this, &MainWindow::applyPreferences);
     dialog->show();
 }
