@@ -26,6 +26,7 @@
 #include <QPainter>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
+#include <QTimer>
 
 namespace Kigo {
 
@@ -39,6 +40,7 @@ GameScene::GameScene(Game *game, QObject *parent)
     , m_gamePopup()
     , m_showLabels(Preferences::showBoardLabels())
     , m_showHint(false)
+    , m_hintTimer(new QTimer(this))
     , m_showMoveNumbers(Preferences::showMoveNumbers())
     , m_showPlacementMarker(true)
     , m_showTerritory(false)
@@ -58,6 +60,7 @@ GameScene::GameScene(Game *game, QObject *parent)
     connect(m_game, &Game::boardSizeChanged, this, &GameScene::changeBoardSize);
     connect(m_game, &Game::currentPlayerChanged, this, &GameScene::hideHint);
     connect(ThemeRenderer::self(), &ThemeRenderer::themeChanged, this, &GameScene::themeChanged);
+    connect(m_hintTimer, &QTimer::timeout, this, &GameScene::hideHint);
 
     m_gamePopup.setMessageTimeout(3000);
     m_gamePopup.setHideOnMouseClick(true);
@@ -100,6 +103,10 @@ void GameScene::showHint(bool show)
 {
     m_showHint = show;
     updateHintItems();
+
+    if (show == true) {
+        m_hintTimer->start(static_cast<int>(Preferences::hintVisibleTime() * 1000));
+    }
 }
 
 void GameScene::showMoveNumbers(bool show)

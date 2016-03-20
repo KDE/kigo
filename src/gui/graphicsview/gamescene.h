@@ -25,6 +25,8 @@
 
 #include <QGraphicsScene>
 
+class QTimer;
+
 namespace Kigo {
 
 class Game;
@@ -77,6 +79,7 @@ private:
     KGamePopupItem m_gamePopup;
     bool m_showLabels;                      ///< Show board labels or not
     bool m_showHint;
+    QTimer *m_hintTimer;
     bool m_showMoveNumbers;
     bool m_showPlacementMarker;
     bool m_showTerritory;
