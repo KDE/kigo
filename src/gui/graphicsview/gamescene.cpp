@@ -138,33 +138,33 @@ void GameScene::showTerritory(bool show)
 
 void GameScene::updateStoneItems()
 {
-    QGraphicsPixmapItem *item;
+    QGraphicsPixmapItem *stoneItem;
     const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
     const Stone lastStone = (m_game->moves().size() > 0) ? m_game->lastMove().stone() : Stone::Invalid;
 
-    foreach (item, m_stoneItems) {  // Clear all stone items
-        removeItem(item);
+    foreach (stoneItem, m_stoneItems) {  // Clear all stone items
+        removeItem(stoneItem);
     }
     m_stoneItems.clear();
 
     foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
         ThemeRenderer::Element element = (stone == lastStone) ? ThemeRenderer::Element::BlackStoneLast : ThemeRenderer::Element::BlackStone;
-        item = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
-        item->setZValue(2);
+        stoneItem = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
+        stoneItem->setZValue(2);
         const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
-        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
+        stoneItem->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
-        m_stoneItems.append(item);
+        m_stoneItems.append(stoneItem);
     }
     foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
         ThemeRenderer::Element element = (stone == lastStone) ? ThemeRenderer::Element::WhiteStoneLast : ThemeRenderer::Element::WhiteStone;
-        item = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
-        item->setZValue(2);
+        stoneItem = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
+        stoneItem->setZValue(2);
         const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
-        item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
+        stoneItem->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 1,
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
-        m_stoneItems.append(item);
+        m_stoneItems.append(stoneItem);
     }
 
     if (m_showMoveNumbers) {

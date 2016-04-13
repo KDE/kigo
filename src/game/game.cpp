@@ -317,11 +317,11 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
         m_currentMove++;
 
         if (undoable) {                         // Do undo stuff if desired
-            Player *player;
+            Player *playerTemp;
             UndoCommand::MoveType moveType;
             QString undoStr;
             if (tmp->isWhite()) {
-                player = &m_whitePlayer;
+                playerTemp = &m_whitePlayer;
                 if (stone.isValid()) {
                     moveType = UndoCommand::MoveType::Stone;
                     undoStr = i18nc("%1 stone coordinate", "White %1", stone.toString());
@@ -330,7 +330,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
                     undoStr = i18n("White passed");
                 }
             } else {
-                player = &m_blackPlayer;
+                playerTemp = &m_blackPlayer;
                 if (stone.isValid()) {
                     moveType = UndoCommand::MoveType::Stone;
                     undoStr = i18nc("%1 stone coordinate", "Black %1", stone.toString());
@@ -340,7 +340,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
                 }
             }
             //qDebug() << "Push new undo command" << undoStr;
-            m_undoStack.push(new UndoCommand(player, moveType, undoStr));
+            m_undoStack.push(new UndoCommand(playerTemp, moveType, undoStr));
         }
 
         if (tmp->isWhite()) {                   // Determine the next current player
@@ -378,14 +378,14 @@ bool Game::generateMove(const Player &player, bool undoable)
     }
     if (waitResponse(true)) {
         bool boardChange = false;
-        Player *player;
+        Player *playerTemp;
         UndoCommand::MoveType moveType;
         QString undoStr;
 
         if (tmp->isWhite()) {
-            player = &m_whitePlayer;
+            playerTemp = &m_whitePlayer;
         } else {
-            player = &m_blackPlayer;
+            playerTemp = &m_blackPlayer;
         }
         if (m_response == QLatin1String("PASS")) {
             m_currentMove++;
@@ -425,7 +425,7 @@ bool Game::generateMove(const Player &player, bool undoable)
 
         if (undoable) {
             //qDebug() << "Push new undo command" << undoStr;
-            m_undoStack.push(new UndoCommand(player, moveType, undoStr));
+            m_undoStack.push(new UndoCommand(playerTemp, moveType, undoStr));
         }
         if (tmp->isWhite()) {
             setCurrentPlayer(m_blackPlayer);
