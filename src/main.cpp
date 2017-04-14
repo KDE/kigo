@@ -68,8 +68,8 @@ int main(int argc, char *argv[])
     KCrash::initialize();
     parser.addVersionOption();
     parser.addHelpOption();
-    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("game") << i18nc("@info:shell", "Game to load (SGF file)") ) );
-    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("+[Url]") << i18nc("@info:shell", "Game to load (SGF file)") ) );
+    parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("game"), i18nc("@info:shell", "Game to load (SGF file)"), i18nc("@info:shell", "gamefile")));
+    parser.addPositionalArgument(i18nc("@info:shell", "gamefile"), i18nc("@info:shell", "Game to load (SGF file)"));
 
     aboutData.setupCommandLine(&parser);
     parser.process(app);
