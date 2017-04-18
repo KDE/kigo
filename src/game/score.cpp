@@ -32,7 +32,7 @@ Score::Score(const QString &score)
             m_color = 'B';
         }
         int i = score.indexOf(' ');
-        m_score = score.mid(2, i - 1).toFloat();
+        m_score = score.midRef(2, i - 1).toFloat();
         QString upperBound = score.section(' ', 3, 3);
         upperBound.chop(1);
         m_upperBound = upperBound.toFloat();
