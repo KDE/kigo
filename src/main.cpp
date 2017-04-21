@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain("kigo");
 
-    KAboutData aboutData(QStringLiteral("kigo"), i18n("Kigo"), QStringLiteral("0.5.6"),
+    KAboutData aboutData(QStringLiteral("kigo"), i18n("Kigo"), QStringLiteral("0.6.0"),
             i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
             i18n("Copyright (c) 2008-2010 Sascha Peilicke"));
     aboutData.addAuthor(i18n("Sascha Peilicke (saschpe)"), i18n("Original author"),
