@@ -1,7 +1,7 @@
 /** 
 @mainpage Kigo API Reference
 
-Kigo is an open-source implementation of the Go game for KDE. It uses the
+Kigo is an open-source implementation of the Go game. It uses the
 popular GnuGo engine (or compatible) as backend via the GTP protocol.
 
 @authors
