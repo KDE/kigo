@@ -45,11 +45,11 @@ SetupWidget::SetupWidget(Game *game, QWidget *parent)
     connect(startButton, &QPushButton::clicked, this, &SetupWidget::startClicked);
     connect(whiteIsComputerCheckBox, &QCheckBox::toggled, this, &SetupWidget::whiteIsComputer);
     connect(blackIsComputerCheckBox, &QCheckBox::toggled, this, &SetupWidget::blackIsComputer);
-    connect(sizeSmall, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
-    connect(sizeMedium, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
-    connect(sizeBig, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
-    connect(sizeOther, &QRadioButton::clicked, this, &SetupWidget::on_boardSize_changed);
-    connect(sizeOtherSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SetupWidget::on_boardSize_changed);
+    connect(sizeSmall, &QRadioButton::clicked, this, &SetupWidget::onBoardSizeChanged);
+    connect(sizeMedium, &QRadioButton::clicked, this, &SetupWidget::onBoardSizeChanged);
+    connect(sizeBig, &QRadioButton::clicked, this, &SetupWidget::onBoardSizeChanged);
+    connect(sizeOther, &QRadioButton::clicked, this, &SetupWidget::onBoardSizeChanged);
+    connect(sizeOtherSpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), this, &SetupWidget::onBoardSizeChanged);
 }
 
 SetupWidget::~SetupWidget()
@@ -242,7 +242,7 @@ void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
     }
 }
 
-void SetupWidget::on_boardSize_changed()
+void SetupWidget::onBoardSizeChanged()
 {
     if (sizeOther->isChecked()) {                   // Custom size enabled
         sizeOtherSpinBox->setEnabled(true);

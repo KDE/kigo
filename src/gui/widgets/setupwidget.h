@@ -63,7 +63,7 @@ public slots:
 
 private slots:
     void on_startMoveSpinBox_valueChanged(int);
-    void on_boardSize_changed();
+    void onBoardSizeChanged();
     void on_handicapSpinBox_valueChanged(int);
     void whiteIsComputer(bool);
     void blackIsComputer(bool);
