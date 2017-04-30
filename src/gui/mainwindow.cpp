@@ -104,7 +104,7 @@ void MainWindow::newGame()
     m_errorDock->setVisible(false);
 
     m_setupWidget->newGame();
-    m_gameScene->showMessage(i18n("Set up a new game..."));
+    QTimer::singleShot(0, this, [this] { m_gameScene->showMessage(i18n("Set up a new game...")); } );
 }
 
 void MainWindow::loadGame()
