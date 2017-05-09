@@ -19,6 +19,7 @@
   <name xml:lang="sv">Kigo</name>
   <name xml:lang="uk">Kigo</name>
   <name xml:lang="x-test">xxKigoxx</name>
+  <name xml:lang="zh-CN">Kigo</name>
   <summary>Go Board Game</summary>
   <summary xml:lang="ca">Joc de taula Go</summary>
   <summary xml:lang="ca-valencia">Joc de taula Go</summary>
@@ -35,6 +36,7 @@
   <summary xml:lang="sv">Go-brädspel</summary>
   <summary xml:lang="uk">Гра у го на дошці</summary>
   <summary xml:lang="x-test">xxGo Board Gamexx</summary>
+  <summary xml:lang="zh-CN">围棋游戏</summary>
   <description>
     <p>
       Kigo is an open-source implementation of the popular Go game.
