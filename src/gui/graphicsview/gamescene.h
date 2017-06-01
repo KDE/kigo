@@ -70,9 +70,9 @@ private slots:
     void themeChanged();
 
 private:
-    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
-    void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    void drawBackground(QPainter *painter, const QRectF &);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+    void drawBackground(QPainter *painter, const QRectF &) Q_DECL_OVERRIDE;
 
     Game *m_game;                           ///< Go game
 
