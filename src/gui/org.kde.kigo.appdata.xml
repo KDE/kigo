@@ -22,6 +22,7 @@
   <name xml:lang="sr-ijekavian">Киго</name>
   <name xml:lang="sr-ijekavianlatin">Kigo</name>
   <name xml:lang="sv">Kigo</name>
+  <name xml:lang="tr">Kigo</name>
   <name xml:lang="uk">Kigo</name>
   <name xml:lang="x-test">xxKigoxx</name>
   <name xml:lang="zh-CN">Kigo</name>
@@ -43,6 +44,7 @@
   <summary xml:lang="sr-ijekavian">Игра на табли го</summary>
   <summary xml:lang="sr-ijekavianlatin">Igra na tabli go</summary>
   <summary xml:lang="sv">Go-brädspel</summary>
+  <summary xml:lang="tr">Go Masaüstü Oyunu</summary>
   <summary xml:lang="uk">Гра у го на дошці</summary>
   <summary xml:lang="x-test">xxGo Board Gamexx</summary>
   <summary xml:lang="zh-CN">围棋游戏</summary>
@@ -69,6 +71,7 @@
     <p xml:lang="sr-ijekavian">Киго је отворенокодна изведба популарне игре го. Го је стратешка игла на табли за два играча. Такође је позната као иго (јапански), вејћи (кинески) и бадук (корејски). Го је познат по томе што је богат стратешком сложеношћу и поред једноставних правила. Партију играју два играча који наизменично стављају црне и беле каменове (играчке фигуре, обично начињене од стакла или пластике) на слободне пресеке у мрежи од 19×19 линија (за лакше партије 9×9 или 13×13).</p>
     <p xml:lang="sr-ijekavianlatin">Kigo je otvorenokodna izvedba popularne igre go. Go je strateška igla na tabli za dva igrača. Takođe je poznata kao igo (japanski), vejći (kineski) i baduk (korejski). Go je poznat po tome što je bogat strateškom složenošću i pored jednostavnih pravila. Partiju igraju dva igrača koji naizmenično stavljaju crne i bele kamenove (igračke figure, obično načinjene od stakla ili plastike) na slobodne preseke u mreži od 19×19 linija (za lakše partije 9×9 ili 13×13).</p>
     <p xml:lang="sv">Kigo är en implementering av det populära spelet Go med öppen källkod. Go är ett strategiskt brädspel för två spelare. Det är också känt som igo på japanska, weiqi eller wei ch'i på kinesiska eller baduk på koreanska. Go är känt för sin strategiska mångfald trots sina enkla regler. Spelet spelas av två spelare som omväxlande placerar svarta eller vita stenar (spelpjäser, som idag främst är gjorda av glas eller plast) på lediga skärningspunkter på ett rutnät av 19 × 19 linjer (9 x 9 eller 13 x 13 för enklare spel).</p>
+    <p xml:lang="tr">Kigo, popüler Go oyununun açık kaynak uygulamasıdır. Go, iki oyuncu için stratejik bir tahta oyunudur. Ayrıca igo (Japon), weiqi veya wei ch'i (Çinli) veya baduk (Koreli) olarak da bilinir. Go, basit kurallarına rağmen stratejik karmaşıklık bakımından zengin olduğu için dikkat çekmektedir. Oyun, 19x19'luk ızgaranın boş kesimlerinde (daha kolay oyunlar için 9x9 veya 13x13) siyah beyaz taşların (şu anda genellikle camdan veya plastikten yapılmış parçalar) dönüşümlü olarak iki oyuncu tarafından oynanmasına dayalıdır.</p>
     <p xml:lang="uk">Kigo — реалізація популярної гри у го з відкритим кодом. Го — стратегічна гра на дошці для двох гравців. Ця гра має багато різних назв: іго (японською), вейдзі (китайською) та бадук (корейською). Го є стратегічно складною грою, хоча має доволі прості правила. У гру грають два гравці, які послідовно розташовують чорні та білі камені (ігрові фішки, які у сучасних варіантах гри виготовляють зі скла або пластику) на вільних перетинах сітки 19 на 19 ліній (або 9 на 9 чи 13 на 13 у простіших варіантах гри).</p>
     <p xml:lang="x-test">xxKigo is an open-source implementation of the popular Go game. Go is a strategic board game for two players. It is also known as igo (Japanese), weiqi or wei ch'i (Chinese) or baduk (Korean). Go is noted for being rich in strategic complexity despite its simple rules. The game is played by two players who alternately place black and white stones (playing pieces, now usually made of glass or plastic) on the vacant intersections of a grid of 19x19 lines (9x9 or 13x13 for easier games).xx</p>
   </description>
