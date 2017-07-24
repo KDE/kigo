@@ -81,7 +81,7 @@
         <entry name="FixedHandicapValue" type="Int">
             <label>Extra stones for the black player</label>
             <default>4</default>
-            <min>2</min>
+            <min>1</min>
             <max>9</max>
         </entry>
     </group>
