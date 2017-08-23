@@ -1,4 +1,5 @@
 [KNewStuff3]
-ProvidersUrl=http://newstuff.kde.org/cgi-bin/hotstuff-provider?site=kigo
+ProvidersUrl=http://download.kde.org/ocs/providers.xml
+Categories=Kigo Games
 TargetDir=kigo/games
 Uncompress=archive
