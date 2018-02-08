@@ -11,6 +11,7 @@
   <name xml:lang="de">Kigo</name>
   <name xml:lang="en-GB">Kigo</name>
   <name xml:lang="es">Kigo</name>
+  <name xml:lang="fi">Kigo</name>
   <name xml:lang="fr">Kigo</name>
   <name xml:lang="gl">Kigo</name>
   <name xml:lang="it">Kigo</name>
@@ -37,6 +38,7 @@
   <summary xml:lang="de">„Go“-Brettspiel</summary>
   <summary xml:lang="en-GB">Go Board Game</summary>
   <summary xml:lang="es">Juego de tablero Go</summary>
+  <summary xml:lang="fi">Go-lautapeli</summary>
   <summary xml:lang="fr">Jeu de plateau de Go</summary>
   <summary xml:lang="gl">Xogo de taboleiro «Go»</summary>
   <summary xml:lang="it">Gioco da tavolo tipo Go</summary>
@@ -70,6 +72,7 @@
     <p xml:lang="de">Kigo ist eine quelloffene Umsetzung des sehr bekannten Brettspiels Go. Go ist ein strategisches Brettspiel für zwei Spieler und wird auch als igo (japanisch), weigi, wei ch'i (chinesisch) oder baduk (koreanisch) bezeichnet. Es wird trotz seiner einfachen Regeln als reichhaltig in der strategischen Komplexität bezeichnet. Die beiden Spieler legen abwechselnd die schwarzen bzw. weißen Steine (heutzutage aus Glas oder Kunststoff) auf den freien Schnittpunkten eines Rasters mit 19 x 19 Linien (9 x 9 oder 13 x 13 bei den einfacheren Arten).</p>
     <p xml:lang="en-GB">Kigo is an open-source implementation of the popular Go game. Go is a strategic board game for two players. It is also known as igo (Japanese), weiqi or wei ch'i (Chinese) or baduk (Korean). Go is noted for being rich in strategic complexity despite its simple rules. The game is played by two players who alternately place black and white stones (playing pieces, now usually made of glass or plastic) on the vacant intersections of a grid of 19x19 lines (9x9 or 13x13 for easier games).</p>
     <p xml:lang="es">Kigo es una implementación de código abierto del popular juego Go. El Go es un juego de estrategia de tablero para dos jugadores. También se conoce como «igo» (en japonés), «weiqi» o «wei ch'i» (en chino) o baduk (en coreano). El Go es famoso por su rica complejidad estratégica a pesar de sus sencillas reglas. Lo juegan dos jugadores que colocan de modo alternativo piedras blancas y negras (fichas de juego, que en la actualidad están hechas de vidrio o de plástico) en las intersecciones vacías de una cuadrícula de 19x19 líneas (9x9 o 13x13 en los juegos más sencillos).</p>
+    <p xml:lang="fi">Kigo on avoimen lähdekoodin toteutus suositusta Go-pelistä. Go on strateginen lautapeli kahdelle pelaajalle. Se tunnetaan myös nimillä igo (japaniksi), weigi tai wi ch’i (kiinaksi) ja baduk (koreaksi). Go tunnetaan sääntöjensä yksinkertaisuudesta huolimatta strategisesta kompleksisuudestaan. Pelissä on kaksi pelaajaa, jotka vuoroon sijoittavat mustia tai valkoisia kiviä (nykyään usein lasisia tai muovisia pelinappuloita) 19 × 19 -kokoisen ruudukon vapaisiin leikkauskohtiin. Helpotetuissa peleissä ruudukon koko on 9 × 9 tai 13 × 13.</p>
     <p xml:lang="fr">Kigo est une implémentation libre du jeu de Go. Le jeu de Go est un jeu de plateau pour deux joueurs. Il porte aussi le nom de igo en japonais, weiqi ou wei ch'i en chinois ou baduk en coréen. Le Go est réputé pour sa complexité stratégique malgré ses règles simples. Il se joue à deux joueurs qui placent l'un après l'autre des pierres noires et blanches (des jetons qui sont désormais souvent en verre ou en plastique) sur les intersections vacantes d'une grille de 19 lignes par 19 (9 par 9 ou 13 par 13 pour les jeux simplifiés).</p>
     <p xml:lang="gl">Kigo é unha codificación de código aberto xo popular xogo Go. Go é un xogo de taboleiro de estratexia para dous xogadores. Tamén se coñece como igo (xaponés), weiqi ou wei ch'i (chinés) ou baduk (coreano). Go é famoso pola riqueza da súa complexidade estratéxica a pesar das súas regras sinxelas. A partida xógana dous xogadores que xogan un as pedras brancas e outro as negras (as pezas do xogo, a día de hoxe feitas xeralmente de vidro ou plástico) nas interseccións libres dunha grade de 19×19 liñas (9×9 ou 13×13 para partidas máis doadas).</p>
     <p xml:lang="it">Kigo è un'implementazione open source del popolare gioco del Go. Go è un gioco di strategia da tavolo per due giocatori. È noto anche come igo (variante giapponese), weiqi o wei ch'i (cinese) o baduk (coreana). Go è rinomato per offrire grande complessità strategica, nonostante le sue semplici regole. Il gioco si svolge tra due giocatori che piazzano alternativamente pietre bianche e nere (i pezzi di gioco, ora fatti di solito di plastica o vetro) negli spazi vuoti di una griglia di 19x19 linee (9x9 o 13x13 nelle varianti più semplici).</p>
