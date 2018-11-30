@@ -74,7 +74,7 @@ void GameWidget::update()
 {
     moveLabel->setText(QString::number(m_game->currentMoveNumber()));
 
-    if (m_game->moves().size() > 0) {
+    if (!m_game->moves().isEmpty()) {
         const Move last = m_game->lastMove();
         if (last.player()->isWhite()) {
             lastMoveLabel->setText(i18nc("Indication who played the last move", "%1 (white)", last.stone().toString()));
