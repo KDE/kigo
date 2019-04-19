@@ -23,20 +23,20 @@
 namespace Kigo {
 
 Score::Score(const QString &score)
-    : m_color('?'), m_score(0), m_lowerBound(0), m_upperBound(0)
+    : m_color(QLatin1Char('?')), m_score(0), m_lowerBound(0), m_upperBound(0)
 {
     if (score.size() >= 2) {
-        if (score[0] == 'W') {
-            m_color = 'W';
-        } else if (score[0] == 'B') {
-            m_color = 'B';
+        if (score[0] == QLatin1Char('W')) {
+            m_color = QLatin1Char('W');
+        } else if (score[0] == QLatin1Char('B')) {
+            m_color = QLatin1Char('B');
         }
-        int i = score.indexOf(' ');
+        int i = score.indexOf(QLatin1Char(' '));
         m_score = score.midRef(2, i - 1).toFloat();
-        QString upperBound = score.section(' ', 3, 3);
+        QString upperBound = score.section(QLatin1Char(' '), 3, 3);
         upperBound.chop(1);
         m_upperBound = upperBound.toFloat();
-        QString lowerBound = score.section(' ', 5, 5);
+        QString lowerBound = score.section(QLatin1Char(' '), 5, 5);
         lowerBound.chop(1);
         m_lowerBound = lowerBound.toFloat();
     }
@@ -59,7 +59,7 @@ Score &Score::operator=(const Score &other)
 
 bool Score::isValid() const
 {
-    return m_score >= 0 && (m_color == 'W' || m_color == 'B');
+    return m_score >= 0 && (m_color == QLatin1Char('W') || m_color == QLatin1Char('B'));
 }
 
 QString Score::toString() const

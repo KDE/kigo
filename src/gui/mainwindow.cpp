@@ -273,7 +273,7 @@ void MainWindow::finishGame()
     //qDebug() << "Fetching final score from engine ...";
     Score score = m_game->estimatedScore();
     QString name;
-    if (score.color() == 'W') {
+    if (score.color() == QLatin1Char('W')) {
         name = m_game->whitePlayer().name() + " (White)";
     } else {
         name = m_game->blackPlayer().name() + " (Black)";

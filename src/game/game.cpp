@@ -69,9 +69,9 @@ Game::~Game()
 bool Game::start(const QString &command)
 {
     stop();                                   // Close old session if there's one
-    m_process.start(command.toLatin1());      // Start new process with provided command
+    m_process.start(command);      // Start new process with provided command
     if (!m_process.waitForStarted()) {        // Blocking wait for process start
-        m_response = "Unable to execute command: " + command;
+        m_response = QStringLiteral("Unable to execute command: ") + command;
         //qDebug() << m_response;
         return false;
     }
@@ -520,7 +520,7 @@ int Game::moveCount()
 
     m_process.write("move_history\n");          // Query fixed handicap and store it
     if (waitResponse()) {
-        return m_response.count('\n') + 1;
+        return m_response.count(QLatin1Char('\n')) + 1;
     }
     return 0;
 }
@@ -536,7 +536,7 @@ QList<Stone> Game::stones(const Player &player)
     if (!player.isWhite()) {
         m_process.write("list_stones black\n");
         if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(' ')) {
+            foreach (const QString &pos, m_response.split(QLatin1Char(' '))) {
                 list.append(Stone(pos));
             }
         }
@@ -544,7 +544,7 @@ QList<Stone> Game::stones(const Player &player)
     if (!player.isBlack()) {
         m_process.write("list_stones white\n");
         if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(' ')) {
+            foreach (const QString &pos, m_response.split(QLatin1Char(' '))) {
                 list.append(Stone(pos));
             }
         }
@@ -580,7 +580,7 @@ QList<Stone> Game::liberties(const Stone &stone)
 
     m_process.write("findlib " + stone.toLatin1() + '\n');
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(' ')) {
+        foreach (const QString &entry, m_response.split(QLatin1Char(' '))) {
             list.append(Stone(entry));
         }
     }
@@ -600,7 +600,7 @@ QList<Stone> Game::bestMoves(const Player &player)
         m_process.write("top_moves_black\n");
     }
     if (waitResponse(true) && !m_response.isEmpty()) {
-        const QStringList parts = m_response.split(' ');
+        const QStringList parts = m_response.split(QLatin1Char(' '));
         if (parts.size() % 2 == 0) {
             for (int i = 0; i < parts.size(); i += 2) {
                 list.append(Stone(parts[i], QString(parts[i + 1]).toFloat()));
@@ -623,7 +623,7 @@ QList<Stone> Game::legalMoves(const Player &player)
         m_process.write("all_legal black\n");
     }
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(' ')) {
+        foreach (const QString &entry, m_response.split(QLatin1Char(' '))) {
             list.append(Stone(entry));
         }
     }
@@ -684,7 +684,7 @@ QList<Stone> Game::finalStates(FinalState state)
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(' ')) {
+        foreach (const QString &entry, m_response.split(QLatin1Char(' '))) {
             list.append(Stone(entry));
         }
     }
@@ -761,7 +761,7 @@ bool Game::waitResponse(bool nonBlocking)
     QChar tmp = m_response[0];                  // First message character indicates success or error
     m_response.remove(0, 2);                    // Remove the first two chars (e.g. "? " or "= ")
     m_response = m_response.trimmed();          // Remove further whitespaces, newlines, ...
-    return tmp != '?';                          // '?' Means the game didn't understand the query
+    return tmp != QLatin1Char('?');                          // '?' Means the game didn't understand the query
 }
 
 void Game::gameSetup()
