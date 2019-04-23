@@ -83,7 +83,7 @@ bool Game::start(const QString &command)
     m_process.waitForReadyRead();
     const QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith(QLatin1String("="))) {
-        m_response = QLatin1String("Game did not respond to GTP command \"name\"");
+        m_response = QStringLiteral("Game did not respond to GTP command \"name\"");
         //qDebug() << m_response;
         stop();
         return false;
@@ -715,12 +715,12 @@ bool Game::waitResponse(bool nonBlocking)
 {
     if (m_process.state() != QProcess::Running) {   // No GTP connection means no computing fun!
         switch (m_process.error()) {
-            case QProcess::FailedToStart: m_response = QLatin1String("No Go game is running!"); break;
-            case QProcess::Crashed: m_response = QLatin1String("The Go game crashed!"); break;
-            case QProcess::Timedout: m_response = QLatin1String("The Go game timed out!"); break;
+            case QProcess::FailedToStart: m_response = QStringLiteral("No Go game is running!"); break;
+            case QProcess::Crashed: m_response = QStringLiteral("The Go game crashed!"); break;
+            case QProcess::Timedout: m_response = QStringLiteral("The Go game timed out!"); break;
             case QProcess::WriteError: m_response = m_process.readAllStandardError(); break;
             case QProcess::ReadError: m_response = m_process.readAllStandardError(); break;
-            case QProcess::UnknownError: m_response = QLatin1String("Unknown error!"); break;
+            case QProcess::UnknownError: m_response = QStringLiteral("Unknown error!"); break;
         }
         qWarning() << "Command failed:" << m_response;
         return false;

@@ -67,7 +67,7 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
         }
 
         discardCache = true;
-        m_currentTheme = QLatin1String("default");
+        m_currentTheme = QStringLiteral("default");
     }
 
     //qDebug() << "Loading" << theme.graphics();
