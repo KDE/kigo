@@ -144,7 +144,7 @@ QPixmap ThemeRenderer::renderElement(Element element, const QSize &size) const
 
     // Check if board element is already in cache, if not render it
     QPixmap pixmap;
-    if (!QPixmapCache::find(cacheName, pixmap)) {
+    if (!QPixmapCache::find(cacheName, &pixmap)) {
         pixmap = QPixmap(size);
         pixmap.fill(Qt::transparent);
         QPainter p(&pixmap);

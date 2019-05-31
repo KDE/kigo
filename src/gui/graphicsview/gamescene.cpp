@@ -369,10 +369,10 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
             // Draw vertical numbers for board coordinates
             const qreal yVert = m_gridRect.top() + offset + fm.descent();
             painter->drawText(QPointF(m_gridRect.left() - m_cellSize + 2, yVert), n);
-            painter->drawText(QPointF(m_gridRect.right() + m_cellSize - fm.width(n) - 3, yVert), n);
+            painter->drawText(QPointF(m_gridRect.right() + m_cellSize - fm.boundingRect(n).width() - 3, yVert), n);
 
             // Draw horizontal characters for board coordinates
-            const qreal xHor = m_gridRect.left() + offset - fm.width(c) / 2;
+            const qreal xHor = m_gridRect.left() + offset - fm.boundingRect(c).width() / 2;
             painter->drawText(QPointF(xHor, m_gridRect.top() - m_cellSize + fm.ascent() + 2), QString(c));
             painter->drawText(QPointF(xHor, m_gridRect.bottom() + m_cellSize - 3), QString(c));
         }

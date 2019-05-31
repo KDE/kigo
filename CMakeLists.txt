@@ -40,7 +40,7 @@ add_definitions(
     -DQT_NO_URL_CAST_FROM_STRING
     -DQT_USE_QSTRINGBUILDER
 )
-
+add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x060000)
 add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(doc)
