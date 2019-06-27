@@ -36,9 +36,7 @@
 #include <KNS3/DownloadDialog>
 #include <KStandardGameAction>
 #include <KToggleAction>
-#include <QUrl>
 #include <QIcon>
-#include <KHelpClient>
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
 
