@@ -71,7 +71,7 @@ bool Game::start(const QString &command)
     stop();                                   // Close old session if there's one
     m_process.start(command);      // Start new process with provided command
     if (!m_process.waitForStarted()) {        // Blocking wait for process start
-        m_response = QStringLiteral("Unable to execute command: ") + command;
+        m_response = QLatin1String("Unable to execute command: ") + command;
         //qDebug() << m_response;
         return false;
     }
@@ -82,7 +82,7 @@ bool Game::start(const QString &command)
     m_process.write("name\n");
     m_process.waitForReadyRead();
     const QString response = m_process.readAllStandardOutput();
-    if (response.isEmpty() || !response.startsWith(QLatin1String("="))) {
+    if (response.isEmpty() || !response.startsWith(QLatin1Char('='))) {
         m_response = QStringLiteral("Game did not respond to GTP command \"name\"");
         //qDebug() << m_response;
         stop();
