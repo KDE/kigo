@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kigo")));
 
     if (app.isSessionRestored()) {
-        RESTORE(Kigo::MainWindow)
+        kRestoreMainWindows<Kigo::MainWindow>();
     } else {
 
         QString game;
