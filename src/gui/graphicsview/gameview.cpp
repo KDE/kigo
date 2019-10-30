@@ -33,7 +33,7 @@ GameView::GameView(GameScene *scene, QWidget *parent)
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFrameStyle(QFrame::NoFrame);
-    setOptimizationFlags(QGraphicsView::DontClipPainter |
+    setOptimizationFlags(
                          QGraphicsView::DontSavePainterState |
                          QGraphicsView::DontAdjustForAntialiasing);
 
