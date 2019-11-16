@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
             i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
             i18n("Copyright (c) 2008-2010 Sascha Peilicke"));
     aboutData.addAuthor(i18n("Sascha Peilicke (saschpe)"), i18n("Original author"),
-                        QStringLiteral("sasch.pe@gmx.de"), QStringLiteral("http://saschpe.wordpress.com"));
+                        QStringLiteral("sasch.pe@gmx.de"), QStringLiteral("https://saschpe.wordpress.com"));
     aboutData.addCredit(i18n("Yuri Chornoivan"), i18n("Documentation editor"),
                         QStringLiteral("yurchor@ukr.net"));
     aboutData.addCredit(i18n("Arturo Silva"), i18n("Default theme designer"),
