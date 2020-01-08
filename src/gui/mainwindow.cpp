@@ -268,7 +268,7 @@ void MainWindow::finishGame()
 
     m_undoView->setEnabled(false);
 
-    //qDebug() << "Fetching final score from engine ...";
+    //qCDebug(KIGO_LOG) << "Fetching final score from engine ...";
     Score score = m_game->estimatedScore();
     QString name;
     if (score.color() == QLatin1Char('W')) {
@@ -333,7 +333,7 @@ void MainWindow::showPreferences()
 
 void MainWindow::applyPreferences()
 {
-    //qDebug() << "Update settings based on changed configuration...";
+    //qCDebug(KIGO_LOG) << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
 
     ThemeRenderer::self()->loadTheme(Preferences::theme());

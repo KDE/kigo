@@ -24,7 +24,7 @@
 #include <KLocalizedString>
 
 #include <QApplication>
-#include <QDebug>
+#include "kigo_debug.h"
 #include <QFile>
 
 namespace Kigo {
@@ -72,11 +72,11 @@ bool Game::start(const QString &command)
     m_process.start(command);      // Start new process with provided command
     if (!m_process.waitForStarted()) {        // Blocking wait for process start
         m_response = QLatin1String("Unable to execute command: ") + command;
-        //qDebug() << m_response;
+        //qCDebug(KIGO_LOG) << m_response;
         return false;
     }
     m_engineCommand = command;
-    ////qDebug() << "Game" << command << "started...";
+    ////qCDebug(KIGO_LOG) << "Game" << command << "started...";
 
     // Test if we started a GTP-compatible Go game
     m_process.write("name\n");
@@ -84,13 +84,13 @@ bool Game::start(const QString &command)
     const QString response = m_process.readAllStandardOutput();
     if (response.isEmpty() || !response.startsWith(QLatin1Char('='))) {
         m_response = QStringLiteral("Game did not respond to GTP command \"name\"");
-        //qDebug() << m_response;
+        //qCDebug(KIGO_LOG) << m_response;
         stop();
         return false;
     } else {
         m_engineName = m_response;
     }
-    //qDebug() << "Game is a GTP-compatible Go game";
+    //qCDebug(KIGO_LOG) << "Game is a GTP-compatible Go game";
 
     m_process.write("version\n");
     if (waitResponse()) {
@@ -113,7 +113,7 @@ bool Game::init()
         return false;
     }
 
-    //qDebug() << "Init game!";
+    //qCDebug(KIGO_LOG) << "Init game!";
 
     m_process.write("clear_board\n");
     if (waitResponse()) {
@@ -160,7 +160,7 @@ bool Game::init(const QString &fileName, int moveNumber)
         if (waitResponse()) {
             m_fixedHandicap = m_response.toInt();
         }
-        //qDebug() << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
+        //qCDebug(KIGO_LOG) << "Loaded komi is" << m_komi << "and handicap is" << m_fixedHandicap;
 
         m_consecutivePassMoveNumber = 0;
         m_currentMove = moveNumber;
@@ -247,7 +247,7 @@ bool Game::setFixedHandicap(int handicap)
             return false;
         }
     } else {
-        //qWarning() << "Handicap" << handicap << " not set, it is too high!";
+        //qCWarning(KIGO_LOG) << "Handicap" << handicap << " not set, it is too high!";
         return false;
     }
 }
@@ -285,7 +285,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
 
     const Player *tmp = &player;
     if (!tmp->isValid()) {
-        //qDebug() << "Invalid player argument, using current player!";
+        //qCDebug(KIGO_LOG) << "Invalid player argument, using current player!";
         tmp = m_currentPlayer;
     }
 
@@ -339,7 +339,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
                     undoStr = i18n("Black passed");
                 }
             }
-            //qDebug() << "Push new undo command" << undoStr;
+            //qCDebug(KIGO_LOG) << "Push new undo command" << undoStr;
             m_undoStack.push(new UndoCommand(playerTemp, moveType, undoStr));
         }
 
@@ -363,7 +363,7 @@ bool Game::generateMove(const Player &player, bool undoable)
     }
     const Player *tmp = &player;
     if (!tmp->isValid()) {
-        //qDebug() << "Invalid player argument, using current player!";
+        //qCDebug(KIGO_LOG) << "Invalid player argument, using current player!";
         tmp = m_currentPlayer;
     }
 
@@ -424,7 +424,7 @@ bool Game::generateMove(const Player &player, bool undoable)
         }
 
         if (undoable) {
-            //qDebug() << "Push new undo command" << undoStr;
+            //qCDebug(KIGO_LOG) << "Push new undo command" << undoStr;
             m_undoStack.push(new UndoCommand(playerTemp, moveType, undoStr));
         }
         if (tmp->isWhite()) {
@@ -489,17 +489,17 @@ bool Game::redoMove()
     const Player *player = undoCmd->player();
 
     if (undoCmd->moveType() == UndoCommand::MoveType::Passed) {
-        //qDebug() << "Redo a pass move for" << player << undoCmd->text();
+        //qCDebug(KIGO_LOG) << "Redo a pass move for" << player << undoCmd->text();
         playMove(*player, Stone(), false);         // E.g. pass move
     } else if (undoCmd->moveType() == UndoCommand::MoveType::Resigned) {
         // Note: Although it is possible to undo after a resign and redo it,
         //       it is a bit questionable whether this makes sense logically.
-        //qDebug() << "Redo a resign for" << player << undoCmd->text();
+        //qCDebug(KIGO_LOG) << "Redo a resign for" << player << undoCmd->text();
         emit resigned(*player);
         m_gameFinished = true;
         //emit resigned(*m_currentPlayer);
     } else {
-        //qDebug() << "Redo a normal move for" << player << undoCmd->text();
+        //qCDebug(KIGO_LOG) << "Redo a normal move for" << player << undoCmd->text();
         playMove(*player, Stone(undoCmd->text()), false);
     }
     m_undoStack.redo();
@@ -722,7 +722,7 @@ bool Game::waitResponse(bool nonBlocking)
             case QProcess::ReadError: m_response = m_process.readAllStandardError(); break;
             case QProcess::UnknownError: m_response = QStringLiteral("Unknown error!"); break;
         }
-        qWarning() << "Command failed:" << m_response;
+        qCWarning(KIGO_LOG) << "Command failed:" << m_response;
         return false;
     }
 

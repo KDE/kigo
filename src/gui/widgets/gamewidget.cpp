@@ -45,7 +45,7 @@ GameWidget::GameWidget(Game *game, QWidget *parent)
 void GameWidget::init()
 {
     if (!m_game->isRunning()) {
-        //qDebug() << "Game is not running, no information update";
+        //qCDebug(KIGO_LOG) << "Game is not running, no information update";
         return;
     }
 

@@ -30,7 +30,7 @@ include(ECMInstallIcons)
 include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
-
+include(ECMQtDeclareLoggingCategory)
 add_definitions(
     -DQT_USE_FAST_CONCATENATION
     -DQT_USE_FAST_OPERATOR_PLUS
@@ -48,4 +48,5 @@ endif()
 add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(doc)
+install( FILES kigo.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR} )
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

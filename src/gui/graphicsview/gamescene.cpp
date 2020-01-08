@@ -249,7 +249,7 @@ void GameScene::updateTerritoryItems()
     if (m_showTerritory) {
         QPixmap stonePixmap;
         const int halfCellSize = m_cellSize / 2;
-        //qDebug() << "Fetching territory from engine ...";
+        //qCDebug(KIGO_LOG) << "Fetching territory from engine ...";
 
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteTerritory, QSize(m_cellSize, m_cellSize));
         foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalWhiteTerritory)) {

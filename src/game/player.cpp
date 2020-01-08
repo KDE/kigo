@@ -20,7 +20,7 @@
 
 #include "player.h"
 
-#include <QDebug>
+#include "kigo_debug.h"
 
 namespace Kigo {
 
