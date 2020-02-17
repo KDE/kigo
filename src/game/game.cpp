@@ -69,7 +69,7 @@ Game::~Game()
 bool Game::start(const QString &command)
 {
     stop();                                   // Close old session if there's one
-    m_process.start(command);      // Start new process with provided command
+    m_process.start(command, QStringList());      // Start new process with provided command
     if (!m_process.waitForStarted()) {        // Blocking wait for process start
         m_response = QLatin1String("Unable to execute command: ") + command;
         //qCDebug(KIGO_LOG) << m_response;
