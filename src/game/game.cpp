@@ -76,7 +76,7 @@ bool Game::start(const QString &command)
         m_process.start(prog, splitArguments);
     }
 #else
-    m_process.start(command, QStringList());      // Start new process with provided command
+    m_process.start(command);      // Start new process with provided command
 #endif
     if (!m_process.waitForStarted()) {        // Blocking wait for process start
         m_response = QLatin1String("Unable to execute command: ") + command;
