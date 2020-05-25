@@ -46,7 +46,7 @@ public:
      * @param parent The (optional) parent widget
      * @see GameScene
      */
-    explicit GameView(GameScene *scene, QWidget *parent = 0);
+    explicit GameView(GameScene *scene, QWidget *parent = nullptr);
 
 private slots:
     void changeCursor(const QPixmap &cursorPixmap);

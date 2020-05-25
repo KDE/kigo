@@ -36,7 +36,7 @@ class ErrorWidget : public QWidget, private Ui::ErrorWidget
     Q_OBJECT
 
 public:
-    explicit ErrorWidget(QWidget *parent = 0);
+    explicit ErrorWidget(QWidget *parent = nullptr);
 
 signals:
     void configureClicked();

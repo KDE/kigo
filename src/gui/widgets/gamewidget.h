@@ -39,7 +39,7 @@ class GameWidget : public QWidget, private Ui::GameWidget
     Q_OBJECT
 
 public:
-    explicit GameWidget(Game *game, QWidget *parent = 0);
+    explicit GameWidget(Game *game, QWidget *parent = nullptr);
 
 signals:
     void finishClicked();

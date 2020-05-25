@@ -38,7 +38,7 @@ class SetupWidget : public QWidget, private Ui::SetupWidget
     Q_OBJECT
 
 public:
-    explicit SetupWidget(Game *game, QWidget *parent = 0);
+    explicit SetupWidget(Game *game, QWidget *parent = nullptr);
     ~SetupWidget();
 
 signals:

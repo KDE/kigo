@@ -267,9 +267,9 @@ signals:
     void boardSizeChanged(int);
 
     /** This signal is emitted when a player resigns. */
-    void resigned(const Player &);
+    void resigned(const Kigo::Player &);
 
-    void passMovePlayed(const Player &);
+    void passMovePlayed(const Kigo::Player &);
     /**
      * This signal is emitted when both players played a pass move
      * after another. It is also send when pass moves are gone
@@ -277,7 +277,7 @@ signals:
     void consecutivePassMovesPlayed(int);
 
     /** This signal is emitted when the current player changes. */
-    void currentPlayerChanged(const Player &);
+    void currentPlayerChanged(const Kigo::Player &);
 
     /**
      * This signal is emitted when the game starts or ends a

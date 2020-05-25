@@ -42,7 +42,7 @@ public:
     /**
      * Standard Constructor. Sets up the loaded user interface.
      */
-    explicit GeneralConfig(QWidget *parent = 0);
+    explicit GeneralConfig(QWidget *parent = nullptr);
 
 private slots:
     void updateEngineCommand();
