@@ -446,35 +446,6 @@ Default theme designed by Arturo Silva <email>jasilva28@gmail.com</email>
 
 </chapter>
 
-<appendix id="installation">
-<title>Installation</title>
-
-<sect1 id="getting-kapp">
-<title>How to obtain &kigo;</title>
-
-<!-- This first entity contains boiler plate for applications that are
-part of KDE CVS.  You should remove it if you are releasing your
-application -->
-
-&install.intro.documentation;
-
-&install.compile.documentation;
-
-</sect1>
-
-<sect1 id="compilation">
-<title>Compilation and Installation</title>
-
-<!-- This entity contains the boilerplate text for standard -->
-<!-- compilation instructions.  If your application requires any -->
-<!-- special handling, remove it, and replace with your own text. -->
-
-&install.compile.documentation;
-
-</sect1>
-
-</appendix>
-
 &documentation.index;
 </book>
 <!--
