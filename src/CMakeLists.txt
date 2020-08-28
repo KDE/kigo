@@ -44,8 +44,8 @@ target_link_libraries(kigo
 
 install(TARGETS kigo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
-install(FILES kigo.knsrc DESTINATION ${KDE_INSTALL_CONFDIR})
-install(FILES kigo-games.knsrc DESTINATION ${KDE_INSTALL_CONFDIR})
+install(FILES kigo.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
+install(FILES kigo-games.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
 install(PROGRAMS gui/org.kde.kigo.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES gui/kigoui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kigo)
 install(FILES gui/org.kde.kigo.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
