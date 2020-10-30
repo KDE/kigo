@@ -1,4 +1,14 @@
-project(kigo)
+# Release Service version, managed by release script
+set (RELEASE_SERVICE_VERSION_MAJOR "20")
+set (RELEASE_SERVICE_VERSION_MINOR "11")
+set (RELEASE_SERVICE_VERSION_MICRO "70")
+set (RELEASE_SERVICE_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_SERVICE_VERSION_MINOR}${RELEASE_SERVICE_VERSION_MICRO}")
+
+# Bump KIGO_BASE_VERSION once new features are added
+set(KIGO_BASE_VERSION "2.1")
+set(KIGO_VERSION "${KIGO_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
+
+project(kigo VERSION ${KIGO_VERSION})
 
 cmake_minimum_required (VERSION 3.5 FATAL_ERROR)
 set (QT_MIN_VERSION "5.7.0")
@@ -31,6 +41,7 @@ include(KDEInstallDirs)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(ECMQtDeclareLoggingCategory)
+include(ECMSetupVersion)
 add_definitions(
     -DQT_USE_FAST_CONCATENATION
     -DQT_USE_FAST_OPERATOR_PLUS
@@ -41,6 +52,10 @@ add_definitions(
     -DQT_USE_QSTRINGBUILDER
 )
 
+ecm_setup_version(${KIGO_VERSION}
+    VARIABLE_PREFIX KIGO
+    VERSION_HEADER kigo_version.h
+)
 
 add_subdirectory(src)
 add_subdirectory(data)

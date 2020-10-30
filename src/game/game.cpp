@@ -20,6 +20,7 @@
 
 #include "game.h"
 #include "score.h"
+#include "kigo_version.h"
 
 #include <KLocalizedString>
 
