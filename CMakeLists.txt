@@ -1,4 +1,4 @@
-project(kigo VERSION ${KIGO_VERSION})
+cmake_minimum_required (VERSION 3.5 FATAL_ERROR)
 
 # Release Service version, managed by release script
 set (RELEASE_SERVICE_VERSION_MAJOR "20")
@@ -10,7 +10,8 @@ set (RELEASE_SERVICE_COMPACT_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}${RELEASE_
 set(KIGO_BASE_VERSION "0.6")
 set(KIGO_VERSION "${KIGO_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
 
-cmake_minimum_required (VERSION 3.5 FATAL_ERROR)
+project(kigo VERSION ${KIGO_VERSION})
+
 set (QT_MIN_VERSION "5.7.0")
 set (KF5_MIN_VERSION "5.57.0")
 
