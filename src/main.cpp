@@ -20,6 +20,8 @@
 
 #include "gui/mainwindow.h"
 
+#include "../kigo_version.h"
+
 #include <KAboutData>
 #include <KCrash>
 #include <Kdelibs4ConfigMigrator>
