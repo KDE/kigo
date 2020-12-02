@@ -122,4 +122,7 @@
   <provides>
     <binary>kigo</binary>
   </provides>
+  <releases>
+    <release version="0.6.20120" date="2020-12-10"/>
+  </releases>
 </component>
