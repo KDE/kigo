@@ -22,7 +22,7 @@ ki18n_wrap_ui(kigo_SRCS
     gui/widgets/gamewidget.ui
     gui/widgets/setupwidget.ui
 )
-ecm_qt_declare_logging_category(kigo_SRCS HEADER kigo_debug.h IDENTIFIER KIGO_LOG CATEGORY_NAME org.kde.kdegames.kigo)
+ecm_qt_declare_logging_category(kigo_SRCS HEADER kigo_debug.h IDENTIFIER KIGO_LOG CATEGORY_NAME org.kde.kdegames.kigo DESCRIPTION "kigo (kdegames)" EXPORT KIGO)
 
 kconfig_add_kcfg_files(kigo_SRCS preferences.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/*-apps-kigo.png")

@@ -12,8 +12,8 @@ set(KIGO_VERSION "${KIGO_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
 
 project(kigo VERSION ${KIGO_VERSION})
 
-set (QT_MIN_VERSION "5.7.0")
-set (KF5_MIN_VERSION "5.57.0")
+set (QT_MIN_VERSION "5.12.0")
+set (KF5_MIN_VERSION "5.68.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} )
@@ -61,5 +61,6 @@ ecm_setup_version(${KIGO_VERSION}
 add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(doc)
-install( FILES kigo.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR} )
+ecm_qt_install_logging_categories(EXPORT KIGO FILE kigo.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
+
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
