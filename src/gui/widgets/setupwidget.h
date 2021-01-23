@@ -39,7 +39,7 @@ class SetupWidget : public QWidget, private Ui::SetupWidget
 
 public:
     explicit SetupWidget(Game *game, QWidget *parent = nullptr);
-    ~SetupWidget();
+    ~SetupWidget() override;
 
 signals:
     void startClicked();

@@ -49,7 +49,7 @@ class ThemeRenderer : public QObject
 
 private:
     ThemeRenderer();
-    ~ThemeRenderer();
+    ~ThemeRenderer() override;
 
 public:
     /**

@@ -53,8 +53,8 @@ private slots:
 
 private:
     //void drawForeground(QPainter *painter, const QRectF &rect);
-    void showEvent(QShowEvent *event) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
+    void showEvent(QShowEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
     GameScene * const m_gameScene;  ///< Pointer to the game scene
 };

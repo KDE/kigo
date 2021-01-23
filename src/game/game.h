@@ -76,7 +76,7 @@ public:
     };
 
     explicit Game(QObject *parent = nullptr);
-    ~Game();
+    ~Game() override;
 
     /**
      * Connect to the given Go game game in GTP mode. The most common
