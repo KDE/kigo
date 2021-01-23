@@ -20,7 +20,7 @@
 
 #include "gui/mainwindow.h"
 
-#include "../kigo_version.h"
+#include "kigo_version.h"
 
 #include <KAboutData>
 #include <KCrash>

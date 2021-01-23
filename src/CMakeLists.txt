@@ -1,3 +1,7 @@
+ecm_setup_version(${KIGO_VERSION}
+    VARIABLE_PREFIX KIGO
+    VERSION_HEADER kigo_version.h
+)
 
 set(kigo_SRCS
     game/game.cpp
@@ -53,3 +57,9 @@ install(FILES kigo.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
 install(FILES kigo-games.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
 install(PROGRAMS gui/org.kde.kigo.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES gui/org.kde.kigo.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+
+ecm_qt_install_logging_categories(
+    EXPORT KIGO
+    FILE kigo.categories
+    DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+)

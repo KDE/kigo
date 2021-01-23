@@ -57,15 +57,10 @@ add_definitions(
     -DQT_NO_NARROWING_CONVERSIONS_IN_CONNECT
 )
 
-ecm_setup_version(${KIGO_VERSION}
-    VARIABLE_PREFIX KIGO
-    VERSION_HEADER kigo_version.h
-)
 
 add_subdirectory(src)
 add_subdirectory(data)
 add_subdirectory(doc)
-ecm_qt_install_logging_categories(EXPORT KIGO FILE kigo.categories DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
 
 ki18n_install(po)
 kdoctools_install(po)
