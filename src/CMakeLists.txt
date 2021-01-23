@@ -22,6 +22,11 @@ ki18n_wrap_ui(kigo_SRCS
     gui/widgets/gamewidget.ui
     gui/widgets/setupwidget.ui
 )
+
+qt5_add_resources(kigo_SRCS
+    kigo.qrc
+)
+
 ecm_qt_declare_logging_category(kigo_SRCS HEADER kigo_debug.h IDENTIFIER KIGO_LOG CATEGORY_NAME org.kde.kdegames.kigo DESCRIPTION "kigo (kdegames)" EXPORT KIGO)
 
 kconfig_add_kcfg_files(kigo_SRCS preferences.kcfgc)
@@ -47,5 +52,4 @@ install(FILES kigo.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 install(FILES kigo.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
 install(FILES kigo-games.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
 install(PROGRAMS gui/org.kde.kigo.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES gui/kigoui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kigo)
 install(FILES gui/org.kde.kigo.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
