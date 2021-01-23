@@ -75,7 +75,7 @@ public:
         FinalStateInvalid       ///< The state is invalid, shows error
     };
 
-    explicit Game(QObject *parent = 0);
+    explicit Game(QObject *parent = nullptr);
     ~Game();
 
     /**
