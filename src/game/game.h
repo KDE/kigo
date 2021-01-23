@@ -250,7 +250,7 @@ public:
 
     bool isFinished() const { return m_gameFinished; }
 
-signals:
+Q_SIGNALS:
     /**
      * This signal is emitted when the board is first started and
      * can be used to trigger an update to a visual representation.
@@ -292,10 +292,10 @@ signals:
     /** This signal is emitted when availability of undo moves changes */
     void canUndoChanged(bool);
 
-public slots:
+public Q_SLOTS:
     void gameSetup();
     
-private slots:
+private Q_SLOTS:
     /**
      * Wait gracefully for a response from the Go game. The returned string
      * from the Go game is stored in 'm_response'.

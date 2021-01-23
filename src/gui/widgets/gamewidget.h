@@ -41,14 +41,14 @@ class GameWidget : public QWidget, private Ui::GameWidget
 public:
     explicit GameWidget(Game *game, QWidget *parent = nullptr);
 
-signals:
+Q_SIGNALS:
     void finishClicked();
 
-public slots:
+public Q_SLOTS:
     void init();
     void update();
 
-private slots:
+private Q_SLOTS:
     void finishButtonClicked();
     void enableFinishButton();
 

@@ -114,7 +114,7 @@ public:
      */
     QSize elementSize(Element element) const;
 
-signals:
+Q_SIGNALS:
     void themeChanged(const QString &);
 
 private:

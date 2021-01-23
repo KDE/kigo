@@ -44,7 +44,7 @@ public:
      */
     explicit GeneralConfig(QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void updateEngineCommand();
 };
 

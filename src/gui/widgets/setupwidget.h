@@ -41,10 +41,10 @@ public:
     explicit SetupWidget(Game *game, QWidget *parent = nullptr);
     ~SetupWidget() override;
 
-signals:
+Q_SIGNALS:
     void startClicked();
 
-public slots:
+public Q_SLOTS:
     /**
      *
      */
@@ -61,7 +61,7 @@ public slots:
      */
     void commit();
 
-private slots:
+private Q_SLOTS:
     void on_startMoveSpinBox_valueChanged(int);
     void onBoardSizeChanged();
     void on_handicapSpinBox_valueChanged(int);

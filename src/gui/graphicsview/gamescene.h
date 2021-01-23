@@ -49,10 +49,10 @@ class GameScene : public QGraphicsScene
 public:
     explicit GameScene(Game *game, QObject *parent = nullptr);
 
-signals:
+Q_SIGNALS:
     void cursorPixmapChanged(const QPixmap &);
 
-public slots:
+public Q_SLOTS:
     void resizeScene(int width, int height);
     void showLabels(bool show);
     void showHint(bool show);
@@ -61,7 +61,7 @@ public slots:
     void showPlacementMarker(bool show);
     void showTerritory(bool show);
 
-private slots:
+private Q_SLOTS:
     void updateStoneItems();
     void updateHintItems();
     void updateTerritoryItems();

@@ -38,10 +38,10 @@ class ErrorWidget : public QWidget, private Ui::ErrorWidget
 public:
     explicit ErrorWidget(QWidget *parent = nullptr);
 
-signals:
+Q_SIGNALS:
     void configureClicked();
 
-private slots:
+private Q_SLOTS:
     void on_configureButton_clicked();
 };
 

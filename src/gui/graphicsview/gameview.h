@@ -48,7 +48,7 @@ public:
      */
     explicit GameView(GameScene *scene, QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void changeCursor(const QPixmap &cursorPixmap);
 
 private:

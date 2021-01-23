@@ -50,7 +50,7 @@ class MainWindow : public KXmlGuiWindow
 public:
     explicit MainWindow(const QString &fileName = QLatin1String(""), QWidget *parent = nullptr);
 
-private slots:
+private Q_SLOTS:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
     bool loadGame(const QString &fileName);
