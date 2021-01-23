@@ -544,7 +544,8 @@ QList<Stone> Game::stones(const Player &player)
     if (!player.isWhite()) {
         m_process.write("list_stones black\n");
         if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(QLatin1Char(' '))) {
+            const auto positions = m_response.split(QLatin1Char(' '));
+            for (const QString &pos : positions) {
                 list.append(Stone(pos));
             }
         }
@@ -552,7 +553,8 @@ QList<Stone> Game::stones(const Player &player)
     if (!player.isBlack()) {
         m_process.write("list_stones white\n");
         if (waitResponse() && !m_response.isEmpty()) {
-            foreach (const QString &pos, m_response.split(QLatin1Char(' '))) {
+            const auto positions = m_response.split(QLatin1Char(' '));
+            for (const QString &pos : positions) {
                 list.append(Stone(pos));
             }
         }
@@ -570,7 +572,7 @@ QList<Move> Game::moves(const Player &player)
     if (!player.isValid()) {
         list = m_movesList;
     } else {
-        foreach (const Move &move, m_movesList) {
+        for (const Move &move : qAsConst(m_movesList)) {
             if (move.player()->color() == player.color()) {
                 list.append(move);
             }
@@ -588,7 +590,8 @@ QList<Stone> Game::liberties(const Stone &stone)
 
     m_process.write("findlib " + stone.toLatin1() + '\n');
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(QLatin1Char(' '))) {
+        const auto entries = m_response.split(QLatin1Char(' '));
+        for (const QString &entry : entries) {
             list.append(Stone(entry));
         }
     }
@@ -631,7 +634,8 @@ QList<Stone> Game::legalMoves(const Player &player)
         m_process.write("all_legal black\n");
     }
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(QLatin1Char(' '))) {
+        const auto entries = m_response.split(QLatin1Char(' '));
+        for (const QString &entry : entries) {
             list.append(Stone(entry));
         }
     }
@@ -692,7 +696,8 @@ QList<Stone> Game::finalStates(FinalState state)
     msg.append('\n');
     m_process.write(msg);
     if (waitResponse() && !m_response.isEmpty()) {
-        foreach (const QString &entry, m_response.split(QLatin1Char(' '))) {
+        const auto entries = m_response.split(QLatin1Char(' '));
+        for (const QString &entry : entries) {
             list.append(Stone(entry));
         }
     }

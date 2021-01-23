@@ -138,17 +138,18 @@ void GameScene::showTerritory(bool show)
 
 void GameScene::updateStoneItems()
 {
-    QGraphicsPixmapItem *stoneItem;
     const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
     const Stone lastStone = (m_game->moves().size() > 0) ? m_game->lastMove().stone() : Stone::Invalid;
 
-    foreach (stoneItem, m_stoneItems) {  // Clear all stone items
+    for (QGraphicsPixmapItem *stoneItem : qAsConst(m_stoneItems)) {  // Clear all stone items
         removeItem(stoneItem);
     }
     m_stoneItems.clear();
 
-    foreach (const Stone &stone, m_game->stones(m_game->blackPlayer())) {
+    QGraphicsPixmapItem *stoneItem;
+    const auto blackStones = m_game->stones(m_game->blackPlayer());
+    for (const Stone &stone : blackStones) {
         ThemeRenderer::Element element = (stone == lastStone) ? ThemeRenderer::Element::BlackStoneLast : ThemeRenderer::Element::BlackStone;
         stoneItem = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
         stoneItem->setZValue(2);
@@ -157,7 +158,8 @@ void GameScene::updateStoneItems()
                              m_gridRect.y() + (m_boardSize - stone.y()) * m_cellSize - halfStoneSize + 1));
         m_stoneItems.append(stoneItem);
     }
-    foreach (const Stone &stone, m_game->stones(m_game->whitePlayer())) {
+    const auto whiteStones = m_game->stones(m_game->whitePlayer());
+    for (const Stone &stone : whiteStones) {
         ThemeRenderer::Element element = (stone == lastStone) ? ThemeRenderer::Element::WhiteStoneLast : ThemeRenderer::Element::WhiteStone;
         stoneItem = addPixmap(ThemeRenderer::self()->renderElement(element, m_stonePixmapSize));
         stoneItem->setZValue(2);
@@ -169,7 +171,8 @@ void GameScene::updateStoneItems()
 
     if (m_showMoveNumbers) {
         int i = 0;
-        foreach (const Move &move, m_game->moves()) {
+        const auto moves = m_game->moves();
+        for (const Move &move : moves) {
             int xOff = move.stone().x() >= 'I' ? move.stone().x() - 'A' - 1 : move.stone().x() - 'A';
             QPointF pos = QPointF(m_gridRect.x() + xOff * m_cellSize,
                                   m_gridRect.y() + (m_boardSize - move.stone().y()) * m_cellSize);
@@ -197,17 +200,18 @@ void GameScene::updateStoneItems()
 
 void GameScene::updateHintItems()
 {
-    QGraphicsPixmapItem *item;
-
-    foreach (item, m_hintItems) {   // Old hint is invalid, remove it first
+    for (QGraphicsPixmapItem *item : qAsConst(m_hintItems)) {   // Old hint is invalid, remove it first
         removeItem(item);
     }
     m_hintItems.clear();
 
+    QGraphicsPixmapItem *item;
+
     if (m_showHint) {
         const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
-        foreach (const Stone &move, m_game->bestMoves(m_game->currentPlayer())) {
+        const auto moves = m_game->bestMoves(m_game->currentPlayer());
+        for (const Stone &move : moves) {
             QPixmap stonePixmap;
             if (m_game->currentPlayer().isWhite()) {
                 stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteStoneTransparent, m_stonePixmapSize);
@@ -239,12 +243,12 @@ void GameScene::updateHintItems()
 
 void GameScene::updateTerritoryItems()
 {
-    QGraphicsPixmapItem *item;
-
-    foreach (item, m_territoryItems) {  // Old territory is invalid, remove it first
+    for(QGraphicsPixmapItem *item : qAsConst(m_territoryItems)) {  // Old territory is invalid, remove it first
         removeItem(item);
     }
     m_territoryItems.clear();
+
+    QGraphicsPixmapItem *item;
 
     if (m_showTerritory) {
         QPixmap stonePixmap;
@@ -252,7 +256,8 @@ void GameScene::updateTerritoryItems()
         //qCDebug(KIGO_LOG) << "Fetching territory from engine ...";
 
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteTerritory, QSize(m_cellSize, m_cellSize));
-        foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalWhiteTerritory)) {
+        const auto whiteStones = m_game->finalStates(Game::FinalState::FinalWhiteTerritory);
+        for (const Stone &stone : whiteStones) {
             item = addPixmap(stonePixmap);
             item->setZValue(8);
             const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
@@ -262,7 +267,8 @@ void GameScene::updateTerritoryItems()
         }
 
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackTerritory, QSize(m_cellSize, m_cellSize));
-        foreach (const Stone &stone, m_game->finalStates(Game::FinalState::FinalBlackTerritory)) {
+        const auto blackStones = m_game->finalStates(Game::FinalState::FinalBlackTerritory);
+        for (const Stone &stone : blackStones) {
             item = addPixmap(stonePixmap);
             item->setZValue(8);
             const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
