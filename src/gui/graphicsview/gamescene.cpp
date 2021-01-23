@@ -317,11 +317,11 @@ void GameScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             } else if (m_game->currentPlayer().isBlack()) {
                 map = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackStoneTransparent, m_stonePixmapSize);
             }
-            emit cursorPixmapChanged(map);
+            Q_EMIT cursorPixmapChanged(map);
         }
     } else {
         m_placementMarkerItem->setVisible(false);
-        emit cursorPixmapChanged(map);
+        Q_EMIT cursorPixmapChanged(map);
     }
 }
 

@@ -36,7 +36,7 @@ ErrorWidget::ErrorWidget(QWidget *parent)
 
 void ErrorWidget::on_configureButton_clicked()
 {
-    emit configureClicked();
+    Q_EMIT configureClicked();
 }
 
 } // End of namespace Kigo

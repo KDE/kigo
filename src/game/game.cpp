@@ -134,7 +134,7 @@ bool Game::init()
         m_movesList.clear();
         m_undoStack.clear();
 
-        emit boardChanged();
+        Q_EMIT boardChanged();
         return true;
     } else {
         return false;
@@ -176,8 +176,8 @@ bool Game::init(const QString &fileName, int moveNumber)
         m_movesList.clear();
         m_undoStack.clear();
 
-        emit boardSizeChanged(m_boardSize);
-        emit boardChanged();                             // All done, tell the world!
+        Q_EMIT boardSizeChanged(m_boardSize);
+        Q_EMIT boardChanged();                             // All done, tell the world!
         return true;
     } else {
         return false;
@@ -211,8 +211,8 @@ bool Game::setBoardSize(int size)
         m_currentMove = 0;
         m_movesList.clear();
         m_undoStack.clear();
-        emit boardSizeChanged(size);
-        emit boardChanged();
+        Q_EMIT boardSizeChanged(size);
+        Q_EMIT boardChanged();
         return true;
     } else {
         return false;
@@ -249,7 +249,7 @@ bool Game::setFixedHandicap(int handicap)
             // which means, white is next.
             setCurrentPlayer(m_whitePlayer);
             m_fixedHandicap = handicap;
-            emit boardChanged();
+            Q_EMIT boardChanged();
             return true;
         } else {
             return false;
@@ -316,9 +316,9 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
             m_consecutivePassMoveNumber = 0;
         } else {                                // And pass move handling
             m_movesList.append(Move(tmp, Stone::Pass));
-            emit passMovePlayed(*m_currentPlayer);
+            Q_EMIT passMovePlayed(*m_currentPlayer);
             if (m_consecutivePassMoveNumber > 0) {
-                emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+                Q_EMIT consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
             }
             m_consecutivePassMoveNumber++;
         }
@@ -357,7 +357,7 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
             setCurrentPlayer(m_whitePlayer);
         }
 
-        emit boardChanged();
+        Q_EMIT boardChanged();
         return true;
     } else {
         return false;
@@ -397,9 +397,9 @@ bool Game::generateMove(const Player &player, bool undoable)
         }
         if (m_response == QLatin1String("PASS")) {
             m_currentMove++;
-            emit passMovePlayed(*m_currentPlayer);
+            Q_EMIT passMovePlayed(*m_currentPlayer);
             if (m_consecutivePassMoveNumber > 0) {
-                emit consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
+                Q_EMIT consecutivePassMovesPlayed(m_consecutivePassMoveNumber);
                 m_gameFinished = true;
             }
             m_consecutivePassMoveNumber++;
@@ -410,7 +410,7 @@ bool Game::generateMove(const Player &player, bool undoable)
                 undoStr = i18n("Black passed");
             }
         } else if (m_response == QLatin1String("resign")) {
-            emit resigned(*m_currentPlayer);
+            Q_EMIT resigned(*m_currentPlayer);
             m_gameFinished = true;
             moveType = UndoCommand::MoveType::Resigned;
             if (tmp->isWhite()) {
@@ -441,7 +441,7 @@ bool Game::generateMove(const Player &player, bool undoable)
             setCurrentPlayer(m_whitePlayer);
         }
         if (boardChange) {
-            emit boardChanged();
+            Q_EMIT boardChanged();
         }
         return true;
     } else {
@@ -479,7 +479,7 @@ bool Game::undoMove()
         //TODO: What happens with pass moves deeper in the history?
         m_undoStack.undo();
 
-        emit boardChanged();
+        Q_EMIT boardChanged();
         return true;
     } else {
         return false;
@@ -503,9 +503,9 @@ bool Game::redoMove()
         // Note: Although it is possible to undo after a resign and redo it,
         //       it is a bit questionable whether this makes sense logically.
         //qCDebug(KIGO_LOG) << "Redo a resign for" << player << undoCmd->text();
-        emit resigned(*player);
+        Q_EMIT resigned(*player);
         m_gameFinished = true;
-        //emit resigned(*m_currentPlayer);
+        //Q_EMIT resigned(*m_currentPlayer);
     } else {
         //qCDebug(KIGO_LOG) << "Redo a normal move for" << player << undoCmd->text();
         playMove(*player, Stone(undoCmd->text()), false);
@@ -740,7 +740,7 @@ bool Game::waitResponse(bool nonBlocking)
     }
 
     if (nonBlocking) {
-        emit waiting(true);
+        Q_EMIT waiting(true);
     }
 
     // Wait for finished command execution. We have to do this untill '\n\n' (or '\r\n\r\n' or
@@ -765,7 +765,7 @@ bool Game::waitResponse(bool nonBlocking)
              !m_response.endsWith(QLatin1String("\r\n\r\n")));
 
     if (nonBlocking) {
-        emit waiting(false);
+        Q_EMIT waiting(false);
     }
 
     if (m_response.size() < 1) {
@@ -779,7 +779,7 @@ bool Game::waitResponse(bool nonBlocking)
 
 void Game::gameSetup()
 {
-    emit boardInitialized();
+    Q_EMIT boardInitialized();
 }
 
 void Game::readyRead()
@@ -795,7 +795,7 @@ void Game::undoIndexChanged(int index)
 void Game::setCurrentPlayer(Player &player)
 {
     m_currentPlayer = &player;
-    emit currentPlayerChanged(*m_currentPlayer);
+    Q_EMIT currentPlayerChanged(*m_currentPlayer);
 }
 
 } // End of namespace Kigo

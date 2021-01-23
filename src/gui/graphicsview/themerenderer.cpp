@@ -79,7 +79,7 @@ bool ThemeRenderer::loadTheme(const QString &themeName)
         //qCDebug(KIGO_LOG) << "Discarding cache";
         QPixmapCache::clear();
     }
-    emit themeChanged(m_currentTheme);
+    Q_EMIT themeChanged(m_currentTheme);
     return true;
 }
 

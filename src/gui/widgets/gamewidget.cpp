@@ -104,7 +104,7 @@ void GameWidget::update()
 void GameWidget::finishButtonClicked()
 {
     finishButton->setEnabled(false);
-    emit finishClicked();
+    Q_EMIT finishClicked();
 }
 
 void GameWidget::enableFinishButton()
