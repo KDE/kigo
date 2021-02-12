@@ -18,6 +18,7 @@ set(kigo_SRCS
     gui/widgets/gamewidget.cpp
     gui/widgets/setupwidget.cpp
     main.cpp
+    kigo.qrc
 )
 
 ki18n_wrap_ui(kigo_SRCS 
@@ -25,10 +26,6 @@ ki18n_wrap_ui(kigo_SRCS
     gui/widgets/errorwidget.ui
     gui/widgets/gamewidget.ui
     gui/widgets/setupwidget.ui
-)
-
-qt5_add_resources(kigo_SRCS
-    kigo.qrc
 )
 
 ecm_qt_declare_logging_category(kigo_SRCS HEADER kigo_debug.h IDENTIFIER KIGO_LOG CATEGORY_NAME org.kde.kdegames.kigo DESCRIPTION "kigo (kdegames)" EXPORT KIGO)
