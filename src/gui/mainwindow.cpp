@@ -258,9 +258,9 @@ void MainWindow::finishGame()
     Score score = m_game->estimatedScore();
     QString name;
     if (score.color() == QLatin1Char('W')) {
-        name = m_game->whitePlayer().name() + " (White)";
+        name = i18n("%1 (White)", m_game->whitePlayer().name());
     } else {
-        name = m_game->blackPlayer().name() + " (Black)";
+        name = i18n("%1 (Black)", m_game->blackPlayer().name());
     }
     // Show a score message that stays visible until the next
     // popup message arrives
