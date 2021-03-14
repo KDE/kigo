@@ -4,6 +4,7 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
     <kcfgfile name="kigorc"/>
+    <include>klocalizedstring.h</include>
     <group name="Backend">
         <entry name="EngineCommand" type="String">
             <label>The current game engine command with (optional) parameters</label>
@@ -42,7 +43,7 @@
         </entry>
         <entry name="BlackPlayerName" type="String">
             <label>The name of the black player</label>
-            <default>Black Player</default>
+            <default code="true">i18n("Black Player")</default>
         </entry>
         <entry name="BlackPlayerStrength" type="Int">
             <label>The strength of the black player</label>
@@ -56,7 +57,7 @@
         </entry>
         <entry name="WhitePlayerName" type="String">
             <label>The name of the white player</label>
-            <default>White Player</default>
+            <default code="true">i18n("White Player")</default>
         </entry>
         <entry name="WhitePlayerStrength" type="Int">
             <label>The strength of the white player</label>
