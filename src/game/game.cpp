@@ -55,15 +55,11 @@ Game::~Game()
 bool Game::start(const QString &command)
 {
     stop();                                   // Close old session if there's one
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     QStringList splitArguments = QProcess::splitCommand(command);
     if (!splitArguments.isEmpty()) {
         const QString prog = splitArguments.takeFirst();
         m_process.start(prog, splitArguments);
     }
-#else
-    m_process.start(command);      // Start new process with provided command
-#endif
     if (!m_process.waitForStarted()) {        // Blocking wait for process start
         m_response = QLatin1String("Unable to execute command: ") + command;
         //qCDebug(KIGO_LOG) << m_response;
