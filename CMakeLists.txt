@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.5 FATAL_ERROR)
+cmake_minimum_required (VERSION 3.16 FATAL_ERROR)
 
 # Release Service version, managed by release script
 set (RELEASE_SERVICE_VERSION_MAJOR "21")
@@ -12,8 +12,8 @@ set(KIGO_VERSION "${KIGO_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
 
 project(kigo VERSION ${KIGO_VERSION})
 
-set (QT_MIN_VERSION "5.12.0")
-set (KF5_MIN_VERSION "5.68.0")
+set (QT_MIN_VERSION "5.15.0")
+set (KF5_MIN_VERSION "5.83.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} )

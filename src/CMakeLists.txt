@@ -3,7 +3,9 @@ ecm_setup_version(${KIGO_VERSION}
     VERSION_HEADER kigo_version.h
 )
 
-set(kigo_SRCS
+add_executable(kigo)
+
+target_sources(kigo PRIVATE
     game/game.cpp
     game/move.cpp
     game/player.cpp
@@ -18,34 +20,40 @@ set(kigo_SRCS
     gui/widgets/gamewidget.cpp
     gui/widgets/setupwidget.cpp
     main.cpp
+
     kigo.qrc
 )
 
-ki18n_wrap_ui(kigo_SRCS 
+ki18n_wrap_ui(kigo
     gui/config/generalconfig.ui
     gui/widgets/errorwidget.ui
     gui/widgets/gamewidget.ui
     gui/widgets/setupwidget.ui
 )
 
-ecm_qt_declare_logging_category(kigo_SRCS HEADER kigo_debug.h IDENTIFIER KIGO_LOG CATEGORY_NAME org.kde.kdegames.kigo DESCRIPTION "kigo (kdegames)" EXPORT KIGO)
+ecm_qt_declare_logging_category(kigo
+    HEADER kigo_debug.h
+    IDENTIFIER KIGO_LOG
+    CATEGORY_NAME org.kde.kdegames.kigo
+    DESCRIPTION "kigo (kdegames)"
+    EXPORT KIGO
+)
 
-kconfig_add_kcfg_files(kigo_SRCS preferences.kcfgc)
+kconfig_add_kcfg_files(kigo preferences.kcfgc)
+
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/*-apps-kigo.png")
-ecm_add_app_icon(kigo_SRCS ICONS ${ICONS_SRCS})
-
-add_executable(kigo ${kigo_SRCS})
+ecm_add_app_icon(kigo ICONS ${ICONS_SRCS})
 
 target_link_libraries(kigo
-   KF5::XmlGui
-   KF5::KIOWidgets  # KUrlRequester
-   KF5::TextWidgets # KPluralHandlingSpinBox
-   KF5KDEGames
-   KF5KDEGamesPrivate
-   KF5::NewStuff
-   KF5::DBusAddons
-   KF5::Crash
-   Qt5::Svg
+    KF5KDEGames
+    KF5KDEGamesPrivate
+    KF5::XmlGui
+    KF5::KIOWidgets  # KUrlRequester
+    KF5::TextWidgets # KPluralHandlingSpinBox
+    KF5::NewStuff
+    KF5::DBusAddons
+    KF5::Crash
+    Qt5::Svg
 )
 
 install(TARGETS kigo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
