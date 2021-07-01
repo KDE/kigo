@@ -419,7 +419,7 @@ void MainWindow::setupActions()
     m_hintAction = KStandardGameAction::hint(this, &MainWindow::hint, actionCollection());
 
     // View menu
-    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "lastmoves") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
+    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "pin") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
     actionCollection()->setDefaultShortcut(m_moveNumbersAction, Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, &KToggleAction::toggled, m_gameScene, &GameScene::showMoveNumbers);
