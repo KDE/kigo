@@ -87,7 +87,7 @@
     <title>Setup a new game</title>
 
     <para>
-    When you have started &kigo; you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select the <menuchoice><guimenu>Joc</guimenu> <guimenuitem>New</guimenuitem></menuchoice> menu item, click on <guibutton>Start Game</guibutton> button in the <guilabel>Game setup</guilabel> dock widget or by simply pressing the <keycap>S</keycap> key.
+    When you have started &kigo; you should see a screen similar to the one shown in screenshot below. There you can set up both the white and the black player’s name and the board size. You can decide if one or both players should be computers. If you decide to play against a computer you can also set its strength. If you want to start the game you can either select the <menuchoice><guimenu>Game</guimenu> <guimenuitem>New</guimenuitem></menuchoice> menu item, click on <guibutton>Start Game</guibutton> button in the <guilabel>Game setup</guilabel> dock widget or by simply pressing the <keycap>S</keycap> key.
     </para>
 
     <screenshot>
@@ -103,7 +103,7 @@
     <title>Setup a loaded game</title>
 
     <para>
-    If you decide to continue a previously unﬁnished game you can simply choose the <menuchoice><guimenu>Game</guimenu> <guimenuitem>Load...</guimenuitem></menuchoice> menu item (the menu is shown in the screenshot above). A ﬁle chooser should now pop up, use it to select and load the desired savegame ﬁle.
+    If you decide to continue a previously unfinished game you can simply choose the <menuchoice><guimenu>Game</guimenu> <guimenuitem>Load...</guimenuitem></menuchoice> menu item (the menu is shown in the screenshot above). A file chooser should now pop up, use it to select and load the desired savegame file.
     </para>
 
     <para>
@@ -141,7 +141,7 @@
     <title>Playing a game</title>
 
     <para>
-    Now you are ready to play your ﬁrst round of <literal>Go</literal>. If you are not familiar with the rules, we recommend reading the corresponding <ulink url="https://en.wikipedia.org/wiki/Go_(game)">Wikipedia article</ulink> or take <ulink url="http://playgo.to/iwtg/en/">The Interactive Way To <literal>Go</literal></ulink> from Hiroki Mori.
+    Now you are ready to play your first round of <literal>Go</literal>. If you are not familiar with the rules, we recommend reading the corresponding <ulink url="https://en.wikipedia.org/wiki/Go_(game)">Wikipedia article</ulink> or take <ulink url="http://playgo.to/iwtg/en/">The Interactive Way To <literal>Go</literal></ulink> from Hiroki Mori.
     </para>
 
     <para>
@@ -153,7 +153,7 @@
     </para>
 
     <para>
-    You can also check the game information which shows also the previous move and some statistics. A complete move history is also available. If you want to remember in which order the stones on the board where placed, just click the <guibutton>Show move numbers</guibutton> button. If you think that you can’t gain anything by placing another stone, just click <guibutton>Pass Move</guibutton> and let your opponent take his turn. If both players pass, the game can be ﬁnished. Note that ending a <literal>Go</literal> game is always a cooperative step!
+    You can also check the game information which shows also the previous move and some statistics. A complete move history is also available. If you want to remember in which order the stones on the board where placed, just click the <guibutton>Show move numbers</guibutton> button. If you think that you can’t gain anything by placing another stone, just click <guibutton>Pass Move</guibutton> and let your opponent take his turn. If both players pass, the game can be finished. Note that ending a <literal>Go</literal> game is always a cooperative step!
     </para>
 
     <screenshot>
@@ -172,7 +172,7 @@
     <title>Getting a hint</title>
 
     <para>
-    Sometimes it is diﬃcult to decide which move to make. If you want the computer to give you a little hint, just press the <guibutton>Hint</guibutton> button shown in the screenshot below. Now some transparent stones with a number on top should appear. These are actually your recommendations with a score. The score determines how good that move is. Feel free to click on any of the recommended moves or any other free ﬁeld to make set your next stone.
+    Sometimes it is diﬃcult to decide which move to make. If you want the computer to give you a little hint, just press the <guibutton>Hint</guibutton> button shown in the screenshot below. Now some transparent stones with a number on top should appear. These are actually your recommendations with a score. The score determines how good that move is. Feel free to click on any of the recommended moves or any other free field to make set your next stone.
     </para>
 
     <screenshot>
@@ -421,29 +421,29 @@
     <title>Game Configuration</title>
 
     <para>
-    If you want to change how &kigo; is conﬁgured you can do that by navigating to the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kigo;...</guimenuitem></menuchoice> menu item.
+    If you want to change how &kigo; is configured you can do that by navigating to the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kigo;...</guimenuitem></menuchoice> menu item.
     </para>
 
     <para>
-    You should now see the conﬁguration dialog as shown in the screenshot below. You can reach it also by pressing the key combination <keycombo>&Alt;<keycap>S</keycap></keycombo> followed by <keycombo>&Alt;<keycap>C</keycap></keycombo>.
+    You should now see the configuration dialog as shown in the screenshot below. You can reach it also by pressing the key combination <keycombo>&Alt;<keycap>S</keycap></keycombo> followed by <keycombo>&Alt;<keycap>C</keycap></keycombo>.
     </para>
 
     <para>
-    &kigo; is extremely ﬂexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have diﬀerent actions accessible there. To do this just choose the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure Toolbars...</guimenuitem></menuchoice> menu item. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game ﬁeld you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
+    &kigo; is extremely flexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have different actions accessible there. To do this just choose the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure Toolbars...</guimenuitem></menuchoice> menu item. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game field you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
     </para>
 
     <sect1 id="genconig">
     <title>General Configuration</title>
 
     <para>
-    The most important aspect here is the <literal>Go</literal> engine backend conﬁguration. &kigo; needs a valid backend to function properly. As you can see in the screenshot below, it used &gnugo; by default. The little light next to the engine command shines green if everything works ﬁne. If this is not the case or if you want to use a diﬀerent <literal>Go</literal> backend, you should install a diﬀerent <literal>Go</literal> engine which can speak the <literal>Go</literal> Text Procotol (<acronym>GTP</acronym>) and set its command and parameters accordingly. Details about this step should be found in the corresponding <literal>Go</literal> engine documentation.
+    The most important aspect here is the <literal>Go</literal> engine backend configuration. &kigo; needs a valid backend to function properly. As you can see in the screenshot below, it used &gnugo; by default. The little light next to the engine command shines green if everything works fine. If this is not the case or if you want to use a different <literal>Go</literal> backend, you should install a different <literal>Go</literal> engine which can speak the <literal>Go</literal> Text Protocol (<acronym>GTP</acronym>) and set its command and parameters accordingly. Details about this step should be found in the corresponding <literal>Go</literal> engine documentation.
     </para>
 
     <screenshot>
-        <screeninfo>General conﬁguration</screeninfo>
+        <screeninfo>General configuration</screeninfo>
         <mediaobject>
             <imageobject><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
-            <textobject><phrase>General Conﬁguration.</phrase></textobject>
+            <textobject><phrase>General Configuration.</phrase></textobject>
         </mediaobject>
     </screenshot>
 
