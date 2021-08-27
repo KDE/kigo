@@ -554,7 +554,7 @@ QList<Move> Game::moves(const Player &player)
     if (!player.isValid()) {
         list = m_movesList;
     } else {
-        for (const Move &move : qAsConst(m_movesList)) {
+        for (const Move &move : std::as_const(m_movesList)) {
             if (move.player()->color() == player.color()) {
                 list.append(move);
             }

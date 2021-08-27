@@ -128,7 +128,7 @@ void GameScene::updateStoneItems()
 
     const Stone lastStone = (m_game->moves().size() > 0) ? m_game->lastMove().stone() : Stone::Invalid;
 
-    for (QGraphicsPixmapItem *stoneItem : qAsConst(m_stoneItems)) {  // Clear all stone items
+    for (QGraphicsPixmapItem *stoneItem : std::as_const(m_stoneItems)) {  // Clear all stone items
         removeItem(stoneItem);
     }
     m_stoneItems.clear();
@@ -186,7 +186,7 @@ void GameScene::updateStoneItems()
 
 void GameScene::updateHintItems()
 {
-    for (QGraphicsPixmapItem *item : qAsConst(m_hintItems)) {   // Old hint is invalid, remove it first
+    for (QGraphicsPixmapItem *item : std::as_const(m_hintItems)) {   // Old hint is invalid, remove it first
         removeItem(item);
     }
     m_hintItems.clear();
@@ -229,7 +229,7 @@ void GameScene::updateHintItems()
 
 void GameScene::updateTerritoryItems()
 {
-    for(QGraphicsPixmapItem *item : qAsConst(m_territoryItems)) {  // Old territory is invalid, remove it first
+    for(QGraphicsPixmapItem *item : std::as_const(m_territoryItems)) {  // Old territory is invalid, remove it first
         removeItem(item);
     }
     m_territoryItems.clear();
