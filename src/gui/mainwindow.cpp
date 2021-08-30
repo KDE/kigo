@@ -389,7 +389,8 @@ void MainWindow::setupActions()
 {
     // Game menu
     m_newGameAction = KStandardGameAction::gameNew(this, &MainWindow::newGame, actionCollection());
-    m_loadGameAction = KStandardGameAction::load(this, QOverload<>::of(&MainWindow::loadGame), actionCollection());
+    m_loadGameAction = KStandardGameAction::load(
+        this, qOverload<>(&MainWindow::loadGame), actionCollection());
     m_getMoreGamesAction = new QAction(QIcon::fromTheme( QStringLiteral( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
     actionCollection()->setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
