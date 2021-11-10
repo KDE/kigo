@@ -7,18 +7,31 @@ add_executable(kigo)
 
 target_sources(kigo PRIVATE
     game/game.cpp
+    game/game.h
     game/move.cpp
+    game/move.h
     game/player.cpp
+    game/player.h
     game/score.cpp
+    game/score.h
     game/stone.cpp
+    game/stone.h
     gui/config/generalconfig.cpp
-    gui/mainwindow.cpp
+    gui/config/generalconfig.h
     gui/graphicsview/gamescene.cpp
+    gui/graphicsview/gamescene.h
     gui/graphicsview/gameview.cpp
+    gui/graphicsview/gameview.h
     gui/graphicsview/themerenderer.cpp
+    gui/graphicsview/themerenderer.h
+    gui/mainwindow.cpp
+    gui/mainwindow.h
     gui/widgets/errorwidget.cpp
+    gui/widgets/errorwidget.h
     gui/widgets/gamewidget.cpp
+    gui/widgets/gamewidget.h
     gui/widgets/setupwidget.cpp
+    gui/widgets/setupwidget.h
     main.cpp
 
     kigo.qrc
