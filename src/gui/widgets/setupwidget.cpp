@@ -11,6 +11,7 @@
 
 #include <QFile>
 #include <QIcon>
+#include <QRegExp>
 namespace Kigo {
 
 SetupWidget::SetupWidget(Game *game, QWidget *parent)
