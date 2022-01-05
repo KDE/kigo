@@ -4,6 +4,7 @@
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Kigo</name>
+  <name xml:lang="ar">كاي غو</name>
   <name xml:lang="ca">Kigo</name>
   <name xml:lang="ca-valencia">Kigo</name>
   <name xml:lang="cs">Kigo</name>
@@ -39,6 +40,7 @@
   <name xml:lang="zh-CN">Kigo</name>
   <name xml:lang="zh-TW">Kigo</name>
   <summary>Go Board Game</summary>
+  <summary xml:lang="ar">لعبة غو اللوحية</summary>
   <summary xml:lang="ca">Joc de taula Go</summary>
   <summary xml:lang="ca-valencia">Joc de taula Go</summary>
   <summary xml:lang="cs">Desková hra Go</summary>
@@ -81,6 +83,7 @@
       who alternately place black and white stones (playing pieces, now usually made of
       glass or plastic) on the vacant intersections of a grid of 19x19 lines (9x9 or 13x13 for easier games).
     </p>
+    <p xml:lang="ar">كاي غو هي تطبيق مفتوح المصدر للعبة غو الشهيرة. غو هي لعبة لوحة إستراتيجية للاعبين. يُعرف أيضًا باسم igo (اليابانية) أو Weiqi أو Wei ch'i (صيني) أو baduk (كوري). تشتهر غو بكونها غنيًة بالتعقيد الاستراتيجي على الرغم من قواعدها البسيطة. تعلب اللعبة من قبل لاعبين يضعان بالتناوب أحجارًا سوداء وبيضاء (قطع اللعب، والتي عادة ما تكون مصنوعة من الزجاج أو البلاستيك) على التقاطعات الشاغرة لشبكة من 19 × 19 سطرًا (9 × 9 أو 13 × 13 لألعاب أسهل).</p>
     <p xml:lang="ca">El Kigo és una implementació de codi obert del popular joc Go. El Go és un joc de taula d'estratègia per a dos jugadors. També es coneix com a «igo» (japonès), «weiqi» o «wei ch'i» (xinès) o «baduk» (coreà). El Go destaca per la seva riquesa en la complexitat estratègica malgrat tenir regles senzilles. El joc es juga entre dos jugadors que alternativament situen pedres negres i blanques (peces de joc, ara fetes normalment de vidre o plàstic) a les interseccions lliures d'una quadrícula de 19x19 línies (9x9 o 13x13 per les partides més fàcils).</p>
     <p xml:lang="ca-valencia">El Kigo és una implementació de codi obert del popular joc Go. El Go és un joc de taula d'estratègia per a dos jugadors. També es coneix com a «igo» (japonés), «weiqi» o «wei ch'i» (xinés) o «baduk» (coreà). El Go destaca per la seua riquesa en la complexitat estratègica malgrat tindre regles senzilles. El joc es juga entre dos jugadors que alternativament situen pedres negres i blanques (peces de joc, ara fetes normalment de vidre o plàstic) a les interseccions lliures d'una quadrícula de 19x19 línies (9x9 o 13x13 per les partides més fàcils).</p>
     <p xml:lang="da">Kigo er en open source-implementation af det populære spil Go. Go er et strategisk brætspil for to spillere. Det kendes også som igo (japansk), weigi eller wei ch'i (kinesisk) eller baduk (koreansk). Go er kendt for at være rigt i strategisk kompleksitet trods dets simple regler. Spillet spilles af to spillere som skiftes til at placere sorte og hvide sten (spillebrikker, nu om stunder normalt lavet af glas eller plastik) på ledige krydsninger på et gitter med 19x19 linjer (9x9 eller 13x13 for nemmere spil).</p>
