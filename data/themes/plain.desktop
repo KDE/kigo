@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Plain
+Name[ar]=خالِص
 Name[bg]=Чиста
 Name[bs]=Obični
 Name[ca]=Normal
@@ -48,6 +49,7 @@ Name[x-test]=xxPlainxx
 Name[zh_CN]=纯色
 Name[zh_TW]=樸素
 Description=Plain Kigo theme based on Default theme by Arturo Silva
+Description[ar]=سمة كاي غو خالصة أساسها السمة المبدئية بواسطة Arturo Silva
 Description[bg]=Чиста тема Kigo на основата на подразбиращата се тема от Arturo Silva
 Description[bs]=Plain Kigo tema bazirana na Default temi  Arturo Silva
 Description[ca]=Tema normal del Kigo basat en el tema predeterminat per n'Arturo Silva

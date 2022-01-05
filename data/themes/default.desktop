@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Default
+Name[ar]=المبدئيّ
 Name[be]=Прадвызначаны
 Name[bg]=По подразбиране
 Name[br]=Dre ziouer
@@ -62,6 +63,7 @@ Name[x-test]=xxDefaultxx
 Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Kigo Default theme for KDE 4
+Description[ar]=السمة المبدئية لكاي غو كدي٤
 Description[bg]=Подразбираща се тема Kigo за KDE 4
 Description[bs]=Kigo podrazumjevana tema za KDE 4
 Description[ca]=Tema predeterminat del Kigo per al KDE 4
