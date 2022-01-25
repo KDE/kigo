@@ -19,7 +19,7 @@
 #include <QAction>
 #include <KActionCollection>
 #include <KConfigDialog>
-#include <KNS3/DownloadDialog>
+#include <KNS3/QtQuickDialogWrapper>
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <QIcon>
@@ -142,9 +142,8 @@ bool MainWindow::loadGame(const QString &fileName)
 
 void MainWindow::getMoreGames()
 {
-    KNS3::DownloadDialog dialog(QStringLiteral("kigo-games.knsrc"), this);
-    dialog.exec();
-
+    KNS3::QtQuickDialogWrapper dialog(QStringLiteral("kigo-games.knsrc"));
+    const QList<KNSCore::EntryInternal> entries = dialog.exec();
     /*KNS3::Entry::List entries = dialog.changedEntries();
     if (entries.size() > 0) {
         // do something with the modified entries here if you want
