@@ -19,7 +19,6 @@
 #include <QAction>
 #include <KActionCollection>
 #include <KConfigDialog>
-#include <KNS3/QtQuickDialogWrapper>
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <QIcon>
@@ -138,17 +137,6 @@ bool MainWindow::loadGame(const QString &fileName)
         //Note: New game implied here
         return false;
     }
-}
-
-void MainWindow::getMoreGames()
-{
-    KNS3::QtQuickDialogWrapper dialog(QStringLiteral("kigo-games.knsrc"));
-    const QList<KNSCore::EntryInternal> entries = dialog.exec();
-    /*KNS3::Entry::List entries = dialog.changedEntries();
-    if (entries.size() > 0) {
-        // do something with the modified entries here if you want
-        // such as rescaning your data folder or whatnot
-    }*/
 }
 
 void MainWindow::backendError()
@@ -390,10 +378,9 @@ void MainWindow::setupActions()
     m_newGameAction = KStandardGameAction::gameNew(this, &MainWindow::newGame, actionCollection());
     m_loadGameAction = KStandardGameAction::load(
         this, qOverload<>(&MainWindow::loadGame), actionCollection());
-    m_getMoreGamesAction = new QAction(QIcon::fromTheme( QStringLiteral( "get-hot-new-stuff") ), i18nc("@action", "Get More Games..." ), this);
+    m_getMoreGamesAction = new KNSWidgets::Action(i18nc("@action", "Get More Games..." ), QStringLiteral("kigo-games.knsrc"), actionCollection());
     actionCollection()->setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
-    connect(m_getMoreGamesAction, &QAction::triggered, this, &MainWindow::getMoreGames);
     actionCollection()->addAction( QStringLiteral( "get_more_games" ), m_getMoreGamesAction);
     m_saveAction = KStandardGameAction::save(this, &MainWindow::saveGame, actionCollection());
     KStandardGameAction::quit(this, &QWidget::close, actionCollection());

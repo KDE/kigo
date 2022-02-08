@@ -63,7 +63,7 @@ target_link_libraries(kigo
     KF5::XmlGui
     KF5::KIOWidgets  # KUrlRequester
     KF5::TextWidgets # KPluralHandlingSpinBox
-    KF5::NewStuff
+    KF5::NewStuffWidgets
     KF5::DBusAddons
     KF5::Crash
     Qt${QT_MAJOR_VERSION}::Svg

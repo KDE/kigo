@@ -9,6 +9,8 @@
 
 #include <KXmlGuiWindow>
 
+#include <KNSWidgets/Action>
+
 class QAction;
 class KToggleAction;
 class QDockWidget;
@@ -40,7 +42,6 @@ private Q_SLOTS:
     void newGame();                         ///< Configure new game
     void loadGame();                        ///< Configure loaded game
     bool loadGame(const QString &fileName);
-    void getMoreGames();
     void backendError();                    ///<
     void saveGame();                        ///< Save current game state
     void startGame();                       ///< React on start button
@@ -77,7 +78,7 @@ private:
 
     QAction *m_newGameAction;
     QAction *m_loadGameAction;
-    QAction *m_getMoreGamesAction;
+    KNSWidgets::Action *m_getMoreGamesAction;
     QAction *m_saveAction;                  ///< Action to save the current game
     QAction *m_undoMoveAction;              ///< Action to jump to the last move
     QAction *m_redoMoveAction;              ///< Action to jump to the next move
