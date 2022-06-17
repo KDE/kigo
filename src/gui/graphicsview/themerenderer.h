@@ -10,6 +10,9 @@
 #include <QObject>
 #include <QString>
 
+class KgThemeProvider;
+class KgTheme;
+
 class QSvgRenderer;
 class QPixmap;
 class QPainter;
@@ -72,9 +75,9 @@ public:
      * Load the game theme specified by 'name'. See the correspondig KConfigXT
      * settings file and available themes for details.
      *
-     * @param themeName The name of the theme to load
+     * @param theme the theme to load
      */
-    bool loadTheme(const QString &themeName);
+    void loadTheme(const KgTheme *theme);
 
     /**
      * Renders a specific element of the current SVG theme.
@@ -100,11 +103,13 @@ public:
      */
     QSize elementSize(Element element) const;
 
+    KgThemeProvider *themeProvider() const;
+
 Q_SIGNALS:
-    void themeChanged(const QString &);
+    void themeChanged();
 
 private:
-    QString m_currentTheme;         ///< Holds the current seleted theme
+    KgThemeProvider *m_themeProvider;
     QSvgRenderer *m_renderer;       ///< Converts SVG parts into pixmaps
 };
 

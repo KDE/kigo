@@ -16,14 +16,14 @@
 #include "gui/widgets/setupwidget.h"
 #include "preferences.h"
 
+#include <KgThemeSelector>
+#include <KStandardGameAction>
+
 #include <QAction>
 #include <KActionCollection>
 #include <KConfigDialog>
-#include <KStandardGameAction>
 #include <KToggleAction>
 #include <QIcon>
-#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
-#include <libkdegamesprivate/kgamethemeselector.h>
 
 #include <QDockWidget>
 #include <QFileDialog>
@@ -296,7 +296,8 @@ void MainWindow::showPreferences()
 
     KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));
-    dialog->addPage(new KGameThemeSelector(dialog, Preferences::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Themes"), QStringLiteral("games-config-theme"));
+    dialog->addPage(new KgThemeSelector(ThemeRenderer::self()->themeProvider(), KgThemeSelector::EnableNewStuffDownload),
+                    i18n("Themes"), QStringLiteral("games-config-theme"));
     if (QPushButton *restore = dialog->button(QDialogButtonBox::RestoreDefaults)) {
         restore->hide();
     }
@@ -308,8 +309,6 @@ void MainWindow::applyPreferences()
 {
     //qCDebug(KIGO_LOG) << "Update settings based on changed configuration...";
     m_gameScene->showLabels(Preferences::showBoardLabels());
-
-    ThemeRenderer::self()->loadTheme(Preferences::theme());
 
     if (!isBackendWorking()) {
         backendError();

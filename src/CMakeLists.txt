@@ -59,7 +59,6 @@ ecm_add_app_icon(kigo ICONS ${ICONS_SRCS})
 
 target_link_libraries(kigo
     KF5KDEGames
-    KF5KDEGamesPrivate
     KF5::XmlGui
     KF5::KIOWidgets  # KUrlRequester
     KF5::TextWidgets # KPluralHandlingSpinBox

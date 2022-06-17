@@ -7,25 +7,40 @@
 #include "themerenderer.h"
 #include "preferences.h"
 
+#include <kdegames_version.h>
+#include <KgThemeProvider>
+
 #include <QSvgRenderer>
 #include <QPixmapCache>
-
-#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
-#include <libkdegamesprivate/kgametheme.h>
-
 #include <QPixmap>
 #include <QPainter>
 
 namespace Kigo {
 
 ThemeRenderer::ThemeRenderer()
-    : m_currentTheme()
+    : m_themeProvider(new KgThemeProvider(QByteArray(), this)) // empty config key to disable internal config storage
     , m_renderer(new QSvgRenderer)
 {
     QPixmapCache::setCacheLimit(3 * 1024);
-    if (!loadTheme(Preferences::theme())) {
-        //qCDebug(KIGO_LOG) << "Failed to load any game theme!";
+    m_themeProvider->discoverThemes(
+#if KDEGAMES_VERSION < QT_VERSION_CHECK(7, 4, 0)
+        "appdata",
+#endif
+        QStringLiteral("themes"), // theme file location
+        QStringLiteral("default") // default theme file name
+    );
+    const QByteArray themeIdentifier = Preferences::theme().toUtf8();
+    KgThemeProvider *provider = themeProvider();
+    const QList<const KgTheme *> themes = provider->themes();
+    for (auto* theme : themes) {
+        if (theme->identifier() == themeIdentifier) {
+            provider->setCurrentTheme(theme);
+            loadTheme(theme);
+            break;
+        }
     }
+    connect(m_themeProvider, &KgThemeProvider::currentThemeChanged,
+            this, &ThemeRenderer::loadTheme);
 }
 
 ThemeRenderer::~ThemeRenderer()
@@ -33,40 +48,24 @@ ThemeRenderer::~ThemeRenderer()
     delete m_renderer;
 }
 
-bool ThemeRenderer::loadTheme(const QString &themeName)
+KgThemeProvider *ThemeRenderer::themeProvider() const
 {
-    bool discardCache = !m_currentTheme.isEmpty();
+    return m_themeProvider;
+}
 
-    if (!m_currentTheme.isEmpty() && m_currentTheme == themeName) {
-        //qCDebug(KIGO_LOG) << "Notice: Loading the same theme";
-        return true;        // We don't have to do anything
-    }
-
-    m_currentTheme = themeName;
-
-    KGameTheme theme;
-    if (themeName.isEmpty() || !theme.load(themeName)) {
-        //qCDebug(KIGO_LOG) << "Failed to load theme" << Preferences::theme();
-        //qCDebug(KIGO_LOG) << "Trying to load default";
-        if (!theme.loadDefault()) {
-            return true;
-        }
-
-        discardCache = true;
-        m_currentTheme = QStringLiteral("default");
-    }
-
+void ThemeRenderer::loadTheme(const KgTheme *theme)
+{
     //qCDebug(KIGO_LOG) << "Loading" << theme.graphics();
-    if (!m_renderer->load(theme.graphics())) {
-        return false;
+    if (!m_renderer->load(theme->graphicsPath())) {
+        return;
     }
 
-    if (discardCache) {
-        //qCDebug(KIGO_LOG) << "Discarding cache";
-        QPixmapCache::clear();
-    }
-    Q_EMIT themeChanged(m_currentTheme);
-    return true;
+    Preferences::setTheme(QString::fromUtf8(theme->identifier()));
+    Preferences::self()->save();
+
+    QPixmapCache::clear();
+
+    Q_EMIT themeChanged();
 }
 
 void ThemeRenderer::renderElement(Element element, QPainter *painter, const QRectF &rect) const
