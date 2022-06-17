@@ -16,7 +16,7 @@ set (QT_MIN_VERSION "5.15.0")
 set (KF5_MIN_VERSION "5.90.0")
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED CONFIG)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${ECM_MODULE_PATH} )
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -45,6 +45,14 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 )
 
 find_package(KF5KDEGames 7.3.0 REQUIRED)
+
+find_package(GNUGo QUIET)
+set_package_properties(GNUGo PROPERTIES
+    DESCRIPTION "A go-playing program (engine)"
+    URL "https://www.gnu.org/software/gnugo/"
+    PURPOSE "Used as backend (or any other compatible with the GTP protocol)"
+    TYPE RUNTIME
+)
 
 add_definitions(
     -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
