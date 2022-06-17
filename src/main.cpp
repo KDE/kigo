@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
                         QStringLiteral("yurchor@ukr.net"));
     aboutData.addCredit(i18n("Arturo Silva"), i18n("Default theme designer"),
                         QStringLiteral("jasilva28@gmail.com"));
-    aboutData.setHomepage(QStringLiteral("https://www.kde.org/applications/games/kigo/"));
+    aboutData.setHomepage(QStringLiteral("https://apps.kde.org/kigo"));
     aboutData.setOrganizationDomain(QByteArray("kde.org"));
     aboutData.setDesktopFileName(QStringLiteral("org.kde.kigo"));
 

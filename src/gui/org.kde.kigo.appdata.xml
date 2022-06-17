@@ -120,6 +120,7 @@
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kigo</url>
   <url type="help">https://docs.kde.org/?application=kigo</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kigo&amp;source=appdata</url>
+  <url type="homepage">https://apps.kde.org/kigo</url>
   <screenshots>
     <screenshot type="default">
       <image>https://kde.org/images/screenshots/kigo.png</image>
