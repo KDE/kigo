@@ -35,10 +35,10 @@ ThemeRenderer::ThemeRenderer()
     for (auto* theme : themes) {
         if (theme->identifier() == themeIdentifier) {
             provider->setCurrentTheme(theme);
-            loadTheme(theme);
             break;
         }
     }
+    loadTheme(provider->currentTheme());
     connect(m_themeProvider, &KgThemeProvider::currentThemeChanged,
             this, &ThemeRenderer::loadTheme);
 }
