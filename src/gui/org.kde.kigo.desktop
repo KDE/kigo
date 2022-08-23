@@ -3,7 +3,6 @@ Type=Application
 Icon=kigo
 X-DocPath=kigo/index.html
 Exec=kigo %u -qwindowicon kigo -qwindowtitle %c
-Terminal=false
 Categories=Qt;KDE;Game;BoardGame;
 MimeType=application/x-go-sgf;
 X-DBUS-ServiceName=org.kde.kigo
