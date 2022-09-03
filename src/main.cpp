@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
     aboutData.addCredit(i18n("Arturo Silva"), i18n("Default theme designer"),
                         QStringLiteral("jasilva28@gmail.com"));
     aboutData.setHomepage(QStringLiteral("https://apps.kde.org/kigo"));
-    aboutData.setOrganizationDomain(QByteArray("kde.org"));
     aboutData.setDesktopFileName(QStringLiteral("org.kde.kigo"));
 
     QCommandLineParser parser;
