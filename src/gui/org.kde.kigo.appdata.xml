@@ -127,6 +127,7 @@
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
+  <launchable type="desktop-id">org.kde.kigo.desktop</launchable>
   <provides>
     <binary>kigo</binary>
   </provides>
