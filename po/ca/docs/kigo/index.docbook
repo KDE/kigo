@@ -1,0 +1,990 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>El manual del &kigo;</title>
+
+<authorgroup>
+	<author
+><firstname
+>Sascha</firstname
+> <surname
+>Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>1 de juliol de 2021</date>
+<releaseinfo
+>0.6.2 (KDE Gear 21.04)</releaseinfo>
+<abstract>
+	<para
+>El &kigo; és una implementació de codi obert del popular joc <literal
+>Go</literal
+> (també conegut com <literal
+>Weiqi</literal
+>).</para>
+</abstract>
+<keywordset>
+    <keyword
+>KDE</keyword>
+    <keyword
+>kdegames</keyword>
+    <keyword
+>joc</keyword>
+    <keyword
+>Kigo</keyword>
+    <keyword
+>lògica</keyword>
+    <keyword
+>tauler</keyword>
+    <keyword
+>un jugador</keyword>
+    <keyword
+>dos jugadors</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+    <title
+>Introducció</title>
+
+    <note
+><title
+>Tipus de joc:</title>
+    <para
+>Lògica, tauler</para
+></note>
+
+    <note
+><title
+>Nombre de possibles jugadors:</title>
+    <para
+>Dos</para
+></note>
+
+    <para
+>El &kigo; és una implementació de codi obert del popular joc &nbsp;<literal
+>Go</literal
+> (també conegut com <literal
+>Weiqi</literal
+>). </para>
+
+    <para
+>El <literal
+>Go</literal
+> és un joc de taula d'estratègia per a dos jugadors. També es coneix com <quote
+><literal
+>igo</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> en japonès), <quote
+><literal
+>weiqi</literal
+></quote
+> o <quote
+><literal
+>wei ch'i</literal
+></quote
+> (<foreignphrase lang="zh"
+>圍棋</foreignphrase
+> o <foreignphrase lang="zh"
+>围棋</foreignphrase
+> en xinès), o <quote
+><literal
+>baduk</literal
+></quote
+> (<foreignphrase lang="ko"
+>바둑</foreignphrase
+> en coreà). El <literal
+>Go</literal
+> destaca per ser ric en complexitat estratègica malgrat les seves regles senzilles. </para>
+
+    <para
+>El joc és jugat per dos jugadors que col·loquen alternativament pedres blanques i negres (les peces que juguen, ara generalment fetes de vidre o plàstic) en les interseccions buides d'una quadrícula de 19×19 línies (9x9 o 13x13 línies per a sabors més fàcils). </para>
+
+</chapter>
+
+<chapter id="howto">
+    <title
+>Com jugar</title>
+
+    <note
+><title
+>Objectiu:</title>
+    <para
+>L'objectiu del joc és controlar una part major del tauler que l'oponent. Es capturarà una pedra o un grup de pedres i es retira/n si no té/nen interseccions adjacents buides, el resultat d'estar completament envoltat per les pedres del color oposat.</para
+></note>
+
+    <sect1 id="starting">
+    <title
+>Començar una partida</title>
+
+    <para
+>Quan hàgiu iniciat el &kigo;, tindreu dues opcions per a jugar al meravellós joc <literal
+>Go</literal
+>. Podreu començar una partida nova o continuar amb una anterior. </para>
+
+    <sect2 id="new_game">
+    <title
+>Configurar una partida nova</title>
+
+    <para
+>Quan hàgiu iniciat el &kigo;, hauria d'aparèixer una pantalla semblant a la que es mostra a la captura de pantalla de sota. Allà podreu configurar el nom dels jugadors blanc i negre, i la mida del tauler. Podreu decidir si un o dos jugadors hauran de ser l'ordinador. Si decidiu jugar contra un ordinador, també podreu establir la seva força. Per a iniciar la partida, podeu seleccionar l'element de menú <menuchoice
+><guimenu
+>Joc</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+></menuchoice
+>, fer clic al botó <guibutton
+>Comença la partida</guibutton
+> en el giny acoblat <guilabel
+>Configuració de la partida</guilabel
+> o senzillament prement la tecla <keycap
+>S</keycap
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Pantalla d'una partida nova</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+            <textobject
+><phrase
+>Pantalla d'una partida nova.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="load_game">
+    <title
+>Configurar una partida carregada</title>
+
+    <para
+>Si decidiu continuar amb una partida que no heu acabat, senzillament escolliu l'element de menú <menuchoice
+><guimenu
+>Joc</guimenu
+> <guimenuitem
+>Carrega...</guimenuitem
+></menuchoice
+> (el menú es mostra a la captura de pantalla anterior). Ara hauria d'aparèixer un selector de fitxers, utilitzeu-lo per a seleccionar i carregar el fitxer de partida desada que vulgueu. </para>
+
+    <para
+>Ara hauria d'aparèixer una pantalla semblant a la que es mostra a la captura de pantalla de sota. Si no voleu continuar amb l'últim moviment realitzat, podreu revertir tants moviments com vulgueu. Hauríeu de veure que el tauler canvia a mesura que canvieu el número del moviment actual. La pantalla de configuració també presenta molta informació addicional sobre la partida desada. </para>
+
+    <para
+>Senzillament premeu <guibutton
+>Comença la partida</guibutton
+> per a continuar. </para>
+
+    <screenshot>
+        <screeninfo
+>Pantalla d'una partida carregada</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+            <textobject
+><phrase
+>Pantalla d'una partida carregada.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>També hi ha l'opció de descarregar partides històriques de <literal
+>Go</literal
+> o partides desades pujades per altres usuaris des d'Internet. Senzillament feu clic a l'element de menú <menuchoice
+><guimenu
+>Joc</guimenu
+> <guimenuitem
+>Obtén més partides...</guimenuitem
+></menuchoice
+>. A continuació, es mostrarà un diàleg que permetrà escollir quin contingut descarregar. </para>
+
+    <screenshot>
+        <screeninfo
+>Obtenint partides noves</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
+><phrase
+>Pantalla obtenint partides noves.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Jugar una partida</title>
+
+    <para
+>Ara esteu a punt per a jugar la vostra primera tanda del <literal
+>Go</literal
+>. Si no esteu familiaritzat amb les regles, us recomanem llegir <ulink url="https://en.wikipedia.org/wiki/Go_(game)"
+>aquest article de la Wikipedia</ulink
+> o prendre <ulink url="http://playgo.to/iwtg/en/"
+>The Interactive Way To <literal
+>Go</literal
+></ulink
+> d'en Hiroki Mori. </para>
+
+    <para
+>Fer un moviment és senzill, senzillament feu clic a una de les interseccions en el tauler de <literal
+>Go</literal
+>. Hauríeu de veure un petit punt negre indicant-vos a on deixareu la vostra pedra si feu clic. </para>
+
+    <para
+>El jugador actual pot ser determinat pel cursor, el qual canviarà a una pedra blanca o negra depenent de quin jugador sigui el següent. </para>
+
+    <para
+>També podeu consultar la informació de la partida, la qual també mostra el moviment anterior i algunes estadístiques. També està disponible un complet historial de moviments. Si voleu recordar en quin ordre s'han col·locat les pedres en el tauler, senzillament feu clic al botó <guibutton
+>Mostra els números de moviment</guibutton
+>. Si creieu que no podeu guanyar res col·locant una altra pedra, senzillament feu clic a <guibutton
+>Passa el moviment</guibutton
+> i deixeu que el vostre oponent prengui el seu torn. Si ambdós jugadors passen, la partida pot acabar. Recordeu que finalitzar una partida de <literal
+>Go</literal
+>, sempre és un pas cooperatiu! </para>
+
+    <screenshot>
+        <screeninfo
+>Jugant una partida fresca</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+            <textobject
+><phrase
+>Jugant una partida fresca.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Recordeu que podeu desar la partida actual en qualsevol moment. Feu-ho triant l'element de menú &nbsp;<menuchoice
+><guimenu
+>Joc</guimenu
+> <guimenuitem
+>Desa</guimenuitem
+></menuchoice
+>. </para>
+
+    <sect2 id="hint">
+    <title
+>Obtenir un consell</title>
+
+    <para
+>A vegades és difícil decidir quin moviment fer. Si voleu que l'ordinador us doni un petit consell, senzillament premeu el botó <guibutton
+>Consell</guibutton
+>, es mostra a la captura de pantalla de sota. Ara haurien d'aparèixer unes quantes pedres transparents amb un nombre a sobre. En realitat, aquestes són les vostres recomanacions amb una puntuació. La puntuació determina com és de bo aquest moviment. Sou lliure de fer clic en qualsevol dels moviments recomanats o en qualsevol altre camp lliure per a posar la vostra pròxima pedra. </para>
+
+    <screenshot>
+        <screeninfo
+>Obtenint un consell</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+            <textobject
+><phrase
+>Obtenint un consell.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
+>Les estratègies i consells</title>
+
+    <itemizedlist>
+        <listitem
+><para
+>El <literal
+>Go</literal
+> té més a veure amb el territori circumdant (espai buit) que amb capturar les peces del vostre oponent.</para
+></listitem>
+        <listitem
+><para
+>El territori és més fàcil d'envoltar prop de les cantonades (en els dos costats), després prop de les vores (en els tres costats) i finalment en el centre.</para
+></listitem>
+        <listitem
+><para
+>Al començament de la partida, feu espai entre les vostres peces. Completeu només les línies de tanca quan el vostre oponent comenci a entrar-hi.</para
+></listitem>
+        <listitem
+><para
+>Quan ataqueu, no jugueu pedres sense suport a prop de les pedres del vostre oponent. Tendeixen a ser engolides i el &gnugo; és molt bo en això. Sovint és millor atacar indirectament.</para
+></listitem>
+        <listitem
+><para
+>Per a evitar la captura, un grup de pedres haurà de tenir dos <quote
+>ulls</quote
+> o ser capaç de fer-los si és atacat. Els <quote
+>ulls</quote
+> són espais desconnectats. Penseu en un dònut amb dos forats. El vostre oponent pot envoltar l'exterior, però no pot emplenar els dos forats alhora.</para
+></listitem>
+        <listitem
+><para
+>Sobre el tauler de 19x19 normalment es creen, ataquen o defensen diversos territoris. Haureu de lluitar diverses batalles simultàniament. L'estratègia implica avaluar les fortaleses i debilitats en diverses àrees, i distribuir els vostres moviments entre elles. És millor atacar allà o defensar aquí?</para
+></listitem>
+        <listitem
+><para
+>A mesura que s'emplena el tauler i s'acosta el final de la partida, esdevé important jugar més a prop, rosegant les tanques del vostre oponent o reforçant les vostres. Els petits errors i omissions poden tornar-se molt costosos.</para
+></listitem>
+    </itemizedlist>
+
+    </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Resum de la interfície</title>
+    <sect1 id="menus">
+    <title
+>Els menús del &kigo;</title>
+    <para
+>El &kigo; té les opcions següents: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Inicia una partida nova.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Carrega...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Obre el diàleg estàndard del &kde; Obre un fitxer, per a obrir un fitxer <literal role="extension"
+>.sgf</literal
+> (fitxer de partida del &kigo;), el qual conté una partida desada.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Obtén més partides...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Obre el diàleg <guilabel
+>Obtén les novetats candents</guilabel
+> per a carregar les partides desades per altres usuaris.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Desa</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Desa</action
+> la partida actual.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Comença la partida</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Comença</action
+> una partida nova o la carregada.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Finalitza la partida</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Finalitza</action
+> la partida actual. Cal recordar que finalitzar una partida de &nbsp;<literal
+>Go</literal
+> sempre és un pas cooperatiu.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Surt</action
+> del &kigo;.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Desfés</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Desfà</action
+> la vostra última jugada.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Refés</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Torna a fer</action
+> una jugada que s'ha desfet amb <guimenuitem
+>Desfés</guimenuitem
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Passa el moviment</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Permet <action
+>passar</action
+> d'un moviment.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Consell</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Dona una pista</action
+> mostrant les pedres transparents amb la puntuació.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Mou</guimenu
+> <guimenuitem
+>Mostra els números de moviment</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Commuta</action
+> la visibilitat dels números de moviment.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Acobladors</guisubmenu
+> <guimenuitem
+>Informació</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Mostra o oculta la barra lateral &nbsp;<guilabel
+>Informació</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Acobladors</guisubmenu
+> <guimenuitem
+>Moviments</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Mostra o oculta la barra lateral &nbsp;<guilabel
+>Moviments</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    </variablelist>
+
+    <para
+>De manera addicional, el &kigo; té la configuració comuna al &kde; i els elements dels menús <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu les seccions sobre <ulink url="help:/fundamentals/menus.html#menus-settings"
+>El menú Arranjament</ulink
+> i <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
+>Dreceres</title>
+
+    <para
+>Les dreceres predeterminades són les següents:</para>
+
+    <table>
+        <title
+>Dreceres</title>
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
+>Finalitza la partida actual</entry>
+                <entry
+><keycap
+>F</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Obtén partides noves pujades per altres usuaris</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Ajuda</entry>
+                <entry
+><keycap
+>F1</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Carrega una partida desada</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Proporciona pistes dels moviments possibles</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Passa d'un moviment</entry>
+                <entry
+><keycap
+>P</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Surt</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Torna a fer una jugada que s'ha desfet</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;&Maj;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Desa la partida actual</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Inicia una partida nova</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Comença una partida nova o carregada</entry>
+                <entry
+><keycap
+>S</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Commuta la visibilitat dels números de moviment</entry>
+                <entry
+><keycap
+>N</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Desfà la vostra última jugada</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Ajuda «Què és això?»</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Maj;<keycap
+>F1</keycap
+></keycombo>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
+</chapter>
+
+<chapter id="configuration">
+    <title
+>Configuració del joc</title>
+
+    <para
+>Si voleu canviar la forma en què es configura el &nbsp;&kigo;, podreu fer-ho navegant fins a l'element de menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura el &kigo;...</guimenuitem
+></menuchoice
+>. </para>
+
+    <para
+>Ara hauríeu de veure el diàleg de configuració com es mostra a la captura de pantalla a continuació. També podeu accedir-hi prement la combinació de tecles <keycombo
+>&Alt;<keycap
+>S</keycap
+></keycombo
+> seguida per <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+    <para
+>El &kigo; és extremadament flexible i es pot personalitzar tant com vulgueu. Podeu canviar la posició i la mida de tots els ginys acoblables al costat de l'àrea de joc central. També podeu personalitzar la barra d'eines si voleu tenir-hi diferents accions accessibles. Per a fer això, senzillament escolliu l'element de menú <menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Configura les barres d'eines...</guimenuitem
+></menuchoice
+>. El mateix és possible per a totes les dreceres del joc. Si voleu tenir el màxim espai disponible per al camp de joc, podeu fins i tot ocultar la barra d'eines i la majoria dels ginys acoblats en el menú &nbsp;<guimenu
+>Arranjament</guimenu
+>. </para>
+
+    <sect1 id="genconig">
+    <title
+>Configuració general</title>
+
+    <para
+>L'aspecte més important aquí és la configuració del dorsal del motor de <literal
+>Go</literal
+>. El &kigo; necessita un dorsal vàlid per a funcionar. Com es pot veure a la captura de pantalla a continuació, hem emprat el &gnugo; de manera predeterminada. La petita llum al costat de l'ordre del motor s'il·luminarà en verd si tot funciona correctament. Si aquest no és el cas o voleu utilitzar un dorsal de <literal
+>Go</literal
+> diferent, instal·leu un motor de <literal
+>Go</literal
+> diferent que pugui parlar el Procotol de Text de <literal
+>Go</literal
+> (<acronym
+>GTP</acronym
+>) i establiu la seva ordre i paràmetres en conseqüència. Els detalls sobre aquest pas es troben a la documentació del motor de &nbsp;<literal
+>Go</literal
+> corresponent. </para>
+
+    <screenshot>
+        <screeninfo
+>Configuració general</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+            <textobject
+><phrase
+>Configuració general.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+
+    <sect1 id="configuration-theme">
+    <title
+>Configurar el tema</title>
+
+    <para
+>Aquesta pàgina permet canviar el tema que utilitza el &kigo;. </para>
+
+    <screenshot>
+        <screeninfo
+>Configura el &kigo; - Temes</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>Configurant el tema</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+    <title
+>Crèdits i llicència</title>
+
+    <para
+>&kigo; </para>
+
+    <para
+>Copyright del programa 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Copyright de la documentació &copy; 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Edició de la documentació i conversió a Docbook per en Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+    <para
+>Tema predeterminat dissenyat per n'Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+

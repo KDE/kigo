@@ -1,0 +1,831 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!-- Define an entity for your application if it is not part of KDE
+       CVS -->
+  <!ENTITY kigo "Kigo">
+  <!ENTITY kappname "&kigo;">
+  <!ENTITY package "kdegames"
+><!-- kdebase, kdeadmin, etc.  Leave
+                                     this unchanged if your
+                                     application is not maintained in KDE CVS -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % German "INCLUDE">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>Das Handbuch zu &kigo;</title>
+
+<authorgroup>
+	<author
+><firstname
+>Sascha</firstname
+><surname
+>Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+><firstname
+>Johannes</firstname
+><surname
+>Obermayr</surname
+><affiliation
+><address
+><email
+>johannesobermayr@gmx.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2013-05-06</date>
+<releaseinfo
+>0.5.6 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+	<para
+>&kigo; ist eine quelloffene Umsetzung des sehr bekannten Brettspiels <emphasis
+>Go</emphasis
+> bzw. <emphasis
+>Weigi</emphasis
+>.</para>
+</abstract>
+<keywordset>
+	<keyword
+>KDE</keyword>
+	<keyword
+>KDE-Spiele</keyword
+> <!-- do not change this! -->
+	<keyword
+>Spiel</keyword
+> <!-- do not change this! -->
+	<keyword
+>Kigo</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>Logik</keyword>
+	<keyword
+>Brettspiel</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>Einzelspieler</keyword>
+	<keyword
+>Zwei Spieler</keyword>
+</keywordset>
+</bookinfo>
+
+<!-- The contents of the documentation begin here.  Label
+each chapter so with the id attribute. This is necessary for two reasons: it
+allows you to easily reference the chapter from other chapters of your
+document, and if there is no ID, the name of the generated HTML files will vary
+from time to time making it hard to manage for maintainers and for the CVS
+system. Any chapter labelled (OPTIONAL) may be left out at the author's
+discretion. Other chapters should not be left out in order to maintain a
+consistent documentation style across all KDE apps. -->
+
+<chapter id="introduction">
+    <title
+>Einleitung</title>
+	<note
+><title
+>Spielart:</title
+><para
+>Logikspiel, Brettspiel</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Anzahl der Spieler:</title
+><para
+>Zwei</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<para
+>&kigo; ist eine quelloffene Umsetzung des sehr bekannten Brettspiels <emphasis
+>Go</emphasis
+> bzw. <emphasis
+>Weigi</emphasis
+>.</para>
+	<para
+><emphasis
+>Go</emphasis
+> ist ein strategisches Brettspiel für zwei Spieler und wird auch als <emphasis
+>igo</emphasis
+> (japanisch), <emphasis
+>weigi</emphasis
+>, <emphasis
+>wei ch'i</emphasis
+> (chinesisch) oder <emphasis
+>baduk</emphasis
+> (koreanisch) bezeichnet. Es wird trotz seiner einfachen Regeln als reichhaltig in der strategischen Komplexität bezeichnet. </para>
+
+	<para
+>Die beiden Spieler legen abwechselnd die schwarzen bzw. weißen Steine (heutzutage aus Glas oder Kunststoff) auf den freien Schnittpunkten eines Rasters mit 19 x 19 Linien (9 x 9 oder 13 x 13 bei den einfacheren Arten). </para>
+<!-- The introduction chapter contains a brief introduction for the
+application that explains what it does and where to report
+problems. Basically a long version of the abstract.  Don't include a
+revision history. (see installation appendix comment) -->
+</chapter>
+
+<chapter id="howto">
+    <title
+>Spielanleitung</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Spielziel:</title>
+	<para
+>Das Spielziel besteht darin, dass der Spieler einen größeren Teil des Spielfelds als der Gegner kontrolliert. Ein Stein bzw. eine Gruppe von Steinen wird erobert und entfernt, sobald sich keine freie Schnittpunkte mehr darum befinden, d. h., dass vollständig von gegnerischen Steinen eingeschlossen ist.</para
+></note
+><!--Describe the objective of the game.-->
+    <sect1 id="starting">
+    <title
+>Spiel starten</title>
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>Beim Aufruf von &kigo; kann ein neues <emphasis
+>Go</emphasis
+>-Spiel begonnen oder ein bereits begonnenes fortgesetzt werden.</para>
+
+    <sect2 id="new_game">
+    <title
+>Neues Spiel einrichten</title>
+      <para
+>Beim Start von &kigo; sollte ein Fenster angezeigt werden, das dem unten angezeigtem Bildschirmfoto ähnlich ist. In diesem können die Namen des weißen und schwarzen Spielers sowie die Spielfeldgröße festgelegt werden. Des Weiteren kann festgelegt werden, ob es sich bei den Spielern um menschliche oder Computerspieler handelt. Bei den Computerspielern kann zudem deren Spielstärke gewählt werden. Das Spiel kann anschließend über das Menü <menuchoice
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Spiel starten</guimenuitem
+></menuchoice
+>, den Knopf <guibutton
+>Spiel starten</guibutton
+> im <emphasis
+>Einrichtungsfenster</emphasis
+> oder durch Drücken der Taste <keycap
+>S</keycap
+> gestartet werden. </para>
+      <screenshot>
+      <screeninfo
+>Einrichtungsfenster für ein neues Spiel</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+      <textobject
+><phrase
+>Einrichtungsfenster für ein neues Spiel.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+     <sect2 id="load_game">
+     <title
+>Geladenes Spiel einrichten</title>
+      <para
+>Ein gespeichertes, bereits begonnenes Spiel kann über das Menü <menuchoice
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Laden ...</guimenuitem
+></menuchoice
+> geladen und fortgesetzt werden (siehe oberes Bildschirmfoto). Ein Dialog zur Dateiauswahl sollte nun erscheinen, sodass die Datei des gewünschten Spiels gewählt und geladen werden kann. </para>
+
+      <para
+>Nun sollte ein Fenster angezeigt werden, das dem unten angezeigtem Bildschirmfoto ähnlich ist. Es können alle bereits gespielten Spielzüge zurückgenommen werden, sodass das Spiel in jedem bisherigen Status fortgesetzt werden kann. Das angezeigte Spielfeld verändert sich mit jeder Änderung der Nummer des Spielzuges. Das Fenster gibt zudem weitere Informationen zum gespeicherten Spiel. </para>
+
+      <para
+>Durch Drücken von <guibutton
+>Spiel starten</guibutton
+> wird das Spiel im ausgewählten Status fortgesetzt. </para>
+      <screenshot>
+      <screeninfo
+>Einrichtungsfenster für ein geladenes Spiel</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+      <textobject
+><phrase
+>Einrichtungsfenster für ein geladenes Spiel.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+
+      <para
+>Zusätzlich können historische <emphasis
+>Go</emphasis
+>- oder hochgeladene gespeicherte Spiele anderer Benutzer über das Menü <menuchoice
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Spielpakete herunterladen ...</guimenuitem
+></menuchoice
+> vom Internet heruntergeladen werden. Es wird ein Dialog zum Auswählen und Herunterladen der gewünschten Inhalte aufgerufen. </para>
+      <screenshot>
+      <screeninfo
+>Fenster zum Herunterladen von Spielpaketen</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG"
+fileref="get-new-games.png"/></imageobject>
+      <textobject
+><phrase
+>Fenster zum Herunterladen von Spielpaketen</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Spielablauf</title>
+      <para
+>Das erste <emphasis
+>Go</emphasis
+>-Spiel kann nun gestartet werden. Sollten die Regeln nicht bekannt sein, können sie im <ulink url="http://de.wikipedia.org/wiki/Go_(Spiel)"
+>Wikipedia-Artikel</ulink
+> oder auf <ulink url="http://www.dgob.de/index.htm?einfuehrung/goregeln1.htm"
+>www.dgob.de</ulink
+> nachgelesen werden. </para>
+
+      <para
+>Ein Spielzug ist durch einen Mausklick auf die Schnittpunkte des <emphasis
+>Go</emphasis
+>-Spielbretts auf einfachste Art und Weise möglich. Hierzu wird zunächst ein kleiner schwarzer Punkt angezeigt, um zu verdeutlichen, wo der Stein nach dem Mausklick platziert wird. </para>
+
+      <para
+>Der aktuelle Spieler kann durch den Mauszeiger bestimmt werden. Hierzu nimmt er eine schwarze oder weiße Farbe an - je nachdem welcher Spieler am Zug ist. </para>
+
+      <para
+>Es können auch die Informationen zum letzten Spielzug und anderen Statistiken angezeigt werden. Ein vollständiger Verlauf aller Spielzüge ist ebenfalls vorhanden. Bei welchem Spielzug der jeweilige Stein gelegt worden ist, kann über <guibutton
+>Spielzug-Nummern anzeigen</guibutton
+> angezeigt werden. Sollte das Legen eines neuen Steins nicht weitere positive Auswirkungen haben, so kann der Spielzug mittels <guibutton
+>Aussetzen</guibutton
+> übersprungen werden. Wenn beide Spieler <emphasis
+>aussetzen</emphasis
+>, kann das Spiel beendet werden.  Hierbei ist zu beachten, dass es sich beim Beenden eines <emphasis
+>Go</emphasis
+>-Spiels immer um einen kooperativen Schritt handelt. </para>
+      <screenshot>
+      <screeninfo
+>Ein neues Spiel starten</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+      <textobject
+><phrase
+>Ein neues Spiel starten.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+      <para
+>Beachtet werden sollte, dass das Spiel zu jeder Zeit mit dem aktuellen Status über das Menü <menuchoice
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Speichern</guimenuitem
+></menuchoice
+> gespeichert werden kann. </para>
+
+	<sect2 id="hint">
+	<title
+>Einen Tipp einholen</title>
+	<para
+>Manchmal fällt die Entscheidung für den nächsten Spielzug etwas schwerer. Der im unteren Bildschirmfoto gezeigte Knopf <guibutton
+>Tipp</guibutton
+> veranlasst den Computer Spielzüge vorzuschlagen. Es sollten nun ein paar durchsichtige Steine mit darüberstehenden Nummern erscheinen. Die Nummern dieser Vorschläge bestimmen die Güte des Spielzugs. Es kann nun einer dieser vorgeschlagenen oder ein eigener Spielzug vollzogen werden. </para>
+      <screenshot>
+      <screeninfo
+>Einen Vorschlag eines Spielzugs einholen</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+      <textobject
+><phrase
+>Einen Vorschlag eines Spielzugs einholen.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+      </sect2>
+      </sect1>
+
+      <sect1 id="strattips">
+      <title
+>Spielstrategien und Tipps</title>
+      <itemizedlist>
+      <listitem
+><para
+>In <emphasis
+>Go</emphasis
+> geht es mehr um das Umschließen von (leeren) Gebieten als das Erobern der Steine der Gegner.</para
+></listitem>
+      <listitem
+><para
+>Die Gebiete können am einfachsten an den Ecken (zwei Seiten), den Seiten (drei Seiten) und schließlich im Inneren des Spielfelds umschlossen werden.</para
+></listitem>
+      <listitem
+><para
+>Zu Beginn sollten die Stücke über das gesamte Spielbrett verteilt und mit dem Bau der Zaunlinien erst nach Umschließungsversuchen des Gegners begonnen werden.</para
+></listitem>
+      <listitem
+><para
+>Beim Angriff sollten ungesicherte Steine direkt neben den Steinen des Gegners nicht gespielt werden. In der Regel werden diese von <emphasis
+>GnuGo</emphasis
+> geschluckt. Der indirekte Angriff ist deshalb oftmals besser.</para
+></listitem>
+      <listitem
+><para
+>Zur Vermeidung von Verlusten durch Eroberungen muss eine Gruppe von Steinen zwei <emphasis
+>Augen</emphasis
+> besitzen oder bei einem Angriff erhalten. <emphasis
+>Augen</emphasis
+> sind getrennte Leerräume. Ein Pfannkuchen mit zwei Löchern dient hierzu zur Verdeutlichung. Der Gegner kann das Äußere umschließen, jedoch die beiden inneren Löcher nicht mit einem Spielzug füllen.</para
+></listitem>
+      <listitem
+><para
+>Auf dem Spielbrett mit einer Kantenlänge von 19 x 19 werden typischerweise zwei Gebiete zum verteidigen bzw. angreifen geschaffen. Es werden mehrere Kämpfe gleichzeitig geführt. Die Strategie besteht in der Bewertung der Stärken und Schwächen in den verschiedenen Gebieten und der Zuteilung der Spielzüge zwischen ihnen. Ist hier der Angriff oder die Verteidigung besser?</para
+></listitem>
+      <listitem
+><para
+>Beim Auffüllen des Spielbretts zu Spielende ist eine möglichst enge Spielweise, <emphasis
+>Ansägen</emphasis
+> der gegnerischen oder Verstärkung der eigenen Zäune geboten. Kleine Fehler und Versäumnisse können teuer zu stehen sein.</para
+></listitem>
+      </itemizedlist>
+      </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Benutzeroberfläche</title
+> <!-- do not change this! -->
+<sect1 id="menus">
+<title
+>Menü</title>
+<para
+>&kigo; verwendet das Standardmenü von &kde; sowie ergänzend die nachstehenden:</para>
+		<variablelist>
+			<varlistentry  id="game-menu-get-more">
+				<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl; <keycap
+>G</keycap
+></keycombo
+></shortcut
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Spielpakete herunterladen ...</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Öffnet den &kde;-Standarddialog „Neue Erweiterungen herunterladen“, damit gespeicherte Spiele anderer Benutzer heruntergeladen werden können.</action
+></para
+></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-start">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Spiel starten</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Startet das neue bzw. gewählte Spiel.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-finish">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Spiel beenden</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Beendet das aktuelle Spiel. Hierbei ist zu beachten, dass es sich beim Beenden eines <emphasis
+>Go</emphasis
+>-Spiels immer um einen kooperativen Schritt handelt.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-pass">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+><guimenu
+>Zug</guimenu
+><guimenuitem
+>Aussetzen</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Der Spielzug wird ausgesetzt und der andere Spieler ist am Zug.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-hint">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+><guimenu
+>Zug</guimenu
+><guimenuitem
+>Tipp</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><emphasis
+>Tipps</emphasis
+> für den nächsten Spielzug werden angezeigt. Dies geschieht durch Einblenden durchsichtiger Steine mit Bewertung.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-numbers">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+><guimenu
+>Zug</guimenu
+><guimenuitem
+>Spielzug-Nummern anzeigen</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Zeigt die Spielzug-Nummern an bzw. blendet sie aus.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-hide-docker">
+				<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guisubmenu
+>Anzeigen</guisubmenu
+><guimenuitem
+>Spielzüge</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Zeigt die Anzeige für die Spielzüge an bzw. blendet sie aus.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-settings">
+				<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kappname; einrichten ...</guimenuitem
+>  </menuchoice
+></term>
+				<listitem
+><para
+>Öffnet den Dialog zum Einrichten von &kappname;. Weitere Informationen hierzu können dem Abschnitt <link linkend="configuration"
+>Spieleinstellungen</link
+> entnommen werden.</para
+></listitem>
+			</varlistentry>
+		</variablelist>
+<para
+>Zusätzlich hat &kappname; die bekannten &kde;-Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Einstellungen</ulink
+> und <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Kurzbefehle</title>
+  <para
+>Folgende Tastenkürzel sind als Standard voreingestellt:</para>
+
+  <table>
+  <title
+>Kurzbefehle</title>
+  <tgroup cols="2">
+  <tbody>
+  <row>
+    <entry
+>Das aktuelle Spiel abbrechen</entry>
+    <entry
+><keycap
+>F</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Von anderen Benutzern zur Verfügung gestellte Spiele herunterladen</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Hilfe</entry>
+    <entry
+><keycap
+>F1</keycap
+></entry>
+   </row>
+  <row>
+    <entry
+>Ein gespeichertes Spiel laden</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Einen Spielzug aussetzen</entry>
+    <entry
+><keycap
+>P</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Beenden</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Den zuletzt zurückgenommenen Spielzug wiederherstellen</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Das aktuelle Spiel speichern</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Ein neues Spiel starten</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Ein neues oder geladenes Spiel starten</entry>
+    <entry
+><keycap
+>S</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Anzeigen bzw. Ausblenden der Spielzug-Nummern</entry>
+    <entry
+><keycap
+>N</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Den letzten Spielzug zurücknehmen</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+><emphasis
+>Was ist das?</emphasis
+>-Hilfe</entry>
+    <entry>
+    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+    </entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Spieleinstellungen</title
+> <!-- do not change this! -->
+<!--This section describes configuration GUI. If your game is configured using menubar exclusively, please remove this section.-->
+  <para
+>Die Einstellungen von &kigo; können über das Menü <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kigo; einrichten ...</guimenuitem
+></menuchoice
+> geändert werden. </para>
+
+  <para
+>Der unten gezeigte Einrichtungsdialog sollte nun angezeigt werden. Dieser kann auch durch das Tastenkürzel <keycombo
+>&Alt;<keycap
+>E</keycap
+></keycombo
+> mit anschließendem <keycombo
+>&Alt;<keycap
+>R</keycap
+></keycombo
+> aufgerufen werden. </para>
+
+  <para
+>&kigo; kann nahezu grenzenlos an die eigenen Vorstellungen angepasst werden. So können beispielsweise die Positionen und Größen aller <emphasis
+>Anzeigen</emphasis
+> um das Spielfeld, die Werkzeugleisten über das Menü <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>Werkzeugleisten einrichten ...</guimenuitem
+></menuchoice
+> oder auch die Tastenkürzel geändert werden. Um ein möglichst großes Spielfeld zu erhalten, können die <guimenuitem
+>Werkzeugleisten</guimenuitem
+> und <guimenuitem
+>Anzeigen</guimenuitem
+> über das Menü <guimenu
+>Einstellungen</guimenu
+> ausgeblendet werden. </para>
+  <sect1 id="genconig">
+  <title
+>Allgemeine Einstellungen</title>
+    <para
+>Hier werden hauptsächlich die Einstellungen zum <emphasis
+>Go</emphasis
+>-Modul vorgenommen. &kigo; benötigt ein gültiges <emphasis
+>Go</emphasis
+>-Modul zur <emphasis
+>richtigen</emphasis
+> Funktionsweise. Im nachfolgend gezeigten Bildschirmfoto wird das voreingestellte <emphasis
+>GnuGo</emphasis
+> verwendet. Die kleine Anzeige rechts daneben erscheint in grüner Farbe sobald das Modul richtig eingestellt ist. Ist dies nicht der Fall bzw. soll ein anderes <emphasis
+>Go</emphasis
+>-Modul mit Unterstützung des <emphasis
+>GnuGo-Text-Protokolls</emphasis
+> (GTP) verwendet werden, so können die Parameter entsprechend angepasst werden. Nähere Einzelheiten sollten die Dokumentationen der entsprechenden <emphasis
+>Go</emphasis
+>-Module liefern. </para>
+    <screenshot>
+    <screeninfo
+>Fenster der allgemeinen Einstellungen</screeninfo>
+    <mediaobject>
+    <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+    <textobject
+><phrase
+>Fenster der allgemeinen Einstellungen.</phrase
+></textobject>
+    </mediaobject>
+    </screenshot>
+    </sect1>
+    <sect1 id="configuration-theme">
+    <title
+>Designeinstellungen</title>
+    <para
+>Diese Seite ermöglicht das Wechseln des zu verwendenden Designs von &kappname;. </para>
+    <screenshot>
+    <screeninfo
+>&kigo;-Designs einrichten</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="setup-theme.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Designeinstellungen</phrase>
+	  </textobject>
+	</mediaobject>
+    </screenshot>
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+
+<!-- Include credits for the programmers, documentation writers, and
+contributors here. The license for your software should then be included below
+the credits with a reference to the appropriate license file included in the KDE
+distribution. -->
+
+<title
+>Mitwirkende und Lizenz</title>
+
+<para
+>&kigo; </para>
+<para
+>Programm © 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+<para
+>Dokumentation © 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+<para
+>Aufbereitung des Handbuchs: Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+<para
+>Standarddesign: Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Übersetzung: Johannes Obermayr <email
+>johannesobermayr@gmx.de</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+

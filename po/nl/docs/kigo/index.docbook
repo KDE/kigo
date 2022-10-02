@@ -1,0 +1,979 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Dutch "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>Het handboek van &kigo;</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	&Freek.de.Kruijf;&Jaap.Woldringh; 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-07-01</date>
+<releaseinfo
+>0.6.2 (KDE Gear 21.04)</releaseinfo>
+<abstract>
+	<para
+>&kigo; is een open source implementatie van het populaire <literal
+>Go</literal
+> spel (ook bekend als <literal
+>Weiqi</literal
+>).</para>
+</abstract>
+<keywordset>
+    <keyword
+>KDE</keyword>
+    <keyword
+>kdegames</keyword>
+    <keyword
+>spel</keyword>
+    <keyword
+>kigo</keyword>
+    <keyword
+>logica</keyword>
+    <keyword
+>bord</keyword>
+    <keyword
+>één speler</keyword>
+    <keyword
+>twee spelers</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+    <title
+>Inleiding</title>
+
+    <note
+><title
+>Speltype:</title>
+    <para
+>Logisch, bord</para
+></note>
+
+    <note
+><title
+>Aantal mogelijke spelers:</title>
+    <para
+>Twee</para
+></note>
+
+    <para
+>&kigo; is een open source implementatie van het populaire <literal
+>Go</literal
+> spel (ook bekend als Weiqi). </para>
+
+    <para
+><literal
+>Go</literal
+> is een strategisch bordspel voor twee spelers. Het is ook bekend als <quote
+><literal
+>igo</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> in Japans), <quote
+><literal
+>weiqi</literal
+></quote
+> of <quote
+><literal
+>wei ch'i</literal
+></quote
+> (<foreignphrase lang="zh"
+>圍棋</foreignphrase
+> of <foreignphrase lang="zh"
+>围棋</foreignphrase
+> in het Chinees) of <quote
+><literal
+>baduk</literal
+></quote
+> (<foreignphrase lang="ko"
+>바둑</foreignphrase
+> in Koreaans). <literal
+>Go</literal
+> staat bekend om zijn rijkdom in strategische complexiteit ondanks zijn eenvoudige regels. </para>
+
+    <para
+>Het spel wordt gespeeld door twee spelers, die om de beurt zwarte en witte stenen (stukken, nu gewoonlijk van glas of plastic) plaatsen op de lege kruispunten van een rooster van 19x19 lijnen (9x9 of 13x13 in eenvoudiger varianten). </para>
+
+</chapter>
+
+<chapter id="howto">
+    <title
+>Hoe te spelen</title>
+
+    <note
+><title
+>Doel:</title>
+    <para
+>Het doel van het spel is een groter deel van het bord te beheersen dan de tegenstander. Een steen, of een groep stenen, wordt geslagen en van het bord verwijderd als er geen lege aansluitende kruispunten zijn, en dit komt doordat ze geheel omgeven zijn door stenen van de andere kleur. </para
+></note>
+
+    <sect1 id="starting">
+    <title
+>Een spelletje starten</title>
+
+    <para
+>Bij het begin van &kigo; zijn er twee mogelijkheden om het wondermooie spel <literal
+>Go</literal
+> te spelen: een nieuw spel beginnen of verder gaan met een vorig spel. </para>
+
+    <sect2 id="new_game">
+    <title
+>Een nieuw spel beginnen</title>
+
+    <para
+>Bij het starten van  &kigo; ziet u een scherm zoals in het schermbeeld hieronder weergegeven. Hierin kunt u de namen van de beide spelers opgeven, en de grootte van het bord. U kunt ook instellen dat één of beide spelers door de computer worden gespeeld. Als u tegen de computer wilt spelen, kunt u ook de speelsterkte ervan instellen. Het spel kan worden gestart door ofwel menu-item <menuchoice
+><guimenu
+>Spel</guimenu
+> <guimenuitem
+>Nieuw</guimenuitem
+></menuchoice
+> te kiezen en te klikken op de knop <guibutton
+>Spel starten</guibutton
+> in het vastzetwidget <guilabel
+>Spelopzet</guilabel
+> of door eenvoudig de toets <keycap
+>S</keycap
+> in te drukken. </para>
+
+    <screenshot>
+        <screeninfo
+>Nieuw scherm voor het spel</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+            <textobject
+><phrase
+>Nieuw scherm voor het spel</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="load_game">
+    <title
+>Een ingelezen spel instellen</title>
+
+    <para
+>Als u een eerder begonnen spel wilt voortzetten kunt u het menu-item <menuchoice
+><guimenu
+>Spel</guimenu
+> <guimenuitem
+>Laden...</guimenuitem
+></menuchoice
+> (zie het schermbeeld van het menu hierboven) kiezen. Er verschijnt dan een bestandenkiezer, waarin u het gewenste bestand kunt kiezen waarin het gewenste opgeslagen spel zich bevindt. </para>
+
+    <para
+>U ziet nu een scherm dat er uitziet als in het schermbeeld hieronder. Indien u niet verder wilt gaan na de laatste zet, kunt u net zo veel zetten teruggaan als u wenst. U ziet het bord met elke zet terug veranderen. In het instelscherm ziet u ook heel wat bijkomende informatie over het opgeslagen spel. </para>
+
+    <para
+>Druk nu op  <guibutton
+>Spel starten</guibutton
+> om verder te gaan. </para>
+
+    <screenshot>
+        <screeninfo
+>Scherm ingelezen spel</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+            <textobject
+><phrase
+>Scherm ingelezen spel</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Er is ook een optie voor het downloaden vanaf het internet van eerder gespeelde <literal
+>Go</literal
+>-spellen, of spellen die door andere gebruikers zijn opgestuurd. Klik op menu-item <guimenuitem
+>Meer spellen verkrijgen...</guimenuitem
+>. U krijgt een dialoog waarmee u kunt kiezen welke inhoud te downloaden </para>
+
+    <screenshot>
+        <screeninfo
+>Nieuwe spellen ophalen</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
+><phrase
+>Schermbeeld Nieuwe spellen ophalen</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Een spel spelen</title>
+
+    <para
+>U kunt nu uw eerste spel met <literal
+>Go</literal
+> spelen. Indien u de spelregels nog niet kent, kunt u die lezen op <ulink url="http://en.wikipedia.org/wiki/Go_(game)"
+>Wikipedia article</ulink
+> of op <ulink url="http://playgo.to/iwtg/en/"
+>The Interactive Way To <literal
+>Go</literal
+></ulink
+> van  Hiroki Mori. U kunt ook kijken op de site <ulink url="https://www.gobond.nl/leren-op-de-computer"
+>van de Nederlandse Go Bond</ulink
+>. </para>
+
+    <para
+>Een zet doen is eenvoudig. Klik op een van de snijpunten (kruispunten) op het bord van <literal
+>Go</literal
+>. U ziet dan een klein zwart puntje op de plaats waar uw steen wordt geplaatst als u klikt. </para>
+
+    <para
+>De kleur van de muisaanwijzer geeft aan welke speler aan zet is. </para>
+
+    <para
+>U kunt dit ook zien als u de spelinformatie leest met hierin de vorige zet, en wat statistische gegevens. Er is ook een complete geschiedenis beschikbaar. Indien u wilt weten in welke volgorde de stenen op het bord zijn geplaatst, klikt u op de knop <guibutton
+>Zetnummers tonen</guibutton
+>. Indien u denkt dat u niets opschiet met een volgende zet, kunt u op de knop <guibutton
+>Pas</guibutton
+> drukken, waardoor de beurt teruggaat naar uw tegenstander. Indien beide spelers passen, is het spel afgelopen. Merk op dat het beëindigen van een spel <literal
+>Go</literal
+> altijd in overleg gaat. </para>
+
+    <screenshot>
+        <screeninfo
+>Een nieuw spel beginnen</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+            <textobject
+><phrase
+>Een nieuw spel beginnen</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Merk op dat u altijd een huidig spel kunt opslaan. Doe dit met behulp van het menu-item <menuchoice
+><guimenu
+>Spel</guimenu
+> <guimenuitem
+>Opslaan</guimenuitem
+></menuchoice
+>. </para>
+
+    <sect2 id="hint">
+    <title
+>Een hint krijgen</title>
+
+    <para
+>Soms is het lastig een zet te bedenken. Als u een kleine aanwijzing wilt krijgen van de computer, drukt u op de knop <guibutton
+>Hint</guibutton
+>, die te zien is in het schermbeeld hieronder. U ziet dan een paar doorzichtige stenen met een getal erop. Dit zijn dan aanbevelingen voorzien van een score. Aan de score kunt u zien hoe goed de aanbevolen zet is. Klik maar op een van de aanbevolen zetten, of op enig ander vrij veld, voor uw volgende zet.  </para>
+
+    <screenshot>
+        <screeninfo
+>Een hint krijgen</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+            <textobject
+><phrase
+>Een hint krijgen</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
+>Strategieën en tips</title>
+
+    <itemizedlist>
+        <listitem
+><para
+><literal
+>Go</literal
+> is meer een kwestie van het omsingelen van gebied (lege ruimte) dan van het slaan van vijandelijke stenen.</para
+></listitem>
+        <listitem
+><para
+>Gebied kan makkelijker worden omsingeld nabij de hoeken (aan twee zijden), dan aan de randen van het bord (3 zijden) en het moeilijkst in het midden van het bord.</para
+></listitem>
+        <listitem
+><para
+>Bij het begin van het spel kunt u het beste de stukken ver uit elkaar plaatsen. Vul uw verdedigingslijnen pas in als uw tegenstander naar binnen begint te dringen</para
+></listitem>
+        <listitem
+><para
+>Plaats stenen niet apart direct naast die van uw tegenstander als u aanvalt. Die lopen dan gevaar te worden opgeslokt, en daar is &gnugo; erg goed in. Het is vaak beter wat minder direct aan te vallen.</para
+></listitem>
+        <listitem
+><para
+>Om niet te kunnen worden geslagen, moet een groep stenen twee <quote
+>ogen</quote
+> hebben, of die kunnen maken als die groep wordt aangevallen. <quote
+>Ogen</quote
+> zijn ruimten die niet met elkaar zijn verbonden. Denk aan een doughnut met twee gaten. Uw tegenstander kan de buitenkant omsingelen, maar kan niet beide gaten in een keer bezetten.</para
+></listitem>
+        <listitem
+><para
+>Op het 19x19 bord worden typisch diverse gebieden gevormd, aangevallen of verdedigd. U zult verschillende gevechten tegelijk moeten aangaan. De strategie houdt het inschatten in van sterktes en zwakheden in verschillende gebieden, en het verdelen van uw zetten hierover. Is het beter hier aan te vallen of moet je daar verdedigen?</para
+></listitem>
+        <listitem
+><para
+>Als het bord voller wordt, en het eindspel komt dichter bij, wordt het belangrijk wat compacter te spelen, te knagen aan de verdediging van de tegenstander, en die van u zelf te versterken. Kleine foutjes en omissies kunnen u dan duur komen te staan.</para
+></listitem>
+    </itemizedlist>
+
+    </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Overzicht van de interface</title>
+    <sect1 id="menus">
+    <title
+>De menu's van  &kigo;</title>
+    <para
+>&kigo; heeft de volgende opties: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Nieuw</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Start een nieuw spel.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Laden...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Opent de standaard dialoog van &kde; Bestand openen, om een <literal role="extension"
+>.sgf</literal
+> bestand (&kigo; spelbestand) te openen, die een opgeslagen spel opent.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Meer spellen verkrijgen...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Opent de dialoog <guilabel
+>Vers van de pers</guilabel
+> voor het laden van spellen die door een ander zijn opgeslagen.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Opslaan</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Het huidige spel <action
+>opslaan</action
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Spel starten</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Start</action
+> het nieuwe of ingelezen spel.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Spel beëindigen</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Maakt een einde aan</action
+> het huidige spel. Denk er aan dat het eindigen van een spel in <literal
+>Go</literal
+> altijd in overleg gaat.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Game</guimenu
+> <guimenuitem
+>Afsluiten</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>&kigo; <action
+>Afsluiten</action
+>.^</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Zey</guimenu
+> <guimenuitem
+>Ongedaan maken</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Uw laatste zet wordt <action
+>ongedaan gemaakt</action
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Zet</guimenu
+> <guimenuitem
+>Opnieuw</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Een zet waarvoor <guimenuitem
+>Ongedaan maken</guimenuitem
+> is gebruikt wordt <action
+>opnieuw gedaan</action
+>
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Zet</guimenu
+> <guimenuitem
+>Pas</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>U kunt hiermee <action
+>passen</action
+> (uw beurt voorbij laten gaan).</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Zet</guimenu
+> <guimenuitem
+>Hint</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Geeft een aanwijzing</action
+> door het tonen van doorzichtige stenen met daarop een score.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Zet</guimenu
+> <guimenuitem
+>Zetnummers tonen</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Tonen van zetnummers <action
+>aan/uit</action
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Zijbalken</guisubmenu
+> <guimenuitem
+>Informatie</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Toont/verbergt zijbalk met <guilabel
+>Informatie</guilabel
+> .</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
+><menuchoice
+><guimenu
+>Instellingen</guimenu
+> <guisubmenu
+>Zijbalken</guisubmenu
+> <guimenuitem
+>Zetten</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Toont/verbergt zijbalk met <guilabel
+>Zetten</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    </variablelist>
+
+    <para
+>Bovendien heeft &kigo; de gebruikelijke &kde;- <guimenu
+>Instellingen</guimenu
+> en <guimenu
+>Help</guimenu
+> menu's.  Meer informatie vindt u in de secties over het  <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Instellingenmenu</ulink
+> en het <ulink url="help:/fundamentals/menus.html#menus-help"
+>Helpmenu</ulink
+> in de Basisinformatie over &kde;. </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
+>Sneltoetsen</title>
+
+    <para
+>De standaard sneltoetsen zijn:</para>
+
+    <table>
+        <title
+>Sneltoetsen</title>
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
+>Het huidige spel beëindigen</entry>
+                <entry
+><keycap
+>F</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Andere spellen van andere spelers ophalen </entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Help</entry>
+                <entry
+><keycap
+>F1</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Opgeslagen spel inlezen</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Geeft hints over mogelijke zetten</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Passen</entry>
+                <entry
+><keycap
+>P</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Afsluiten</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Een ongedane zet toch doen</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Het huidige spel opslaan</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Een nieuw spel beginnen</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Nieuw of ingelezen spel beginnen</entry>
+                <entry
+><keycap
+>S</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Zichtbaarheid zetnummers aan/uit</entry>
+                <entry
+><keycap
+>N</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Uw laatste zet ongedaan maken</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Help Wat is dit?</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
+</chapter>
+
+<chapter id="configuration">
+    <title
+>Spelconfiguratie</title>
+
+    <para
+>Indien u de instellingen van &kigo; wilt wijzigen, gaat u naar het menu <guimenu
+>Instellingen</guimenu
+> en klikt u op <guimenuitem
+>&kigo; instellen...</guimenuitem
+>. </para>
+
+    <para
+>U ziet nu de configuratiedialoog zoals in het schermbeeld hieronder. U krijgt die ook door te drukken op <keycombo
+>&Alt;<keycap
+>S</keycap
+></keycombo
+> en daarna op <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+    <para
+>&kigo; is erg flexibel en kan naar believen worden aangepast. U kunt de posities en grootte wijzigen van alle beeldelementen (widgets) naast het speelgedeelte in het midden. U kunt ook de werkbalk aanpassen aan wat u daarin beschikbaar wilt hebben. Dit doet u in het menu <guimenu
+>Instellingen</guimenu
+>. Kies hierin <guimenuitem
+>Werkbalken instellen...</guimenuitem
+>.  Dit kunt u ook doen voor alle sneltoetsen in het spel. Als u zo veel mogelijk ruimte voor het speelveld wilt hebben, kunt u zelfs de werkbalk en de meeste zijbalken verbergen in het <guimenu
+>Instellingen</guimenu
+>-menu. </para>
+
+    <sect1 id="genconig">
+    <title
+>Algemene instellingen</title>
+
+    <para
+>Het belangrijkst is hier het instellen van de <literal
+>Go</literal
+>- backend. Om goed te kunnen werken heeft &kigo; een geldige backend nodig. Zoals u in het onderstaande schermbeeld kunt zien wordt standaard &gnugo; gebruikt. Het kleine lampje naast de opdracht is groen als alles goed werkt. Is dit niet het geval, of als u een andere  <literal
+>Go</literal
+>-backend wilt gebruiken, dan moet u een ander <literal
+>Go</literal
+>-backend installeren dat het <literal
+>Go</literal
+> Text Protocol (<acronym
+>GTP</acronym
+>) kent en deze opdracht en parameters instellen. Details hierover vindt u in de bijbehorende documentatie hierover. </para>
+
+    <screenshot>
+        <screeninfo
+>Algemene configuratie</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+            <textobject
+><phrase
+>Algemene configuratie.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+
+    <sect1 id="configuration-theme">
+    <title
+>Thema-instellingen</title>
+
+    <para
+>Deze pagina stelt u in staat het thema van &kigo; te wijzigen. </para>
+
+    <screenshot>
+        <screeninfo
+>&kigo; instellen - thema's</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>Thema-instellingen</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+    <title
+>Dankbetuiging en licentie</title>
+
+    <para
+>&kigo; </para>
+
+    <para
+>Programma copyright 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Documentatie Copyright &copy; 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Documentatie bewerking en conversie naar docbook door Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+    <para
+>Standaard thema ontworpen door Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+&meld.fouten;&vertaling.freek;&vertaling.jaap; &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+

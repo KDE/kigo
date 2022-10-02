@@ -1,0 +1,952 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>Підручник з &kigo;</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>1 липня 2021 року</date>
+<releaseinfo
+>0.6.2 (KDE Gear 21.04)</releaseinfo>
+<abstract>
+	<para
+>&kigo; — є реалізацією популярної гри го (також відомої як вейці) з відкритим кодом.</para>
+</abstract>
+<keywordset>
+    <keyword
+>KDE</keyword>
+    <keyword
+>kdegames</keyword>
+    <keyword
+>гра</keyword>
+    <keyword
+>kigo</keyword>
+    <keyword
+>логічна</keyword>
+    <keyword
+>дошка</keyword>
+    <keyword
+>один гравець</keyword>
+    <keyword
+>два гравці</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+    <title
+>Вступ</title>
+
+    <note
+><title
+>Тип гри:</title>
+    <para
+>Логічна, гра на дошці</para
+></note>
+
+    <note
+><title
+>Можлива кількість гравців:</title>
+    <para
+>Два</para
+></note>
+
+    <para
+>&kigo; — є реалізацією популярної гри го (також відомої як вейці) з відкритим кодом. </para>
+
+    <para
+><literal
+>Го</literal
+> — стратегічна гра, у яку грають два гравці. Іншими назвами гри є <quote
+><literal
+>іго</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> японською), <quote
+><literal
+>вейці</literal
+></quote
+> або <quote
+><literal
+>вей ц'і</literal
+></quote
+> (<foreignphrase lang="zh"
+>圍棋</foreignphrase
+> або <foreignphrase lang="zh"
+>围棋</foreignphrase
+> китайською) або <quote
+><literal
+>бадук</literal
+></quote
+> (<foreignphrase lang="ko"
+>바둑</foreignphrase
+> корейською). Незважаючи на прості правила, го відзначається стратегічною складністю. </para>
+
+    <para
+>У гру грають два гравці, які по черзі кладуть на дошку чорні або білі камінці (фішки гри, які зараз, зазвичай, виготовляють зі скла або пластику) на вільні точки перетину сітки з 19×19 ліній (9x9 або 13x13 ліній для простіших різновидів). </para>
+
+</chapter>
+
+<chapter id="howto">
+    <title
+>Як грати</title>
+
+    <note
+><title
+>Мета:</title>
+    <para
+>Метою гри є встановлення контролю над більшою частиною дошки, ніж частина дошки суперника. Камінь або група каменів вважається захопленою і усувається з дошки, якщо у неї не залишається вільних сусідніх перетинів ліній дошки у результаті оточення каменями протилежного кольору.</para
+></note>
+
+    <sect1 id="starting">
+    <title
+>Початок гри</title>
+
+    <para
+>Після запуску &kigo; ви зможете обрати один з двох варіантів гри у чудове го. Ви можете або розпочати нову гру, або продовжити попередню. </para>
+
+    <sect2 id="new_game">
+    <title
+>Налаштування нової гри</title>
+
+    <para
+>Після запуску ви маєте побачити вікно, подібне до наведеного на знімку нижче. За допомогою цього вікна ви можете вказати імена гравців білими та чорними та розміри дошки. Крім того, ви можете визначитися, чи будуть один або обидва гравці керуватися комп’ютером. Якщо ви вирішите грати проти комп’ютера, ви можете визначити силу комп’ютерного гравця. Якщо ви готові розпочати гру, оберіть пункт <guimenuitem
+>Почати гру</guimenuitem
+> з меню <guimenu
+>Гра</guimenu
+>, натисніть кнопку <guibutton
+>Почати гру</guibutton
+> на панелі <quote
+>Налаштування гри</quote
+> або просто натисніть клавішу <keycap
+>S</keycap
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Вікно нової гри</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+            <textobject
+><phrase
+>Вікно нової гри.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="load_game">
+    <title
+>Налаштування завантаженої гри</title>
+
+    <para
+>Якщо ви вирішите продовжити попередню незавершену гру, ви можете скористатися пунктом <guimenuitem
+>Завантажити...</guimenuitem
+> з меню <guimenu
+>Гра</guimenu
+> (меню показано на знімку вікна наведеному нижче). У відповідь буде відкрито діалогове вікно вибору файла. Скористайтеся цим вікном для вибору і завантаження бажаного файла збереженої гри. </para>
+
+    <para
+>Після цього ви ваше вікно має набути вигляду, подібного на наведений на знімку нижче. Якщо ви не бажаєте продовжувати гру з останнього зі зроблених ходів, ви можете скасувати будь-яку кількість ходів. Зі зміною вами номера ходу змінюватиметься і вигляд дошки. У вікні налаштування ви також знайдете багато додаткових відомостей щодо збереженої гри. </para>
+
+    <para
+>Просто натисніть кнопку <guibutton
+>Почати гру</guibutton
+>, щоб продовжити гру. </para>
+
+    <screenshot>
+        <screeninfo
+>Вікно завантаженої гри</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+            <textobject
+><phrase
+>Вікно завантаженої гри.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Крім того, у програмі передбачено можливість отримання відомих ігор у го або інших ігор, вивантажених іншими користувачами у інтернет. Просто виберіть пункт <guimenuitem
+>Отримати інші ігри...</guimenuitem
+> у меню <guimenu
+>Гра</guimenu
+>. У відповідь програма відкриє діалогове вікно, за допомогою якого ви зможете обрати потрібну вам гру. </para>
+
+    <screenshot>
+        <screeninfo
+>Отримання нових ігор</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
+><phrase
+>Вікно отримання нової гри.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Як гратися</title>
+
+    <para
+>Отже, ви готові до своєї першої гри у го. Якщо ви ще недостатньо знайомі з правилами, рекомендуємо вам ознайомитися з відповідною <ulink url="http://uk.wikipedia.org/wiki/Го_(гра)"
+>статтею у Вікіпедії</ulink
+> або скористатися <ulink url="http://playgo.to/iwtg/en/"
+>інтерактивним способом вивчення го</ulink
+>, автором якого є Хірокі Морі (Hiroki Mori). </para>
+
+    <para
+>Зробити хід дуже просто: наведіть вказівник миші на відповідний перетин ліній сітки і клацніть лівою кнопкою миші. Програма показуватиме маленьку чорну точку у перетині, куди буде покладено ваш камінь після клацання. </para>
+
+    <para
+>Гравця, який робить хід, можна визначити за кольором вказівника, який змінюється залежно від кольору гравця, який робить хід. </para>
+
+    <para
+>Крім того, ви можете ознайомитися з відомостями про гру, де також буде показано попередній хід та деякі статистичні дані. Програма також показуватиме повних журнал ходів. Якщо вам потрібно знати, у якому порядку викладалися камені на дошку, просто натисніть кнопку <guibutton
+>Показати номери ходів</guibutton
+>. Якщо ви вважаєте, що будь-який з варіантів вашого ходу вестиме до програшу, просто натисніть кнопку <guibutton
+>Пропустити хід</guibutton
+> і передайте хід вашому супернику. Якщо хід пропустять обидва гравці, гра вважатиметься завершеною. Зауважте, що завершення гри у го має бути спільним рішенням обох гравців. </para>
+
+    <screenshot>
+        <screeninfo
+>Гра, розпочата з нуля</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+            <textobject
+><phrase
+>Гра, розпочата з нуля</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Зауважте, що ви можете у будь-який момент зберегти поточну гру. Зробити це можна за допомогою пункту <guimenuitem
+>Save</guimenuitem
+> меню <guimenu
+>Гра</guimenu
+>. </para>
+
+    <sect2 id="hint">
+    <title
+>Отримання підказки</title>
+
+    <para
+>Іноді важко визначитися з наступним ходом. Якщо ви бажаєте, щоб комп’ютер зробив вам невеличку підказку, просто натисніть кнопку <guibutton
+>Підказка</guibutton
+>, наведену на знімку вікна нижче. У відповідь на дошці з’явиться декілька прозорих каменів з намальованими числами. Ці камені позначають рекомендовані ходи з їх оцінкою. Оцінка визначає те, наскільки добрим буде хід. Ви можете обрати один з рекомендованих ходів або будь-який інший хід клацанням лівою кнопкою миші у відповідній позиції на дошці. </para>
+
+    <screenshot>
+        <screeninfo
+>Отримання підказки</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+            <textobject
+><phrase
+>Отримання підказки.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
+>Стратегія та поради</title>
+
+    <itemizedlist>
+        <listitem
+><para
+>Мета гравця у го полягає у захопленні території (порожнього місця) на дошці, а не у захопленні фішок суперника.</para
+></listitem>
+        <listitem
+><para
+>Найлегше захопити територію поблизу від кутів дошки (два вільних напрямки), важче — на краях (три вільних напрямки), найважче — у центрі дошки.</para
+></listitem>
+        <listitem
+><para
+>На початку гри намагайтеся розташувати ваші фішки якнайширше. Заповнюйте проміжки у побудовах, лише якщо у побудови втручається суперник.</para
+></listitem>
+        <listitem
+><para
+>Під час атаки не розташовуйте ваші камені без підтримки поряд з каменями суперника. Суперник обов’язково захопить такі камені, &gnugo; робить це дуже добре. Частіше ефективнішою є непряма атака.</para
+></listitem>
+        <listitem
+><para
+>Щоб уникнути захоплення, група каменів повинна мати два «ока» або повинна мати змогу утворити такі «очі» у разі нападу. «Очі» — це не з’єднані пробіли у побудові. Такі групи схожі на пончики з двома дірками. Ваш суперник може оточити подібну групу ззовні, але не зможе заповнити обидва «ока» одночасно.</para
+></listitem>
+        <listitem
+><para
+>На дошці 19x19 зазвичай утворюється декілька окремих ділянок, на яких вам одночасно доведеться вести напад чи захист. Стратегія полягає у оцінці сили або слабкості окремих ділянок і виконанні ходів, які змінять ситуацію у потрібному вами напрямку. Вам доведеться весь час обирати між нападом і захистом.</para
+></listitem>
+        <listitem
+><para
+>З заповненням дошки і наближенням завершення гри, гра стає ще витонченішою: вам доведеться розбивати побудови суперника і підсилювати власні. Незначні помилки та неточності можуть коштувати дуже дорого.</para
+></listitem>
+    </itemizedlist>
+
+    </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Огляд інтерфейсу</title>
+    <sect1 id="menus">
+    <title
+>Меню &kigo;</title>
+    <para
+>У меню &kigo; ви зможете скористатися такими пунктами: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Створити</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Починає нову гру.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Завантажити...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Відкриває стандартне діалогове вікно відкриття файлів &kde;. За допомогою цього вікна можна відкрити файл <literal role="extension"
+>.sgf</literal
+> (файл гри &kigo;), у якому міститься збережена гра.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Отримати інші ігри...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Відкриває стандартне діалогове вікно &kde; для отримання ігор, записаних іншими користувачами.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Зберегти</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Зберегти</action
+> поточну гру.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Почати гру</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Почати</action
+> нову або завантажену гру.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Завершити гру</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Завершити</action
+> поточну гру. Пам’ятайте, що завершення гри у го можливе лише за згоди обох гравців.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Вийти</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Завершити роботу</action
+> &kigo;.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Хід</guimenu
+> <guimenuitem
+>Вернути</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Скасовує</action
+> ваш останній хід.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Хід</guimenu
+> <guimenuitem
+>Повторити</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Повторити</action
+> хід, який раніше було скасовано за допомогою пункту <guimenuitem
+>Вернути</guimenuitem
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Хід</guimenu
+> <guimenuitem
+>Пропустити хід</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Надає вам змогу <action
+>пропустити</action
+> хід.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Хід</guimenu
+> <guimenuitem
+>Підказка</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Показати підказку</action
+> прозорими каменями з оцінкою варіантів ходу.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Хід</guimenu
+> <guimenuitem
+>Показувати номери ходів</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Увімкнути або вимкнути</action
+> показ номерів ходів.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guisubmenu
+>Панелі</guisubmenu
+> <guimenuitem
+>Інформація</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Показати або сховати бічну панель <guilabel
+>Інформація</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+> <guisubmenu
+>Панелі</guisubmenu
+> <guimenuitem
+>Ходи</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Показати або сховати бічну панель <guilabel
+>Ходи</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    </variablelist>
+
+    <para
+>Крім того, у &kigo; передбачено типові для &kde; пункти меню <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Щоб дізнатися більше, ознайомтеся з розділами щодо <ulink url="help:/fundamentals/menus.html#menus-settings"
+>меню «Параметри»</ulink
+> та <ulink url="help:/fundamentals/menus.html#menus-help"
+>меню «Довідка»</ulink
+> підручника з основ роботи у &kde;. </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
+>Клавіатурні скорочення</title>
+
+    <para
+>Типовими скороченнями є</para>
+
+    <table>
+        <title
+>Клавіатурні скорочення</title>
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
+>Завершити поточну гру</entry>
+                <entry
+><keycap
+>F</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Отримати ігри, записані іншими користувачами</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Довідка</entry>
+                <entry
+><keycap
+>F1</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Завантажити збережену гру</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Надати підказки щодо можливих ходів</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Пропустити хід</entry>
+                <entry
+><keycap
+>P</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Завершити роботу програми</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Повторити хід, який раніше було скасовано</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Зберегти поточну гру</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Почати нову гру</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Почати нову або продовжити завантажену гру</entry>
+                <entry
+><keycap
+>S</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Увімкнути чи вимкнути показ номерів ходів</entry>
+                <entry
+><keycap
+>N</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Скасувати ваш останній хід.</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Довідка «Що це?»</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
+</chapter>
+
+<chapter id="configuration">
+    <title
+>Налаштування гри</title>
+
+    <para
+>Якщо ви бажаєте змінити налаштування &kigo;, відкрийте меню <guimenu
+>Параметри</guimenu
+> і оберіть у ньому пункт <guimenuitem
+>Налаштувати &kigo;...</guimenuitem
+>. </para>
+
+    <para
+>У відповідь програма відкриє діалогове вікно налаштування, подібне до наведеного нижче. Відкрити це вікно можна також послідовним натисканням комбінацій клавіш <keycombo
+>&Alt;<keycap
+>А</keycap
+></keycombo
+> та <keycombo
+>&Alt;<keycap
+>K</keycap
+></keycombo
+>. </para>
+
+    <para
+>Оскільки &kigo; є програмою дуже гнучкою у налаштуванні, ви зможете налаштувати її відповідно до будь-яких ваших бажань. Ви можете змінити розташування і розміри всіх панелей навколо центральної ігрової області. Ви також можете налаштувати панель інструментів, розташувавши на ній лише потрібні вам кнопки. Для цього скористайтеся пунктом меню <menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати пенали...</guimenuitem
+></menuchoice
+>. Те саме можна зробити і для всіх клавіатурних скорочень у грі. Якщо вам потрібне максимальне місце для ігрового поля, ви навіть можете сховати панель інструментів та більшість віджетів панелей за допомогою відповідних пунктів меню <guimenu
+>Параметри</guimenu
+>. </para>
+
+    <sect1 id="genconig">
+    <title
+>Загальне налаштування</title>
+
+    <para
+>Найважливішим для гри є налаштування сервера рушія го. Для належної роботи &kigo; потрібне коректний сервер гри. Як можна бачити з наведеного нижче знімка вікна, типово програма використовує сервер GnuGo. Якщо сервер гри працює належним чином, невеличка лампочка поряд з полем команди рушія набуде зеленого кольору. Якщо ця лампочка не набуває зеленого кольору, або ви бажаєте скористатися іншим сервером го, вам слід встановити інший рушій го, яким можна керувати за допомогою GnuGo Text Procotol (GTP) і вказати відповідні команди та параметри. Докладніше про це можна дізнатися з документації відповідного рушія го. </para>
+
+    <screenshot>
+        <screeninfo
+>Загальні налаштування</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+            <textobject
+><phrase
+>Загальні налаштування.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+
+    <sect1 id="configuration-theme">
+    <title
+>Налаштування теми</title>
+
+    <para
+>За допомогою цієї сторінки ви можете змінити тему, яку використовуватиме &kigo;. </para>
+
+    <screenshot>
+        <screeninfo
+>Налаштування &kigo; — Теми</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>Налаштування теми</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+    <title
+>Подяки і ліцензія</title>
+
+    <para
+>&kigo; </para>
+
+    <para
+>Авторські права на програму належать Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+>, ©2009 </para>
+
+    <para
+>Авторські права на документацію до програми належать &copy; 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Редагування документації та перетворення у формат Docbook — Юрій Чорноіван <email
+>yurchor@ukr.net</email
+> </para>
+
+    <para
+>Створення типової теми — Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+

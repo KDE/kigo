@@ -1,0 +1,848 @@
+# Translation of kigo.po into Serbian.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2009, 2010, 2012, 2017.
+# Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2010.
+# Slobodan Simic <slsimic@gmail.com>, 2010.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kigo\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-05-12 03:21+0200\n"
+"PO-Revision-Date: 2017-05-07 21:01+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr@ijekavian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+"X-Generator: Lokalize 1.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Часлав Илић"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "caslav.ilic@gmx.net"
+
+#: game/game.cpp:335
+#, kde-format
+msgctxt "%1 stone coordinate"
+msgid "White %1"
+msgstr "бијели %1"
+
+#: game/game.cpp:338 game/game.cpp:408 gui/mainwindow.cpp:395
+#, kde-format
+msgid "White passed"
+msgstr "бијели пропушта"
+
+#: game/game.cpp:344
+#, kde-format
+msgctxt "%1 stone coordinate"
+msgid "Black %1"
+msgstr "црни %1"
+
+#: game/game.cpp:347 game/game.cpp:410 gui/mainwindow.cpp:397
+#, kde-format
+msgid "Black passed"
+msgstr "црни пропушта"
+
+#: game/game.cpp:417
+#, kde-format
+msgid "White resigned"
+msgstr "бијели одустаје"
+
+#: game/game.cpp:419
+#, kde-format
+msgid "Black resigned"
+msgstr "црни одустаје"
+
+#: game/game.cpp:427
+#, kde-format
+msgctxt "%1 response from Go engine"
+msgid "White %1"
+msgstr "бијели %1"
+
+#: game/game.cpp:429
+#, kde-format
+msgctxt "%1 response from Go engine"
+msgid "Black %1"
+msgstr "црни %1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, backendGroupBox)
+#: gui/config/generalconfig.ui:17
+#, kde-format
+msgid "Backend"
+msgstr "Позадина"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: gui/config/generalconfig.ui:23
+#, kde-format
+msgid "Executable:"
+msgstr "Извршни фајл:"
+
+#. i18n: ectx: property (toolTip), widget (KUrlRequester, engineExecutable)
+#: gui/config/generalconfig.ui:42
+#, kde-format
+msgid "Select the executable file to start the Go engine"
+msgstr "Изаберите извршни фајл за покретање мотора гоа."
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: gui/config/generalconfig.ui:49
+#, kde-format
+msgid "Parameters:"
+msgstr "Параметри:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, engineParameters)
+#: gui/config/generalconfig.ui:62
+#, kde-format
+msgid "Add here the necessary parameters to start the Engine in GTP mode"
+msgstr "Задајте потребне параметре за покретање мотора у ГТП режиму."
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
+#: gui/config/generalconfig.ui:75
+#, kde-format
+msgid "This is the resulting engine command which will be used by Kigo"
+msgstr "Коначна наредба мотора коју ће Киго извршити."
+
+#. i18n: ectx: property (toolTip), widget (KLed, engineLed)
+#: gui/config/generalconfig.ui:94
+#, kde-format
+msgid "Indicates whether the Go engine works correctly"
+msgstr "Указује да ли мотор гоа ради исправно."
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: gui/config/generalconfig.ui:108
+#, kde-format
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Please select a Go engine "
+"that supports the <span style=\" font-style:italic;\">GnuGo Text Protocol "
+"(GTP)</span>. The indicator light turns green when the selected backend is "
+"working.</p></body></html>"
+msgstr ""
+"<html><p>Морате изабрати мотор гоа који подржава <i>текстуални протокол "
+"Гну‑гоа (ГТП)</i>. Лампица показатељ ће постати зелена ако изабрана позадина "
+"функционише.</p></html>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
+#: gui/config/generalconfig.ui:128
+#, kde-format
+msgid "Appearance"
+msgstr "Изглед"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowBoardLabels)
+#: gui/config/generalconfig.ui:137
+#, kde-format
+msgid "Display Board Labels"
+msgstr "Етикете на табли"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: gui/config/generalconfig.ui:144
+#, kde-format
+msgid "Hint Visibility Time:"
+msgstr "Вријеме видљивости савјета:"
+
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, kcfg_HintVisibleTime)
+#: gui/config/generalconfig.ui:163
+#, kde-format
+msgid " Seconds"
+msgstr " секунди"
+
+#. i18n: ectx: Menu (game)
+#: gui/kigoui.rc:9
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Game"
+msgstr "&Игра"
+
+#. i18n: ectx: Menu (move)
+#: gui/kigoui.rc:20
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Move"
+msgstr "&Потез"
+
+#. i18n: ectx: Menu (settings)
+#: gui/kigoui.rc:25
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Settings"
+msgstr "&Подешавање"
+
+#. i18n: ectx: Menu (dockers)
+#: gui/kigoui.rc:27
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Dockers"
+msgstr "&Сидришта"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: gui/kigoui.rc:36
+#, kde-format
+msgctxt "@title:menu"
+msgid "Main Toolbar"
+msgstr "Главна трака"
+
+#. i18n: ectx: ToolBar (moveToolBar)
+#: gui/kigoui.rc:42
+#, kde-format
+msgctxt "@title:menu"
+msgid "Move Toolbar"
+msgstr "Трака потеза"
+
+#: gui/mainwindow.cpp:105
+#, kde-format
+msgid "Set up a new game..."
+msgstr "Поставља се нова партија."
+
+#: gui/mainwindow.cpp:111 gui/mainwindow.cpp:197
+#, kde-format
+msgid "Kigo Game Files (*.sgf)"
+msgstr "Кигоове фајлови позиција (*.sgf)"
+
+#: gui/mainwindow.cpp:148
+#, kde-format
+msgid "Set up a loaded game..."
+msgstr "Поставља се учитана позиција."
+
+#: gui/mainwindow.cpp:151
+#, kde-format
+msgid "Unable to load game..."
+msgstr "Не могу да учитам позицију."
+
+#: gui/mainwindow.cpp:201
+#, kde-format
+msgid "Game saved..."
+msgstr "Позиција сачувана."
+
+#: gui/mainwindow.cpp:203
+#, kde-format
+msgid "Unable to save game."
+msgstr "Не могу да сачувам позицију."
+
+#: gui/mainwindow.cpp:250
+#, kde-format
+msgid "Game started..."
+msgstr "Партија почиње..."
+
+#: gui/mainwindow.cpp:282
+#, kde-format
+msgid "%1 won with a score of %2."
+msgstr "%1 побиједи резултатом %2."
+
+#: gui/mainwindow.cpp:285
+#, kde-format
+msgid "%1 won with a score of %2 (bounds: %3 and %4)."
+msgstr "%1 побиједи резултатом %2 (у границама: %3 и %4)."
+
+#: gui/mainwindow.cpp:293
+#, kde-format
+msgid "Undone move"
+msgstr "Потез опозван"
+
+#: gui/mainwindow.cpp:301
+#, kde-format
+msgid "Redone move"
+msgstr "Потез поновљен"
+
+#: gui/mainwindow.cpp:325
+#, kde-format
+msgid "General"
+msgstr "Опште"
+
+#: gui/mainwindow.cpp:326
+#, kde-format
+msgid "Themes"
+msgstr "Теме"
+
+#: gui/mainwindow.cpp:345
+#, kde-format
+msgid "Backend was changed, restart necessary..."
+msgstr "Промијењена позадина, неопходно поновно покретање..."
+
+#: gui/mainwindow.cpp:407 gui/mainwindow.cpp:409
+#, kde-format
+msgctxt "@action"
+msgid "Get More Games..."
+msgstr "Добави још партија..."
+
+#: gui/mainwindow.cpp:415 gui/mainwindow.cpp:417
+#, kde-format
+msgctxt "@action"
+msgid "Start Game"
+msgstr "Почни партију"
+
+#: gui/mainwindow.cpp:421 gui/mainwindow.cpp:423
+#, kde-format
+msgctxt "@action"
+msgid "Finish Game"
+msgstr "Заврши партију"
+
+#: gui/mainwindow.cpp:431
+#, kde-format
+msgctxt "@action:inmenu Move"
+msgid "Pass Move"
+msgstr "Пропусти потез"
+
+#: gui/mainwindow.cpp:436
+#, kde-format
+msgctxt "@action:inmenu View"
+msgid "Show Move &Numbers"
+msgstr "&Бројеви потеза"
+
+#: gui/mainwindow.cpp:449
+#, kde-format
+msgctxt "@title:window"
+msgid "Game Setup"
+msgstr "Постављање партије"
+
+#: gui/mainwindow.cpp:458 gui/mainwindow.cpp:464
+#, kde-format
+msgctxt "@title:window"
+msgid "Information"
+msgstr "Подаци"
+
+#: gui/mainwindow.cpp:470 gui/mainwindow.cpp:479
+#, kde-format
+msgctxt "@title:window"
+msgid "Moves"
+msgstr "Потези"
+
+# >> @item:inlistbox
+#: gui/mainwindow.cpp:473
+#, kde-format
+msgid "No move"
+msgstr "нема потеза"
+
+#: gui/mainwindow.cpp:484
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "Грешка"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: gui/widgets/errorwidget.ui:21
+#, kde-format
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:8pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Kigo was unable to "
+"find a  Go engine backend.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt;\">If you are sure that you already "
+"installed a suitable Go engine, you might want to configure Kigo to use that "
+"engine. Otherwise you should install a Go engine (like GnuGo).</span></p></"
+"body></html>"
+msgstr ""
+"<html><p>Киго не може да нађе позадину мотора гоа.</p><p>Ако сте сигурни да "
+"је подесан мотор гоа већ инсталиран, можете покушати да подесите Киго да га "
+"користи. У супротном, инсталирајте неки мотор гоа, попут Гну‑гоа.</p></html>"
+
+#. i18n: ectx: property (text), widget (QPushButton, configureButton)
+#: gui/widgets/errorwidget.ui:49
+#, kde-format
+msgid "Configure Kigo..."
+msgstr "Подеси Киго..."
+
+#: gui/widgets/gamewidget.cpp:55 gui/widgets/gamewidget.cpp:60
+#, kde-format
+msgid "Computer (level %1)"
+msgstr "рачунар (ниво %1)"
+
+#: gui/widgets/gamewidget.cpp:63
+#, kde-format
+msgid "%1 Stone"
+msgid_plural "%1 Stones"
+msgstr[0] "%1 камен"
+msgstr[1] "%1 камена"
+msgstr[2] "%1 каменова"
+msgstr[3] "%1 камен"
+
+#: gui/widgets/gamewidget.cpp:80
+#, kde-format
+msgctxt "Indication who played the last move"
+msgid "%1 (white)"
+msgstr "%1 (бијели)"
+
+#: gui/widgets/gamewidget.cpp:82
+#, kde-format
+msgctxt "Indication who played the last move"
+msgid "%1 (black)"
+msgstr "%1 (црни)"
+
+#: gui/widgets/gamewidget.cpp:91
+#, kde-format
+msgid "White's turn"
+msgstr "Бијели на потезу"
+
+#: gui/widgets/gamewidget.cpp:95
+#, kde-format
+msgid "Black's turn"
+msgstr "Црни на потезу"
+
+#: gui/widgets/gamewidget.cpp:100 gui/widgets/gamewidget.cpp:101
+#, kde-format
+msgid "%1 capture"
+msgid_plural "%1 captures"
+msgstr[0] "%1 заробљавање"
+msgstr[1] "%1 заробљавања"
+msgstr[2] "%1 заробљавања"
+msgstr[3] "%1 заробљавање"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: gui/widgets/gamewidget.ui:19 gui/widgets/setupwidget.ui:103
+#, kde-format
+msgid "Handicap:"
+msgstr "Отежање:"
+
+#. i18n: ectx: property (text), widget (QLabel, handicapLabel)
+#: gui/widgets/gamewidget.ui:35
+#, kde-format
+msgid "2"
+msgstr "2"
+
+# well-spelled: Коми
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, komiStaticLabel)
+#: gui/widgets/gamewidget.ui:42 gui/widgets/setupwidget.ui:151
+#: gui/widgets/setupwidget.ui:403
+#, kde-format
+msgid "Komi:"
+msgstr "Коми:"
+
+#. i18n: ectx: property (text), widget (QLabel, komiLabel)
+#: gui/widgets/gamewidget.ui:58
+#, kde-format
+msgid "0.5 Points"
+msgstr "0,5 поена"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: gui/widgets/gamewidget.ui:78
+#, kde-format
+msgid "Last move:"
+msgstr "Последњи потез:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: gui/widgets/gamewidget.ui:101
+#, kde-format
+msgid "Move:"
+msgstr "Потез:"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
+#: gui/widgets/gamewidget.ui:184
+#, kde-format
+msgid "White Player"
+msgstr "Бијели играч"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteCapturesLabel)
+#. i18n: ectx: property (text), widget (QLabel, blackCapturesLabel)
+#: gui/widgets/gamewidget.ui:191 gui/widgets/gamewidget.ui:265
+#, kde-format
+msgid "Captures:"
+msgstr "Заробљено:"
+
+#. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
+#: gui/widgets/gamewidget.ui:233
+#, kde-format
+msgid "Black Player"
+msgstr "Црни играч"
+
+#. i18n: ectx: property (text), widget (QPushButton, finishButton)
+#: gui/widgets/gamewidget.ui:308
+#, kde-format
+msgid "Finish Game"
+msgstr "Заврши партију"
+
+#: gui/widgets/setupwidget.cpp:66
+#, kde-format
+msgid " Stone"
+msgid_plural " Stones"
+msgstr[0] " камен"
+msgstr[1] " камена"
+msgstr[2] " каменова"
+msgstr[3] " камен"
+
+#: gui/widgets/setupwidget.cpp:170
+#, kde-format
+msgctxt "Time limit of a game in minutes"
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] "%1 минут"
+msgstr[1] "%1 минута"
+msgstr[2] "%1 минута"
+msgstr[3] "%1 минут"
+
+#: gui/widgets/setupwidget.cpp:172
+#, kde-format
+msgctxt "Time limit of a game, hours, minutes"
+msgid "%1 hour, %2"
+msgid_plural "%1 hours, %2"
+msgstr[0] "%1 сат, %2"
+msgstr[1] "%1 сата, %2"
+msgstr[2] "%1 сати, %2"
+msgstr[3] "%1 сат, %2"
+
+# >> @item:intext suffix in spinbox, %1 is total number of moves
+#: gui/widgets/setupwidget.cpp:194
+#, kde-format
+msgid " of %1"
+msgstr " од %1"
+
+#: gui/widgets/setupwidget.cpp:237
+#, kde-format
+msgid "White to play"
+msgstr "Бијелог игра"
+
+#. i18n: ectx: property (text), widget (QLabel, playerLabel)
+#: gui/widgets/setupwidget.cpp:239 gui/widgets/setupwidget.ui:448
+#, kde-format
+msgid "Black to play"
+msgstr "Црног игра"
+
+#. i18n: ectx: property (text), widget (QLabel, label_12)
+#: gui/widgets/setupwidget.ui:30
+#, kde-format
+msgid "Board size:"
+msgstr "Величина табле:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeSmall)
+#: gui/widgets/setupwidget.ui:37
+#, kde-format
+msgid "&Tiny (9x9)"
+msgstr "&сићушна (9×9)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
+#: gui/widgets/setupwidget.ui:47
+#, kde-format
+msgid "Small (&13x13)"
+msgstr "&мала (13×13)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
+#: gui/widgets/setupwidget.ui:54
+#, kde-format
+msgid "No&rmal (19x19)"
+msgstr "&нормална (19×19)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
+#: gui/widgets/setupwidget.ui:66
+#, kde-format
+msgid "&Custom:"
+msgstr "&посебна:"
+
+#. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
+#: gui/widgets/setupwidget.ui:126
+#, kde-format
+msgid ""
+"Handicap stones are an advantage for the black player.\n"
+"Black gets a number of stones on the board before the game starts."
+msgstr ""
+"Каменови отежања дају предност црном играчу.\n"
+"Црни добија извесан број каменова на табли пре почетка партије."
+
+#. i18n: ectx: property (specialValueText), widget (KPluralHandlingSpinBox, handicapSpinBox)
+#: gui/widgets/setupwidget.ui:129
+#, kde-format
+msgid "No handicap"
+msgstr "без отежања"
+
+# well-spelled: Коми
+#. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, komiSpinBox)
+#: gui/widgets/setupwidget.ui:171
+#, kde-format
+msgid ""
+"Komi are points given to the white player at the end of the game.\n"
+"It balances out the advantage black has by making the first move."
+msgstr ""
+"Коми су поени који се дају белом играчу на крају партије.\n"
+"Ово уравнотежава предност црног у томе што вуче први потез."
+
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, komiSpinBox)
+#: gui/widgets/setupwidget.ui:174
+#, kde-format
+msgid " Points"
+msgstr " поена"
+
+#. i18n: ectx: property (text), widget (QLabel, eventStaticLabel)
+#: gui/widgets/setupwidget.ui:237
+#, kde-format
+msgid "Event:"
+msgstr "Догађај:"
+
+#. i18n: ectx: property (text), widget (QLabel, locationStaticLabel)
+#: gui/widgets/setupwidget.ui:272
+#, kde-format
+msgid "Location:"
+msgstr "Локација:"
+
+#. i18n: ectx: property (text), widget (QLabel, dateStaticLabel)
+#: gui/widgets/setupwidget.ui:307
+#, kde-format
+msgid "Date:"
+msgstr "Датум:"
+
+#. i18n: ectx: property (text), widget (QLabel, roundStaticLabel)
+#: gui/widgets/setupwidget.ui:339
+#, kde-format
+msgid "Round:"
+msgstr "Рунда:"
+
+#. i18n: ectx: property (text), widget (QLabel, scoreStaticLabel)
+#: gui/widgets/setupwidget.ui:371
+#, kde-format
+msgid "Score:"
+msgstr "Резултат:"
+
+#. i18n: ectx: property (text), widget (QLabel, continueStaticLabel)
+#: gui/widgets/setupwidget.ui:435
+#, kde-format
+msgid "Continue:"
+msgstr "Настави:"
+
+#. i18n: ectx: property (suffix), widget (QSpinBox, startMoveSpinBox)
+#: gui/widgets/setupwidget.ui:467
+#, kde-format
+msgid " of 999"
+msgstr " од 999"
+
+# >> @item:intext prefix in spinbox
+# >> widget-mix: Continue | Move <I> of N | [for White|...]
+#. i18n: ectx: property (prefix), widget (QSpinBox, startMoveSpinBox)
+#: gui/widgets/setupwidget.ui:470
+#, kde-format
+msgid "Move "
+msgstr "Потез "
+
+#. i18n: ectx: property (text), widget (QLabel, timeStaticLabel)
+#: gui/widgets/setupwidget.ui:489
+#, kde-format
+msgid "Time limit:"
+msgstr "Временско ограничење:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, whiteIsComputerCheckBox)
+#: gui/widgets/setupwidget.ui:572
+#, kde-format
+msgid "&Computer"
+msgstr "&Рачунар"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: gui/widgets/setupwidget.ui:595
+#, kde-format
+msgid "&Name:"
+msgstr "&Име:"
+
+# >> @item:inrange weak player
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#. i18n: ectx: property (text), widget (QLabel, label1_3)
+#: gui/widgets/setupwidget.ui:637 gui/widgets/setupwidget.ui:823
+#, kde-format
+msgid "Weak"
+msgstr "слаб"
+
+# >> @item:inrange strong player
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#. i18n: ectx: property (text), widget (QLabel, label2_3)
+#: gui/widgets/setupwidget.ui:656 gui/widgets/setupwidget.ui:804
+#, kde-format
+msgid "Strong"
+msgstr "јак"
+
+#. i18n: ectx: property (text), widget (QCheckBox, blackIsComputerCheckBox)
+#: gui/widgets/setupwidget.ui:742
+#, kde-format
+msgid "C&omputer"
+msgstr "Р&ачунар"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: gui/widgets/setupwidget.ui:762
+#, kde-format
+msgid "Na&me:"
+msgstr "И&ме:"
+
+#. i18n: ectx: property (text), widget (QPushButton, startButton)
+#: gui/widgets/setupwidget.ui:1003
+#, kde-format
+msgid "Start Game"
+msgstr "Почни партију"
+
+#. i18n: ectx: label, entry (EngineCommand), group (Backend)
+#: kigo.kcfg:9
+#, kde-format
+msgid "The current game engine command with (optional) parameters"
+msgstr "Тренутна наредба играчког мотора са (опционим) параметрима"
+
+#. i18n: ectx: label, entry (Theme), group (UserInterface)
+#: kigo.kcfg:20
+#, kde-format
+msgid "The graphical theme to be used"
+msgstr "Жељена графичка тема"
+
+#. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
+#: kigo.kcfg:24
+#, kde-format
+msgid "Determines whether board labels are shown"
+msgstr "Да ли приказивати етикете на табли"
+
+#. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
+#: kigo.kcfg:28
+#, kde-format
+msgid "Move numbers are drawn onto stones if enabled"
+msgstr "Ако је укључено, бројеви потеза се цртају на каменовима"
+
+#. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
+#: kigo.kcfg:32
+#, kde-format
+msgid "Number of seconds for which a hint is visible"
+msgstr "Вријеме у секундама током којег је савет видљив"
+
+#. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
+#: kigo.kcfg:40
+#, kde-format
+msgid "Is black a human player?"
+msgstr "Да ли је црни играч човјек?"
+
+#. i18n: ectx: label, entry (BlackPlayerName), group (Game)
+#: kigo.kcfg:44
+#, kde-format
+msgid "The name of the black player"
+msgstr "Име црног играча"
+
+#. i18n: ectx: label, entry (BlackPlayerStrength), group (Game)
+#: kigo.kcfg:48
+#, kde-format
+msgid "The strength of the black player"
+msgstr "Јачина црног играча"
+
+#. i18n: ectx: label, entry (WhitePlayerHuman), group (Game)
+#: kigo.kcfg:54
+#, kde-format
+msgid "Is white a human player?"
+msgstr "Да ли је бијели играч човјек?"
+
+#. i18n: ectx: label, entry (WhitePlayerName), group (Game)
+#: kigo.kcfg:58
+#, kde-format
+msgid "The name of the white player"
+msgstr "Име бијелог играча"
+
+#. i18n: ectx: label, entry (WhitePlayerStrength), group (Game)
+#: kigo.kcfg:62
+#, kde-format
+msgid "The strength of the white player"
+msgstr "Јачина бијелог играча"
+
+#. i18n: ectx: label, entry (BoardSize), group (Game)
+#: kigo.kcfg:68
+#, kde-format
+msgid "Go board size"
+msgstr "Величина табле за го"
+
+# well-spelled: Коми
+#. i18n: ectx: label, entry (Komi), group (Game)
+#: kigo.kcfg:75
+#, kde-format
+msgid "Komi"
+msgstr "Коми"
+
+# well-spelled: Комијем
+#. i18n: ectx: tooltip, entry (Komi), group (Game)
+#: kigo.kcfg:76
+#, kde-format
+msgid "With komi you can give the black player some extra points"
+msgstr "Комијем можете дати црном играчу додатне поене"
+
+#. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
+#: kigo.kcfg:82
+#, kde-format
+msgid "Extra stones for the black player"
+msgstr "Додатни каменови за црног играча"
+
+#: main.cpp:56
+#, kde-format
+msgid "Kigo"
+msgstr "Киго"
+
+#: main.cpp:57
+#, kde-format
+msgid "KDE Go Board Game"
+msgstr "Игра на табли го за КДЕ"
+
+#: main.cpp:58
+#, kde-format
+msgid "Copyright (c) 2008-2010 Sascha Peilicke"
+msgstr "Ауторска права © 2008–2010 Саша Пајлике"
+
+#: main.cpp:59
+#, kde-format
+msgid "Sascha Peilicke (saschpe)"
+msgstr "Саша Пајлике"
+
+#: main.cpp:59
+#, kde-format
+msgid "Original author"
+msgstr "Првобитни аутор"
+
+#: main.cpp:61
+#, kde-format
+msgid "Yuri Chornoivan"
+msgstr "Јуриј Чорноиван"
+
+# skip-rule: t-editor
+#: main.cpp:61
+#, kde-format
+msgid "Documentation editor"
+msgstr "Уредник документације"
+
+#: main.cpp:63
+#, kde-format
+msgid "Arturo Silva"
+msgstr "Артуро Силва"
+
+#: main.cpp:63
+#, kde-format
+msgid "Default theme designer"
+msgstr "Дизајнер подразумијеване теме"
+
+#: main.cpp:72 main.cpp:73
+#, kde-format
+msgctxt "@info:shell"
+msgid "Game to load (SGF file)"
+msgstr "Игра за учитавање (СГФ фајл)"
+
+#: main.cpp:72
+#, kde-format
+msgctxt "@info:shell"
+msgid "gamefile"
+msgstr "фајл‑позиције"
+
+#: main.cpp:73
+#, kde-format
+msgctxt "@info:shell"
+msgid "[gamefile]"
+msgstr "[фајл‑позиције]"

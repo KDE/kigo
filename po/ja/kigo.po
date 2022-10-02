@@ -1,0 +1,853 @@
+# Translation of kigo into Japanese.
+# Yukiko Bando <ybando@k6.dion.ne.jp>, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kigo\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-04 00:43+0000\n"
+"PO-Revision-Date: 2010-06-30 23:04-0700\n"
+"Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Yukiko Bando"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "ybando@k6.dion.ne.jp"
+
+#: game/game.cpp:317
+#, kde-format
+msgctxt "%1 stone coordinate"
+msgid "White %1"
+msgstr "白 %1"
+
+#: game/game.cpp:320 game/game.cpp:390 gui/mainwindow.cpp:367
+#, kde-format
+msgid "White passed"
+msgstr "白がパス"
+
+#: game/game.cpp:326
+#, kde-format
+msgctxt "%1 stone coordinate"
+msgid "Black %1"
+msgstr "黒 %1"
+
+#: game/game.cpp:329 game/game.cpp:392 gui/mainwindow.cpp:369
+#, kde-format
+msgid "Black passed"
+msgstr "黒がパス"
+
+#: game/game.cpp:399
+#, kde-format
+msgid "White resigned"
+msgstr "白が投了"
+
+#: game/game.cpp:401
+#, kde-format
+msgid "Black resigned"
+msgstr "黒が投了"
+
+#: game/game.cpp:409
+#, kde-format
+msgctxt "%1 response from Go engine"
+msgid "White %1"
+msgstr "白 %1"
+
+#: game/game.cpp:411
+#, kde-format
+msgctxt "%1 response from Go engine"
+msgid "Black %1"
+msgstr "黒 %1"
+
+#. i18n: ectx: property (title), widget (QGroupBox, backendGroupBox)
+#: gui/config/generalconfig.ui:17
+#, kde-format
+msgid "Backend"
+msgstr "バックエンド"
+
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: gui/config/generalconfig.ui:23
+#, kde-format
+msgid "Executable:"
+msgstr "実行ファイル:"
+
+#. i18n: ectx: property (toolTip), widget (KUrlRequester, engineExecutable)
+#: gui/config/generalconfig.ui:42
+#, kde-format
+msgid "Select the executable file to start the Go engine"
+msgstr "囲碁エンジンを開始する実行ファイルを選択します"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: gui/config/generalconfig.ui:49
+#, kde-format
+msgid "Parameters:"
+msgstr "パラメータ:"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, engineParameters)
+#: gui/config/generalconfig.ui:62
+#, kde-format
+msgid "Add here the necessary parameters to start the Engine in GTP mode"
+msgstr "GTP モードでエンジンを開始するために必要なパラメータを追加します"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
+#: gui/config/generalconfig.ui:75
+#, kde-format
+msgid "This is the resulting engine command which will be used by Kigo"
+msgstr "Kigo が使用するエンジンコマンドはこのようになります"
+
+#. i18n: ectx: property (toolTip), widget (KLed, engineLed)
+#: gui/config/generalconfig.ui:94
+#, kde-format
+msgid "Indicates whether the Go engine works correctly"
+msgstr "囲碁エンジンが正しく動作するかどうかを示します"
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#: gui/config/generalconfig.ui:108
+#, kde-format
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Please select a Go engine "
+"that supports the <span style=\" font-style:italic;\">GnuGo Text Protocol "
+"(GTP)</span>. The indicator light turns green when the selected backend is "
+"working.</p></body></html>"
+msgstr ""
+"<html>GTP (GnuGo Text Protocol) をサポートする囲碁エンジンを選択してくださ"
+"い。選択されたバックエンドが正しく動作していればインジケータのライトが緑に変"
+"わります。</html>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
+#: gui/config/generalconfig.ui:128
+#, kde-format
+msgid "Appearance"
+msgstr "外観"
+
+#. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowBoardLabels)
+#: gui/config/generalconfig.ui:137
+#, kde-format
+msgid "Display Board Labels"
+msgstr "碁盤にラベルを表示する"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: gui/config/generalconfig.ui:144
+#, kde-format
+msgid "Hint Visibility Time:"
+msgstr "ヒントの表示時間:"
+
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, kcfg_HintVisibleTime)
+#: gui/config/generalconfig.ui:163
+#, kde-format
+msgid " Seconds"
+msgstr " 秒"
+
+#. i18n: ectx: Menu (game)
+#: gui/kigoui.rc:9
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Game"
+msgstr "ゲーム(&G)"
+
+#. i18n: ectx: Menu (move)
+#: gui/kigoui.rc:20
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Move"
+msgstr "手番(&M)"
+
+#. i18n: ectx: Menu (settings)
+#: gui/kigoui.rc:25
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Settings"
+msgstr "設定(&S)"
+
+#. i18n: ectx: Menu (dockers)
+#: gui/kigoui.rc:27
+#, kde-format
+msgctxt "@title:menu"
+msgid "&Dockers"
+msgstr "パネル(&P)"
+
+#. i18n: ectx: ToolBar (mainToolBar)
+#: gui/kigoui.rc:36
+#, kde-format
+msgctxt "@title:menu"
+msgid "Main Toolbar"
+msgstr "メインツールバー"
+
+#. i18n: ectx: ToolBar (moveToolBar)
+#: gui/kigoui.rc:42
+#, kde-format
+msgctxt "@title:menu"
+msgid "Move Toolbar"
+msgstr "手番ツールバー"
+
+#: gui/mainwindow.cpp:90
+#, kde-format
+msgid "Set up a new game..."
+msgstr "新しいゲームをセットアップ..."
+
+#: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
+#, kde-format
+msgid "Kigo Game Files (*.sgf)"
+msgstr ""
+
+#: gui/mainwindow.cpp:133
+#, kde-format
+msgid "Set up a loaded game..."
+msgstr "読み込んだゲームをセットアップ..."
+
+#: gui/mainwindow.cpp:136
+#, kde-format
+msgid "Unable to load game..."
+msgstr "ゲームを読み込めません..."
+
+#: gui/mainwindow.cpp:174
+#, kde-format
+msgid "Game saved..."
+msgstr "ゲームを保存しました..."
+
+#: gui/mainwindow.cpp:176
+#, kde-format
+msgid "Unable to save game."
+msgstr "ゲームを保存できません。"
+
+#: gui/mainwindow.cpp:223
+#, kde-format
+msgid "Game started..."
+msgstr "ゲーム開始..."
+
+#: gui/mainwindow.cpp:248
+#, fuzzy, kde-format
+#| msgid " (White %1)"
+msgid "%1 (White)"
+msgstr " (白 %1)"
+
+#: gui/mainwindow.cpp:250
+#, fuzzy, kde-format
+#| msgid " (Black %1)"
+msgid "%1 (Black)"
+msgstr " (黒 %1)"
+
+#: gui/mainwindow.cpp:255
+#, kde-format
+msgid "%1 won with a score of %2."
+msgstr ""
+
+#: gui/mainwindow.cpp:258
+#, kde-format
+msgid "%1 won with a score of %2 (bounds: %3 and %4)."
+msgstr ""
+
+#: gui/mainwindow.cpp:266
+#, kde-format
+msgid "Undone move"
+msgstr "手番を元に戻しました"
+
+#: gui/mainwindow.cpp:274
+#, kde-format
+msgid "Redone move"
+msgstr "手番をやり直しました"
+
+#: gui/mainwindow.cpp:298
+#, kde-format
+msgid "General"
+msgstr "全般"
+
+#: gui/mainwindow.cpp:300
+#, kde-format
+msgid "Themes"
+msgstr "テーマ"
+
+#: gui/mainwindow.cpp:317
+#, kde-format
+msgid "Backend was changed, restart necessary..."
+msgstr "バックエンドが変更されました。再起動が必要です。"
+
+#: gui/mainwindow.cpp:380 gui/mainwindow.cpp:382
+#, kde-format
+msgctxt "@action"
+msgid "Get More Games..."
+msgstr "新しいゲームを取得..."
+
+#: gui/mainwindow.cpp:387 gui/mainwindow.cpp:389
+#, kde-format
+msgctxt "@action"
+msgid "Start Game"
+msgstr "ゲームを開始"
+
+#: gui/mainwindow.cpp:393 gui/mainwindow.cpp:395
+#, kde-format
+msgctxt "@action"
+msgid "Finish Game"
+msgstr "ゲームを終了"
+
+#: gui/mainwindow.cpp:403
+#, kde-format
+msgctxt "@action:inmenu Move"
+msgid "Pass Move"
+msgstr "パス"
+
+#: gui/mainwindow.cpp:408
+#, kde-format
+msgctxt "@action:inmenu View"
+msgid "Show Move &Numbers"
+msgstr "手番号を表示(&N)"
+
+#: gui/mainwindow.cpp:421
+#, kde-format
+msgctxt "@title:window"
+msgid "Game Setup"
+msgstr "ゲームのセットアップ"
+
+#: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
+#, kde-format
+msgctxt "@title:window"
+msgid "Information"
+msgstr "情報"
+
+#: gui/mainwindow.cpp:442 gui/mainwindow.cpp:451
+#, kde-format
+msgctxt "@title:window"
+msgid "Moves"
+msgstr "手番"
+
+#: gui/mainwindow.cpp:445
+#, kde-format
+msgid "No move"
+msgstr "なし"
+
+#: gui/mainwindow.cpp:456
+#, kde-format
+msgctxt "@title:window"
+msgid "Error"
+msgstr "エラー"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: gui/widgets/errorwidget.ui:21
+#, kde-format
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:8pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Kigo was unable to "
+"find a  Go engine backend.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt;\">If you are sure that you already "
+"installed a suitable Go engine, you might want to configure Kigo to use that "
+"engine. Otherwise you should install a Go engine (like GnuGo).</span></p></"
+"body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, configureButton)
+#: gui/widgets/errorwidget.ui:49
+#, kde-format
+msgid "Configure Kigo..."
+msgstr "Kigo を設定..."
+
+#: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
+#, fuzzy, kde-format
+#| msgid "Computer (Level %1)"
+msgid "Computer (level %1)"
+msgstr "コンピュータ (レベル %1)"
+
+# 盤上の碁石を数えるときの単位
+#: gui/widgets/gamewidget.cpp:49
+#, fuzzy, kde-format
+#| msgid " Stone"
+#| msgid_plural " Stones"
+msgid "%1 Stone"
+msgid_plural "%1 Stones"
+msgstr[0] " 子"
+msgstr[1] " 子"
+
+#: gui/widgets/gamewidget.cpp:66
+#, fuzzy, kde-format
+#| msgid " (White %1)"
+msgctxt "Indication who played the last move"
+msgid "%1 (white)"
+msgstr " (白 %1)"
+
+#: gui/widgets/gamewidget.cpp:68
+#, fuzzy, kde-format
+#| msgid " (Black %1)"
+msgctxt "Indication who played the last move"
+msgid "%1 (black)"
+msgstr " (黒 %1)"
+
+#: gui/widgets/gamewidget.cpp:77
+#, fuzzy, kde-format
+#| msgid "White's move"
+msgid "White's turn"
+msgstr "白の手番"
+
+#: gui/widgets/gamewidget.cpp:81
+#, fuzzy, kde-format
+#| msgid "Black's move"
+msgid "Black's turn"
+msgstr "黒の手番"
+
+#: gui/widgets/gamewidget.cpp:86 gui/widgets/gamewidget.cpp:87
+#, fuzzy, kde-format
+#| msgid "Captures:"
+msgid "%1 capture"
+msgid_plural "%1 captures"
+msgstr[0] "取り:"
+msgstr[1] "取り:"
+
+#. i18n: ectx: property (text), widget (QLabel, label_5)
+#: gui/widgets/gamewidget.ui:19 gui/widgets/setupwidget.ui:103
+#, kde-format
+msgid "Handicap:"
+msgstr "置き石:"
+
+#. i18n: ectx: property (text), widget (QLabel, handicapLabel)
+#: gui/widgets/gamewidget.ui:35
+#, kde-format
+msgid "2"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, label_4)
+#. i18n: ectx: property (text), widget (QLabel, komiStaticLabel)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#: gui/widgets/gamewidget.ui:42 gui/widgets/setupwidget.ui:151
+#: gui/widgets/setupwidget.ui:403
+#, kde-format
+msgid "Komi:"
+msgstr "コミ:"
+
+# コミの単位
+#. i18n: ectx: property (text), widget (QLabel, komiLabel)
+#: gui/widgets/gamewidget.ui:58
+#, fuzzy, kde-format
+#| msgid " Points"
+msgid "0.5 Points"
+msgstr " 目"
+
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: gui/widgets/gamewidget.ui:78
+#, fuzzy, kde-format
+#| msgid "Black's move"
+msgid "Last move:"
+msgstr "黒の手番"
+
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: gui/widgets/gamewidget.ui:101
+#, fuzzy, kde-format
+#| msgid "Move "
+msgid "Move:"
+msgstr "手番 "
+
+#. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
+#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
+#, kde-format
+msgid "White Player"
+msgstr "白プレイヤー"
+
+#. i18n: ectx: property (text), widget (QLabel, whiteCapturesLabel)
+#. i18n: ectx: property (text), widget (QLabel, blackCapturesLabel)
+#: gui/widgets/gamewidget.ui:191 gui/widgets/gamewidget.ui:265
+#, kde-format
+msgid "Captures:"
+msgstr "取り:"
+
+#. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
+#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
+#, kde-format
+msgid "Black Player"
+msgstr "黒プレイヤー"
+
+#. i18n: ectx: property (text), widget (QPushButton, finishButton)
+#: gui/widgets/gamewidget.ui:308
+#, kde-format
+msgid "Finish Game"
+msgstr "ゲームを終了"
+
+# 盤上の碁石を数えるときの単位
+#: gui/widgets/setupwidget.cpp:53
+#, kde-format
+msgid " Stone"
+msgid_plural " Stones"
+msgstr[0] " 子"
+msgstr[1] " 子"
+
+#: gui/widgets/setupwidget.cpp:157
+#, kde-format
+msgctxt "Time limit of a game in minutes"
+msgid "%1 minute"
+msgid_plural "%1 minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/widgets/setupwidget.cpp:159
+#, kde-format
+msgctxt "Time limit of a game, hours, minutes"
+msgid "%1 hour, %2"
+msgid_plural "%1 hours, %2"
+msgstr[0] ""
+msgstr[1] ""
+
+#: gui/widgets/setupwidget.cpp:181
+#, kde-format
+msgid " of %1"
+msgstr " / %1"
+
+#: gui/widgets/setupwidget.cpp:224
+#, fuzzy, kde-format
+#| msgid "White Player"
+msgid "White to play"
+msgstr "白プレイヤー"
+
+#. i18n: ectx: property (text), widget (QLabel, playerLabel)
+#: gui/widgets/setupwidget.cpp:226 gui/widgets/setupwidget.ui:448
+#, fuzzy, kde-format
+#| msgid "Black Player"
+msgid "Black to play"
+msgstr "黒プレイヤー"
+
+#. i18n: ectx: property (text), widget (QLabel, label_12)
+#: gui/widgets/setupwidget.ui:30
+#, fuzzy, kde-format
+#| msgid "Board Size"
+msgid "Board size:"
+msgstr "碁盤のサイズ"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeSmall)
+#: gui/widgets/setupwidget.ui:37
+#, fuzzy, kde-format
+#| msgid "Tiny (9x9)"
+msgid "&Tiny (9x9)"
+msgstr "ミニ (9x9)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
+#: gui/widgets/setupwidget.ui:47
+#, fuzzy, kde-format
+#| msgid "Small (13x13)"
+msgid "Small (&13x13)"
+msgstr "小 (13x13)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
+#: gui/widgets/setupwidget.ui:54
+#, fuzzy, kde-format
+#| msgid "Normal (19x19)"
+msgid "No&rmal (19x19)"
+msgstr "標準 (19x19)"
+
+#. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
+#: gui/widgets/setupwidget.ui:66
+#, fuzzy, kde-format
+#| msgid "Custom:"
+msgid "&Custom:"
+msgstr "カスタム:"
+
+#. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
+#: gui/widgets/setupwidget.ui:126
+#, kde-format
+msgid ""
+"Handicap stones are an advantage for the black player.\n"
+"Black gets a number of stones on the board before the game starts."
+msgstr ""
+
+#. i18n: ectx: property (specialValueText), widget (KPluralHandlingSpinBox, handicapSpinBox)
+#: gui/widgets/setupwidget.ui:129
+#, fuzzy, kde-format
+#| msgid "Handicap:"
+msgid "No handicap"
+msgstr "置き石:"
+
+#. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, komiSpinBox)
+#: gui/widgets/setupwidget.ui:171
+#, kde-format
+msgid ""
+"Komi are points given to the white player at the end of the game.\n"
+"It balances out the advantage black has by making the first move."
+msgstr ""
+
+# コミの単位
+#. i18n: ectx: property (suffix), widget (QDoubleSpinBox, komiSpinBox)
+#: gui/widgets/setupwidget.ui:174
+#, kde-format
+msgid " Points"
+msgstr " 目"
+
+#. i18n: ectx: property (text), widget (QLabel, eventStaticLabel)
+#: gui/widgets/setupwidget.ui:237
+#, kde-format
+msgid "Event:"
+msgstr "イベント:"
+
+#. i18n: ectx: property (text), widget (QLabel, locationStaticLabel)
+#: gui/widgets/setupwidget.ui:272
+#, kde-format
+msgid "Location:"
+msgstr "場所:"
+
+#. i18n: ectx: property (text), widget (QLabel, dateStaticLabel)
+#: gui/widgets/setupwidget.ui:307
+#, kde-format
+msgid "Date:"
+msgstr "日付:"
+
+#. i18n: ectx: property (text), widget (QLabel, roundStaticLabel)
+#: gui/widgets/setupwidget.ui:339
+#, kde-format
+msgid "Round:"
+msgstr "局:"
+
+#. i18n: ectx: property (text), widget (QLabel, scoreStaticLabel)
+#: gui/widgets/setupwidget.ui:371
+#, kde-format
+msgid "Score:"
+msgstr "スコア:"
+
+#. i18n: ectx: property (text), widget (QLabel, continueStaticLabel)
+#: gui/widgets/setupwidget.ui:435
+#, fuzzy, kde-format
+#| msgid "Continue"
+msgid "Continue:"
+msgstr "続行"
+
+#. i18n: ectx: property (suffix), widget (QSpinBox, startMoveSpinBox)
+#: gui/widgets/setupwidget.ui:467
+#, kde-format
+msgid " of 999"
+msgstr " / 999"
+
+#. i18n: ectx: property (prefix), widget (QSpinBox, startMoveSpinBox)
+#: gui/widgets/setupwidget.ui:470
+#, kde-format
+msgid "Move "
+msgstr "手番 "
+
+#. i18n: ectx: property (text), widget (QLabel, timeStaticLabel)
+#: gui/widgets/setupwidget.ui:489
+#, kde-format
+msgid "Time limit:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, whiteIsComputerCheckBox)
+#: gui/widgets/setupwidget.ui:572
+#, fuzzy, kde-format
+#| msgid "Computer"
+msgid "&Computer"
+msgstr "コンピュータ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_6)
+#: gui/widgets/setupwidget.ui:595
+#, fuzzy, kde-format
+#| msgid "Name"
+msgid "&Name:"
+msgstr "名前"
+
+#. i18n: ectx: property (text), widget (QLabel, label1)
+#. i18n: ectx: property (text), widget (QLabel, label1_3)
+#: gui/widgets/setupwidget.ui:637 gui/widgets/setupwidget.ui:823
+#, kde-format
+msgid "Weak"
+msgstr "弱い"
+
+#. i18n: ectx: property (text), widget (QLabel, label2)
+#. i18n: ectx: property (text), widget (QLabel, label2_3)
+#: gui/widgets/setupwidget.ui:656 gui/widgets/setupwidget.ui:804
+#, kde-format
+msgid "Strong"
+msgstr "強い"
+
+#. i18n: ectx: property (text), widget (QCheckBox, blackIsComputerCheckBox)
+#: gui/widgets/setupwidget.ui:742
+#, fuzzy, kde-format
+#| msgid "Computer"
+msgid "C&omputer"
+msgstr "コンピュータ"
+
+#. i18n: ectx: property (text), widget (QLabel, label_7)
+#: gui/widgets/setupwidget.ui:762
+#, kde-format
+msgid "Na&me:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, startButton)
+#: gui/widgets/setupwidget.ui:1003
+#, kde-format
+msgid "Start Game"
+msgstr "ゲームを開始"
+
+#. i18n: ectx: label, entry (EngineCommand), group (Backend)
+#: kigo.kcfg:10
+#, kde-format
+msgid "The current game engine command with (optional) parameters"
+msgstr "現在のゲームエンジンのコマンドとオプションのパラメータ"
+
+#. i18n: ectx: label, entry (Theme), group (UserInterface)
+#: kigo.kcfg:21
+#, kde-format
+msgid "The graphical theme to be used"
+msgstr "使用するグラフィックテーマ"
+
+#. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
+#: kigo.kcfg:25
+#, kde-format
+msgid "Determines whether board labels are shown"
+msgstr "碁盤にラベルを表示するかどうかを決定します"
+
+#. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
+#: kigo.kcfg:29
+#, kde-format
+msgid "Move numbers are drawn onto stones if enabled"
+msgstr "有効にすると石に手番号が表示されます"
+
+#. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
+#: kigo.kcfg:33
+#, kde-format
+msgid "Number of seconds for which a hint is visible"
+msgstr "ヒントを表示する秒数"
+
+#. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
+#: kigo.kcfg:41
+#, kde-format
+msgid "Is black a human player?"
+msgstr "黒は人間のプレイヤー？"
+
+#. i18n: ectx: label, entry (BlackPlayerName), group (Game)
+#: kigo.kcfg:45
+#, kde-format
+msgid "The name of the black player"
+msgstr "黒プレイヤーの名前"
+
+#. i18n: ectx: label, entry (BlackPlayerStrength), group (Game)
+#: kigo.kcfg:49
+#, kde-format
+msgid "The strength of the black player"
+msgstr "黒プレイヤーの強さ"
+
+#. i18n: ectx: label, entry (WhitePlayerHuman), group (Game)
+#: kigo.kcfg:55
+#, kde-format
+msgid "Is white a human player?"
+msgstr "白は人間のプレイヤー？"
+
+#. i18n: ectx: label, entry (WhitePlayerName), group (Game)
+#: kigo.kcfg:59
+#, kde-format
+msgid "The name of the white player"
+msgstr "白プレイヤーの名前"
+
+#. i18n: ectx: label, entry (WhitePlayerStrength), group (Game)
+#: kigo.kcfg:63
+#, kde-format
+msgid "The strength of the white player"
+msgstr "白プレイヤーの強さ"
+
+#. i18n: ectx: label, entry (BoardSize), group (Game)
+#: kigo.kcfg:69
+#, kde-format
+msgid "Go board size"
+msgstr "碁盤のサイズ"
+
+#. i18n: ectx: label, entry (Komi), group (Game)
+#: kigo.kcfg:76
+#, kde-format
+msgid "Komi"
+msgstr "コミ"
+
+#. i18n: ectx: tooltip, entry (Komi), group (Game)
+#: kigo.kcfg:77
+#, kde-format
+msgid "With komi you can give the black player some extra points"
+msgstr "コミを設定することで黒プレイヤーに追加の得点を与えることができます"
+
+#. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
+#: kigo.kcfg:83
+#, kde-format
+msgid "Extra stones for the black player"
+msgstr "黒プレイヤーに与えられる追加の石"
+
+#: main.cpp:49
+#, kde-format
+msgid "Kigo"
+msgstr "Kigo"
+
+#: main.cpp:50
+#, kde-format
+msgid "KDE Go Board Game"
+msgstr "KDE 囲碁ゲーム"
+
+#: main.cpp:51
+#, kde-format
+msgid "Copyright (c) 2008-2010 Sascha Peilicke"
+msgstr "Copyright (c) 2008-2010 Sascha Peilicke"
+
+#: main.cpp:52
+#, kde-format
+msgid "Sascha Peilicke (saschpe)"
+msgstr "Sascha Peilicke (saschpe)"
+
+#: main.cpp:52
+#, kde-format
+msgid "Original author"
+msgstr "オリジナルの作者"
+
+#: main.cpp:54
+#, kde-format
+msgid "Yuri Chornoivan"
+msgstr "Yuri Chornoivan"
+
+#: main.cpp:54
+#, kde-format
+msgid "Documentation editor"
+msgstr "ドキュメンテーションの編集"
+
+#: main.cpp:56
+#, kde-format
+msgid "Arturo Silva"
+msgstr "Arturo Silva"
+
+#: main.cpp:56
+#, kde-format
+msgid "Default theme designer"
+msgstr "標準テーマのデザイナー"
+
+#: main.cpp:64 main.cpp:65
+#, kde-format
+msgctxt "@info:shell"
+msgid "Game to load (SGF file)"
+msgstr ""
+
+#: main.cpp:64
+#, kde-format
+msgctxt "@info:shell"
+msgid "gamefile"
+msgstr ""
+
+#: main.cpp:65
+#, kde-format
+msgctxt "@info:shell"
+msgid "[gamefile]"
+msgstr ""

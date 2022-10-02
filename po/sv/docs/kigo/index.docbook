@@ -1,0 +1,1002 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>Handbok &kigo;</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-07-01</date>
+<releaseinfo
+>0.6.2 (KDE Gear 21.04)</releaseinfo>
+<abstract>
+	<para
+>&kigo; är en implementering med öppen källkod av det populära spelet <literal
+>Go</literal
+> (också känt som Weiqi).</para>
+</abstract>
+<keywordset>
+    <keyword
+>KDE</keyword>
+    <keyword
+>kdegames</keyword>
+    <keyword
+>spel</keyword>
+    <keyword
+>kigo</keyword>
+    <keyword
+>logik</keyword>
+    <keyword
+>brädspel</keyword>
+    <keyword
+>en spelare</keyword>
+    <keyword
+>två spelare</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+    <title
+>Inledning</title>
+
+    <note
+><title
+>Speltyp:</title>
+    <para
+>Logik, brädspel</para
+></note>
+
+    <note
+><title
+>Antal möjliga spelare:</title>
+    <para
+>Två</para
+></note>
+
+    <para
+>&kigo; är en implementering med öppen källkod av det populära spelet <literal
+>Go</literal
+> (också känt som Weiqi). </para>
+
+    <para
+><literal
+>Go</literal
+> är ett strategiskt brädspel för två spelare. Det är även känt som <quote
+><literal
+>igo</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> på japanska), <quote
+><literal
+>weigi</literal
+></quote
+> eller <quote
+><literal
+>wei ch'i</literal
+></quote
+> (<foreignphrase lang="zh"
+>圍棋</foreignphrase
+> eller <foreignphrase lang="zh"
+>围棋</foreignphrase
+> på kinesiska), eller <quote
+><literal
+>baduk</literal
+></quote
+> (<foreignphrase lang="ko"
+>바둑</foreignphrase
+> på koreanska). <literal
+>Go</literal
+> är känt för att ha stor strategisk komplexitet trots sina enkla regler. </para>
+
+    <para
+>Spelet spelas av två spelare som omväxlande placerar svarta och vita stenar (spelpjäser som idag främst är gjorda av glas eller plast) på lediga skärningspunkterna i ett rutnät med 19 x 19 linjer (9 x 9 eller 13 x 13 linjer i enklare versioner). </para>
+
+</chapter>
+
+<chapter id="howto">
+    <title
+>Hur man spelar</title>
+
+    <note
+><title
+>Syfte:</title>
+    <para
+>Spelets syfte är att kontrollera en större del av spelplanen än motståndaren. En sten eller grupp av stenar fångas och tas bort om den inte har några tomma angränsande skärningspunkter, vilket resulterar i att vara helt omgiven av stenar av den motsatta färgen.</para
+></note>
+
+    <sect1 id="starting">
+    <title
+>Starta ett spel</title>
+
+    <para
+>När du har startat &kigo; har du två alternativ för att spela det underbara spelet <literal
+>Go</literal
+>. Du kan antingen starta ett nytt spel eller fortsätta ett tidigare. </para>
+
+    <sect2 id="new_game">
+    <title
+>Ställ in ett nytt spel</title>
+
+    <para
+>När &kigo; har startats ser du ett fönster som liknar det i skärmbilden nedan. Där kan du ställa in både den vita och svarta spelarens namn, och spelplanens storlek. Du kan bestämma om en eller båda spelarna ska vara datorer. Om du bestämmer dig för att spela mot en dator kan du också ställa in dess spelstyrka. Om du vill starta spelet kan du antingen välja menyalternativet <menuchoice
+><guimenu
+>Spel</guimenu
+> <guimenuitem
+>Nytt</guimenuitem
+></menuchoice
+>, klicka på knappen <guibutton
+>Starta spel</guibutton
+> i dockningsfönstret <guilabel
+>Spelinställning</guilabel
+> eller helt enkelt trycka på tangenten <keycap
+>S</keycap
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Nytt spelbord</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+            <textobject
+><phrase
+>Nytt spelbord</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="load_game">
+    <title
+>Ställ in ett inläst spel</title>
+
+    <para
+>Om du bestämmer dig för att fortsätta ett tidigare pågående spel kan du helt enkelt välja menyalternativet <menuchoice
+><guimenu
+>Spel</guimenu
+><guimenuitem
+>Ladda...</guimenuitem
+></menuchoice
+> (menyn visas på skärmbilden ovan). En filväljare ska nu dyka upp. Använd den för att välja och ladda den önskade filen med sparat spel. </para>
+
+    <para
+>Nu ser du ett fönster som liknar det som visas på skärmbilden nedan. Om du inte vill fortsätta med den senast gjorda draget, kan du ångra så många drag som du vill. Du ska se spelbrädet ändras medan du ändrar nummer på aktuellt drag. Inställningsskärmen visar också en mängd ytterligare information om det sparade spelet. </para>
+
+    <para
+>Tryck bara på <guibutton
+>Starta spel</guibutton
+> för att fortsätta. </para>
+
+    <screenshot>
+        <screeninfo
+>Inläst spelbord</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+            <textobject
+><phrase
+>Inläst spelbord.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Det finns också ett alternativ att ladda ner historiska <literal
+>Go</literal
+>-spel eller sparade spel uppladdade av andra användare från Internet. Klicka bara på menyalternativet <menuchoice
+><guimenu
+>Spel</guimenu
+> <guimenuitem
+>Hämta fler spel...</guimenuitem
+></menuchoice
+>. Då ser du en dialogruta som låter dig välja vad du vill ladda ner. </para>
+
+    <screenshot>
+        <screeninfo
+>Hämta nya spel</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
+><phrase
+>Hämta nya spelbord.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Spela ett spel</title>
+
+    <para
+>Nu är du klar att spela den första omgången <literal
+>Go</literal
+>. Om du inte är bekant med reglerna, rekommenderar vi att du läser motsvarande <ulink url="http://sv.wikipedia.org/wiki/Go_(brädspel)"
+>artikel i Wikipedia</ulink
+> eller studerar <ulink url="http://playgo.to/iwtg/en/"
+>The Interactive Way To <literal
+>Go</literal
+></ulink
+> av Hiroki Mori. </para>
+
+    <para
+>Att göra ett drag är enkelt, klicka bara på en av skärningspunkterna på <literal
+>Go</literal
+>-brädet. Du ska se en liten svart cirkel som visar var stenen hamnar när du klickar. </para>
+
+    <para
+>Aktuell spelare kan avgöras av pekaren, som ändras till en svart eller vit sten beroende på vilken spelare som står på tur. </para>
+
+    <para
+>Du kan också kontrollera spelinformationen som också visar föregående drag och en del statistik. En fullständig spelhistorik är också tillgänglig. Om du vill komma ihåg i vilken ordning stenarna på brädet placerades ut, klicka bara på knappen <guibutton
+>Visa  dragnummer</guibutton
+>. Om du tror att du inte kan vinna något på att placera ut ytterligare en sten, klicka bara på <guibutton
+>Hoppa över drag</guibutton
+> och låt motståndaren få sin tur. Om båda spelare passar, kan spelet avslutas. Kom ihåg att avsluta ett <literal
+>Go</literal
+>-spel alltid är ett steg som tas i samråd. </para>
+
+    <screenshot>
+        <screeninfo
+>Spela ett nytt spel</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+            <textobject
+><phrase
+>Spela ett nytt spel</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Observera att du kan spara pågående spel när som helst. Gör det genom att välja menyalternativet <menuchoice
+><guimenu
+>Spel</guimenu
+> <guimenuitem
+>Spara</guimenuitem
+></menuchoice
+>. </para>
+
+    <sect2 id="hint">
+    <title
+>Få tips</title>
+
+    <para
+>Ibland är det svårt att bestämma vilket drag man ska göra. Om du vill att datorn ska ge dig ett litet tips, tryck bara på knappen <guibutton
+>Tips</guibutton
+> som visas på skärmbilden nedan. Nu visas några genomskinliga stenar med ett tal ovanpå. De är i själva verket rekommendationer med ett poängvärde. Du är fri att klicka på något av de rekommenderade platserna eller någon annan ledig plats för att göra nästa drag. </para>
+
+    <screenshot>
+        <screeninfo
+>Få ett tips</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+            <textobject
+><phrase
+>Få ett tips</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
+>Strategi och tips</title>
+
+    <itemizedlist>
+        <listitem
+><para
+><literal
+>Go</literal
+> handlar mer om att erövra territorium (tomt utrymme) än att ta motståndarens spelpjäser.</para
+></listitem>
+        <listitem
+><para
+>Territorium är lättast att erövra nära hörnen (på två sidor), därefter nära kanterna (på tre sidor) och sist i mitten.</para
+></listitem>
+        <listitem
+><para
+>Sprid ut dina spelpjäser i spelets inledning. Fyll bara i dina avgränsningslinjer när motståndaren börjar inkräkta på dem.</para
+></listitem>
+        <listitem
+><para
+>Spela inte stenar utan stöd precis intill motståndarens stenar när du attackerar. De har en tendens att sväljas, och &gnugo; är mycket bra på det. Det är ofta bättre att attackera indirekt.</para
+></listitem>
+        <listitem
+><para
+>För att undvika att bli infångade måste en grupp av stenar ha två <quote
+>ögon</quote
+> eller kunna skaffa dem om den attackeras. <quote
+>Ögon</quote
+> är tomrum som inte är kopplade. Tänk på en kringla. Motståndaren kan omringa utsidan, men kan inte fylla i båda hålen samtidigt.</para
+></listitem>
+        <listitem
+><para
+>På 19 x 19 spelbrädet skapas, attackeras och försvaras oftast flera territorier. Du måste strida på flera håll samtidigt. Strategin omfattar att utvärdera styrkorna och svagheterna hos olika områden och fördela dragen mellan dem. Är det bättre att attackera där eller försvara här?</para
+></listitem>
+        <listitem
+><para
+>När spelbrädet fylls, och slutspelet närmar sig, blir det viktigt att spela närmare, att ge dig på motståndarens avgränsningar eller förstärka dina egna. Små misstag och förbiseenden blir mycket kostsamma.</para
+></listitem>
+    </itemizedlist>
+
+    </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Översikt av gränssnittet</title>
+    <sect1 id="menus">
+    <title
+>Menyerna i &kigo;</title>
+    <para
+>&kigo; har följande alternativ: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Nytt</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Startar ett nytt spel.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Ladda...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Visar &kde;:s vanliga dialogruta Öppna fil, för att öppna en <literal role="extension"
+>.sgf</literal
+>-fil (&kigo; spelfel), som innehåller ett sparat spel.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Hämta fler spel...</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Visar dialogrutan <guilabel
+>Hämta heta nyheter</guilabel
+>, för att ladda ner andra användares sparade spel.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Spara</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Sparar</action
+> pågående spel.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Starta spel</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Starta</action
+> det nya eller det inlästa spelet.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Avsluta spel</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Avslutar</action
+> pågående spel. Kom ihåg att avsluta ett <literal
+>Go</literal
+>-spel alltid är ett steg som tas i samråd.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+> <guimenuitem
+>Avsluta</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Avslutar</action
+> &kigo;.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Ångra</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ångra</action
+> senaste drag.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Gör om</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Gör om</action
+> draget som precis ångrades med <guimenuitem
+>Ångra</guimenuitem
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Hoppa över drag</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Låter dig <action
+>hoppa över</action
+> ett drag.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Tips</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ger ett tips</action
+> genom att visa de genomskinliga stenarna med deras poäng.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Flytta</guimenu
+> <guimenuitem
+>Visa antal drag</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Växlar</action
+> dragnumrens synlighet.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Paneler</guisubmenu
+> <guimenuitem
+>Information</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Visar eller döljer sidoraden <guilabel
+>Information</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guisubmenu
+>Paneler</guisubmenu
+> <guimenuitem
+>Drag</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Visar eller döljer sidoraden <guilabel
+>Drag</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    </variablelist>
+
+    <para
+>Dessutom har &kigo; de vanliga menyalternativen <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+> i &kde;. För mer information, läs avsnitten  <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menyn Inställningar</ulink
+> och <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menyn Hjälp</ulink
+> i &kde;:s Grunder. </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
+>Genvägar</title>
+
+    <para
+>Förvalda genvägar är:</para>
+
+    <table>
+        <title
+>Genvägar</title>
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
+>Avsluta pågående spel</entry>
+                <entry
+><keycap
+>F</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Hämta nya spel uppladdade av andra användare</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Hjälp</entry>
+                <entry
+><keycap
+>F1</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Ladda sparat spel</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Ge tips om möjliga drag</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Hoppa över ett drag</entry>
+                <entry
+><keycap
+>P</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Avsluta</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Gör om ett drag som ångrats</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Spara pågående spel</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Starta ett nytt spel</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Starta nytt eller inläst spel</entry>
+                <entry
+><keycap
+>S</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Växla dragnumrens synlighet</entry>
+                <entry
+><keycap
+>N</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Ångra senaste drag</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Vad är det här? hjälp</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
+</chapter>
+
+<chapter id="configuration">
+    <title
+>Spelanpassning</title>
+
+    <para
+>Om du vill ändra hur &kigo; är inställt kan du göra det genom att gå till menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &kigo;...</guimenuitem
+></menuchoice
+>. </para>
+
+    <para
+>Nu ser du inställningsdialogrutan som den visas på skärmbilden nedan. Du kan också nå den genom att trycka på tangentkombinationen <keycombo
+>&Alt;<keycap
+>S</keycap
+></keycombo
+> följt av <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+    <para
+>&kigo; är ytterst flexibelt, och kan anpassas hur mycket du vill. Du kan ändra position och storlek på alla paneler intill spelområdet i mitten. Du kan också anpassa verktygsraden om du vill ha andra åtgärder tillgängliga där. Välj bara menyalternativet <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa verktygsrader...</guimenuitem
+></menuchoice
+> för att göra det. Samma sak är möjlig med alla genvägar i spelet. Om du vill ha så stort område som möjligt tillgängligt för spelområdet kan du till och med dölja verktygsraden och de flesta panelerna i menyn <guimenu
+>Inställningar</guimenu
+>. </para>
+
+    <sect1 id="genconig">
+    <title
+>Allmän inställning</title>
+
+    <para
+>Den viktigaste aspekten här är <literal
+>Go</literal
+>-bakgrundsprogrammets inställning. &kigo; kräver ett giltigt bakgrundsprogram för att fungera riktigt. Som du ser på skärmbilden nedan, används &gnugo; normalt. Den lilla lysdioden intill bakgrundsprogrammets kommando lyser grön om allting fungerar bra. Om det inte är fallet, eller om du vill använda ett annat bakgrundsprogram för <literal
+>Go</literal
+>, ska du installera ett annat bakgrundsprogram för <literal
+>Go</literal
+> som hanterar <literal
+>Go</literal
+> textprotokoll (<acronym
+>GTP</acronym
+>) och justerar sina kommando och parametrar i enlighet med det. Detaljinformation om detta steg bör du finna i  motsvarande dokumentation för bakgrundsprogrammet för <literal
+>Go</literal
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Allmän inställning</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+            <textobject
+><phrase
+>Allmän inställning.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+
+    <sect1 id="configuration-theme">
+    <title
+>Inställning av tema</title>
+
+    <para
+>Den här sidan låter dig ändra temat som &kigo; använder. </para>
+
+    <screenshot>
+        <screeninfo
+>Anpassa &kigo;-teman</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>Inställning av tema</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+    <title
+>Tack till och licens</title>
+
+    <para
+>&kigo; </para>
+
+    <para
+>Program copyright 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Dokumentation Copyright &copy; 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Redigering av dokumentation och konvertering till Docbook av Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+    <para
+>Standardtema skapat av Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+

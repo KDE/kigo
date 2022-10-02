@@ -1,0 +1,786 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!-- Define an entity for your application if it is not part of KDE
+       CVS -->
+  <!ENTITY kigo "Kigo">
+  <!ENTITY kappname "&kigo;">
+  <!ENTITY package "kdegames"
+><!-- kdebase, kdeadmin, etc.  Leave
+                                     this unchanged if your
+                                     application is not maintained in KDE CVS -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>&kigo; käsiraamat</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+><firstname
+>Marek</firstname
+><surname
+>Laane</surname
+><affiliation
+><address
+><email
+>bald@smail.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2013-05-06</date>
+<releaseinfo
+>0.5.6 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+	<para
+>&kigo; on populaarse go-mängu (tuntud ka nimega weiqi) avatud lähtekoodiga versioon.</para>
+</abstract>
+<keywordset>
+	<keyword
+>KDE</keyword>
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>mäng</keyword
+> <!-- do not change this! -->
+	<keyword
+>kigo</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>loogikamäng</keyword>
+	<keyword
+>lauamäng</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>üks mängija</keyword>
+	<keyword
+>kaks mängijat</keyword>
+</keywordset>
+</bookinfo>
+
+<!-- The contents of the documentation begin here.  Label
+each chapter so with the id attribute. This is necessary for two reasons: it
+allows you to easily reference the chapter from other chapters of your
+document, and if there is no ID, the name of the generated HTML files will vary
+from time to time making it hard to manage for maintainers and for the CVS
+system. Any chapter labelled (OPTIONAL) may be left out at the author's
+discretion. Other chapters should not be left out in order to maintain a
+consistent documentation style across all KDE apps. -->
+
+<chapter id="introduction">
+    <title
+>Sissejuhatus</title>
+	<note
+><title
+>Mängu tüüp:</title
+><para
+>loogikamäng, lauamäng</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Mängijate arv:</title
+><para
+>Kaks</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<para
+>&kigo; on populaarse go-mängu (tuntud ka nimega weiqi) avatud lähtekoodiga versioon.</para>
+	<para
+>Go on kahe mängijaga strateegiamäng. See kannab ka nimetusi igo (jaapani), weiqi või wei chi (hiina) või baduk (korea). Go on kogu maailmas tuntud mänguna, millel on väga lihtsad reeglid ja mis ometi pakub rikkalikult strateegilisi võimalusi. </para>
+
+	<para
+>Mängu mängivad kaks mängijat, kes asetavad kordamööda musti ja valgeid kive (mängukivid, tänapäeval tavaliselt klaasist või plastikust) 19x19 joonest koosneva võrgustiku (9x9 või 13x13 lihtsamate variantide puhul) vabadesse joonte ristumiskohtadesse. </para>
+<!-- The introduction chapter contains a brief introduction for the
+application that explains what it does and where to report
+problems. Basically a long version of the abstract.  Don't include a
+revision history. (see installation appendix comment) -->
+</chapter>
+
+<chapter id="howto">
+    <title
+>Kuidas mängida</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Eesmärk:</title>
+	<para
+>Mängu eesmärk on võtta enda valdusse vastasest suurem mängulaua osa. Kivi või kivirühm hõivatakse ja eemaldatakse, kui seda ümbritsevad täielikult vastasvärvi kivid, nii et neil pole enam ühtegi kõrvalasuvat tühja ristumiskohta.</para
+></note
+><!--Describe the objective of the game.-->
+    <sect1 id="starting">
+    <title
+>Mängu alustamine</title>
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>&kappname; käivitamisel avaneb kaks võimalust mängida imelist go-mängu. Võib käivitada uue mängu või jätkata vana mängu.</para>
+
+    <sect2 id="new_game">
+    <title
+>Uue mängu seadistamine</title>
+      <para
+>&kappname; käivitamisel näeb alltoodud pildil olevat akent. Seal saab määrata nii valgete kui ka mustade kividega mängija nime ning mängulaua suuruse. Samuti saab otsustada, kas üks või ka mõlemad mängijad on arvutimängijad. Kui otsustad mängida arvuti vastu, saad määrata ka vastase tugevuse. Mängu käivitamiseks võib kasutada menüükäsku <guimenuitem
+>Alusta mängu</guimenuitem
+>, mille leiab menüüst <guimenu
+>Mäng</guimenu
+>, klõpsata nupul <guibutton
+>Alusta mängu</guibutton
+> <quote
+>mängu seadistuste</quote
+> vidinas või lihtsalt vajutada klahvi <keycap
+>S</keycap
+>. </para>
+      <screenshot>
+      <screeninfo
+>Uue mängu aken</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+      <textobject
+><phrase
+>Uue mängu aken.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+     <sect2 id="load_game">
+     <title
+>Laaditud mängu seadistamine</title>
+      <para
+>Kui soovid jätkata varem alustatud, aga lõpetamata mängu, vali lihtsalt menüükäsk <guimenuitem
+>Laadi...</guimenuitem
+>, mille leiad menüüst <guimenu
+>Mäng</guimenu
+>. Ilmub failivalija, mille abil saabki üles otsida ja avada soovitud salvestatud mängu. </para>
+
+      <para
+>Seejärel ilmub selline aken, nagu näha alloleval poldil. Kui sa ei soovi jätkata viimasest sooritatud käigust, võid valida ka mis tahes varasema käigu, millest jätkata. Aktiivse käigu numbrit muutes näed ka muutusi mängulaual, kus taastatakse valitud käigu aegne olukord. Aknas leiab ka mitmesugust teavet salvestatud mängu kohta. </para>
+
+      <para
+>Jätkamiseks klõpsa lihtsalt <guibutton
+>Alusta mängu</guibutton
+>. </para>
+      <screenshot>
+      <screeninfo
+>Mängu laadimise aken</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+      <textobject
+><phrase
+>Mängu laadimise aken.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+
+      <para
+>Olemas on ka võimalus internetist alla laadida ajaloolisi go-mänge või salvestatud mänge, mida on üles laadinud teised kasutajad. Selleks vali lihtsalt menüükäsk <guimenuitem
+>Hangi rohkem mänge...</guimenuitem
+>, mille leiad menüüst <guimenu
+>Mäng</guimenu
+>. Seejärel avaneb dialoog, kus saab valida, mida täpselt alla laadida. </para>
+      <screenshot>
+      <screeninfo
+>Uute mängude hankimine</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG"
+fileref="get-new-games.png"/></imageobject>
+      <textobject
+><phrase
+>Uute mängude hankimise aken.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Mängimine</title>
+      <para
+>Nüüd oled valmis alustama go-mängu. Kui sa ei tea reegleid, soovitame lugeda vastavat <ulink url="http://en.wikipedia.org/wiki/Go_game"
+>Wikipedia artiklit</ulink
+> või uurida Hiroki Mori juhendit <ulink url=" http://playgo.to/interactive/"
+>The Interactive Way To Go</ulink
+>. </para>
+
+      <para
+>Käimine on väga lihtne: klõpsa lihtsalt mõnel go mängulaua joonte ristumiskohal. Näed pisikest musta punkti, mis osutab, kuhu su kivi asetatakse, kui klõpsad. </para>
+
+      <para
+>Aktiivse mängija saab kindlaks teha kursori järgi, mis sõltuvalt sellest, kelle kord on käia, võtab kas musta või valge kivi kuju. </para>
+
+      <para
+>Samuti võib uurida mängu teavet, mis näitab nii varasemat käiku kui ka veidi statistikat. Saadaval on ka täielik käikude ajalugu. Kui soovid meelde tuletada, millises järjekorras asetati kivid mängulauale, klõpsa lihtsalt nupule <guibutton
+>Näita käikude numbrit</guibutton
+>. Kui arvad, et uue kivi asetamine ei anna mingit tulemust, võid klõpsata nupule <guibutton
+>Jäta käik vahele</guibutton
+> ja lasta vastasel käia. Kui mõlemad mängijad jätavad käigu vahele, võib mängu lõpetada. Arvesta, et go lõpetamine on alati kahepoolne tegevus! </para>
+      <screenshot>
+      <screeninfo
+>Uue mängu mängimine</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+      <textobject
+><phrase
+>Uue mängu mängimine.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+      <para
+>Pane tähele, et võid iga hetk käimasoleva mängu salvestada. Selleks ava menüü <guimenu
+>Mäng</guimenu
+> ja vali käsk <guimenuitem
+>Salvesta</guimenuitem
+>. </para>
+
+	<sect2 id="hint">
+	<title
+>Vihje hankimine</title>
+	<para
+>Mõnikord on raske otsustada, millist käiku täpselt teha. Kui soovid, et arvuti annaks sulle pisikese vihje, klõpsa lihtsalt nupule <guibutton
+>Vihje</guibutton
+>. Selle peale ilmuvad mõned läbipaistvad nupud, mille peal seisab number. Need ongi soovitused koos hinnanguga. Hinnang näitab, kui hea käik on. Klõpsa suvalisel pakutaval käigukohal või kui soovid, ka mõnel muul mänguvälja vabal joonte ristumiskohal. </para>
+      <screenshot>
+      <screeninfo
+>Vihje hankimine</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+      <textobject
+><phrase
+>Vihje hankimine.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+      </sect2>
+      </sect1>
+
+      <sect1 id="strattips">
+      <title
+>Strateegia ja nõuanded</title>
+      <itemizedlist>
+      <listitem
+><para
+>Go eesmärk seisab rohkem territooriumi (vaba ruumi) kui vastase kivide hõivamises.</para
+></listitem>
+      <listitem
+><para
+>Territooriumi on kõige lihtsam hõivata nurkade (kahest küljest), seejärel servade (kolmest küljest) ja viimases järjekorras keskel.</para
+></listitem>
+      <listitem
+><para
+>Mängu alguses aseta oma kive võimalikult laialt. Moodusta kaitseliine alles siis, kui vastane hakkab sinu kivide sekka tungima.</para
+></listitem>
+      <listitem
+><para
+>Ära aseta kaitseta kive otse oma vastase kivide juurde. Need kipuvad jääma vastase kivide piiramisrõngasse ja kaotsi minema. Sageli on mõistlikum rünnata kaudselt, mitte otse.</para
+></listitem>
+      <listitem
+><para
+>Kivide hõivamise vältimiseks peab kivirühmal olema kaks <quote
+>silma</quote
+> või vähemalt võimalus neid rünnaku korral tekitada. <quote
+>Silmad</quote
+> on omavahel ühendamata osad. Kujuta näiteks ette kahe auguga sõõrikut. Vastane võib selle ümber piirata väljastpoolt, aga ta ei saa täita korraga mõlemat auku.</para
+></listitem>
+      <listitem
+><para
+>19x19 mängulaual on reeglina mitu territooriumi, mida luuakse, rünnatakse või kaitstakse. Niisiis tuleb sul pidada korraga mitut lahingut. Strateegia tähendab eri alade tugevate ja nõrkade külgede pidevat hindamist ning selle põhjal oma käikude kavandamist. Küsimus seisab selles, kas siin või seal on mõistlikum rünnata või hoopis kaitsta?</para
+></listitem>
+      <listitem
+><para
+>Sedamööda, kuidas mängulaud täitub ja lähemale jõuab lõppmäng, muutub aina tähtsamaks liikuda vastasele lähemale, proovida purustada tema kaitset ning tugevdada enda oma. Ka pisikesed eksimused ja tähelepanematus võivad siin kurjalt kätte maksta.</para
+></listitem>
+      </itemizedlist>
+      </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Liidese tutvustus</title
+> <!-- do not change this! -->
+<sect1 id="menus">
+<title
+>&kappname; menüüd</title>
+<para
+>&kappname; menüüd on tavapärased &kde; mängude menüüd, välja arvatud mõningad elemendid:</para>
+		<variablelist>
+			<varlistentry  id="game-menu-get-more">
+				<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mäng</guimenu
+> <guimenuitem
+>Hangi rohkem mänge...</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Avab standardse &kde; uue kraami hankimise dialoogi teiste kasutajate salvestatud mängude laadimiseks.</action
+></para
+></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-start">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Mäng</guimenu
+> <guimenuitem
+>Alusta mängu</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Käivitab</action
+> uue või laaditud mängu.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-finish">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Mäng</guimenu
+> <guimenuitem
+>Lõpeta mäng</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Lõpetab</action
+> aktiivse mängu. Pea meeles, et go-mängu lõpetamine on alati kahepoolne otsus.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-pass">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Jäta käik vahele</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Võimaldab käigu <action
+>vahele jätta</action
+>.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-hint">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Vihje</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Annab vihje</action
+>, näidates läbipaistvaid kive koos hinnanguga.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-numbers">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Liikumine</guimenu
+> <guimenuitem
+>Näita käikude numbrit</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Lülitab</action
+> käikude numbrite näitamise sisse või välja.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-hide-docker">
+				<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guisubmenu
+>Dokid</guisubmenu
+> <guimenuitem
+>Käigud</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Näitab või peidab käikude külgriba.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-settings">
+				<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+> <guimenuitem
+>&kappname; seadistamine...</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Avab &kappname; seadistustedialoogi.</action
+> Täpsemalt kõneleb sellest osa <link linkend="configuration"
+>Mängu seadistamine</link
+>.</para
+></listitem>
+			</varlistentry>
+		</variablelist>
+<para
+>Lisaks on &kappname;l tavapärased &kde; <guimenu
+>seadistuste</guimenu
+> ja <guimenu
+>abi</guimenu
+>menüü elemendid, mille kohta leiab rohkem teavet &kde; põhialuste käsiraamatu osadest <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Menüü Seadistused</ulink
+> ja <ulink url="help:/fundamentals/ui.html#menus-help"
+>Menüü Abi</ulink
+>. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Kiirklahvid</title>
+  <para
+>Vaikimisi kiirklahvid on järgmised:</para>
+
+  <table>
+  <title
+>Kiirklahvid</title>
+  <tgroup cols="2">
+  <tbody>
+  <row>
+    <entry
+>Aktiivse mängu lõpetamine</entry>
+    <entry
+><keycap
+>F</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Teiste kasutajate üleslaaditud mängude hankimine</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Abi</entry>
+    <entry
+><keycap
+>F1</keycap
+></entry>
+   </row>
+  <row>
+    <entry
+>Salvestatud mängu laadimine</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Käigu vahelejätmine</entry>
+    <entry
+><keycap
+>P</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Väljumine</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Tagasivõetud käigu uuesti sooritamine.</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Aktiivse mängu salvestamine</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Uue mängu alustamine</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Uue või laaditud mängu käivitamine</entry>
+    <entry
+><keycap
+>S</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Käikude numbrite näitamise sisse- või väljalülitamine</entry>
+    <entry
+><keycap
+>N</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Viimase käigu tagasivõtmine</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Mis see on?</entry>
+    <entry>
+    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+    </entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Mängu seadistamine</title
+> <!-- do not change this! -->
+<!--This section describes configuration GUI. If your game is configured using menubar exclusively, please remove this section.-->
+  <para
+>Kui soovid muuta &kappname; seadistusi, vali menüüst <guimenu
+>Seadistused</guimenu
+> käsk <guimenuitem
+>&kappname; seadistamine...</guimenuitem
+> </para>
+
+  <para
+>Seejärel ilmub seadistustedialoog, mida näitab ka allolev pilt. Seda saab samuti avada klahvikombinatsiooniga <keycombo
+>&Alt;<keycap
+>S</keycap
+></keycombo
+> ja seejärel <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+  <para
+>&kappname; on äärmiselt paindlik ja laseb ennast igati kohandada. Sa võid muuta kõigi keskse mänguala kõrval asuvate dokkide asukohta ja suurust. Samuti saab kohandada tööriistariba, kui soovid seal näha mingeid muid toiminguid. Selleks vali lihtsalt menüü <guimenu
+>Seadistused</guimenu
+> ja seal käsk <guimenuitem
+>Tööriistaribade seadistamine...</guimenuitem
+> Samuti saab kohandada kõiki mängus kasutatavaid kiirklahve. Kui soovid kasutada ruumi maksimaalselt mänguvälja jaoks, võid menüü <guimenu
+>Seadistused</guimenu
+> abil peita isegi tööriistariba ja enamiku dokke. </para>
+  <sect1 id="genconig">
+  <title
+>Üldised seadistused</title>
+    <para
+>Siin on kõige tähtsam element go mootori ehk taustaprogrammi seadistamine. Korralikuks tööks vajab &kappname; korrektset taustaprogrammi. Nagu pildilt näha, on selleks vaikimisi GnuGo. Mootori käsu kõrval olev pisike tuluke särab roheliselt, kui kõik on korras. Kui see nii pole või kui soovid kasutada mõnda muud go taustaprogrammi, tuleb paigaldada teine go mootor, mis tunneb GnuGo tekstiprotokolli (GTP) ning määrata selle käsk ja parameetrid. Selle kohta leiab täpsemat teavet vastava go mootori dokumentatsioonist. </para>
+    <screenshot>
+    <screeninfo
+>Üldised seadistused</screeninfo>
+    <mediaobject>
+    <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+    <textobject
+><phrase
+>Üldised seadistused.</phrase
+></textobject>
+    </mediaobject>
+    </screenshot>
+    </sect1>
+    <sect1 id="configuration-theme">
+    <title
+>Teemaseadistused</title>
+    <para
+>Siin saab muuta &kappname;s kasutatavat teemat. </para>
+    <screenshot>
+    <screeninfo
+>&kappname; seadistamine - teemad</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="setup-theme.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Teemaseadistused</phrase>
+	  </textobject>
+	</mediaobject>
+    </screenshot>
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+
+<!-- Include credits for the programmers, documentation writers, and
+contributors here. The license for your software should then be included below
+the credits with a reference to the appropriate license file included in the KDE
+distribution. -->
+
+<title
+>Autorid ja litsents</title>
+
+<para
+>&kigo; </para>
+<para
+>Rakenduse autoriõigus 2009: Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+<para
+>Dokumentatsiooni autoriõigus &copy; 2009: Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+<para
+>Dokumentatsiooni toimetamine ja teisendamine Docbooki: Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+<para
+>Vaiketeema kujundaja: Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@smail.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+
+<sect1 id="getting-kapp">
+<title
+>&kigo; hankimine</title>
+&install.intro.documentation; &install.compile.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.compile.documentation; </sect1>
+
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+

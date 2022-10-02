@@ -1,0 +1,785 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!-- Define an entity for your application if it is not part of KDE
+       CVS -->
+  <!ENTITY kigo "Kigo">
+  <!ENTITY kappname "&kigo;">
+  <!ENTITY package "kdegames"
+><!-- kdebase, kdeadmin, etc.  Leave
+                                     this unchanged if your
+                                     application is not maintained in KDE CVS -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Brazilian-Portuguese "INCLUDE">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>Manual do &kigo;</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+><firstname
+>Marcus</firstname
+><surname
+>Gama</surname
+><affiliation
+><address
+><email
+>marcus.gama@gmail.com</email
+> </address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>06/05/2013</date>
+<releaseinfo
+>0.5.6 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+	<para
+>O &kigo; é uma implementação em 'software' do conhecido jogo Go (também conhecido por Weiqi).</para>
+</abstract>
+<keywordset>
+	<keyword
+>KDE</keyword>
+	<keyword
+>kdegames</keyword
+> <!-- do not change this! -->
+	<keyword
+>Jogo</keyword
+> <!-- do not change this! -->
+	<keyword
+>kigo</keyword
+><!--Application name goes here-->
+<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<keyword
+>lógica</keyword>
+	<keyword
+>tabuleiro</keyword>
+<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<keyword
+>um jogador</keyword>
+	<keyword
+>dois jogadores</keyword>
+</keywordset>
+</bookinfo>
+
+<!-- The contents of the documentation begin here.  Label
+each chapter so with the id attribute. This is necessary for two reasons: it
+allows you to easily reference the chapter from other chapters of your
+document, and if there is no ID, the name of the generated HTML files will vary
+from time to time making it hard to manage for maintainers and for the CVS
+system. Any chapter labelled (OPTIONAL) may be left out at the author's
+discretion. Other chapters should not be left out in order to maintain a
+consistent documentation style across all KDE apps. -->
+
+<chapter id="introduction">
+    <title
+>Introdução</title>
+	<note
+><title
+>Tipo do jogo:</title
+><para
+>Lógica, Tabuleiro</para
+></note
+><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
+	<note
+><title
+>Número de possíveis jogadores:</title
+><para
+>Dois</para
+></note
+><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
+	<para
+>O &kigo; é uma implementação em 'software' do conhecido jogo Go (também conhecido por Weiqi).</para>
+	<para
+>O Go é um jogo de tabuleiro de estratégia para dois jogadores. Ele também é conhecido por 'igo' (japonês), weiqi ou wei ch'i (chinês) ou baduk (coreano). O Go é conhecido por ser rico em complexidade estratégica, apesar das suas regras simples. </para>
+
+	<para
+>O jogo é jogado por dois jogadores que vão colocando, de forma alternada, peças pretas e brancas (peças de jogo, normalmente feitas em plástico ou vidro), nas intersecções vazias de uma grade de 19×19 linhas (9x9 ou 13x13 linhas, para as variantes mais simples). </para>
+<!-- The introduction chapter contains a brief introduction for the
+application that explains what it does and where to report
+problems. Basically a long version of the abstract.  Don't include a
+revision history. (see installation appendix comment) -->
+</chapter>
+
+<chapter id="howto">
+    <title
+>Como jogar</title
+> <!-- do not change this! -->
+<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
+	<note
+><title
+>Objetivo:</title>
+	<para
+>O objetivo do jogo é controlar uma parte maior do tabuleiro que o adversário. Uma pedra ou grupo de pedras é capturada e removida, caso não tenha interseções adjacentes vazias, que é o resultado de ficar completamente envolvido por pedras do adversário.</para
+></note
+><!--Describe the objective of the game.-->
+    <sect1 id="starting">
+    <title
+>Começar um Jogo</title>
+<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
+	<para
+>Quando você tiver iniciado o &kappname;, terá duas opções para jogar o maravilhoso jogo Go. Você tanto poderá começar um jogo novo como prosseguir um antigo.</para>
+
+    <sect2 id="new_game">
+    <title
+>Configurar um jogo novo</title>
+      <para
+>Quando tiver iniciado o &kappname;, você deverá ver um tela semelhante ao da imagem abaixo. Nela, você tanto poderá configurar o nome dos jogadores das pretas e brancas e o tamanho do tabuleiro. Você poderá decidir se um ou ambos os jogadores deverão ser representados pelo computador. Se optar por jogar contra um computador, poderá também definir a sua inteligência. Se quiser iniciar o jogo, você poderá selecionar <guimenuitem
+>Iniciar o Jogo</guimenuitem
+> do menu <guimenu
+>Jogo</guimenu
+>, clicar em <guibutton
+>Iniciar o Jogo</guibutton
+> na área de <quote
+>Configuração do jogo</quote
+> ou simplesmente pressionar a tecla <keycap
+>S</keycap
+>. </para>
+      <screenshot>
+      <screeninfo
+>Tela do jogo novo</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+      <textobject
+><phrase
+>Tela do Jogo Novo.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+     <sect2 id="load_game">
+     <title
+>Configurar um jogo carregado</title>
+      <para
+>Se você optar por continuar um jogo não-terminado, poderá simplesmente escolher a opção <guimenuitem
+>Carregar...</guimenuitem
+> do menu <guimenu
+>Jogo</guimenu
+> (o menu aparece na imagem acima). Deverá aparecer agora um seletor de arquivos, que poderá ser usado para selecionar e carregar o arquivo do jogo salvo. </para>
+
+      <para
+>Agora você deverá ver uma tela semelhante ao da imagem acima. Se não quiser continuar com a sua última jogada efetuada, poderá voltar atrás tantas jogadas quantas desejar. Você deverá ver o tabuleiro mudando à medida que muda de jogada. A tela de configuração também apresenta diversas informações sobre o jogo gravado. </para>
+
+      <para
+>Basta pressionar <guibutton
+>Iniciar o Jogo</guibutton
+> para continuar. </para>
+      <screenshot>
+      <screeninfo
+>Tela do jogo carregado</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+      <textobject
+><phrase
+>Tela do Jogo Carregado.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+
+      <para
+>Existe também a opção de carregar jogos históricos do Go ou jogos carregados, enviados por outros usuários da Internet. Basta clicar em <guimenuitem
+>Obter Mais Jogos...</guimenuitem
+> no menu <guimenu
+>Jogo</guimenu
+>. Você deverá então ver uma janela que lhe permite escolher o conteúdo a transferir. </para>
+      <screenshot>
+      <screeninfo
+>Obter jogos novos</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG"
+fileref="get-new-games.png"/></imageobject>
+      <textobject
+><phrase
+>Tela para Obter Jogos Novos.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+     </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Jogar um jogo</title>
+      <para
+>Agora você está pronto para jogar pela primeira vez o Go. Se não estiver familiarizado com as regras, recomenda-se a leitura do <ulink url="http://en.wikipedia.org/wiki/Go_game"
+>artigo correspondente da Wikipédia</ulink
+> ou então <ulink url=" http://playgo.to/interactive/"
+>pela forma interativa</ulink
+> de Hiroki Mori. </para>
+
+      <para
+>Fazer uma jogada é simples; basta clicar numa das intersecções do tabuleiro de Go. Você deverá ver um pequeno ponto preto que lhe mostra onde ficará a sua pedra, caso clique aí. </para>
+
+      <para
+>O jogador atual pode ser determinado pelo cursor, que muda para uma pedra branca ou preta, dependendo do próximo jogador. </para>
+
+      <para
+>Você também poderá verificar a informação do jogo que mostra também as estatísticas e a jogada anterior. Está disponível um histórico completo das jogadas. Se você quiser recordar a ordem pela qual as peças do tabuleiro foram colocadas, basta clicar no botão <guibutton
+>Mostrar os números de jogadas</guibutton
+>. Se você achar que não consegue ganhar nada ao colocar outra peça, basta clicar em <guibutton
+>Passar a Jogada</guibutton
+> e deixar que o seu adversário jogue a sua vez. Se ambos os jogadores passarem, o jogo poderá ser terminado. Lembre-se que terminar um jogo de Go é sempre um passo cooperativo! </para>
+      <screenshot>
+      <screeninfo
+>Jogar um jogo do zero</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+      <textobject
+><phrase
+>Jogar um Jogo do Zero.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+      <para
+>Lembre-se que você poderá salvar o jogo atual a qualquer momento. Faça isso com o menu <guimenu
+>Jogo</guimenu
+> e escolhendo o item <guimenuitem
+>Salvar</guimenuitem
+>. </para>
+
+	<sect2 id="hint">
+	<title
+>Obter uma ajuda</title>
+	<para
+>Algumas vezes é difícil decidir a jogada a fazer. Se você quiser que o computador lhe dê uma pequena ajuda, basta clicar no botão de <guibutton
+>Dica</guibutton
+> que aparece na imagem abaixo. Agora, deverão aparecer algumas pedras transparentes com um número no topo. Estas são, de fato, as suas recomendações com uma pontuação. A pontuação define quão boa é a jogada. Sinta-se à vontade para clicar numa das jogadas recomendadas ou em outro campo vazio, de modo a definir a sua próxima peça. </para>
+      <screenshot>
+      <screeninfo
+>Obter uma dica</screeninfo>
+      <mediaobject>
+      <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+      <textobject
+><phrase
+>Obter uma Dica.</phrase
+></textobject>
+      </mediaobject>
+      </screenshot>
+      </sect2>
+      </sect1>
+
+      <sect1 id="strattips">
+      <title
+>Estratégias e dicas</title>
+      <itemizedlist>
+      <listitem
+><para
+>O Go baseia-se mais no território envolvente (espaço vazio) que na captura das peças do seu adversário.</para
+></listitem>
+      <listitem
+><para
+>O território é mais fácil de rodear perto dos cantos (dos dois lados) que perto dos bordas (em três lados) e que, por último, no centro.</para
+></listitem>
+      <listitem
+><para
+>No início do jogo, espalhe as suas peças. Preencha apenas as suas linhas de fronteira quando o seu adversário começar a intrometer-se</para
+></listitem>
+      <listitem
+><para
+>Não jogue peças não suportadas perto das do seu adversário quando atacar. Elas terão a tendência de ser capturadas e o GnuGo é muito bom nisso. Muitas vezes, é melhor atacar indiretamente.</para
+></listitem>
+      <listitem
+><para
+>Para evitar ser capturado, um grupo de pedras deverá ter dois <quote
+>olhos</quote
+> ou ser capaz de criá-los, caso seja atacado. Os <quote
+>olhos</quote
+> são espaços desligados. Pense num 'donut' com dois buracos. O seu adversário poderá contornar o exterior, mas não conseguirá preencher ambos os buracos de uma vez.</para
+></listitem>
+      <listitem
+><para
+>No tabuleiro 19x19, existem tipicamente vários territórios a serem criados, atacados ou defendidos. Você tem que efetuar várias batalhas simultâneas. A estratégia envolve a avaliação das forças e fraquezas em várias áreas, reservando as suas jogadas entre elas. É melhor atacar ali ou defender aqui?</para
+></listitem>
+      <listitem
+><para
+>À medida que o tabuleiro vai enchendo e o fim do jogo se aproxima, torna-se importante jogar de forma mais próxima, atacando as fronteiras do seu adversário ou reforçando as suas. Alguns pequenos erros e omissões poderão custar muito caro.</para
+></listitem>
+      </itemizedlist>
+      </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Resumo da interface</title
+> <!-- do not change this! -->
+<sect1 id="menus">
+<title
+>Os Menus do &kappname;</title>
+<para
+>O &kappname; tem um menu padrão de jogos do &kde;, excetuando os seguintes itens:</para>
+		<variablelist>
+			<varlistentry  id="game-menu-get-more">
+				<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Obter Mais Jogos...</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Abre a janela padrão do &kde; para o KNewStuff, de modo a carregar os jogos salvos por outros jogadores.</action
+></para
+></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-start">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Iniciar jogo</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Inicia</action
+> o jogo novo ou carregado.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="game-menu-finish">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Jogo</guimenu
+> <guimenuitem
+>Terminar jogo</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Termina</action
+> o jogo atual. Lembre-se que terminar um jogo de Go é sempre um passo cooperativo.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-pass">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Mover</guimenu
+> <guimenuitem
+>Passar a Jogada</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Permite-lhe <action
+>passar</action
+> uma jogada.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-hint">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Mover</guimenu
+> <guimenuitem
+>Dica</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Dá uma sugestão</action
+>, mostrando as peças transparentes, com a pontuação sobre elas.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="move-menu-numbers">
+				<term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Mover</guimenu
+> <guimenuitem
+>Mostrar os Números de Jogadas</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Ativa ou desativa</action
+> a visibilidade dos números de jogadas.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-hide-docker">
+				<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guisubmenu
+>Áreas Acopláveis</guisubmenu
+> <guimenuitem
+>Jogadas</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+>Mostra ou esconde a barra lateral de Jogadas.</para
+></listitem>
+			</varlistentry>
+			<varlistentry id="settings-menu-settings">
+				<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+> <guimenuitem
+>Configurar o &kappname;...</guimenuitem
+> </menuchoice
+></term>
+				<listitem
+><para
+><action
+>Abre uma janela para configurar o &kappname;.</action
+> Veja a seção de <link linkend="configuration"
+>Configuração do Jogo</link
+> para mais detalhes.</para
+></listitem>
+			</varlistentry>
+		</variablelist>
+<para
+>O &kappname; possui os itens dos menus <guimenu
+>Configurações</guimenu
+> e <guimenu
+>Ajuda</guimenu
+>, comuns do &kde;. Para mais informações, consulte as seções sobre o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Configurações</ulink
+> e o <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+
+</sect1>
+
+<sect1 id="keybindings">
+<title id="keybindings-title"
+>Atalhos</title>
+  <para
+>Os atalhos padrão são:</para>
+
+  <table>
+  <title
+>Atalhos</title>
+  <tgroup cols="2">
+  <tbody>
+  <row>
+    <entry
+>Terminar o jogo atual</entry>
+    <entry
+><keycap
+>F</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Obter jogos novos, enviados por outros usuários</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Ajuda</entry>
+    <entry
+><keycap
+>F1</keycap
+></entry>
+   </row>
+  <row>
+    <entry
+>Carregar um jogo salvo</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Passar uma jogada</entry>
+    <entry
+><keycap
+>P</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Sair</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Repetir uma jogada que foi anulada</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Salvar o jogo atual</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Iniciar um novo jogo</entry>
+    <entry>
+    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>Iniciar um jogo novo ou gravado</entry>
+    <entry
+><keycap
+>S</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Ativar/desativar a visibilidade dos números de jogadas</entry>
+    <entry
+><keycap
+>N</keycap
+></entry>
+  </row>
+  <row>
+    <entry
+>Anular a sua última jogada</entry>
+    <entry>
+      <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+    </entry>
+  </row>
+  <row>
+    <entry
+>O que é isto?</entry>
+    <entry>
+    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+    </entry>
+  </row>
+  </tbody>
+  </tgroup>
+  </table>
+</sect1>
+</chapter>
+
+<chapter id="configuration">
+<title
+>Configuração do jogo</title
+> <!-- do not change this! -->
+<!--This section describes configuration GUI. If your game is configured using menubar exclusively, please remove this section.-->
+  <para
+>Se você quiser alterar a forma como o &kappname; é configurado, poderá fazer isso com o menu <guimenu
+>Configurações</guimenu
+> e clicando na ação <guimenuitem
+>Configurar o &kappname;...</guimenuitem
+>. </para>
+
+  <para
+>Você deverá ver agora a janela de configuração, tal como aparece na imagem abaixo. Poderá chegar a ela também com a sequência <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+> seguida de <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+  <para
+>O &kappname; é extremamente flexível e pode ser personalizado da forma que desejar. Você poderá mudar a posição e o tamanho de todas as áreas acopláveis próximas da área de jogo. Poderá também personalizar a barra de ferramentas, caso queira ter ações diferentes aí disponíveis. Para fazer isso, basta clicar no menu <guimenu
+>Configurações</guimenu
+> e escolher a opção <guimenuitem
+>Configurar as barras de ferramentas...</guimenuitem
+>. O mesmo se passa para todos os atalhos no jogo. Se você quiser ter o máximo de espaço disponível para o campo de jogo, poderá ocultar a barra de ferramentas e a maioria das áreas acopláveis no menu de <guimenu
+>Configurações</guimenu
+>. </para>
+  <sect1 id="genconig">
+  <title
+>Configuração Geral</title>
+    <para
+>O aspecto mais importante aqui é a configuração da infraestrutura do motor de Go. O &kappname; necessita de uma infraestrutura válida para funcionar corretamente. Como você poderá ver na imagem abaixo, ele usava o GnuGo por padrão. A pequena luz ao lado do comando do motor fica acesa e verde se tudo estiver bem. Se não for esse o caso, ou se quiser usar uma infraestrutura de Go diferente, deverá instalar um motor de Go diferente que consiga se comunicar no protocolo GTP (GnuGo Text Protocol) e definir o seu comando e parâmetros da forma mais adequada. Os detalhes acerca deste passo deverão estar descritos na documentação do motor de Go correspondente. </para>
+    <screenshot>
+    <screeninfo
+>Configuração geral</screeninfo>
+    <mediaobject>
+    <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+    <textobject
+><phrase
+>Configuração Geral.</phrase
+></textobject>
+    </mediaobject>
+    </screenshot>
+    </sect1>
+    <sect1 id="configuration-theme">
+    <title
+>Configuração do Tema</title>
+    <para
+>Esta página permitirá alterar o tema que o &kappname; usa. </para>
+    <screenshot>
+    <screeninfo
+>Configurar o &kappname; - Temas</screeninfo>
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="setup-theme.png" format="PNG"/>
+	  </imageobject>
+	    <textobject>
+	    <phrase
+>Configuração do tema</phrase>
+	  </textobject>
+	</mediaobject>
+    </screenshot>
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+
+<!-- Include credits for the programmers, documentation writers, and
+contributors here. The license for your software should then be included below
+the credits with a reference to the appropriate license file included in the KDE
+distribution. -->
+
+<title
+>Créditos e licença</title>
+
+<para
+>&kigo; </para>
+<para
+>Programa com 'copyright' 2009 de Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+<para
+>Documentação com 'copyright' &copy; 2009 de Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+<para
+>Edição da documentação e conversão para Docbook por Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+<para
+>Tema padrão desenhado por Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Tradução de Marcus Gama <email
+>marcus.gama@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Instalação</title>
+
+<sect1 id="getting-kapp">
+<title
+>Como obter o &kigo;</title
+>&install.intro.documentation; &install.compile.documentation; </sect1>
+
+<sect1 id="compilation">
+<title
+>Compilação e instalação</title
+>&install.compile.documentation; </sect1>
+
+</appendix>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+
