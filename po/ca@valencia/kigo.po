@@ -850,7 +850,7 @@ msgstr "Dissenyador del tema predeterminat"
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
-msgstr "Partida a carregar (fitxer SGF)"
+msgstr "Partida que s'ha de carregar (fitxer SGF)"
 
 #: main.cpp:64
 #, kde-format
