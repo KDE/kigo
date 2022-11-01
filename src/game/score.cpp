@@ -23,12 +23,12 @@ Score::Score(const QString &score)
 #else
         m_score = score.mid(2, i - 1).toFloat();
 #endif
-        QString upperBound = score.section(QLatin1Char(' '), 3, 3);
-        upperBound.chop(1);
-        m_upperBound = upperBound.toFloat();
-        QString lowerBound = score.section(QLatin1Char(' '), 5, 5);
-        lowerBound.chop(1);
-        m_lowerBound = lowerBound.toFloat();
+        QString newUpperBound = score.section(QLatin1Char(' '), 3, 3);
+        newUpperBound.chop(1);
+        m_upperBound = newUpperBound.toFloat();
+        QString newLowerBound = score.section(QLatin1Char(' '), 5, 5);
+        newLowerBound.chop(1);
+        m_lowerBound = newLowerBound.toFloat();
     }
 }
 
