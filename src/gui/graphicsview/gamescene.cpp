@@ -191,8 +191,6 @@ void GameScene::updateHintItems()
     }
     m_hintItems.clear();
 
-    QGraphicsPixmapItem *item;
-
     if (m_showHint) {
         const int halfStoneSize = m_stonePixmapSize.width() / 2;
 
@@ -217,7 +215,7 @@ void GameScene::updateHintItems()
             painter.drawText(stonePixmap.rect(), Qt::AlignCenter, QString::number(move.value()));
             painter.end();
 
-            item = addPixmap(stonePixmap);
+            QGraphicsPixmapItem *item = addPixmap(stonePixmap);
             item->setZValue(4);
             const int xOff = move.x() >= 'I' ? move.x() - 'A' - 1 : move.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfStoneSize + 2,
@@ -234,8 +232,6 @@ void GameScene::updateTerritoryItems()
     }
     m_territoryItems.clear();
 
-    QGraphicsPixmapItem *item;
-
     if (m_showTerritory) {
         QPixmap stonePixmap;
         const int halfCellSize = m_cellSize / 2;
@@ -244,7 +240,7 @@ void GameScene::updateTerritoryItems()
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::WhiteTerritory, QSize(m_cellSize, m_cellSize));
         const auto whiteStones = m_game->finalStates(Game::FinalState::FinalWhiteTerritory);
         for (const Stone &stone : whiteStones) {
-            item = addPixmap(stonePixmap);
+            QGraphicsPixmapItem *item = addPixmap(stonePixmap);
             item->setZValue(8);
             const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
@@ -255,7 +251,7 @@ void GameScene::updateTerritoryItems()
         stonePixmap = ThemeRenderer::self()->renderElement(ThemeRenderer::Element::BlackTerritory, QSize(m_cellSize, m_cellSize));
         const auto blackStones = m_game->finalStates(Game::FinalState::FinalBlackTerritory);
         for (const Stone &stone : blackStones) {
-            item = addPixmap(stonePixmap);
+            QGraphicsPixmapItem *item = addPixmap(stonePixmap);
             item->setZValue(8);
             const int xOff = stone.x() >= 'I' ? stone.x() - 'A' - 1 : stone.x() - 'A';
             item->setPos(QPointF(m_gridRect.x() + xOff * m_cellSize - halfCellSize + 2,
