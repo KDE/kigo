@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2022-04-09 13:55+0300\n"
+"PO-Revision-Date: 2022-11-14 14:19+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -153,7 +153,7 @@ msgstr ""
 #: gui/config/generalconfig.ui:128
 #, kde-format
 msgid "Appearance"
-msgstr "Görünüm"
+msgstr "Görünüş"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowBoardLabels)
 #: gui/config/generalconfig.ui:137
