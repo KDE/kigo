@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2022-11-14 14:19+0300\n"
+"PO-Revision-Date: 2022-11-21 22:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -192,7 +192,7 @@ msgstr "&Hareket"
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Settings"
-msgstr "&Ayarlar"
+msgstr "Ayar&lar"
 
 #. i18n: ectx: Menu (dockers)
 #: gui/kigoui.rc:27
