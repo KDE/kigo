@@ -329,7 +329,7 @@ msgstr "Mostra els &números de moviment"
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
-msgstr "Configuració de la partida"
+msgstr "Configureu la partida"
 
 #: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
 #, kde-format
