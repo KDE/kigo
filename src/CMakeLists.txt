@@ -68,6 +68,10 @@ target_link_libraries(kigo
     Qt${QT_MAJOR_VERSION}::Svg
 )
 
+if (TARGET Qt::Core5Compat)
+    target_link_libraries(kigo Qt::Core5Compat)
+endif()
+
 install(TARGETS kigo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 install(FILES kigo.knsrc DESTINATION ${KDE_INSTALL_KNSRCDIR})
