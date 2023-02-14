@@ -64,7 +64,7 @@ set_package_properties(GNUGo PROPERTIES
 
 ecm_set_disabled_deprecation_versions(
     QT 6.4
-    KF 5.101
+    KF 5.103
     KDEGAMES 7.3
 )
 
