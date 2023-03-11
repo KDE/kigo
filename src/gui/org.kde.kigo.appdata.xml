@@ -76,7 +76,6 @@
   <summary xml:lang="uk">Гра у го на дошці</summary>
   <summary xml:lang="x-test">xxGo Board Gamexx</summary>
   <summary xml:lang="zh-CN">围棋游戏</summary>
-  <summary xml:lang="zh-TW">圍棋遊戲</summary>
   <description>
     <p>
       Kigo is an open-source implementation of the popular Go game.
