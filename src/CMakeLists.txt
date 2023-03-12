@@ -57,8 +57,13 @@ kconfig_add_kcfg_files(kigo preferences.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/*-apps-kigo.png")
 ecm_add_app_icon(kigo ICONS ${ICONS_SRCS})
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kigo KDEGames6)
+else()
+    target_link_libraries(kigo KF5KDEGames)
+endif()
+
 target_link_libraries(kigo
-    KF5KDEGames
     KF${KF_MAJOR_VERSION}::XmlGui
     KF${KF_MAJOR_VERSION}::KIOWidgets  # KUrlRequester
     KF${KF_MAJOR_VERSION}::TextWidgets # KPluralHandlingSpinBox
