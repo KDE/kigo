@@ -1,4 +1,5 @@
 # Translation of kigo into esperanto.
+# Copyright (C) 2009 Free Software Foundation, Inc.
 # Axel Rousseau <axel@esperanto-jeunes.org>, 2009.
 #
 msgid ""
@@ -6,8 +7,8 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2009-11-15 12:06+0100\n"
-"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
+"PO-Revision-Date: 2023-03-20 22:43+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -54,10 +55,9 @@ msgid "White resigned"
 msgstr ""
 
 #: game/game.cpp:401
-#, fuzzy, kde-format
-#| msgid "Backend"
+#, kde-format
 msgid "Black resigned"
-msgstr "Interno"
+msgstr ""
 
 #: game/game.cpp:409
 #, kde-format
@@ -398,10 +398,9 @@ msgid "White's turn"
 msgstr ""
 
 #: gui/widgets/gamewidget.cpp:81
-#, fuzzy, kde-format
-#| msgid "Backend"
+#, kde-format
 msgid "Black's turn"
-msgstr "Interno"
+msgstr ""
 
 #: gui/widgets/gamewidget.cpp:86 gui/widgets/gamewidget.cpp:87
 #, kde-format
@@ -539,10 +538,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
-#, fuzzy, kde-format
-#| msgid "Custom:"
+#, kde-format
 msgid "&Custom:"
-msgstr "Propra:"
+msgstr "&Propra:"
 
 #. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:126
@@ -604,10 +602,9 @@ msgstr "Poentoj:"
 
 #. i18n: ectx: property (text), widget (QLabel, continueStaticLabel)
 #: gui/widgets/setupwidget.ui:435
-#, fuzzy, kde-format
-#| msgid "Continue"
+#, kde-format
 msgid "Continue:"
-msgstr "Daŭrigi"
+msgstr "Daŭrigi:"
 
 #. i18n: ectx: property (suffix), widget (QSpinBox, startMoveSpinBox)
 #: gui/widgets/setupwidget.ui:467
@@ -635,10 +632,9 @@ msgstr "&Komputilo"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: gui/widgets/setupwidget.ui:595
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgid "&Name:"
-msgstr "Nomo:"
+msgstr "&Nomo:"
 
 #. i18n: ectx: property (text), widget (QLabel, label1)
 #. i18n: ectx: property (text), widget (QLabel, label1_3)
@@ -650,16 +646,15 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, label2)
 #. i18n: ectx: property (text), widget (QLabel, label2_3)
 #: gui/widgets/setupwidget.ui:656 gui/widgets/setupwidget.ui:804
-#, fuzzy, kde-format
+#, kde-format
 msgid "Strong"
-msgstr "Iteracioj:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, blackIsComputerCheckBox)
 #: gui/widgets/setupwidget.ui:742
-#, fuzzy, kde-format
-#| msgid "Computer"
+#, kde-format
 msgid "C&omputer"
-msgstr "Komputilo"
+msgstr "K&omputilo"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: gui/widgets/setupwidget.ui:762
@@ -825,6 +820,3 @@ msgstr ""
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr ""
-
-#~ msgid "New Game"
-#~ msgstr "Nova ludo"
