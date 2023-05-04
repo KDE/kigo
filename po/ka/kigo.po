@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2022-09-30 15:11+0200\n"
+"PO-Revision-Date: 2023-05-03 06:50+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -221,7 +221,7 @@ msgstr ""
 #: gui/mainwindow.cpp:174
 #, kde-format
 msgid "Game saved..."
-msgstr ""
+msgstr "თამაში შენახულია..."
 
 #: gui/mainwindow.cpp:176
 #, kde-format
@@ -231,7 +231,7 @@ msgstr ""
 #: gui/mainwindow.cpp:223
 #, kde-format
 msgid "Game started..."
-msgstr ""
+msgstr "თამაში დაიწყო..."
 
 #: gui/mainwindow.cpp:248
 #, kde-format
@@ -288,7 +288,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action"
 msgid "Start Game"
-msgstr ""
+msgstr "თამაშის დაწყება"
 
 #: gui/mainwindow.cpp:393 gui/mainwindow.cpp:395
 #, kde-format
@@ -312,7 +312,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
-msgstr ""
+msgstr "თამაშის მორგება"
 
 #: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
 #, kde-format
@@ -324,7 +324,7 @@ msgstr "ინფორმაცია"
 #, kde-format
 msgctxt "@title:window"
 msgid "Moves"
-msgstr ""
+msgstr "სვლები"
 
 #: gui/mainwindow.cpp:445
 #, kde-format
@@ -335,7 +335,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
-msgstr ""
+msgstr "შეცდომა"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/errorwidget.ui:21
@@ -372,14 +372,14 @@ msgstr ""
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
 msgid "Computer (level %1)"
-msgstr ""
+msgstr "კომპიუტერი (დონე %1)"
 
 #: gui/widgets/gamewidget.cpp:49
 #, kde-format
 msgid "%1 Stone"
 msgid_plural "%1 Stones"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 ქვა"
+msgstr[1] "%1 ქვა"
 
 #: gui/widgets/gamewidget.cpp:66
 #, kde-format
@@ -435,13 +435,13 @@ msgstr ""
 #: gui/widgets/gamewidget.ui:58
 #, kde-format
 msgid "0.5 Points"
-msgstr ""
+msgstr "0.5 ქულა"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/gamewidget.ui:78
 #, kde-format
 msgid "Last move:"
-msgstr ""
+msgstr "ბოლო სვლა:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: gui/widgets/gamewidget.ui:101
@@ -453,7 +453,7 @@ msgstr "გადაადგილება:"
 #: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
 #, kde-format
 msgid "White Player"
-msgstr ""
+msgstr "თეთრი მოთამაშე"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteCapturesLabel)
 #. i18n: ectx: property (text), widget (QLabel, blackCapturesLabel)
@@ -466,20 +466,20 @@ msgstr ""
 #: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
 #, kde-format
 msgid "Black Player"
-msgstr ""
+msgstr "შავი მოთამაშე"
 
 #. i18n: ectx: property (text), widget (QPushButton, finishButton)
 #: gui/widgets/gamewidget.ui:308
 #, kde-format
 msgid "Finish Game"
-msgstr ""
+msgstr "თამაშის დასრულება"
 
 #: gui/widgets/setupwidget.cpp:53
 #, kde-format
 msgid " Stone"
 msgid_plural " Stones"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " ქვა"
+msgstr[1] " ქვა"
 
 #: gui/widgets/setupwidget.cpp:157
 #, kde-format
@@ -523,25 +523,25 @@ msgstr ""
 #: gui/widgets/setupwidget.ui:37
 #, kde-format
 msgid "&Tiny (9x9)"
-msgstr ""
+msgstr "&პაწაწინა (9x9)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
 #: gui/widgets/setupwidget.ui:47
 #, kde-format
 msgid "Small (&13x13)"
-msgstr ""
+msgstr "პატარა (&13x13)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
 #: gui/widgets/setupwidget.ui:54
 #, kde-format
 msgid "No&rmal (19x19)"
-msgstr ""
+msgstr "&ნორმალური (19x19)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
 #, kde-format
 msgid "&Custom:"
-msgstr ""
+msgstr "&ხელით:"
 
 #. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:126
@@ -569,7 +569,7 @@ msgstr ""
 #: gui/widgets/setupwidget.ui:174
 #, kde-format
 msgid " Points"
-msgstr "ქულა"
+msgstr " ქულა"
 
 #. i18n: ectx: property (text), widget (QLabel, eventStaticLabel)
 #: gui/widgets/setupwidget.ui:237
@@ -593,7 +593,7 @@ msgstr "თარიღი:"
 #: gui/widgets/setupwidget.ui:339
 #, kde-format
 msgid "Round:"
-msgstr ""
+msgstr "რაუნდი:"
 
 #. i18n: ectx: property (text), widget (QLabel, scoreStaticLabel)
 #: gui/widgets/setupwidget.ui:371
@@ -617,7 +617,7 @@ msgstr ""
 #: gui/widgets/setupwidget.ui:470
 #, kde-format
 msgid "Move "
-msgstr "გადაადგილება"
+msgstr "გადაადგილება "
 
 #. i18n: ectx: property (text), widget (QLabel, timeStaticLabel)
 #: gui/widgets/setupwidget.ui:489
@@ -792,32 +792,32 @@ msgstr "Yuri Chornoivan"
 #: main.cpp:54
 #, kde-format
 msgid "Documentation editor"
-msgstr ""
+msgstr "დოკუმენტაციის რედაქტორი"
 
 #: main.cpp:56
 #, kde-format
 msgid "Arturo Silva"
-msgstr ""
+msgstr "Arturo Silva"
 
 #: main.cpp:56
 #, kde-format
 msgid "Default theme designer"
-msgstr ""
+msgstr "ნაგულისხმები თემის დიზაინერი"
 
 #: main.cpp:64 main.cpp:65
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
-msgstr ""
+msgstr "თამაშის ჩატვირთვა (SGF ფაილი)"
 
 #: main.cpp:64
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
-msgstr ""
+msgstr "gamefile"
 
 #: main.cpp:65
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
-msgstr ""
+msgstr "[gamefile]"
