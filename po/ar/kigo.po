@@ -428,7 +428,7 @@ msgstr ""
 #: gui/widgets/gamewidget.ui:35
 #, kde-format
 msgid "2"
-msgstr "٢"
+msgstr "2"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, komiStaticLabel)
@@ -443,7 +443,7 @@ msgstr "الكومي:"
 #: gui/widgets/gamewidget.ui:58
 #, kde-format
 msgid "0.5 Points"
-msgstr "٠٫٥ نقطة"
+msgstr "0٫5 نقطة"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/gamewidget.ui:78
