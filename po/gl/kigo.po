@@ -111,7 +111,7 @@ msgstr "Engada aquí os parámetro precisos para iniciar o motor no modo GTP"
 #: gui/config/generalconfig.ui:75
 #, kde-format
 msgid "This is the resulting engine command which will be used by Kigo"
-msgstr "Esta é a orde resultante para o motor que empregará Kigo"
+msgstr "Esta é a orde resultante para o motor que usará Kigo"
 
 #. i18n: ectx: property (toolTip), widget (KLed, engineLed)
 #: gui/config/generalconfig.ui:94
@@ -159,7 +159,7 @@ msgstr "Aparencia"
 #: gui/config/generalconfig.ui:137
 #, kde-format
 msgid "Display Board Labels"
-msgstr "Mostrar as lendas do taboleiro"
+msgstr "Amosar as lendas do taboleiro"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: gui/config/generalconfig.ui:144
@@ -323,7 +323,7 @@ msgstr "Pasar o movemento"
 #, kde-format
 msgctxt "@action:inmenu View"
 msgid "Show Move &Numbers"
-msgstr "Mostrar os &números dos movementos"
+msgstr "Amosar os &números dos movementos"
 
 #: gui/mainwindow.cpp:421
 #, kde-format
@@ -396,9 +396,9 @@ msgstr ""
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
 "family:'Sans Serif'; font-size:10pt;\">Se ten a certeza de que xa instalou "
-"un motor de Go axeitado, intente configurar Kigo para que empregue ese "
-"motor. En caso contrario, debería instalar un motor de Go (como GnuGo).</"
-"span></p></body></html>"
+"un motor de Go axeitado, intente configurar Kigo para que use ese motor. En "
+"caso contrario, debería instalar un motor de Go (como GnuGo).</span></p></"
+"body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
@@ -721,13 +721,13 @@ msgstr "A orde do motor actual do xogo con parámetros (opcionais)"
 #: kigo.kcfg:21
 #, kde-format
 msgid "The graphical theme to be used"
-msgstr "O tema gráfico a empregar"
+msgstr "O tema gráfico a usar"
 
 #. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
 #: kigo.kcfg:25
 #, kde-format
 msgid "Determines whether board labels are shown"
-msgstr "Indica se deben mostrarse lendas no taboleiro"
+msgstr "Indica se deben amosarse lendas no taboleiro"
 
 #. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
 #: kigo.kcfg:29
