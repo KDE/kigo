@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2023-04-24 07:26+0200\n"
+"PO-Revision-Date: 2023-06-23 22:55+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -81,7 +81,7 @@ msgstr "Negras %1"
 #: gui/config/generalconfig.ui:17
 #, kde-format
 msgid "Backend"
-msgstr "Infraestrutura"
+msgstr "Motor"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: gui/config/generalconfig.ui:23
@@ -293,7 +293,7 @@ msgstr "Temas"
 #: gui/mainwindow.cpp:317
 #, kde-format
 msgid "Backend was changed, restart necessary..."
-msgstr "Cambiou a infraestrutura; hai que reiniciar…"
+msgstr "Cambiou o motor; hai que reiniciar…"
 
 #: gui/mainwindow.cpp:380 gui/mainwindow.cpp:382
 #, kde-format
@@ -733,7 +733,7 @@ msgstr "Indica se deben amosarse lendas no taboleiro"
 #: kigo.kcfg:29
 #, kde-format
 msgid "Move numbers are drawn onto stones if enabled"
-msgstr "Se activa esta opción os números de movementos mostraranse nas pedras"
+msgstr "Se activa esta opción os números de movementos amosaranse nas pedras"
 
 #. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
 #: kigo.kcfg:33
