@@ -60,3 +60,5 @@ QString Score::toString() const
 }
 
 } // End of namespace Kigo
+
+#include "moc_score.cpp"

@@ -49,3 +49,5 @@ void GameView::resizeEvent(QResizeEvent *event)
 }
 
 } // End of namespace Kigo
+
+#include "moc_gameview.cpp"

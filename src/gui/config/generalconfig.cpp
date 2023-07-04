@@ -41,3 +41,5 @@ void GeneralConfig::updateEngineCommand()
 }
 
 } // End of namespace Kigo
+
+#include "moc_generalconfig.cpp"

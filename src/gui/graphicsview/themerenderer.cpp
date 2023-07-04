@@ -223,3 +223,5 @@ QSize ThemeRenderer::elementSize(Element element) const
 }
 
 } // End of namespace Kigo
+
+#include "moc_themerenderer.cpp"

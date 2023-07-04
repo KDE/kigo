@@ -781,3 +781,5 @@ void Game::setCurrentPlayer(Player &player)
 }
 
 } // End of namespace Kigo
+
+#include "moc_game.cpp"

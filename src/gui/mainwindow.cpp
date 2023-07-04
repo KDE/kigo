@@ -469,3 +469,5 @@ bool MainWindow::isBackendWorking()
 }
 
 } // End of namespace Kigo
+
+#include "moc_mainwindow.cpp"

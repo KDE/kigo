@@ -26,3 +26,5 @@ void ErrorWidget::on_configureButton_clicked()
 }
 
 } // End of namespace Kigo
+
+#include "moc_errorwidget.cpp"

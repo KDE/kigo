@@ -335,3 +335,5 @@ void SetupWidget::whiteIsComputer(bool computer)
 }
 
 } // End of namespace Kigo
+
+#include "moc_setupwidget.cpp"

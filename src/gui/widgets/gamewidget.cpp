@@ -99,3 +99,5 @@ void GameWidget::enableFinishButton()
 }
 
 } // End of namespace Kigo
+
+#include "moc_gamewidget.cpp"

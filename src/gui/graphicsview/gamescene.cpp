@@ -401,3 +401,5 @@ void GameScene::drawBackground(QPainter *painter, const QRectF &)
 }
 
 } // End of namespace Kigo
+
+#include "moc_gamescene.cpp"
