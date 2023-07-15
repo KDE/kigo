@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2023-07-12 06:24+0200\n"
+"PO-Revision-Date: 2023-07-14 06:52+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -37,7 +37,7 @@ msgstr "თეთრი %1"
 #: game/game.cpp:320 game/game.cpp:390 gui/mainwindow.cpp:367
 #, kde-format
 msgid "White passed"
-msgstr ""
+msgstr "თეთრმა გამოტოვა"
 
 #: game/game.cpp:326
 #, kde-format
@@ -48,7 +48,7 @@ msgstr "შავი %1"
 #: game/game.cpp:329 game/game.cpp:392 gui/mainwindow.cpp:369
 #, kde-format
 msgid "Black passed"
-msgstr ""
+msgstr "შავმა გამოტოვა"
 
 #: game/game.cpp:399
 #, kde-format
@@ -256,7 +256,7 @@ msgstr ""
 #: gui/mainwindow.cpp:266
 #, kde-format
 msgid "Undone move"
-msgstr ""
+msgstr "სვლა დაბრუნებულია"
 
 #: gui/mainwindow.cpp:274
 #, kde-format
@@ -300,13 +300,13 @@ msgstr "თამაშის დასრულება"
 #, kde-format
 msgctxt "@action:inmenu Move"
 msgid "Pass Move"
-msgstr ""
+msgstr "სვლის გამოტოვება"
 
 #: gui/mainwindow.cpp:408
 #, kde-format
 msgctxt "@action:inmenu View"
 msgid "Show Move &Numbers"
-msgstr ""
+msgstr "სვლის &ნომრების ჩვენება"
 
 #: gui/mainwindow.cpp:421
 #, kde-format
@@ -429,7 +429,7 @@ msgstr "2"
 #: gui/widgets/setupwidget.ui:403
 #, kde-format
 msgid "Komi:"
-msgstr ""
+msgstr "კომი:"
 
 #. i18n: ectx: property (text), widget (QLabel, komiLabel)
 #: gui/widgets/gamewidget.ui:58
@@ -611,7 +611,7 @@ msgstr "გაგრძელება:"
 #: gui/widgets/setupwidget.ui:467
 #, kde-format
 msgid " of 999"
-msgstr "999-დან"
+msgstr " 999-დან"
 
 #. i18n: ectx: property (prefix), widget (QSpinBox, startMoveSpinBox)
 #: gui/widgets/setupwidget.ui:470
@@ -739,7 +739,7 @@ msgstr "თეთრი მოთამაშის სიძლიერე"
 #: kigo.kcfg:69
 #, kde-format
 msgid "Go board size"
-msgstr ""
+msgstr "Go სათამაშო დაფის ზომა"
 
 #. i18n: ectx: label, entry (Komi), group (Game)
 #: kigo.kcfg:76
@@ -767,7 +767,7 @@ msgstr "Kigo"
 #: main.cpp:50
 #, kde-format
 msgid "KDE Go Board Game"
-msgstr ""
+msgstr "სამაგიდო თამაში Go, KDE-სგან"
 
 #: main.cpp:51
 #, kde-format
