@@ -863,33 +863,3 @@ msgstr "fitxer de partida"
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr "[fitxer de partida]"
-
-#~ msgid " Stones"
-#~ msgstr " Pedres"
-
-#~ msgid "List of available/configured engine backends"
-#~ msgstr "Llista de dorsals de motor disponibles/configurats"
-
-#~ msgid "List of backend commands corresponding to the engine list"
-#~ msgstr "Llista d'ordres de dorsal corresponents a la llista de motors"
-
-#~ msgid "for White"
-#~ msgstr "per blanques"
-
-#~ msgid "for Black"
-#~ msgstr "per negres"
-
-#~ msgid "Human"
-#~ msgstr "Humà"
-
-#~ msgid "New Game"
-#~ msgstr "Nou joc"
-
-#~ msgid "Fixed Handicap"
-#~ msgstr "Desavantatge fix"
-
-#~ msgid "Loaded Game"
-#~ msgstr "S'ha carregat una partida"
-
-#~ msgid "Computer (Level 10)"
-#~ msgstr "Ordinador (nivell 10)"
