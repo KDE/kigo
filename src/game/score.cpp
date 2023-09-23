@@ -18,11 +18,7 @@ Score::Score(const QString &score)
             m_color = QLatin1Char('B');
         }
         int i = score.indexOf(QLatin1Char(' '));
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        m_score = score.midRef(2, i - 1).toFloat();
-#else
         m_score = score.mid(2, i - 1).toFloat();
-#endif
         QString newUpperBound = score.section(QLatin1Char(' '), 3, 3);
         newUpperBound.chop(1);
         m_upperBound = newUpperBound.toFloat();

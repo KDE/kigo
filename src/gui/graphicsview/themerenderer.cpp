@@ -7,7 +7,6 @@
 #include "themerenderer.h"
 #include "preferences.h"
 
-#include <kdegames_version.h>
 #include <KgThemeProvider>
 
 #include <QSvgRenderer>
@@ -23,9 +22,6 @@ ThemeRenderer::ThemeRenderer()
 {
     QPixmapCache::setCacheLimit(3 * 1024);
     m_themeProvider->discoverThemes(
-#if KDEGAMES_VERSION < QT_VERSION_CHECK(7, 4, 0)
-        "appdata",
-#endif
         QStringLiteral("themes"), // theme file location
         QStringLiteral("default") // default theme file name
     );

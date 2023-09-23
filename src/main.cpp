@@ -10,9 +10,6 @@
 
 #include <KAboutData>
 #include <KCrash>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <Kdelibs4ConfigMigrator>
-#endif
 
 #include <QApplication>
 #include <KLocalizedString>
@@ -32,17 +29,7 @@ namespace Kigo { /* This is only a Doxygen stub */ }
  */
 int main(int argc, char *argv[])
 {
-    // Fixes blurry icons with fractional scaling
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
     QApplication app(argc, argv);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("kigo"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("kigorc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("kigoui.rc"));
-    migrate.migrate();
-#endif
 
     KLocalizedString::setApplicationDomain("kigo");
 

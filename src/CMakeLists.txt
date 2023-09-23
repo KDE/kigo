@@ -57,25 +57,17 @@ kconfig_add_kcfg_files(kigo preferences.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/*-apps-kigo.png")
 ecm_add_app_icon(kigo ICONS ${ICONS_SRCS})
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(kigo KDEGames6)
-else()
-    target_link_libraries(kigo KF5KDEGames)
-endif()
-
 target_link_libraries(kigo
-    KF${KF_MAJOR_VERSION}::XmlGui
-    KF${KF_MAJOR_VERSION}::KIOWidgets  # KUrlRequester
-    KF${KF_MAJOR_VERSION}::TextWidgets # KPluralHandlingSpinBox
-    KF${KF_MAJOR_VERSION}::NewStuffWidgets
-    KF${KF_MAJOR_VERSION}::DBusAddons
-    KF${KF_MAJOR_VERSION}::Crash
-    Qt${QT_MAJOR_VERSION}::Svg
+    KDEGames6
+    KF6::XmlGui
+    KF6::KIOWidgets  # KUrlRequester
+    KF6::TextWidgets # KPluralHandlingSpinBox
+    KF6::NewStuffWidgets
+    KF6::DBusAddons
+    KF6::Crash
+    Qt6::Svg
+    Qt6::Core5Compat
 )
-
-if (TARGET Qt6::Core5Compat)
-    target_link_libraries(kigo Qt6::Core5Compat)
-endif()
 
 install(TARGETS kigo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kigo.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
