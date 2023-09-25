@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-04 00:43+0000\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2012-08-21 08:24+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -806,64 +806,64 @@ msgstr "A komival extra pontok adhatók a fekete játékosnak"
 msgid "Extra stones for the black player"
 msgstr "Extra kövek a fekete játékosnak"
 
-#: main.cpp:49
+#: main.cpp:36
 #, kde-format
 msgid "Kigo"
 msgstr "Kigo"
 
-#: main.cpp:50
+#: main.cpp:37
 #, kde-format
 msgid "KDE Go Board Game"
 msgstr "KDE-alapú Go játék"
 
-#: main.cpp:51
+#: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
 msgstr "Copyright © Sascha Peilicke, 2008-2010."
 
-#: main.cpp:52
+#: main.cpp:39
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
 msgstr "Sascha Peilicke (saschpe)"
 
-#: main.cpp:52
+#: main.cpp:39
 #, kde-format
 msgid "Original author"
 msgstr "Eredeti szerző"
 
-#: main.cpp:54
+#: main.cpp:41
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Yuri Chornoivan"
 
-#: main.cpp:54
+#: main.cpp:41
 #, kde-format
 msgid "Documentation editor"
 msgstr "Dokumentációszerkesztő"
 
-#: main.cpp:56
+#: main.cpp:43
 #, kde-format
 msgid "Arturo Silva"
 msgstr "Arturo Silva"
 
-#: main.cpp:56
+#: main.cpp:43
 #, kde-format
 msgid "Default theme designer"
 msgstr "Az alapértelmezett téma tervezője"
 
-#: main.cpp:64 main.cpp:65
+#: main.cpp:51 main.cpp:52
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "A betölteni kívánt játék (SGF fájl)"
 
-#: main.cpp:64
+#: main.cpp:51
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr ""
 
-#: main.cpp:65
+#: main.cpp:52
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

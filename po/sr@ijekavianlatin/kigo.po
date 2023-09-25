@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-05-12 03:21+0200\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2017-05-07 21:01+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -32,45 +32,45 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "caslav.ilic@gmx.net"
 
-#: game/game.cpp:335
+#: game/game.cpp:317
 #, kde-format
 msgctxt "%1 stone coordinate"
 msgid "White %1"
 msgstr "bijeli %1"
 
-#: game/game.cpp:338 game/game.cpp:408 gui/mainwindow.cpp:395
+#: game/game.cpp:320 game/game.cpp:390 gui/mainwindow.cpp:367
 #, kde-format
 msgid "White passed"
 msgstr "bijeli propušta"
 
-#: game/game.cpp:344
+#: game/game.cpp:326
 #, kde-format
 msgctxt "%1 stone coordinate"
 msgid "Black %1"
 msgstr "crni %1"
 
-#: game/game.cpp:347 game/game.cpp:410 gui/mainwindow.cpp:397
+#: game/game.cpp:329 game/game.cpp:392 gui/mainwindow.cpp:369
 #, kde-format
 msgid "Black passed"
 msgstr "crni propušta"
 
-#: game/game.cpp:417
+#: game/game.cpp:399
 #, kde-format
 msgid "White resigned"
 msgstr "bijeli odustaje"
 
-#: game/game.cpp:419
+#: game/game.cpp:401
 #, kde-format
 msgid "Black resigned"
 msgstr "crni odustaje"
 
-#: game/game.cpp:427
+#: game/game.cpp:409
 #, kde-format
 msgctxt "%1 response from Go engine"
 msgid "White %1"
 msgstr "bijeli %1"
 
-#: game/game.cpp:429
+#: game/game.cpp:411
 #, kde-format
 msgctxt "%1 response from Go engine"
 msgid "Black %1"
@@ -205,131 +205,145 @@ msgctxt "@title:menu"
 msgid "Move Toolbar"
 msgstr "Traka poteza"
 
-#: gui/mainwindow.cpp:105
+#: gui/mainwindow.cpp:90
 #, kde-format
 msgid "Set up a new game..."
 msgstr "Postavlja se nova partija."
 
-#: gui/mainwindow.cpp:111 gui/mainwindow.cpp:197
+#: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
 msgid "Kigo Game Files (*.sgf)"
 msgstr "Kigoove fajlovi pozicija (*.sgf)"
 
-#: gui/mainwindow.cpp:148
+#: gui/mainwindow.cpp:133
 #, kde-format
 msgid "Set up a loaded game..."
 msgstr "Postavlja se učitana pozicija."
 
-#: gui/mainwindow.cpp:151
+#: gui/mainwindow.cpp:136
 #, kde-format
 msgid "Unable to load game..."
 msgstr "Ne mogu da učitam poziciju."
 
-#: gui/mainwindow.cpp:201
+#: gui/mainwindow.cpp:174
 #, kde-format
 msgid "Game saved..."
 msgstr "Pozicija sačuvana."
 
-#: gui/mainwindow.cpp:203
+#: gui/mainwindow.cpp:176
 #, kde-format
 msgid "Unable to save game."
 msgstr "Ne mogu da sačuvam poziciju."
 
-#: gui/mainwindow.cpp:250
+#: gui/mainwindow.cpp:223
 #, kde-format
 msgid "Game started..."
 msgstr "Partija počinje..."
 
-#: gui/mainwindow.cpp:282
+#: gui/mainwindow.cpp:248
+#, fuzzy, kde-format
+#| msgctxt "Indication who played the last move"
+#| msgid "%1 (white)"
+msgid "%1 (White)"
+msgstr "%1 (bijeli)"
+
+#: gui/mainwindow.cpp:250
+#, fuzzy, kde-format
+#| msgctxt "Indication who played the last move"
+#| msgid "%1 (black)"
+msgid "%1 (Black)"
+msgstr "%1 (crni)"
+
+#: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
 msgstr "%1 pobijedi rezultatom %2."
 
-#: gui/mainwindow.cpp:285
+#: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
 msgstr "%1 pobijedi rezultatom %2 (u granicama: %3 i %4)."
 
-#: gui/mainwindow.cpp:293
+#: gui/mainwindow.cpp:266
 #, kde-format
 msgid "Undone move"
 msgstr "Potez opozvan"
 
-#: gui/mainwindow.cpp:301
+#: gui/mainwindow.cpp:274
 #, kde-format
 msgid "Redone move"
 msgstr "Potez ponovljen"
 
-#: gui/mainwindow.cpp:325
+#: gui/mainwindow.cpp:298
 #, kde-format
 msgid "General"
 msgstr "Opšte"
 
-#: gui/mainwindow.cpp:326
+#: gui/mainwindow.cpp:300
 #, kde-format
 msgid "Themes"
 msgstr "Teme"
 
-#: gui/mainwindow.cpp:345
+#: gui/mainwindow.cpp:317
 #, kde-format
 msgid "Backend was changed, restart necessary..."
 msgstr "Promijenjena pozadina, neophodno ponovno pokretanje..."
 
-#: gui/mainwindow.cpp:407 gui/mainwindow.cpp:409
+#: gui/mainwindow.cpp:380 gui/mainwindow.cpp:382
 #, kde-format
 msgctxt "@action"
 msgid "Get More Games..."
 msgstr "Dobavi još partija..."
 
-#: gui/mainwindow.cpp:415 gui/mainwindow.cpp:417
+#: gui/mainwindow.cpp:387 gui/mainwindow.cpp:389
 #, kde-format
 msgctxt "@action"
 msgid "Start Game"
 msgstr "Počni partiju"
 
-#: gui/mainwindow.cpp:421 gui/mainwindow.cpp:423
+#: gui/mainwindow.cpp:393 gui/mainwindow.cpp:395
 #, kde-format
 msgctxt "@action"
 msgid "Finish Game"
 msgstr "Završi partiju"
 
-#: gui/mainwindow.cpp:431
+#: gui/mainwindow.cpp:403
 #, kde-format
 msgctxt "@action:inmenu Move"
 msgid "Pass Move"
 msgstr "Propusti potez"
 
-#: gui/mainwindow.cpp:436
+#: gui/mainwindow.cpp:408
 #, kde-format
 msgctxt "@action:inmenu View"
 msgid "Show Move &Numbers"
 msgstr "&Brojevi poteza"
 
-#: gui/mainwindow.cpp:449
+#: gui/mainwindow.cpp:421
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
 msgstr "Postavljanje partije"
 
-#: gui/mainwindow.cpp:458 gui/mainwindow.cpp:464
+#: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
 #, kde-format
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Podaci"
 
-#: gui/mainwindow.cpp:470 gui/mainwindow.cpp:479
+#: gui/mainwindow.cpp:442 gui/mainwindow.cpp:451
 #, kde-format
 msgctxt "@title:window"
 msgid "Moves"
 msgstr "Potezi"
 
 # >> @item:inlistbox
-#: gui/mainwindow.cpp:473
+#: gui/mainwindow.cpp:445
 #, kde-format
 msgid "No move"
 msgstr "nema poteza"
 
-#: gui/mainwindow.cpp:484
+#: gui/mainwindow.cpp:456
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
@@ -370,12 +384,12 @@ msgstr ""
 msgid "Configure Kigo..."
 msgstr "Podesi Kigo..."
 
-#: gui/widgets/gamewidget.cpp:55 gui/widgets/gamewidget.cpp:60
+#: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
 msgid "Computer (level %1)"
 msgstr "računar (nivo %1)"
 
-#: gui/widgets/gamewidget.cpp:63
+#: gui/widgets/gamewidget.cpp:49
 #, kde-format
 msgid "%1 Stone"
 msgid_plural "%1 Stones"
@@ -384,29 +398,29 @@ msgstr[1] "%1 kamena"
 msgstr[2] "%1 kamenova"
 msgstr[3] "%1 kamen"
 
-#: gui/widgets/gamewidget.cpp:80
+#: gui/widgets/gamewidget.cpp:66
 #, kde-format
 msgctxt "Indication who played the last move"
 msgid "%1 (white)"
 msgstr "%1 (bijeli)"
 
-#: gui/widgets/gamewidget.cpp:82
+#: gui/widgets/gamewidget.cpp:68
 #, kde-format
 msgctxt "Indication who played the last move"
 msgid "%1 (black)"
 msgstr "%1 (crni)"
 
-#: gui/widgets/gamewidget.cpp:91
+#: gui/widgets/gamewidget.cpp:77
 #, kde-format
 msgid "White's turn"
 msgstr "Bijeli na potezu"
 
-#: gui/widgets/gamewidget.cpp:95
+#: gui/widgets/gamewidget.cpp:81
 #, kde-format
 msgid "Black's turn"
 msgstr "Crni na potezu"
 
-#: gui/widgets/gamewidget.cpp:100 gui/widgets/gamewidget.cpp:101
+#: gui/widgets/gamewidget.cpp:86 gui/widgets/gamewidget.cpp:87
 #, kde-format
 msgid "%1 capture"
 msgid_plural "%1 captures"
@@ -428,9 +442,9 @@ msgid "2"
 msgstr "2"
 
 # well-spelled: Коми
-#. i18n: ectx: property (text), widget (QLabel, label_3)
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #. i18n: ectx: property (text), widget (QLabel, komiStaticLabel)
+#. i18n: ectx: property (text), widget (QLabel, label_3)
 #: gui/widgets/gamewidget.ui:42 gui/widgets/setupwidget.ui:151
 #: gui/widgets/setupwidget.ui:403
 #, kde-format
@@ -456,7 +470,7 @@ msgid "Move:"
 msgstr "Potez:"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
-#: gui/widgets/gamewidget.ui:184
+#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
 #, kde-format
 msgid "White Player"
 msgstr "Bijeli igrač"
@@ -469,7 +483,7 @@ msgid "Captures:"
 msgstr "Zarobljeno:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
-#: gui/widgets/gamewidget.ui:233
+#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
 #, kde-format
 msgid "Black Player"
 msgstr "Crni igrač"
@@ -480,7 +494,7 @@ msgstr "Crni igrač"
 msgid "Finish Game"
 msgstr "Završi partiju"
 
-#: gui/widgets/setupwidget.cpp:66
+#: gui/widgets/setupwidget.cpp:53
 #, kde-format
 msgid " Stone"
 msgid_plural " Stones"
@@ -489,7 +503,7 @@ msgstr[1] " kamena"
 msgstr[2] " kamenova"
 msgstr[3] " kamen"
 
-#: gui/widgets/setupwidget.cpp:170
+#: gui/widgets/setupwidget.cpp:157
 #, kde-format
 msgctxt "Time limit of a game in minutes"
 msgid "%1 minute"
@@ -499,7 +513,7 @@ msgstr[1] "%1 minuta"
 msgstr[2] "%1 minuta"
 msgstr[3] "%1 minut"
 
-#: gui/widgets/setupwidget.cpp:172
+#: gui/widgets/setupwidget.cpp:159
 #, kde-format
 msgctxt "Time limit of a game, hours, minutes"
 msgid "%1 hour, %2"
@@ -510,18 +524,18 @@ msgstr[2] "%1 sati, %2"
 msgstr[3] "%1 sat, %2"
 
 # >> @item:intext suffix in spinbox, %1 is total number of moves
-#: gui/widgets/setupwidget.cpp:194
+#: gui/widgets/setupwidget.cpp:181
 #, kde-format
 msgid " of %1"
 msgstr " od %1"
 
-#: gui/widgets/setupwidget.cpp:237
+#: gui/widgets/setupwidget.cpp:224
 #, kde-format
 msgid "White to play"
 msgstr "Bijelog igra"
 
 #. i18n: ectx: property (text), widget (QLabel, playerLabel)
-#: gui/widgets/setupwidget.cpp:239 gui/widgets/setupwidget.ui:448
+#: gui/widgets/setupwidget.cpp:226 gui/widgets/setupwidget.ui:448
 #, kde-format
 msgid "Black to play"
 msgstr "Crnog igra"
@@ -692,156 +706,156 @@ msgid "Start Game"
 msgstr "Počni partiju"
 
 #. i18n: ectx: label, entry (EngineCommand), group (Backend)
-#: kigo.kcfg:9
+#: kigo.kcfg:10
 #, kde-format
 msgid "The current game engine command with (optional) parameters"
 msgstr "Trenutna naredba igračkog motora sa (opcionim) parametrima"
 
 #. i18n: ectx: label, entry (Theme), group (UserInterface)
-#: kigo.kcfg:20
+#: kigo.kcfg:21
 #, kde-format
 msgid "The graphical theme to be used"
 msgstr "Željena grafička tema"
 
 #. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
-#: kigo.kcfg:24
+#: kigo.kcfg:25
 #, kde-format
 msgid "Determines whether board labels are shown"
 msgstr "Da li prikazivati etikete na tabli"
 
 #. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
-#: kigo.kcfg:28
+#: kigo.kcfg:29
 #, kde-format
 msgid "Move numbers are drawn onto stones if enabled"
 msgstr "Ako je uključeno, brojevi poteza se crtaju na kamenovima"
 
 #. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
-#: kigo.kcfg:32
+#: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
 msgstr "Vrijeme u sekundama tokom kojeg je savet vidljiv"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
-#: kigo.kcfg:40
+#: kigo.kcfg:41
 #, kde-format
 msgid "Is black a human player?"
 msgstr "Da li je crni igrač čovjek?"
 
 #. i18n: ectx: label, entry (BlackPlayerName), group (Game)
-#: kigo.kcfg:44
+#: kigo.kcfg:45
 #, kde-format
 msgid "The name of the black player"
 msgstr "Ime crnog igrača"
 
 #. i18n: ectx: label, entry (BlackPlayerStrength), group (Game)
-#: kigo.kcfg:48
+#: kigo.kcfg:49
 #, kde-format
 msgid "The strength of the black player"
 msgstr "Jačina crnog igrača"
 
 #. i18n: ectx: label, entry (WhitePlayerHuman), group (Game)
-#: kigo.kcfg:54
+#: kigo.kcfg:55
 #, kde-format
 msgid "Is white a human player?"
 msgstr "Da li je bijeli igrač čovjek?"
 
 #. i18n: ectx: label, entry (WhitePlayerName), group (Game)
-#: kigo.kcfg:58
+#: kigo.kcfg:59
 #, kde-format
 msgid "The name of the white player"
 msgstr "Ime bijelog igrača"
 
 #. i18n: ectx: label, entry (WhitePlayerStrength), group (Game)
-#: kigo.kcfg:62
+#: kigo.kcfg:63
 #, kde-format
 msgid "The strength of the white player"
 msgstr "Jačina bijelog igrača"
 
 #. i18n: ectx: label, entry (BoardSize), group (Game)
-#: kigo.kcfg:68
+#: kigo.kcfg:69
 #, kde-format
 msgid "Go board size"
 msgstr "Veličina table za go"
 
 # well-spelled: Коми
 #. i18n: ectx: label, entry (Komi), group (Game)
-#: kigo.kcfg:75
+#: kigo.kcfg:76
 #, kde-format
 msgid "Komi"
 msgstr "Komi"
 
 # well-spelled: Комијем
 #. i18n: ectx: tooltip, entry (Komi), group (Game)
-#: kigo.kcfg:76
+#: kigo.kcfg:77
 #, kde-format
 msgid "With komi you can give the black player some extra points"
 msgstr "Komijem možete dati crnom igraču dodatne poene"
 
 #. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
-#: kigo.kcfg:82
+#: kigo.kcfg:83
 #, kde-format
 msgid "Extra stones for the black player"
 msgstr "Dodatni kamenovi za crnog igrača"
 
-#: main.cpp:56
+#: main.cpp:36
 #, kde-format
 msgid "Kigo"
 msgstr "Kigo"
 
-#: main.cpp:57
+#: main.cpp:37
 #, kde-format
 msgid "KDE Go Board Game"
 msgstr "Igra na tabli go za KDE"
 
-#: main.cpp:58
+#: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
 msgstr "Autorska prava © 2008–2010 Saša Pajlike"
 
-#: main.cpp:59
+#: main.cpp:39
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
 msgstr "Saša Pajlike"
 
-#: main.cpp:59
+#: main.cpp:39
 #, kde-format
 msgid "Original author"
 msgstr "Prvobitni autor"
 
-#: main.cpp:61
+#: main.cpp:41
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Jurij Čornoivan"
 
 # skip-rule: t-editor
-#: main.cpp:61
+#: main.cpp:41
 #, kde-format
 msgid "Documentation editor"
 msgstr "Urednik dokumentacije"
 
-#: main.cpp:63
+#: main.cpp:43
 #, kde-format
 msgid "Arturo Silva"
 msgstr "Arturo Silva"
 
-#: main.cpp:63
+#: main.cpp:43
 #, kde-format
 msgid "Default theme designer"
 msgstr "Dizajner podrazumijevane teme"
 
-#: main.cpp:72 main.cpp:73
+#: main.cpp:51 main.cpp:52
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "Igra za učitavanje (SGF fajl)"
 
-#: main.cpp:72
+#: main.cpp:51
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "fajl‑pozicije"
 
-#: main.cpp:73
+#: main.cpp:52
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
