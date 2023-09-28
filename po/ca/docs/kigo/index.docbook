@@ -49,7 +49,7 @@
 	<para
 >El &kigo; és una implementació de codi obert del popular joc <literal
 >Go</literal
-> (també conegut com <literal
+> (també conegut com a <literal
 >Weiqi</literal
 >).</para>
 </abstract>
@@ -94,14 +94,14 @@
     <para
 >El &kigo; és una implementació de codi obert del popular joc &nbsp;<literal
 >Go</literal
-> (també conegut com <literal
+> (també conegut com a <literal
 >Weiqi</literal
 >). </para>
 
     <para
 >El <literal
 >Go</literal
-> és un joc de taula d'estratègia per a dos jugadors. També es coneix com <quote
+> és un joc de taula d'estratègia per a dos jugadors. També es coneix com a <quote
 ><literal
 >igo</literal
 ></quote
