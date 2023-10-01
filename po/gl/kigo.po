@@ -233,7 +233,7 @@ msgstr "Configurar unha partida gardada…"
 #: gui/mainwindow.cpp:136
 #, kde-format
 msgid "Unable to load game..."
-msgstr "Non se pode cargar a partida…"
+msgstr "Non é posíbel cargar a partida…"
 
 #: gui/mainwindow.cpp:174
 #, kde-format
@@ -243,7 +243,7 @@ msgstr "Gardouse a partida…"
 #: gui/mainwindow.cpp:176
 #, kde-format
 msgid "Unable to save game."
-msgstr "Non se pode gardar a partida."
+msgstr "Non é posíbel gardar a partida."
 
 #: gui/mainwindow.cpp:223
 #, kde-format
