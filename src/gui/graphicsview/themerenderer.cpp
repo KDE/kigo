@@ -7,7 +7,7 @@
 #include "themerenderer.h"
 #include "preferences.h"
 
-#include <KgThemeProvider>
+#include <KGameThemeProvider>
 
 #include <QSvgRenderer>
 #include <QPixmapCache>
@@ -17,7 +17,7 @@
 namespace Kigo {
 
 ThemeRenderer::ThemeRenderer()
-    : m_themeProvider(new KgThemeProvider(QByteArray(), this)) // empty config key to disable internal config storage
+    : m_themeProvider(new KGameThemeProvider(QByteArray(), this)) // empty config key to disable internal config storage
     , m_renderer(new QSvgRenderer)
 {
     QPixmapCache::setCacheLimit(3 * 1024);
@@ -26,8 +26,8 @@ ThemeRenderer::ThemeRenderer()
         QStringLiteral("default") // default theme file name
     );
     const QByteArray themeIdentifier = Preferences::theme().toUtf8();
-    KgThemeProvider *provider = themeProvider();
-    const QList<const KgTheme *> themes = provider->themes();
+    KGameThemeProvider *provider = themeProvider();
+    const QList<const KGameTheme *> themes = provider->themes();
     for (auto* theme : themes) {
         if (theme->identifier() == themeIdentifier) {
             provider->setCurrentTheme(theme);
@@ -35,7 +35,7 @@ ThemeRenderer::ThemeRenderer()
         }
     }
     loadTheme(provider->currentTheme());
-    connect(m_themeProvider, &KgThemeProvider::currentThemeChanged,
+    connect(m_themeProvider, &KGameThemeProvider::currentThemeChanged,
             this, &ThemeRenderer::loadTheme);
 }
 
@@ -44,12 +44,12 @@ ThemeRenderer::~ThemeRenderer()
     delete m_renderer;
 }
 
-KgThemeProvider *ThemeRenderer::themeProvider() const
+KGameThemeProvider *ThemeRenderer::themeProvider() const
 {
     return m_themeProvider;
 }
 
-void ThemeRenderer::loadTheme(const KgTheme *theme)
+void ThemeRenderer::loadTheme(const KGameTheme *theme)
 {
     //qCDebug(KIGO_LOG) << "Loading" << theme.graphics();
     if (!m_renderer->load(theme->graphicsPath())) {

@@ -16,7 +16,7 @@
 #include "gui/widgets/setupwidget.h"
 #include "preferences.h"
 
-#include <KgThemeSelector>
+#include <KGameThemeSelector>
 #include <KStandardGameAction>
 
 #include <QAction>
@@ -296,7 +296,7 @@ void MainWindow::showPreferences()
 
     KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
     dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));
-    dialog->addPage(new KgThemeSelector(ThemeRenderer::self()->themeProvider(), KgThemeSelector::EnableNewStuffDownload),
+    dialog->addPage(new KGameThemeSelector(ThemeRenderer::self()->themeProvider(), KGameThemeSelector::EnableNewStuffDownload),
                     i18n("Themes"), QStringLiteral("games-config-theme"));
     if (QPushButton *restore = dialog->button(QDialogButtonBox::RestoreDefaults)) {
         restore->hide();

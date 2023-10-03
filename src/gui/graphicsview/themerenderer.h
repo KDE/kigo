@@ -10,8 +10,8 @@
 #include <QObject>
 #include <QString>
 
-class KgThemeProvider;
-class KgTheme;
+class KGameThemeProvider;
+class KGameTheme;
 
 class QSvgRenderer;
 class QPixmap;
@@ -77,7 +77,7 @@ public:
      *
      * @param theme the theme to load
      */
-    void loadTheme(const KgTheme *theme);
+    void loadTheme(const KGameTheme *theme);
 
     /**
      * Renders a specific element of the current SVG theme.
@@ -103,13 +103,13 @@ public:
      */
     QSize elementSize(Element element) const;
 
-    KgThemeProvider *themeProvider() const;
+    KGameThemeProvider *themeProvider() const;
 
 Q_SIGNALS:
     void themeChanged();
 
 private:
-    KgThemeProvider *m_themeProvider;
+    KGameThemeProvider *m_themeProvider;
     QSvgRenderer *m_renderer;       ///< Converts SVG parts into pixmaps
 };
 
