@@ -30,7 +30,6 @@ include(FeatureSummary)
 include(ECMDeprecationSettings)
 
 find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
-    Core5Compat
     Svg
     Widgets
 )

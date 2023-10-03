@@ -66,7 +66,6 @@ target_link_libraries(kigo
     KF6::DBusAddons
     KF6::Crash
     Qt6::Svg
-    Qt6::Core5Compat
 )
 
 install(TARGETS kigo ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
