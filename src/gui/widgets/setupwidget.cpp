@@ -11,7 +11,8 @@
 
 #include <QFile>
 #include <QIcon>
-#include <QRegExp>
+#include <QRegularExpression>
+
 namespace Kigo {
 
 SetupWidget::SetupWidget(Game *game, QWidget *parent)
@@ -71,12 +72,14 @@ void SetupWidget::loadedGame(const QString &fileName)
     const QString content = in.readAll();
     file.close();
 
-    QRegExp re;
+    QRegularExpression re;
+    QRegularExpressionMatch match;
 
     // Parse additional game information from SGF file
     re.setPattern(QStringLiteral("EV\\[([\\w ]+)\\]"));             // Capture and set event
-    if (re.indexIn(content) > -1) {
-        eventLabel->setText(re.cap(1));
+
+    if ((match = re.match(content)).hasMatch()) {
+        eventLabel->setText(match.captured(1));
         eventLabel->setVisible(true);
         eventStaticLabel->setVisible(true);
     } else {
@@ -85,8 +88,8 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
 
     re.setPattern(QStringLiteral("PC\\[([\\w ,]+)\\]"));             // location
-    if (re.indexIn(content) > -1) {
-        locationLabel->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        locationLabel->setText(match.captured(1));
         locationLabel->setVisible(true);
         locationStaticLabel->setVisible(true);
     } else {
@@ -95,8 +98,8 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
 
     re.setPattern(QStringLiteral("RO\\[(\\d+)\\]"));                // Capture and set round
-    if (re.indexIn(content) > -1) {
-        roundLabel->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        roundLabel->setText(match.captured(1));
         roundLabel->setVisible(true);
         roundStaticLabel->setVisible(true);
     } else {
@@ -104,8 +107,8 @@ void SetupWidget::loadedGame(const QString &fileName)
         roundStaticLabel->setVisible(false);
     }
     re.setPattern(QStringLiteral("DT\\[([\\w/\\-:\\.,]+)\\]"));      // Capture and set date
-    if (re.indexIn(content) > -1) {
-        dateLabel->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        dateLabel->setText(match.captured(1));
         dateLabel->setVisible(true);
         dateStaticLabel->setVisible(true);
     } else {
@@ -114,34 +117,34 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
 
     re.setPattern(QStringLiteral("PB\\[([\\w ]+)\\]"));             // Capture and set black player name
-    if (re.indexIn(content) > -1) {
-        blackPlayerName->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        blackPlayerName->setText(match.captured(1));
     }
     re.setPattern(QStringLiteral("BR\\[([\\w ]+)\\]"));             // Capture and set black player rank
-    if (re.indexIn(content) > -1) {
-        blackPlayerName->setText(blackPlayerName->text() + " (" + re.cap(1) + ')');
+    if ((match = re.match(content)).hasMatch()) {
+        blackPlayerName->setText(blackPlayerName->text() + " (" + match.captured(1) + ')');
     }
     re.setPattern(QStringLiteral("BT\\[([\\w ]+)\\]"));             // black team
-    if (re.indexIn(content) > -1) {
-        blackPlayerName->setText(blackPlayerName->text() + " [" + re.cap(1) + ']');
+    if ((match = re.match(content)).hasMatch()) {
+        blackPlayerName->setText(blackPlayerName->text() + " [" + match.captured(1) + ']');
     }
 
     re.setPattern(QStringLiteral("PW\\[([\\w ]+)\\]"));             // Capture and set white player name
-    if (re.indexIn(content) > -1) {
-        whitePlayerName->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        whitePlayerName->setText(match.captured(1));
     }
     re.setPattern(QStringLiteral("WR\\[([\\w ]+)\\]"));             // Capture and set white player rank
-    if (re.indexIn(content) > -1) {
-        whitePlayerName->setText(whitePlayerName->text() + " (" + re.cap(1) + ')');
+    if ((match = re.match(content)).hasMatch()) {
+        whitePlayerName->setText(whitePlayerName->text() + " (" + match.captured(1) + ')');
     }
     re.setPattern(QStringLiteral("WT\\[([\\w ]+)\\]"));             // white team
-    if (re.indexIn(content) > -1) {
-        whitePlayerName->setText(whitePlayerName->text() + " [" + re.cap(1) + ']');
+    if ((match = re.match(content)).hasMatch()) {
+        whitePlayerName->setText(whitePlayerName->text() + " [" + match.captured(1) + ']');
     }
 
     re.setPattern(QStringLiteral("KM\\[(\\d+\\.?\\d*)\\]"));        // Capture and set komi
-    if (re.indexIn(content) > -1) {
-        komiLabel->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        komiLabel->setText(match.captured(1));
         komiLabel->setVisible(true);
         komiStaticLabel->setVisible(true);
     } else {
@@ -150,8 +153,8 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
 
     re.setPattern(QStringLiteral("TM\\[(\\d+)\\]"));        // time limit in seconds
-    if (re.indexIn(content) > -1) {
-        const int seconds = re.cap(1).toInt();
+    if ((match = re.match(content)).hasMatch()) {
+        const int seconds = match.captured(1).toInt();
         const int hours = seconds/3600;
         const int minutes = (seconds/60)%60;
         const QString minuteString = i18ncp("Time limit of a game in minutes", "%1 minute", "%1 minutes", minutes);
@@ -168,8 +171,8 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
 
     re.setPattern(QStringLiteral("RE\\[([WB]\\+[\\w\\.]+)\\]"));    // Capture and set score
-    if (re.indexIn(content) > -1) {
-        scoreLabel->setText(re.cap(1));
+    if ((match = re.match(content)).hasMatch()) {
+        scoreLabel->setText(match.captured(1));
         scoreLabel->setVisible(true);
         scoreStaticLabel->setVisible(true);
     } else {
