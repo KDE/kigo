@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2023-10-04 01:38+0000\n"
 "PO-Revision-Date: 2021-03-21 17:51+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -507,14 +507,14 @@ msgstr "Svart spelar"
 msgid "Finish Game"
 msgstr "Sluttspel"
 
-#: gui/widgets/setupwidget.cpp:53
+#: gui/widgets/setupwidget.cpp:54
 #, kde-format
 msgid " Stone"
 msgid_plural " Stones"
 msgstr[0] " stein"
 msgstr[1] " steinar"
 
-#: gui/widgets/setupwidget.cpp:157
+#: gui/widgets/setupwidget.cpp:160
 #, kde-format
 msgctxt "Time limit of a game in minutes"
 msgid "%1 minute"
@@ -522,7 +522,7 @@ msgid_plural "%1 minutes"
 msgstr[0] "%1 minutt"
 msgstr[1] "%1 minutt"
 
-#: gui/widgets/setupwidget.cpp:159
+#: gui/widgets/setupwidget.cpp:162
 #, kde-format
 msgctxt "Time limit of a game, hours, minutes"
 msgid "%1 hour, %2"
@@ -530,18 +530,18 @@ msgid_plural "%1 hours, %2"
 msgstr[0] "%1 time, %2"
 msgstr[1] "%1 timar, %2"
 
-#: gui/widgets/setupwidget.cpp:181
+#: gui/widgets/setupwidget.cpp:184
 #, kde-format
 msgid " of %1"
 msgstr " av %1"
 
-#: gui/widgets/setupwidget.cpp:224
+#: gui/widgets/setupwidget.cpp:227
 #, kde-format
 msgid "White to play"
 msgstr "Kvit sin tur"
 
 #. i18n: ectx: property (text), widget (QLabel, playerLabel)
-#: gui/widgets/setupwidget.cpp:226 gui/widgets/setupwidget.ui:448
+#: gui/widgets/setupwidget.cpp:229 gui/widgets/setupwidget.ui:448
 #, kde-format
 msgid "Black to play"
 msgstr "Svart sin tur"
