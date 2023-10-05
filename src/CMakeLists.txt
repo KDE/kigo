@@ -65,6 +65,7 @@ target_link_libraries(kigo
     KF6::NewStuffWidgets
     KF6::DBusAddons
     KF6::Crash
+    KF6::I18n
     Qt6::Svg
 )
 
