@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-04 00:43+0000\n"
-"PO-Revision-Date: 2023-07-14 06:52+0200\n"
+"PO-Revision-Date: 2023-10-08 06:40+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -53,12 +53,12 @@ msgstr "შავმა გამოტოვა"
 #: game/game.cpp:399
 #, kde-format
 msgid "White resigned"
-msgstr ""
+msgstr "თეთრები აგებენ"
 
 #: game/game.cpp:401
 #, kde-format
 msgid "Black resigned"
-msgstr ""
+msgstr "შავები აგებენ"
 
 #: game/game.cpp:409
 #, kde-format
@@ -88,7 +88,7 @@ msgstr "გამშვები ფაილი:"
 #: gui/config/generalconfig.ui:42
 #, kde-format
 msgid "Select the executable file to start the Go engine"
-msgstr ""
+msgstr "აირჩიეთ გამშვები ფაილი Go ძრავის გასაშვებად"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/config/generalconfig.ui:49
@@ -100,19 +100,19 @@ msgstr "პარამეტრები:"
 #: gui/config/generalconfig.ui:62
 #, kde-format
 msgid "Add here the necessary parameters to start the Engine in GTP mode"
-msgstr ""
+msgstr "დაამატეთ საჭირო პარამეტრები ძრავის GTP რეჟიმში გასაშვებად"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
 #: gui/config/generalconfig.ui:75
 #, kde-format
 msgid "This is the resulting engine command which will be used by Kigo"
-msgstr ""
+msgstr "ეს საბოლოო ძრავაა, რომელსაც Kigo გამოიყენებს"
 
 #. i18n: ectx: property (toolTip), widget (KLed, engineLed)
 #: gui/config/generalconfig.ui:94
 #, kde-format
 msgid "Indicates whether the Go engine works correctly"
-msgstr ""
+msgstr "აჩვენებს, მუშაობს Go ძრავა სწორად, თუ არა"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: gui/config/generalconfig.ui:108
@@ -131,6 +131,18 @@ msgid ""
 "(GTP)</span>. The indicator light turns green when the selected backend is "
 "working.</p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">აირჩიეთ Go ძრავა, რომელსაც "
+"<span style=\" font-style:italic;\">GnuGo Text Protocol-ის (GTP)</span> "
+"მხარდაჭერა გააჩნია. ინდიკატორი გამწვანდება, როცა არჩეული უკანაბოლო მუშაობს.</"
+"p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
 #: gui/config/generalconfig.ui:128
@@ -148,7 +160,7 @@ msgstr "დაფის ჭდეების ჩვენება"
 #: gui/config/generalconfig.ui:144
 #, kde-format
 msgid "Hint Visibility Time:"
-msgstr ""
+msgstr "მინიშნების ხილვადობის დრო:"
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, kcfg_HintVisibleTime)
 #: gui/config/generalconfig.ui:163
@@ -182,7 +194,7 @@ msgstr "&პარამეტრები"
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Dockers"
-msgstr ""
+msgstr "&პანელები"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: gui/kigoui.rc:36
@@ -196,7 +208,7 @@ msgstr "ხელსაწყოთა მთავარი ზოლი"
 #, kde-format
 msgctxt "@title:menu"
 msgid "Move Toolbar"
-msgstr ""
+msgstr "ინსტრუმენტების პანელის გადატანა"
 
 #: gui/mainwindow.cpp:90
 #, kde-format
@@ -246,12 +258,12 @@ msgstr "%1 (შავი)"
 #: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
-msgstr ""
+msgstr "%1-მა მოიგო ქულებით %2."
 
 #: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
-msgstr ""
+msgstr "%1-მა მოიგო ქულებით %2 (საზღვარი: %3 და %4)"
 
 #: gui/mainwindow.cpp:266
 #, kde-format
@@ -261,7 +273,7 @@ msgstr "სვლა დაბრუნებულია"
 #: gui/mainwindow.cpp:274
 #, kde-format
 msgid "Redone move"
-msgstr ""
+msgstr "სვლის გამეორება"
 
 #: gui/mainwindow.cpp:298
 #, kde-format
@@ -362,6 +374,25 @@ msgid ""
 "engine. Otherwise you should install a Go engine (like GnuGo).</span></p></"
 "body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:8pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Kigo-მა Go ძრავის "
+"უკანაბოლო ვერ აღმოაჩინა.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt;\">თუ დარწმუნებული ბრძანდებით, რომ ის "
+"უკვედააყენეთ, შეგიძლიათ ის ხელით მიუთითეთ. წინააღმდეგ შემთხვევაშიa Go ძრავა, "
+"(მაგ: GnuGo) აუცილებლად უნდა დააყენოთ.</span></p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
@@ -407,14 +438,14 @@ msgstr "შავის ჯერი"
 #, kde-format
 msgid "%1 capture"
 msgid_plural "%1 captures"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 დაპყრობილია"
+msgstr[1] "%1 დაპყრობილია"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: gui/widgets/gamewidget.ui:19 gui/widgets/setupwidget.ui:103
 #, kde-format
 msgid "Handicap:"
-msgstr ""
+msgstr "ფორა:"
 
 #. i18n: ectx: property (text), widget (QLabel, handicapLabel)
 #: gui/widgets/gamewidget.ui:35
@@ -460,7 +491,7 @@ msgstr "თეთრი მოთამაშე"
 #: gui/widgets/gamewidget.ui:191 gui/widgets/gamewidget.ui:265
 #, kde-format
 msgid "Captures:"
-msgstr ""
+msgstr "დაპყრობები:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
 #: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
@@ -505,19 +536,19 @@ msgstr " %1-დან"
 #: gui/widgets/setupwidget.cpp:224
 #, kde-format
 msgid "White to play"
-msgstr ""
+msgstr "თეთრის სვლა"
 
 #. i18n: ectx: property (text), widget (QLabel, playerLabel)
 #: gui/widgets/setupwidget.cpp:226 gui/widgets/setupwidget.ui:448
 #, kde-format
 msgid "Black to play"
-msgstr ""
+msgstr "შავის სვლა"
 
 #. i18n: ectx: property (text), widget (QLabel, label_12)
 #: gui/widgets/setupwidget.ui:30
 #, kde-format
 msgid "Board size:"
-msgstr ""
+msgstr "სათამაშო დაფის ზომა:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeSmall)
 #: gui/widgets/setupwidget.ui:37
@@ -550,12 +581,14 @@ msgid ""
 "Handicap stones are an advantage for the black player.\n"
 "Black gets a number of stones on the board before the game starts."
 msgstr ""
+"ფორის ქვები შავი მოთამაშის უპრატესობაა.\n"
+"შავი მოთამაშე ქვებს დაფაზე თამაშის დაწყებამდე იღებს."
 
 #. i18n: ectx: property (specialValueText), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:129
 #, kde-format
 msgid "No handicap"
-msgstr ""
+msgstr "ფორის გარეშე"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, komiSpinBox)
 #: gui/widgets/setupwidget.ui:171
@@ -564,6 +597,8 @@ msgid ""
 "Komi are points given to the white player at the end of the game.\n"
 "It balances out the advantage black has by making the first move."
 msgstr ""
+"Komi ქულებია, რომელიც თამაშის ბოლოს თეთრ მოთამაშეს ეძლევა.\n"
+"ის შავ მოთამაშეს აბალანსებს, პირველი სვლის საშუალებით."
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, komiSpinBox)
 #: gui/widgets/setupwidget.ui:174
@@ -673,7 +708,7 @@ msgstr "თამაშის დაწყება"
 #: kigo.kcfg:10
 #, kde-format
 msgid "The current game engine command with (optional) parameters"
-msgstr ""
+msgstr "მიმდინარე თამაშის ძრავის ბრძანება (არასავალდებულო) პარამეტრებით"
 
 #. i18n: ectx: label, entry (Theme), group (UserInterface)
 #: kigo.kcfg:21
@@ -691,19 +726,19 @@ msgstr "ნაჩვენებია დაფის ჭდეები, თ�
 #: kigo.kcfg:29
 #, kde-format
 msgid "Move numbers are drawn onto stones if enabled"
-msgstr ""
+msgstr "თუ ჩართულია, სვლის ნომერი ქვებზე დაიხატება"
 
 #. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
 #: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
-msgstr ""
+msgstr "ხანგრძლივობა, წამებში, რა დროის განმავლობაში იქნება მინიშნება ხილული"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
 #: kigo.kcfg:41
 #, kde-format
 msgid "Is black a human player?"
-msgstr ""
+msgstr "შავი მოთამაშე ადამიანია?"
 
 #. i18n: ectx: label, entry (BlackPlayerName), group (Game)
 #: kigo.kcfg:45
@@ -751,7 +786,7 @@ msgstr "კომი"
 #: kigo.kcfg:77
 #, kde-format
 msgid "With komi you can give the black player some extra points"
-msgstr ""
+msgstr "Komi-სთან ერთად შავ მოთამაშეს, შეგიძლიათ, დამატებითი ქულები მისცეთ"
 
 #. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
 #: kigo.kcfg:83
