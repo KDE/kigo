@@ -71,8 +71,8 @@ bool Game::start(const QString &command)
     // Test if we started a GTP-compatible Go game
     m_process.write("name\n");
     m_process.waitForReadyRead();
-    const QString response = m_process.readAllStandardOutput();
-    if (response.isEmpty() || !response.startsWith(QLatin1Char('='))) {
+    const QByteArray response = m_process.readAllStandardOutput();
+    if (response.isEmpty() || !response.startsWith('=')) {
         m_response = QStringLiteral("Game did not respond to GTP command \"name\"");
         //qCDebug(KIGO_LOG) << m_response;
         stop();
@@ -713,8 +713,8 @@ bool Game::waitResponse(bool nonBlocking)
             case QProcess::FailedToStart: m_response = QStringLiteral("No Go game is running!"); break;
             case QProcess::Crashed: m_response = QStringLiteral("The Go game crashed!"); break;
             case QProcess::Timedout: m_response = QStringLiteral("The Go game timed out!"); break;
-            case QProcess::WriteError: m_response = m_process.readAllStandardError(); break;
-            case QProcess::ReadError: m_response = m_process.readAllStandardError(); break;
+            case QProcess::WriteError: m_response = QString::fromLocal8Bit(m_process.readAllStandardError()); break;
+            case QProcess::ReadError: m_response = QString::fromLocal8Bit(m_process.readAllStandardError()); break;
             case QProcess::UnknownError: m_response = QStringLiteral("Unknown error!"); break;
         }
         qCWarning(KIGO_LOG) << "Command failed:" << m_response;
@@ -741,7 +741,7 @@ bool Game::waitResponse(bool nonBlocking)
         } else {
             m_process.waitForReadyRead();       // Blocking wait
         }
-        m_response += m_process.readAllStandardOutput();
+        m_response += QString::fromLocal8Bit(m_process.readAllStandardOutput());
     } while (!m_response.endsWith(QLatin1String("\r\r")) &&
              !m_response.endsWith(QLatin1String("\n\n")) &&
              !m_response.endsWith(QLatin1String("\r\n\r\n")));

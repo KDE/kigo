@@ -53,7 +53,7 @@ QByteArray Stone::toLatin1() const
 
 QString Stone::toString() const
 {
-    return QString(m_x + QString::number(m_y));
+    return QString(QLatin1Char(m_x) + QString::number(m_y));
 }
 
 QDebug operator<<(QDebug debug, const Stone &stone)

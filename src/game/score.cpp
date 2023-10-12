@@ -50,8 +50,8 @@ bool Score::isValid() const
 
 QString Score::toString() const
 {
-    QString ret(m_color + '+');
-    ret += QString::number(m_score) + " (" + QString::number(m_lowerBound) + " - " + QString::number(m_upperBound) + ')';
+    const QString ret = m_color + QLatin1Char('+') +
+        QString::number(m_score) + QLatin1String(" (") + QString::number(m_lowerBound) + QLatin1String(" - ") + QString::number(m_upperBound) + QLatin1Char(')');
     return ret;
 }
 

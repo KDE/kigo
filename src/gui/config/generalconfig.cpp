@@ -19,9 +19,9 @@ GeneralConfig::GeneralConfig(QWidget *parent)
     kcfg_EngineCommand->hide(); // Only used internally
 
     const QString engineCommand = Preferences::engineCommand();
-    engineExecutable->setUrl(QUrl::fromLocalFile(engineCommand.section(' ', 0, 0)));
+    engineExecutable->setUrl(QUrl::fromLocalFile(engineCommand.section(QLatin1Char(' '), 0, 0)));
     connect(engineExecutable, &KUrlRequester::textChanged, this, &GeneralConfig::updateEngineCommand);
-    engineParameters->setText(engineCommand.section(' ', 1));
+    engineParameters->setText(engineCommand.section(QLatin1Char(' '), 1));
     connect(engineParameters, &QLineEdit::textChanged, this, &GeneralConfig::updateEngineCommand);
 
     updateEngineCommand();
@@ -29,7 +29,7 @@ GeneralConfig::GeneralConfig(QWidget *parent)
 
 void GeneralConfig::updateEngineCommand()
 {
-    kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + ' ' + engineParameters->text());
+    kcfg_EngineCommand->setText(engineExecutable->url().toLocalFile() + QLatin1Char(' ') + engineParameters->text());
 
     // Check if the configured Go engine backend actually works and tell the user
     Game game;

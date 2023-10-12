@@ -122,11 +122,11 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
     re.setPattern(QStringLiteral("BR\\[([\\w ]+)\\]"));             // Capture and set black player rank
     if ((match = re.match(content)).hasMatch()) {
-        blackPlayerName->setText(blackPlayerName->text() + " (" + match.captured(1) + ')');
+        blackPlayerName->setText(blackPlayerName->text() + QLatin1String(" (") + match.captured(1) + QLatin1Char(')'));
     }
     re.setPattern(QStringLiteral("BT\\[([\\w ]+)\\]"));             // black team
     if ((match = re.match(content)).hasMatch()) {
-        blackPlayerName->setText(blackPlayerName->text() + " [" + match.captured(1) + ']');
+        blackPlayerName->setText(blackPlayerName->text() + QLatin1String(" [") + match.captured(1) + QLatin1Char(']'));
     }
 
     re.setPattern(QStringLiteral("PW\\[([\\w ]+)\\]"));             // Capture and set white player name
@@ -135,11 +135,11 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
     re.setPattern(QStringLiteral("WR\\[([\\w ]+)\\]"));             // Capture and set white player rank
     if ((match = re.match(content)).hasMatch()) {
-        whitePlayerName->setText(whitePlayerName->text() + " (" + match.captured(1) + ')');
+        whitePlayerName->setText(whitePlayerName->text() + QLatin1String(" (") + match.captured(1) + QLatin1Char(')'));
     }
     re.setPattern(QStringLiteral("WT\\[([\\w ]+)\\]"));             // white team
     if ((match = re.match(content)).hasMatch()) {
-        whitePlayerName->setText(whitePlayerName->text() + " [" + match.captured(1) + ']');
+        whitePlayerName->setText(whitePlayerName->text() + QLatin1String(" [") + match.captured(1) + QLatin1Char(']'));
     }
 
     re.setPattern(QStringLiteral("KM\\[(\\d+\\.?\\d*)\\]"));        // Capture and set komi
