@@ -378,20 +378,20 @@ void MainWindow::setupActions()
     m_loadGameAction = KStandardGameAction::load(
         this, qOverload<>(&MainWindow::loadGame), actionCollection());
     m_getMoreGamesAction = new KNSWidgets::Action(i18nc("@action", "Get More Games..." ), QStringLiteral("kigo-games.knsrc"), actionCollection());
-    actionCollection()->setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
+    KActionCollection::setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     actionCollection()->addAction( QStringLiteral( "get_more_games" ), m_getMoreGamesAction);
     m_saveAction = KStandardGameAction::save(this, &MainWindow::saveGame, actionCollection());
     KStandardGameAction::quit(this, &QWidget::close, actionCollection());
 
     m_startGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
-    actionCollection()->setDefaultShortcut(m_startGameAction, Qt::Key_S);
+    KActionCollection::setDefaultShortcut(m_startGameAction, Qt::Key_S);
     m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, &QAction::triggered, this, &MainWindow::startGame);
     actionCollection()->addAction( QStringLiteral( "game_start" ), m_startGameAction);
 
     m_finishGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
-    actionCollection()->setDefaultShortcut(m_finishGameAction,Qt::Key_F);
+    KActionCollection::setDefaultShortcut(m_finishGameAction, Qt::Key_F);
     m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, &QAction::triggered, this, &MainWindow::finishGame);
     actionCollection()->addAction( QStringLiteral( "game_finish" ), m_finishGameAction);
@@ -401,12 +401,12 @@ void MainWindow::setupActions()
     m_redoMoveAction = KStandardGameAction::redo(this, &MainWindow::redo, actionCollection());
     m_passMoveAction = KStandardGameAction::endTurn(this, &MainWindow::pass, actionCollection());
     m_passMoveAction->setText(i18nc("@action:inmenu Move", "Pass Move"));
-    actionCollection()->setDefaultShortcut(m_passMoveAction,Qt::Key_P);
+    KActionCollection::setDefaultShortcut(m_passMoveAction, Qt::Key_P);
     m_hintAction = KStandardGameAction::hint(this, &MainWindow::hint, actionCollection());
 
     // View menu
     m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "pin") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
-    actionCollection()->setDefaultShortcut(m_moveNumbersAction, Qt::Key_N);
+    KActionCollection::setDefaultShortcut(m_moveNumbersAction, Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, &KToggleAction::toggled, m_gameScene, &GameScene::showMoveNumbers);
     actionCollection()->addAction( QStringLiteral( "move_numbers" ), m_moveNumbersAction);
@@ -434,7 +434,7 @@ void MainWindow::setupDockWindows()
     connect(gameWidget, &GameWidget::finishClicked, this, &MainWindow::finishGame);
     m_gameDock->setWidget(gameWidget);
     m_gameDock->toggleViewAction()->setText(i18nc("@title:window", "Information"));
-    actionCollection()->setDefaultShortcut(m_gameDock->toggleViewAction(), Qt::Key_I);
+    KActionCollection::setDefaultShortcut(m_gameDock->toggleViewAction(), Qt::Key_I);
     actionCollection()->addAction( QStringLiteral( "show_game_panel" ), m_gameDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_gameDock);
 
@@ -449,7 +449,7 @@ void MainWindow::setupDockWindows()
     m_undoView->setSelectionMode(QAbstractItemView::NoSelection);
     m_movesDock->setWidget(m_undoView);
     m_movesDock->toggleViewAction()->setText(i18nc("@title:window", "Moves"));
-    actionCollection()->setDefaultShortcut(m_movesDock->toggleViewAction(), Qt::Key_M);
+    KActionCollection::setDefaultShortcut(m_movesDock->toggleViewAction(), Qt::Key_M);
     actionCollection()->addAction( QStringLiteral( "show_moves_panel" ), m_movesDock->toggleViewAction());
     addDockWidget(Qt::RightDockWidgetArea, m_movesDock);
 
