@@ -17,7 +17,7 @@
 #include "preferences.h"
 
 #include <KGameThemeSelector>
-#include <KStandardGameAction>
+#include <KGameStandardAction>
 
 #include <QAction>
 #include <KActionCollection>
@@ -374,15 +374,15 @@ void MainWindow::passMovePlayed(const Player &player)
 void MainWindow::setupActions()
 {
     // Game menu
-    m_newGameAction = KStandardGameAction::gameNew(this, &MainWindow::newGame, actionCollection());
-    m_loadGameAction = KStandardGameAction::load(
+    m_newGameAction = KGameStandardAction::gameNew(this, &MainWindow::newGame, actionCollection());
+    m_loadGameAction = KGameStandardAction::load(
         this, qOverload<>(&MainWindow::loadGame), actionCollection());
     m_getMoreGamesAction = new KNSWidgets::Action(i18nc("@action", "Get More Games..." ), QStringLiteral("kigo-games.knsrc"), actionCollection());
     KActionCollection::setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     actionCollection()->addAction( QStringLiteral( "get_more_games" ), m_getMoreGamesAction);
-    m_saveAction = KStandardGameAction::save(this, &MainWindow::saveGame, actionCollection());
-    KStandardGameAction::quit(this, &QWidget::close, actionCollection());
+    m_saveAction = KGameStandardAction::save(this, &MainWindow::saveGame, actionCollection());
+    KGameStandardAction::quit(this, &QWidget::close, actionCollection());
 
     m_startGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     KActionCollection::setDefaultShortcut(m_startGameAction, Qt::Key_S);
@@ -397,12 +397,12 @@ void MainWindow::setupActions()
     actionCollection()->addAction( QStringLiteral( "game_finish" ), m_finishGameAction);
 
     // Move menu
-    m_undoMoveAction = KStandardGameAction::undo(this, &MainWindow::undo, actionCollection());
-    m_redoMoveAction = KStandardGameAction::redo(this, &MainWindow::redo, actionCollection());
-    m_passMoveAction = KStandardGameAction::endTurn(this, &MainWindow::pass, actionCollection());
+    m_undoMoveAction = KGameStandardAction::undo(this, &MainWindow::undo, actionCollection());
+    m_redoMoveAction = KGameStandardAction::redo(this, &MainWindow::redo, actionCollection());
+    m_passMoveAction = KGameStandardAction::endTurn(this, &MainWindow::pass, actionCollection());
     m_passMoveAction->setText(i18nc("@action:inmenu Move", "Pass Move"));
     KActionCollection::setDefaultShortcut(m_passMoveAction, Qt::Key_P);
-    m_hintAction = KStandardGameAction::hint(this, &MainWindow::hint, actionCollection());
+    m_hintAction = KGameStandardAction::hint(this, &MainWindow::hint, actionCollection());
 
     // View menu
     m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "pin") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
