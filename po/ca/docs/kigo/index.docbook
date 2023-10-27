@@ -101,29 +101,21 @@
     <para
 >El <literal
 >Go</literal
-> és un joc de taula d'estratègia per a dos jugadors. També es coneix com a <quote
-><literal
+> és un joc de taula d'estratègia per a dos jugadors. També es coneix com a «<literal
 >igo</literal
-></quote
-> (<foreignphrase lang="ja"
+>» (<foreignphrase lang="ja"
 >囲碁</foreignphrase
-> en japonès), <quote
-><literal
+> en japonès), «<literal
 >weiqi</literal
-></quote
-> o <quote
-><literal
+>» o «<literal
 >wei ch'i</literal
-></quote
-> (<foreignphrase lang="zh"
+>» (<foreignphrase lang="zh"
 >圍棋</foreignphrase
 > o <foreignphrase lang="zh"
 >围棋</foreignphrase
-> en xinès), o <quote
-><literal
+> en xinès), o «<literal
 >baduk</literal
-></quote
-> (<foreignphrase lang="ko"
+>» (<foreignphrase lang="ko"
 >바둑</foreignphrase
 > en coreà). El <literal
 >Go</literal
@@ -352,11 +344,7 @@
 ></listitem>
         <listitem
 ><para
->Per a evitar la captura, un grup de pedres haurà de tenir dos <quote
->ulls</quote
-> o ser capaç de fer-los si és atacat. Els <quote
->ulls</quote
-> són espais desconnectats. Penseu en un dònut amb dos forats. El vostre oponent pot envoltar l'exterior, però no pot emplenar els dos forats alhora.</para
+>Per a evitar la captura, un grup de pedres haurà de tenir dos «ulls» o ser capaç de fer-los si és atacat. Els «ulls» són espais desconnectats. Penseu en un dònut amb dos forats. El vostre oponent pot envoltar l'exterior, però no pot emplenar els dos forats alhora.</para
 ></listitem>
         <listitem
 ><para
