@@ -13,7 +13,7 @@ set(KIGO_VERSION "${KIGO_BASE_VERSION}.${RELEASE_SERVICE_COMPACT_VERSION}")
 project(kigo VERSION ${KIGO_VERSION})
 
 set(QT_MIN_VERSION "6.5.0")
-set(KF_MIN_VERSION "5.240.0")
+set(KF_MIN_VERSION "5.245.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED CONFIG)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
@@ -28,6 +28,8 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMSetupVersion)
 include(FeatureSummary)
 include(ECMDeprecationSettings)
+
+include(InternalMacros)
 
 find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
     Svg
