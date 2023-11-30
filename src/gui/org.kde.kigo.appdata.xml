@@ -142,10 +142,10 @@
     <binary>kigo</binary>
   </provides>
   <releases>
+    <release version="0.6.23084" date="2023-12-07"/>
     <release version="0.6.23083" date="2023-11-09"/>
     <release version="0.6.23082" date="2023-10-12"/>
     <release version="0.6.23081" date="2023-09-14"/>
-    <release version="0.6.23080" date="2023-08-24"/>
   </releases>
   <content_rating type="oars-1.1"/>
 </component>
