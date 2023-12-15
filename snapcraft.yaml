@@ -65,10 +65,6 @@ slots:
         interface: dbus
         name: org.kde.kigo
         bus: session
-    kwin:
-        interface: dbus
-        name: org.kde.KWin
-        bus: session
 package-repositories:
 -   type: apt
     components:
