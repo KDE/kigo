@@ -102,6 +102,8 @@ parts:
         parse-info:
         - usr/share/metainfo/org.kde.kigo.appdata.xml
         plugin: cmake
+        build-packages:
+        - libkf5doctools-dev
         stage-packages:
         - gnugo
         source: .
