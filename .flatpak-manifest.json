@@ -7,7 +7,7 @@
     "rename-icon": "kigo",
     "finish-args": [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
         "--socket=wayland",
         "--socket=pulseaudio",
         "--device=dri"
