@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    KLocalizedString::setApplicationDomain("kigo");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kigo"));
 
     KAboutData aboutData(QStringLiteral("kigo"), i18n("Kigo"), QStringLiteral(KIGO_VERSION_STRING),
             i18n("KDE Go Board Game"), KAboutLicense::GPL_V2,
