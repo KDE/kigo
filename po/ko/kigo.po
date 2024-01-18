@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-04 01:38+0000\n"
+"POT-Creation-Date: 2024-01-18 00:36+0000\n"
 "PO-Revision-Date: 2021-05-23 17:06+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -833,19 +833,19 @@ msgstr "Arturo Silva"
 msgid "Default theme designer"
 msgstr "기본 테마 디자이너"
 
-#: main.cpp:51 main.cpp:52
+#: main.cpp:54 main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "불러올 대국(SGF 파일)"
 
-#: main.cpp:51
+#: main.cpp:54
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "gamefile"
 
-#: main.cpp:52
+#: main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-04 01:38+0000\n"
+"POT-Creation-Date: 2024-01-18 00:36+0000\n"
 "PO-Revision-Date: 2021-03-15 10:57+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -846,19 +846,19 @@ msgstr "Arturo Silva"
 msgid "Default theme designer"
 msgstr "Ontwerper van standaard thema"
 
-#: main.cpp:51 main.cpp:52
+#: main.cpp:54 main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "In te lezen spel (SGF-bestand)"
 
-#: main.cpp:51
+#: main.cpp:54
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "spelbestand"
 
-#: main.cpp:52
+#: main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

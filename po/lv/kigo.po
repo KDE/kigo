@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-04 01:38+0000\n"
+"POT-Creation-Date: 2024-01-18 00:36+0000\n"
 "PO-Revision-Date: 2012-07-03 01:00+0300\n"
 "Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -855,19 +855,19 @@ msgstr "Arturo Silva"
 msgid "Default theme designer"
 msgstr "Noklusētās tēmas veidotājs"
 
-#: main.cpp:51 main.cpp:52
+#: main.cpp:54 main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "Ielādējamā spēle (SGF fails)"
 
-#: main.cpp:51
+#: main.cpp:54
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr ""
 
-#: main.cpp:52
+#: main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

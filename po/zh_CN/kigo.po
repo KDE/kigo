@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-04 01:38+0000\n"
+"POT-Creation-Date: 2024-01-18 00:36+0000\n"
 "PO-Revision-Date: 2024-01-13 05:59\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -832,19 +832,19 @@ msgstr "Arturo Silva"
 msgid "Default theme designer"
 msgstr "默认主题设计师"
 
-#: main.cpp:51 main.cpp:52
+#: main.cpp:54 main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "要加载的存档 (SGF 文件)"
 
-#: main.cpp:51
+#: main.cpp:54
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "gamefile"
 
-#: main.cpp:52
+#: main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
