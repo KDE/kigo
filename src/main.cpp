@@ -45,18 +45,19 @@ int main(int argc, char *argv[])
     aboutData.setHomepage(QStringLiteral("https://apps.kde.org/kigo"));
     aboutData.setDesktopFileName(QStringLiteral("org.kde.kigo"));
 
-    QCommandLineParser parser;
     KAboutData::setApplicationData(aboutData);
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("kigo")));
+
     KCrash::initialize();
+
+    QCommandLineParser parser;
     parser.addOption(QCommandLineOption(QStringList() << QStringLiteral("game"), i18nc("@info:shell", "Game to load (SGF file)"), i18nc("@info:shell", "gamefile")));
     parser.addPositionalArgument(i18nc("@info:shell", "[gamefile]"), i18nc("@info:shell", "Game to load (SGF file)"));
-
     aboutData.setupCommandLine(&parser);
     parser.process(app);
     aboutData.processCommandLine(&parser);
-    KDBusService service;
 
-    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kigo")));
+    KDBusService service;
 
     if (app.isSessionRestored()) {
         kRestoreMainWindows<Kigo::MainWindow>();
