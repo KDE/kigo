@@ -1,118 +1,118 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kigo package.
 #
-# SPDX-FileCopyrightText: 2022, 2024 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-18 00:36+0000\n"
-"PO-Revision-Date: 2024-02-24 12:40+0400\n"
-"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
-"Language-Team: ar\n"
-"Language: ar\n"
+"PO-Revision-Date: 2024-02-24 18:00+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
+"Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.1\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "زايد السعيدي"
+msgstr "צוות התרגום של KDE ישראל"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "zayed.alsaidi@gmail.com"
+msgstr "kde-l10n-he@kde.org"
 
 #: game/game.cpp:317
 #, kde-format
 msgctxt "%1 stone coordinate"
 msgid "White %1"
-msgstr "أبيض %1"
+msgstr "לבן %1"
 
 #: game/game.cpp:320 game/game.cpp:390 gui/mainwindow.cpp:367
 #, kde-format
 msgid "White passed"
-msgstr ""
+msgstr "הלבן דילג"
 
 #: game/game.cpp:326
 #, kde-format
 msgctxt "%1 stone coordinate"
 msgid "Black %1"
-msgstr "أسود %1"
+msgstr "שחור %1"
 
 #: game/game.cpp:329 game/game.cpp:392 gui/mainwindow.cpp:369
 #, kde-format
 msgid "Black passed"
-msgstr ""
+msgstr "השחור דילג"
 
 #: game/game.cpp:399
 #, kde-format
 msgid "White resigned"
-msgstr ""
+msgstr "הלבן פרש"
 
 #: game/game.cpp:401
 #, kde-format
 msgid "Black resigned"
-msgstr ""
+msgstr "השחור פרש"
 
 #: game/game.cpp:409
 #, kde-format
 msgctxt "%1 response from Go engine"
 msgid "White %1"
-msgstr "أبيض %1"
+msgstr "לבן %1"
 
 #: game/game.cpp:411
 #, kde-format
 msgctxt "%1 response from Go engine"
 msgid "Black %1"
-msgstr "أسود %1"
+msgstr "שחור %1"
 
 #. i18n: ectx: property (title), widget (QGroupBox, backendGroupBox)
 #: gui/config/generalconfig.ui:17
 #, kde-format
 msgid "Backend"
-msgstr "الخلفية"
+msgstr "מנגנון"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: gui/config/generalconfig.ui:23
 #, kde-format
 msgid "Executable:"
-msgstr "تنفيذيّ:"
+msgstr "קובץ הפעלה:"
 
 #. i18n: ectx: property (toolTip), widget (KUrlRequester, engineExecutable)
 #: gui/config/generalconfig.ui:42
 #, kde-format
 msgid "Select the executable file to start the Go engine"
-msgstr ""
+msgstr "נא לבחור את קובץ ההפעלה כדי להפעיל את המנוע של גו"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/config/generalconfig.ui:49
 #, kde-format
 msgid "Parameters:"
-msgstr "المعاملات:"
+msgstr "משתנים:"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, engineParameters)
 #: gui/config/generalconfig.ui:62
 #, kde-format
 msgid "Add here the necessary parameters to start the Engine in GTP mode"
-msgstr ""
+msgstr "כאן ניתן להוסיף את המשתנים הנחוצים כדי להפעיל את המנוע במצב GTP"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
 #: gui/config/generalconfig.ui:75
 #, kde-format
 msgid "This is the resulting engine command which will be used by Kigo"
-msgstr ""
+msgstr "זאת פקודה המנוע שתתקבל לשימוש של Kigo"
 
 #. i18n: ectx: property (toolTip), widget (KLed, engineLed)
 #: gui/config/generalconfig.ui:94
 #, kde-format
 msgid "Indicates whether the Go engine works correctly"
-msgstr ""
+msgstr "מציין האם המנוע של גו פועל כראוי"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: gui/config/generalconfig.ui:108
@@ -131,211 +131,222 @@ msgid ""
 "(GTP)</span>. The indicator light turns green when the selected backend is "
 "working.</p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">נא לבחור מנגנון גו שתומך "
+"ב<span style=\" font-style:italic;\">פרוטוקול טקסט GnuGo (GTP)</span>. אור "
+"החיווי נדלק בירוק כשהמנגנון הנבחר פועל.</p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
 #: gui/config/generalconfig.ui:128
 #, kde-format
 msgid "Appearance"
-msgstr "المظهر"
+msgstr "מראה"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowBoardLabels)
 #: gui/config/generalconfig.ui:137
 #, kde-format
 msgid "Display Board Labels"
-msgstr ""
+msgstr "הצגת תוויות לוח"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: gui/config/generalconfig.ui:144
 #, kde-format
 msgid "Hint Visibility Time:"
-msgstr ""
+msgstr "זמן חשיפת רמזים:"
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, kcfg_HintVisibleTime)
 #: gui/config/generalconfig.ui:163
 #, kde-format
 msgid " Seconds"
-msgstr "  ثانية"
+msgstr " שניות"
 
 #. i18n: ectx: Menu (game)
 #: gui/kigoui.rc:9
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Game"
-msgstr "&لعبة"
+msgstr "מ&שחק"
 
 #. i18n: ectx: Menu (move)
 #: gui/kigoui.rc:20
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Move"
-msgstr "ا&نقل"
+msgstr "מה&לך"
 
 #. i18n: ectx: Menu (settings)
 #: gui/kigoui.rc:25
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Settings"
-msgstr "إ&عدادات"
+msgstr "ה&גדרות"
 
 #. i18n: ectx: Menu (dockers)
 #: gui/kigoui.rc:27
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Dockers"
-msgstr "الأرص&فة"
+msgstr "מ&עגנים"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: gui/kigoui.rc:36
 #, kde-format
 msgctxt "@title:menu"
 msgid "Main Toolbar"
-msgstr "شريط الأدوات الرئيسية"
+msgstr "סרגל כלים ראשי"
 
 #. i18n: ectx: ToolBar (moveToolBar)
 #: gui/kigoui.rc:42
 #, kde-format
 msgctxt "@title:menu"
 msgid "Move Toolbar"
-msgstr "حرك شريط الأدوات"
+msgstr "העברת סרגל כלים"
 
 #: gui/mainwindow.cpp:90
 #, kde-format
 msgid "Set up a new game..."
-msgstr ""
+msgstr "הגדרת משחק חדש…"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
 msgid "Kigo Game Files (*.sgf)"
-msgstr ""
+msgstr "קובצי משחק של Kigo‏ (‎*.sgf)"
 
 #: gui/mainwindow.cpp:133
 #, kde-format
 msgid "Set up a loaded game..."
-msgstr ""
+msgstr "הגדרת משחק שנטען…"
 
 #: gui/mainwindow.cpp:136
 #, kde-format
 msgid "Unable to load game..."
-msgstr ""
+msgstr "לא ניתן לטעון משחק…"
 
 #: gui/mainwindow.cpp:174
 #, kde-format
 msgid "Game saved..."
-msgstr ""
+msgstr "המשחק נשמר…"
 
 #: gui/mainwindow.cpp:176
 #, kde-format
 msgid "Unable to save game."
-msgstr ""
+msgstr "לא ניתן לשמור משחק."
 
 #: gui/mainwindow.cpp:223
 #, kde-format
 msgid "Game started..."
-msgstr ""
+msgstr "המשחק החל…"
 
 #: gui/mainwindow.cpp:248
 #, kde-format
 msgid "%1 (White)"
-msgstr "%1 (أبيض)"
+msgstr "%1 (לבן)"
 
 #: gui/mainwindow.cpp:250
 #, kde-format
 msgid "%1 (Black)"
-msgstr "%1 (أسود)"
+msgstr "%1 (שחור)"
 
 #: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
-msgstr ""
+msgstr "ניצחון לטובת %1 עם ניקוד של %2."
 
 #: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
-msgstr ""
+msgstr "ניצחון לטובת %1 עם ניקוד של %2 (גבולות: %3 ו־%4)."
 
 #: gui/mainwindow.cpp:266
 #, kde-format
 msgid "Undone move"
-msgstr ""
+msgstr "מהלך הוסג אחורה"
 
 #: gui/mainwindow.cpp:274
 #, kde-format
 msgid "Redone move"
-msgstr ""
+msgstr "מהלך בוצע מחדש"
 
 #: gui/mainwindow.cpp:298
 #, kde-format
 msgid "General"
-msgstr "عامّ"
+msgstr "כללי"
 
 #: gui/mainwindow.cpp:300
 #, kde-format
 msgid "Themes"
-msgstr "السّمات"
+msgstr "ערכות עיצוב"
 
 #: gui/mainwindow.cpp:317
 #, kde-format
 msgid "Backend was changed, restart necessary..."
-msgstr ""
+msgstr "המנגנון התחלף, צריך להפעיל מחדש…"
 
 #: gui/mainwindow.cpp:380 gui/mainwindow.cpp:382
 #, kde-format
 msgctxt "@action"
 msgid "Get More Games..."
-msgstr ""
+msgstr "הורדת משחקים נוספים…"
 
 #: gui/mainwindow.cpp:387 gui/mainwindow.cpp:389
 #, kde-format
 msgctxt "@action"
 msgid "Start Game"
-msgstr "ابدأ اللعبة"
+msgstr "התחלת משחק"
 
 #: gui/mainwindow.cpp:393 gui/mainwindow.cpp:395
 #, kde-format
 msgctxt "@action"
 msgid "Finish Game"
-msgstr ""
+msgstr "סיום המשחק"
 
 #: gui/mainwindow.cpp:403
 #, kde-format
 msgctxt "@action:inmenu Move"
 msgid "Pass Move"
-msgstr ""
+msgstr "דילוג על מהלך"
 
 #: gui/mainwindow.cpp:408
 #, kde-format
 msgctxt "@action:inmenu View"
 msgid "Show Move &Numbers"
-msgstr ""
+msgstr "הצגת מ&ספרי מהלכים"
 
 #: gui/mainwindow.cpp:421
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
-msgstr "إعداد اللعبة"
+msgstr "הגדרות משחק"
 
 #: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
 #, kde-format
 msgctxt "@title:window"
 msgid "Information"
-msgstr "المعلومات"
+msgstr "פרטים"
 
 #: gui/mainwindow.cpp:442 gui/mainwindow.cpp:451
 #, kde-format
 msgctxt "@title:window"
 msgid "Moves"
-msgstr "الحركات"
+msgstr "מהלכים"
 
 #: gui/mainwindow.cpp:445
 #, kde-format
 msgid "No move"
-msgstr "لا يوجد حركات"
+msgstr "אין מהלך"
 
 #: gui/mainwindow.cpp:456
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
-msgstr "خطأ"
+msgstr "שגיאה"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/errorwidget.ui:21
@@ -362,67 +373,82 @@ msgid ""
 "engine. Otherwise you should install a Go engine (like GnuGo).</span></p></"
 "body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:8pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Kigo לא הצליח למצוא "
+"מנוע מנגנון גו.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt;\">אם בוודאות התקנת מנגנון גו מתאים, "
+"אולי כדי להגדיר את Kigo להשתמש במנגנון הזה. אחרת צריך להתקין מנגנון גו (כגון "
+"GnuGo).</span></p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
 #, kde-format
 msgid "Configure Kigo..."
-msgstr ""
+msgstr "הגדרת Kigo…"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
 msgid "Computer (level %1)"
-msgstr ""
+msgstr "מחשב (רמה %1)"
 
 #: gui/widgets/gamewidget.cpp:49
-#, fuzzy, kde-format
+#, kde-format
 msgid "%1 Stone"
 msgid_plural "%1 Stones"
-msgstr[0] "حجر"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "אבן אחת"
+msgstr[1] "%1 אבנים"
+msgstr[2] "%1 אבנים"
+msgstr[3] "%1 אבנים"
 
 #: gui/widgets/gamewidget.cpp:66
 #, kde-format
 msgctxt "Indication who played the last move"
 msgid "%1 (white)"
-msgstr "%1 (أبيض)"
+msgstr "%1 (לבן)"
 
 #: gui/widgets/gamewidget.cpp:68
 #, kde-format
 msgctxt "Indication who played the last move"
 msgid "%1 (black)"
-msgstr "%1 (أسود)"
+msgstr "%1 (שחור)"
 
 #: gui/widgets/gamewidget.cpp:77
 #, kde-format
 msgid "White's turn"
-msgstr "دور الأبيض"
+msgstr "תור הלבן"
 
 #: gui/widgets/gamewidget.cpp:81
 #, kde-format
 msgid "Black's turn"
-msgstr "دور الأسود"
+msgstr "תור השחור"
 
 #: gui/widgets/gamewidget.cpp:86 gui/widgets/gamewidget.cpp:87
-#, fuzzy, kde-format
+#, kde-format
 msgid "%1 capture"
 msgid_plural "%1 captures"
-msgstr[0] "الالتقاط"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "לכידה"
+msgstr[1] "שתי לכידות"
+msgstr[2] "%1 לכידות"
+msgstr[3] "%1 לכידות"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: gui/widgets/gamewidget.ui:19 gui/widgets/setupwidget.ui:103
-#, fuzzy, kde-format
+#, kde-format
 msgid "Handicap:"
-msgstr "شطرنج الأفضلية"
+msgstr "סיוע:"
 
 #. i18n: ectx: property (text), widget (QLabel, handicapLabel)
 #: gui/widgets/gamewidget.ui:35
@@ -437,131 +463,125 @@ msgstr "2"
 #: gui/widgets/setupwidget.ui:403
 #, kde-format
 msgid "Komi:"
-msgstr "الكومي:"
+msgstr "קומי:"
 
 #. i18n: ectx: property (text), widget (QLabel, komiLabel)
 #: gui/widgets/gamewidget.ui:58
 #, kde-format
 msgid "0.5 Points"
-msgstr "0٫5 نقطة"
+msgstr "0.5 נקודות"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/gamewidget.ui:78
 #, kde-format
 msgid "Last move:"
-msgstr ""
+msgstr "מהלך אחרון:"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: gui/widgets/gamewidget.ui:101
 #, kde-format
 msgid "Move:"
-msgstr "الحركة:"
+msgstr "מהלך:"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
 #: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
 #, kde-format
 msgid "White Player"
-msgstr ""
+msgstr "השחקן הלבן"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteCapturesLabel)
 #. i18n: ectx: property (text), widget (QLabel, blackCapturesLabel)
 #: gui/widgets/gamewidget.ui:191 gui/widgets/gamewidget.ui:265
 #, kde-format
 msgid "Captures:"
-msgstr ""
+msgstr "לכידות:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
 #: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
 #, kde-format
 msgid "Black Player"
-msgstr ""
+msgstr "השחקן השחור"
 
 #. i18n: ectx: property (text), widget (QPushButton, finishButton)
 #: gui/widgets/gamewidget.ui:308
 #, kde-format
 msgid "Finish Game"
-msgstr ""
+msgstr "סיום המשחק"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
+#, kde-format
 msgid " Stone"
 msgid_plural " Stones"
-msgstr[0] "حجر"
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] " אבן"
+msgstr[1] " אבנים"
+msgstr[2] " אבנים"
+msgstr[3] " אבנים"
 
 #: gui/widgets/setupwidget.cpp:160
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Time limit of a game in minutes"
 msgid "%1 minute"
 msgid_plural "%1 minutes"
-msgstr[0] "دقيقة"
-msgstr[1] "%1 دقيقة"
-msgstr[2] "دقيقتان"
-msgstr[3] "%1 دقائق"
-msgstr[4] "%1 دقيقة"
-msgstr[5] "%1 دقيقة"
+msgstr[0] "דקה"
+msgstr[1] "שתי דקות"
+msgstr[2] "%1 דקות"
+msgstr[3] "%1 דקות"
 
 #: gui/widgets/setupwidget.cpp:162
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Time limit of a game, hours, minutes"
 msgid "%1 hour, %2"
 msgid_plural "%1 hours, %2"
-msgstr[0] "أقلّ من ساعة"
-msgstr[1] "ساعة واحدة"
-msgstr[2] "ساعتان"
-msgstr[3] "%1 ساعات"
-msgstr[4] "%1 ساعة"
-msgstr[5] "%1 ساعة"
+msgstr[0] "שעה, %2"
+msgstr[1] "שעתיים, %2"
+msgstr[2] "%1 שעות, %2"
+msgstr[3] "%1 שעות, %2"
 
 #: gui/widgets/setupwidget.cpp:184
 #, kde-format
 msgid " of %1"
-msgstr " من %1"
+msgstr " מתוך %1"
 
 #: gui/widgets/setupwidget.cpp:227
 #, kde-format
 msgid "White to play"
-msgstr ""
+msgstr "תור הלבן לשחק"
 
 #. i18n: ectx: property (text), widget (QLabel, playerLabel)
 #: gui/widgets/setupwidget.cpp:229 gui/widgets/setupwidget.ui:448
 #, kde-format
 msgid "Black to play"
-msgstr ""
+msgstr "תור השחור לשחק"
 
 #. i18n: ectx: property (text), widget (QLabel, label_12)
 #: gui/widgets/setupwidget.ui:30
 #, kde-format
 msgid "Board size:"
-msgstr "حجم اللوح:"
+msgstr "גודל הלוח:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeSmall)
 #: gui/widgets/setupwidget.ui:37
 #, kde-format
 msgid "&Tiny (9x9)"
-msgstr ""
+msgstr "&פצפון (9×9)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
 #: gui/widgets/setupwidget.ui:47
-#, fuzzy, kde-format
+#, kde-format
 msgid "Small (&13x13)"
-msgstr "صغيرة (%1×%2)"
+msgstr "&קטן (13×13)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
 #: gui/widgets/setupwidget.ui:54
-#, fuzzy, kde-format
+#, kde-format
 msgid "No&rmal (19x19)"
-msgstr "عادي (1024×768)"
+msgstr "&רגיל (19×19)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
 #, kde-format
 msgid "&Custom:"
-msgstr "م&خصّص:"
+msgstr "מ&שלך:"
 
 #. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:126
@@ -570,12 +590,14 @@ msgid ""
 "Handicap stones are an advantage for the black player.\n"
 "Black gets a number of stones on the board before the game starts."
 msgstr ""
+"אבני סיוע הן יתרון לשחקן השחור.\n"
+"השחור מקבל מספר אבנים על הלוח לפני תחילת המשחק."
 
 #. i18n: ectx: property (specialValueText), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:129
 #, kde-format
 msgid "No handicap"
-msgstr ""
+msgstr "בלי סיוע"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, komiSpinBox)
 #: gui/widgets/setupwidget.ui:171
@@ -584,260 +606,262 @@ msgid ""
 "Komi are points given to the white player at the end of the game.\n"
 "It balances out the advantage black has by making the first move."
 msgstr ""
+"קומי הן נקודות שניתנות לשחקן הלבן בסוף המשחק.\n"
+"הן מאזנות את היתרון שיש לשחור במהלך הראשון."
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, komiSpinBox)
 #: gui/widgets/setupwidget.ui:174
 #, kde-format
 msgid " Points"
-msgstr " نقطة"
+msgstr " נקודות"
 
 #. i18n: ectx: property (text), widget (QLabel, eventStaticLabel)
 #: gui/widgets/setupwidget.ui:237
 #, kde-format
 msgid "Event:"
-msgstr "الحدث:"
+msgstr "אירוע:"
 
 #. i18n: ectx: property (text), widget (QLabel, locationStaticLabel)
 #: gui/widgets/setupwidget.ui:272
 #, kde-format
 msgid "Location:"
-msgstr "المكان:"
+msgstr "מקום:"
 
 #. i18n: ectx: property (text), widget (QLabel, dateStaticLabel)
 #: gui/widgets/setupwidget.ui:307
 #, kde-format
 msgid "Date:"
-msgstr "التّاريخ:"
+msgstr "תאריך:"
 
 #. i18n: ectx: property (text), widget (QLabel, roundStaticLabel)
 #: gui/widgets/setupwidget.ui:339
 #, kde-format
 msgid "Round:"
-msgstr "الجولة:"
+msgstr "סיבוב:"
 
 #. i18n: ectx: property (text), widget (QLabel, scoreStaticLabel)
 #: gui/widgets/setupwidget.ui:371
 #, kde-format
 msgid "Score:"
-msgstr "النتيجة:"
+msgstr "ניקוד:"
 
 #. i18n: ectx: property (text), widget (QLabel, continueStaticLabel)
 #: gui/widgets/setupwidget.ui:435
 #, kde-format
 msgid "Continue:"
-msgstr "تابع:"
+msgstr "המשך:"
 
 #. i18n: ectx: property (suffix), widget (QSpinBox, startMoveSpinBox)
 #: gui/widgets/setupwidget.ui:467
 #, kde-format
 msgid " of 999"
-msgstr " من 999"
+msgstr " מתוך 999"
 
 #. i18n: ectx: property (prefix), widget (QSpinBox, startMoveSpinBox)
 #: gui/widgets/setupwidget.ui:470
 #, kde-format
 msgid "Move "
-msgstr "انقل"
+msgstr "מהלך "
 
 #. i18n: ectx: property (text), widget (QLabel, timeStaticLabel)
 #: gui/widgets/setupwidget.ui:489
 #, kde-format
 msgid "Time limit:"
-msgstr "حدّ الوقت:"
+msgstr "מגבלת זמן:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, whiteIsComputerCheckBox)
 #: gui/widgets/setupwidget.ui:572
 #, kde-format
 msgid "&Computer"
-msgstr "ال&حاسب"
+msgstr "מ&חשב"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: gui/widgets/setupwidget.ui:595
 #, kde-format
 msgid "&Name:"
-msgstr "الا&سم:"
+msgstr "&שם:"
 
 #. i18n: ectx: property (text), widget (QLabel, label1)
 #. i18n: ectx: property (text), widget (QLabel, label1_3)
 #: gui/widgets/setupwidget.ui:637 gui/widgets/setupwidget.ui:823
 #, kde-format
 msgid "Weak"
-msgstr "ضعيف"
+msgstr "חלש"
 
 #. i18n: ectx: property (text), widget (QLabel, label2)
 #. i18n: ectx: property (text), widget (QLabel, label2_3)
 #: gui/widgets/setupwidget.ui:656 gui/widgets/setupwidget.ui:804
 #, kde-format
 msgid "Strong"
-msgstr "قوي"
+msgstr "חזק"
 
 #. i18n: ectx: property (text), widget (QCheckBox, blackIsComputerCheckBox)
 #: gui/widgets/setupwidget.ui:742
 #, kde-format
 msgid "C&omputer"
-msgstr "ال&حاسوب"
+msgstr "מחש&ב"
 
 #. i18n: ectx: property (text), widget (QLabel, label_7)
 #: gui/widgets/setupwidget.ui:762
 #, kde-format
 msgid "Na&me:"
-msgstr "الا&سم:"
+msgstr "ש&ם:"
 
 #. i18n: ectx: property (text), widget (QPushButton, startButton)
 #: gui/widgets/setupwidget.ui:1003
 #, kde-format
 msgid "Start Game"
-msgstr "ابدأ اللعبة"
+msgstr "התחלת משחק"
 
 #. i18n: ectx: label, entry (EngineCommand), group (Backend)
 #: kigo.kcfg:10
 #, kde-format
 msgid "The current game engine command with (optional) parameters"
-msgstr ""
+msgstr "פקודת מנוע המשחק הנוכחית עם משתנים (רשות)"
 
 #. i18n: ectx: label, entry (Theme), group (UserInterface)
 #: kigo.kcfg:21
 #, kde-format
 msgid "The graphical theme to be used"
-msgstr "السمة الرسومية المستخدمة"
+msgstr "ערכת העיצוב הגרפית לשימוש"
 
 #. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
 #: kigo.kcfg:25
 #, kde-format
 msgid "Determines whether board labels are shown"
-msgstr ""
+msgstr "מגדיר האם תוויות הלוח מופיעות"
 
 #. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
 #: kigo.kcfg:29
 #, kde-format
 msgid "Move numbers are drawn onto stones if enabled"
-msgstr ""
+msgstr "מספרי המהלכים מצוירים על האבנים אם האפשרות פעילה"
 
 #. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
 #: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
-msgstr ""
+msgstr "מספר השניות לחשיפת רמז"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
 #: kigo.kcfg:41
 #, kde-format
 msgid "Is black a human player?"
-msgstr ""
+msgstr "האם השחור הוא שחקן אנושי?"
 
 #. i18n: ectx: label, entry (BlackPlayerName), group (Game)
 #: kigo.kcfg:45
 #, kde-format
 msgid "The name of the black player"
-msgstr ""
+msgstr "שם השחקן השחור"
 
 #. i18n: ectx: label, entry (BlackPlayerStrength), group (Game)
 #: kigo.kcfg:49
 #, kde-format
 msgid "The strength of the black player"
-msgstr ""
+msgstr "חוזק השחקן השחור"
 
 #. i18n: ectx: label, entry (WhitePlayerHuman), group (Game)
 #: kigo.kcfg:55
 #, kde-format
 msgid "Is white a human player?"
-msgstr ""
+msgstr "האם הלבן הוא שחקן אנושי?"
 
 #. i18n: ectx: label, entry (WhitePlayerName), group (Game)
 #: kigo.kcfg:59
 #, kde-format
 msgid "The name of the white player"
-msgstr ""
+msgstr "שם השחקן הלבן"
 
 #. i18n: ectx: label, entry (WhitePlayerStrength), group (Game)
 #: kigo.kcfg:63
 #, kde-format
 msgid "The strength of the white player"
-msgstr ""
+msgstr "חוזק השחקן הלבן"
 
 #. i18n: ectx: label, entry (BoardSize), group (Game)
 #: kigo.kcfg:69
 #, kde-format
 msgid "Go board size"
-msgstr ""
+msgstr "גודל לוח גו"
 
 #. i18n: ectx: label, entry (Komi), group (Game)
 #: kigo.kcfg:76
 #, kde-format
 msgid "Komi"
-msgstr "كومي"
+msgstr "קומי"
 
 #. i18n: ectx: tooltip, entry (Komi), group (Game)
 #: kigo.kcfg:77
 #, kde-format
 msgid "With komi you can give the black player some extra points"
-msgstr ""
+msgstr "עם קומי אפשר להעניק לשחקן השחור כמה נקודות תוספת"
 
 #. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
 #: kigo.kcfg:83
 #, kde-format
 msgid "Extra stones for the black player"
-msgstr ""
+msgstr "אבנים נוספים לשחקן השחור"
 
 #: main.cpp:36
 #, kde-format
 msgid "Kigo"
-msgstr "كاي غو"
+msgstr "Kigo"
 
 #: main.cpp:37
 #, kde-format
 msgid "KDE Go Board Game"
-msgstr ""
+msgstr "משחק לוח גו ל־KDE"
 
 #: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
-msgstr ""
+msgstr "כל הזכויות שמורות (c) 2008-2010 סשה פייליקה"
 
 #: main.cpp:39
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
-msgstr ""
+msgstr "סשה פייליקה (saschpe)"
 
 #: main.cpp:39
 #, kde-format
 msgid "Original author"
-msgstr "المؤلف الأصلي"
+msgstr "יוצר מקורי"
 
 #: main.cpp:41
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr "Yuri Chornoivan"
+msgstr "יורי צ׳ורנויבאן"
 
 #: main.cpp:41
 #, kde-format
 msgid "Documentation editor"
-msgstr ""
+msgstr "עורך התיעוד"
 
 #: main.cpp:43
 #, kde-format
 msgid "Arturo Silva"
-msgstr "Arturo Silva"
+msgstr "ארטורו סילבה"
 
 #: main.cpp:43
 #, kde-format
 msgid "Default theme designer"
-msgstr ""
+msgstr "מעצב ערכת ברירת המחדל"
 
 #: main.cpp:54 main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
-msgstr ""
+msgstr "משחק לטעינה (קובץ SGF)"
 
 #: main.cpp:54
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
-msgstr ""
+msgstr "gamefile"
 
 #: main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
-msgstr ""
+msgstr "[gamefile]"
