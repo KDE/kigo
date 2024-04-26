@@ -47,8 +47,9 @@ ki18n_wrap_ui(kigo
 ecm_qt_declare_logging_category(kigo
     HEADER kigo_debug.h
     IDENTIFIER KIGO_LOG
-    CATEGORY_NAME org.kde.kdegames.kigo
-    DESCRIPTION "kigo (kdegames)"
+    CATEGORY_NAME kigo
+    OLD_CATEGORY_NAMES org.kde.kdegames.kigo
+    DESCRIPTION "Kigo game"
     EXPORT KIGO
 )
 
