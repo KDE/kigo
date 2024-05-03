@@ -379,20 +379,17 @@ void MainWindow::setupActions()
         this, qOverload<>(&MainWindow::loadGame), actionCollection());
     m_getMoreGamesAction = new KNSWidgets::Action(i18nc("@action", "Get More Games…" ), QStringLiteral("kigo-games.knsrc"), actionCollection());
     KActionCollection::setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
-    m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     actionCollection()->addAction( QStringLiteral( "get_more_games" ), m_getMoreGamesAction);
     m_saveAction = KGameStandardAction::save(this, &MainWindow::saveGame, actionCollection());
     KGameStandardAction::quit(this, &QWidget::close, actionCollection());
 
     m_startGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-start") ), i18nc("@action", "Start Game" ), this);
     KActionCollection::setDefaultShortcut(m_startGameAction, Qt::Key_S);
-    m_startGameAction->setToolTip(i18nc("@action", "Start Game"));
     connect(m_startGameAction, &QAction::triggered, this, &MainWindow::startGame);
     actionCollection()->addAction( QStringLiteral( "game_start" ), m_startGameAction);
 
     m_finishGameAction = new QAction(QIcon::fromTheme( QStringLiteral( "media-playback-stop") ), i18nc("@action", "Finish Game" ), this);
     KActionCollection::setDefaultShortcut(m_finishGameAction, Qt::Key_F);
-    m_finishGameAction->setToolTip(i18nc("@action", "Finish Game"));
     connect(m_finishGameAction, &QAction::triggered, this, &MainWindow::finishGame);
     actionCollection()->addAction( QStringLiteral( "game_finish" ), m_finishGameAction);
 
