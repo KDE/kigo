@@ -51,7 +51,7 @@ void SetupWidget::newGame()
     m_game->init();
     gameSetupStack->setCurrentIndex(0);
     m_game->setBoardSize(Preferences::boardSize());
-    handicapSpinBox->setSuffix(ki18np(" Stone", " Stones"));
+    handicapSpinBox->setSuffix(ki18ncp("@item:valuesuffix", " Stone", " Stones"));
     m_game->setFixedHandicap(Preferences::fixedHandicapValue());
 }
 
@@ -181,7 +181,7 @@ void SetupWidget::loadedGame(const QString &fileName)
     }
 
     const int count = m_game->moveCount();
-    startMoveSpinBox->setSuffix(i18n(" of %1", count));
+    startMoveSpinBox->setSuffix(i18nc("@item:valuesuffix", " of %1", count));
     startMoveSpinBox->setMaximum(count);            // And set it as maximum and current
     startMoveSpinBox->setValue(count);              // move.
     startMoveSpinBox->setFocus(Qt::OtherFocusReason);

@@ -314,19 +314,19 @@ bool Game::playMove(const Player &player, const Stone &stone, bool undoable)
                 playerTemp = &m_whitePlayer;
                 if (stone.isValid()) {
                     moveType = UndoCommand::MoveType::Stone;
-                    undoStr = i18nc("%1 stone coordinate", "White %1", stone.toString());
+                    undoStr = i18nc("@item undo/redo, %1 stone coordinate", "White %1", stone.toString());
                 } else {
                     moveType = UndoCommand::MoveType::Passed;
-                    undoStr = i18n("White passed");
+                    undoStr = i18nc("@item undo/redo", "White passed");
                 }
             } else {
                 playerTemp = &m_blackPlayer;
                 if (stone.isValid()) {
                     moveType = UndoCommand::MoveType::Stone;
-                    undoStr = i18nc("%1 stone coordinate", "Black %1", stone.toString());
+                    undoStr = i18nc("@item undo/redo, %1 stone coordinate", "Black %1", stone.toString());
                 } else {
                     moveType = UndoCommand::MoveType::Passed;
-                    undoStr = i18n("Black passed");
+                    undoStr = i18nc("@item undo/redo", "Black passed");
                 }
             }
             //qCDebug(KIGO_LOG) << "Push new undo command" << undoStr;
@@ -387,18 +387,18 @@ bool Game::generateMove(const Player &player, bool undoable)
             m_consecutivePassMoveNumber++;
             moveType = UndoCommand::MoveType::Passed;
             if (tmp->isWhite()) {
-                undoStr = i18n("White passed");
+                undoStr = i18nc("@item undo/redo", "White passed");
             } else {
-                undoStr = i18n("Black passed");
+                undoStr = i18nc("@item undo/redo", "Black passed");
             }
         } else if (m_response == QLatin1String("resign")) {
             Q_EMIT resigned(*m_currentPlayer);
             m_gameFinished = true;
             moveType = UndoCommand::MoveType::Resigned;
             if (tmp->isWhite()) {
-                undoStr = i18n("White resigned");
+                undoStr = i18nc("@item undo/redo", "White resigned");
             } else {
-                undoStr = i18n("Black resigned");
+                undoStr = i18nc("@item undo/redo", "Black resigned");
             }
         } else {
             m_currentMove++;
@@ -406,9 +406,9 @@ bool Game::generateMove(const Player &player, bool undoable)
             m_consecutivePassMoveNumber = 0;
             moveType = UndoCommand::MoveType::Stone;
             if (tmp->isWhite()) {
-                undoStr = i18nc("%1 response from Go engine", "White %1", m_response);
+                undoStr = i18nc("@item undo/redo, %1 response from Go engine", "White %1", m_response);
             } else {
-                undoStr = i18nc("%1 response from Go engine", "Black %1", m_response);
+                undoStr = i18nc("@item undo/redo, %1 response from Go engine", "Black %1", m_response);
             }
             boardChange = true;
         }

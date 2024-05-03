@@ -87,7 +87,7 @@ void MainWindow::newGame()
     m_errorDock->setVisible(false);
 
     m_setupWidget->newGame();
-    QTimer::singleShot(0, this, [this] { m_gameScene->showMessage(i18n("Set up a new game...")); } );
+    QTimer::singleShot(0, this, [this] { m_gameScene->showMessage(i18nc("@info", "Set up a new game…")); } );
 }
 
 void MainWindow::loadGame()
@@ -130,10 +130,10 @@ bool MainWindow::loadGame(const QString &fileName)
         m_errorDock->setVisible(false);
 
         m_setupWidget->loadedGame(fileName);
-        m_gameScene->showMessage(i18n("Set up a loaded game..."));
+        m_gameScene->showMessage(i18nc("@info", "Set up a loaded game…"));
         return true;
     } else {
-        m_gameScene->showMessage(i18n("Unable to load game..."));
+        m_gameScene->showMessage(i18nc("@info", "Unable to load game…"));
         //Note: New game implied here
         return false;
     }
@@ -171,9 +171,9 @@ void MainWindow::saveGame()
 
     if (!fileName.isEmpty()) {
         if (m_game->save(fileName)) {
-            m_gameScene->showMessage(i18n("Game saved..."));
+            m_gameScene->showMessage(i18nc("@info", "Game saved…"));
         } else {
-            m_gameScene->showMessage(i18n("Unable to save game."));
+            m_gameScene->showMessage(i18nc("@info", "Unable to save game."));
         }
     }
 }
@@ -220,7 +220,7 @@ void MainWindow::startGame()
     m_movesDock->setVisible(true);
     m_movesDock->toggleViewAction()->setEnabled(true);
 
-    m_gameScene->showMessage(i18n("Game started..."));
+    m_gameScene->showMessage(i18nc("@info", "Game started…"));
 
     //TODO: Fix undo view clicking somehow
     m_undoView->setEnabled(false);
@@ -245,9 +245,9 @@ void MainWindow::finishGame()
     Score score = m_game->estimatedScore();
     QString name;
     if (score.color() == QLatin1Char('W')) {
-        name = i18n("%1 (White)", m_game->whitePlayer().name());
+        name = i18nc("@item:intext", "%1 (White)", m_game->whitePlayer().name());
     } else {
-        name = i18n("%1 (Black)", m_game->blackPlayer().name());
+        name = i18nc("@item:intext", "%1 (Black)", m_game->blackPlayer().name());
     }
     // Show a score message that stays visible until the next
     // popup message arrives
@@ -263,7 +263,7 @@ void MainWindow::finishGame()
 void MainWindow::undo()
 {
     if (m_game->undoMove()) {
-        m_gameScene->showMessage(i18n("Undone move"));
+        m_gameScene->showMessage(i18nc("@info", "Undone move."));
         m_gameScene->showHint(false);
     }
 }
@@ -271,7 +271,7 @@ void MainWindow::undo()
 void MainWindow::redo()
 {
     if (m_game->redoMove()) {
-        m_gameScene->showMessage(i18n("Redone move"));
+        m_gameScene->showMessage(i18nc("@info", "Redone move."));
         m_gameScene->showHint(false);
     }
 }
@@ -295,9 +295,9 @@ void MainWindow::showPreferences()
     }
 
     KConfigDialog *dialog = new KConfigDialog(this, QStringLiteral("settings"), Preferences::self());
-    dialog->addPage(new GeneralConfig(), i18n("General"), QStringLiteral("preferences-other"));
+    dialog->addPage(new GeneralConfig(), i18nc("@title:tab", "General"), QStringLiteral("preferences-other"));
     dialog->addPage(new KGameThemeSelector(ThemeRenderer::self()->themeProvider(), KGameThemeSelector::EnableNewStuffDownload),
-                    i18n("Themes"), QStringLiteral("games-config-theme"));
+                    i18nc("@title:tab", "Themes"), QStringLiteral("games-config-theme"));
     if (QPushButton *restore = dialog->button(QDialogButtonBox::RestoreDefaults)) {
         restore->hide();
     }
@@ -314,7 +314,7 @@ void MainWindow::applyPreferences()
         backendError();
     } else if (m_game->engineCommand() != Preferences::engineCommand()) {
         // Restart the Go game if the game command was changed by the user.
-        m_gameScene->showMessage(i18n("Backend was changed, restart necessary..."));
+        m_gameScene->showMessage(i18nc("@info", "Backend was changed, restart necessary…"));
         newGame();
     }
 }
@@ -364,9 +364,9 @@ void MainWindow::passMovePlayed(const Player &player)
 {
     if (player.isComputer()) {
         if (player.isWhite()) {
-            m_gameScene->showMessage(i18n("White passed"));
+            m_gameScene->showMessage(i18nc("@info", "White passed."));
         } else {
-            m_gameScene->showMessage(i18n("Black passed"));
+            m_gameScene->showMessage(i18nc("@info", "Black passed."));
         }
     }
 }
@@ -377,7 +377,7 @@ void MainWindow::setupActions()
     m_newGameAction = KGameStandardAction::gameNew(this, &MainWindow::newGame, actionCollection());
     m_loadGameAction = KGameStandardAction::load(
         this, qOverload<>(&MainWindow::loadGame), actionCollection());
-    m_getMoreGamesAction = new KNSWidgets::Action(i18nc("@action", "Get More Games..." ), QStringLiteral("kigo-games.knsrc"), actionCollection());
+    m_getMoreGamesAction = new KNSWidgets::Action(i18nc("@action", "Get More Games…" ), QStringLiteral("kigo-games.knsrc"), actionCollection());
     KActionCollection::setDefaultShortcut(m_getMoreGamesAction, Qt::CTRL | Qt::Key_G);
     m_getMoreGamesAction->setToolTip(i18nc("@action", "Get More Games..."));
     actionCollection()->addAction( QStringLiteral( "get_more_games" ), m_getMoreGamesAction);
@@ -405,7 +405,7 @@ void MainWindow::setupActions()
     m_hintAction = KGameStandardAction::hint(this, &MainWindow::hint, actionCollection());
 
     // View menu
-    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "pin") ), i18nc("@action:inmenu View", "Show Move &Numbers" ), this);
+    m_moveNumbersAction = new KToggleAction(QIcon::fromTheme( QStringLiteral( "pin") ), i18nc("@option:check", "Show Move &Numbers" ), this);
     KActionCollection::setDefaultShortcut(m_moveNumbersAction, Qt::Key_N);
     m_moveNumbersAction->setChecked(Preferences::showMoveNumbers());
     connect(m_moveNumbersAction, &KToggleAction::toggled, m_gameScene, &GameScene::showMoveNumbers);
@@ -442,7 +442,7 @@ void MainWindow::setupDockWindows()
     m_movesDock = new QDockWidget(i18nc("@title:window", "Moves"), this);
     m_movesDock->setObjectName( QStringLiteral("movesDock" ));
     m_undoView = new QUndoView(m_game->undoStack());
-    m_undoView->setEmptyLabel(i18n("No move"));
+    m_undoView->setEmptyLabel(i18nc("@info", "No move"));
     m_undoView->setAlternatingRowColors(true);
     m_undoView->setFocusPolicy(Qt::NoFocus);
     m_undoView->setEditTriggers(QAbstractItemView::NoEditTriggers);
