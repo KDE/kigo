@@ -103,7 +103,7 @@
     <title>Setup a loaded game</title>
 
     <para>
-    If you decide to continue a previously unfinished game you can simply choose the <menuchoice><guimenu>Game</guimenu> <guimenuitem>Load...</guimenuitem></menuchoice> menu item (the menu is shown in the screenshot above). A file chooser should now pop up, use it to select and load the desired savegame file.
+    If you decide to continue a previously unfinished game you can simply choose the <menuchoice><guimenu>Game</guimenu> <guimenuitem>Load…</guimenuitem></menuchoice> menu item (the menu is shown in the screenshot above). A file chooser should now pop up, use it to select and load the desired savegame file.
     </para>
 
     <para>
@@ -123,7 +123,7 @@
     </screenshot>
 
     <para>
-    There is also the option to download history <literal>Go</literal> games or saved games uploaded by other users from the internet. Just click the <menuchoice><guimenu>Game</guimenu> <guimenuitem>Get More Games...</guimenuitem></menuchoice> menu item. You should then see a dialog which allows you to choose which content to download.
+    There is also the option to download history <literal>Go</literal> games or saved games uploaded by other users from the internet. Just click the <menuchoice><guimenu>Game</guimenu> <guimenuitem>Get More Games…</guimenuitem></menuchoice> menu item. You should then see a dialog which allows you to choose which content to download.
     </para>
 
     <screenshot>
@@ -222,7 +222,7 @@
     <varlistentry id="game-menu-load">
     <term><menuchoice>
     <shortcut><keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
-    <guimenu>Game</guimenu> <guimenuitem>Load...</guimenuitem>
+    <guimenu>Game</guimenu> <guimenuitem>Load…</guimenuitem>
     </menuchoice></term>
     <listitem><para>Opens the Open File &kde; standard dialog, to open a <literal role="extension">.sgf</literal> file (&kigo; game file), which contains a saved game.</para></listitem>
     </varlistentry>
@@ -230,7 +230,7 @@
     <varlistentry  id="game-menu-get-more">
     <term><menuchoice>
     <shortcut><keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
-    <guimenu>Game</guimenu> <guimenuitem>Get More Games...</guimenuitem>
+    <guimenu>Game</guimenu> <guimenuitem>Get More Games…</guimenuitem>
     </menuchoice></term>
     <listitem><para><action>Opens <guilabel>Get Hot New Stuff</guilabel> dialog to load other users saved games.</action></para></listitem>
     </varlistentry>
@@ -421,7 +421,7 @@
     <title>Game Configuration</title>
 
     <para>
-    If you want to change how &kigo; is configured you can do that by navigating to the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kigo;...</guimenuitem></menuchoice> menu item.
+    If you want to change how &kigo; is configured you can do that by navigating to the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kigo;…</guimenuitem></menuchoice> menu item.
     </para>
 
     <para>
@@ -429,7 +429,7 @@
     </para>
 
     <para>
-    &kigo; is extremely flexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have different actions accessible there. To do this just choose the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure Toolbars...</guimenuitem></menuchoice> menu item. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game field you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
+    &kigo; is extremely flexible and can be customized as much as you like. You are able to change positions and size of all dock widgets next to the central play area. You can also customize the toolbar if you want to have different actions accessible there. To do this just choose the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure Toolbars…</guimenuitem></menuchoice> menu item. The same is possible for all shortcuts in the game. If you want to have the maximum space available for the game field you can even hide the toolbar and most dock widgets in the <guimenu>Settings</guimenu> menu.
     </para>
 
     <sect1 id="genconig">
