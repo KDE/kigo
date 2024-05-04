@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-18 00:36+0000\n"
+"POT-Creation-Date: 2024-05-04 00:37+0000\n"
 "PO-Revision-Date: 2017-05-07 21:01+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -33,46 +33,62 @@ msgid "Your emails"
 msgstr "caslav.ilic@gmx.net"
 
 #: game/game.cpp:317
-#, kde-format
-msgctxt "%1 stone coordinate"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "White %1"
+msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
 msgstr "бијели %1"
 
-#: game/game.cpp:320 game/game.cpp:390 gui/mainwindow.cpp:367
-#, kde-format
+#: game/game.cpp:320 game/game.cpp:390
+#, fuzzy, kde-format
+#| msgid "White passed"
+msgctxt "@item undo/redo"
 msgid "White passed"
 msgstr "бијели пропушта"
 
 #: game/game.cpp:326
-#, kde-format
-msgctxt "%1 stone coordinate"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "Black %1"
+msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
 msgstr "црни %1"
 
-#: game/game.cpp:329 game/game.cpp:392 gui/mainwindow.cpp:369
-#, kde-format
+#: game/game.cpp:329 game/game.cpp:392
+#, fuzzy, kde-format
+#| msgid "Black passed"
+msgctxt "@item undo/redo"
 msgid "Black passed"
 msgstr "црни пропушта"
 
 #: game/game.cpp:399
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "White resigned"
+msgctxt "@item undo/redo"
 msgid "White resigned"
 msgstr "бијели одустаје"
 
 #: game/game.cpp:401
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Black resigned"
+msgctxt "@item undo/redo"
 msgid "Black resigned"
 msgstr "црни одустаје"
 
 #: game/game.cpp:409
-#, kde-format
-msgctxt "%1 response from Go engine"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "White %1"
+msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
 msgstr "бијели %1"
 
 #: game/game.cpp:411
-#, kde-format
-msgctxt "%1 response from Go engine"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "Black %1"
+msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
 msgstr "црни %1"
 
@@ -206,8 +222,10 @@ msgid "Move Toolbar"
 msgstr "Трака потеза"
 
 #: gui/mainwindow.cpp:90
-#, kde-format
-msgid "Set up a new game..."
+#, fuzzy, kde-format
+#| msgid "Set up a new game..."
+msgctxt "@info"
+msgid "Set up a new game…"
 msgstr "Поставља се нова партија."
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
@@ -216,34 +234,45 @@ msgid "Kigo Game Files (*.sgf)"
 msgstr "Кигоове фајлови позиција (*.sgf)"
 
 #: gui/mainwindow.cpp:133
-#, kde-format
-msgid "Set up a loaded game..."
+#, fuzzy, kde-format
+#| msgid "Set up a loaded game..."
+msgctxt "@info"
+msgid "Set up a loaded game…"
 msgstr "Поставља се учитана позиција."
 
 #: gui/mainwindow.cpp:136
-#, kde-format
-msgid "Unable to load game..."
+#, fuzzy, kde-format
+#| msgid "Unable to load game..."
+msgctxt "@info"
+msgid "Unable to load game…"
 msgstr "Не могу да учитам позицију."
 
 #: gui/mainwindow.cpp:174
-#, kde-format
-msgid "Game saved..."
+#, fuzzy, kde-format
+#| msgid "Game saved..."
+msgctxt "@info"
+msgid "Game saved…"
 msgstr "Позиција сачувана."
 
 #: gui/mainwindow.cpp:176
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unable to save game."
+msgctxt "@info"
 msgid "Unable to save game."
 msgstr "Не могу да сачувам позицију."
 
 #: gui/mainwindow.cpp:223
-#, kde-format
-msgid "Game started..."
+#, fuzzy, kde-format
+#| msgid "Game started..."
+msgctxt "@info"
+msgid "Game started…"
 msgstr "Партија почиње..."
 
 #: gui/mainwindow.cpp:248
 #, fuzzy, kde-format
 #| msgctxt "Indication who played the last move"
 #| msgid "%1 (white)"
+msgctxt "@item:intext"
 msgid "%1 (White)"
 msgstr "%1 (бијели)"
 
@@ -251,6 +280,7 @@ msgstr "%1 (бијели)"
 #, fuzzy, kde-format
 #| msgctxt "Indication who played the last move"
 #| msgid "%1 (black)"
+msgctxt "@item:intext"
 msgid "%1 (Black)"
 msgstr "%1 (црни)"
 
@@ -265,85 +295,115 @@ msgid "%1 won with a score of %2 (bounds: %3 and %4)."
 msgstr "%1 побиједи резултатом %2 (у границама: %3 и %4)."
 
 #: gui/mainwindow.cpp:266
-#, kde-format
-msgid "Undone move"
+#, fuzzy, kde-format
+#| msgid "Undone move"
+msgctxt "@info"
+msgid "Undone move."
 msgstr "Потез опозван"
 
 #: gui/mainwindow.cpp:274
-#, kde-format
-msgid "Redone move"
+#, fuzzy, kde-format
+#| msgid "Redone move"
+msgctxt "@info"
+msgid "Redone move."
 msgstr "Потез поновљен"
 
 #: gui/mainwindow.cpp:298
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:tab"
 msgid "General"
 msgstr "Опште"
 
 #: gui/mainwindow.cpp:300
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Themes"
+msgctxt "@title:tab"
 msgid "Themes"
 msgstr "Теме"
 
 #: gui/mainwindow.cpp:317
-#, kde-format
-msgid "Backend was changed, restart necessary..."
+#, fuzzy, kde-format
+#| msgid "Backend was changed, restart necessary..."
+msgctxt "@info"
+msgid "Backend was changed, restart necessary…"
 msgstr "Промијењена позадина, неопходно поновно покретање..."
 
-#: gui/mainwindow.cpp:380 gui/mainwindow.cpp:382
-#, kde-format
+#: gui/mainwindow.cpp:367
+#, fuzzy, kde-format
+#| msgid "White passed"
+msgctxt "@info"
+msgid "White passed."
+msgstr "бијели пропушта"
+
+#: gui/mainwindow.cpp:369
+#, fuzzy, kde-format
+#| msgid "Black passed"
+msgctxt "@info"
+msgid "Black passed."
+msgstr "црни пропушта"
+
+#: gui/mainwindow.cpp:380
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Get More Games..."
 msgctxt "@action"
-msgid "Get More Games..."
+msgid "Get More Games…"
 msgstr "Добави још партија..."
 
-#: gui/mainwindow.cpp:387 gui/mainwindow.cpp:389
+#: gui/mainwindow.cpp:386
 #, kde-format
 msgctxt "@action"
 msgid "Start Game"
 msgstr "Почни партију"
 
-#: gui/mainwindow.cpp:393 gui/mainwindow.cpp:395
+#: gui/mainwindow.cpp:391
 #, kde-format
 msgctxt "@action"
 msgid "Finish Game"
 msgstr "Заврши партију"
 
-#: gui/mainwindow.cpp:403
+#: gui/mainwindow.cpp:400
 #, kde-format
 msgctxt "@action:inmenu Move"
 msgid "Pass Move"
 msgstr "Пропусти потез"
 
-#: gui/mainwindow.cpp:408
-#, kde-format
-msgctxt "@action:inmenu View"
+#: gui/mainwindow.cpp:405
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu View"
+#| msgid "Show Move &Numbers"
+msgctxt "@option:check"
 msgid "Show Move &Numbers"
 msgstr "&Бројеви потеза"
 
-#: gui/mainwindow.cpp:421
+#: gui/mainwindow.cpp:418
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
 msgstr "Постављање партије"
 
-#: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
+#: gui/mainwindow.cpp:427 gui/mainwindow.cpp:433
 #, kde-format
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Подаци"
 
-#: gui/mainwindow.cpp:442 gui/mainwindow.cpp:451
+#: gui/mainwindow.cpp:439 gui/mainwindow.cpp:448
 #, kde-format
 msgctxt "@title:window"
 msgid "Moves"
 msgstr "Потези"
 
 # >> @item:inlistbox
-#: gui/mainwindow.cpp:445
-#, kde-format
+#: gui/mainwindow.cpp:442
+#, fuzzy, kde-format
+#| msgid "No move"
+msgctxt "@info"
 msgid "No move"
 msgstr "нема потеза"
 
-#: gui/mainwindow.cpp:456
+#: gui/mainwindow.cpp:453
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
@@ -380,8 +440,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, kde-format
-msgid "Configure Kigo..."
+#, fuzzy, kde-format
+#| msgid "Configure Kigo..."
+msgid "Configure Kigo…"
 msgstr "Подеси Киго..."
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
@@ -495,7 +556,10 @@ msgid "Finish Game"
 msgstr "Заврши партију"
 
 #: gui/widgets/setupwidget.cpp:54
-#, kde-format
+#, fuzzy, kde-format
+#| msgid " Stone"
+#| msgid_plural " Stones"
+msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
 msgstr[0] " камен"
@@ -525,7 +589,9 @@ msgstr[3] "%1 сат, %2"
 
 # >> @item:intext suffix in spinbox, %1 is total number of moves
 #: gui/widgets/setupwidget.cpp:184
-#, kde-format
+#, fuzzy, kde-format
+#| msgid " of %1"
+msgctxt "@item:valuesuffix"
 msgid " of %1"
 msgstr " од %1"
 
@@ -860,3 +926,11 @@ msgstr "фајл‑позиције"
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr "[фајл‑позиције]"
+
+#~ msgctxt "%1 response from Go engine"
+#~ msgid "White %1"
+#~ msgstr "бијели %1"
+
+#~ msgctxt "%1 response from Go engine"
+#~ msgid "Black %1"
+#~ msgstr "црни %1"

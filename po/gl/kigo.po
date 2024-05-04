@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-18 00:36+0000\n"
+"POT-Creation-Date: 2024-05-04 00:37+0000\n"
 "PO-Revision-Date: 2023-06-23 22:55+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -34,46 +34,62 @@ msgid "Your emails"
 msgstr "mvillarino@users.sourceforge.net"
 
 #: game/game.cpp:317
-#, kde-format
-msgctxt "%1 stone coordinate"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "White %1"
+msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
 msgstr "Brancas %1"
 
-#: game/game.cpp:320 game/game.cpp:390 gui/mainwindow.cpp:367
-#, kde-format
+#: game/game.cpp:320 game/game.cpp:390
+#, fuzzy, kde-format
+#| msgid "White passed"
+msgctxt "@item undo/redo"
 msgid "White passed"
 msgstr "Pasaron as brancas"
 
 #: game/game.cpp:326
-#, kde-format
-msgctxt "%1 stone coordinate"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "Black %1"
+msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
 msgstr "Negras %1"
 
-#: game/game.cpp:329 game/game.cpp:392 gui/mainwindow.cpp:369
-#, kde-format
+#: game/game.cpp:329 game/game.cpp:392
+#, fuzzy, kde-format
+#| msgid "Black passed"
+msgctxt "@item undo/redo"
 msgid "Black passed"
 msgstr "Pasaron as negras"
 
 #: game/game.cpp:399
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "White resigned"
+msgctxt "@item undo/redo"
 msgid "White resigned"
 msgstr "Rendéronse as brancas"
 
 #: game/game.cpp:401
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Black resigned"
+msgctxt "@item undo/redo"
 msgid "Black resigned"
 msgstr "Rendéronse as negras"
 
 #: game/game.cpp:409
-#, kde-format
-msgctxt "%1 response from Go engine"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "White %1"
+msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
 msgstr "Brancas %1"
 
 #: game/game.cpp:411
-#, kde-format
-msgctxt "%1 response from Go engine"
+#, fuzzy, kde-format
+#| msgctxt "%1 stone coordinate"
+#| msgid "Black %1"
+msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
 msgstr "Negras %1"
 
@@ -216,8 +232,10 @@ msgid "Move Toolbar"
 msgstr "Barra de ferramentas de Movemento"
 
 #: gui/mainwindow.cpp:90
-#, kde-format
-msgid "Set up a new game..."
+#, fuzzy, kde-format
+#| msgid "Set up a new game..."
+msgctxt "@info"
+msgid "Set up a new game…"
 msgstr "Configurar unha partida nova…"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
@@ -226,37 +244,51 @@ msgid "Kigo Game Files (*.sgf)"
 msgstr "Ficheiros de partida de Kigo (*.sgf)"
 
 #: gui/mainwindow.cpp:133
-#, kde-format
-msgid "Set up a loaded game..."
+#, fuzzy, kde-format
+#| msgid "Set up a loaded game..."
+msgctxt "@info"
+msgid "Set up a loaded game…"
 msgstr "Configurar unha partida gardada…"
 
 #: gui/mainwindow.cpp:136
-#, kde-format
-msgid "Unable to load game..."
+#, fuzzy, kde-format
+#| msgid "Unable to load game..."
+msgctxt "@info"
+msgid "Unable to load game…"
 msgstr "Non é posíbel cargar a partida…"
 
 #: gui/mainwindow.cpp:174
-#, kde-format
-msgid "Game saved..."
+#, fuzzy, kde-format
+#| msgid "Game saved..."
+msgctxt "@info"
+msgid "Game saved…"
 msgstr "Gardouse a partida…"
 
 #: gui/mainwindow.cpp:176
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Unable to save game."
+msgctxt "@info"
 msgid "Unable to save game."
 msgstr "Non é posíbel gardar a partida."
 
 #: gui/mainwindow.cpp:223
-#, kde-format
-msgid "Game started..."
+#, fuzzy, kde-format
+#| msgid "Game started..."
+msgctxt "@info"
+msgid "Game started…"
 msgstr "Partida iniciada…"
 
 #: gui/mainwindow.cpp:248
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "%1 (White)"
+msgctxt "@item:intext"
 msgid "%1 (White)"
 msgstr "%1 (brancas)"
 
 #: gui/mainwindow.cpp:250
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "%1 (Black)"
+msgctxt "@item:intext"
 msgid "%1 (Black)"
 msgstr "%1 (negras)"
 
@@ -271,84 +303,114 @@ msgid "%1 won with a score of %2 (bounds: %3 and %4)."
 msgstr "%1 gañou esta partida cunha puntuación de %2 (arrodeado por: %3 e %4)."
 
 #: gui/mainwindow.cpp:266
-#, kde-format
-msgid "Undone move"
+#, fuzzy, kde-format
+#| msgid "Undone move"
+msgctxt "@info"
+msgid "Undone move."
 msgstr "Desfíxose o movemento"
 
 #: gui/mainwindow.cpp:274
-#, kde-format
-msgid "Redone move"
+#, fuzzy, kde-format
+#| msgid "Redone move"
+msgctxt "@info"
+msgid "Redone move."
 msgstr "Refíxose o movemento"
 
 #: gui/mainwindow.cpp:298
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "General"
+msgctxt "@title:tab"
 msgid "General"
 msgstr "Xeral"
 
 #: gui/mainwindow.cpp:300
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Themes"
+msgctxt "@title:tab"
 msgid "Themes"
 msgstr "Temas"
 
 #: gui/mainwindow.cpp:317
-#, kde-format
-msgid "Backend was changed, restart necessary..."
+#, fuzzy, kde-format
+#| msgid "Backend was changed, restart necessary..."
+msgctxt "@info"
+msgid "Backend was changed, restart necessary…"
 msgstr "Cambiou o motor; hai que reiniciar…"
 
-#: gui/mainwindow.cpp:380 gui/mainwindow.cpp:382
-#, kde-format
+#: gui/mainwindow.cpp:367
+#, fuzzy, kde-format
+#| msgid "White passed"
+msgctxt "@info"
+msgid "White passed."
+msgstr "Pasaron as brancas"
+
+#: gui/mainwindow.cpp:369
+#, fuzzy, kde-format
+#| msgid "Black passed"
+msgctxt "@info"
+msgid "Black passed."
+msgstr "Pasaron as negras"
+
+#: gui/mainwindow.cpp:380
+#, fuzzy, kde-format
+#| msgctxt "@action"
+#| msgid "Get More Games..."
 msgctxt "@action"
-msgid "Get More Games..."
+msgid "Get More Games…"
 msgstr "Obter máis xogos…"
 
-#: gui/mainwindow.cpp:387 gui/mainwindow.cpp:389
+#: gui/mainwindow.cpp:386
 #, kde-format
 msgctxt "@action"
 msgid "Start Game"
 msgstr "Comezar unha partida"
 
-#: gui/mainwindow.cpp:393 gui/mainwindow.cpp:395
+#: gui/mainwindow.cpp:391
 #, kde-format
 msgctxt "@action"
 msgid "Finish Game"
 msgstr "Rematar a partida"
 
-#: gui/mainwindow.cpp:403
+#: gui/mainwindow.cpp:400
 #, kde-format
 msgctxt "@action:inmenu Move"
 msgid "Pass Move"
 msgstr "Pasar o movemento"
 
-#: gui/mainwindow.cpp:408
-#, kde-format
-msgctxt "@action:inmenu View"
+#: gui/mainwindow.cpp:405
+#, fuzzy, kde-format
+#| msgctxt "@action:inmenu View"
+#| msgid "Show Move &Numbers"
+msgctxt "@option:check"
 msgid "Show Move &Numbers"
 msgstr "Amosar os &números dos movementos"
 
-#: gui/mainwindow.cpp:421
+#: gui/mainwindow.cpp:418
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
 msgstr "Configuración da partida"
 
-#: gui/mainwindow.cpp:430 gui/mainwindow.cpp:436
+#: gui/mainwindow.cpp:427 gui/mainwindow.cpp:433
 #, kde-format
 msgctxt "@title:window"
 msgid "Information"
 msgstr "Información"
 
-#: gui/mainwindow.cpp:442 gui/mainwindow.cpp:451
+#: gui/mainwindow.cpp:439 gui/mainwindow.cpp:448
 #, kde-format
 msgctxt "@title:window"
 msgid "Moves"
 msgstr "Movementos"
 
-#: gui/mainwindow.cpp:445
-#, kde-format
+#: gui/mainwindow.cpp:442
+#, fuzzy, kde-format
+#| msgid "No move"
+msgctxt "@info"
 msgid "No move"
 msgstr "Non hai movemento"
 
-#: gui/mainwindow.cpp:456
+#: gui/mainwindow.cpp:453
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
@@ -402,8 +464,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, kde-format
-msgid "Configure Kigo..."
+#, fuzzy, kde-format
+#| msgid "Configure Kigo..."
+msgid "Configure Kigo…"
 msgstr "Configurar Kigo…"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
@@ -512,7 +575,10 @@ msgid "Finish Game"
 msgstr "Rematar a partida"
 
 #: gui/widgets/setupwidget.cpp:54
-#, kde-format
+#, fuzzy, kde-format
+#| msgid " Stone"
+#| msgid_plural " Stones"
+msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
 msgstr[0] "Pedra"
@@ -535,7 +601,9 @@ msgstr[0] "%1 hora, %2"
 msgstr[1] "%1 horas, %2"
 
 #: gui/widgets/setupwidget.cpp:184
-#, kde-format
+#, fuzzy, kde-format
+#| msgid " of %1"
+msgctxt "@item:valuesuffix"
 msgid " of %1"
 msgstr " de %1"
 
@@ -865,6 +933,14 @@ msgstr "ficheirodepartida"
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr "[ficheirodepartida]"
+
+#~ msgctxt "%1 response from Go engine"
+#~ msgid "White %1"
+#~ msgstr "Brancas %1"
+
+#~ msgctxt "%1 response from Go engine"
+#~ msgid "Black %1"
+#~ msgstr "Negras %1"
 
 #~ msgid " Stones"
 #~ msgstr " Pedras"
