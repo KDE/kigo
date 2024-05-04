@@ -228,7 +228,7 @@ void SetupWidget::on_startMoveSpinBox_valueChanged(int value)
     } else if (m_game->currentPlayer().isBlack()) {
         playerLabel->setText(i18n("Black to play"));
     } else {
-        playerLabel->setText(QLatin1String(""));
+        playerLabel->setText(QString());
     }
 }
 

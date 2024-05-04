@@ -36,7 +36,7 @@ class MainWindow : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(const QString &fileName = QLatin1String(""), QWidget *parent = nullptr);
+    explicit MainWindow(const QString &fileName = QString(), QWidget *parent = nullptr);
 
 private Q_SLOTS:
     void newGame();                         ///< Configure new game
