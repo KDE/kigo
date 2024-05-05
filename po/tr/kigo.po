@@ -7,13 +7,13 @@
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # Serhat Demirkol <serhat_demirkol@yahoo.com>, 2009.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2023-08-22 23:06+0300\n"
+"PO-Revision-Date: 2024-05-04 14:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -34,61 +34,49 @@ msgid "Your emails"
 msgstr "rainman.neu@gmail.com"
 
 #: game/game.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
 msgstr "Beyaz %1"
 
 #: game/game.cpp:320 game/game.cpp:390
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
 msgstr "Beyaz geçti"
 
 #: game/game.cpp:326
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
 msgstr "Siyah %1"
 
 #: game/game.cpp:329 game/game.cpp:392
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black passed"
 msgstr "Siyah geçti"
 
 #: game/game.cpp:399
-#, fuzzy, kde-format
-#| msgid "White resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White resigned"
-msgstr "Beyaz çekilmiş"
+msgstr "Beyaz çekildi"
 
 #: game/game.cpp:401
-#, fuzzy, kde-format
-#| msgid "Black resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black resigned"
-msgstr "Siyah çekilmiş"
+msgstr "Siyah çekildi"
 
 #: game/game.cpp:409
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
 msgstr "Beyaz %1"
 
 #: game/game.cpp:411
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
 msgstr "Siyah %1"
@@ -103,7 +91,7 @@ msgstr "Arka Uç"
 #: gui/config/generalconfig.ui:23
 #, kde-format
 msgid "Executable:"
-msgstr "Çalıştırılabilir dosya:"
+msgstr "Yürütülebilir:"
 
 #. i18n: ectx: property (toolTip), widget (KUrlRequester, engineExecutable)
 #: gui/config/generalconfig.ui:42
@@ -232,11 +220,10 @@ msgid "Move Toolbar"
 msgstr "Araç Çubuğunu Taşı"
 
 #: gui/mainwindow.cpp:90
-#, fuzzy, kde-format
-#| msgid "Set up a new game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr "Yeni bir oyun kur..."
+msgstr "Yeni bir oyun ayarla…"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
@@ -244,50 +231,43 @@ msgid "Kigo Game Files (*.sgf)"
 msgstr "Kigo Oyun Dosyaları (*.sgf)"
 
 #: gui/mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Set up a loaded game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
-msgstr "Yüklenen bir oyunu kur..."
+msgstr "Yüklenen bir oyunu ayarla…"
 
 #: gui/mainwindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Unable to load game..."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr "Oyun yüklenemedi..."
+msgstr "Oyun yüklenemiyor…"
 
 #: gui/mainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "Game saved..."
+#, kde-format
 msgctxt "@info"
 msgid "Game saved…"
-msgstr "Oyun kaydedildi..."
+msgstr "Oyun kaydedildi…"
 
 #: gui/mainwindow.cpp:176
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to save game."
-msgstr "Oyun kaydedilemedi."
+msgstr "Oyun kaydedilemiyor."
 
 #: gui/mainwindow.cpp:223
-#, fuzzy, kde-format
-#| msgid "Game started..."
+#, kde-format
 msgctxt "@info"
 msgid "Game started…"
-msgstr "Oyun başlatıldı..."
+msgstr "Oyun başlatıldı…"
 
 #: gui/mainwindow.cpp:248
-#, fuzzy, kde-format
-#| msgid "%1 (White)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (White)"
 msgstr "%1 (Beyaz)"
 
 #: gui/mainwindow.cpp:250
-#, fuzzy, kde-format
-#| msgid "%1 (Black)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (Black)"
 msgstr "%1 (Siyah)"
@@ -295,69 +275,60 @@ msgstr "%1 (Siyah)"
 #: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
-msgstr "%1 %2 puanıyla kazandı."
+msgstr "%1, %2 puanıyla kazandı."
 
 #: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
-msgstr "%1 %2 puanıyla kazandı (sınırlar: %3 ve %4)."
+msgstr "%1, %2 puanıyla kazandı (sınırlar: %3 ve %4)."
 
 #: gui/mainwindow.cpp:266
-#, fuzzy, kde-format
-#| msgid "Undone move"
+#, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr "Hareketi geri al"
+msgstr "Hareketi geri alın."
 
 #: gui/mainwindow.cpp:274
-#, fuzzy, kde-format
-#| msgid "Redone move"
+#, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr "Hareketi yinele"
+msgstr "Hareketi yineleyin."
 
 #: gui/mainwindow.cpp:298
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "Genel"
 
 #: gui/mainwindow.cpp:300
-#, fuzzy, kde-format
-#| msgid "Themes"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Themes"
 msgstr "Temalar"
 
 #: gui/mainwindow.cpp:317
-#, fuzzy, kde-format
-#| msgid "Backend was changed, restart necessary..."
+#, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr "Arka uç değiştirildi, yeniden başlatmanız gerekiyor..."
+msgstr "Arka uç değiştirildi, yeniden başlatmanız gerekiyor…"
 
 #: gui/mainwindow.cpp:367
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr "Beyaz geçti"
+msgstr "Beyaz geçti."
 
 #: gui/mainwindow.cpp:369
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr "Siyah geçti"
+msgstr "Siyah geçti."
 
 #: gui/mainwindow.cpp:380
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Get More Games..."
+#, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
-msgstr "Daha Çok Oyun İndir..."
+msgstr "Daha Çok Oyun Al…"
 
 #: gui/mainwindow.cpp:386
 #, kde-format
@@ -378,9 +349,7 @@ msgid "Pass Move"
 msgstr "Sırayı Geç"
 
 #: gui/mainwindow.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu View"
-#| msgid "Show Move &Numbers"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Move &Numbers"
 msgstr "Hareket &Numaralarını Göster"
@@ -404,8 +373,7 @@ msgid "Moves"
 msgstr "Hareketler"
 
 #: gui/mainwindow.cpp:442
-#, fuzzy, kde-format
-#| msgid "No move"
+#, kde-format
 msgctxt "@info"
 msgid "No move"
 msgstr "Hareket yok"
@@ -463,10 +431,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, fuzzy, kde-format
-#| msgid "Configure Kigo..."
+#, kde-format
 msgid "Configure Kigo…"
-msgstr "Kigo Oyununu Yapılandır..."
+msgstr "Kigo Oyununu Yapılandır…"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
@@ -534,7 +501,7 @@ msgstr "Komi:"
 #: gui/widgets/gamewidget.ui:58
 #, kde-format
 msgid "0.5 Points"
-msgstr "0.5 Puan"
+msgstr "0,5 Puan"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/gamewidget.ui:78
@@ -574,9 +541,7 @@ msgid "Finish Game"
 msgstr "Oyunu Bitir"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
-#| msgid " Stone"
-#| msgid_plural " Stones"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
@@ -600,11 +565,10 @@ msgstr[0] "%1 saat, %2"
 msgstr[1] "%1 saat, %2"
 
 #: gui/widgets/setupwidget.cpp:184
-#, fuzzy, kde-format
-#| msgid " of %1"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " of %1"
-msgstr " %1 'i"
+msgstr "/%1"
 
 #: gui/widgets/setupwidget.cpp:227
 #, kde-format
@@ -627,19 +591,19 @@ msgstr "Tahta boyutu:"
 #: gui/widgets/setupwidget.ui:37
 #, kde-format
 msgid "&Tiny (9x9)"
-msgstr "&Ufak (9x9)"
+msgstr "&Ufak (9 × 9)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
 #: gui/widgets/setupwidget.ui:47
 #, kde-format
 msgid "Small (&13x13)"
-msgstr "Küçük (&13x13)"
+msgstr "Küçük (&13 × 13)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
 #: gui/widgets/setupwidget.ui:54
 #, kde-format
 msgid "No&rmal (19x19)"
-msgstr "No&rmal (19x19)"
+msgstr "No&rmal (19 × 19)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
@@ -805,7 +769,7 @@ msgstr "Etkinleştirildiğinde, hareket numaraları taşlar üzerinde eşittir"
 #: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
-msgstr "Saniye cinsinden miktarı ipucu gösterilme süresi"
+msgstr "Bir ipucunun saniye türünden gösterilme süresi"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
 #: kigo.kcfg:41
@@ -880,7 +844,7 @@ msgstr "KDE Go Masaüstü Oyunu"
 #: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
-msgstr "Telif hakkın (c) 2008-2010 Sascha Peilicke"
+msgstr "Telif hakkı (c) 2008–2010 Sascha Peilicke"
 
 #: main.cpp:39
 #, kde-format
@@ -890,12 +854,12 @@ msgstr "Sascha Peilicke (saschpe)"
 #: main.cpp:39
 #, kde-format
 msgid "Original author"
-msgstr "Asıl yazar"
+msgstr "Özgün yazar"
 
 #: main.cpp:41
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr "Yuri Chornoivan"
+msgstr "Yuri Çornoivan"
 
 #: main.cpp:41
 #, kde-format
@@ -910,7 +874,7 @@ msgstr "Arturo Silva"
 #: main.cpp:43
 #, kde-format
 msgid "Default theme designer"
-msgstr "Öntanımlı tema tasarımcısı"
+msgstr "Öntanımlı temanın tasarımcısı"
 
 #: main.cpp:54 main.cpp:55
 #, kde-format
@@ -928,7 +892,7 @@ msgstr "oyundosyası"
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
-msgstr "[gamefile]"
+msgstr "[oyundosyası]"
 
 #~ msgctxt "%1 response from Go engine"
 #~ msgid "White %1"

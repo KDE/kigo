@@ -194,7 +194,7 @@
 ><guimenu
 >Spel</guimenu
 > <guimenuitem
->Laden...</guimenuitem
+>Laden…</guimenuitem
 ></menuchoice
 > (zie het schermbeeld van het menu hierboven) kiezen. Er verschijnt dan een bestandenkiezer, waarin u het gewenste bestand kunt kiezen waarin het gewenste opgeslagen spel zich bevindt. </para>
 
@@ -223,7 +223,7 @@
 >Er is ook een optie voor het downloaden vanaf het internet van eerder gespeelde <literal
 >Go</literal
 >-spellen, of spellen die door andere gebruikers zijn opgestuurd. Klik op menu-item <guimenuitem
->Meer spellen verkrijgen...</guimenuitem
+>Meer spellen verkrijgen…</guimenuitem
 >. U krijgt een dialoog waarmee u kunt kiezen welke inhoud te downloaden </para>
 
     <screenshot>
@@ -413,7 +413,7 @@
 > <guimenu
 >Spel</guimenu
 > <guimenuitem
->Laden...</guimenuitem
+>Laden…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -436,7 +436,7 @@
 > <guimenu
 >Spel</guimenu
 > <guimenuitem
->Meer spellen verkrijgen...</guimenuitem
+>Meer spellen verkrijgen…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -859,7 +859,7 @@
 >Indien u de instellingen van &kigo; wilt wijzigen, gaat u naar het menu <guimenu
 >Instellingen</guimenu
 > en klikt u op <guimenuitem
->&kigo; instellen...</guimenuitem
+>&kigo; instellen…</guimenuitem
 >. </para>
 
     <para
@@ -877,7 +877,7 @@
 >&kigo; is erg flexibel en kan naar believen worden aangepast. U kunt de posities en grootte wijzigen van alle beeldelementen (widgets) naast het speelgedeelte in het midden. U kunt ook de werkbalk aanpassen aan wat u daarin beschikbaar wilt hebben. Dit doet u in het menu <guimenu
 >Instellingen</guimenu
 >. Kies hierin <guimenuitem
->Werkbalken instellen...</guimenuitem
+>Werkbalken instellen…</guimenuitem
 >.  Dit kunt u ook doen voor alle sneltoetsen in het spel. Als u zo veel mogelijk ruimte voor het speelveld wilt hebben, kunt u zelfs de werkbalk en de meeste zijbalken verbergen in het <guimenu
 >Instellingen</guimenu
 >-menu. </para>

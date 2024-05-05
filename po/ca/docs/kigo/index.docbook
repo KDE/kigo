@@ -188,7 +188,7 @@
 ><guimenu
 >Joc</guimenu
 > <guimenuitem
->Carrega...</guimenuitem
+>Carrega…</guimenuitem
 ></menuchoice
 > (el menú es mostra a la captura de pantalla anterior). Ara hauria d'aparèixer un selector de fitxers, utilitzeu-lo per a seleccionar i carregar el fitxer de partida desada que vulgueu. </para>
 
@@ -220,7 +220,7 @@
 ><guimenu
 >Joc</guimenu
 > <guimenuitem
->Obtén més partides...</guimenuitem
+>Obtén més partides…</guimenuitem
 ></menuchoice
 >. A continuació, es mostrarà un diàleg que permetrà escollir quin contingut descarregar. </para>
 
@@ -405,7 +405,7 @@
 > <guimenu
 >Joc</guimenu
 > <guimenuitem
->Carrega...</guimenuitem
+>Carrega…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -428,7 +428,7 @@
 > <guimenu
 >Joc</guimenu
 > <guimenuitem
->Obtén més partides...</guimenuitem
+>Obtén més partides…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -851,7 +851,7 @@
 ><guimenu
 >Arranjament</guimenu
 > <guimenuitem
->Configura el &kigo;...</guimenuitem
+>Configura el &kigo;…</guimenuitem
 ></menuchoice
 >. </para>
 
@@ -871,7 +871,7 @@
 ><guimenu
 >Arranjament</guimenu
 > <guimenuitem
->Configura les barres d'eines...</guimenuitem
+>Configura les barres d'eines…</guimenuitem
 ></menuchoice
 >. El mateix és possible per a totes les dreceres del joc. Si voleu tenir el màxim espai disponible per al camp de joc, podeu fins i tot ocultar la barra d'eines i la majoria dels ginys acoblats en el menú &nbsp;<guimenu
 >Arranjament</guimenu
