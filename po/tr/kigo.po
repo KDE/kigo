@@ -7,13 +7,13 @@
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # Serhat Demirkol <serhat_demirkol@yahoo.com>, 2009.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-18 00:36+0000\n"
-"PO-Revision-Date: 2023-08-22 23:06+0300\n"
+"PO-Revision-Date: 2024-05-04 14:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -87,7 +87,7 @@ msgstr "Arka Uç"
 #: gui/config/generalconfig.ui:23
 #, kde-format
 msgid "Executable:"
-msgstr "Çalıştırılabilir dosya:"
+msgstr "Yürütülebilir:"
 
 #. i18n: ectx: property (toolTip), widget (KUrlRequester, engineExecutable)
 #: gui/config/generalconfig.ui:42
@@ -263,12 +263,12 @@ msgstr "%1 (Siyah)"
 #: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
-msgstr "%1 %2 puanıyla kazandı."
+msgstr "%1, %2 puanıyla kazandı."
 
 #: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
-msgstr "%1 %2 puanıyla kazandı (sınırlar: %3 ve %4)."
+msgstr "%1, %2 puanıyla kazandı (sınırlar: %3 ve %4)."
 
 #: gui/mainwindow.cpp:266
 #, kde-format
@@ -471,7 +471,7 @@ msgstr "Komi:"
 #: gui/widgets/gamewidget.ui:58
 #, kde-format
 msgid "0.5 Points"
-msgstr "0.5 Puan"
+msgstr "0,5 Puan"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/gamewidget.ui:78
@@ -559,19 +559,19 @@ msgstr "Tahta boyutu:"
 #: gui/widgets/setupwidget.ui:37
 #, kde-format
 msgid "&Tiny (9x9)"
-msgstr "&Ufak (9x9)"
+msgstr "&Ufak (9 × 9)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
 #: gui/widgets/setupwidget.ui:47
 #, kde-format
 msgid "Small (&13x13)"
-msgstr "Küçük (&13x13)"
+msgstr "Küçük (&13 × 13)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
 #: gui/widgets/setupwidget.ui:54
 #, kde-format
 msgid "No&rmal (19x19)"
-msgstr "No&rmal (19x19)"
+msgstr "No&rmal (19 × 19)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
@@ -737,7 +737,7 @@ msgstr "Etkinleştirildiğinde, hareket numaraları taşlar üzerinde eşittir"
 #: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
-msgstr "Saniye cinsinden miktarı ipucu gösterilme süresi"
+msgstr "Bir ipucunun saniye türünden gösterilme süresi"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
 #: kigo.kcfg:41
@@ -812,7 +812,7 @@ msgstr "KDE Go Masaüstü Oyunu"
 #: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
-msgstr "Telif hakkın (c) 2008-2010 Sascha Peilicke"
+msgstr "Telif hakkı (c) 2008–2010 Sascha Peilicke"
 
 #: main.cpp:39
 #, kde-format
@@ -822,12 +822,12 @@ msgstr "Sascha Peilicke (saschpe)"
 #: main.cpp:39
 #, kde-format
 msgid "Original author"
-msgstr "Asıl yazar"
+msgstr "Özgün yazar"
 
 #: main.cpp:41
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr "Yuri Chornoivan"
+msgstr "Yuri Çornoivan"
 
 #: main.cpp:41
 #, kde-format
@@ -842,7 +842,7 @@ msgstr "Arturo Silva"
 #: main.cpp:43
 #, kde-format
 msgid "Default theme designer"
-msgstr "Öntanımlı tema tasarımcısı"
+msgstr "Öntanımlı temanın tasarımcısı"
 
 #: main.cpp:54 main.cpp:55
 #, kde-format
@@ -860,7 +860,7 @@ msgstr "oyundosyası"
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
-msgstr "[gamefile]"
+msgstr "[oyundosyası]"
 
 #~ msgid " Stones"
 #~ msgstr " Taşlar"
