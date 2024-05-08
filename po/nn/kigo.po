@@ -929,11 +929,3 @@ msgstr "spelfil"
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr "[spelfil]"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "White %1"
-#~ msgstr "Kvit %1"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "Black %1"
-#~ msgstr "Svart %1"
