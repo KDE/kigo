@@ -208,7 +208,7 @@
 ><guimenu
 >Partita</guimenu
 > <guimenuitem
->Carica...</guimenuitem
+>Carica…</guimenuitem
 ></menuchoice
 > (il menu è mostrato nella schermata qui sopra). Apparirà una finestra di scelta che ti permetterà di selezionare e caricare il file di salvataggio della partita prescelta. </para>
 
@@ -240,7 +240,7 @@
 ><guimenu
 >Partita</guimenu
 > <guimenuitem
->Scarica altre partite...</guimenuitem
+>Scarica altre partite…</guimenuitem
 ></menuchoice
 >. Apparirà una finestra di dialogo che ti consentirà di scegliere quali contenuti scaricare. </para>
 
@@ -427,7 +427,7 @@
 > <guimenu
 >Partita</guimenu
 > <guimenuitem
->Carica...</guimenuitem
+>Carica…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -450,7 +450,7 @@
 > <guimenu
 >Partita</guimenu
 > <guimenuitem
->Scarica nuove partite...</guimenuitem
+>Scarica altre partite…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -873,7 +873,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura &kigo;...</guimenuitem
+>Configura &kigo;…</guimenuitem
 ></menuchoice
 >. </para>
 
@@ -893,7 +893,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura le barre degli strumenti...</guimenuitem
+>Configura le barre degli strumenti…</guimenuitem
 ></menuchoice
 >. La stessa azione è possibile per tutte le scorciatoie di gioco. Se desideri avere il massimo spazio disponibile per il campo di gioco, puoi pure nascondere la barra degli strumenti e tutti gli oggetti di aggancio dal menu <guimenu
 >Impostazioni</guimenu
