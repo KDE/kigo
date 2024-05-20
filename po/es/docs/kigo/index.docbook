@@ -56,6 +56,20 @@
 ><contrib
 >Traductora</contrib
 ></othercredit
+> <othercredit role="translator"
+><firstname
+>Eloy</firstname
+> <surname
+>Cuadra</surname
+> <affiliation
+><address
+><email
+>ecuadra@eloihr.net</email
+></address
+></affiliation
+> <contrib
+>Corrección de la traducción</contrib
+></othercredit
 > 
 </authorgroup>
 
@@ -156,7 +170,7 @@
 > destaca por ser rico en complejidad estratégica a pesar de sus sencillas reglas. </para>
 
     <para
->El juego se juega entre dos jugadores que alternativamente colocan «piedras» (piezas del juego, ahora normalmente hechas de cristal o de plástico) en las intersecciones libres de una rejilla de 19x19 líneas (o de 9x9, o de 13x13 líneas en versiones más fáciles). </para>
+>Se juega entre dos jugadores que alternativamente colocan «piedras» (piezas del juego, ahora normalmente hechas de cristal o de plástico) en las intersecciones libres de una rejilla de 19x19 líneas (o de 9x9 o 13x13 líneas en versiones más fáciles). </para>
 
 </chapter>
 
@@ -173,26 +187,26 @@
 
     <sect1 id="starting">
     <title
->Comenzar un juego</title>
+>Inicio de una partida</title>
 
     <para
->Cuando inicia &kigo; tiene dos opciones para jugar al maravilloso juego del <literal
+>Tras lanzar &kigo;, tienes dos opciones para jugar al maravilloso juego del <literal
 >Go</literal
->. Puede empezar un juego nuevo o continuar uno anterior. </para>
+>. Puedes empezar una partida nueva o continuar una anterior. </para>
 
     <sect2 id="new_game">
     <title
->Configurar un juego nuevo</title>
+>Configurar una partida nueva</title>
 
     <para
->Tras iniciar &kigo; debería ver una pantalla similar a la que se muestra en la captura siguiente. Ahí puede configurar el nombre de los jugadores de las fichas blancas y negras, así como el tamaño del tablero. Puede escoger si uno o los dos jugadores deberían ser una máquina. Si decide jugar contra una máquina, también puede seleccionar el nivel de juego de la misma. Puede comenzar la partida usando la opción del menú <menuchoice
+>Tras iniciar &kigo; deberías ver una pantalla similar a la que se muestra en la captura siguiente. Ahí puedes configurar el nombre de los jugadores de las fichas blancas y negras, así como el tamaño del tablero. Puedes escoger si uno o los dos jugadores deberían ser una máquina. Si decides jugar contra una máquina, también puedes seleccionar el nivel de juego de la misma. Puedes comenzar la partida usando la opción del menú <menuchoice
 ><guimenu
 >Juego</guimenu
 > <guimenuitem
->Comenzar juego</guimenuitem
+>Empezar partida</guimenuitem
 ></menuchoice
 >, pulsando el botón <guibutton
->Comenzar juego</guibutton
+>Empezar partida</guibutton
 > que hay en el panel <guilabel
 >Configuración del juego</guilabel
 > o pulsando la tecla <keycap
@@ -201,13 +215,13 @@
 
     <screenshot>
         <screeninfo
->Pantalla de juego nuevo</screeninfo>
+>Pantalla de partida nueva</screeninfo>
         <mediaobject>
             <imageobject
 ><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
             <textobject
 ><phrase
->Pantalla de juego nuevo</phrase
+>Pantalla de partida nueva.</phrase
 ></textobject>
         </mediaobject>
     </screenshot>
@@ -215,7 +229,7 @@
 
     <sect2 id="load_game">
     <title
->Configurar un juego cargado</title>
+>Configurar una partida cargada</title>
 
     <para
 >Si decide continuar un juego previo sin finalizar, puede usar la opción del menú <menuchoice
@@ -227,22 +241,22 @@
 > (el menú se muestra en la captura de pantalla anterior). Debería aparecer un selector de archivos; úselo para seleccionar y cargar el juego guardado que desee. </para>
 
     <para
->Ahora debería ver una pantalla similar a la que se muestra en la captura de abajo. Si no desea continuar con el último movimiento hecho, puede revertir tantos movimientos como quiera. Debería ver cambiar el tablero a medida que varía el número actual de movimientos. La pantalla de configuración también presenta mucha información adicional sobre el juego guardado. </para>
+>Ahora deberías ver una pantalla similar a la que se muestra en la captura inferior. Si no quieres continuar con el último movimiento hecho, puedes revertir tantos movimientos como quieras. Deberías ver cómo cambia el tablero a medida que varía el número actual de movimientos. La pantalla de configuración también muestra información adicional sobre la partida guardada. </para>
 
     <para
->Simplemente presione <guibutton
->Comenzar juego</guibutton
+>Solo tienes que pulsar <guibutton
+>Empezar partida</guibutton
 > para continuar. </para>
 
     <screenshot>
         <screeninfo
->Pantalla de juego cargado</screeninfo>
+>Pantalla de partida cargada</screeninfo>
         <mediaobject>
             <imageobject
 ><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
             <textobject
 ><phrase
->Pantalla de juego cargado.</phrase
+>Pantalla de partida cargada.</phrase
 ></textobject>
         </mediaobject>
     </screenshot>
@@ -260,13 +274,13 @@
 
     <screenshot>
         <screeninfo
->Obtener juegos nuevos</screeninfo>
+>Obtener partidas nuevas</screeninfo>
         <mediaobject>
             <imageobject
 ><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
             <textobject
 ><phrase
->Pantalla «obtener nuevos juegos»</phrase
+>Pantalla de «Obtener partidas nuevas»</phrase
 ></textobject>
         </mediaobject>
     </screenshot>
@@ -276,51 +290,51 @@
 
     <sect1 id="playing">
     <title
->Jugando un juego</title>
+>Cómo jugar</title>
 
     <para
->Ahora ya está preparado para jugar su primera mando de <literal
+>Ahora ya estás preparado para jugar tu primera ronda de <literal
 >Go</literal
->. Si no está familiarizado con las reglas, le recomendamos que lea el correspondiente <ulink url="https://es.wikipedia.org/wiki/Go"
-> artículo de la Wikipedia</ulink
-> o que siga <ulink url="http://playgo.to/iwtg/en/"
+>. Si no estás familiarizado con las reglas, te recomendamos que leas el correspondiente <ulink url="https://es.wikipedia.org/wiki/Go"
+>artículo de la Wikipedia</ulink
+> o que sigas <ulink url="http://playgo.to/iwtg/en/"
 >El camino interactivo del <literal
 >Go</literal
 ></ulink
-> de Hiroki Mori. </para>
+>, de Hiroki Mori. </para>
 
     <para
->Hacer un movimiento es sencillo. Solo haga clic en una de las intersecciones del tablero de <literal
+>Hacer un movimiento es sencillo. Solo tienes que hacer clic en una de las intersecciones del tablero de <literal
 >Go</literal
->. Debería ver un pequeño punto negro que le muestra dónde caerá la piedra si hace clic. </para>
+>. Deberías ver un pequeño punto negro que muestra dónde caerá la piedra al hacer clic. </para>
 
     <para
->El jugador actual viene determinado por el cursor, que cambia a una piedra blanca o negra dependiendo de qué jugador viene después. </para>
+>El jugador actual viene determinado por el cursor, que cambia a una piedra blanca o negra dependiendo de qué jugador es el siguiente. </para>
 
     <para
->También puede comprobar la información del juego que le muestra también el movimiento anterior y algunas estadísticas. Hay disponible además un completo historial de movimientos. Si desea recordar en qué orden se han colocado las piedras sobre el tablero, haga clic en el botón <guibutton
->Mostrar números de movimiento</guibutton
->. Si cree que no puede ganar nada colocando otra piedra, haga clic en <guibutton
+>También puedes comprobar la información del juego que muestra el movimiento anterior y algunas estadísticas. También existe un completo historial de movimientos. Si quieres recordar en qué orden se han colocado las piedras sobre el tablero, pulsa el botón <guibutton
+>Mostrar números de movimientos</guibutton
+>. Si crees que no puedes conseguir nada colocando otra piedra, pulsa <guibutton
 >Pasar movimiento</guibutton
-> y deje que su oponente juegue su turno. Si ambos jugadores pasan, el juego puede terminar. ¡Pero fíjese en que terminar un juego de <literal
+> y deja que tu oponente juegue su turno. Si ambos jugadores pasan, la partida puede terminar. ¡Aunque debes tener en cuenta que terminar un juego de <literal
 >Go</literal
 > es siempre un paso cooperativo! </para>
 
     <screenshot>
         <screeninfo
->Jugar un juego nuevo</screeninfo>
+>Jugar una partida nueva</screeninfo>
         <mediaobject>
             <imageobject
 ><imagedata format="PNG" fileref="play-game.png"/></imageobject>
             <textobject
 ><phrase
->Jugar un juego nuevo</phrase
+>Jugar una partida nueva.</phrase
 ></textobject>
         </mediaobject>
     </screenshot>
 
     <para
->Tenga en cuenta que puede guardar el juego actual en cualquier momento. Para ello, escoja la opción del menú <menuchoice
+>Ten en cuenta que puedes guardar la partida actual en cualquier momento. Para ello, usa la opción del menú <menuchoice
 ><guimenu
 >Juego</guimenu
 > <guimenuitem
@@ -330,22 +344,22 @@
 
     <sect2 id="hint">
     <title
->Obteniendo una pista</title>
+>Obtener pistas</title>
 
     <para
->A veces es difícil decidir qué movimiento hacer. Si desea que la máquina le dé una pequeña pista, presione el botón <guibutton
+>A veces es difícil decidir el movimiento que se va a hacer. Si quieres que la máquina te dé una pista, pulsa el botón <guibutton
 >Pista</guibutton
-> que se muestra en la captura de abajo. Ahora deberían aparecer unas piedras transparentes con un número encima. Estas son sus recomendaciones, con una puntuación que determina lo bueno que es el movimiento. Siéntase libre de hacer clic en cualquiera de los movimientos recomendados o en cualquier otro espacio libre para colocar su próxima piedra. </para>
+> que se muestra en la captura inferior. Deberían aparecer unas piedras transparentes con un número encima. Estas son las recomendaciones, con una puntuación que determina la calidad del movimiento. Siéntete libre de hacer clic en cualquiera de los movimientos recomendados o en cualquier otro espacio libre para colocar tu próxima piedra. </para>
 
     <screenshot>
         <screeninfo
->Obteniendo una pista</screeninfo>
+>Obtener pistas</screeninfo>
         <mediaobject>
             <imageobject
 ><imagedata format="PNG" fileref="hint.png"/></imageobject>
             <textobject
 ><phrase
->Obteniendo una pista</phrase
+>Obtener pistas.</phrase
 ></textobject>
         </mediaobject>
     </screenshot>
@@ -362,35 +376,31 @@
 ><para
 >El <literal
 >Go</literal
-> consiste más en rodear un territorio (espacio vacío) que en capturar las piezas de su oponente.</para
+> consiste más en rodear un territorio (espacio vacío) que en capturar las piezas de tu oponente.</para
 ></listitem>
         <listitem
 ><para
->Es más fácil rodear un territorio cerca de las esquinas (en dos lados), después cerca de los bordes (en tres lados) y finalmente en el centro.</para
+>Es más fácil rodear un territorio cercano a las esquinas (en dos lados), luego cerca de los bordes (en tres lados) y, finalmente, en el centro.</para
 ></listitem>
         <listitem
 ><para
->Al principio del juego, coloque sus piezas de un modo disperso. Solo construya sus fronteras cuando su oponente empiece a entrometerse.</para
+>Al principio del juego, coloca tus piezas de un modo disperso. Solo debes construir tus fronteras cuando tu oponente empiece a hacer incursiones.</para
 ></listitem>
         <listitem
 ><para
->No juegue con piedras sin apoyo cercanas a las de su oponente cuando usted ataque. Tenderán a ser capturadas, y &gnugo; es muy bueno en eso. A menudo es mejor atacar indirectamente.</para
+>Cuando ataques, no juegues con piedras sin apoyo cerca de las de tu oponente. Tienden a ser capturadas, y &gnugo; es muy bueno en eso. A menudo es mejor atacar indirectamente.</para
 ></listitem>
         <listitem
 ><para
->Para evitar la captura, un grupo de piedras debe tener dos <quote
->ojos</quote
-> o ser capaz de hacerlos si se le ataca. Los <quote
->ojos</quote
-> son espacios desconectados. Piense en un donut con dos agujeros. Su oponente puede rodear el exterior, pero no puede rellenar los dos agujeros a la vez.</para
+>Para evitar la captura, un grupo de piedras debe tener dos «ojos» o ser capaz de crearlos si se ve atacado. Los «ojos» son espacios desconectados. Piensa en un dónut con dos agujeros: tu oponente puede rodear el exterior, pero no puede rellenar los dos agujeros a la vez.</para
 ></listitem>
         <listitem
 ><para
->En un tablero de 19x19 típicamente hay varios territorios que están siendo creados, atacados o defendidos. Tendrá que librar varias batallas simultáneamente. La estrategia incluye evaluar las fuerzas y debilidades de varias áreas y asignar sus movimientos entre ellas. ¿Es mejor atacar aquí o defender allí?</para
+>En un tablero de 19x19 suele haber varios territorios que están siendo creados, atacados o defendidos. Tendrás que librar varias batallas simultáneamente. La estrategia incluye evaluar las fuerzas y debilidades de varias áreas y asignar tus movimientos entre ellas. ¿Es mejor atacar aquí o defender allí?</para
 ></listitem>
         <listitem
 ><para
->Conforme se va llenando el tablero y se aproxima el final del juego, jugar más de cerca se vuelve importante, desgastando las fronteras de su oponente o reforzando las suyas propias. Los pequeños errores y omisiones pueden costarle muy caros.</para
+>A medida que el tablero se llena y se acerca el final del juego, se vuelve importante jugar más cerca, mordisqueando las fronteras de tu oponente o reforzando las tuyas propias. Los pequeños errores y las omisiones pueden resultar muy caros.</para
 ></listitem>
     </itemizedlist>
 
@@ -426,7 +436,7 @@
     <listitem
 ><para
 ><action
->Inicia un juego nuevo.</action
+>Empieza una partida nueva.</action
 ></para
 ></listitem>
     </varlistentry>
@@ -498,7 +508,7 @@
 ><para
 ><action
 >Guarda</action
-> el juego actual.</para
+> la partida actual.</para
 ></listitem>
     </varlistentry>
 
@@ -512,14 +522,14 @@
 > <guimenu
 >Juego</guimenu
 > <guimenuitem
->Comenzar juego</guimenuitem
+>Empezar partida</guimenuitem
 > </menuchoice
 ></term>
     <listitem
 ><para
 ><action
->Comienza</action
-> un juego nuevo o uno guardado.</para
+>Empieza</action
+> una partida nueva o una guardada.</para
 ></listitem>
     </varlistentry>
 
@@ -533,14 +543,14 @@
 > <guimenu
 >Juego</guimenu
 > <guimenuitem
->Finalizar juego</guimenuitem
+>Terminar partida</guimenuitem
 > </menuchoice
 ></term>
     <listitem
 ><para
 ><action
->Finaliza</action
-> el juego actual. Recuerde que terminar un juego de <literal
+>Termina</action
+> la partida actual. Recuerda que terminar una partida de <literal
 >Go</literal
 > es siempre un paso cooperativo.</para
 ></listitem>
@@ -611,7 +621,7 @@
 ><para
 ><action
 >Rehacer</action
-> el movimiento que se deshizo usando <guimenuitem
+> el movimiento que se acaba de deshacer usando <guimenuitem
 >Deshacer</guimenuitem
 >.</para
 ></listitem>
@@ -632,9 +642,9 @@
 ></term>
     <listitem
 ><para
->Le permite <action
+>Permite <action
 >pasar</action
-> y no hacer su movimiento.</para
+> y no hacer tu movimiento.</para
 ></listitem>
     </varlistentry>
 
@@ -654,8 +664,8 @@
     <listitem
 ><para
 ><action
->Da una pista</action
-> mostrando piezas transparentes con la puntuación sobre ellas.</para
+>Proporciona una pista</action
+> mostrando piezas transparentes con una puntuación sobre ellas.</para
 ></listitem>
     </varlistentry>
 
@@ -669,14 +679,14 @@
 > <guimenu
 >Movimiento</guimenu
 > <guimenuitem
->Mostrar números de movimiento</guimenuitem
+>Mostrar números de movimientos</guimenuitem
 > </menuchoice
 ></term>
     <listitem
 ><para
 ><action
 >Activa o desactiva</action
-> la visibilidad de los números de movimiento.</para
+> la visibilidad de los números de los movimientos.</para
 ></listitem>
     </varlistentry>
 
@@ -705,15 +715,15 @@
 ><guimenu
 >Preferencias</guimenu
 > <guisubmenu
->Puntos de anclaje</guisubmenu
+>Paneles</guisubmenu
 > <guimenuitem
->Movimiento</guimenuitem
+>Movimientos</guimenuitem
 > </menuchoice
 ></term>
     <listitem
 ><para
 >Muestra u oculta la barra lateral de <guilabel
->movimientos</guilabel
+>Movimientos</guilabel
 >.</para
 ></listitem>
     </varlistentry>
@@ -721,11 +731,11 @@
     </variablelist>
 
     <para
->Además &kigo; tiene las opciones de menú <guimenu
+>Además, &kigo; tiene las opciones de los menús <guimenu
 >Preferencias</guimenu
 > y <guimenu
 >Ayuda</guimenu
-> comunes de &kde;. Para obtener más información, consulte las secciones sobre el <ulink url="help:/fundamentals/menus.html#menus-settings"
+> comunes de &kde;. Para obtener más información, consulta las secciones sobre el <ulink url="help:/fundamentals/menus.html#menus-settings"
 >Menú «Preferencias»</ulink
 > y <ulink url="help:/fundamentals/menus.html#menus-help"
 >Menú «Ayuda» </ulink
@@ -747,7 +757,7 @@
         <tbody>
             <row>
                 <entry
->Terminar el juego actual</entry>
+>Terminar la partida actual</entry>
                 <entry
 ><keycap
 >F</keycap
@@ -755,7 +765,7 @@
             </row>
             <row>
                 <entry
->Obtener nuevos juegos subidos por otros usuarios</entry>
+>Obtener nuevas partidas subidas por otros usuarios</entry>
                 <entry>
                     <keycombo action="simul"
 >&Ctrl;<keycap
@@ -773,7 +783,7 @@
             </row>
             <row>
                 <entry
->Cargar juego guardado</entry>
+>Cargar partida guardada</entry>
                 <entry>
                     <keycombo action="simul"
 >&Ctrl;<keycap
@@ -819,7 +829,7 @@
             </row>
             <row>
                 <entry
->Guardar el juego actual</entry>
+>Guardar la partida actual</entry>
                 <entry>
                     <keycombo action="simul"
 >&Ctrl;<keycap
@@ -829,7 +839,7 @@
             </row>
             <row>
                 <entry
->Comenzar un juego nuevo</entry>
+>Empezar una partida nueva</entry>
                 <entry>
                     <keycombo action="simul"
 >&Ctrl;<keycap
@@ -839,7 +849,7 @@
             </row>
             <row>
                 <entry
->Iniciar un juego nuevo o guardado</entry>
+>Empezar una partida nueva o guardada</entry>
                 <entry
 ><keycap
 >S</keycap
@@ -847,7 +857,7 @@
             </row>
             <row>
                 <entry
->Activa o desactiva la visibilidad de los números de movimiento.</entry>
+>Activa o desactiva la visibilidad de los números de los movimientos.</entry>
                 <entry
 ><keycap
 >N</keycap
@@ -855,7 +865,7 @@
             </row>
             <row>
                 <entry
->Deshacer su último movimiento</entry>
+>Deshacer tu último movimiento</entry>
                 <entry>
                     <keycombo action="simul"
 >&Ctrl;<keycap
@@ -865,7 +875,7 @@
             </row>
             <row>
                 <entry
->Ayuda ¿Qué es esto?</entry>
+>Ayuda «¿Qué es esto?»</entry>
                 <entry>
                     <keycombo action="simul"
 >&Shift;<keycap
@@ -894,7 +904,7 @@
 >. </para>
 
     <para
->Debería ver ahora el diálogo de confirmación tal como se muestra en la captura inferior. También puede mostrarlo pulsando la combinación de teclas <keycombo
+>Deberías ver el diálogo de confirmación tal como se muestra en la captura inferior. También puedes mostrarlo pulsando la combinación de teclas <keycombo
 >&Alt;<keycap
 >S</keycap
 ></keycombo
@@ -920,17 +930,17 @@
 >Configuración general</title>
 
     <para
->El aspecto más importante aquí es la configuración del motor de <literal
+>Lo más importante de este apartado es la configuración del motor de <literal
 >Go</literal
->. &kigo; necesita un motor válido para funcionar correctamente. Como puede ver en la captura de pantalla inferior, por defecto se usa &gnugo;. La lucecita que hay junto a la orden del motor está verde si todo funciona bien. Si no es el caso o si desea usar un motor de <literal
+>. &kigo; necesita un motor válido para funcionar correctamente. Como puedes ver en la captura de pantalla inferior, por defecto se usa &gnugo;. La lucecita que hay junto a la orden del motor está verde si todo funciona correctamente. Si no es el caso, o si prefieres usar un motor de <literal
 >Go</literal
-> diferente, debería instalar otro motor de <literal
+> diferente, deberías instalar otro motor de <literal
 >Go</literal
 > que pueda comunicarse con el protocolo de texto de <literal
 >Go</literal
 > (<acronym
 >GTP</acronym
->) y configure sus órdenes y parámetros de forma adecuada. Los detalles sobre este paso deberían encontrarse en la documentación del correspondiente motor de <literal
+>) y configurar su orden de ejecución y los parámetros necesarios de forma adecuada. Los detalles sobre este paso deberían encontrarse en la documentación del correspondiente motor de <literal
 >Go</literal
 >. </para>
 
@@ -954,7 +964,7 @@
 >Configuración de temas</title>
 
     <para
->Esta página le permitirá cambiar el tema que usa &kigo;. </para>
+>Esta página te permite cambiar el tema que usa &kigo;. </para>
 
     <screenshot>
         <screeninfo
@@ -1000,10 +1010,14 @@
 > </para>
 
 <para
->Traducido por Rocío Gallego <email
+>Documentación traducida por Rocío Gallego <email
 >traducciones@rociogallego.com</email
 > y Kira J. Fernández <email
 >kirajfdez@gmail.com</email
+>.</para
+><para
+>Corregida por Eloy Cuadra <email
+>ecuadra@eloihr.net</email
 >.</para
 > &underFDL; &underGPL; </chapter>
 
