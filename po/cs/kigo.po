@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2024-05-30 16:37+0200\n"
+"PO-Revision-Date: 2024-05-31 13:59+0200\n"
 "Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -225,7 +225,7 @@ msgstr "Nastavit načtenou hru…"
 #, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr ""
+msgstr "Hru nelze načíst…"
 
 #: gui/mainwindow.cpp:174
 #, kde-format
@@ -513,9 +513,9 @@ msgstr "Ukončit hru"
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] " Kámen"
+msgstr[1] " Kameny"
+msgstr[2] " Kamenů"
 
 #: gui/widgets/setupwidget.cpp:160
 #, kde-format
@@ -539,7 +539,7 @@ msgstr[2] "%1 hodiny, %2"
 #, kde-format
 msgctxt "@item:valuesuffix"
 msgid " of %1"
-msgstr ""
+msgstr " z %1"
 
 #: gui/widgets/setupwidget.cpp:227
 #, kde-format
