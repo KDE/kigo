@@ -1,7 +1,7 @@
 # Translation for kigo.po to Euskara/Basque (eu).
 # Copyright (C) 2020-2021, This file is copyright:
 # This file is distributed under the same license as the kigo package.
-# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+# SPDX-FileCopyrightText: 2024 KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>
 #
 # Translators:
 # @Krr4m4rr0 <birazabal@gmail.com>, 2020.
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-18 00:36+0000\n"
-"PO-Revision-Date: 2021-07-17 19:45+0200\n"
+"PO-Revision-Date: 2024-07-13 11:37+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.04.3\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -79,7 +79,7 @@ msgstr "Beltza %1"
 #: gui/config/generalconfig.ui:17
 #, kde-format
 msgid "Backend"
-msgstr "Backend"
+msgstr "Bizkarraldekoa"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: gui/config/generalconfig.ui:23
@@ -350,7 +350,7 @@ msgstr "Ez mugitu"
 #, kde-format
 msgctxt "@title:window"
 msgid "Error"
-msgstr "Akatsa"
+msgstr "Errorea"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/widgets/errorwidget.ui:21
