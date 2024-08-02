@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2024-02-12 11:03+0100\n"
+"PO-Revision-Date: 2024-08-01 22:31+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -32,61 +32,49 @@ msgid "Your emails"
 msgstr "ulysses@fsf.hu"
 
 #: game/game.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
 msgstr "Fehér %1"
 
 #: game/game.cpp:320 game/game.cpp:390
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
 msgstr "Fehér passzolt"
 
 #: game/game.cpp:326
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
 msgstr "Fekete %1"
 
 #: game/game.cpp:329 game/game.cpp:392
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black passed"
 msgstr "Fekete passzolt"
 
 #: game/game.cpp:399
-#, fuzzy, kde-format
-#| msgid "White resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White resigned"
 msgstr "Fehér feladta"
 
 #: game/game.cpp:401
-#, fuzzy, kde-format
-#| msgid "Black resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black resigned"
 msgstr "Fekete feladta"
 
 #: game/game.cpp:409
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
 msgstr "Fehér %1"
 
 #: game/game.cpp:411
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
 msgstr "Fekete %1"
@@ -230,8 +218,7 @@ msgid "Move Toolbar"
 msgstr "Lépés eszköztár"
 
 #: gui/mainwindow.cpp:90
-#, fuzzy, kde-format
-#| msgid "Set up a new game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
 msgstr "Új játék beállítása…"
@@ -242,50 +229,43 @@ msgid "Kigo Game Files (*.sgf)"
 msgstr "Kigo játékfájlok (*.sgf)"
 
 #: gui/mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Set up a loaded game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
 msgstr "Betöltött játék beállítása…"
 
 #: gui/mainwindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Unable to load game..."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
 msgstr "Nem sikerült betölteni a játékot…"
 
 #: gui/mainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "Game saved..."
+#, kde-format
 msgctxt "@info"
 msgid "Game saved…"
 msgstr "A játék elmentve…"
 
 #: gui/mainwindow.cpp:176
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to save game."
 msgstr "Nem sikerült elmenteni a játékot."
 
 #: gui/mainwindow.cpp:223
-#, fuzzy, kde-format
-#| msgid "Game started..."
+#, kde-format
 msgctxt "@info"
 msgid "Game started…"
 msgstr "A játék elkezdődött…"
 
 #: gui/mainwindow.cpp:248
-#, fuzzy, kde-format
-#| msgid "%1 (White)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (White)"
 msgstr "%1 (fehér)"
 
 #: gui/mainwindow.cpp:250
-#, fuzzy, kde-format
-#| msgid "%1 (Black)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (Black)"
 msgstr "%1 (fekete)"
@@ -301,58 +281,49 @@ msgid "%1 won with a score of %2 (bounds: %3 and %4)."
 msgstr "%1 nyert %2 ponttal (határok: %3 és %4)."
 
 #: gui/mainwindow.cpp:266
-#, fuzzy, kde-format
-#| msgid "Undone move"
+#, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr "Lépés visszavonása"
+msgstr "Lépés visszavonása."
 
 #: gui/mainwindow.cpp:274
-#, fuzzy, kde-format
-#| msgid "Redone move"
+#, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr "Lépés újra végrehajtása"
+msgstr "Lépés újra végrehajtása."
 
 #: gui/mainwindow.cpp:298
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "Általános"
 
 #: gui/mainwindow.cpp:300
-#, fuzzy, kde-format
-#| msgid "Themes"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Themes"
 msgstr "Témák"
 
 #: gui/mainwindow.cpp:317
-#, fuzzy, kde-format
-#| msgid "Backend was changed, restart necessary..."
+#, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
 msgstr "A játék motorja megváltozott, újraindítás szükséges…"
 
 #: gui/mainwindow.cpp:367
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr "Fehér passzolt"
+msgstr "Fehér passzolt."
 
 #: gui/mainwindow.cpp:369
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr "Fekete passzolt"
+msgstr "Fekete passzolt."
 
 #: gui/mainwindow.cpp:380
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Get More Games..."
+#, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
 msgstr "Új játékok letöltése…"
@@ -376,12 +347,10 @@ msgid "Pass Move"
 msgstr "Passz"
 
 #: gui/mainwindow.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu View"
-#| msgid "Show Move &Numbers"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Move &Numbers"
-msgstr "A lépésszám &kiírása"
+msgstr "Lépésszám &kiírása"
 
 #: gui/mainwindow.cpp:418
 #, kde-format
@@ -402,8 +371,7 @@ msgid "Moves"
 msgstr "Lépések"
 
 #: gui/mainwindow.cpp:442
-#, fuzzy, kde-format
-#| msgid "No move"
+#, kde-format
 msgctxt "@info"
 msgid "No move"
 msgstr "Nincs lépés"
@@ -462,8 +430,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, fuzzy, kde-format
-#| msgid "Configure Kigo..."
+#, kde-format
 msgid "Configure Kigo…"
 msgstr "Beállítások: Kigo…"
 
@@ -573,9 +540,7 @@ msgid "Finish Game"
 msgstr "Befejezés"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
-#| msgid " Stone"
-#| msgid_plural " Stones"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
@@ -599,8 +564,7 @@ msgstr[0] "%1 óra, %2"
 msgstr[1] "%1 óra, %2"
 
 #: gui/widgets/setupwidget.cpp:184
-#, fuzzy, kde-format
-#| msgid " of %1"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " of %1"
 msgstr " / %1"
