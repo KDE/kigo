@@ -1,5 +1,5 @@
+# SPDX-FileCopyrightText: 2009, 2010, 2024 Johannes Obermayr <johannesobermayr@gmx.de>
 # Burkhard Lück <lueck@hube-lueck.de>, 2008, 2009, 2012, 2017, 2021.
-# Johannes Obermayr <johannesobermayr@gmx.de>, 2009, 2010.
 # Panagiotis Papadopoulos <pano_90@gmx.net>, 2009.
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2010.
 # Frederik Schwarzer <schwarzer@kde.org>, 2011, 2012, 2016.
@@ -9,81 +9,70 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2021-03-29 06:23+0200\n"
-"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"PO-Revision-Date: 2024-08-26 18:45+0200\n"
+"Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Johannes Obermayr"
+msgstr "Deutsches KDE-Übersetzerteam"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "johannesobermayr@gmx.de"
+msgstr "kde-i18n-de@kde.org"
 
 #: game/game.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
 msgstr "Weiß %1"
 
 #: game/game.cpp:320 game/game.cpp:390
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
 msgstr "Weiß hat ausgesetzt"
 
 #: game/game.cpp:326
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
 msgstr "Schwarz %1"
 
 #: game/game.cpp:329 game/game.cpp:392
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black passed"
 msgstr "Schwarz hat ausgesetzt"
 
 #: game/game.cpp:399
-#, fuzzy, kde-format
-#| msgid "White resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White resigned"
 msgstr "Weiß hat aufgegeben"
 
 #: game/game.cpp:401
-#, fuzzy, kde-format
-#| msgid "Black resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black resigned"
 msgstr "Schwarz hat aufgegeben"
 
 #: game/game.cpp:409
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
 msgstr "Weiß %1"
 
 #: game/game.cpp:411
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
 msgstr "Schwarz %1"
@@ -220,11 +209,10 @@ msgid "Move Toolbar"
 msgstr "Spielzug-Werkzeugleiste"
 
 #: gui/mainwindow.cpp:90
-#, fuzzy, kde-format
-#| msgid "Set up a new game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr "Neues Spiel eingerichtet ..."
+msgstr "Neues Spiel einrichten …"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
@@ -232,50 +220,43 @@ msgid "Kigo Game Files (*.sgf)"
 msgstr "Kigo-Spieldateien (*.sgf)"
 
 #: gui/mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Set up a loaded game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
-msgstr "Geladenes Spiel eingerichtet ..."
+msgstr "Geladenes Spiel einrichten …"
 
 #: gui/mainwindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Unable to load game..."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr "Das Spiel kann nicht geladen werden ..."
+msgstr "Das Spiel kann nicht geladen werden …"
 
 #: gui/mainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "Game saved..."
+#, kde-format
 msgctxt "@info"
 msgid "Game saved…"
-msgstr "Das Spiel ist gespeichert worden ..."
+msgstr "Das Spiel ist gespeichert worden …"
 
 #: gui/mainwindow.cpp:176
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to save game."
 msgstr "Das Spiel kann nicht gespeichert werden."
 
 #: gui/mainwindow.cpp:223
-#, fuzzy, kde-format
-#| msgid "Game started..."
+#, kde-format
 msgctxt "@info"
 msgid "Game started…"
-msgstr "Das Spiel ist gestartet worden ..."
+msgstr "Das Spiel ist gestartet worden …"
 
 #: gui/mainwindow.cpp:248
-#, fuzzy, kde-format
-#| msgid "%1 (White)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (White)"
 msgstr "%1 (Weiß)"
 
 #: gui/mainwindow.cpp:250
-#, fuzzy, kde-format
-#| msgid "%1 (Black)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (Black)"
 msgstr "%1 (Schwarz)"
@@ -291,62 +272,53 @@ msgid "%1 won with a score of %2 (bounds: %3 and %4)."
 msgstr "%1 hat das Spiel mit %2 Punkten gewonnen (gebunden: %3 und %4)."
 
 #: gui/mainwindow.cpp:266
-#, fuzzy, kde-format
-#| msgid "Undone move"
+#, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr "Spielzug zurückgenommen"
+msgstr "Der Spielzug ist zurückgenommen."
 
 #: gui/mainwindow.cpp:274
-#, fuzzy, kde-format
-#| msgid "Redone move"
+#, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr "Spielzug wiederhergestellt"
+msgstr "Der Spielzug ist wiederhergestellt."
 
 #: gui/mainwindow.cpp:298
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "Allgemein"
 
 #: gui/mainwindow.cpp:300
-#, fuzzy, kde-format
-#| msgid "Themes"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Themes"
 msgstr "Designs"
 
 #: gui/mainwindow.cpp:317
-#, fuzzy, kde-format
-#| msgid "Backend was changed, restart necessary..."
+#, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
 msgstr ""
-"Das Modul ist geändert worden und ein Neustart von Kigo ist erforderlich ..."
+"Das Modul ist geändert worden und ein Neustart von Kigo ist erforderlich …"
 
 #: gui/mainwindow.cpp:367
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr "Weiß hat ausgesetzt"
+msgstr "Weiß hat ausgesetzt."
 
 #: gui/mainwindow.cpp:369
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr "Schwarz hat ausgesetzt"
+msgstr "Schwarz hat ausgesetzt."
 
 #: gui/mainwindow.cpp:380
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Get More Games..."
+#, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
-msgstr "Spielpakete herunterladen ..."
+msgstr "Spielpakete herunterladen …"
 
 #: gui/mainwindow.cpp:386
 #, kde-format
@@ -367,9 +339,7 @@ msgid "Pass Move"
 msgstr "Aussetzen"
 
 #: gui/mainwindow.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu View"
-#| msgid "Show Move &Numbers"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Move &Numbers"
 msgstr "Spielzug-&Nummern anzeigen"
@@ -393,8 +363,7 @@ msgid "Moves"
 msgstr "Spielzüge"
 
 #: gui/mainwindow.cpp:442
-#, fuzzy, kde-format
-#| msgid "No move"
+#, kde-format
 msgctxt "@info"
 msgid "No move"
 msgstr "Kein Spielzug"
@@ -437,10 +406,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, fuzzy, kde-format
-#| msgid "Configure Kigo..."
+#, kde-format
 msgid "Configure Kigo…"
-msgstr "Kigo einrichten ..."
+msgstr "Kigo einrichten …"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
@@ -548,9 +516,7 @@ msgid "Finish Game"
 msgstr "Spiel beenden"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
-#| msgid " Stone"
-#| msgid_plural " Stones"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
@@ -574,8 +540,7 @@ msgstr[0] "%1 Stunde, %2"
 msgstr[1] "%1 Stunden, %2"
 
 #: gui/widgets/setupwidget.cpp:184
-#, fuzzy, kde-format
-#| msgid " of %1"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " of %1"
 msgstr " von %1"
