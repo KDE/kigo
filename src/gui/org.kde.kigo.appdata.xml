@@ -30,6 +30,7 @@
   <name xml:lang="it">Kigo</name>
   <name xml:lang="ka">Kigo</name>
   <name xml:lang="ko">Kigo</name>
+  <name xml:lang="lv">Kigo</name>
   <name xml:lang="nl">Kigo</name>
   <name xml:lang="nn">Kigo</name>
   <name xml:lang="pl">Kigo</name>
@@ -70,6 +71,7 @@
   <summary xml:lang="it">Gioco da tavolo tipo Go</summary>
   <summary xml:lang="ka">Go სამაგიდო თამაში</summary>
   <summary xml:lang="ko">바둑 게임</summary>
+  <summary xml:lang="lv">Go galda spēle</summary>
   <summary xml:lang="nl">Go bordspel</summary>
   <summary xml:lang="nn">Brettspelet Go</summary>
   <summary xml:lang="pl">Gra planszowa Go</summary>
@@ -117,6 +119,7 @@
     <p xml:lang="it">Kigo è un'implementazione open source del popolare gioco del Go. Go è un gioco di strategia da tavolo per due giocatori. È noto anche come igo (variante giapponese), weiqi o wei ch'i (cinese) o baduk (coreana). Go è rinomato per offrire grande complessità strategica, nonostante le sue semplici regole. Il gioco si svolge tra due giocatori che piazzano alternativamente pietre bianche e nere (i pezzi di gioco, ora fatti di solito di plastica o vetro) negli spazi vuoti di una griglia di 19x19 linee (9x9 o 13x13 nelle varianti più semplici).</p>
     <p xml:lang="ka">Kigo პოპულარული თამაშის, Go-ის ღია კოდით განხორციელებას წარმოადგენს. Go სამაგიდო, სტრატეგიული თამაშია ორი კაცისთვის. ის ასევე ცნობილია, როგორც igo (იაპონურად), weiqi ან wei ch'i (ჩინურად) ან, როგორც baduk (კორეულად). Go, მარტივი წესების მიხედვით მდიდარ სტრატეგიულ სირთულეებს წარმოადგენს. თამაში ორ კაცს შორის მიმდინარეობს, რომლებიც სათითაოდ ათავსებენ შავ და თეთრ ქვებს (სათამაშო ნაწილები, რომლებიც ჩვეულებრივ პლასტმასის ან მინისგან იქმნება) ცარიელ კვეთებზე ბადის, რომლის ზომებია 19x19 ხაზი (ან, უფრო მარტივ ვარიანტებში, 9x9 ან 13x13).</p>
     <p xml:lang="ko">Kigo는 오픈 소스 바둑 게임입니다. 19x19줄(9x9줄 혹은 13x13줄도 가능) 바둑판의 교차점에 흑돌과 백돌을 교대로 두는 게임입니다.</p>
+    <p xml:lang="lv">„Kigo“ ir populārās go galda spēles populāra implementācija. Go ir stratēģijas galda spēle diviem spēlētājiem. Tā ir pazīstama arī ar nosaukumiem „igo“ (japāņu valodā) „weiqi“ vai „wei ch'i“ (ķīniešu valodā) un „baduk“ (korejiešu valodā). Go ir pazīstama kā bagāta ar stratēģisku sarežģītību, neskatoties uz vienkāršiem noteikumiem. Šo spēli spēle divi spēlētāji, kuri pēc kārtas veic gājienu, tukšā laukuma režģa līniju krustpunktā uzliekot melno vai balto kauliņu (kādreiz tie bija akmentiņi, bet mūsdienās visbiežāk ražoti no stikla vai plastmasas). Režģis parasti ir 19×19 līniju liels (vai 9×9, vai 19×19 vieglākām partijām).</p>
     <p xml:lang="nl">Kigo is een open-source implementatie van het populaire spel Go. Go is een strategisch bordspel voor twee spelers. Het is ook bekend als igo (Japanes), weiqi of wei ch'i (Chinees) of baduk (Koreaans). Go is aangemerkt als rijk aan strategische complexiteit ondanks zijn eenvoudige regels. Het spel wordt gespeeld door twee spelers die om de beurt zwarte en witte stenen (spelstukken, nu gewoonlijk gemaakt uit glas of plastic) op de vrije kruispunten van een raster met 19x19 lijnen (9x9 of 13x13 voor gemakkelijker spellen).</p>
     <p xml:lang="nn">Kigo er ein elektronisk versjon av spelet Go, som er eit strategisk brettspel for to spelarar. Det går òg under namna igo (Japan), weiqi eller wei ch’i (Kina) og baduk (Korea). Det er kjent for å vera komplekst og djupt, sjølv om reglane er svært enkle. Dei to spelarane byter på å plassera ut svarte og kvite steinar (i røynda ofte laga av glas eller plast) på ledige plassar på eit 19 × 19-rutenett (eller eit 9 × 9- eller 13 × 13-rutenett i enklare variantar).</p>
     <p xml:lang="pl">Kigo jest otwartoźródłową implementacją popularnej gry Go. Go jest planszową grą strategiczną dla dwóch graczy. Gra znana jest także pod nazwą igo (japoński), weiqi lub wei ch'i (chiński) lub baduk (koreański). Go jest ceniony za złożoność strategiczną posiadając zarazem proste zasady. Grają dwaj gracze, którzy na przemian umieszczają czarne i białe kamienie (pionki do gry, teraz wykonywane zazwyczaj ze szkła lub plastiku) na nieobsadzone przecięcia siatki o rozmiarze 19x19 linii (9x9 lub 13x13 w łatwiejszych grach).</p>
