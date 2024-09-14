@@ -2,88 +2,77 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Einars Sprugis <einars8@gmail.com>, 2010, 2012.
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2012-07-03 01:00+0300\n"
-"Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2024-09-11 12:52+0300\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Einārs Sprūģis"
+msgstr "Einārs Sprūģis, Toms Trasūns"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "einars8@gmail.com"
+msgstr "einars8@gmail.com, toms.trasuns@posteo.net"
 
 #: game/game.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
 msgstr "Baltais %1"
 
 #: game/game.cpp:320 game/game.cpp:390
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
 msgstr "Baltais izlaida"
 
 #: game/game.cpp:326
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
 msgstr "Melnais %1"
 
 #: game/game.cpp:329 game/game.cpp:392
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black passed"
 msgstr "Melnais izlaida"
 
 #: game/game.cpp:399
-#, fuzzy, kde-format
-#| msgid "White resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White resigned"
 msgstr "Baltais atkāpās"
 
 #: game/game.cpp:401
-#, fuzzy, kde-format
-#| msgid "Black resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black resigned"
 msgstr "Melnais atkāpās"
 
 #: game/game.cpp:409
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
 msgstr "Baltais %1"
 
 #: game/game.cpp:411
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
 msgstr "Melnais %1"
@@ -92,19 +81,19 @@ msgstr "Melnais %1"
 #: gui/config/generalconfig.ui:17
 #, kde-format
 msgid "Backend"
-msgstr "Aizmugure"
+msgstr "Aizmugursistēma"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: gui/config/generalconfig.ui:23
 #, kde-format
 msgid "Executable:"
-msgstr "Izpildāmais:"
+msgstr "Izpilddatne:"
 
 #. i18n: ectx: property (toolTip), widget (KUrlRequester, engineExecutable)
 #: gui/config/generalconfig.ui:42
 #, kde-format
 msgid "Select the executable file to start the Go engine"
-msgstr "Izvēlies izpildāmo failu, lai palaistu Go dzinēju"
+msgstr "Atlasiet izpilddatni, lai palaistu go dzini"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/config/generalconfig.ui:49
@@ -116,19 +105,19 @@ msgstr "Parametri:"
 #: gui/config/generalconfig.ui:62
 #, kde-format
 msgid "Add here the necessary parameters to start the Engine in GTP mode"
-msgstr "Šeit pievieno vajadzīgos parametrus, lai dzinēju palaistu GTP režīmā"
+msgstr "Pievienojiet vajadzīgos parametrus, lai dzini palaistu GTP režīmā"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
 #: gui/config/generalconfig.ui:75
 #, kde-format
 msgid "This is the resulting engine command which will be used by Kigo"
-msgstr "Šī ir iegūtā dzinēja komanda, ko Kigo izmantos"
+msgstr "Šī ir iegūtā „Kigo“ izmantojamā dziņa komanda"
 
 #. i18n: ectx: property (toolTip), widget (KLed, engineLed)
 #: gui/config/generalconfig.ui:94
 #, kde-format
 msgid "Indicates whether the Go engine works correctly"
-msgstr "Norāda, vai Go dzinējs darbojas pareizi"
+msgstr "Norāda, vai go dzinis darbojas pareizi"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: gui/config/generalconfig.ui:108
@@ -155,10 +144,10 @@ msgstr ""
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Lūdzu, izvēlies Go "
-"dzinēju, kas atbalsta <span style=\" font-style:italic;\">GnuGo teksta "
-"protokolu (GTP)</span>. Kad izvēlētā aizmugure darbosies, indikators "
-"iedegsies zaļā krāsā.</p></body></html>"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Lūdzu, izvēlies go dzini, "
+"kas atbalsta <span style=\" font-style:italic;\">„GnuGo“ teksta protokolu "
+"(GTP)</span>. Kad izvēlētā aizmugursistēma darbosies, indikators degs zaļā "
+"krāsā.</p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
 #: gui/config/generalconfig.ui:128
@@ -176,13 +165,13 @@ msgstr "Rādīt spēles laukuma etiķetes"
 #: gui/config/generalconfig.ui:144
 #, kde-format
 msgid "Hint Visibility Time:"
-msgstr "Ieteikuma redzamības ilgums:"
+msgstr "Padoma redzamības ilgums:"
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, kcfg_HintVisibleTime)
 #: gui/config/generalconfig.ui:163
 #, kde-format
 msgid " Seconds"
-msgstr " Sekundes"
+msgstr " sekundes"
 
 #. i18n: ectx: Menu (game)
 #: gui/kigoui.rc:9
@@ -210,7 +199,7 @@ msgstr "&Iestatījumi"
 #, kde-format
 msgctxt "@title:menu"
 msgid "&Dockers"
-msgstr "&Dokotāji"
+msgstr "&Dokeri"
 
 #. i18n: ectx: ToolBar (mainToolBar)
 #: gui/kigoui.rc:36
@@ -224,67 +213,57 @@ msgstr "Galvenā rīkjosla"
 #, kde-format
 msgctxt "@title:menu"
 msgid "Move Toolbar"
-msgstr "Pārvietošanas rīkjoslu"
+msgstr "Pārvietot rīkjoslu"
 
 #: gui/mainwindow.cpp:90
-#, fuzzy, kde-format
-#| msgid "Set up a new game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr "Iestatīt jaunu spēli..."
+msgstr "Sagatavo jaunu spēli…"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
 msgid "Kigo Game Files (*.sgf)"
-msgstr ""
+msgstr "„Kigo“ spēles datnes (*.sgf)"
 
 #: gui/mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Set up a loaded game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
-msgstr "Iestatīt ielādētu spēli..."
+msgstr "Sagatavo ielādētu spēli…"
 
 #: gui/mainwindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Unable to load game..."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr "Neizdevās ielādēt spēli..."
+msgstr "Neizdevās ielādēt spēli…"
 
 #: gui/mainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "Game saved..."
+#, kde-format
 msgctxt "@info"
 msgid "Game saved…"
-msgstr "Spēle saglabāta..."
+msgstr "Spēle ir saglabāta…"
 
 #: gui/mainwindow.cpp:176
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to save game."
 msgstr "Neizdevās saglabāt spēli."
 
 #: gui/mainwindow.cpp:223
-#, fuzzy, kde-format
-#| msgid "Game started..."
+#, kde-format
 msgctxt "@info"
 msgid "Game started…"
-msgstr "Spēle sākta..."
+msgstr "Spēle ir sākta…"
 
 #: gui/mainwindow.cpp:248
-#, fuzzy, kde-format
-#| msgctxt "Indication who played the last move"
-#| msgid "%1 (white)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (White)"
 msgstr "%1 (baltais)"
 
 #: gui/mainwindow.cpp:250
-#, fuzzy, kde-format
-#| msgctxt "Indication who played the last move"
-#| msgid "%1 (black)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (Black)"
 msgstr "%1 (melnais)"
@@ -292,69 +271,60 @@ msgstr "%1 (melnais)"
 #: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
-msgstr "%1 šajā spēlē uzvarēja ar rezultātu %2."
+msgstr "Šajā spēlē uzvarēja %1 ar rezultātu %2."
 
 #: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
-msgstr "%1 šajā spēlē uzvarēja ar rezultātu %2 (ierobežojums: %3 un %4)."
+msgstr "Šajā spēlē uzvarēja %1 ar rezultātu %2 (ierobežojums: %3 un %4)."
 
 #: gui/mainwindow.cpp:266
-#, fuzzy, kde-format
-#| msgid "Undone move"
+#, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr "Atsaukts gājiens"
+msgstr "Atsaukts gājiens."
 
 #: gui/mainwindow.cpp:274
-#, fuzzy, kde-format
-#| msgid "Redone move"
+#, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr "Pārdarīts gājiens"
+msgstr "Atkārtoti izdarīts gājiens"
 
 #: gui/mainwindow.cpp:298
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "Vispārīgi"
+msgstr "Pamata"
 
 #: gui/mainwindow.cpp:300
-#, fuzzy, kde-format
-#| msgid "Themes"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Themes"
-msgstr "Tēmas"
+msgstr "Motīvi"
 
 #: gui/mainwindow.cpp:317
-#, fuzzy, kde-format
-#| msgid "Backend was changed, restart necessary..."
+#, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr "Tika nomainīta aizmugure, nepieciešama pārstartēšana..."
+msgstr "Ir nomainīt aizmugursistēma, tāpēc spēle jāpārstartē…"
 
 #: gui/mainwindow.cpp:367
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr "Baltais izlaida"
+msgstr "Baltais izlaida."
 
 #: gui/mainwindow.cpp:369
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr "Melnais izlaida"
+msgstr "Melnais izlaida."
 
 #: gui/mainwindow.cpp:380
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Get More Games..."
+#, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
-msgstr "Iegūt vairāk spēļu..."
+msgstr "Iegūt vairāk spēļu…"
 
 #: gui/mainwindow.cpp:386
 #, kde-format
@@ -375,9 +345,7 @@ msgid "Pass Move"
 msgstr "Izlaist gājienu"
 
 #: gui/mainwindow.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu View"
-#| msgid "Show Move &Numbers"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Move &Numbers"
 msgstr "Rādīt gājienu &numurus"
@@ -386,7 +354,7 @@ msgstr "Rādīt gājienu &numurus"
 #, kde-format
 msgctxt "@title:window"
 msgid "Game Setup"
-msgstr "Spēles iestatījumi"
+msgstr "Spēles sagatavošana"
 
 #: gui/mainwindow.cpp:427 gui/mainwindow.cpp:433
 #, kde-format
@@ -401,8 +369,7 @@ msgid "Moves"
 msgstr "Gājieni"
 
 #: gui/mainwindow.cpp:442
-#, fuzzy, kde-format
-#| msgid "No move"
+#, kde-format
 msgctxt "@info"
 msgid "No move"
 msgstr "Nav gājiena"
@@ -447,24 +414,23 @@ msgstr ""
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Kigo was unable to "
-"find a  Go engine backend.</span></p>\n"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">„Kigo“ neatrada go "
+"dziņa aizmugursistēmu.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
 "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
 "family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"family:'Sans Serif'; font-size:10pt;\">Ja esi pārliecināts, ka piemērots Go "
-"dzinējs jau ir instalēts, tu, iespējams, vēlies konfigurēt Kigo tā, lai tas "
-"izmantotu šo dzinēju. Pretējā gadījumā tev vajadzētu instalēt Go dzinēju "
-"(piem., GnuGo).</span></p></body></html>"
+"family:'Sans Serif'; font-size:10pt;\">Ja zināt, ka sistēmā ir instalēts "
+"piemērot go dzinis, iespējams, „Kigo“ ir jākonfigurē, lai tas šo dzini "
+"izmantotu. Pretējā gadījumā instalējiet go dzini (piemēram, „GnuGo“).</"
+"span></p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, fuzzy, kde-format
-#| msgid "Configure Kigo..."
+#, kde-format
 msgid "Configure Kigo…"
-msgstr "Konfigurēt Kigo..."
+msgstr "Konfigurēt „Kigo“…"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
@@ -475,9 +441,9 @@ msgstr "Dators (%1. līmenis)"
 #, kde-format
 msgid "%1 Stone"
 msgid_plural "%1 Stones"
-msgstr[0] "%1 akmens"
-msgstr[1] "%1 akmeņi"
-msgstr[2] "%1 akmeņu"
+msgstr[0] "%1 kauliņš"
+msgstr[1] "%1 kauliņi"
+msgstr[2] "%1 kauliņu"
 
 #: gui/widgets/gamewidget.cpp:66
 #, kde-format
@@ -574,15 +540,13 @@ msgid "Finish Game"
 msgstr "Pabeigt spēli"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
-#| msgid " Stone"
-#| msgid_plural " Stones"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
-msgstr[0] " Akmens"
-msgstr[1] " Akmeņi"
-msgstr[2] " Akmeņi"
+msgstr[0] " kauliņš"
+msgstr[1] " kauliņi"
+msgstr[2] " kauliņu"
 
 #: gui/widgets/setupwidget.cpp:160
 #, kde-format
@@ -603,8 +567,7 @@ msgstr[1] "%1 stundas, %2"
 msgstr[2] "%1 stundu, %2"
 
 #: gui/widgets/setupwidget.cpp:184
-#, fuzzy, kde-format
-#| msgid " of %1"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " of %1"
 msgstr " no %1"
@@ -612,13 +575,13 @@ msgstr " no %1"
 #: gui/widgets/setupwidget.cpp:227
 #, kde-format
 msgid "White to play"
-msgstr "Baltais spēlēs"
+msgstr "Gājiens baltajam"
 
 #. i18n: ectx: property (text), widget (QLabel, playerLabel)
 #: gui/widgets/setupwidget.cpp:229 gui/widgets/setupwidget.ui:448
 #, kde-format
 msgid "Black to play"
-msgstr "Melnais spēlēs"
+msgstr "Gājiens melnajam"
 
 #. i18n: ectx: property (text), widget (QLabel, label_12)
 #: gui/widgets/setupwidget.ui:30
@@ -628,31 +591,27 @@ msgstr "Laukuma izmērs:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeSmall)
 #: gui/widgets/setupwidget.ui:37
-#, fuzzy, kde-format
-#| msgid "Tiny (9x9)"
+#, kde-format
 msgid "&Tiny (9x9)"
-msgstr "Sīks (9x9)"
+msgstr "&Sīks (9×9)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
 #: gui/widgets/setupwidget.ui:47
-#, fuzzy, kde-format
-#| msgid "Small (13x13)"
+#, kde-format
 msgid "Small (&13x13)"
-msgstr "Mazs (13x13)"
+msgstr "&Mazs (13×13)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
 #: gui/widgets/setupwidget.ui:54
-#, fuzzy, kde-format
-#| msgid "Normal (19x19)"
+#, kde-format
 msgid "No&rmal (19x19)"
-msgstr "Normāls (19x19)"
+msgstr "&Normāls (19×19)"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
-#, fuzzy, kde-format
-#| msgid "Custom:"
+#, kde-format
 msgid "&Custom:"
-msgstr "Pielāgots:"
+msgstr "&Pielāgots:"
 
 #. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:126
@@ -661,8 +620,8 @@ msgid ""
 "Handicap stones are an advantage for the black player.\n"
 "Black gets a number of stones on the board before the game starts."
 msgstr ""
-"Handikapa akmeņi ir melnā spēlētāja priekšrocība.\n"
-"Melnais spēlētājs saņem noteiktu skaitu akmeņu uz laukuma pirms spēles "
+"Handikapa kauliņi ir melnā spēlētāja priekšrocība.\n"
+"Melnais spēlētājs saņem noteiktu skaitu kauliņu uz laukuma pirms spēles "
 "sākuma."
 
 #. i18n: ectx: property (specialValueText), widget (KPluralHandlingSpinBox, handicapSpinBox)
@@ -685,7 +644,7 @@ msgstr ""
 #: gui/widgets/setupwidget.ui:174
 #, kde-format
 msgid " Points"
-msgstr " Punkti"
+msgstr " punkti"
 
 #. i18n: ectx: property (text), widget (QLabel, eventStaticLabel)
 #: gui/widgets/setupwidget.ui:237
@@ -749,10 +708,9 @@ msgstr "&Dators"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: gui/widgets/setupwidget.ui:595
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgid "&Name:"
-msgstr "Nosaukums:"
+msgstr "&Vārds:"
 
 #. i18n: ectx: property (text), widget (QLabel, label1)
 #. i18n: ectx: property (text), widget (QLabel, label1_3)
@@ -778,7 +736,7 @@ msgstr "Dat&ors"
 #: gui/widgets/setupwidget.ui:762
 #, kde-format
 msgid "Na&me:"
-msgstr ""
+msgstr "&Vārds:"
 
 #. i18n: ectx: property (text), widget (QPushButton, startButton)
 #: gui/widgets/setupwidget.ui:1003
@@ -790,67 +748,67 @@ msgstr "Sākt spēli"
 #: kigo.kcfg:10
 #, kde-format
 msgid "The current game engine command with (optional) parameters"
-msgstr "Pašreizējā spēles dzinēja komanda ar (neobligātiem) parametriem"
+msgstr "Pašreizējā spēles dziņa komanda ar (neobligātiem) parametriem"
 
 #. i18n: ectx: label, entry (Theme), group (UserInterface)
 #: kigo.kcfg:21
 #, kde-format
 msgid "The graphical theme to be used"
-msgstr "Izmantojamā grafiskā tēma"
+msgstr "Izmantotais grafiskais motīvs"
 
 #. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
 #: kigo.kcfg:25
 #, kde-format
 msgid "Determines whether board labels are shown"
-msgstr "Nosaka, vai tiek rādītas spēles laukuma etiķetes"
+msgstr "Nosaka, vai rāda spēles laukuma etiķetes"
 
 #. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
 #: kigo.kcfg:29
 #, kde-format
 msgid "Move numbers are drawn onto stones if enabled"
-msgstr "Ja ieslēgts, gājienu numuri tiek zīmēti uz akmeņiem"
+msgstr "Ja ieslēgts, uz kauliņiem zīmē gājienu numurus"
 
 #. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
 #: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
-msgstr "Ieteikuma rādīšanas ilgums, sekundēs"
+msgstr "Padoma rādīšanas ilgums sekundēs"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
 #: kigo.kcfg:41
 #, kde-format
 msgid "Is black a human player?"
-msgstr "Melnais spēlētājs ir cilvēks?"
+msgstr "Vai ar melnajiem kauliņiem spēlēs cilvēks?"
 
 #. i18n: ectx: label, entry (BlackPlayerName), group (Game)
 #: kigo.kcfg:45
 #, kde-format
 msgid "The name of the black player"
-msgstr "Melnā spēlētāja vārds"
+msgstr "Melno kauliņu spēlētāja vārds"
 
 #. i18n: ectx: label, entry (BlackPlayerStrength), group (Game)
 #: kigo.kcfg:49
 #, kde-format
 msgid "The strength of the black player"
-msgstr "Melnā spēlētāja stiprība"
+msgstr "Melno kauliņu spēlētāja stiprība"
 
 #. i18n: ectx: label, entry (WhitePlayerHuman), group (Game)
 #: kigo.kcfg:55
 #, kde-format
 msgid "Is white a human player?"
-msgstr "Baltais spēlētājs ir cilvēks?"
+msgstr "Vai ar baltajiem kauliņiem spēlēs cilvēks?"
 
 #. i18n: ectx: label, entry (WhitePlayerName), group (Game)
 #: kigo.kcfg:59
 #, kde-format
 msgid "The name of the white player"
-msgstr "Baltā spēlētāja vārds"
+msgstr "Balto kauliņu spēlētāja vārds"
 
 #. i18n: ectx: label, entry (WhitePlayerStrength), group (Game)
 #: kigo.kcfg:63
 #, kde-format
 msgid "The strength of the white player"
-msgstr "Baltā spēlētāja stiprība"
+msgstr "Balto kauliņu spēlētāja stiprība"
 
 #. i18n: ectx: label, entry (BoardSize), group (Game)
 #: kigo.kcfg:69
@@ -868,13 +826,13 @@ msgstr "Komi"
 #: kigo.kcfg:77
 #, kde-format
 msgid "With komi you can give the black player some extra points"
-msgstr "Ar komi tu melnajam spēlētājam vari iedot dažus papildu punktus"
+msgstr "Ar komi melnajam spēlētājam vari iedot dažus papildu punktus"
 
 #. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
 #: kigo.kcfg:83
 #, kde-format
 msgid "Extra stones for the black player"
-msgstr "Papildu akmeņi melnajam spēlētājam"
+msgstr "Papildu kauliņi melno kauliņu spēlētājam"
 
 #: main.cpp:36
 #, kde-format
@@ -884,12 +842,12 @@ msgstr "Kigo"
 #: main.cpp:37
 #, kde-format
 msgid "KDE Go Board Game"
-msgstr "KDE Go galda spēle"
+msgstr "KDE go galda spēle"
 
 #: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
-msgstr "Autortiesības (c) 2008-2010 Sascha Peilicke"
+msgstr "Autortiesības (c) 2008—2010 Sascha Peilicke"
 
 #: main.cpp:39
 #, kde-format
@@ -919,25 +877,25 @@ msgstr "Arturo Silva"
 #: main.cpp:43
 #, kde-format
 msgid "Default theme designer"
-msgstr "Noklusētās tēmas veidotājs"
+msgstr "Noklusējuma motīva veidotājs"
 
 #: main.cpp:54 main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
-msgstr "Ielādējamā spēle (SGF fails)"
+msgstr "Ielādējamā spēle (SGF datne)"
 
 #: main.cpp:54
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
-msgstr ""
+msgstr "spēles datne"
 
 #: main.cpp:55
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
-msgstr ""
+msgstr "[spēles datne]"
 
 #~ msgctxt "%1 response from Go engine"
 #~ msgid "White %1"
