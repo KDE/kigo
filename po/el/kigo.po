@@ -4,20 +4,21 @@
 # Toussis Manolis <manolis@koppermind.homelinux.org>, 2008, 2009.
 # Petros Vidalis <p_vidalis@hotmail.com>, 2009.
 # Stelios <sstavra@gmail.com>, 2021.
+# SPDX-FileCopyrightText: 2024 Antonis Geralis <capoiosct@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2021-06-20 09:03+0300\n"
-"Last-Translator: Stelios <sstavra@gmail.com>\n"
+"PO-Revision-Date: 2024-09-20 09:13+0300\n"
+"Last-Translator: Antonis Geralis <capoiosct@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 24.08.1\n"
 "X-Poedit-Country: GREECE\n"
 "X-Poedit-Language: Greek\n"
 
@@ -698,7 +699,7 @@ msgstr "Κίνηση"
 #: gui/widgets/setupwidget.ui:489
 #, kde-format
 msgid "Time limit:"
-msgstr "Χρόνικό όριο:"
+msgstr "Χρονικό όριο:"
 
 #. i18n: ectx: property (text), widget (QCheckBox, whiteIsComputerCheckBox)
 #: gui/widgets/setupwidget.ui:572
