@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-04 00:37+0000\n"
-"PO-Revision-Date: 2024-05-04 14:24+0300\n"
+"PO-Revision-Date: 2024-09-23 15:20+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.07.70\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -844,7 +844,7 @@ msgstr "KDE Go Masaüstü Oyunu"
 #: main.cpp:38
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
-msgstr "Telif hakkı (c) 2008–2010 Sascha Peilicke"
+msgstr "Telif hakkı © 2008–2010 Sascha Peilicke"
 
 #: main.cpp:39
 #, kde-format

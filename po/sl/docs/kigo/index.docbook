@@ -1,0 +1,1004 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>&kigo; Priročnik</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>01.07.2021</date>
+<releaseinfo
+>0.6.2 (KDE Gear 21.04)</releaseinfo>
+<abstract>
+	<para
+>&kigo; je odprtokodna izvedba priljubljene igre <literal
+>Go</literal
+> (znane tudi kot <literal
+>Weiqi</literal
+>).</para>
+</abstract>
+<keywordset>
+    <keyword
+>KDE</keyword>
+    <keyword
+>kdegames</keyword>
+    <keyword
+>igra</keyword>
+    <keyword
+>kigo</keyword>
+    <keyword
+>logika</keyword>
+    <keyword
+>tabla</keyword>
+    <keyword
+>en igralec</keyword>
+    <keyword
+>dva igralca</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+    <title
+>Uvod</title>
+
+    <note
+><title
+>Vrsta igre:</title>
+    <para
+>Logika, Plošča</para
+></note>
+
+    <note
+><title
+>Število možnih igralcev:</title>
+    <para
+>Dva</para
+></note>
+
+    <para
+>&kigo; je odprtokodna izvedba priljubljene igre <literal
+>Go</literal
+> (znane tudi kot Weiqi). </para>
+
+    <para
+><literal
+>Go</literal
+> je strateška družabna igra za dva igralca. Znana je tudi kot <quote
+><literal
+>igo</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> v japonščini), <quote
+><literal
+>weiqi</literal
+></quote
+> ali <quote
+><literal
+>wei ch'i</literal
+></quote
+> (<foreignphrase lang="zh"
+>govor</foreignphrase
+> ali <foreignphrase lang="zh"
+>围棋</foreignphrase
+> v kitajščini) ali <quote
+><literal
+>baduk</literal
+></quote
+> ((<foreignphrase lang="ko"
+>바둑</foreignphrase
+> v korejščini). <literal
+>Go</literal
+> je znana po tem, da je kljub preprostim pravilom bogata s strateško zapletenostjo. </para>
+
+    <para
+>Igro igrata dva igralca, ki izmenično postavljata črne in bele kamne (igralne figure, zdaj običajno iz stekla ali plastike) na prosta presečišča mreže 19×19 črt (9x9 ali 13x13 črt za lažje okuse). </para>
+
+</chapter>
+
+<chapter id="howto">
+    <title
+>Kako igrati</title>
+
+    <note
+><title
+>Cilj:</title>
+    <para
+>Cilj igre je nadzor nad večjim delom deske kot nasprotnik. Kamen ali skupina kamnov je zajet in odstranjen, če nima praznih sosednjih križišč, kar je posledica tega, da je popolnoma obdan s kamni nasprotne barve.</para
+></note>
+
+    <sect1 id="starting">
+    <title
+>Zagon igre</title>
+
+    <para
+>Ko zaženete &kigo; imate dve možnosti za igranje čudovite igre <literal
+>Go</literal
+>. Lahko začnete novo igro ali nadaljujete s staro. </para>
+
+    <sect2 id="new_game">
+    <title
+>Nastavite novo igro</title>
+
+    <para
+>Ko zaženete &kigo; bi morali videti zaslon, podoben tistemu, prikazanemu na spodnjem posnetku zaslona. Tam lahko nastavite ime belega in črnega igralca ter velikost plošče. Odločite se lahko, ali naj bo eden ali oba igralca računalnik. Če se odločite igrati proti računalniku, lahko nastavite tudi njegovo moč. Če želite začeti igro, lahko izberete  <menuchoice
+><guimenu
+>Igra</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+></menuchoice
+>, kliknite gumb <guibutton
+>Začni igro</guibutton
+> v gradniku <guilabel
+>Nastavitev igre</guilabel
+> ali preprosto s pritiskom na tipko <keycap
+>S</keycap
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Nov zaslon igre</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+            <textobject
+><phrase
+>Nov zaslon igre.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="load_game">
+    <title
+>Nastavi naloženo igro</title>
+
+    <para
+>Če se odločite nadaljevati s prej nedokončano igro, lahko preprosto izberete zgornji menijski element <menuchoice
+><guimenu
+>Igra</guimenu
+> <guimenuitem
+>Naloži…</guimenuitem
+></menuchoice
+>). Zdaj bi se moral pojaviti izbirnik datotek, z njim izberite in naložite želeno datoteko shranjene igre. </para>
+
+    <para
+>Zdaj bi morali videti zaslon, podoben tistemu, prikazanemu na spodnjem posnetku zaslona. Če ne želite nadaljevati z zadnjo potezo, lahko razveljavite poljubno število potez. Morali bi videti, kako se plošča spreminja, ko spreminjate trenutno številko poteze. Nastavitveni zaslon predstavlja tudi veliko dodatnih informacij o shranjeni igri. </para>
+
+    <para
+>Za nadaljevanje samo pritisnite gumb <guibutton
+>Začni igro</guibutton
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Naložen zaslon igre</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+            <textobject
+><phrase
+>Naložen zaslon igre.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Obstaja tudi možnost prenosa zgodovine iger <literal
+>Go</literal
+> ali shranjenih iger, ki so jih naložili drugi uporabniki iz interneta. Preprosto kliknite menijsko postavko <menuchoice
+><guimenu
+>Igra</guimenu
+> <guimenuitem
+>Pridobite več iger…</guimenuitem
+></menuchoice
+>. Nato bi morali videti pogovorno okno, v katerem lahko izberete, katero vsebino želite prenesti. </para>
+
+    <screenshot>
+        <screeninfo
+>Pridobite nove igre</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
+><phrase
+>Zaslon Dobi nove igre.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>Igranje igre</title>
+
+    <para
+>Zdaj ste pripravljeni na igranje prve runde igre <literal
+>Go</literal
+>. Če niste seznanjeni s pravili, priporočamo, da preberete ustrezen <ulink url="https://en.wikipedia.org/wiki/Go_(game)"
+>članek v Wikipediji</ulink
+> ali preberete <ulink url=" http://playgo.to/iwtg/en/"
+>The Interactive Way To <literal
+>Go</literal
+></ulink
+> Hirokija Morija. </para>
+
+    <para
+>Premik je preprost, samo kliknite eno od križišč na plošči <literal
+>Go</literal
+>. Morali bi videti majhno črno točko, ki vam pokaže, kje bi vaš kamen pristal, če kliknete. </para>
+
+    <para
+>Trenutni igralec se lahko določi s kazalcem, ki se spremeni v črn ali bel kamen, odvisno od tega, kateri igralec je naslednji. </para>
+
+    <para
+>Preverite lahko tudi informacije o igri, ki prikazujejo tudi prejšnjo potezo in nekatere statistike. Na voljo je tudi popolna zgodovina potez. Če si želite zapomniti, v kakšnem vrstnem redu so bili postavljeni kamni na plošči, preprosto kliknite gumb <guibutton
+>Prikaži številke potez</guibutton
+>. Če menite, da ne morete ničesar pridobiti s postavitvijo drugega kamna, preprosto kliknite <guibutton
+>Prepusti potezo</guibutton
+> in pustite nasprotniku, da pride na vrsto. Če oba igralca opustita potezo, se igra lahko konča. Upoštevajte, da je končanje igre <literal
+>Go</literal
+> vedno korak sodelovanja! </para>
+
+    <screenshot>
+        <screeninfo
+>Igranje nove igre</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+            <textobject
+><phrase
+>Igranje nove igre.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Upoštevajte, da lahko kadarkoli shranite trenutno igro. To storite tako, da izberete menijsko postavko <menuchoice
+><guimenu
+>Igra</guimenu
+> <guimenuitem
+>Shrani</guimenuitem
+></menuchoice
+>. </para>
+
+    <sect2 id="hint">
+    <title
+>Pridobivanje namigov</title>
+
+    <para
+>Včasih se je težko odločiti, katero potezo narediti. Če želite, da vam računalnik malo namigne, samo pritisnite gumb <guibutton
+>Namig</guibutton
+>, prikazan na spodnjem posnetku zaslona. Zdaj bi se moralo pojaviti nekaj prozornih kamnov s številko na vrhu. To so pravzaprav vaša priporočila z oceno. Rezultat določa, kako dobra je ta poteza. Kliknite katero koli od priporočenih potez ali katero koli drugo prosto polje, da postavite svoj naslednji kamen. </para>
+
+    <screenshot>
+        <screeninfo
+>Pridobivanje namiga</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+            <textobject
+><phrase
+>Pridobivanje namiga.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
+>Strategije in nasveti</title>
+
+    <itemizedlist>
+        <listitem
+><para
+>Pri igri <literal
+>Go</literal
+> gre bolj za obkrožanje ozemlja (praznega prostora) kot za zajemanje nasprotnikovih figur.</para
+></listitem>
+        <listitem
+><para
+>Ozemlje je najlažje obkrožiti blizu vogalov (na dveh straneh), nato blizu robov (na treh straneh) in nazadnje v sredini.</para
+></listitem>
+        <listitem
+><para
+>Na začetku igre razmaknite svoje figure. Svoje ograje zapolnite šele, ko vaš nasprotnik začne vdirati</para
+></listitem>
+        <listitem
+><para
+>Med napadom ne igrajte z nepodprtimi kamni tik ob nasprotnikovih kamnih. Nagnjeni bodo k požiranju in &gnugo; je zelo dober v tem. Pogosto je bolje napasti posredno.</para
+></listitem>
+        <listitem
+><para
+>Da bi se izognili ujetju, mora imeti skupina kamnov dve <quote
+>očesi</quote
+> ali ju mora biti sposoben narediti, če je napaden. <quote
+>Oči</quote
+> so nepovezani prostori. Pomislite na krof z dvema luknjama. Vaš nasprotnik lahko obkroži zunanjost, vendar ne more zapolniti obeh lukenj hkrati.</para
+></listitem>
+        <listitem
+><para
+>Na plošči 19x19 je običajno več ozemelj, ki se ustvarjajo, napadajo ali branijo. Biti morate več bitk hkrati. Strategija vključuje ocenjevanje prednosti in slabosti na različnih področjih ter razporejanje potez med njimi. Ali je bolje napadati tam ali se braniti tukaj?</para
+></listitem>
+        <listitem
+><para
+>Ko se plošča polni in se bliža zaključek igre, postane pomembno igrati bližje, grizljati nasprotnikove ograje ali krepiti svoje. Majhne napake in opustitve lahko postanejo zelo drage.</para
+></listitem>
+    </itemizedlist>
+
+    </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Pregled vmesnika</title>
+    <sect1 id="menus">
+    <title
+>&kigo; Meniji</title>
+    <para
+>&kigo; ima naslednje možnosti: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Začne novo igro.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Naloži…</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Odpri odpre datoteko &kde; standardno pogovorno okno, da odprete datoteko <literal role="extension"
+>.sgf</literal
+> (datoteka igre &kigo;), ki vsebuje shranjeno igro.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Pridobi več iger…</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Odpre pogovorno okno <guilabel
+>Pridobi novo vročo robo</guilabel
+> za nalaganje iger, ki so jih shranili drugi uporabniki.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Shrani</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Shrani</action
+> trenutno igro.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Začni igro</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Zažene</action
+> novo ali naloženo igro.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Dokončaj igro</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Konča</action
+> trenutno igro. Ne pozabite, da je končanje igre <literal
+>Go</literal
+> vedno korak sodelovanja.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Igra</guimenu
+> <guimenuitem
+>Zapusti</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Zapusti</action
+> &kigo;.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Premakni</guimenu
+> <guimenuitem
+>Razveljavi</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Razveljavi</action
+> svojo zadnjo potezo.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Premakni</guimenu
+> <guimenuitem
+>Ponovi</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Ponovi</action
+> potezo, ki je bila pravkar razveljavljena z <guimenuitem
+>Razveljavi</guimenuitem
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>Premakni</guimenu
+> <guimenuitem
+>Prepusti potezo</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Omogoča vam, da <action
+>prepustite</action
+> potezo.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>Premakni</guimenu
+> <guimenuitem
+>Namig</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Daje namig</action
+> s prikazom prozornih kamnov z rezultatom na njih.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>Premakni</guimenu
+> <guimenuitem
+>Pokaži številke premika</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Preklopi</action
+> vidnost premikanja številk.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>Nastavitve</guimenu
+> <guisubmenu
+>Doki</guisubmenu
+> <guimenuitem
+>Informacije</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Prikaže ali skrije stransko vrstico <guilabel
+>Informacije</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
+><menuchoice
+><guimenu
+>Nastavitve</guimenu
+> <guisubmenu
+>Doki</guisubmenu
+> <guimenuitem
+>Premiki</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Prikaže ali skrije stransko vrstico <guilabel
+>Premiki</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    </variablelist>
+
+    <para
+>Poleg tega &kigo; ima skupno &kde; Elementi menija <guimenu
+>Nastavitve</guimenu
+> in <guimenu
+>Pomoč</guimenu
+>, za več informacij preberite razdelke o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>meniju z nastavitvami</ulink
+> in <ulink url="help:/fundamentals/menus.html#menus-help"
+>meni Pomoč</ulink
+> v &kde; Osnove. </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
+>Bližnjice</title>
+
+    <para
+>Privzete bližnjice so:</para>
+
+    <table>
+        <title
+>Bližnjice</title>
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
+>Končaj trenutno igro</entry>
+                <entry
+><keycap
+>F</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Pridobite nove igre, ki so jih naložili drugi uporabniki</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Pomoč</entry>
+                <entry
+><keycap
+>F1</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Naloži shranjeno igro</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Podaj namige za možne poteze</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Prepusti potezo</entry>
+                <entry
+><keycap
+>P</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Zapusti</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Ponovi potezo, ki je bila razveljavljena</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Shrani trenutno igro</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Začni novo igro</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Zaženi novo ali naloženo igro</entry>
+                <entry
+><keycap
+>S</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Preklopi vidnost premikajočih se številk</entry>
+                <entry
+><keycap
+>N</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>Razveljavi svojo zadnjo potezo</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>Kaj je to? pomoč</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
+</chapter>
+
+<chapter id="configuration">
+    <title
+>Konfiguracija igre</title>
+
+    <para
+>Če želite spremeniti način &kigo; je konfiguriran, lahko to storite tako, da se pomaknete do menijske postavke <menuchoice
+><guimenu
+>Nastavitve</guimenu
+> <guimenuitem
+>Konfiguriraj &kigo;…</guimenuitem
+></menuchoice
+>. </para>
+
+    <para
+>Zdaj bi morali videti konfiguracijsko pogovorno okno, kot je prikazano na spodnjem posnetku zaslona. Do njega lahko pridete tudi s pritiskom na kombinacijo tipk <keycombo
+>&Alt;<keycap
+>S</keycap
+></keycombo
+>, ki ji sledi <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+    <para
+>&kigo; je izjemno prilagodljiv in ga je mogoče prilagoditi, kolikor želite. Spreminjate lahko položaje in velikost vseh gradnikov dok poleg osrednjega igralnega območja. Prav tako lahko prilagodite orodno vrstico, če želite, da so tam dostopna različna dejanja. Če želite to narediti, preprosto izberite menijsko postavko <menuchoice
+><guimenu
+>Nastavitve</guimenu
+> <guimenuitem
+>Konfiguriraj orodne vrstice…</guimenuitem
+></menuchoice
+>. Enako je možno za vse bližnjice v igri. Če želite imeti na voljo največ prostora za igralno polje, lahko celo skrijete orodno vrstico in večino dokov pripomočkov v meniju <guimenu
+>Nastavitve</guimenu
+>. </para>
+
+    <sect1 id="genconig">
+    <title
+>Splošna konfiguracija</title>
+
+    <para
+>Najpomembnejši vidik tukaj je konfiguracija zaledja stroja <literal
+>Go</literal
+>. &kigo; za pravilno delovanje potrebuje veljavno zaledje. Kot lahko vidite na spodnjem posnetku zaslona, je uporabil &gnugo; privzeto. Majhna lučka poleg ukaza motorja sveti zeleno, če vse deluje dobro. Če temu ni tako ali če želite uporabiti drugo zaledje <literal
+>Go</literal
+>, morate namestiti drug stroj <literal
+>Go</literal
+>, ki lahko govori <literal
+>Go</literal
+> Besedilni protokol (<acronym
+>GTP</acronym
+>) in ustrezno nastavite njegov ukaz in parametre. Podrobnosti o tem koraku najdete v ustrezni dokumentaciji stroja <literal
+>Go</literal
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>Splošna konfiguracija</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+            <textobject
+><phrase
+>Splošna konfiguracija.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+
+    <sect1 id="configuration-theme">
+    <title
+>Konfiguracija teme</title>
+
+    <para
+>Na tej strani boste lahko spremenili temo &kigo; uporablja. </para>
+
+    <screenshot>
+        <screeninfo
+>Konfigurirajte &kigo; - Teme</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>Konfiguracija teme</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+    <title
+>Zasluge in licenca</title>
+
+    <para
+>&kigo; </para>
+
+    <para
+>Avtorske pravice za program 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Dokumentacija Copyright &copy; 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>Urejanje dokumentacije in pretvorba Docbook Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+    <para
+>Privzeto temo oblikoval Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>Prevod: Matjaž Jeran<email
+>matjaz.jeran@amis.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+
