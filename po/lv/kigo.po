@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-04 00:37+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2024-09-11 12:52+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -834,64 +834,64 @@ msgstr "Ar komi melnajam spēlētājam vari iedot dažus papildu punktus"
 msgid "Extra stones for the black player"
 msgstr "Papildu kauliņi melno kauliņu spēlētājam"
 
-#: main.cpp:36
+#: main.cpp:55
 #, kde-format
 msgid "Kigo"
 msgstr "Kigo"
 
-#: main.cpp:37
+#: main.cpp:56
 #, kde-format
 msgid "KDE Go Board Game"
 msgstr "KDE go galda spēle"
 
-#: main.cpp:38
+#: main.cpp:57
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
 msgstr "Autortiesības (c) 2008—2010 Sascha Peilicke"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
 msgstr "Sascha Peilicke (saschpe)"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Original author"
 msgstr "Sākotnējais autors"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Yuri Chornoivan"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Documentation editor"
 msgstr "Dokumentācijas redaktors"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Arturo Silva"
 msgstr "Arturo Silva"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
 msgstr "Noklusējuma motīva veidotājs"
 
-#: main.cpp:54 main.cpp:55
+#: main.cpp:73 main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "Ielādējamā spēle (SGF datne)"
 
-#: main.cpp:54
+#: main.cpp:73
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "spēles datne"
 
-#: main.cpp:55
+#: main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

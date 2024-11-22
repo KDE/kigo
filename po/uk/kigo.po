@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-04 00:37+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2024-05-04 08:56+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian\n"
@@ -840,64 +840,64 @@ msgstr ""
 msgid "Extra stones for the black player"
 msgstr "Додаткові камені для гравця чорними"
 
-#: main.cpp:36
+#: main.cpp:55
 #, kde-format
 msgid "Kigo"
 msgstr "Kigo"
 
-#: main.cpp:37
+#: main.cpp:56
 #, kde-format
 msgid "KDE Go Board Game"
 msgstr "Гра у го для KDE"
 
-#: main.cpp:38
+#: main.cpp:57
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
 msgstr "© Sascha Peilicke, 2008-2010"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
 msgstr "Sascha Peilicke (saschpe)"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Original author"
 msgstr "Перший автор"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Юрій Чорноіван"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Documentation editor"
 msgstr "Редактор документації"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Arturo Silva"
 msgstr "Arturo Silva"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
 msgstr "Розробник типової теми"
 
-#: main.cpp:54 main.cpp:55
+#: main.cpp:73 main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "Гра, яку слід завантажити (файл SGF)"
 
-#: main.cpp:54
+#: main.cpp:73
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "файл_гри"
 
-#: main.cpp:55
+#: main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

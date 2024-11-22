@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-04 00:37+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2024-09-23 15:20+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -831,64 +831,64 @@ msgstr "Komi ile siyah oyuncuya fazladan puan verebilirsiniz"
 msgid "Extra stones for the black player"
 msgstr "Siyah oyuncu için fazladan taşlar"
 
-#: main.cpp:36
+#: main.cpp:55
 #, kde-format
 msgid "Kigo"
 msgstr "Kigo"
 
-#: main.cpp:37
+#: main.cpp:56
 #, kde-format
 msgid "KDE Go Board Game"
 msgstr "KDE Go Masaüstü Oyunu"
 
-#: main.cpp:38
+#: main.cpp:57
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
 msgstr "Telif hakkı © 2008–2010 Sascha Peilicke"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
 msgstr "Sascha Peilicke (saschpe)"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Original author"
 msgstr "Özgün yazar"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Yuri Çornoivan"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Documentation editor"
 msgstr "Belgelendirme editörü"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Arturo Silva"
 msgstr "Arturo Silva"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
 msgstr "Öntanımlı temanın tasarımcısı"
 
-#: main.cpp:54 main.cpp:55
+#: main.cpp:73 main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "Yüklenecek oyun (SGF dosyası)"
 
-#: main.cpp:54
+#: main.cpp:73
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "oyundosyası"
 
-#: main.cpp:55
+#: main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"

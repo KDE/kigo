@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-04 00:37+0000\n"
+"POT-Creation-Date: 2024-11-22 00:38+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -819,64 +819,64 @@ msgstr "您可以用贴目给执黑者一些额外目数"
 msgid "Extra stones for the black player"
 msgstr "给黑棋的贴子"
 
-#: main.cpp:36
+#: main.cpp:55
 #, kde-format
 msgid "Kigo"
 msgstr "Kigo"
 
-#: main.cpp:37
+#: main.cpp:56
 #, kde-format
 msgid "KDE Go Board Game"
 msgstr "KDE 围棋游戏"
 
-#: main.cpp:38
+#: main.cpp:57
 #, kde-format
 msgid "Copyright (c) 2008-2010 Sascha Peilicke"
 msgstr "Copyright (c) 2008-2010 Sascha Peilicke"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Sascha Peilicke (saschpe)"
 msgstr "Sascha Peilicke (saschpe)"
 
-#: main.cpp:39
+#: main.cpp:58
 #, kde-format
 msgid "Original author"
 msgstr "原作者"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Yuri Chornoivan"
 msgstr "Yuri Chornoivan"
 
-#: main.cpp:41
+#: main.cpp:60
 #, kde-format
 msgid "Documentation editor"
 msgstr "文档编辑"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Arturo Silva"
 msgstr "Arturo Silva"
 
-#: main.cpp:43
+#: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
 msgstr "默认主题设计师"
 
-#: main.cpp:54 main.cpp:55
+#: main.cpp:73 main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
 msgstr "要加载的存档 (SGF 文件)"
 
-#: main.cpp:54
+#: main.cpp:73
 #, kde-format
 msgctxt "@info:shell"
 msgid "gamefile"
 msgstr "gamefile"
 
-#: main.cpp:55
+#: main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "[gamefile]"
