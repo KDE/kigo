@@ -53,6 +53,18 @@ ecm_qt_declare_logging_category(kigo
     EXPORT KIGO
 )
 
+if(APPLE)
+    set_target_properties(kigo PROPERTIES
+           MACOSX_BUNDLE_DISPLAY_NAME "Kigo"
+        MACOSX_BUNDLE_BUNDLE_NAME "Kigo"
+        MACOSX_BUNDLE_LONG_VERSION_STRING "Kigo ${RELEASE_SERVICE_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${RELEASE_SERVICE_VERSION}"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.kigo"
+        MACOSX_BUNDLE_COPYRIGHT "2024 The Kigo Developers")
+endif()
+
+
 kconfig_add_kcfg_files(kigo preferences.kcfgc)
 
 file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../data/icons/*-apps-kigo.png")
