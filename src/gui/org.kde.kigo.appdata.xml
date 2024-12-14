@@ -37,6 +37,7 @@
   <name xml:lang="pt">Kigo</name>
   <name xml:lang="pt-BR">Kigo</name>
   <name xml:lang="ru">Kigo</name>
+  <name xml:lang="sa">संस्था</name>
   <name xml:lang="sk">Kigo</name>
   <name xml:lang="sl">Kigo</name>
   <name xml:lang="sr">Киго</name>
@@ -78,6 +79,7 @@
   <summary xml:lang="pt">Jogo de Tabuleiro Go</summary>
   <summary xml:lang="pt-BR">Jogo de tabuleiro Go</summary>
   <summary xml:lang="ru">Настольная игра го</summary>
+  <summary xml:lang="sa">गो बोर्ड गेम</summary>
   <summary xml:lang="sk">Stolová hra Go</summary>
   <summary xml:lang="sl">Namizna igra Go-ja</summary>
   <summary xml:lang="sr">Игра на табли го</summary>
@@ -126,6 +128,7 @@
     <p xml:lang="pt">O Kigo é uma implementação em código aberto do conhecido jogo Go. O Go é um jogo de tabuleiro estratégico para dois jogadores. Também é conhecido como 'igo' (Japonês), 'weiqi' ou 'wei ch'i' (Chinês) ou ainda 'baduk' (Coreano). O Go é conhecido por ser rico em complexidade estratégica, apesar das suas regras simples. O jogo é jogado por dois jogadores que colocam peças brancas e pretas de forma alternada (as peças de jogo são feitas normalmente em vidro ou plástico nos dias de hoje) nas intersecções livres de uma grelha de 19x19 linhas (9x9 ou 13x13 para os jogos mais simples).</p>
     <p xml:lang="pt-BR">Kigo é uma implementação em código aberto do conhecido jogo Go. O Go é um jogo de estratégia para dois jogadores. Também é conhecido como 'igo' (Japonês), 'weiqi' ou 'wei ch'i' (Chinês) ou ainda 'baduk' (Coreano). O Go é conhecido por ser rico em complexidade de estratégias, apesar de ter regras muito simples. Joga-se com dois jogadores que colocam peças brancas e pretas de forma alternada (as peças de jogo são feitas normalmente em vidro ou plástico) nas intersecções vagas de uma grade com 19x19 linhas (9x9 ou 13x13 em jogos mais fáceis).</p>
     <p xml:lang="ru">Kigo — реализация популярной игры го с открытым кодом. Го — стратегическая настольная игра для двух игроков. Эта игра имеет много разных названий: иго (на японском), вейдзи (на китайском) и бадук (на корейском). Го является стратегически сложной игрой, хотя имеет довольно простые правила. В игру играют два игрока, которые по очереди размещают чёрные и белые камни (игровые фишки, которые в современных вариантах игры изготавливают из стекла или пластика) на свободных пересечениях сетки 19х19 линий (9х9 или 13х13 в более простых вариантах игры).</p>
+    <p xml:lang="sa">किगो लोकप्रियस्य गो-क्रीडायाः मुक्त-स्रोत-कार्यन्वयनम् अस्ति । गो इति द्वयोः क्रीडकयोः कृते रणनीतिकः बोर्डक्रीडा अस्ति । इगो (जापानी), वेइकी अथवा वेइ च'इ (चीनी) अथवा बदुक् (कोरियाई) इति अपि ज्ञायते । गोः सरलनियमानाम् अभावे अपि रणनीतिकजटिलतायाः समृद्धत्वेन प्रसिद्धः अस्ति । क्रीडां द्वौ क्रीडकौ क्रीडतः ये क्रमेण कृष्णशुक्लशिलाः (क्रीडाखण्डाः, इदानीं प्रायः काचस्य वा प्लास्टिकस्य वा निर्मिताः) १९x१९ रेखानां (सुलभक्रीडाणां कृते ९x९ वा १३x१३ वा) जालस्य रिक्तचतुष्पथयोः स्थापयन्ति</p>
     <p xml:lang="sk">Kigo je open souce implementácia populárnej hry Go. To je strategická dosková hra pre dvoch hráčov. Známa je aj ako igo (Japonsko), weigi alebo wei ch'i (Čína) alebo baduk (Kórea). Go je známa svojou strategickou zložitosťou pri jednoduchých pravidlách. Hru hrajú dvaja hráči, ktorí kladú čierne a biele kamene na priesečníky mriežky 19x19 bodov (9x9 alebo 13x13 pre jednoduchšie hry).</p>
     <p xml:lang="sl">Kigo je odprtokodna izvedba priljubljene igre Go. Gre za strateško namizno igro za dva igralca, ki je poznana tudi pod imeni igo (japonščina), weiqi oz. wei ch'i (kitajščina) ali baduk (korejščina). Go je kljub preprostim pravilom strateško kompleksna igra. Igrata dva igralca, ki na prazna križišča mreže velikosti 19x19 črt (lažje igre so velike 9x9 ali 13x13) izmenično postavljata črne in bele kamne (igralne žetone, sedaj običajno izdelane iz stekla ali plastike).</p>
     <p xml:lang="sr">Киго је отворенокодна изведба популарне игре го. Го је стратешка игла на табли за два играча. Такође је позната као иго (јапански), вејћи (кинески) и бадук (корејски). Го је познат по томе што је богат стратешком сложеношћу и поред једноставних правила. Партију играју два играча који наизменично стављају црне и беле каменове (играчке фигуре, обично начињене од стакла или пластике) на слободне пресеке у мрежи од 19×19 линија (за лакше партије 9×9 или 13×13).</p>
