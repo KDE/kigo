@@ -216,7 +216,7 @@ msgstr "回合工具栏"
 #, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr ""
+msgstr "开始新游戏..."
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
@@ -227,19 +227,19 @@ msgstr "Kigo 游戏文件 (*.sgf)"
 #, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
-msgstr ""
+msgstr "加载游戏存档..."
 
 #: gui/mainwindow.cpp:136
 #, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr ""
+msgstr "无法加载游戏存档..."
 
 #: gui/mainwindow.cpp:174
 #, kde-format
 msgctxt "@info"
 msgid "Game saved…"
-msgstr ""
+msgstr "游戏已保存..."
 
 #: gui/mainwindow.cpp:176
 #, kde-format
@@ -251,7 +251,7 @@ msgstr "无法保存游戏。"
 #, kde-format
 msgctxt "@info"
 msgid "Game started…"
-msgstr ""
+msgstr "游戏已开始..."
 
 #: gui/mainwindow.cpp:248
 #, kde-format
@@ -279,13 +279,13 @@ msgstr "%1 胜出 %2 目 (总 %3 和 %4)。"
 #, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr ""
+msgstr "悔棋。"
 
 #: gui/mainwindow.cpp:274
 #, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr ""
+msgstr "重下。"
 
 #: gui/mainwindow.cpp:298
 #, kde-format
@@ -303,25 +303,25 @@ msgstr "主题"
 #, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr ""
+msgstr "后端已更改，需要重启..."
 
 #: gui/mainwindow.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr ""
+msgstr "白棋跳过。"
 
 #: gui/mainwindow.cpp:369
 #, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr ""
+msgstr "黑棋跳过。"
 
 #: gui/mainwindow.cpp:380
 #, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
-msgstr ""
+msgstr "获取更多游戏..."
 
 #: gui/mainwindow.cpp:386
 #, kde-format
@@ -426,7 +426,7 @@ msgstr ""
 #: gui/widgets/errorwidget.ui:49
 #, kde-format
 msgid "Configure Kigo…"
-msgstr ""
+msgstr "配置 Kigo..."
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
