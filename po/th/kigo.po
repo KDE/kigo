@@ -2,20 +2,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Thanomsub Noppaburana <donga.nb@gmail.com>, 2010.
+# SPDX-FileCopyrightText: 2025 Pongsakorn S. <kde@xerusion.me>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2010-03-22 23:44+0700\n"
-"Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
-"Language-Team: Thai <thai-l10n@googlegroups.com>\n"
+"PO-Revision-Date: 2025-03-03 20:07+0700\n"
+"Last-Translator: Pongsakorn S. <kde@xerusion.me>\n"
+"Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 24.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -322,7 +323,7 @@ msgstr "ค่าทั่วไป"
 #| msgid "Themes"
 msgctxt "@title:tab"
 msgid "Themes"
-msgstr "ชุดตกแต่ง"
+msgstr "ธีม"
 
 #: gui/mainwindow.cpp:317
 #, fuzzy, kde-format
@@ -796,7 +797,7 @@ msgstr "คำสั่งของกลไกเกมปัจจุบัน
 #: kigo.kcfg:21
 #, kde-format
 msgid "The graphical theme to be used"
-msgstr "ชุดตกแต่งกราฟิกที่จะใช้"
+msgstr "ธีมกราฟิกที่จะใช้"
 
 #. i18n: ectx: label, entry (ShowBoardLabels), group (UserInterface)
 #: kigo.kcfg:25
@@ -919,7 +920,7 @@ msgstr "Arturo Silva"
 #: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
-msgstr "ผู้ออกแบบชุดตกแต่งปริยาย"
+msgstr "ผู้ออกแบบธีมปริยาย"
 
 #: main.cpp:73 main.cpp:74
 #, kde-format
