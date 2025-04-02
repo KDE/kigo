@@ -1,18 +1,17 @@
-# translation of kgo.po to Español
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kigo.po package.
+# Copyright (C) 2008-2025 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kigo package.
 #
-# Santi <santi@kde-es.org>, 2008.
-# Huever, 2009.
-# Kira J. Fernandez <kirajfdez@gmail.com>, 2010, 2012.
+# SPDX-FileCopyrightText: 2008 Santi <santi@kde-es.org>
+# SPDX-FileCopyrightText: 2010, 2012 Kira J. Fernandez <kirajfdez@gmail.com>
 # SPDX-FileCopyrightText: 2016, 2017, 2021, 2023, 2024 Eloy Cuadra <ecuadra@eloihr.net>
-# Sofía Priego <spriego@darksylvania.net>, %Y.
+# SPDX-FileCopyrightText: 2024, 2025 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kgo\n"
+"Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2024-05-05 03:14+0100\n"
+"PO-Revision-Date: 2025-04-01 01:40+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -223,7 +222,7 @@ msgstr "Barra de herramientas de movimiento"
 #, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr "Configurar una partida nueva..."
+msgstr "Configurar una partida nueva…"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
@@ -234,7 +233,7 @@ msgstr "Archivos de juego de Kigo (*.sgf)"
 #, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
-msgstr "Configurar una partida cargada..."
+msgstr "Configurar una partida cargada…"
 
 #: gui/mainwindow.cpp:136
 #, kde-format
@@ -258,7 +257,7 @@ msgstr "No se ha podido guardar el juego."
 #, kde-format
 msgctxt "@info"
 msgid "Game started…"
-msgstr "Partida comenzada..."
+msgstr "Partida comenzada…"
 
 #: gui/mainwindow.cpp:248
 #, kde-format
@@ -310,7 +309,7 @@ msgstr "Temas"
 #, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr "El motor de juego ha cambiado. Es necesario reiniciar..."
+msgstr "El motor de juego ha cambiado. Es necesario reiniciar…"
 
 #: gui/mainwindow.cpp:367
 #, kde-format
@@ -328,7 +327,7 @@ msgstr "Las negras pasan."
 #, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
-msgstr "Consigue más juegos..."
+msgstr "Consigue más juegos…"
 
 #: gui/mainwindow.cpp:386
 #, kde-format
@@ -433,7 +432,7 @@ msgstr ""
 #: gui/widgets/errorwidget.ui:49
 #, kde-format
 msgid "Configure Kigo…"
-msgstr "Configurar Kigo..."
+msgstr "Configurar Kigo…"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
@@ -895,20 +894,3 @@ msgstr "archivo de juego"
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr "[archivo de juego]"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "White %1"
-#~ msgstr "Blancas %1"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "Black %1"
-#~ msgstr "Negras %1"
-
-#~ msgid " Stones"
-#~ msgstr "Piezas"
-
-#~ msgid "List of available/configured engine backends"
-#~ msgstr "Lista de motores disponibles/configurados"
-
-#~ msgid "List of backend commands corresponding to the engine list"
-#~ msgstr "Relación de comandos que corresponden a la lista de motores"
