@@ -1,5 +1,5 @@
 # Spanish translations for kigo.po package.
-# Copyright (C) 2008-2025 This_file_is_part_of_KDE
+# Copyright (C) 2008-2025 This file is copyright:
 # This file is distributed under the same license as the kigo package.
 #
 # SPDX-FileCopyrightText: 2008 Santi <santi@kde-es.org>
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2025-04-01 01:36+0100\n"
+"PO-Revision-Date: 2025-06-11 16:56+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
