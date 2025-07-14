@@ -869,7 +869,7 @@ msgstr "Arturo Silva"
 #: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
-msgstr "ნაგულისხმები თემის დიზაინერი"
+msgstr "ნაგულისხმევი თემის დიზაინერი"
 
 #: main.cpp:73 main.cpp:74
 #, kde-format
