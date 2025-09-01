@@ -96,7 +96,7 @@ msgstr "Executable:"
 #: gui/config/generalconfig.ui:42
 #, kde-format
 msgid "Select the executable file to start the Go engine"
-msgstr "Seleccioneu el fitxer executable per a iniciar el motor de Go"
+msgstr "Trieu el fitxer executable per a iniciar el motor de Go"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/config/generalconfig.ui:49
@@ -148,10 +148,10 @@ msgstr ""
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Seleccioneu un motor de Go "
-"que admeta el <span style=\" font-style:italic;\">Protocol de Text GNU Go "
-"(GTP)</span>. La llum de l'indicador es tornarà verda quan funcione el "
-"dorsal seleccionat.</p></body></html>"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Trieu un motor de Go que "
+"admeta el <span style=\" font-style:italic;\">Protocol de Text GNU Go (GTP)</"
+"span>. La llum de l'indicador es tornarà verda quan funcione el dorsal "
+"seleccionat.</p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
 #: gui/config/generalconfig.ui:128
