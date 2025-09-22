@@ -236,7 +236,7 @@
 ><guimenu
 >Juego</guimenu
 > <guimenuitem
->Cargar...</guimenuitem
+>Cargar…</guimenuitem
 ></menuchoice
 > (el menú se muestra en la captura de pantalla anterior). Debería aparecer un selector de archivos; úsalo para seleccionar y cargar la partida guardada que quieras continuar. </para>
 
@@ -268,7 +268,7 @@
 ><guimenu
 >Juego</guimenu
 > <guimenuitem
->Obtener más partidas...</guimenuitem
+>Obtener más partidas…</guimenuitem
 ></menuchoice
 >. Deberías ver un diálogo que te permite elegir el contenido que se debe descargar. </para>
 
@@ -453,7 +453,7 @@
 > <guimenu
 >Juego</guimenu
 > <guimenuitem
->Cargar...</guimenuitem
+>Cargar…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -476,7 +476,7 @@
 > <guimenu
 >Juego</guimenu
 > <guimenuitem
->Obtener más partidas...</guimenuitem
+>Obtener más partidas…</guimenuitem
 > </menuchoice
 ></term>
     <listitem
@@ -899,7 +899,7 @@
 ><guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Configurar &kigo;...</guimenuitem
+>Configurar &kigo;…</guimenuitem
 ></menuchoice
 >. </para>
 
@@ -921,7 +921,7 @@
 ><guimenu
 >Preferencias</guimenu
 > <guimenuitem
->Configurar barras de herramientas...</guimenuitem
+>Configurar barras de herramientas…</guimenuitem
 ></menuchoice
 >. Puedes hacer lo mismo para todos los atajos de teclado que usa el juego. Si quieres tener el máximo espacio disponible para el campo de juego, también puedes ocultar la barra de herramientas y la mayoría de <emphasis
 >widgets</emphasis
