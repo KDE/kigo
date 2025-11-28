@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2025-11-28 00:39+0000\n"
 "PO-Revision-Date: 2024-09-23 15:20+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -516,7 +516,7 @@ msgid "Move:"
 msgstr "Taşı:"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
-#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
+#: gui/widgets/gamewidget.ui:184
 #, kde-format
 msgid "White Player"
 msgstr "Beyaz Oyuncu"
@@ -529,7 +529,7 @@ msgid "Captures:"
 msgstr "Yakalamalar:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
-#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
+#: gui/widgets/gamewidget.ui:233
 #, kde-format
 msgid "Black Player"
 msgstr "Siyah Oyuncu"

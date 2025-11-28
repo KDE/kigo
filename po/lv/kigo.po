@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2025-11-28 00:39+0000\n"
 "PO-Revision-Date: 2024-09-11 12:52+0300\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -515,7 +515,7 @@ msgid "Move:"
 msgstr "Gājiens:"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
-#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
+#: gui/widgets/gamewidget.ui:184
 #, kde-format
 msgid "White Player"
 msgstr "Baltais spēlētājs"
@@ -528,7 +528,7 @@ msgid "Captures:"
 msgstr "Notvertie:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
-#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
+#: gui/widgets/gamewidget.ui:233
 #, kde-format
 msgid "Black Player"
 msgstr "Melnais spēlētājs"

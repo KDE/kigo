@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: desktop_kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2025-11-28 00:39+0000\n"
 "PO-Revision-Date: 2008-11-06 22:08+0100\n"
 "Last-Translator: Eduard Werner <edi.werner@gmx.de>\n"
 "Language-Team: en_US <kde-i18n-doc@lists.kde.org>\n"
@@ -539,7 +539,7 @@ msgid "Move:"
 msgstr "&Sunyć"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
-#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
+#: gui/widgets/gamewidget.ui:184
 #, fuzzy, kde-format
 #| msgid "White Space"
 msgid "White Player"
@@ -553,7 +553,7 @@ msgid "Captures:"
 msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
-#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
+#: gui/widgets/gamewidget.ui:233
 #, fuzzy, kde-format
 #| msgid "Backspace"
 msgid "Black Player"

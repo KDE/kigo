@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2025-11-28 00:39+0000\n"
 "PO-Revision-Date: 2009-10-23 15:12+0700\n"
 "Last-Translator: Morn Met\n"
 "Language-Team: Khmer <kde-i18n-doc@kde.org>\n"
@@ -544,7 +544,7 @@ msgid "Move:"
 msgstr "ការ​ផ្លាស់ទី ៖"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
-#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
+#: gui/widgets/gamewidget.ui:184
 #, kde-format
 msgid "White Player"
 msgstr "អ្នកលេង​ពណ៌​ស"
@@ -557,7 +557,7 @@ msgid "Captures:"
 msgstr "ចាប់​យក ៖"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
-#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
+#: gui/widgets/gamewidget.ui:233
 #, kde-format
 msgid "Black Player"
 msgstr "អ្នកលេង​ពណ៌​ខ្មៅ"

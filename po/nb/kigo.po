@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2025-11-28 00:39+0000\n"
 "PO-Revision-Date: 2012-12-11 20:32+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -512,7 +512,7 @@ msgid "Move:"
 msgstr "Trekk:"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteNameLabel)
-#: gui/widgets/gamewidget.ui:184 kigo.kcfg:60
+#: gui/widgets/gamewidget.ui:184
 #, kde-format
 msgid "White Player"
 msgstr "Hvit spiller"
@@ -525,7 +525,7 @@ msgid "Captures:"
 msgstr "Fanger:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
-#: gui/widgets/gamewidget.ui:233 kigo.kcfg:46
+#: gui/widgets/gamewidget.ui:233
 #, kde-format
 msgid "Black Player"
 msgstr "Svart spiller"
