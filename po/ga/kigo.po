@@ -28,64 +28,52 @@ msgid "Your emails"
 msgstr "kscanne@gmail.com"
 
 #: game/game.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
-msgstr "Bán %1"
+msgstr ""
 
 #: game/game.cpp:320 game/game.cpp:390
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
-msgstr "Lig Bán a bheart thar"
+msgstr ""
 
 #: game/game.cpp:326
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
-msgstr "Dubh %1"
+msgstr ""
 
 #: game/game.cpp:329 game/game.cpp:392
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black passed"
-msgstr "Lig Dubh a bheart thar"
+msgstr ""
 
 #: game/game.cpp:399
-#, fuzzy, kde-format
-#| msgid "White resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White resigned"
-msgstr "D'éirigh Bán as"
+msgstr ""
 
 #: game/game.cpp:401
-#, fuzzy, kde-format
-#| msgid "Black resigned"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "Black resigned"
-msgstr "D'éirigh Dubh as"
+msgstr ""
 
 #: game/game.cpp:409
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
-msgstr "Bán %1"
+msgstr ""
 
 #: game/game.cpp:411
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
-msgstr "Dubh %1"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, backendGroupBox)
 #: gui/config/generalconfig.ui:17
@@ -227,11 +215,10 @@ msgid "Move Toolbar"
 msgstr "Barra Uirlisí Bogtha"
 
 #: gui/mainwindow.cpp:90
-#, fuzzy, kde-format
-#| msgid "Set up a new game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr "Socraigh cluiche nua..."
+msgstr ""
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
@@ -239,55 +226,46 @@ msgid "Kigo Game Files (*.sgf)"
 msgstr ""
 
 #: gui/mainwindow.cpp:133
-#, fuzzy, kde-format
-#| msgid "Set up a loaded game..."
+#, kde-format
 msgctxt "@info"
 msgid "Set up a loaded game…"
-msgstr "Socraigh cluiche luchtaithe..."
+msgstr ""
 
 #: gui/mainwindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Unable to load game..."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr "Ní féidir an cluiche a luchtú..."
+msgstr ""
 
 #: gui/mainwindow.cpp:174
-#, fuzzy, kde-format
-#| msgid "Game saved..."
+#, kde-format
 msgctxt "@info"
 msgid "Game saved…"
-msgstr "Sábháladh an cluiche..."
+msgstr ""
 
 #: gui/mainwindow.cpp:176
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to save game."
-msgstr "Ní féidir an cluiche a shábháil."
+msgstr ""
 
 #: gui/mainwindow.cpp:223
-#, fuzzy, kde-format
-#| msgid "Game started..."
+#, kde-format
 msgctxt "@info"
 msgid "Game started…"
-msgstr "Tosaíodh an cluiche..."
+msgstr ""
 
 #: gui/mainwindow.cpp:248
-#, fuzzy, kde-format
-#| msgctxt "Indication who played the last move"
-#| msgid "%1 (white)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (White)"
-msgstr "%1 (bán)"
+msgstr ""
 
 #: gui/mainwindow.cpp:250
-#, fuzzy, kde-format
-#| msgctxt "Indication who played the last move"
-#| msgid "%1 (black)"
+#, kde-format
 msgctxt "@item:intext"
 msgid "%1 (Black)"
-msgstr "%1 (dubh)"
+msgstr ""
 
 #: gui/mainwindow.cpp:255
 #, kde-format
@@ -300,61 +278,52 @@ msgid "%1 won with a score of %2 (bounds: %3 and %4)."
 msgstr "Bhuaigh %1 le scór %2 (teorainneacha: %3 agus %4)."
 
 #: gui/mainwindow.cpp:266
-#, fuzzy, kde-format
-#| msgid "Undone move"
+#, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr "Beart cealaithe."
+msgstr ""
 
 #: gui/mainwindow.cpp:274
-#, fuzzy, kde-format
-#| msgid "Redone move"
+#, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr "Beart athdhéanta"
+msgstr ""
 
 #: gui/mainwindow.cpp:298
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
-msgstr "Ginearálta"
+msgstr ""
 
 #: gui/mainwindow.cpp:300
-#, fuzzy, kde-format
-#| msgid "Themes"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Themes"
-msgstr "Téamaí"
+msgstr ""
 
 #: gui/mainwindow.cpp:317
-#, fuzzy, kde-format
-#| msgid "Backend was changed, restart necessary..."
+#, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr "Athraíodh an t-inneall, caithfidh tú atosú..."
+msgstr ""
 
 #: gui/mainwindow.cpp:367
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr "Lig Bán a bheart thar"
+msgstr ""
 
 #: gui/mainwindow.cpp:369
-#, fuzzy, kde-format
-#| msgid "Black passed"
+#, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr "Lig Dubh a bheart thar"
+msgstr ""
 
 #: gui/mainwindow.cpp:380
-#, fuzzy, kde-format
-#| msgctxt "@action"
-#| msgid "Get More Games..."
+#, kde-format
 msgctxt "@action"
 msgid "Get More Games…"
-msgstr "Faigh Tuilleadh Cluichí..."
+msgstr ""
 
 #: gui/mainwindow.cpp:386
 #, kde-format
@@ -375,12 +344,10 @@ msgid "Pass Move"
 msgstr "Lig an Beart Thart"
 
 #: gui/mainwindow.cpp:405
-#, fuzzy, kde-format
-#| msgctxt "@action:inmenu View"
-#| msgid "Show Move &Numbers"
+#, kde-format
 msgctxt "@option:check"
 msgid "Show Move &Numbers"
-msgstr "Taispeái&n Uimhreacha na mBeart"
+msgstr ""
 
 #: gui/mainwindow.cpp:418
 #, kde-format
@@ -401,11 +368,10 @@ msgid "Moves"
 msgstr "Bearta"
 
 #: gui/mainwindow.cpp:442
-#, fuzzy, kde-format
-#| msgid "No move"
+#, kde-format
 msgctxt "@info"
 msgid "No move"
-msgstr "Gan bheart"
+msgstr ""
 
 #: gui/mainwindow.cpp:453
 #, kde-format
@@ -461,10 +427,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
-#, fuzzy, kde-format
-#| msgid "Configure Kigo..."
+#, kde-format
 msgid "Configure Kigo…"
-msgstr "Cumraigh Kigo..."
+msgstr ""
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
@@ -578,17 +543,12 @@ msgid "Finish Game"
 msgstr "Críochnaigh an Cluiche"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
-#| msgid " Stone"
-#| msgid_plural " Stones"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
-msgstr[0] " Chloch"
-msgstr[1] " Chloch"
-msgstr[2] " Chloch"
-msgstr[3] " gCloch"
-msgstr[4] " Cloch"
+msgstr[0] ""
+msgstr[1] ""
 
 #: gui/widgets/setupwidget.cpp:160
 #, kde-format
@@ -597,9 +557,6 @@ msgid "%1 minute"
 msgid_plural "%1 minutes"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 #: gui/widgets/setupwidget.cpp:162
 #, kde-format
@@ -608,16 +565,12 @@ msgid "%1 hour, %2"
 msgid_plural "%1 hours, %2"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
 
 #: gui/widgets/setupwidget.cpp:184
-#, fuzzy, kde-format
-#| msgid " of %1"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " of %1"
-msgstr " as %1"
+msgstr ""
 
 #: gui/widgets/setupwidget.cpp:227
 #, kde-format
@@ -638,31 +591,27 @@ msgstr "Méid an chláir:"
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeSmall)
 #: gui/widgets/setupwidget.ui:37
-#, fuzzy, kde-format
-#| msgid "Tiny (9x9)"
+#, kde-format
 msgid "&Tiny (9x9)"
-msgstr "An-Bheag (9×9)"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeMedium)
 #: gui/widgets/setupwidget.ui:47
-#, fuzzy, kde-format
-#| msgid "Small (13x13)"
+#, kde-format
 msgid "Small (&13x13)"
-msgstr "Beag (13×13)"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeBig)
 #: gui/widgets/setupwidget.ui:54
-#, fuzzy, kde-format
-#| msgid "Normal (19x19)"
+#, kde-format
 msgid "No&rmal (19x19)"
-msgstr "Gnáthmhéid (19×19)"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
-#, fuzzy, kde-format
-#| msgid "Custom:"
+#, kde-format
 msgid "&Custom:"
-msgstr "Saincheaptha:"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:126
@@ -754,10 +703,9 @@ msgstr "&Ríomhaire"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: gui/widgets/setupwidget.ui:595
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgid "&Name:"
-msgstr "Ainm:"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, label1)
 #. i18n: ectx: property (text), widget (QLabel, label1_3)
@@ -943,125 +891,3 @@ msgstr ""
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr ""
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "White %1"
-#~ msgstr "Bán %1"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "Black %1"
-#~ msgstr "Dubh %1"
-
-#~ msgid " Stones"
-#~ msgstr " Cloch"
-
-#~ msgid "List of available/configured engine backends"
-#~ msgstr "Liosta de na hinnill atá ar fáil/cumraithe"
-
-#~ msgid "List of backend commands corresponding to the engine list"
-#~ msgstr "Liosta d'orduithe a fhreagraíonn don liosta inneall"
-
-#~ msgid "for White"
-#~ msgstr "do Bhán"
-
-#~ msgid "for Black"
-#~ msgstr "do Dhubh"
-
-#~ msgid "Human"
-#~ msgstr "Duine"
-
-#~ msgid "New Game"
-#~ msgstr "Cluiche Nua"
-
-#~ msgid "Fixed Handicap"
-#~ msgstr "Bac Socraithe"
-
-#~ msgid "Loaded Game"
-#~ msgstr "Cluiche Luchtaithe"
-
-#~ msgid "Computer (Level 10)"
-#~ msgstr "Ríomhaire (Leibhéal 10)"
-
-#~ msgid "Other:"
-#~ msgstr "Eile:"
-
-#~ msgid "0"
-#~ msgstr "0"
-
-#~ msgid "00:00"
-#~ msgstr "00:00"
-
-#~ msgid "Form"
-#~ msgstr "Foirm"
-
-#~ msgctxt "@action"
-#~ msgid "Start"
-#~ msgstr "Tosaigh"
-
-#~ msgctxt "@action"
-#~ msgid "Finish"
-#~ msgstr "Críochnaigh"
-
-#~ msgid "White:"
-#~ msgstr "Bán:"
-
-#~ msgid "Black:"
-#~ msgstr "Dubh:"
-
-#~ msgid "White"
-#~ msgstr "Bán"
-
-#~ msgid "Black"
-#~ msgstr "Dubh"
-
-#~ msgid "Ctrl+E"
-#~ msgstr "Ctrl+E"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "&Quit"
-#~ msgstr "&Scoir"
-
-#~ msgid "Error message"
-#~ msgstr "Teachtaireacht earráide"
-
-#~ msgid "Ctrl+S"
-#~ msgstr "Ctrl+S"
-
-#~ msgid "KGo"
-#~ msgstr "KGo"
-
-#~ msgid "Go engine configuration"
-#~ msgstr "Cumraíocht inneall \"Go\""
-
-#~ msgid "Expert configuration"
-#~ msgstr "Cumraíocht saineolaí"
-
-#~ msgid "Test"
-#~ msgstr "Tástáil"
-
-#~ msgid "Difficulty level"
-#~ msgstr "Leibhéal deacrachta"
-
-#~ msgid "Easy"
-#~ msgstr "Éasca"
-
-#~ msgid "Hard"
-#~ msgstr "Crua"
-
-#~ msgid "Statistics"
-#~ msgstr "Staitisticí"
-
-# Pretty sure not "Amharc ar socruithe"
-#~ msgid "View settings"
-#~ msgstr "Socruithe amhairc"
-
-#~ msgid "&View"
-#~ msgstr "&Amharc"
-
-#~ msgid "Go Settings"
-#~ msgstr "Socruithe \"Go\""
-
-#~ msgid "Computer Difficulty"
-#~ msgstr "Leibhéal an Ríomhaire"
