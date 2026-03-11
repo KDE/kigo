@@ -895,11 +895,3 @@ msgstr "fitxer de partida"
 msgctxt "@info:shell"
 msgid "[gamefile]"
 msgstr "[fitxer de partida]"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "White %1"
-#~ msgstr "Blanques %1"
-
-#~ msgctxt "%1 response from Go engine"
-#~ msgid "Black %1"
-#~ msgstr "Negres %1"
