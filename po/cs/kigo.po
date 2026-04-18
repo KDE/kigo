@@ -4,31 +4,32 @@
 # Vít Pelčák <vit@pelcak.org>, 2011, 2012, 2014, 2017.
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012.
 # SPDX-FileCopyrightText: 2021, 2023, 2024 Vit Pelcak <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2026 Libor Filípek <filipek.libor@protonmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-28 00:39+0000\n"
-"PO-Revision-Date: 2024-05-31 13:59+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
-"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2026-04-17 11:59+0200\n"
+"Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
+"Language-Team: \n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Poedit 3.8\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Vít Pelčák"
+msgstr "Vít Pelčák,Libor Filípek"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "vit@pelcak.org"
+msgstr "vit@pelcak.org,libor.filipek@gmail.com"
 
 #: game/game.cpp:317
 #, kde-format
@@ -40,7 +41,7 @@ msgstr "Bílá %1"
 #, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
-msgstr ""
+msgstr "Bílý se zdržel tahu"
 
 #: game/game.cpp:326
 #, kde-format
@@ -52,7 +53,7 @@ msgstr "Černá %1"
 #, kde-format
 msgctxt "@item undo/redo"
 msgid "Black passed"
-msgstr ""
+msgstr "Černý se zdržel tahu"
 
 #: game/game.cpp:399
 #, kde-format
@@ -94,7 +95,7 @@ msgstr "Program:"
 #: gui/config/generalconfig.ui:42
 #, kde-format
 msgid "Select the executable file to start the Go engine"
-msgstr ""
+msgstr "Vyberte spustitelný soubor pro spuštění jádra Go"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/config/generalconfig.ui:49
@@ -106,19 +107,19 @@ msgstr "Parametry:"
 #: gui/config/generalconfig.ui:62
 #, kde-format
 msgid "Add here the necessary parameters to start the Engine in GTP mode"
-msgstr ""
+msgstr "Zde zadejte parametry potřebné ke spuštění jádra v režimu GTP"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
 #: gui/config/generalconfig.ui:75
 #, kde-format
 msgid "This is the resulting engine command which will be used by Kigo"
-msgstr ""
+msgstr "Toto je výsledný příkaz pro jádro, které bude používat Kigo"
 
 #. i18n: ectx: property (toolTip), widget (KLed, engineLed)
 #: gui/config/generalconfig.ui:94
 #, kde-format
 msgid "Indicates whether the Go engine works correctly"
-msgstr ""
+msgstr "Ukazuje, zda jádro Go funguje správně"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: gui/config/generalconfig.ui:108
@@ -137,6 +138,18 @@ msgid ""
 "(GTP)</span>. The indicator light turns green when the selected backend is "
 "working.</p></body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Vyberte prosím jádro Go, "
+"které podporuje <span style=\" font-style:italic;\">GnuGo Text Protokol "
+"(GTP)</span>. Indikátor se rozsvítí zeleně, když podpůrná vrstva funguje.</"
+"p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
 #: gui/config/generalconfig.ui:128
@@ -148,13 +161,13 @@ msgstr "Vzhled"
 #: gui/config/generalconfig.ui:137
 #, kde-format
 msgid "Display Board Labels"
-msgstr ""
+msgstr "Popisky na desce"
 
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: gui/config/generalconfig.ui:144
 #, kde-format
 msgid "Hint Visibility Time:"
-msgstr ""
+msgstr "Doba viditelnosti nápovědy:"
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, kcfg_HintVisibleTime)
 #: gui/config/generalconfig.ui:163
@@ -202,13 +215,13 @@ msgstr "Hlavní panel nástrojů"
 #, kde-format
 msgctxt "@title:menu"
 msgid "Move Toolbar"
-msgstr ""
+msgstr "Panel tahů"
 
 #: gui/mainwindow.cpp:90
 #, kde-format
 msgctxt "@info"
 msgid "Set up a new game…"
-msgstr "Nastavit novou hru..."
+msgstr "Nastavit novou hru…"
 
 #: gui/mainwindow.cpp:96 gui/mainwindow.cpp:170
 #, kde-format
@@ -260,24 +273,24 @@ msgstr "%1 (Černá)"
 #: gui/mainwindow.cpp:255
 #, kde-format
 msgid "%1 won with a score of %2."
-msgstr ""
+msgstr "%1 zvítězil se skóre %2."
 
 #: gui/mainwindow.cpp:258
 #, kde-format
 msgid "%1 won with a score of %2 (bounds: %3 and %4)."
-msgstr ""
+msgstr "%1 zvítězil se skóre %2 (rozmezí: %3 a %4)."
 
 #: gui/mainwindow.cpp:266
 #, kde-format
 msgctxt "@info"
 msgid "Undone move."
-msgstr "Vzít zpět poslední pohyb."
+msgstr "Vzít zpět poslední tah."
 
 #: gui/mainwindow.cpp:274
 #, kde-format
 msgctxt "@info"
 msgid "Redone move."
-msgstr ""
+msgstr "Zopakovat tah."
 
 #: gui/mainwindow.cpp:298
 #, kde-format
@@ -295,19 +308,19 @@ msgstr "Motivy"
 #, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr ""
+msgstr "Podpůrná vrstva byla změněna, je třeba restartovat…"
 
 #: gui/mainwindow.cpp:367
 #, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr ""
+msgstr "Bílý se zdržel tahu."
 
 #: gui/mainwindow.cpp:369
 #, kde-format
 msgctxt "@info"
 msgid "Black passed."
-msgstr ""
+msgstr "Černý se zdržel tahu."
 
 #: gui/mainwindow.cpp:380
 #, kde-format
@@ -331,13 +344,13 @@ msgstr "Ukončit hru"
 #, kde-format
 msgctxt "@action:inmenu Move"
 msgid "Pass Move"
-msgstr ""
+msgstr "Vzdát se tahu"
 
 #: gui/mainwindow.cpp:405
 #, kde-format
 msgctxt "@option:check"
 msgid "Show Move &Numbers"
-msgstr ""
+msgstr "Zobrazit čísla &tahů"
 
 #: gui/mainwindow.cpp:418
 #, kde-format
@@ -361,7 +374,7 @@ msgstr "Tahy"
 #, kde-format
 msgctxt "@info"
 msgid "No move"
-msgstr ""
+msgstr "Žádný tah"
 
 #: gui/mainwindow.cpp:453
 #, kde-format
@@ -394,17 +407,37 @@ msgid ""
 "engine. Otherwise you should install a Go engine (like GnuGo).</span></p></"
 "body></html>"
 msgstr ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
+"REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
+"\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'DejaVu Sans'; font-size:8pt; font-"
+"weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Kigo nemohl najít "
+"podpůrnou vrstvu Go.</span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
+"margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
+"family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
+"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
+"family:'Sans Serif'; font-size:10pt;\">Pokud máte jistotu, že jste již "
+"nainstalovali vhodné jádro Go, můžete Kigo nastavit tak, aby toto jádro "
+"používalo. V opačném případě byste měli nainstalovat jádro Go (například "
+"GnuGo).</span></p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
 #, kde-format
 msgid "Configure Kigo…"
-msgstr ""
+msgstr "Nastavit Kigo…"
 
 #: gui/widgets/gamewidget.cpp:41 gui/widgets/gamewidget.cpp:46
 #, kde-format
 msgid "Computer (level %1)"
-msgstr ""
+msgstr "Počítač (úroveň %1)"
 
 #: gui/widgets/gamewidget.cpp:49
 #, kde-format
@@ -429,26 +462,26 @@ msgstr "%1 (černá)"
 #: gui/widgets/gamewidget.cpp:77
 #, kde-format
 msgid "White's turn"
-msgstr ""
+msgstr "Tah bílého"
 
 #: gui/widgets/gamewidget.cpp:81
 #, kde-format
 msgid "Black's turn"
-msgstr ""
+msgstr "Tah černého"
 
 #: gui/widgets/gamewidget.cpp:86 gui/widgets/gamewidget.cpp:87
 #, kde-format
 msgid "%1 capture"
 msgid_plural "%1 captures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%1 sebraný"
+msgstr[1] "%1 sebrané"
+msgstr[2] "%1 sebraných"
 
 #. i18n: ectx: property (text), widget (QLabel, label_5)
 #: gui/widgets/gamewidget.ui:19 gui/widgets/setupwidget.ui:103
 #, kde-format
 msgid "Handicap:"
-msgstr ""
+msgstr "Hendikep:"
 
 #. i18n: ectx: property (text), widget (QLabel, handicapLabel)
 #: gui/widgets/gamewidget.ui:35
@@ -487,14 +520,14 @@ msgstr "Tah:"
 #: gui/widgets/gamewidget.ui:184
 #, kde-format
 msgid "White Player"
-msgstr "Bílý hráč "
+msgstr "Bílý hráč"
 
 #. i18n: ectx: property (text), widget (QLabel, whiteCapturesLabel)
 #. i18n: ectx: property (text), widget (QLabel, blackCapturesLabel)
 #: gui/widgets/gamewidget.ui:191 gui/widgets/gamewidget.ui:265
 #, kde-format
 msgid "Captures:"
-msgstr ""
+msgstr "Sebrané:"
 
 #. i18n: ectx: property (text), widget (QLabel, blackNameLabel)
 #: gui/widgets/gamewidget.ui:233
@@ -544,13 +577,13 @@ msgstr " z %1"
 #: gui/widgets/setupwidget.cpp:227
 #, kde-format
 msgid "White to play"
-msgstr ""
+msgstr "Bílý je na tahu"
 
 #. i18n: ectx: property (text), widget (QLabel, playerLabel)
 #: gui/widgets/setupwidget.cpp:229 gui/widgets/setupwidget.ui:448
 #, kde-format
 msgid "Black to play"
-msgstr ""
+msgstr "Černý je na tahu"
 
 #. i18n: ectx: property (text), widget (QLabel, label_12)
 #: gui/widgets/setupwidget.ui:30
@@ -589,12 +622,14 @@ msgid ""
 "Handicap stones are an advantage for the black player.\n"
 "Black gets a number of stones on the board before the game starts."
 msgstr ""
+"Handicapové kameny představují výhodu pro hráče hrajícího černými.\n"
+"Černý dostane před začátkem partie určitý počet kamenů na hrací desku."
 
 #. i18n: ectx: property (specialValueText), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:129
 #, kde-format
 msgid "No handicap"
-msgstr ""
+msgstr "Žádný hendikep"
 
 #. i18n: ectx: property (toolTip), widget (QDoubleSpinBox, komiSpinBox)
 #: gui/widgets/setupwidget.ui:171
@@ -603,12 +638,14 @@ msgid ""
 "Komi are points given to the white player at the end of the game.\n"
 "It balances out the advantage black has by making the first move."
 msgstr ""
+"Komi jsou body, které se na konci partie přidělují bílému hráči.\n"
+"Tím se vyrovnává výhoda, kterou má černý díky tomu, že hraje jako první."
 
 #. i18n: ectx: property (suffix), widget (QDoubleSpinBox, komiSpinBox)
 #: gui/widgets/setupwidget.ui:174
 #, kde-format
 msgid " Points"
-msgstr "Body"
+msgstr " Body"
 
 #. i18n: ectx: property (text), widget (QLabel, eventStaticLabel)
 #: gui/widgets/setupwidget.ui:237
@@ -656,7 +693,7 @@ msgstr " z 999"
 #: gui/widgets/setupwidget.ui:470
 #, kde-format
 msgid "Move "
-msgstr "Tah"
+msgstr "Tah "
 
 #. i18n: ectx: property (text), widget (QLabel, timeStaticLabel)
 #: gui/widgets/setupwidget.ui:489
@@ -712,7 +749,7 @@ msgstr "Spustit hru"
 #: kigo.kcfg:10
 #, kde-format
 msgid "The current game engine command with (optional) parameters"
-msgstr ""
+msgstr "Aktuální příkaz herního jádra s (volitelnými) parametry"
 
 #. i18n: ectx: label, entry (Theme), group (UserInterface)
 #: kigo.kcfg:21
@@ -724,25 +761,25 @@ msgstr "Grafický motiv, který má být použit"
 #: kigo.kcfg:25
 #, kde-format
 msgid "Determines whether board labels are shown"
-msgstr ""
+msgstr "Určuje, zda se zobrazují popisky desek"
 
 #. i18n: ectx: label, entry (ShowMoveNumbers), group (UserInterface)
 #: kigo.kcfg:29
 #, kde-format
 msgid "Move numbers are drawn onto stones if enabled"
-msgstr ""
+msgstr "Pokud je tato funkce povolena, na kameny se vyznačí čísla tahů"
 
 #. i18n: ectx: label, entry (HintVisibleTime), group (UserInterface)
 #: kigo.kcfg:33
 #, kde-format
 msgid "Number of seconds for which a hint is visible"
-msgstr ""
+msgstr "Počet sekund, po který je nápověda viditelná"
 
 #. i18n: ectx: label, entry (BlackPlayerHuman), group (Game)
 #: kigo.kcfg:41
 #, kde-format
 msgid "Is black a human player?"
-msgstr ""
+msgstr "Je černý lidský hráč?"
 
 #. i18n: ectx: label, entry (BlackPlayerName), group (Game)
 #: kigo.kcfg:45
@@ -754,13 +791,13 @@ msgstr "Jméno černého hráče"
 #: kigo.kcfg:49
 #, kde-format
 msgid "The strength of the black player"
-msgstr ""
+msgstr "Síla černého hráče"
 
 #. i18n: ectx: label, entry (WhitePlayerHuman), group (Game)
 #: kigo.kcfg:55
 #, kde-format
 msgid "Is white a human player?"
-msgstr ""
+msgstr "Je bílý lidský hráč?"
 
 #. i18n: ectx: label, entry (WhitePlayerName), group (Game)
 #: kigo.kcfg:59
@@ -772,13 +809,13 @@ msgstr "Jméno bílého hráče"
 #: kigo.kcfg:63
 #, kde-format
 msgid "The strength of the white player"
-msgstr ""
+msgstr "Síla bílého hráče"
 
 #. i18n: ectx: label, entry (BoardSize), group (Game)
 #: kigo.kcfg:69
 #, kde-format
 msgid "Go board size"
-msgstr ""
+msgstr "Rozměry desky na Go"
 
 #. i18n: ectx: label, entry (Komi), group (Game)
 #: kigo.kcfg:76
@@ -790,13 +827,13 @@ msgstr "Komi"
 #: kigo.kcfg:77
 #, kde-format
 msgid "With komi you can give the black player some extra points"
-msgstr ""
+msgstr "Díky komi můžete černému hráči přidělit pár bodů navíc"
 
 #. i18n: ectx: label, entry (FixedHandicapValue), group (Game)
 #: kigo.kcfg:83
 #, kde-format
 msgid "Extra stones for the black player"
-msgstr ""
+msgstr "Další kameny pro černého hráče"
 
 #: main.cpp:55
 #, kde-format
@@ -806,7 +843,7 @@ msgstr "Kigo"
 #: main.cpp:56
 #, kde-format
 msgid "KDE Go Board Game"
-msgstr ""
+msgstr "Desková hra KDE Go"
 
 #: main.cpp:57
 #, kde-format
@@ -831,7 +868,7 @@ msgstr "Yuri Chornoivan"
 #: main.cpp:60
 #, kde-format
 msgid "Documentation editor"
-msgstr ""
+msgstr "Editor dokumentace"
 
 #: main.cpp:62
 #, kde-format
@@ -841,13 +878,13 @@ msgstr "Arturo Silva"
 #: main.cpp:62
 #, kde-format
 msgid "Default theme designer"
-msgstr ""
+msgstr "Návrhář výchozích motivů"
 
 #: main.cpp:73 main.cpp:74
 #, kde-format
 msgctxt "@info:shell"
 msgid "Game to load (SGF file)"
-msgstr ""
+msgstr "Hra k načtení (soubor SGF)"
 
 #: main.cpp:73
 #, kde-format
