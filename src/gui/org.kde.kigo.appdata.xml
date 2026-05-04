@@ -155,6 +155,7 @@
     <binary>kigo</binary>
   </provides>
   <releases>
+    <release version="0.6.26041" date="2026-05-07"/>
     <release version="0.6.26040" date="2026-04-16"/>
     <release version="0.6.25123" date="2026-03-05"/>
     <release version="0.6.25122" date="2026-02-05"/>
