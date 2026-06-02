@@ -8,47 +8,43 @@ msgstr ""
 "Project-Id-Version: kigo\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-28 00:39+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-05-31 18:37-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+msgstr "ئابدۇقادىر ئابلىز، غەيرەت كەنجى"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
+msgstr "sahranbay@gmail.com, gheyret@gmail.com"
 
 #: game/game.cpp:317
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "White %1"
-msgstr "ئاق %1"
+msgstr ""
 
 #: game/game.cpp:320 game/game.cpp:390
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White passed"
-msgstr "ئاق"
+msgstr ""
 
 #: game/game.cpp:326
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 stone coordinate"
 msgid "Black %1"
-msgstr "قارا %1"
+msgstr ""
 
 #: game/game.cpp:329 game/game.cpp:392
 #, kde-format
@@ -57,11 +53,10 @@ msgid "Black passed"
 msgstr ""
 
 #: game/game.cpp:399
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@item undo/redo"
 msgid "White resigned"
-msgstr "ئاق"
+msgstr ""
 
 #: game/game.cpp:401
 #, kde-format
@@ -70,20 +65,16 @@ msgid "Black resigned"
 msgstr ""
 
 #: game/game.cpp:409
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "White %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "White %1"
-msgstr "ئاق %1"
+msgstr ""
 
 #: game/game.cpp:411
-#, fuzzy, kde-format
-#| msgctxt "%1 stone coordinate"
-#| msgid "Black %1"
+#, kde-format
 msgctxt "@item undo/redo, %1 response from Go engine"
 msgid "Black %1"
-msgstr "قارا %1"
+msgstr ""
 
 #. i18n: ectx: property (title), widget (QGroupBox, backendGroupBox)
 #: gui/config/generalconfig.ui:17
@@ -149,7 +140,7 @@ msgstr ""
 #: gui/config/generalconfig.ui:128
 #, kde-format
 msgid "Appearance"
-msgstr "كۆرۈنۈشى"
+msgstr "قىياپەت"
 
 #. i18n: ectx: property (text), widget (QCheckBox, kcfg_ShowBoardLabels)
 #: gui/config/generalconfig.ui:137
@@ -229,11 +220,10 @@ msgid "Set up a loaded game…"
 msgstr ""
 
 #: gui/mainwindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to load game…"
-msgstr "ئويۇننى ساقلىغىلى بولمىدى."
+msgstr ""
 
 #: gui/mainwindow.cpp:174
 #, kde-format
@@ -242,11 +232,10 @@ msgid "Game saved…"
 msgstr ""
 
 #: gui/mainwindow.cpp:176
-#, fuzzy, kde-format
-#| msgid "Unable to save game."
+#, kde-format
 msgctxt "@info"
 msgid "Unable to save game."
-msgstr "ئويۇننى ساقلىغىلى بولمىدى."
+msgstr ""
 
 #: gui/mainwindow.cpp:223
 #, kde-format
@@ -289,18 +278,16 @@ msgid "Redone move."
 msgstr ""
 
 #: gui/mainwindow.cpp:298
-#, fuzzy, kde-format
-#| msgid "General"
+#, kde-format
 msgctxt "@title:tab"
 msgid "General"
 msgstr "ئادەتتىكى"
 
 #: gui/mainwindow.cpp:300
-#, fuzzy, kde-format
-#| msgid "Themes"
+#, kde-format
 msgctxt "@title:tab"
 msgid "Themes"
-msgstr "ئۆرنەكلەر"
+msgstr "ئۆرنەك"
 
 #: gui/mainwindow.cpp:317
 #, kde-format
@@ -309,11 +296,10 @@ msgid "Backend was changed, restart necessary…"
 msgstr ""
 
 #: gui/mainwindow.cpp:367
-#, fuzzy, kde-format
-#| msgid "White passed"
+#, kde-format
 msgctxt "@info"
 msgid "White passed."
-msgstr "ئاق"
+msgstr ""
 
 #: gui/mainwindow.cpp:369
 #, kde-format
@@ -517,13 +503,11 @@ msgid "Finish Game"
 msgstr "ئويۇننى تاماملاش"
 
 #: gui/widgets/setupwidget.cpp:54
-#, fuzzy, kde-format
-#| msgid " Stone"
-#| msgid_plural " Stones"
+#, kde-format
 msgctxt "@item:valuesuffix"
 msgid " Stone"
 msgid_plural " Stones"
-msgstr[0] " تاش"
+msgstr[0] ""
 
 #: gui/widgets/setupwidget.cpp:160
 #, kde-format
@@ -582,10 +566,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, sizeOther)
 #: gui/widgets/setupwidget.ui:66
-#, fuzzy, kde-format
-#| msgid "Custom:"
+#, kde-format
 msgid "&Custom:"
-msgstr "ئىختىيارى:"
+msgstr "ئىختىيارى(&C):"
 
 #. i18n: ectx: property (toolTip), widget (KPluralHandlingSpinBox, handicapSpinBox)
 #: gui/widgets/setupwidget.ui:126
@@ -637,7 +620,7 @@ msgstr "چېسلا:"
 #: gui/widgets/setupwidget.ui:339
 #, kde-format
 msgid "Round:"
-msgstr "R"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, scoreStaticLabel)
 #: gui/widgets/setupwidget.ui:371
@@ -677,10 +660,9 @@ msgstr "كومپيۇتېر(&C)"
 
 #. i18n: ectx: property (text), widget (QLabel, label_6)
 #: gui/widgets/setupwidget.ui:595
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgid "&Name:"
-msgstr "ئاتى:"
+msgstr "ئاتى(&N):"
 
 #. i18n: ectx: property (text), widget (QLabel, label1)
 #. i18n: ectx: property (text), widget (QLabel, label1_3)
@@ -807,7 +789,7 @@ msgstr ""
 #: main.cpp:55
 #, kde-format
 msgid "Kigo"
-msgstr "Kigo"
+msgstr ""
 
 #: main.cpp:56
 #, kde-format
@@ -827,12 +809,12 @@ msgstr ""
 #: main.cpp:58
 #, kde-format
 msgid "Original author"
-msgstr "ئەسلى ئاپتور"
+msgstr "ئەسلى يازغۇچى"
 
 #: main.cpp:60
 #, kde-format
 msgid "Yuri Chornoivan"
-msgstr "Yuri Chornoivan"
+msgstr ""
 
 #: main.cpp:60
 #, kde-format
