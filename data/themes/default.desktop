@@ -2,7 +2,6 @@
 Name=Default
 Name[ar]=المبدئيّ
 Name[be]=Прадвызначаны
-Name[bg]=По подразбиране
 Name[br]=Dre ziouer
 Name[bs]=Podrazumijevani
 Name[ca]=Predeterminat
@@ -67,7 +66,6 @@ Name[zh_CN]=默认
 Name[zh_TW]=預設
 Description=Kigo Default theme for KDE 4
 Description[ar]=السمة المبدئية لكي غو كِيدِي 4
-Description[bg]=Подразбираща се тема Kigo за KDE 4
 Description[bs]=Kigo podrazumjevana tema za KDE 4
 Description[ca]=Tema predeterminat del Kigo per al KDE 4
 Description[ca@valencia]=Tema predeterminat de Kigo per a KDE 4

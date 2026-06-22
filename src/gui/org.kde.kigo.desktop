@@ -9,7 +9,6 @@ MimeType=application/x-go-sgf;
 Name=Kigo
 Name[ar]=كي غو
 Name[ast]=Kigo
-Name[bg]=Kigo
 Name[bs]=Kigo
 Name[ca]=Kigo
 Name[ca@valencia]=Kigo
@@ -64,7 +63,6 @@ Name[zh_TW]=Kigo
 
 GenericName=Go Board Game
 GenericName[ar]=لعبة غو اللوحية
-GenericName[bg]=Настолна игра Go
 GenericName[bs]=Igraj igru na ploči
 GenericName[ca]=Joc de taula Go
 GenericName[ca@valencia]=Joc de taula Go
