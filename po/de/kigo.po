@@ -402,7 +402,7 @@ msgstr ""
 "<p>Kigo kann kein <i>Go</i>-Modul finden</p><p>Ist bereits ein passendes "
 "<i>Go</i>-Modul installiert, müssen Sie Kigo noch für dessen Nutzung "
 "einrichten. Anderenfalls sollten Sie ein passendes <i>Go</i>-Modul "
-"installieren (z. B. <i>GnuGo</i>)</p>"
+"installieren (z. B. <i>GnuGo</i>)</p>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
