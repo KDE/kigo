@@ -1,5 +1,6 @@
 # Translation of kigo to Norwegian Nynorsk
 #
+# Karl Ove Hufthammer <karl@huftis.org>, 2010, 2016, 2017, 2021, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4\n"
