@@ -1,19 +1,18 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
-  <!-- Define an entity for your application if it is not part of KDE
-       CVS -->
-  <!ENTITY kigo "Kigo">
-  <!ENTITY kappname "&kigo;">
-  <!ENTITY package "kdegames"
-><!-- kdebase, kdeadmin, etc.  Leave
-                                     this unchanged if your
-                                     application is not maintained in KDE CVS -->
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % Russian "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
 ]>
 <!-- ................................................................ -->
 
-<book lang="&language;">
+<book id="kigo" lang="&language;">
 <bookinfo>
 <title
 >Руководство пользователя &kigo;</title>
@@ -57,288 +56,390 @@
 >&FDLNotice;</legalnotice>
 
 <date
->2010-01-27</date>
+>2021-07-01</date>
 <releaseinfo
->0.5.6</releaseinfo>
-
+>0.6.2 (KDE Gear 21.04)</releaseinfo>
 <abstract>
 	<para
->&kigo; — реализация популярной игры Го (также известна как вэйци) с открытым исходным кодом.</para>
+>&kigo; — реализация популярной игры <literal
+>Го</literal
+> (также известна как <literal
+>вэйци</literal
+>) с открытым исходным кодом.</para>
 </abstract>
 <keywordset>
-	<keyword
+    <keyword
 >KDE</keyword>
-	<keyword
->игры kde</keyword
-> <!-- do not change this! -->
-	<keyword
->игра</keyword
-> <!-- do not change this! -->
-	<keyword
->kigo</keyword
-><!--Application name goes here-->
-<!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
-	<keyword
+    <keyword
+>игры kde</keyword>
+    <keyword
+>игра</keyword>
+    <keyword
+>kigo</keyword>
+    <keyword
 >логическая</keyword>
-	<keyword
+    <keyword
 >настольная</keyword>
-<!--Number of possible players. It can be: One, Two,..., Multiplayer-->
-	<keyword
+    <keyword
 >для одного игрока</keyword>
-	<keyword
+    <keyword
 >для двух игроков</keyword>
 </keywordset>
 </bookinfo>
 
-<!-- The contents of the documentation begin here.  Label
-each chapter so with the id attribute. This is necessary for two reasons: it
-allows you to easily reference the chapter from other chapters of your
-document, and if there is no ID, the name of the generated HTML files will vary
-from time to time making it hard to manage for maintainers and for the CVS
-system. Any chapter labelled (OPTIONAL) may be left out at the author's
-discretion. Other chapters should not be left out in order to maintain a
-consistent documentation style across all KDE apps. -->
-
 <chapter id="introduction">
     <title
 >Введение</title>
-	<note
-><title
->Тип игры:</title
-><para
->Логическая, настольная</para
-></note
-><!-- Game genre. Use as many as necessary. Available game types are: Arcade, Board, Card, Dice, Toys, Logic, Strategy.-->
-	<note
-><title
->Количество игроков:</title
-><para
->Два</para
-></note
-><!--Number of possible players. It can be: One, Two,..., Multiplayer-->
-	<para
->&kigo; — реализация популярной игры Го (также известна как вэйци) с открытым исходным кодом.</para>
-	<para
->Го - стратегическая настольная игра для двух человек. Также известна как иго (японское название), вэйци (китайское название) или падук (корейское название). Эта игры отличается разнообразием стратегий, несмотря на простые правила. </para>
 
-	<para
+    <note
+><title
+>Тип игры:</title>
+    <para
+>Логическая, настольная</para
+></note>
+
+    <note
+><title
+>Количество игроков:</title>
+    <para
+>Два</para
+></note>
+
+    <para
+>&kigo; — реализация популярной игры <literal
+>Го</literal
+> (также известна как вэйци) с открытым исходным кодом. </para>
+
+    <para
+><literal
+>Го</literal
+> — стратегическая настольная игра для двух игроков. Она также известна как <quote
+><literal
+>иго</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> по-японски), <quote
+><literal
+>вэйци</literal
+></quote
+> или <quote
+><literal
+>вэй чи</literal
+></quote
+> (<foreignphrase lang="zh"
+>圍棋</foreignphrase
+> или <foreignphrase lang="zh"
+>围棋</foreignphrase
+> по-китайски) либо <quote
+><literal
+>бадук</literal
+></quote
+> (<foreignphrase lang="ko"
+>바둑</foreignphrase
+> по-корейски). <literal
+>Го</literal
+> отличается стратегической сложностью при простых правилах. </para>
+
+    <para
 >В игру играют два человека, которые поочерёдно помещают чёрные или белые камни (фишки, сейчас делаются из стекла или пластика) на свободные пересечения сетки 19x19 (в более лёгких вариантах — 9x9 или 13x13). </para>
-<!-- The introduction chapter contains a brief introduction for the
-application that explains what it does and where to report
-problems. Basically a long version of the abstract.  Don't include a
-revision history. (see installation appendix comment) -->
+
 </chapter>
 
 <chapter id="howto">
     <title
->Как играть</title
-> <!-- do not change this! -->
-<!--IMPORTANT: If the game has no defined objective, please remove the below line.-->
-	<note
+>Как играть</title>
+
+    <note
 ><title
 >Цель:</title>
-	<para
+    <para
 >Цель игры — завладеть большей площадью доски, чем оппонент. Камень или несколько камней снимается с доски, если они полностью окружены камнями противника.</para
-></note
-><!--Describe the objective of the game.-->
+></note>
+
     <sect1 id="starting">
     <title
 >Начало игры</title>
-<!--How to play description. Don't be to specific on rules as they have a separate section in this document-->
-	<para
->После запуска &kappname;, вы можете либо продолжить, либо начать новую игру в Го.</para>
+
+    <para
+>После запуска &kigo; есть две возможности сыграть в замечательную игру <literal
+>Го</literal
+>. Можно либо начать новую игру, либо продолжить старую. </para>
 
     <sect2 id="new_game">
     <title
 >Новая игра</title>
-      <para
->После запуска &kappname;, вы должны увидеть окно, похожее на снимок экрана снизу. Здесь можно настроить имена белого и чёрного игроков и размер доски. Если вы будете играть против компьютера, также можно настроить сложность. Чтобы начать игру, вы можете выбрать <guimenuitem
->Начать игру</guimenuitem
-> из меню <guimenu
+
+    <para
+>После запуска &kigo; появится окно, похожее на показанное на снимке экрана ниже. В нём можно задать имена белого и чёрного игроков и размер доски, а также решить, будет ли компьютером один из игроков или оба. При игре против компьютера можно настроить и его силу. Чтобы начать игру, выберите пункт меню <menuchoice
+><guimenu
 >Игра</guimenu
->, нажать кнопку <guibutton
+> <guimenuitem
+>Начать игру</guimenuitem
+></menuchoice
+>, нажмите кнопку <guibutton
 >Начать игру</guibutton
-> внизу или просто нажать клавишу <keycap
+> на панели <guilabel
+>Параметры игры</guilabel
+> или просто нажмите клавишу <keycap
 >S</keycap
 >. </para>
-      <screenshot>
-      <screeninfo
+
+    <screenshot>
+        <screeninfo
 >Экран начала игры</screeninfo>
-      <mediaobject>
-      <imageobject
+        <mediaobject>
+            <imageobject
 ><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
-      <textobject
+            <textobject
 ><phrase
 >Экран начала игры.</phrase
 ></textobject>
-      </mediaobject>
-      </screenshot>
-     </sect2>
-     <sect2 id="load_game">
-     <title
->Загрузить сохранённую игру</title>
-      <para
->Если вы хотите продолжить предыдущую игру, выберите <guimenuitem
->Загрузить...</guimenuitem
-> в меню <guimenu
->Игра</guimenu
-> (меню показано на снимке экрана выше). Появится окно выбора файла, где следует указать нужный файл сохранения. </para>
+        </mediaobject>
+    </screenshot>
+    </sect2>
 
-      <para
+    <sect2 id="load_game">
+    <title
+>Загрузить сохранённую игру</title>
+
+    <para
+>Если вы хотите продолжить ранее незавершённую игру, выберите пункт меню <menuchoice
+><guimenu
+>Игра</guimenu
+> <guimenuitem
+>Загрузить…</guimenuitem
+></menuchoice
+> (меню показано на снимке экрана выше). Появится окно выбора файла, в котором следует выбрать и загрузить нужный файл сохранения. </para>
+
+    <para
 >Теперь перед вами окно, как на снимке экрана ниже. Если вы не хотите продолжать игру с последнего хода, вы можете отменить столько ходов, сколько хотите. Когда вы изменяете номер хода, доска тоже меняется. Здесь также показана информация о сохранённой игре. </para>
 
-      <para
+    <para
 >Для продолжения нажмите <guibutton
 >Начать игру</guibutton
 >. </para>
-      <screenshot>
-      <screeninfo
+
+    <screenshot>
+        <screeninfo
 >Экран загруженной игры</screeninfo>
-      <mediaobject>
-      <imageobject
+        <mediaobject>
+            <imageobject
 ><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
-      <textobject
+            <textobject
 ><phrase
 >Экран загруженной игры.</phrase
 ></textobject>
-      </mediaobject>
-      </screenshot>
+        </mediaobject>
+    </screenshot>
 
-      <para
->Также возможно загрузить исторические игры Го или файлы сохранения других пользователей через Интернет. Просто выберите <guimenuitem
->Загрузить новые игры...</guimenuitem
-> в меню <guimenu
+    <para
+>Также из Интернета можно загрузить исторические партии <literal
+>Го</literal
+> или игры, сохранённые другими пользователями. Для этого выберите пункт меню <menuchoice
+><guimenu
 >Игра</guimenu
->. Затем вы увидите окно с выбором элементов для загрузки. </para>
-      <screenshot>
-      <screeninfo
+> <guimenuitem
+>Загрузить новые игры…</guimenuitem
+></menuchoice
+>. Появится диалог выбора материалов для загрузки. </para>
+
+    <screenshot>
+        <screeninfo
 >Загрузка новых игр</screeninfo>
-      <mediaobject>
-      <imageobject
-><imagedata format="PNG"
-fileref="get-new-games.png"/></imageobject>
-      <textobject
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
 ><phrase
 >Экран загрузки новых игр</phrase
 ></textobject>
-      </mediaobject>
-      </screenshot>
-     </sect2>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
     </sect1>
 
     <sect1 id="playing">
     <title
 >Процесс игры</title>
-      <para
->Теперь вы готовы играть в Го. Если вы не знаете правил, ознакомьтесь с ними <ulink url="http://ru.wikipedia.org/wiki/Го (игра)"
->здесь</ulink
-> или прочтите <ulink url="http://playgo.to/interactive/"
->руководство</ulink
->, написанное Hiroki Mori. </para>
 
-      <para
->Чтобы сделать ход, нужно просто щёлкнуть на одном из пересечений на доске Го. Вы увидите маленькую чёрную точку там, где будет ваш камень, когда вы щёлкните. </para>
+    <para
+>Теперь можно сыграть первую партию в <literal
+>Го</literal
+>. Если правила вам незнакомы, прочитайте <ulink url="https://ru.wikipedia.org/wiki/Го"
+>статью в Википедии</ulink
+> или пройдите курс <ulink url="http://playgo.to/iwtg/en/"
+>The Interactive Way To <literal
+>Go</literal
+></ulink
+> Хироки Мори (Hiroki Mori). </para>
 
-      <para
+    <para
+>Сделать ход просто: щёлкните по одному из пересечений на доске <literal
+>Го</literal
+>. Маленькая чёрная точка покажет, куда ляжет камень после щелчка. </para>
+
+    <para
 >Текущий игрок определяется курсором, который меняет свой цвет на белый или чёрный в зависимости от следующего игрока. </para>
 
-      <para
->Вы также можете просмотреть сведения об игре, где показан предыдущий ход и статистика. Полная история ходов также доступна. Если вы хотите видеть, в каком порядке производились ходы, просто щёлкните на кнопке <guibutton
+    <para
+>Также можно посмотреть сведения об игре, где показаны предыдущий ход и статистика. Доступна и полная история ходов. Чтобы увидеть, в каком порядке камни ставились на доску, нажмите кнопку <guibutton
 >Показывать номера ходов</guibutton
->. Если вы думаете, что не стоит класть камень сейчас, вы можете нажать кнопку <guibutton
+>. Если вы считаете, что ещё один камень ничего не даст, нажмите кнопку <guibutton
 >Пропустить ход</guibutton
-> и передать право хода противнику. Если оба игрока пропускают ход, игра может быть завершена. Заметьте, игроки вместе решают, когда закончить игру. </para>
-      <screenshot>
-      <screeninfo
+> и передайте ход противнику. Если оба игрока пропустили ход, игру можно завершить. Помните, что партия в <literal
+>Го</literal
+> всегда завершается по согласию игроков! </para>
+
+    <screenshot>
+        <screeninfo
 >Новая игра</screeninfo>
-      <mediaobject>
-      <imageobject
+        <mediaobject>
+            <imageobject
 ><imagedata format="PNG" fileref="play-game.png"/></imageobject>
-      <textobject
+            <textobject
 ><phrase
 >Новая игра</phrase
 ></textobject>
-      </mediaobject>
-      </screenshot>
-      <para
->Вы можете сохранить игру в любой момент. Выберите пункт <guimenuitem
->Сохранить</guimenuitem
-> в меню <guimenu
+        </mediaobject>
+    </screenshot>
+
+    <para
+>Вы можете сохранить игру в любой момент. Для этого выберите пункт <menuchoice
+><guimenu
 >Игра</guimenu
+> <guimenuitem
+>Сохранить</guimenuitem
+></menuchoice
 >. </para>
 
-	<sect2 id="hint">
-	<title
+    <sect2 id="hint">
+    <title
 >Получение подсказки</title>
-	<para
+
+    <para
 >Иногда бывает сложно решить, как походить. Если вы хотите, чтобы компьютер дал вам подсказку, нажмите кнопку <guibutton
 >Подсказка</guibutton
-> (смотрите снимок экрана ниже). Появятся прозрачные камни с номерами. Это и есть рекомендации с очками (определяют, насколько ход выигрышный). Щёлкните на одном из предлагаемых вариантов или в любом другом месте, если не хотите воспользоваться подсказкой. </para>
-      <screenshot>
-      <screeninfo
+> (смотрите снимок экрана ниже). Появятся прозрачные камни с номерами. Это и есть рекомендации с очками (определяют, насколько ход выигрышный). Щёлкните по одному из рекомендуемых ходов или по любому другому свободному полю, чтобы поставить свой следующий камень. </para>
+
+    <screenshot>
+        <screeninfo
 >Получение подсказки</screeninfo>
-      <mediaobject>
-      <imageobject
+        <mediaobject>
+            <imageobject
 ><imagedata format="PNG" fileref="hint.png"/></imageobject>
-      <textobject
+            <textobject
 ><phrase
 >Получение подсказки.</phrase
 ></textobject>
-      </mediaobject>
-      </screenshot>
-      </sect2>
-      </sect1>
+        </mediaobject>
+    </screenshot>
 
-      <sect1 id="strattips">
-      <title
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
 >Стратегия и советы</title>
-      <itemizedlist>
-      <listitem
+
+    <itemizedlist>
+        <listitem
 ><para
->Суть скорее в окружении пустой территории, а не в захвате камней противника.</para
+>Суть <literal
+>Го</literal
+> скорее в окружении территории (пустого пространства), а не в захвате камней противника.</para
 ></listitem>
-      <listitem
+        <listitem
 ><para
 >Проще всего окружать территорию близко к углам (с двух сторон), сложнее на рёбрах (три стороны) и сложнее всего — в центре.</para
 ></listitem>
-      <listitem
+        <listitem
 ><para
 >В начале игры, располагайте свои камни по разным сторонам. Начинайте окружать противника только при вторжении.</para
 ></listitem>
-      <listitem
+        <listitem
 ><para
->Не располагайте камни, не связанные с другими перед камнями противника при нападении. Они обычно поглощаются, и GnuGo это очень хорошо удаётся. Лучше атаковать с тыла.</para
+>Не располагайте камни, не связанные с другими, вплотную к камням противника при нападении. Они обычно поглощаются, и &gnugo; это очень хорошо удаётся. Часто лучше атаковать косвенно.</para
 ></listitem>
-      <listitem
+        <listitem
 ><para
 >Для того, чтобы избежать поглощения, у группы камней должно быть два <quote
 >глаза</quote
 > (пустых пространства). Это чем-то напоминает пончик с двумя отверстиями. Противник сможет лишь окружить их снаружи, но не заполнит обе сразу.</para
 ></listitem>
-      <listitem
+        <listitem
 ><para
 >На доске 19x19 обычно выделяются несколько атакуемых и защищаемых территорий. Вам придётся «воевать на два фронта». Следует оценивать сильные и слабые стороны территорий и думать, защищаться или атаковать.</para
 ></listitem>
-      <listitem
+        <listitem
 ><para
 >К концу игры, когда доска заполнена, важно играть внимательно, разрушая заборы противника и укрепляя свои. Маленькие ошибки и промахи могут стоить победы.</para
 ></listitem>
-      </itemizedlist>
-      </sect1>
+    </itemizedlist>
+
+    </sect1>
 </chapter>
 
 <chapter id="interface"
 ><title
->Обзор интерфейса</title
-> <!-- do not change this! -->
-<sect1 id="menus">
-<title
->Меню &kappname;</title>
-<para
->У &kappname; стандартные меню для игр &kde;, кроме следующих пунктов:</para>
-		<variablelist>
-			<varlistentry  id="game-menu-get-more">
-				<term
+>Обзор интерфейса</title>
+    <sect1 id="menus">
+    <title
+>Меню &kigo;</title>
+    <para
+>В &kigo; есть следующие пункты меню: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Начать игру</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Начинает новую игру.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Загрузить…</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Открывает стандартный диалог &kde; открытия файла, чтобы открыть файл <literal role="extension"
+>.sgf</literal
+> (файл игры &kigo;) с сохранённой игрой.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
 ><menuchoice
 ><shortcut
 ><keycombo action="simul"
@@ -349,18 +450,44 @@ fileref="get-new-games.png"/></imageobject>
 > <guimenu
 >Игра</guimenu
 > <guimenuitem
->Загрузить новые игры...</guimenuitem
+>Загрузить новые игры…</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
 ><action
->Открывает стандартное окно &kde; для загрузки чужих сохранений.</action
+>Открывает диалог <guilabel
+>Загрузка материалов из Интернета</guilabel
+> для загрузки игр, сохранённых другими пользователями.</action
 ></para
 ></listitem>
-			</varlistentry>
-			<varlistentry id="game-menu-start">
-				<term
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Сохранить</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Сохраняет</action
+> текущую игру.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
 ><menuchoice
 ><shortcut
 ><keycap
@@ -372,15 +499,16 @@ fileref="get-new-games.png"/></imageobject>
 >Начать игру</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
 ><action
 >Начинает</action
 > новую или продолжает загруженную игру.</para
 ></listitem>
-			</varlistentry>
-			<varlistentry id="game-menu-finish">
-				<term
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
 ><menuchoice
 ><shortcut
 ><keycap
@@ -392,15 +520,89 @@ fileref="get-new-games.png"/></imageobject>
 >Завершить игру</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
 ><action
 >Завершает</action
-> текущую игру. Помните, что игроки вместе договариваются о прекращении игры.</para
+> текущую игру. Помните, что партия в <literal
+>Го</literal
+> всегда завершается по согласию игроков.</para
 ></listitem>
-			</varlistentry>
-			<varlistentry id="move-menu-pass">
-				<term
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+> <guimenuitem
+>Выход</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Завершает работу</action
+> &kigo;.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ход</guimenu
+> <guimenuitem
+>Отменить</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Отменяет</action
+> последний ход.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Ход</guimenu
+> <guimenuitem
+>Вернуть</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>Возвращает</action
+> ход, только что отменённый командой <guimenuitem
+>Отменить</guimenuitem
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
 ><menuchoice
 ><shortcut
 ><keycap
@@ -412,15 +614,16 @@ fileref="get-new-games.png"/></imageobject>
 >Пропустить ход</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
 >Позволяет <action
 >пропустить</action
 > ход.</para
 ></listitem>
-			</varlistentry>
-			<varlistentry id="move-menu-hint">
-				<term
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
 ><menuchoice
 ><shortcut
 ><keycap
@@ -432,15 +635,16 @@ fileref="get-new-games.png"/></imageobject>
 >Подсказка</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
 ><action
 >Подсказывает следующий ход</action
 >, показывая прозрачные камни с количеством очков на них.</para
 ></listitem>
-			</varlistentry>
-			<varlistentry id="move-menu-numbers">
-				<term
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
 ><menuchoice
 ><shortcut
 ><keycap
@@ -452,15 +656,35 @@ fileref="get-new-games.png"/></imageobject>
 >Показывать номера ходов</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
 ><action
 >Переключает</action
 > показ номеров ходов.</para
 ></listitem>
-			</varlistentry>
-			<varlistentry id="settings-menu-hide-docker">
-				<term
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+> <guisubmenu
+>Панели</guisubmenu
+> <guimenuitem
+>Сведения</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>Показывает или скрывает боковую панель <guilabel
+>Сведения</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
 ><menuchoice
 ><guimenu
 >Настройка</guimenu
@@ -470,183 +694,191 @@ fileref="get-new-games.png"/></imageobject>
 >Ходы</guimenuitem
 > </menuchoice
 ></term>
-				<listitem
+    <listitem
 ><para
->Показывает или скрывает панель ходов.</para
-></listitem>
-			</varlistentry>
-			<varlistentry id="settings-menu-settings">
-				<term
-><menuchoice
-><guimenu
->Настройка</guimenu
-> <guimenuitem
->Настроить &kappname;...</guimenuitem
-> </menuchoice
-></term>
-				<listitem
-><para
-><action
->Открывает диалог для конфигурации &kappname;</action
->. Подробнее <link linkend="configuration"
->здесь</link
+>Показывает или скрывает боковую панель <guilabel
+>Ходы</guilabel
 >.</para
 ></listitem>
-			</varlistentry>
-		</variablelist>
-</sect1>
+    </varlistentry>
 
-<sect1 id="keybindings">
-<title id="keybindings-title"
+    </variablelist>
+
+    <para
+>Кроме того, в &kigo; есть стандартные для &kde; меню <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>. Подробнее о них — в разделах <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Меню «Настройка»</ulink
+> и <ulink url="help:/fundamentals/menus.html#menus-help"
+>Меню «Справка»</ulink
+> документа «Основы &kde;». </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
 >Комбинации клавиш</title>
-  <para
+
+    <para
 >Стандартные комбинации клавиш:</para>
 
-  <table>
-  <title
+    <table>
+        <title
 >Комбинации клавиш</title>
-  <tgroup cols="2">
-  <tbody>
-  <row>
-    <entry
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
 >Завершить игру</entry>
-    <entry
+                <entry
 ><keycap
 >F</keycap
 ></entry>
-  </row>
-  <row>
-    <entry
+            </row>
+            <row>
+                <entry
 >Получить игры, загруженные другими пользователями</entry>
-    <entry>
-      <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;<keycap
 >G</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
+                </entry>
+            </row>
+            <row>
+                <entry
 >Руководство пользователя Kigo</entry>
-    <entry
+                <entry
 ><keycap
 >F1</keycap
 ></entry>
-   </row>
-  <row>
-    <entry
+            </row>
+            <row>
+                <entry
 >Загрузить сохранённую игру</entry>
-    <entry>
-    <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;<keycap
 >O</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
+                </entry>
+            </row>
+            <row>
+                <entry
+>Подсказать возможные ходы</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
 >Пропустить ход</entry>
-    <entry
+                <entry
 ><keycap
 >P</keycap
 ></entry>
-  </row>
-  <row>
-    <entry
+            </row>
+            <row>
+                <entry
 >Выйти</entry>
-    <entry>
-    <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;<keycap
 >Q</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
+                </entry>
+            </row>
+            <row>
+                <entry
 >Повторить отменённый ход</entry>
-    <entry>
-      <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;&Shift;<keycap
 >Z</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
+                </entry>
+            </row>
+            <row>
+                <entry
 >Сохранить игру</entry>
-    <entry>
-      <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;<keycap
 >S</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
+                </entry>
+            </row>
+            <row>
+                <entry
 >Начать новую игру</entry>
-    <entry>
-    <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;<keycap
 >N</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
+                </entry>
+            </row>
+            <row>
+                <entry
 >Начать новую или сохранённую игру</entry>
-    <entry
+                <entry
 ><keycap
 >S</keycap
 ></entry>
-  </row>
-  <row>
-    <entry
+            </row>
+            <row>
+                <entry
 >Включить отображение номеров ходов</entry>
-    <entry
+                <entry
 ><keycap
 >N</keycap
 ></entry>
-  </row>
-  <row>
-    <entry
+            </row>
+            <row>
+                <entry
 >Отменить последний ход</entry>
-    <entry>
-      <keycombo action="simul"
+                <entry>
+                    <keycombo action="simul"
 >&Ctrl;<keycap
 >Z</keycap
 ></keycombo>
-    </entry>
-  </row>
-  <row>
-    <entry
->Что это?</entry>
-    <entry>
-    <keycombo action="simul"
+                </entry>
+            </row>
+            <row>
+                <entry
+>Справка «Что это?»</entry>
+                <entry>
+                    <keycombo action="simul"
 >&Shift;<keycap
 >F1</keycap
 ></keycombo>
-    </entry>
-  </row>
-  </tbody>
-  </tgroup>
-  </table>
-</sect1>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
 </chapter>
 
 <chapter id="configuration">
-<title
->Настройка игры</title
-> <!-- do not change this! -->
-<!--This section describes configuration GUI. If your game is configured using menubar exclusively, please remove this section.-->
-  <para
->Если вы хотите настроить &kappname;, выберите <guimenuitem
->Настроить &kappname;...</guimenuitem
-> в меню <guimenu
+    <title
+>Настройка игры</title>
+
+    <para
+>Чтобы изменить параметры &kigo;, выберите пункт меню <menuchoice
+><guimenu
 >Настройка</guimenu
+> <guimenuitem
+>Настроить &kigo;…</guimenuitem
+></menuchoice
 >. </para>
 
-  <para
->Вы увидите окно конфигурации, как на снимке экрана ниже. Также его можно открыть, нажав <keycombo
+    <para
+>Теперь вы увидите окно настройки, как на снимке экрана ниже. Также его можно открыть, нажав <keycombo
 >&Alt;<keycap
 >S</keycap
 ></keycombo
@@ -656,81 +888,93 @@ fileref="get-new-games.png"/></imageobject>
 ></keycombo
 >. </para>
 
-  <para
->&kappname; — очень гибкое приложение и может быть настроено так, как вам это нужно. Можно изменять размеры и расположение элементов за игровой доской. Для этого выберите <guimenuitem
->Панели инструментов...</guimenuitem
-> в меню <guimenu
->Настройка</guimenu
->. Также это возможно для всех комбинаций клавиш в игре. Для максимального пространства для игровой доски можно отключить панель инструментов полностью в меню <guimenu
->Настройка</guimenu
->. </para>
-  <sect1 id="genconig">
-  <title
->Общие параметры</title>
     <para
->Самый важный параметр здесь — используемый движок Го. &kappname; нужен подходящий движок для правильного функционирования. На снимке экрана ниже, по умолчанию используется GnuGo. Зелёный огонёк показывает, что всё работает корректно. В противном случае, или если вы хотите использовать другой движок Go (он должен поддерживать GnuGo Text Procotol), установите его и настройте команду запуска и параметры. Детали об этом следует искать в документации к движку. </para>
+>&kigo; — очень гибкое приложение, которое можно настроить по своему усмотрению. Можно менять расположение и размер всех панелей вокруг игровой доски. Можно также настроить панель инструментов, чтобы на ней были другие действия: для этого выберите пункт меню <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить панели инструментов…</guimenuitem
+></menuchoice
+>. То же можно сделать и со всеми комбинациями клавиш игры. Чтобы отдать игровому полю как можно больше места, в меню <guimenu
+>Настройка</guimenu
+> можно даже скрыть панель инструментов и большинство панелей. </para>
+
+    <sect1 id="genconig">
+    <title
+>Общие параметры</title>
+
+    <para
+>Самое важное здесь — настройка движка <literal
+>Го</literal
+>. Для правильной работы &kigo; нужен работающий движок. Как видно на снимке экрана ниже, по умолчанию используется &gnugo;. Если всё работает правильно, маленький индикатор рядом с командой движка светится зелёным. Если это не так или если нужен другой движок <literal
+>Го</literal
+>, установите другой движок, поддерживающий протокол <literal
+>Go</literal
+> Text Protocol (<acronym
+>GTP</acronym
+>), и укажите его команду и параметры. Подробности следует искать в документации к этому движку. </para>
+
     <screenshot>
-    <screeninfo
+        <screeninfo
 >Общие параметры</screeninfo>
-    <mediaobject>
-    <imageobject
+        <mediaobject>
+            <imageobject
 ><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
-    <textobject
+            <textobject
 ><phrase
->Общие параметры.</phrase
+>Общие параметры</phrase
 ></textobject>
-    </mediaobject>
+        </mediaobject>
     </screenshot>
+
     </sect1>
+
     <sect1 id="configuration-theme">
     <title
 >Настройка оформления</title>
+
     <para
->Эта страница позволит вам изменить оформление &kappname;. </para>
+>Эта страница позволит изменить оформление &kigo;. </para>
+
     <screenshot>
-    <screeninfo
->Настроить &kappname; — оформление</screeninfo>
-	<mediaobject>
-	  <imageobject>
-	    <imagedata fileref="setup-theme.png" format="PNG"/>
-	  </imageobject>
-	    <textobject>
-	    <phrase
->Настройка оформления</phrase>
-	  </textobject>
-	</mediaobject>
+        <screeninfo
+>Настройка &kigo; — темы</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>Настройка оформления</phrase
+></textobject>
+        </mediaobject>
     </screenshot>
+
     </sect1>
 </chapter>
 
 <chapter id="credits">
-
-<!-- Include credits for the programmers, documentation writers, and
-contributors here. The license for your software should then be included below
-the credits with a reference to the appropriate license file included in the KDE
-distribution. -->
-
-<title
+    <title
 >Авторские права и лицензия</title>
 
-<para
+    <para
 >Kigo </para>
-<para
+
+    <para
 >© 2009 Разработчик Sascha Peilicke <email
 >sasch.pe@gmx.de</email
 > </para>
 
-<para
+    <para
 >© 2009 Документация Sascha Peilicke <email
 >sasch.pe@gmx.de</email
 > </para>
 
-<para
+    <para
 >Редактирование документации и преобразовывание в Docbook — Юрий Черноиван <email
 >yurchor@ukr.net</email
 > </para>
 
-<para
+    <para
 >Дизайн оформления по умолчанию — Arturo Silva <email
 >jasilva28@gmail.com</email
 >. </para>
@@ -739,24 +983,7 @@ distribution. -->
 >Перевод на русский: Максим Воробьёв<email
 >vmax0770@gmail.com</email
 ></para
-> 
-&underFDL; &underGPL; </chapter>
-
-<appendix id="installation">
-<title
->Установка</title>
-
-<sect1 id="getting-kapp">
-<title
->Как получить &kigo;</title>
-&install.intro.documentation; &install.compile.documentation; </sect1>
-
-<sect1 id="compilation">
-<title
->Сборка и установка</title>
-&install.compile.documentation; </sect1>
-
-</appendix>
+> &underFDL; &underGPL; </chapter>
 
 &documentation.index;
 </book>
