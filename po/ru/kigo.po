@@ -86,7 +86,7 @@ msgstr "Чёрные %1"
 #: gui/config/generalconfig.ui:17
 #, kde-format
 msgid "Backend"
-msgstr "Движок"
+msgstr "Программа"
 
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #: gui/config/generalconfig.ui:23
@@ -98,7 +98,7 @@ msgstr "Исполняемый файл:"
 #: gui/config/generalconfig.ui:42
 #, kde-format
 msgid "Select the executable file to start the Go engine"
-msgstr "Выберите исполняемый файл движка игры го"
+msgstr "Выберите исполняемый файл программы для игры го"
 
 #. i18n: ectx: property (text), widget (QLabel, label)
 #: gui/config/generalconfig.ui:49
@@ -110,19 +110,19 @@ msgstr "Параметры:"
 #: gui/config/generalconfig.ui:62
 #, kde-format
 msgid "Add here the necessary parameters to start the Engine in GTP mode"
-msgstr "Добавьте необходимые параметры для запуска движка в режиме GTP"
+msgstr "Добавьте необходимые параметры для запуска программы в режиме GTP"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, kcfg_EngineCommand)
 #: gui/config/generalconfig.ui:75
 #, kde-format
 msgid "This is the resulting engine command which will be used by Kigo"
-msgstr "Конечная команда запуска движка, используемая Kigo"
+msgstr "Конечная команда запуска программы, используемая Kigo"
 
 #. i18n: ectx: property (toolTip), widget (KLed, engineLed)
 #: gui/config/generalconfig.ui:94
 #, kde-format
 msgid "Indicates whether the Go engine works correctly"
-msgstr "Показывает, работает ли движок го правильно"
+msgstr "Показывает, работает ли программа для игры го правильно"
 
 #. i18n: ectx: property (text), widget (QLabel, label_4)
 #: gui/config/generalconfig.ui:108
@@ -149,10 +149,10 @@ msgstr ""
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
 "weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\">Выберите движок Go, "
-"который поддерживает <span style=\" font-style:italic;\">GnuGo Text Protocol "
-"(GTP)</span>. Индикатор будет гореть зелёным цветом, если выбранный движок "
-"работает корректно.</p></body></html>"
+"right:0px; -qt-block-indent:0; text-indent:0px;\">Выберите программу для "
+"игры го, которая поддерживает <span style=\" font-style:italic;\">GnuGo Text "
+"Protocol (GTP)</span>. Индикатор будет гореть зелёным цветом, если выбранная "
+"программа работает корректно.</p></body></html>"
 
 #. i18n: ectx: property (title), widget (QGroupBox, appearanceGroupBox)
 #: gui/config/generalconfig.ui:128
@@ -311,7 +311,7 @@ msgstr "Темы"
 #, kde-format
 msgctxt "@info"
 msgid "Backend was changed, restart necessary…"
-msgstr "Движок был изменён, требуется перезапуск…"
+msgstr "Программа была изменена, требуется перезапуск…"
 
 #: gui/mainwindow.cpp:367
 #, kde-format
@@ -420,15 +420,15 @@ msgstr ""
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
 "family:'Sans Serif'; font-size:10pt; color:#ff0000;\">Невозможно найти "
-"подходящий движок го.</span></p>\n"
+"подходящую программу для игры го.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; "
 "margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
 "family:'Sans Serif'; font-size:10pt; color:#ff0000;\"></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
 "right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"family:'Sans Serif'; font-size:10pt;\">Если вы уверены, что необходимый "
-"движок установлен, настройте Kigo для его использования. Иначе установите "
-"другой движок (например, GnuGo).</span></p></body></html>"
+"family:'Sans Serif'; font-size:10pt;\">Если вы уверены, что необходимая "
+"программа установлена, настройте Kigo для его использования. Иначе "
+"установите другую программу (например, GnuGo).</span></p></body></html>"
 
 #. i18n: ectx: property (text), widget (QPushButton, configureButton)
 #: gui/widgets/errorwidget.ui:49
@@ -756,7 +756,7 @@ msgstr "Начать игру"
 #: kigo.kcfg:10
 #, kde-format
 msgid "The current game engine command with (optional) parameters"
-msgstr "Команда для запуска текущего движка с параметрами (необязательно)"
+msgstr "Команда для запуска текущей программы с параметрами (необязательно)"
 
 #. i18n: ectx: label, entry (Theme), group (UserInterface)
 #: kigo.kcfg:21
