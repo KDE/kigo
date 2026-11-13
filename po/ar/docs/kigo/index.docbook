@@ -1,0 +1,1000 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Arabic "INCLUDE">
+
+  <!ENTITY gnugo "<application
+>&GNU; Go</application
+>">
+  <!ENTITY kigo  "<application
+>Kigo</application
+>">
+]>
+<!-- ................................................................ -->
+
+<book id="kigo" lang="&language;">
+<bookinfo>
+<title
+>دليل كي غو</title>
+
+<authorgroup>
+	<author
+><firstname
+></firstname
+> <surname
+>Sascha Peilicke</surname
+> <affiliation
+> <address
+>sasch.pe@gmx.de</address>
+		</affiliation>
+	</author>
+	<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+	<year
+>2008-2010</year>
+	<holder
+>Sascha Peilicke</holder>
+</copyright>
+
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-07-01</date>
+<releaseinfo
+>0.6.2 (ترس كيدي 21.04)</releaseinfo>
+<abstract>
+	<para
+>كي غو هو تطبيق مفتوح المصدر للعبة <literal
+>جو</literal
+> الشهيرة (المعروفة أيضًا باسم <literal
+>ويتشي</literal
+>).</para>
+</abstract>
+<keywordset>
+    <keyword
+>كيدي</keyword>
+    <keyword
+>ألعاب كيدي</keyword>
+    <keyword
+>لعبة</keyword>
+    <keyword
+>كي غو</keyword>
+    <keyword
+>منطق</keyword>
+    <keyword
+>لوحة</keyword>
+    <keyword
+>لاعب واحد</keyword>
+    <keyword
+>لاعبان</keyword>
+</keywordset>
+</bookinfo>
+
+<chapter id="introduction">
+    <title
+>مقدمة</title>
+
+    <note
+><title
+>نوع اللعبة:</title>
+    <para
+>منطق، لوحة</para
+></note>
+
+    <note
+><title
+>عدد اللاعبين الممكنين:</title>
+    <para
+>اثنان</para
+></note>
+
+    <para
+>كي غو هو تطبيق مفتوح المصدر للعبة <literal
+>جو</literal
+> الشهيرة (المعروفة أيضًا باسم ويتشي). </para>
+
+    <para
+><literal
+>جو</literal
+> هي لعبة لوحة استراتيجية للاعبين. تُعرف أيضًا باسم <quote
+><literal
+>إيغو</literal
+></quote
+> (<foreignphrase lang="ja"
+>囲碁</foreignphrase
+> باليابانية)، أو <quote
+><literal
+>ويتشي</literal
+></quote
+> (<foreignphrase lang="zh"
+>圍棋</foreignphrase
+> أو <foreignphrase lang="zh"
+>围棋</foreignphrase
+> بالصينية)، أو <quote
+><literal
+>بادوك</literal
+></quote
+> (<foreignphrase lang="ko"
+>바둑</foreignphrase
+> بالكورية). تشتهر لعبة <literal
+>جو</literal
+> بغناها بالتعقيد الاستراتيجي رغم قواعدها البسيطة. </para>
+
+    <para
+>يلعب اللعبة لاعبان يضعان بالتناوب أحجارًا سوداء وبيضاء (قطع اللعب، وتُصنع عادةً الآن من الزجاج أو البلاستيك) على التقاطعات الشاغرة لشبكة من خطوط 19×19 (أو خطوط 9x9 أو 13x13 للأنواع الأسهل). </para>
+
+</chapter>
+
+<chapter id="howto">
+    <title
+>كيف تلعب</title>
+
+    <note
+><title
+>الهدف:</title>
+    <para
+>الهدف من اللعبة هو السيطرة على جزء أكبر من اللوحة مقارنة بالمنافس. يُؤسر الحجر أو مجموعة الأحجار وتُزال إذا لم يكن لها تقاطعات متجاورة فارغة، نتيجة إحاطتها بالكامل بأحجار من لون الخصم.</para
+></note>
+
+    <sect1 id="starting">
+    <title
+>بدء لعبة</title>
+
+    <para
+>عند تشغيل كي غو، يتوفر خياران للعب لعبة <literal
+>جو</literal
+> الرائعة. يمكن إما بدء لعبة جديدة أو متابعة لعبة قديمة. </para>
+
+    <sect2 id="new_game">
+    <title
+>إعداد لعبة جديدة</title>
+
+    <para
+>عند تشغيل كي غو، ستظهر شاشة مشابهة لتلك الموضحة في لقطة الشاشة أدناه. هناك يمكن إعداد اسم كل من اللاعب الأبيض والأسود وحجم اللوحة. يمكن تحديد ما إذا كان أحد اللاعبين أو كلاهما حاسوبًا. إذا قُرّر اللعب ضد الحاسوب، يمكن أيضًا ضبط قوته. لبدء اللعبة، يمكن إما اختيار عنصر القائمة <menuchoice
+><guimenu
+>لعبة</guimenu
+> <guimenuitem
+>جديدة</guimenuitem
+></menuchoice
+>، أو النقر على زر <guibutton
+>ابدأ اللعبة</guibutton
+> في ودجت <guilabel
+>إعداد اللعبة</guilabel
+> المرفأ أو ببساطة بالضغط على مفتاح <keycap
+>S</keycap
+>. </para>
+
+    <screenshot>
+        <screeninfo
+>شاشة لعبة جديدة</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-new-game.png"/></imageobject>
+            <textobject
+><phrase
+>شاشة لعبة جديدة.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+    </sect2>
+
+    <sect2 id="load_game">
+    <title
+>إعداد لعبة محملة</title>
+
+    <para
+>إذا قُرّر إكمال لعبة سابقة غير منتهية، يمكن ببساطة اختيار عنصر القائمة <menuchoice
+><guimenu
+>لعبة</guimenu
+> <guimenuitem
+>حمّل…</guimenuitem
+></menuchoice
+> (تظهر القائمة في لقطة الشاشة أعلاه). سيظهر منتقي الملفات الآن، استخدمه لاختيار وتحميل ملف اللعبة المحفوظة المطلوبة. </para>
+
+    <para
+>الآن ستظهر شاشة مشابهة لتلك الموضحة في لقطة الشاشة أدناه. إذا لم تكن هناك رغبة في المتابعة من الخطوة الأخيرة، يمكن التراجع عن أي عدد من الخطوات. ستتغير اللوحة مع تغيير رقم الخطوة الحالية. تعرض شاشة الإعداد أيضًا الكثير من المعلومات الإضافية حول اللعبة المحفوظة. </para>
+
+    <para
+>اضغط فقط على <guibutton
+>ابدأ اللعبة</guibutton
+> للمتابعة. </para>
+
+    <screenshot>
+        <screeninfo
+>شاشة اللعبة المحملة</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="start-loaded-game.png"/></imageobject>
+            <textobject
+><phrase
+>شاشة اللعبة المحملة.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>يتوفر أيضًا خيار لتنزيل سجل ألعاب <literal
+>جو</literal
+> التاريخية أو الألعاب المحفوظة التي رفعها مستخدمون آخرون من الإنترنت. انقر فقط على عنصر القائمة <menuchoice
+><guimenu
+>لعبة</guimenu
+> <guimenuitem
+>احصل على المزيد من الألعاب…</guimenuitem
+></menuchoice
+>. سيظهر حينها حوار يتيح اختيار المحتوى المراد تنزيله. </para>
+
+    <screenshot>
+        <screeninfo
+>احصل على ألعاب جديدة</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="get-new-games.png"/></imageobject>
+            <textobject
+><phrase
+>شاشة الحصول على ألعاب جديدة.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="playing">
+    <title
+>لعب لعبة</title>
+
+    <para
+>أنت الآن جاهز للعب جولتك الأولى من <literal
+>جو</literal
+>. إذا لم تكن ملمًّا بالقواعد، ننصح بقراءة <ulink url="https://en.wikipedia.org/wiki/Go_(game)"
+>مقالة ويكيبيديا</ulink
+> المقابلة أو متابعة <ulink url="http://playgo.to/iwtg/en/"
+>الطريقة التفاعلية لتعلم <literal
+>جو</literal
+></ulink
+> من هيروكي موري. </para>
+
+    <para
+>القيام بحركة أمر بسيط، انقر فقط على أحد التقاطعات على لوحة <literal
+>جو</literal
+>. ستظهر نقطة سوداء صغيرة توضح مكان استقرار الحجر عند النقر. </para>
+
+    <para
+>يمكن تحديد اللاعب الحالي من خلال المؤشر، الذي يتغير إلى حجر أسود أو أبيض بناءً على دور أي لاعب. </para>
+
+    <para
+>يمكن أيضًا التحقق من معلومات اللعبة التي تعرض الحركة السابقة وبعض الإحصائيات. يتوفر أيضًا سجل حركات كامل. إذا أردت تذكر ترتيب وضع الأحجار على اللوحة، انقر فقط على زر <guibutton
+>أظهر أرقام الحركات</guibutton
+>. إذا كنت تعتقد أنه لا يمكن كسب أي شيء بوضع حجر آخر، انقر فقط على <guibutton
+>مرّر الحركة</guibutton
+> واترك الخصم يأخذ دوره. إذا مرر كلا اللاعبين، يمكن إنهاء اللعبة. لاحظ أن إنهاء لعبة <literal
+>جو</literal
+> هو دائمًا خطوة تعاونية! </para>
+
+    <screenshot>
+        <screeninfo
+>لعب لعبة جديدة</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="play-game.png"/></imageobject>
+            <textobject
+><phrase
+>لعب لعبة جديدة.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    <para
+>لاحظ أنه يمكن حفظ اللعبة الحالية في أي وقت. يُفعل ذلك باختيار عنصر القائمة <menuchoice
+><guimenu
+>لعبة</guimenu
+> <guimenuitem
+>احفظ</guimenuitem
+></menuchoice
+>. </para>
+
+    <sect2 id="hint">
+    <title
+>الحصول على تلميح</title>
+
+    <para
+>يصعب أحيانًا اتخاذ قرار بشأن الحركة التالية. إذا أردت أن يقدم الحاسوب تلميحًا، اضغط فقط على زر <guibutton
+>تلميح</guibutton
+> الموضح في لقطة الشاشة أدناه. ستظهر الآن بعض الأحجار الشفافة وفوقها رقم. هذه هي التوصيات مع درجة التقييم. تحدد الدرجة مدى جودة تلك الحركة. لا تتردد في النقر على أي من الحركات الموصى بها أو أي حقل حر آخر لوضع حجرك التالي. </para>
+
+    <screenshot>
+        <screeninfo
+>الحصول على تلميح</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="hint.png"/></imageobject>
+            <textobject
+><phrase
+>الحصول على تلميح.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect2>
+    </sect1>
+
+    <sect1 id="strattips">
+    <title
+>استراتيجيات ونصائح</title>
+
+    <itemizedlist>
+        <listitem
+><para
+>تتمحور لعبة <literal
+>جو</literal
+> حول إحاطة الإقليم (المساحة الفارغة) أكثر من أسر قطع الخصم.</para
+></listitem>
+        <listitem
+><para
+>يُعد الإقليم الأسهل للإحاطة بالقرب من الزوايا (من جانبين) ثم بالقرب من الحواف (من ثلاثة جوانب) وأخيرًا في المركز.</para
+></listitem>
+        <listitem
+><para
+>في بداية اللعبة، باعد بين قطعك. لا تملأ خطوط السياج إلا عندما يبدأ الخصم بالتسلل.</para
+></listitem>
+        <listitem
+><para
+>لا تضع أحجارًا غير مدعومة بجوار أحجار الخصم مباشرة عند الهجوم. ستميل إلى التعرض للابتلاع، ومحرك غنو جو (GNU Go) بارع جدًا في ذلك. غالبًا ما يكون الهجوم غير المباشر أفضل.</para
+></listitem>
+        <listitem
+><para
+>لتجنب الأسر، يجب أن تمتلك مجموعة الأحجار <quote
+>عينين</quote
+> أو تكون قادرة على إنشائهما إذا هوجمت. <quote
+>العيون</quote
+> هي مساحات منفصلة. تخيل كعكة محلاة (دونات) بفتحتين. يمكن لخصمك إحاطة الخارج، لكن لا يمكنه ملء الفتحتين في وقت واحد.</para
+></listitem>
+        <listitem
+><para
+>على لوحة 19x19، عادة ما تنشأ عدة أقاليم أو تُهاجم أو تُدافع عنها. عليك خوض عدة معارك في آن واحد. تتضمن الاستراتيجية تقييم نقاط القوة والضعف في مناطق مختلفة وتوزيع حركاتك بينها. هل من الأفضل الهجوم هناك أم الدفاع هنا؟</para
+></listitem>
+        <listitem
+><para
+>مع امتلاء اللوحة واقتراب نهاية اللعبة، يصبح من المهم اللعب عن قرب، وقضم أسوار الخصم أو تعزيز أسوارك. يمكن أن تصبح الأخطاء الصغيرة والسهو مكلفة للغاية.</para
+></listitem>
+    </itemizedlist>
+
+    </sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>نظرة عامة على الواجهة</title>
+    <sect1 id="menus">
+    <title
+>قوائم كي غو</title>
+    <para
+>يحتوي كي غو على الخيارات التالية: </para>
+
+    <variablelist>
+
+    <varlistentry id="game-menu-new">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>جديدة</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يبدأ لعبة جديدة.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-load">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>حمّل…</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>يفتح حوار كيدي القياسي لفتح الملفات، لفتح ملف <literal role="extension"
+>.sgf</literal
+> (ملف لعبة كي غو)، الذي يحتوي على لعبة محفوظة.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-get-more">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>احصل على المزيد من الألعاب…</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يفتح حوار <guilabel
+>احصل على أشياء جديدة ومثيرة</guilabel
+> لتحميل ألعاب حفظها مستخدمون آخرون.</action
+></para
+></listitem>
+    </varlistentry>
+
+    <varlistentry  id="game-menu-save">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>احفظ</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يحفظ</action
+> اللعبة الحالية.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-start">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>S</keycap
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>ابدأ اللعبة</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يبدأ</action
+> اللعبة الجديدة أو المحملة.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-finish">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>F</keycap
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>أنهِ اللعبة</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>ينهي</action
+> اللعبة الحالية. تذكر أن إنهاء لعبة <literal
+>جو</literal
+> هو دائمًا خطوة تعاونية.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="game-menu-quit">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>لعبة</guimenu
+> <guimenuitem
+>أنهِ</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>ينهي</action
+> كي غو.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-undo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حركة</guimenu
+> <guimenuitem
+>تراجع</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يتراجع</action
+> عن حركتك الأخيرة.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-redo">
+    <term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo
+></shortcut
+> <guimenu
+>حركة</guimenu
+> <guimenuitem
+>أعد</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يعيد</action
+> الحركة التي تُرودع عنها للتو بواسطة <guimenuitem
+>تراجع</guimenuitem
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-pass">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>P</keycap
+></shortcut
+> <guimenu
+>حركة</guimenu
+> <guimenuitem
+>مرّر الحركة</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>يتيح لك <action
+>تمرير</action
+> حركة.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-hint">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>H</keycap
+></shortcut
+> <guimenu
+>حركة</guimenu
+> <guimenuitem
+>تلميح</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يعطي تلميحًا</action
+> بإظهار الأحجار الشفافة مع الدرجة عليها.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="move-menu-numbers">
+    <term
+><menuchoice
+><shortcut
+><keycap
+>N</keycap
+></shortcut
+> <guimenu
+>حركة</guimenu
+> <guimenuitem
+>أظهر أرقام الحركات</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+><action
+>يبدل</action
+> ظهور أرقام الحركات.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-info-docker">
+    <term
+><menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guisubmenu
+>المرافئ</guisubmenu
+> <guimenuitem
+>معلومات</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>يظهر أو يخفي الشريط الجانبي لـ <guilabel
+>معلومات</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    <varlistentry id="settings-menu-moves-docker">
+    <term
+><menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guisubmenu
+>المرافئ</guisubmenu
+>  <guimenuitem
+>الحركات</guimenuitem
+> </menuchoice
+></term>
+    <listitem
+><para
+>يظهر أو يخفي الشريط الجانبي لـ <guilabel
+>حركات</guilabel
+>.</para
+></listitem>
+    </varlistentry>
+
+    </variablelist>
+
+    <para
+>بالإضافة إلى ذلك، يحتوي كي غو على عناصر قائمتي كيدي الشائعة <guimenu
+>إعدادات</guimenu
+> و <guimenu
+>مساعدة</guimenu
+>، لمزيد من المعلومات اقرأ الأقسام حول <ulink url="help:/fundamentals/menus.html#menus-settings"
+>قائمة الإعدادات</ulink
+> و <ulink url="help:/fundamentals/menus.html#menus-help"
+>قائمة المساعدة</ulink
+> في أساسيات كيدي. </para>
+
+    </sect1>
+
+    <sect1 id="keybindings">
+    <title id="keybindings-title"
+>الاختصارات</title>
+
+    <para
+>الاختصارات المبدئية هي:</para>
+
+    <table>
+        <title
+>الاختصارات</title>
+        <tgroup cols="2">
+        <tbody>
+            <row>
+                <entry
+>أنهِ اللعبة الحالية</entry>
+                <entry
+><keycap
+>F</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>احصل على ألعاب جديدة رفعها مستخدمون آخرون</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>G</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>مساعدة</entry>
+                <entry
+><keycap
+>F1</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>حمّل لعبة محفوظة</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>O</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>قدم تلميحات للحركات الممكنة</entry>
+                <entry
+><keycap
+>H</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>مرّر حركة</entry>
+                <entry
+><keycap
+>P</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>أنهِ</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>أعد حركة تُروجع عنها</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;&Shift;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>احفظ اللعبة الحالية</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>S</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>ابدأ لعبة جديدة</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>ابدأ لعبة جديدة أو محملة</entry>
+                <entry
+><keycap
+>S</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>بدّل ظهور أرقام الحركات</entry>
+                <entry
+><keycap
+>N</keycap
+></entry>
+            </row>
+            <row>
+                <entry
+>تراجع عن حركتك الأخيرة</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Ctrl;<keycap
+>Z</keycap
+></keycombo>
+                </entry>
+            </row>
+            <row>
+                <entry
+>مساعدة "ما هذا؟"</entry>
+                <entry>
+                    <keycombo action="simul"
+>&Shift;<keycap
+>F1</keycap
+></keycombo>
+                </entry>
+            </row>
+        </tbody>
+        </tgroup>
+    </table>
+
+    </sect1>
+</chapter>
+
+<chapter id="configuration">
+    <title
+>ضبط اللعبة</title>
+
+    <para
+>إذا أردت تغيير كيفية ضبط كي غو، يمكن القيام بذلك بالانتقال إلى عنصر القائمة <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط كي غو…</guimenuitem
+></menuchoice
+>. </para>
+
+    <para
+>سيظهر الآن حوار الضبط كما هو موضح في لقطة الشاشة أدناه. يمكن الوصول إليه أيضًا بالضغط على مجموعة المفاتيح <keycombo
+>&Alt;<keycap
+>S</keycap
+></keycombo
+> متبوعة بـ <keycombo
+>&Alt;<keycap
+>C</keycap
+></keycombo
+>. </para>
+
+    <para
+>يتميز كي غو بمرونة فائقة ويمكن تخصيصه بقدر ما تشاء. يمكنك تغيير مواقع وأحجام جميع الودجت المرفأة بجوار منطقة اللعب المركزية. يمكنك أيضًا تخصيص شريط الأدوات إذا أردت الوصول إلى إجراءات مختلفة هناك. للقيام بذلك، اختر عنصر القائمة <menuchoice
+><guimenu
+>إعدادات</guimenu
+> <guimenuitem
+>اضبط أشرطة الأدوات…</guimenuitem
+></menuchoice
+>. والأمر نفسه ينطبق على جميع الاختصارات في اللعبة. إذا أردت الحصول على أقصى مساحة متاحة لساحة اللعبة، يمكنك حتى إخفاء شريط الأدوات ومعظم الودجت المرفأة من قائمة <guimenu
+>إعدادات</guimenu
+>. </para>
+
+    <sect1 id="genconig">
+    <title
+>الضبط العام</title>
+
+    <para
+>الجانب الأكثر أهمية هنا هو ضبط محرك <literal
+>جو</literal
+> الخلفي. يحتاج كي غو إلى محرك خلفي صالح ليعمل بشكل صحيح. كما يظهر في لقطة الشاشة أدناه، فإنه يستخدم محرك غنو جو (GNU Go) مبدئيًا. يضيء الضوء الصغير بجوار أمر المحرك باللون الأخضر إذا كان كل شيء يعمل بشكل جيد. إذا لم يكن الأمر كذلك أو إذا أردت استخدام محرك <literal
+>جو</literal
+> خلفي مختلف، يجب تثبيت محرك <literal
+>جو</literal
+> مختلف يدعم بروتوكول نص <literal
+>جو</literal
+> (<acronym
+>GTP</acronym
+>) وضبط أمره ومعاملاته وفقًا لذلك. يمكن العثور على تفاصيل حول هذه الخطوة في وثائق محرك <literal
+>جو</literal
+> المقابل. </para>
+
+    <screenshot>
+        <screeninfo
+>الضبط العام</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata format="PNG" fileref="setup-general.png"/></imageobject>
+            <textobject
+><phrase
+>الضبط العام.</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+
+    <sect1 id="configuration-theme">
+    <title
+>ضبط السمة</title>
+
+    <para
+>تتيح هذه الصفحة تغيير السمة التي يستخدمها كي غو. </para>
+
+    <screenshot>
+        <screeninfo
+>اضبط كي غو - السّمات</screeninfo>
+        <mediaobject>
+            <imageobject
+><imagedata fileref="setup-theme.png" format="PNG"/></imageobject>
+            <textobject
+><phrase
+>ضبط السمة</phrase
+></textobject>
+        </mediaobject>
+    </screenshot>
+
+    </sect1>
+</chapter>
+
+<chapter id="credits">
+    <title
+>الحقوق والترخيص</title>
+
+    <para
+>كي غو </para>
+
+    <para
+>حقوق ملكية البرنامج 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>حقوق ملكية التوثيق &copy; 2009 Sascha Peilicke <email
+>sasch.pe@gmx.de</email
+> </para>
+
+    <para
+>تحرير التوثيق وتحويل Docbook بواسطة Yuri Chornoivan <email
+>yurchor@ukr.net</email
+> </para>
+
+    <para
+>السمة المبدئية من تصميم Arturo Silva <email
+>jasilva28@gmail.com</email
+> </para>
+
+<para
+>الترجمة: زايد السعيدي <email
+>zayed.alsaidi@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+</book>
+<!--
+Local Variables:
+mode: sgml
+sgml-omittag: nil
+sgml-shorttag: t
+sgml-general-insert-case: lower
+End:
+-->
+
