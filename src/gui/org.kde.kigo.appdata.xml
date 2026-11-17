@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>org.kde.kigo</id>
   <metadata_license>FSFAP</metadata_license>
-  <project_license>GPL-2.0+</project_license>
+  <project_license>GPL-2.0-or-later</project_license>
   <developer id="org.kde">
     <name translate="no">KDE</name>
   </developer>
@@ -145,6 +145,8 @@
   <url type="help">https://docs.kde.org/?application=kigo</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kigo&amp;source=appdata</url>
   <url type="homepage">https://apps.kde.org/kigo</url>
+  <url type="vcs-browser">https://invent.kde.org/games/kigo/</url>
+  <url type="contribute">https://community.kde.org/Get_Involved</url>
   <screenshots>
     <screenshot type="default">
       <image>https://kde.org/images/screenshots/kigo.png</image>
